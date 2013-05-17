@@ -9,17 +9,20 @@
  * @property string $information_name
  * @property integer $position
  * @property boolean $hiddable
+ * @property boolean $is_hide
  * @property RiskBuilder $RiskBuilder
  * 
  * @method integer                getRiskBuilderId()    Returns the current record's "risk_builder_id" value
  * @method string                 getInformationName()  Returns the current record's "information_name" value
  * @method integer                getPosition()         Returns the current record's "position" value
  * @method boolean                getHiddable()         Returns the current record's "hiddable" value
+ * @method boolean                getIsHide()           Returns the current record's "is_hide" value
  * @method RiskBuilder            getRiskBuilder()      Returns the current record's "RiskBuilder" value
  * @method FlightInformationField setRiskBuilderId()    Sets the current record's "risk_builder_id" value
  * @method FlightInformationField setInformationName()  Sets the current record's "information_name" value
  * @method FlightInformationField setPosition()         Sets the current record's "position" value
  * @method FlightInformationField setHiddable()         Sets the current record's "hiddable" value
+ * @method FlightInformationField setIsHide()           Sets the current record's "is_hide" value
  * @method FlightInformationField setRiskBuilder()      Sets the current record's "RiskBuilder" value
  * 
  * @package    blueprint
@@ -44,6 +47,10 @@ abstract class BaseFlightInformationField extends sfDoctrineRecord
              ));
         $this->hasColumn('hiddable', 'boolean', null, array(
              'type' => 'boolean',
+             ));
+        $this->hasColumn('is_hide', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
     }
 

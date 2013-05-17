@@ -16,4 +16,12 @@ class RiskFactorFieldTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('RiskFactorField');
     }
+
+    public static function getAllRiskFactors($form_id){
+        return Doctrine_Query::create()
+            ->from('RiskFactorField rff')
+            ->where('rff.risk_builder_id =?', $form_id)
+            ->orderBy('rff.created_at ASC')
+            ->execute();
+    }
 }

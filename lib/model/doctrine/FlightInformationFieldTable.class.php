@@ -17,9 +17,10 @@ class FlightInformationFieldTable extends Doctrine_Table
         return Doctrine_Core::getTable('FlightInformationField');
     }
 
-    public static function getAllFields(){
+    public static function getAllFields($form_id){
         return Doctrine_Query::create()
             ->from('FlightInformationField fif')
+            ->where('fif.risk_builder_id = ?', $form_id)
             ->orderBy('fif.position ASC')
             ->execute();
     }

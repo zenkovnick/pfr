@@ -12,5 +12,8 @@ class RiskBuilderForm extends BaseRiskBuilderForm
 {
   public function configure()
   {
+      $this->useFields(array(
+          'name', 'instructions'
+      ));
   }
 }

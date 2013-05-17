@@ -1,6 +1,15 @@
+save_flight_info_position:
+  url: /form/save-flight-info-position
+  param: { module: builder, action: saveFlightInfoPosition }
+
+save_form_field_hidding:
+  url: /form/save-form-field-hidding
+  param: { module: builder, action: saveFormFieldHidding }
+
 form:
   url: /form
   param: { module: builder, action: index }
+
 
 homepage:
   url: /

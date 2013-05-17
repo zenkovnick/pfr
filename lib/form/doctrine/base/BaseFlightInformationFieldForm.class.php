@@ -20,6 +20,7 @@ abstract class BaseFlightInformationFieldForm extends BaseFormDoctrine
       'information_name' => new sfWidgetFormInputText(),
       'position'         => new sfWidgetFormInputText(),
       'hiddable'         => new sfWidgetFormInputCheckbox(),
+      'is_hide'          => new sfWidgetFormInputCheckbox(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BaseFlightInformationFieldForm extends BaseFormDoctrine
       'information_name' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'position'         => new sfValidatorInteger(array('required' => false)),
       'hiddable'         => new sfValidatorBoolean(array('required' => false)),
+      'is_hide'          => new sfValidatorBoolean(array('required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
     ));

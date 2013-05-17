@@ -62,6 +62,7 @@ FlightInformationField:
     information_name: {type: string(255)}
     position:         {type: integer}
     hiddable:         {type: boolean}
+    is_hide:          {type: boolean, default: false}
   relations:
     RiskBuilder:
       foreignAlias: RiskBuilder
