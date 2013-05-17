@@ -16,4 +16,11 @@ class FlightInformationFieldTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('FlightInformationField');
     }
+
+    public static function getAllFields(){
+        return Doctrine_Query::create()
+            ->from('FlightInformationField fif')
+            ->orderBy('fif.position ASC')
+            ->execute();
+    }
 }

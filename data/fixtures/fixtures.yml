@@ -9,37 +9,37 @@ FlightInformationField:
     information_name: 'Plane(tail number):'
     position: 1
     hiddable: false
-  fif1:
+  fif2:
     RiskBuilder: RiskBuilder1
     information_name: 'Pilot in command(PIC):'
     position: 2
     hiddable: false
-  fif1:
+  fif3:
     RiskBuilder: RiskBuilder1
     information_name: 'Second in command(SIC):'
     position: 3
     hiddable: true
-  fif1:
+  fif4:
     RiskBuilder: RiskBuilder1
     information_name: 'Departure date:'
     position: 4
     hiddable: false
-  fif1:
+  fif5:
     RiskBuilder: RiskBuilder1
     information_name: 'Scheduled time of departure:'
     position: 5
     hiddable: false
-  fif1:
+  fif6:
     RiskBuilder: RiskBuilder1
     information_name: 'Departing from:'
     position: 6
     hiddable: false
-  fif1:
+  fif7:
     RiskBuilder: RiskBuilder1
     information_name: 'Flying to:'
     position: 7
     hiddable: false
-  fif1:
+  fif8:
     RiskBuilder: RiskBuilder1
     information_name: 'Trip number:'
     position: 8

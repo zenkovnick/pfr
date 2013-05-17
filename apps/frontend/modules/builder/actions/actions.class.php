@@ -14,7 +14,7 @@ class builderActions extends sfActions
     public function executeIndex(sfWebRequest $request)
     {
         $this->form = new RiskBuilderForm();
-        //$this->flight_information = FlightInformationFieldTable::getAllFields();
+        $this->flight_information = FlightInformationFieldTable::getAllFields();
     }
 
 }

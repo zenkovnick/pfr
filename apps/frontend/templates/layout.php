@@ -23,26 +23,4 @@
 </body>
 </html>
 
-<script type="text/javascript">
-    jQuery("a.fancy").fancybox({
-        'titlePosition'     : 'over',
-        'overlayOpacity'    : 0.4,
-        'centerOnScroll'    : true,
-        showCloseButton     : false,
-        'type'              : 'ajax',
-        hideOnOverlayClick  : true
-
-    });
-
-    jQuery("a.fancy-inline").fancybox({
-        'titlePosition'     : 'over',
-        'overlayOpacity'    : 0.4,
-        'centerOnScroll'    : true,
-        showCloseButton     : false,
-        'type'              : 'inline',
-        hideOnOverlayClick  : true
-
-    });
-
-</script>
 
