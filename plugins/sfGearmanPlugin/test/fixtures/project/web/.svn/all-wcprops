@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/web
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/web/.htaccess
+END
+robots.txt
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/web/robots.txt
+END

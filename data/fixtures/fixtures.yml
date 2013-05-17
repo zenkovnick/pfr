@@ -1,0 +1,46 @@
+RiskBuilder:
+  RiskBuilder1:
+    name: 'Test Builder'
+    instructions: 'Test instructions'
+
+FlightInformationField:
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Plane(tail number):'
+    position: 1
+    hiddable: false
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Pilot in command(PIC):'
+    position: 2
+    hiddable: false
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Second in command(SIC):'
+    position: 3
+    hiddable: true
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Departure date:'
+    position: 4
+    hiddable: false
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Scheduled time of departure:'
+    position: 5
+    hiddable: false
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Departing from:'
+    position: 6
+    hiddable: false
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Flying to:'
+    position: 7
+    hiddable: false
+  fif1:
+    RiskBuilder: RiskBuilder1
+    information_name: 'Trip number:'
+    position: 8
+    hiddable: false

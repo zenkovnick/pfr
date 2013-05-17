@@ -1,0 +1,11 @@
+.petition-signup input[type="text"] {
+    margin: -5px auto 8px;
+}
+
+ul.top-nav li {
+    padding: 9px 0 10px;
+}
+
+.page-title-right, .page-date-right {
+    display: inline-block;
+}

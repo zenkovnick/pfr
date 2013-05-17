@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/lib/exception
+END
+sfGearmanException.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/lib/exception/sfGearmanException.class.php
+END
+sfGearmanTimeoutException.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/lib/exception/sfGearmanTimeoutException.class.php
+END

@@ -1,0 +1,43 @@
+10
+
+dir
+33640
+http://svn.symfony-project.com/plugins/sfGearmanPlugin/trunk/test
+http://svn.symfony-project.com
+
+
+
+2011-07-04T09:42:04.173271Z
+32721
+bicou
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ee427ae8-e902-0410-961c-c3ed070cd9f9
+
+bootstrap
+dir
+
+unit
+dir
+
+functional
+dir
+
+bin
+dir
+
+fixtures
+dir
+

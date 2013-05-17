@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/33281/plugins/sfGearmanPlugin/trunk/lib/task
+END
+gearmanWorkertriggerTask.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/lib/task/gearmanWorkertriggerTask.class.php
+END
+sfGearmanWorkerBaseTask.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/lib/task/sfGearmanWorkerBaseTask.class.php
+END
+gearmanWorkerdoctrineTask.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/32981/plugins/sfGearmanPlugin/trunk/lib/task/gearmanWorkerdoctrineTask.class.php
+END
+gearmanCreateTriggerTask.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/32981/plugins/sfGearmanPlugin/trunk/lib/task/gearmanCreateTriggerTask.class.php
+END
+gearmanWorkerTask.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/33281/plugins/sfGearmanPlugin/trunk/lib/task/gearmanWorkerTask.class.php
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/model/doctrine
+END
+TestArticleTable.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/model/doctrine/TestArticleTable.class.php
+END
+TestArticle.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/model/doctrine/TestArticle.class.php
+END

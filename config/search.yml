@@ -1,0 +1,33 @@
+# Define all the models in your project that you want indexed.
+
+MyIndex:
+  models:
+    Blogpost:
+      fields:
+        id: unindexed
+        title:               { type: text,  boost: 1.5}
+        short_description:   { type: text }
+        full_description:    { type: text }
+        slug:                { type: unindexed }
+        type:                { type: unindexed }
+        image:               { type: unindexed }
+        collage:             { type: unindexed }
+        embed_code:          { type: unindexed }
+        collage_type:        { type: unindexed }
+        collage_image:       { type: unindexed }
+        video_embed_code:    { type: unindexed }
+        video_image:         { type: unindexed }
+        audio_embed_code:    { type: unindexed }
+        audio_image:         { type: unindexed }
+      description: short_description
+      title: title
+
+  index:
+    encoding: UTF-8
+#    cultures: [ru_RU, ru]
+#    stop_words: [the, an, it]
+#    short_words: 2
+    analyzer: utf8num
+#    analyzer: utf8 #text, textnum, utf8, or utf8num
+#    case_sensitive: off # on, off
+    mb_string: on # on, off

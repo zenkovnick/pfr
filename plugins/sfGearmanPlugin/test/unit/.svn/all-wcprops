@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/32721/plugins/sfGearmanPlugin/trunk/test/unit
+END
+sfGearmanClientTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/unit/sfGearmanClientTest.php
+END
+sfGearmanTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/32721/plugins/sfGearmanPlugin/trunk/test/unit/sfGearmanTest.php
+END
+sfGearmanQueueTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/unit/sfGearmanQueueTest.php
+END
+sfGearmanWorkerTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/unit/sfGearmanWorkerTest.php
+END

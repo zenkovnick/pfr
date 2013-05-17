@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/29485/plugins/sfGearmanPlugin/trunk/config
+END
+gearman.yml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/29485/plugins/sfGearmanPlugin/trunk/config/gearman.yml
+END
+gearman.yml.sample
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/config/gearman.yml.sample
+END
+schema.yml.sample
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/config/schema.yml.sample
+END
+sfGearmanPluginConfiguration.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/config/sfGearmanPluginConfiguration.class.php
+END

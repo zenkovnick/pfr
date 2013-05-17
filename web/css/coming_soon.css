@@ -1,0 +1,15 @@
+.coming-soon {
+    width: 386px;
+    height: 194px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-97px 0 0 -193px;
+}
+
+.coming-soon p {
+    text-align: center;
+    font-family: "Arial";
+    font-size: 32px;
+    font-weight: bold;
+}

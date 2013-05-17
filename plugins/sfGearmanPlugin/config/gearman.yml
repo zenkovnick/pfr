@@ -1,0 +1,8 @@
+all:
+  server:
+    default:
+      host: 127.0.0.1
+      port: 4730
+  worker:
+    example1:
+      adduser: [Worker1, adduser]

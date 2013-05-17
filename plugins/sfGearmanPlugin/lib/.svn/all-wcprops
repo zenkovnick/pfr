@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/33307/plugins/sfGearmanPlugin/trunk/lib
+END
+sfGearmanWorker.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/33306/plugins/sfGearmanPlugin/trunk/lib/sfGearmanWorker.class.php
+END
+sfGearmanClient.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/33306/plugins/sfGearmanPlugin/trunk/lib/sfGearmanClient.class.php
+END
+sfGearman.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/33306/plugins/sfGearmanPlugin/trunk/lib/sfGearman.class.php
+END
+sfGearmanWorkerDoctrine.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/33306/plugins/sfGearmanPlugin/trunk/lib/sfGearmanWorkerDoctrine.class.php
+END
+sfGearmanQueue.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/33307/plugins/sfGearmanPlugin/trunk/lib/sfGearmanQueue.class.php
+END

@@ -1,0 +1,29 @@
+.petition-signup p {
+    font: 600 13px/120% 'Titillium Web';
+}
+
+.petition-signup input[type="text"] {
+    margin: -8px auto 8px;
+}
+
+.petition-signup button {
+    margin: -4px auto 30px;
+}
+
+ul.top-nav li {
+    padding: 9px 0 10px;
+}
+
+.page-title-right, .page-date-right {
+    display: inline-block;
+}
+
+.avatar span {
+    color: #DFBFFF;
+    display: block;
+    float: left;
+    font: 600 14px/100% 'Titillium Web';
+    padding: 30px 0 0;
+    width: 205px;
+    text-align: right;
+}

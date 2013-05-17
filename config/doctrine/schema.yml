@@ -1,0 +1,90 @@
+RiskBuilder:
+  actAs: [Timestampable]
+  columns:
+    name:         {type: string(255)}
+    instructions: {type: string(255)}
+  relations:
+    RiskFactorFields:
+      foreignAlias: RiskFactorFields
+      local: id
+      foreign: risk_builder_id
+      type: many
+      foreignType: one
+    FlightInformationField:
+      foreignAlias: FlightInformationField
+      local: id
+      foreign: risk_builder_id
+      type: many
+      foreignType: one
+    MitigationField:
+      foreignAlias: MitigationField
+      local: id
+      foreign: risk_builder_id
+      type: many
+      foreignType: one
+
+RiskFactorField:
+  actAs: [Timestampable]
+  columns:
+    risk_builder_id:          {type: integer}
+    question:         {type: string(255)}
+    help_mewssage:    {type: string(255)}
+    position:         {type: integer}
+  relations:
+    RiskBuilder:
+      foreignAlias: RiskBuilder
+      local: risk_builder_id
+      foreign: id
+      type: one
+      foreignType: many
+
+
+ResponseOtionsField:
+  actAs: [Timestampable]
+  columns:
+    risk_factor_id:   {type: integer}
+    response_text:    {type: string(255)}
+    response_value:   {type: integer}
+    note:             {type: string(255)}
+  relations:
+    RiskFactorField:
+      foreignAlias: RiskFactorField
+      local: risk_factor_id
+      foreign: id
+      type: one
+      foreignType: many
+
+
+FlightInformationField:
+  actAs: [Timestampable]
+  columns:
+    risk_builder_id:          {type: integer}
+    information_name: {type: string(255)}
+    position:         {type: integer}
+    hiddable:         {type: boolean}
+  relations:
+    RiskBuilder:
+      foreignAlias: RiskBuilder
+      local: risk_builder_id
+      foreign: id
+      type: one
+      foreignType: many
+
+MitigationField:
+  actAs: [Timestampable]
+  columns:
+    risk_builder_id:          {type: integer}
+    type:             {type: varchar(20)}
+    message:          {type: varchar(255)}
+    instructions:     {type: varchar(255)}
+    min_value:        {type: integer}
+    max_value:        {type: integer}
+    chief_notify:     {type: boolean}
+  relations:
+    RiskBuilder:
+      foreignAlias: RiskBuilder
+      local: risk_builder_id
+      foreign: id
+      type: one
+      foreignType: many
+

@@ -1,0 +1,8 @@
+.idea
+cache/*
+log/*
+config/databases.yml
+data/sql/schema.sql
+web/uploads/*
+web/video/*
+index.html

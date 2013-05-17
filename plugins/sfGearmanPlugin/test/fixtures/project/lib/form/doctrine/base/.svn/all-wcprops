@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/form/doctrine/base
+END
+BaseTestArticleForm.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/form/doctrine/base/BaseTestArticleForm.class.php
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/filter/doctrine
+END
+BaseFormFilterDoctrine.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/filter/doctrine/BaseFormFilterDoctrine.class.php
+END
+TestArticleFormFilter.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/test/fixtures/project/lib/filter/doctrine/TestArticleFormFilter.class.php
+END

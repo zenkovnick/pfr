@@ -1,0 +1,51 @@
+
+.tooltipster-shadow {
+	border-radius: 5px;
+	background: #fff;
+	box-shadow: 0px 0px 14px rgba(0,0,0,0.3);
+	color: #2c2c2c;
+}
+.tooltipster-shadow .tooltipster-content {
+    font: 14px/150% 'Titillium Web';
+    color: #444;
+    padding: 15px;
+    width: 460px;
+}
+
+
+.tooltipster-shadow .tooltipster-content .tooltip-wrapper {
+
+}
+.tooltipster-shadow .tooltipster-content .tooltip-wrapper .tooltip-photo {
+    width: 100px;
+    float: left;
+
+}
+
+.tooltipster-shadow .tooltipster-content .tooltip-wrapper .tooltip-photo span.tooltip-avatar{
+    border: 1px solid #7F24BD;
+    height: 100px;
+    padding: 1px;
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.tooltipster-shadow .tooltipster-content .tooltip-wrapper .tooltip-photo span.tooltip-name{
+    width: 100%;
+    float: left;
+    display: inline-block;
+    text-align: center;
+    font: 600 14px/120% 'Titillium Web';
+    margin: 10px 0 0 0;
+    overflow: hidden;
+
+}
+
+.tooltipster-shadow .tooltipster-content .tooltip-wrapper .tooltip-about{
+    width: 345px;
+    float: right;
+    margin: -5px 0 0 0;
+
+}
+

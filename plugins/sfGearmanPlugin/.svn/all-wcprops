@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/33307/plugins/sfGearmanPlugin/trunk
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/LICENSE
+END
+package.xml.tmpl
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/29482/plugins/sfGearmanPlugin/trunk/package.xml.tmpl
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/29485/plugins/sfGearmanPlugin/trunk/README
+END
