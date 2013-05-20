@@ -20,36 +20,49 @@
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationLowMin() ?> - <?php echo $risk_builder->getMitigationLowMax() ?></span>
                         <span class="risk-title">Low Risk</span>
+                        <a href="" class="edit hidden">Edit</a>
+                        <a href="" class="cancel hidden">Cancel</a>
                     </div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'])); ?></div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'])); ?></div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
-                    <button class="mitigation-save">Save</button>
+                    <div class="field-wrapper">
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
+                        <button class="mitigation-save">Save</button>
+                    </div>
                 </li>
+
                 <li id="medium" class="medium-risk">
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationMediumMin() ?> - <?php echo $risk_builder->getMitigationMediumMax() ?></span>
                         <span class="risk-title">Medium Risk</span>
+                        <a href="" class="edit hidden">Edit</a>
+                        <a href="" class="cancel hidden">Cancel</a>
                     </div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'])); ?></div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'])); ?></div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
-                    <div><?php include_partial("builder/field",
-                            array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
-                    <button class="mitigation-save">Save</button>
+                    <div class="field-wrapper">
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
+                        <div><?php include_partial("builder/field",
+                                array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
+                        <button class="mitigation-save">Save</button>
+                    </div>
                 </li>
 
                 <li id="high" class="high-risk">
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationHighMin() ?>+</span>
                         <span class="risk-title">High Risk</span>
+                        <a href="" class="edit hidden">Edit</a>
+                        <a href="" class="cancel hidden">Cancel</a>
                     </div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'])); ?></div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'])); ?></div>
-                    <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
-                    <div><?php include_partial("builder/field",
-                            array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
-                    <button class="mitigation-save">Save</button>
+                    <div class="field-wrapper">
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
+                        <div><?php include_partial("builder/field",
+                                array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
+                        <button class="mitigation-save">Save</button>
+                    </div>
                 </li>
             </ul>
             <button type="submit">Save and Exit</button>
@@ -84,6 +97,7 @@
 </div>
 
 <script type="text/javascript">
+    jQuery("div.field-wrapper").hide();
     jQuery(document).ready(function() {
         var form_id = jQuery('form').attr('id');
         jQuery( "#flight-information-container").sortable({
@@ -108,6 +122,7 @@
         });
 
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
+
         jQuery("#risk_builder_mitigation_low_notify").click(function(){
            if(jQuery(this).is(':checked')){
                jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
@@ -119,6 +134,41 @@
                }
            }
         });
+        jQuery("div.mitigation-header").mouseover(function(){
+            if(jQuery(this).find('a.cancel').hasClass('hidden')){
+               jQuery(this).find('a.edit').removeClass('hidden');
+            }
+        });
+        jQuery("div.mitigation-header").mouseout(function(){
+            if(jQuery(this).find('a.cancel').hasClass('hidden')){
+                jQuery(this).find('a.edit').addClass('hidden');
+            }
+        });
+
+        jQuery('a.edit').click(function(event){
+            event.preventDefault();
+            jQuery(this).addClass('hidden');
+            var root_li = jQuery(this).closest('li');
+            root_li.find('a.cancel').removeClass('hidden');
+            root_li.find('div.field-wrapper').show(500);
+        });
+
+        jQuery("a.cancel").click(function(event){
+            event.preventDefault();
+            jQuery(this).addClass('hidden');
+            var root_li = jQuery(this).closest('li');
+            var type = root_li.attr('id');
+            root_li.find('div.field-wrapper').hide(500);
+            jQuery.ajax({
+                url: '<?php echo url_for("@cancel_mitigation_section") ?>',
+                type: 'POST',
+                data: {type: type},
+                success: function() {
+                }
+            });
+
+        });
+
         jQuery("#risk_builder_mitigation_medium_notify").click(function(){
             if(jQuery(this).is(':checked')){
                 jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
@@ -126,6 +176,7 @@
                 jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
             }
         });
+
         jQuery("button.mitigation-save").click(function(event){
             event.preventDefault();
             var type = jQuery(this).parent().attr('id');

@@ -39,6 +39,13 @@ class builderActions extends sfActions
         return sfView::NONE;
     }
 
+    public function executeCancelMitigationSection(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $type = $request->getPostParameter('type');
+        return sfView::NONE;
+    }
+
     public function executeSaveMitigationSection(sfWebRequest $request){
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
