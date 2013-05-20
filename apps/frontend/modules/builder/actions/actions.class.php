@@ -42,7 +42,8 @@ class builderActions extends sfActions
     public function executeCancelMitigationSection(sfWebRequest $request){
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
-        $type = $request->getPostParameter('type');
+        $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getPostParameter('form_id'));
+        echo json_encode($risk_builder->toArray());
         return sfView::NONE;
     }
 

@@ -123,17 +123,10 @@
 
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
-        jQuery("#risk_builder_mitigation_low_notify").click(function(){
-           if(jQuery(this).is(':checked')){
-               jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
-           } else {
-               if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
-                   jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
-               } else {
-                   jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").removeAttr('disabled');
-               }
-           }
-        });
+
+
+
+
         jQuery("div.mitigation-header").mouseover(function(){
             if(jQuery(this).find('a.cancel').hasClass('hidden')){
                jQuery(this).find('a.edit').removeClass('hidden');
@@ -157,16 +150,33 @@
             event.preventDefault();
             jQuery(this).addClass('hidden');
             var root_li = jQuery(this).closest('li');
-            var type = root_li.attr('id');
             root_li.find('div.field-wrapper').hide(500);
+            var type = root_li.attr('id');
             jQuery.ajax({
                 url: '<?php echo url_for("@cancel_mitigation_section") ?>',
                 type: 'POST',
-                data: {type: type},
-                success: function() {
+                dataType: 'json',
+                data: {form_id: form_id},
+                success: function(data) {
+                    
                 }
             });
 
+        });
+
+
+
+
+        jQuery("#risk_builder_mitigation_low_notify").click(function(){
+            if(jQuery(this).is(':checked')){
+                jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
+            } else {
+                if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
+                    jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
+                } else {
+                    jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").removeAttr('disabled');
+                }
+            }
         });
 
         jQuery("#risk_builder_mitigation_medium_notify").click(function(){
@@ -176,6 +186,9 @@
                 jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
             }
         });
+
+
+
 
         jQuery("button.mitigation-save").click(function(event){
             event.preventDefault();
@@ -224,6 +237,9 @@
             }
 
         });
+
+
+
         jQuery("span.hiddable").click(function(){
             var el = jQuery(this);
             var field_id = el.parent('li').find("input[type='hidden']").val();
@@ -244,6 +260,8 @@
                 }
             });
         });
+
+
 
         jQuery( "#slider-range" ).slider({
             range: true,
