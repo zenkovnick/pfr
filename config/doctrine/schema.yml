@@ -1,8 +1,26 @@
 RiskBuilder:
   actAs: [Timestampable]
   columns:
-    name:         {type: string(255)}
-    instructions: {type: string(255)}
+    form_name:                     {type: string(255)}
+    form_instructions:             {type: string(255)}
+    mitigation_low_message:        {type: string(255)}
+    mitigation_low_instructions:   {type: string(255)}
+    mitigation_low_min:            {type: integer, default: 0 }
+    mitigation_low_max:            {type: integer, default: 14 }
+    mitigation_low_notify:         {type: boolean, default: true}
+    mitigation_medium_message:     {type: string(255)}
+    mitigation_medium_instructions: {type: string(255)}
+    mitigation_medium_min:         {type: integer, default: 15 }
+    mitigation_medium_max:         {type: integer, default: 24 }
+    mitigation_medium_notify:      {type: boolean, default: true}
+    mitigation_medium_require_details:      {type: boolean, default: true}
+    mitigation_high_message:       {type: string(255)}
+    mitigation_high_instructions:   {type: string(255)}
+    mitigation_high_min:           {type: integer, default: 25 }
+    mitigation_high_max:           {type: integer, default: 50 }
+    mitigation_high_notify:        {type: boolean, default: true}
+    mitigation_high_prevent_flight:        {type: boolean, default: true}
+
   relations:
     RiskFactorFields:
       foreignAlias: RiskFactorFields
@@ -16,12 +34,7 @@ RiskBuilder:
       foreign: risk_builder_id
       type: many
       foreignType: one
-    MitigationField:
-      foreignAlias: MitigationField
-      local: id
-      foreign: risk_builder_id
-      type: many
-      foreignType: one
+
 
 RiskFactorField:
   actAs: [Timestampable]

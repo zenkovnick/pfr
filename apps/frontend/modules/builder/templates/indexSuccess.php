@@ -10,13 +10,44 @@
         <form id="<?php echo $risk_builder->getId(); ?>" method="post" id="main_form">
             <?php echo $form->renderGlobalErrors();?>
             <?php echo $form->renderHiddenFields();?>
-            <ul>
-                <li>
-                    <?php include_partial("builder/field", array('field' => $form['name'])); ?>
-                </li>
-                <li>
-                    <?php include_partial("builder/field", array('field' => $form['instructions'])); ?>
-                </li>
+            <ul class="form-fields">
+                <li><?php include_partial("builder/field", array('field' => $form['form_name'])); ?></li>
+                <li><?php include_partial("builder/field", array('field' => $form['form_instructions'])); ?></li>
+            </ul>
+            <ul class="mitigation-fields">
+                <div id="slider-range"></div>
+                <div class="low-risk">
+                    <li>
+                        <span class="risk-value"><?php echo $risk_builder->getMitigationLowMin() ?> - <?php echo $risk_builder->getMitigationLowMax() ?></span>
+                        <span class="risk-title">Low Risk</span>
+                    </li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></li>
+                    <li><button class="mitigation-save low-mitigation">Save</button></li>
+                </div>
+                <div class="medium-risk">
+                    <li>
+                        <span class="risk-value"><?php echo $risk_builder->getMitigationMediumMin() ?> - <?php echo $risk_builder->getMitigationMediumMax() ?></span>
+                        <span class="risk-title">Medium Risk</span>
+                    </li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_medium_notify'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></li>
+                    <li><button class="mitigation-save medium-mitigation">Save</button></li>
+                </div>
+                <div class="high-risk">
+                    <li>
+                        <span class="risk-value"><?php echo $risk_builder->getMitigationHighMin() ?>+</span>
+                        <span class="risk-title">High Risk</span>
+                    </li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_high_notify'])); ?></li>
+                    <li><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></li>
+                    <li><button class="mitigation-save high-mitigation">Save</button></li>
+                </div>
             </ul>
             <button type="submit">Save and Exit</button>
         </form>
@@ -93,6 +124,30 @@
 
                 }
             });
+        });
+
+        jQuery( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 50,
+            values: [<?php echo $risk_builder->getMitigationMediumMin() ?>, <?php echo $risk_builder->getMitigationMediumMax() ?> ],
+            slide: function( event, ui ) {
+                if(ui.values[ 0 ] == ui.values[ 1 ]){
+                    return false;
+                } else {
+                    if(ui.values[ 0 ] == 0) {
+                        jQuery( "div.low-risk span.risk-value" ).text("0");
+                    } else {
+                        jQuery( "div.low-risk span.risk-value" ).text("0 - " + (ui.values[ 0 ]));
+                    }
+                    if((ui.values[ 0 ] + 1) == ui.values[ 1 ]) {
+                        jQuery( "div.medium-risk span.risk-value" ).text((ui.values[ 1 ]));
+                    } else {
+                        jQuery( "div.medium-risk span.risk-value" ).text((ui.values[ 0 ] + 1) + " - " + (ui.values[ 1 ]));
+                    }
+                    jQuery( "div.high-risk span.risk-value" ).text((ui.values[1] + 1) + "+");
+                }
+            }
         });
     });
 </script>

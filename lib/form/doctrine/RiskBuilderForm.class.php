@@ -13,7 +13,14 @@ class RiskBuilderForm extends BaseRiskBuilderForm
   public function configure()
   {
       $this->useFields(array(
-          'name', 'instructions'
+          'form_name', 'form_instructions',
+          'mitigation_low_message', 'mitigation_low_instructions', 'mitigation_low_notify',
+          'mitigation_medium_message', 'mitigation_medium_instructions', 'mitigation_medium_notify', 'mitigation_medium_require_details',
+          'mitigation_high_message', 'mitigation_high_instructions', 'mitigation_high_notify', 'mitigation_high_prevent_flight'
+      ));
+
+      $this->widgetSchema->setLabels(array(
+
       ));
   }
 }

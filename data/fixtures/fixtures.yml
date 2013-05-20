@@ -1,7 +1,13 @@
 RiskBuilder:
   RiskBuilder1:
-    name: 'Test Builder'
-    instructions: 'Test instructions'
+    form_name: 'Test Builder'
+    form_instructions: 'Test instructions'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_high_message: 'Danger'
+    mitigation_high_instructions: ''
 
 FlightInformationField:
   fif1:
