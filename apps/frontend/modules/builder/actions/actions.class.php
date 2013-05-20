@@ -27,19 +27,60 @@ class builderActions extends sfActions
     }
 
 
+    public function executeSaveMitigationRange(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getParameter('form_id'));
+        $risk_builder->setMitigationLowMax($request->getParameter('low_max'));
+        $risk_builder->setMitigationMediumMin($request->getParameter('low_max') + 1);
+        $risk_builder->setMitigationMediumMax($request->getParameter('medium_max'));
+        $risk_builder->setMitigationHighMin($request->getParameter('medium_max') + 1);
+        $risk_builder->save();
+        return sfView::NONE;
+    }
+
+    public function executeSaveMitigationSection(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $type = $request->getPostParameter('type');
+        $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getPostParameter('form_id'));
+        switch($type) {
+            case 'low':
+                $risk_builder->setMitigationLowMessage($request->getPostParameter('message'));
+                $risk_builder->setMitigationLowInstructions($request->getPostParameter('instructions'));
+                $risk_builder->setMitigationLowNotify($request->getPostParameter('notify'));
+                break;
+            case 'medium':
+                $risk_builder->setMitigationMediumMessage($request->getPostParameter('message'));
+                $risk_builder->setMitigationMediumInstructions($request->getPostParameter('instructions'));
+                $risk_builder->setMitigationMediumNotify($request->getPostParameter('notify'));
+                $risk_builder->setMitigationMediumRequireDetails($request->getPostParameter('require'));
+                break;
+            case 'high':
+                $risk_builder->setMitigationHighMessage($request->getPostParameter('message'));
+                $risk_builder->setMitigationHighInstructions($request->getPostParameter('instructions'));
+                $risk_builder->setMitigationHighNotify($request->getPostParameter('notify'));
+                $risk_builder->setMitigationHighPreventFlight($request->getPostParameter('prevent'));
+                break;
+        }
+        $risk_builder->save();
+        return sfView::NONE;
+    }
+
     public function executeSaveFormFieldHidding(sfWebRequest $request){
         $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
         $field_id = $request->getParameter('id');
         $field_hidding = $request->getParameter('hidding');
         $flight_information_field = Doctrine_Core::getTable("FlightInformationField")->find($field_id);
         $flight_information_field->setIsHide($field_hidding);
         $flight_information_field->save();
-        return sfView::NONE;
     }
 
     public function executeSaveFlightInfoPosition(sfWebRequest $request)
     {
         $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
         $ids_json = $request->getParameter('ids');
         $ids = array_flip(json_decode($ids_json));
         $form_id = $request->getParameter('form_id');

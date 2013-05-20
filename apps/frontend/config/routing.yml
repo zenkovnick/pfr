@@ -6,6 +6,14 @@ save_form_field_hidding:
   url: /form/save-form-field-hidding
   param: { module: builder, action: saveFormFieldHidding }
 
+save_mitigation_range:
+  url: /form/save-mitigation-range
+  param: { module: builder, action: saveMitigationRange }
+
+save_mitigation_section:
+  url: /form/save-mitigation-section
+  param: { module: builder, action: saveMitigationSection }
+
 form:
   url: /form
   param: { module: builder, action: index }
