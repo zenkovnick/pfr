@@ -158,7 +158,29 @@
                 dataType: 'json',
                 data: {form_id: form_id},
                 success: function(data) {
-                    
+                    switch(type){
+                        case 'low':
+                            jQuery("#risk_builder_mitigation_low_message").val(data.mitigation_low_message);
+                            jQuery("#risk_builder_mitigation_low_instructions").val(data.mitigation_low_instructions);
+                            jQuery("#risk_builder_mitigation_low_notify").prop('checked', data.mitigation_low_notify);
+                            disableLowNotifyCheckbox(jQuery("#risk_builder_mitigation_low_notify"));
+                            break;
+                        case 'medium':
+                            jQuery("#risk_builder_mitigation_medium_message").val(data.mitigation_medium_message);
+                            jQuery("#risk_builder_mitigation_medium_instructions").val(data.mitigation_medium_instructions);
+                            jQuery("#risk_builder_mitigation_medium_notify").prop('checked', data.mitigation_medium_notify);
+                            jQuery("#risk_builder_mitigation_medium_require_details").prop('checked', data.mitigation_medium_require_details);
+                            disableMediumNotifyCheckbox(jQuery("#risk_builder_mitigation_medium_notify"));
+                            break;
+                        case 'high':
+                            jQuery("#risk_builder_mitigation_high_message").val(data.mitigation_high_message);
+                            jQuery("#risk_builder_mitigation_high_instructions").val(data.mitigation_high_message);
+                            jQuery("#risk_builder_mitigation_high_notify").prop('checked', data.mitigation_high_notify);
+                            jQuery("#risk_builder_mitigation_high_prevent_flight").prop('checked', data.mitigation_high_prevent_flight);
+                            break;
+
+                    }
+
                 }
             });
 
@@ -168,23 +190,11 @@
 
 
         jQuery("#risk_builder_mitigation_low_notify").click(function(){
-            if(jQuery(this).is(':checked')){
-                jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
-            } else {
-                if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
-                    jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
-                } else {
-                    jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").removeAttr('disabled');
-                }
-            }
+            disableLowNotifyCheckbox(jQuery(this));
         });
 
         jQuery("#risk_builder_mitigation_medium_notify").click(function(){
-            if(jQuery(this).is(':checked')){
-                jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
-            } else {
-                jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
-            }
+            disableMediumNotifyCheckbox(jQuery(this));
         });
 
 
@@ -192,7 +202,8 @@
 
         jQuery("button.mitigation-save").click(function(event){
             event.preventDefault();
-            var type = jQuery(this).parent().attr('id');
+            var root_li = jQuery(this).closest('li');
+            var type = root_li.attr('id');
             var data = null;
             switch(type){
                 case 'low':
@@ -232,6 +243,8 @@
                     type: 'POST',
                     data: data,
                     success: function() {
+                        root_li.find('div.field-wrapper').hide(500);
+                        root_li.find('a.cancel').addClass('hidden');
                     }
                 });
             }
@@ -295,5 +308,26 @@
                 });
             }
         });
+
+
+        function disableLowNotifyCheckbox(notify_el) {
+            if(notify_el.is(':checked')){
+                jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
+            } else {
+                if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
+                    jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
+                } else {
+                    jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").removeAttr('disabled');
+                }
+            }
+        }
+
+        function disableMediumNotifyCheckbox(notify_el){
+            if(notify_el.is(':checked')){
+                jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
+            } else {
+                jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
+            }
+        }
     });
 </script>
