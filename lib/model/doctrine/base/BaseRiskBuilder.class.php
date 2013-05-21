@@ -24,7 +24,8 @@
  * @property integer $mitigation_high_max
  * @property boolean $mitigation_high_notify
  * @property boolean $mitigation_high_prevent_flight
- * @property Doctrine_Collection $FlightInformationField
+ * @property Doctrine_Collection $RiskFactorFields
+ * @property Doctrine_Collection $FlightInformationFields
  * @property Doctrine_Collection $RiskBuilder
  * 
  * @method string              getFormName()                          Returns the current record's "form_name" value
@@ -46,7 +47,8 @@
  * @method integer             getMitigationHighMax()                 Returns the current record's "mitigation_high_max" value
  * @method boolean             getMitigationHighNotify()              Returns the current record's "mitigation_high_notify" value
  * @method boolean             getMitigationHighPreventFlight()       Returns the current record's "mitigation_high_prevent_flight" value
- * @method Doctrine_Collection getFlightInformationField()            Returns the current record's "FlightInformationField" collection
+ * @method Doctrine_Collection getRiskFactorFields()                  Returns the current record's "RiskFactorFields" collection
+ * @method Doctrine_Collection getFlightInformationFields()           Returns the current record's "FlightInformationFields" collection
  * @method Doctrine_Collection getRiskBuilder()                       Returns the current record's "RiskBuilder" collection
  * @method RiskBuilder         setFormName()                          Sets the current record's "form_name" value
  * @method RiskBuilder         setFormInstructions()                  Sets the current record's "form_instructions" value
@@ -67,7 +69,8 @@
  * @method RiskBuilder         setMitigationHighMax()                 Sets the current record's "mitigation_high_max" value
  * @method RiskBuilder         setMitigationHighNotify()              Sets the current record's "mitigation_high_notify" value
  * @method RiskBuilder         setMitigationHighPreventFlight()       Sets the current record's "mitigation_high_prevent_flight" value
- * @method RiskBuilder         setFlightInformationField()            Sets the current record's "FlightInformationField" collection
+ * @method RiskBuilder         setRiskFactorFields()                  Sets the current record's "RiskFactorFields" collection
+ * @method RiskBuilder         setFlightInformationFields()           Sets the current record's "FlightInformationFields" collection
  * @method RiskBuilder         setRiskBuilder()                       Sets the current record's "RiskBuilder" collection
  * 
  * @package    blueprint
@@ -161,11 +164,15 @@ abstract class BaseRiskBuilder extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('FlightInformationField', array(
+        $this->hasMany('RiskFactorField as RiskFactorFields', array(
              'local' => 'id',
              'foreign' => 'risk_builder_id'));
 
-        $this->hasMany('RiskFactorField as RiskBuilder', array(
+        $this->hasMany('FlightInformationField as FlightInformationFields', array(
+             'local' => 'id',
+             'foreign' => 'risk_builder_id'));
+
+        $this->hasMany('MitigationField as RiskBuilder', array(
              'local' => 'id',
              'foreign' => 'risk_builder_id'));
 

@@ -1,3 +1,11 @@
+add_new_response_option_field:
+  url: /form/add-new-response-option-field
+  param: { module: builder, action: addNewResponseOptionField }
+
+add_new_risk_factor_field:
+  url: /form/add-new-risk-factor-field
+  param: { module: builder, action: addNewRiskFactorField }
+
 save_flight_info_position:
   url: /form/save-flight-info-position
   param: { module: builder, action: saveFlightInfoPosition }

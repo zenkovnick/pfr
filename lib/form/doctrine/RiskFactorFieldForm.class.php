@@ -12,5 +12,11 @@ class RiskFactorFieldForm extends BaseRiskFactorFieldForm
 {
   public function configure()
   {
+      $this->useFields(array(
+         'question', 'help_message'
+      ));
+
+      $this->validatorSchema['question'] = new sfValidatorString(array('required' => true));
+
   }
 }

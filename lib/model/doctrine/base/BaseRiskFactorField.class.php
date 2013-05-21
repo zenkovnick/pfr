@@ -7,23 +7,23 @@
  * 
  * @property integer $risk_builder_id
  * @property string $question
- * @property string $help_mewssage
+ * @property string $help_message
  * @property integer $position
  * @property RiskBuilder $RiskBuilder
- * @property Doctrine_Collection $RiskFactorField
+ * @property Doctrine_Collection $ResponseOptions
  * 
  * @method integer             getRiskBuilderId()   Returns the current record's "risk_builder_id" value
  * @method string              getQuestion()        Returns the current record's "question" value
- * @method string              getHelpMewssage()    Returns the current record's "help_mewssage" value
+ * @method string              getHelpMessage()     Returns the current record's "help_message" value
  * @method integer             getPosition()        Returns the current record's "position" value
  * @method RiskBuilder         getRiskBuilder()     Returns the current record's "RiskBuilder" value
- * @method Doctrine_Collection getRiskFactorField() Returns the current record's "RiskFactorField" collection
+ * @method Doctrine_Collection getResponseOptions() Returns the current record's "ResponseOptions" collection
  * @method RiskFactorField     setRiskBuilderId()   Sets the current record's "risk_builder_id" value
  * @method RiskFactorField     setQuestion()        Sets the current record's "question" value
- * @method RiskFactorField     setHelpMewssage()    Sets the current record's "help_mewssage" value
+ * @method RiskFactorField     setHelpMessage()     Sets the current record's "help_message" value
  * @method RiskFactorField     setPosition()        Sets the current record's "position" value
  * @method RiskFactorField     setRiskBuilder()     Sets the current record's "RiskBuilder" value
- * @method RiskFactorField     setRiskFactorField() Sets the current record's "RiskFactorField" collection
+ * @method RiskFactorField     setResponseOptions() Sets the current record's "ResponseOptions" collection
  * 
  * @package    blueprint
  * @subpackage model
@@ -42,7 +42,7 @@ abstract class BaseRiskFactorField extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('help_mewssage', 'string', 255, array(
+        $this->hasColumn('help_message', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
              ));
@@ -58,7 +58,7 @@ abstract class BaseRiskFactorField extends sfDoctrineRecord
              'local' => 'risk_builder_id',
              'foreign' => 'id'));
 
-        $this->hasMany('ResponseOtionsField as RiskFactorField', array(
+        $this->hasMany('ResponseOptionField as ResponseOptions', array(
              'local' => 'id',
              'foreign' => 'risk_factor_id'));
 

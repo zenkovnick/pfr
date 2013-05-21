@@ -1,16 +1,16 @@
 <?php
 
 /**
- * ResponseOtionsField form base class.
+ * ResponseOptionField form base class.
  *
- * @method ResponseOtionsField getObject() Returns the current form's model object
+ * @method ResponseOptionField getObject() Returns the current form's model object
  *
  * @package    blueprint
  * @subpackage form
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseResponseOtionsFieldForm extends BaseFormDoctrine
+abstract class BaseResponseOptionFieldForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -34,7 +34,7 @@ abstract class BaseResponseOtionsFieldForm extends BaseFormDoctrine
       'updated_at'     => new sfValidatorDateTime(),
     ));
 
-    $this->widgetSchema->setNameFormat('response_otions_field[%s]');
+    $this->widgetSchema->setNameFormat('response_option_field[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -45,7 +45,7 @@ abstract class BaseResponseOtionsFieldForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'ResponseOtionsField';
+    return 'ResponseOptionField';
   }
 
 }

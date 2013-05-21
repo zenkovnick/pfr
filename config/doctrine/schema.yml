@@ -23,17 +23,15 @@ RiskBuilder:
 
   relations:
     RiskFactorFields:
-      foreignAlias: RiskFactorFields
+      class: RiskFactorField
       local: id
       foreign: risk_builder_id
       type: many
-      foreignType: one
-    FlightInformationField:
-      foreignAlias: FlightInformationField
+    FlightInformationFields:
+      class: FlightInformationField
       local: id
       foreign: risk_builder_id
       type: many
-      foreignType: one
 
 
 RiskFactorField:
@@ -41,18 +39,21 @@ RiskFactorField:
   columns:
     risk_builder_id:          {type: integer}
     question:         {type: string(255)}
-    help_mewssage:    {type: string(255)}
+    help_message:    {type: string(255)}
     position:         {type: integer}
   relations:
     RiskBuilder:
-      foreignAlias: RiskBuilder
+      class: RiskBuilder
       local: risk_builder_id
       foreign: id
       type: one
-      foreignType: many
+    ResponseOptions:
+      class: ResponseOptionField
+      local: id
+      foreign: risk_factor_id
+      type: many
 
-
-ResponseOtionsField:
+ResponseOptionField:
   actAs: [Timestampable]
   columns:
     risk_factor_id:   {type: integer}
@@ -61,12 +62,10 @@ ResponseOtionsField:
     note:             {type: string(255)}
   relations:
     RiskFactorField:
-      foreignAlias: RiskFactorField
+      class: RiskFactorField
       local: risk_factor_id
       foreign: id
       type: one
-      foreignType: many
-
 
 FlightInformationField:
   actAs: [Timestampable]
@@ -78,11 +77,10 @@ FlightInformationField:
     is_hide:          {type: boolean, default: false}
   relations:
     RiskBuilder:
-      foreignAlias: RiskBuilder
+      class: RiskBuilder
       local: risk_builder_id
       foreign: id
       type: one
-      foreignType: many
 
 MitigationField:
   actAs: [Timestampable]

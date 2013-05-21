@@ -26,6 +26,24 @@ class builderActions extends sfActions
         }
     }
 
+    public function executeAddNewRiskFactorField(sfWebRequest $request){
+        $this->forward404unless($request->isXmlHttpRequest());
+        $this->form = new RiskFactorFieldForm();
+        return $this->renderPartial('addNewRiskFactor',array('form' => $this->form));
+    }
+
+    public function executeAddNewResponseOptionField(sfWebRequest $request){
+        $this->forward404unless($request->isXmlHttpRequest());
+        $number = intval($request->getPostParameter("num"));
+
+        $this->form = new RiskFactorOptionsForm();
+
+        $this->form->addNewFields($number);
+
+        return $this->renderPartial('addNewResponseOption',array('form' => $this->form, 'number' => $number));
+    }
+
+
 
     public function executeSaveMitigationRange(sfWebRequest $request){
         $this->setLayout(false);

@@ -92,12 +92,50 @@
                 <li></li>
             <?php endforeach; ?>
         </ul>
+        <a href="" id="add-risk-factor-link">+ Add Risk Factor</a>
     </div>
 
 </div>
 
 <script type="text/javascript">
     jQuery("div.field-wrapper").hide();
+    var newfieldscount = 0;
+
+    function addNewRiskFactorField(){
+        return jQuery.ajax({
+            type: 'POST',
+            url: '<?php echo url_for("@add_new_risk_factor_field"); ?>',
+            async: false
+        }).responseText;
+    }
+
+    function addNewResponseOptionField(num){
+        return jQuery.ajax({
+            type: 'POST',
+            data: {num: num},
+            url: '<?php echo url_for("@add_new_response_option_field"); ?>',
+            async: false
+        }).responseText;
+    }
+
+    function addNewResponseOptionForm(event) {
+        event.preventDefault();
+        var el = jQuery(addNewResponseOptionField(newfieldscount));
+        //jQuery('.delete_education', el).bind('click', deleteEducation);
+        jQuery(this).closest('li.new').find('ul.response-option-list').append(el);
+
+        newfieldscount = newfieldscount + 1;
+        /*jQuery("form :input").change(function(){
+         form_changed = true;
+         });
+         jQuery("a", jQuery("#header")).bind('click', ask_saving);
+         jQuery("a", jQuery(".user-general-menu")).bind('click', ask_saving);
+         jQuery("a", jQuery(".user-profile-nav-buttons")).bind('click', ask_saving);
+         jQuery("a", jQuery("#footer")).bind('click', ask_saving);*/
+
+    }
+
+
     jQuery(document).ready(function() {
         var form_id = jQuery('form').attr('id');
         jQuery( "#flight-information-container").sortable({
@@ -124,7 +162,20 @@
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
 
+        jQuery('#add-risk-factor-link').click(function(event){
+            event.preventDefault();
+            var el = jQuery(addNewRiskFactorField());
+            jQuery('a.add-new-response-link', el).bind('click', addNewResponseOptionForm);
+            jQuery('ul.risk-factor-list').append(el);
 
+            /*jQuery("form :input").change(function(){
+                form_changed = true;
+            });
+            jQuery("a", jQuery("#header")).bind('click', ask_saving);
+            jQuery("a", jQuery(".user-general-menu")).bind('click', ask_saving);
+            jQuery("a", jQuery(".user-profile-nav-buttons")).bind('click', ask_saving);
+            jQuery("a", jQuery("#footer")).bind('click', ask_saving);*/
+        });
 
 
         jQuery("div.mitigation-header").mouseover(function(){
@@ -329,5 +380,7 @@
                 jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
             }
         }
+
+
     });
 </script>
