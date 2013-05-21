@@ -26,19 +26,37 @@ class builderActions extends sfActions
         }
     }
 
+    public function executeSaveRiskFactor(sfWebRequest $request) {
+        $this->setLayout(false);
+        $form = new RiskFactorOptionsForm();
+        if($request->isMethod('post')){
+            $form->bind($request->getParameter($form->getName()));
+            if($form->isValid()){
+                $form->save();
+                $form->getObject()->setRiskBuilder(Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id')));
+                $form->getObject()->save();
+                $id = $form->getObject()->getId();
+            }
+            //$this->redirect('@form');
+        }
+        return sfView::NONE;
+    }
+
     public function executeAddNewRiskFactorField(sfWebRequest $request){
         $this->forward404unless($request->isXmlHttpRequest());
+        $number = intval($request->getPostParameter("risk_factor_num"));
+        $main_form_id = intval($request->getPostParameter("form_id"));
         $this->form = new RiskFactorFieldForm();
-        return $this->renderPartial('addNewRiskFactor',array('form' => $this->form));
+        return $this->renderPartial('addNewRiskFactor',array('form' => $this->form, 'number' => $number, 'form_id' => $main_form_id));
     }
 
     public function executeAddNewResponseOptionField(sfWebRequest $request){
         $this->forward404unless($request->isXmlHttpRequest());
         $number = intval($request->getPostParameter("num"));
-
+        $type = $request->getPostParameter("type");
         $this->form = new RiskFactorOptionsForm();
 
-        $this->form->addNewFields($number);
+        $this->form->addNewFields($number, $type);
 
         return $this->renderPartial('addNewResponseOption',array('form' => $this->form, 'number' => $number));
     }

@@ -2,12 +2,11 @@
 <?php include_partial('home/notice'); ?>
 <?php include_partial('home/success'); ?>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <div class="form-builder-wrapper">
     <div>
-        <form id="<?php echo $risk_builder->getId(); ?>" method="post" id="main_form">
+        <form id="<?php echo $risk_builder->getId(); ?>" method="post" class="main-form">
             <?php echo $form->renderGlobalErrors();?>
             <?php echo $form->renderHiddenFields();?>
             <ul class="form-fields">
@@ -99,20 +98,29 @@
 
 <script type="text/javascript">
     jQuery("div.field-wrapper").hide();
-    var newfieldscount = 0;
+    var new_risk_factor_count = 0;
+    var new_response_option_count = 0;
+    var options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: riskFactorSubmitted
+    };
+    jQuery.noConflict();
 
-    function addNewRiskFactorField(){
+    function addNewRiskFactorField(num){
+        alert(jQuery("form.main-form").attr("id"));
         return jQuery.ajax({
             type: 'POST',
+            data: {risk_factor_num: num, form_id: jQuery("form.main-form").attr("id")},
             url: '<?php echo url_for("@add_new_risk_factor_field"); ?>',
             async: false
         }).responseText;
     }
 
-    function addNewResponseOptionField(num){
+    function addNewResponseOptionField(num, type){
         return jQuery.ajax({
             type: 'POST',
-            data: {num: num},
+            data: {num: num, type: type},
             url: '<?php echo url_for("@add_new_response_option_field"); ?>',
             async: false
         }).responseText;
@@ -120,11 +128,11 @@
 
     function addNewResponseOptionForm(event) {
         event.preventDefault();
-        var el = jQuery(addNewResponseOptionField(newfieldscount));
+        var el = jQuery(addNewResponseOptionField(new_response_option_count));
         //jQuery('.delete_education', el).bind('click', deleteEducation);
         jQuery(this).closest('li.new').find('ul.response-option-list').append(el);
 
-        newfieldscount = newfieldscount + 1;
+        new_response_option_count++;
         /*jQuery("form :input").change(function(){
          form_changed = true;
          });
@@ -135,9 +143,12 @@
 
     }
 
+    function riskFactorSubmitted(){
+        alert("OK");
+    }
 
     jQuery(document).ready(function() {
-        var form_id = jQuery('form').attr('id');
+        var form_id = jQuery('form.main-form').attr('id');
         jQuery( "#flight-information-container").sortable({
             containment: "parent",
             axis: "y",
@@ -151,7 +162,7 @@
                 jQuery.ajax({
                     url: '<?php echo url_for("@save_flight_info_position") ?>',
                     type: 'POST',
-                    data: {ids: json_obj, form_id: jQuery('form').attr('id')},
+                    data: {ids: json_obj, form_id: jQuery('form.main-form').attr('id')},
                     success: function() {
 
                     }
@@ -164,9 +175,22 @@
 
         jQuery('#add-risk-factor-link').click(function(event){
             event.preventDefault();
-            var el = jQuery(addNewRiskFactorField());
+            var el = jQuery(addNewRiskFactorField(new_risk_factor_count));
             jQuery('a.add-new-response-link', el).bind('click', addNewResponseOptionForm);
+            /*alert(jQuery("#risk_factor_form_"+new_risk_factor_count, el).html());
+            jQuery("#risk_factor_form_"+new_risk_factor_count, el).ajaxForm(options_submit);*/
+            new_risk_factor_count++;
+
             jQuery('ul.risk-factor-list').append(el);
+
+            var response_el = jQuery(addNewResponseOptionField(new_response_option_count, 'default_no'));
+            el.find('ul.response-option-list').append(response_el);
+            new_response_option_count++;
+
+            var response_el = jQuery(addNewResponseOptionField(new_response_option_count, 'default_yes'));
+            el.find('ul.response-option-list').append(response_el);
+            new_response_option_count++;
+
 
             /*jQuery("form :input").change(function(){
                 form_changed = true;
