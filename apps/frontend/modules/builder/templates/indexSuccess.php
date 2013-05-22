@@ -20,8 +20,8 @@
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationLowMin() ?> - <?php echo $risk_builder->getMitigationLowMax() ?></span>
                         <span class="risk-title">Low Risk</span>
-                        <a href="" class="edit hidden">Edit</a>
-                        <a href="" class="cancel hidden">Cancel</a>
+                        <a href="" class="mitigation-edit hidden">Edit</a>
+                        <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'])); ?></div>
@@ -35,8 +35,8 @@
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationMediumMin() ?> - <?php echo $risk_builder->getMitigationMediumMax() ?></span>
                         <span class="risk-title">Medium Risk</span>
-                        <a href="" class="edit hidden">Edit</a>
-                        <a href="" class="cancel hidden">Cancel</a>
+                        <a href="" class="mitigation-edit hidden">Edit</a>
+                        <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'])); ?></div>
@@ -52,8 +52,8 @@
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationHighMin() ?>+</span>
                         <span class="risk-title">High Risk</span>
-                        <a href="" class="edit hidden">Edit</a>
-                        <a href="" class="cancel hidden">Cancel</a>
+                        <a href="" class="mitigation-edit hidden">Edit</a>
+                        <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'])); ?></div>
@@ -305,25 +305,25 @@
 
 
         jQuery("div.mitigation-header").mouseover(function(){
-            if(jQuery(this).find('a.cancel').hasClass('hidden')){
-               jQuery(this).find('a.edit').removeClass('hidden');
+            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden')){
+               jQuery(this).find('a.mitigation-edit').removeClass('hidden');
             }
         });
         jQuery("div.mitigation-header").mouseout(function(){
-            if(jQuery(this).find('a.cancel').hasClass('hidden')){
-                jQuery(this).find('a.edit').addClass('hidden');
+            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden')){
+                jQuery(this).find('a.mitigation-edit').addClass('hidden');
             }
         });
 
-        jQuery('a.edit').click(function(event){
+        jQuery('a.mitigation-edit').click(function(event){
             event.preventDefault();
             jQuery(this).addClass('hidden');
             var root_li = jQuery(this).closest('li');
-            root_li.find('a.cancel').removeClass('hidden');
+            root_li.find('a.mitigation-cancel').removeClass('hidden');
             root_li.find('div.field-wrapper').show(500);
         });
 
-        jQuery("a.cancel").click(function(event){
+        jQuery("a.mitigation-cancel").click(function(event){
             event.preventDefault();
             jQuery(this).addClass('hidden');
             var root_li = jQuery(this).closest('li');
