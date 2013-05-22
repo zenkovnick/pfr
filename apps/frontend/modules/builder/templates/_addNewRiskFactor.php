@@ -1,6 +1,6 @@
 <li class="new">
     <div class="risk-factor-wrapper">
-        <h1>New Risk</h1>
+        <h2>New Risk factor</h2>
         <form id="risk_factor_form_<?php echo $number ?>" action="<?php echo url_for('@save_risk_factor?form_builder_id='.$form_id) ?>" method="post">
             <fieldset>
                 <a href="#" class="delete_risk_factor">Remove</a>
@@ -12,7 +12,7 @@
 
             </ul>
             <a href="" class="add-new-response-link">+ Add Response Option</a>
-            <button type="submit">Save</button>
+            <button class="btn btn-green" type="submit">Save</button>
         </form>
     </div>
 </li>
