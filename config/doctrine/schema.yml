@@ -27,11 +27,13 @@ RiskBuilder:
       local: id
       foreign: risk_builder_id
       type: many
+      onDelete: CASCADE
     FlightInformationFields:
       class: FlightInformationField
       local: id
       foreign: risk_builder_id
       type: many
+      onDelete: CASCADE
 
 
 RiskFactorField:
@@ -52,6 +54,7 @@ RiskFactorField:
       local: id
       foreign: risk_factor_id
       type: many
+      onDelete: CASCADE
 
 ResponseOptionField:
   actAs: [Timestampable]

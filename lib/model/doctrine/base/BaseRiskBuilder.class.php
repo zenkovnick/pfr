@@ -166,11 +166,13 @@ abstract class BaseRiskBuilder extends sfDoctrineRecord
         parent::setUp();
         $this->hasMany('RiskFactorField as RiskFactorFields', array(
              'local' => 'id',
-             'foreign' => 'risk_builder_id'));
+             'foreign' => 'risk_builder_id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('FlightInformationField as FlightInformationFields', array(
              'local' => 'id',
-             'foreign' => 'risk_builder_id'));
+             'foreign' => 'risk_builder_id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('MitigationField as RiskBuilder', array(
              'local' => 'id',

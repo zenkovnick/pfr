@@ -36,10 +36,36 @@ class builderActions extends sfActions
                 $form->getObject()->setRiskBuilder(Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id')));
                 $form->getObject()->save();
                 $id = $form->getObject()->getId();
+                echo json_encode(array('result' => 'OK'));
+            }
+        }
+        return sfView::NONE;
+    }
+
+    public function executeUpdateRiskFactor(sfWebRequest $request) {
+        $this->setLayout(false);
+
+        $form = new RiskFactorOptionsForm(Doctrine_Core::getTable('RiskFactorField')->find($request->getParameter('risk_factor_id')));
+        if($request->isMethod('post')){
+            $form->bind($request->getParameter($form->getName()));
+            if($form->isValid()){
+                $form->getObject()->save();
+                $form->save();
+                $id = $form->getObject()->getId();
+                echo json_encode(array('result' => 'OK'));
             }
             //$this->redirect('@form');
         }
         return sfView::NONE;
+    }
+
+    public function executeEditRiskFactorField(sfWebRequest $request){
+        $this->forward404unless($request->isXmlHttpRequest());
+        $risk_id = intval($request->getParameter("risk_factor_id"));
+        $main_form_id = intval($request->getParameter("form_id"));
+        $risk_factor = Doctrine_Core::getTable('RiskFactorField')->find($risk_id);
+        $this->form = new RiskFactorOptionsForm($risk_factor);
+        return $this->renderPartial('editRiskFactor',array('form' => $this->form, 'risk_factor' => $risk_factor, 'form_id' => $main_form_id));
     }
 
     public function executeAddNewRiskFactorField(sfWebRequest $request){
