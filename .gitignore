@@ -2,6 +2,7 @@
 cache/*
 log/*
 config/databases.yml
+apps/frontend/config/databases.yml
 data/sql/schema.sql
 web/uploads/*
 web/video/*
