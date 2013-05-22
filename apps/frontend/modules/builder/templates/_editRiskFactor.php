@@ -25,12 +25,12 @@
 </div>
 <script type="text/javascript">
     jQuery(function(){
-        var options_submit = {
+        var edit_options_submit = {
             dataType:  'json',
             clearForm: false,
-            success: riskFactorSubmitted
+            success: editRiskFactorSubmitted
         };
-        jQuery("#edit_risk_factor_form_<?php echo $risk_factor->getId() ?>").ajaxForm(options_submit);
+        jQuery("#edit_risk_factor_form_<?php echo $risk_factor->getId() ?>").ajaxForm(edit_options_submit);
     });
 
 </script>

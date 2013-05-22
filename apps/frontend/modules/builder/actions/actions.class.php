@@ -28,6 +28,7 @@ class builderActions extends sfActions
 
     public function executeSaveRiskFactor(sfWebRequest $request) {
         $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
         $form = new RiskFactorOptionsForm();
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
@@ -35,8 +36,14 @@ class builderActions extends sfActions
                 $form->save();
                 $form->getObject()->setRiskBuilder(Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id')));
                 $form->getObject()->save();
-                $id = $form->getObject()->getId();
-                echo json_encode(array('result' => 'OK'));
+                echo json_encode(
+                    array(
+                        'result' => 'OK',
+                        'risk_id' => $form->getObject()->getId(),
+                        'new_form_num' => $request->getParameter('new_form_num'),
+                        'question' => $form->getObject()->getQuestion()
+                    )
+                );
             }
         }
         return sfView::NONE;
@@ -44,15 +51,14 @@ class builderActions extends sfActions
 
     public function executeUpdateRiskFactor(sfWebRequest $request) {
         $this->setLayout(false);
-
+        $this->forward404unless($request->isXmlHttpRequest());
         $form = new RiskFactorOptionsForm(Doctrine_Core::getTable('RiskFactorField')->find($request->getParameter('risk_factor_id')));
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
                 $form->getObject()->save();
                 $form->save();
-                $id = $form->getObject()->getId();
-                echo json_encode(array('result' => 'OK'));
+                echo json_encode(array('result' => 'OK', 'risk_id' => $form->getObject()->getId()));
             }
             //$this->redirect('@form');
         }
