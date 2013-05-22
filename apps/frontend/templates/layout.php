@@ -16,8 +16,12 @@
 
 </head>
 <body>
+    <div class="header">
+    </div>
     <div class="content">
-        <?php echo $sf_content ?>
+        <div class="wrapper">
+            <?php echo $sf_content ?>
+        </div>
     </div>
 
 </body>

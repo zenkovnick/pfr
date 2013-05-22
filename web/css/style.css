@@ -3,6 +3,7 @@
 /*----------------------------------------------------------------------------------*/
 html		                        { width:100%; height:100%; }
 body {
+    background: #F2F2F2;
     padding:0;
     margin:0;
     font: 14px 'PT Sans', Arial, Verdana, Helvetica, sans-serif;
@@ -67,7 +68,20 @@ a                              { cursor: pointer; }
 .hidden {
     display: none;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------> Main Structure <---------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+.header {
+    background: #FFF;
+    border-bottom: 1px solid #E4E4E4;
+    height: 60px;
+    margin: 0 0 42px;
+}
+.wrapper {
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 500px;
+}
 
 /*----------------------------------------------------------------------------------*/
 /*-------------------------------> Styles of buttons <------------------------------*/
@@ -178,4 +192,76 @@ div.error-message span.error-status-message {
     font: 20px/120% 'Titillium Web';
     color: #666666;
 }
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------> Form Builder <---------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+.form-builder-wrapper h1, .form-builder-wrapper h2 {
+    color: #000;
+    margin: 0 0 20px;
+}
+ul.form-fields {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    margin: 0 0 20px;
+    overflow: hidden;
+    padding: 0 0 20px;
+}
+.form-builder-wrapper input[type="text"] {
+    background: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 20px;
+    padding: 0 10px;
+    width: 460px;
+}
+.form-builder-wrapper input.first-field {
+    height: 50px;
+}
+.flight-information-wrapper h2 {
+
+}
+.flight-information-list li {
+    border: 1px solid #CCC;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #000;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 20px 10px;
+    overflow: hidden;
+    padding: 0 10px;
+    width: 460px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

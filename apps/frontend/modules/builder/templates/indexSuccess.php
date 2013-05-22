@@ -4,13 +4,14 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
+<h1>Form editor</h1>
 <div class="form-builder-wrapper">
     <div>
         <form id="<?php echo $risk_builder->getId(); ?>" method="post" class="main-form">
             <?php echo $form->renderGlobalErrors();?>
             <?php echo $form->renderHiddenFields();?>
             <ul class="form-fields">
-                <li><?php include_partial("builder/field", array('field' => $form['form_name'])); ?></li>
+                <li><?php include_partial("builder/field", array('field' => $form['form_name'], 'class' => 'first-field')); ?></li>
                 <li><?php include_partial("builder/field", array('field' => $form['form_instructions'])); ?></li>
             </ul>
             <ul class="mitigation-fields">
@@ -68,10 +69,11 @@
         </form>
     </div>
 
-    <div class="flight-information-wrapper" style="width: 320px;margin: 0 auto; height: 400px">
+    <div class="flight-information-wrapper">
+        <h2>Flight information</h2>
         <ul class="flight-information-list" id="flight-information-container" style="height: 600px">
             <?php foreach($flight_information as $flight_information_field):?>
-                <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>" style="height: 50px;">
+                <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>">
                     <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
                     <span class="handler" style="display:inline-block; height: 100%; cursor: pointer">Handler</span>
                     <span><?php echo $flight_information_field->getInformationName() ?></span>
