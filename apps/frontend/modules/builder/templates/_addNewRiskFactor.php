@@ -1,4 +1,11 @@
-<li class="new">
+<li class="new" id="new_<?php echo $number ?>">
+    <span class="handler hidden">Handler</span>
+    <input type="hidden" value="" />
+    <div class="entry-header hidden">
+        <span class="question"></span>
+        <a href="" class="edit-risk-factor-link hidden">Edit</a>
+        <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
+    </div>
     <div class="risk-factor-wrapper">
         <h2>New Risk factor</h2>
         <form id="risk_factor_form_<?php echo $number ?>" action="<?php echo url_for('@save_risk_factor?form_builder_id='.$form_id) ?>" method="post">
@@ -18,12 +25,12 @@
 </li>
 <script type="text/javascript">
     jQuery(function(){
-        var options_submit = {
+        var add_options_submit = {
             dataType:  'json',
             clearForm: false,
-            success: riskFactorSubmitted
+            success: addRiskFactorSubmitted
         };
-        jQuery("#risk_factor_form_<?php echo $number ?>").ajaxForm(options_submit);
+        jQuery("#risk_factor_form_<?php echo $number ?>").ajaxForm(add_options_submit);
     });
 
 </script>

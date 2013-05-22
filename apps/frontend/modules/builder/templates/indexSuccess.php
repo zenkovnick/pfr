@@ -88,12 +88,16 @@
 
     </div>
     <div class="risk-factor-wrapper">
-        <ul class="risk-factor-list">
+        <ul class="risk-factor-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
-                <li class="risk-factor-entity">
+                <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
+                    <span class="handler">Handler</span>
                     <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
-                    <span><?php echo $risk_factor->getQuestion() ?></span>
-                    <a href="" class="edit-risk-factor-link">Edit</a>
+                    <div class="entry-header">
+                        <span class="question"><?php echo $risk_factor->getQuestion() ?></span>
+                        <a href="" class="edit-risk-factor-link hidden">Edit</a>
+                        <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
+                    </div>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -106,11 +110,6 @@
     jQuery("div.field-wrapper").hide();
     var new_risk_factor_count = 0;
     var new_response_option_count = 0;
-    var options_submit = {
-        dataType:  'json',
-        clearForm: false,
-        success: riskFactorSubmitted
-    };
 
     function addNewRiskFactorField(num){
         return jQuery.ajax({
@@ -150,6 +149,8 @@
     function editRiskFactor(event){
         event.preventDefault();
         var root_el = jQuery(this).closest('li.risk-factor-entity');
+        jQuery(this).addClass('hidden');
+        root_el.find('a.cancel-risk-factor-link').removeClass('hidden');
         var risk_factor_id= root_el.find('input[type="hidden"]').val();
         var form_el = jQuery(jQuery.ajax({
             type: 'GET',
@@ -162,11 +163,73 @@
 
     }
 
-    function riskFactorSubmitted(data){
+    function cancelRiskFactorEdit(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li.risk-factor-entity');
+        jQuery(this).addClass('hidden');
+        root_li.find("div.risk-factor-wrapper").remove();
+    }
+
+    function addRiskFactorSubmitted(data){
         if(data.result == "OK"){
-            alert(jQuery(this).html());
+            var root_li = jQuery('li#new_'+data.new_form_num);
+            jQuery("div.risk-factor-wrapper", root_li).remove();
+            jQuery("span.question", root_li).text(data.question);
+            jQuery("div.entry-header", root_li).removeClass('hidden');
+            jQuery("span.handler", root_li).removeClass('hidden');
+            jQuery("input[type='hidden']", root_li).val(data.risk_id);
+            root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
+            root_li.attr('id', 'rf_'+data.risk_id);
+            root_li.removeClass('new').addClass('risk-factor-entity');
+            jQuery("a.edit-risk-factor-link", root_li).bind('click', editRiskFactor);
+            jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
+
+            jQuery( "#risk-factor-container").sortable({
+                containment: "parent",
+                axis: "y",
+                handle: "span.handler",
+                stop: saveRiskFactorPosition
+            });
         }
     }
+
+    function editRiskFactorSubmitted(data){
+        if(data.result == "OK"){
+            var root_li = jQuery('li#rf_'+data.risk_id);
+            //alert(root_li.html());
+            jQuery("div.risk-factor-wrapper", root_li).remove();
+            jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
+        }
+    }
+
+    function showRiskFactorEditLink(){
+        if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-risk-factor-link').removeClass('hidden');
+        }
+    }
+
+    function hideRiskFactorEditLink(){
+        if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-risk-factor-link').addClass('hidden');
+        }
+    }
+
+    function saveRiskFactorPosition(){
+        var positions = new Array();
+        jQuery("#risk-factor-container li").each(function(){
+            positions.push(jQuery(this).find("input[type='hidden']").val());
+        });
+        var json_obj =  JSON.stringify(positions);
+<!--        jQuery.ajax({-->
+<!--            url: '--><?php //echo url_for("@save_flight_info_position") ?><!--',-->
+<!--            type: 'POST',-->
+<!--            data: {ids: json_obj, form_id: jQuery('form.main-form').attr('id')},-->
+<!--            success: function() {-->
+<!---->
+<!--            }-->
+<!--        })        -->
+    }
+
 
     jQuery(document).ready(function() {
         var form_id = jQuery('form.main-form').attr('id');
@@ -191,10 +254,19 @@
             }
         });
 
+        jQuery( "#risk-factor-container").sortable({
+            containment: "parent",
+            axis: "y",
+            handle: "span.handler",
+            stop: saveRiskFactorPosition
+        });
+
+
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
-
-        jQuery("a.edit-risk-factor-link").click(editRiskFactor);
+        jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
+        jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
+        jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
 
         jQuery('#add-risk-factor-link').click(function(event){
             event.preventDefault();
