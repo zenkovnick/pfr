@@ -170,6 +170,12 @@
         root_li.find("div.risk-factor-wrapper").remove();
     }
 
+    function cancelRiskFactorAdd(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li.new');
+        root_li.remove();
+    }
+
     function addRiskFactorSubmitted(data){
         if(data.result == "OK"){
             var root_li = jQuery('li#new_'+data.new_form_num);
@@ -183,7 +189,7 @@
             root_li.removeClass('new').addClass('risk-factor-entity');
             jQuery("a.edit-risk-factor-link", root_li).bind('click', editRiskFactor);
             jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
-
+            jQuery('a.cancel-risk-factor-add', root_li).remove();
             jQuery( "#risk-factor-container").sortable({
                 containment: "parent",
                 axis: "y",
@@ -272,6 +278,7 @@
             event.preventDefault();
             var el = jQuery(addNewRiskFactorField(new_risk_factor_count));
             jQuery('a.add-new-response-link', el).bind('click', addNewResponseOptionForm);
+            jQuery('a.cancel-risk-factor-add', el).bind('click', cancelRiskFactorAdd);
             /*alert(jQuery("#risk_factor_form_"+new_risk_factor_count, el).html());
             jQuery("#risk_factor_form_"+new_risk_factor_count, el).ajaxForm(options_submit);*/
             new_risk_factor_count++;
