@@ -1,6 +1,15 @@
+update_risk_factor:
+  url: /form/update-risk-factor
+  param: { module: builder, action: updateRiskFactor }
+
 save_risk_factor:
   url: /form/save-risk-factor
   param: { module: builder, action: saveRiskFactor }
+
+edit_risk_factor_field:
+  url: /form/edit-new-risk-factor-field
+  param: { module: builder, action: editRiskFactorField }
+
 
 add_new_response_option_field:
   url: /form/add-new-response-option-field

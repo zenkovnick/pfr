@@ -90,7 +90,11 @@
     <div class="risk-factor-wrapper">
         <ul class="risk-factor-list">
             <?php foreach($risk_factors as $risk_factor): ?>
-                <li></li>
+                <li class="risk-factor-entity">
+                    <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
+                    <span><?php echo $risk_factor->getQuestion() ?></span>
+                    <a href="" class="edit-risk-factor-link">Edit</a>
+                </li>
             <?php endforeach; ?>
         </ul>
         <a href="" id="add-risk-factor-link">+ Add Risk Factor</a>
@@ -107,10 +111,8 @@
         clearForm: false,
         success: riskFactorSubmitted
     };
-    jQuery.noConflict();
 
     function addNewRiskFactorField(num){
-        alert(jQuery("form.main-form").attr("id"));
         return jQuery.ajax({
             type: 'POST',
             data: {risk_factor_num: num, form_id: jQuery("form.main-form").attr("id")},
@@ -132,7 +134,7 @@
         event.preventDefault();
         var el = jQuery(addNewResponseOptionField(new_response_option_count));
         //jQuery('.delete_education', el).bind('click', deleteEducation);
-        jQuery(this).closest('li.new').find('ul.response-option-list').append(el);
+        jQuery(this).closest('li').find('ul.response-option-list').append(el);
 
         new_response_option_count++;
         /*jQuery("form :input").change(function(){
@@ -145,8 +147,25 @@
 
     }
 
-    function riskFactorSubmitted(){
-        alert("OK");
+    function editRiskFactor(event){
+        event.preventDefault();
+        var root_el = jQuery(this).closest('li.risk-factor-entity');
+        var risk_factor_id= root_el.find('input[type="hidden"]').val();
+        var form_el = jQuery(jQuery.ajax({
+            type: 'GET',
+            data: {risk_factor_id: risk_factor_id, form_id: jQuery("form.main-form").attr("id")},
+            url: '<?php echo url_for("@edit_risk_factor_field"); ?>',
+            async: false
+        }).responseText);
+        jQuery('a.add-new-response-link', form_el).bind('click', addNewResponseOptionForm);
+        root_el.append(form_el);
+
+    }
+
+    function riskFactorSubmitted(data){
+        if(data.result == "OK"){
+            alert(jQuery(this).html());
+        }
     }
 
     jQuery(document).ready(function() {
@@ -174,6 +193,8 @@
 
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
+
+        jQuery("a.edit-risk-factor-link").click(editRiskFactor);
 
         jQuery('#add-risk-factor-link').click(function(event){
             event.preventDefault();

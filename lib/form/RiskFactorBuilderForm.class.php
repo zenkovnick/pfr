@@ -3,7 +3,7 @@
 class RiskFactorBuilderForm extends RiskBuilderForm {
     public function configure()
     {
-        $this->useFields(array('id'));
+        //$this->useFields(array('id'));
         $this->embedRelation("RiskFactorFields");
 
     }
