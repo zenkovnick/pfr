@@ -189,7 +189,7 @@
             root_li.removeClass('new').addClass('risk-factor-entity');
             jQuery("a.edit-risk-factor-link", root_li).bind('click', editRiskFactor);
             jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
-
+            jQuery('a.cancel-risk-factor-add', root_li).remove();
             jQuery( "#risk-factor-container").sortable({
                 containment: "parent",
                 axis: "y",
