@@ -1,2 +1,2 @@
 all:
-  javascripts: [jquery.form.js]
+  javascripts: [jquery.form.js, jquery.validate.js]

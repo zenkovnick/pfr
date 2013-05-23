@@ -24,8 +24,8 @@
                         <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'])); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'], 'class' => 'mitigation-message')); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
                         <button class="mitigation-save">Save</button>
                     </div>
@@ -39,8 +39,8 @@
                         <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'])); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'], 'class' => 'mitigation-message')); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
                         <div><?php include_partial("builder/field",
                                 array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
@@ -56,8 +56,8 @@
                         <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'])); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'], 'class' => 'mitigation-message')); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
                         <div><?php include_partial("builder/field",
                                 array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
@@ -331,6 +331,76 @@
         jQuery("div.add-note-wrapper", root_li).removeClass('hidden') ;
     }
 
+    function validateAndSubmitAddRiskFactor(event) {
+        event.preventDefault();
+        var valid = true;
+        var question = jQuery('input.question', this);
+        if(question.val() == '') {
+            valid = false;
+            question.addClass('invalid-field');
+        }
+
+        jQuery('ul.response-option-list li', this).each(function(){
+            var response_text = jQuery('input.response-text',this);
+            var response_value = jQuery('input.response-value',this);
+            if(response_text.val() == ''){
+                valid = false;
+                response_text.addClass('invalid-field');
+            }
+            if(response_value.val() == '' || !response_value.val().match(/[0-5]/)){
+                valid = false;
+                response_value.addClass('invalid-field');
+            }
+        });
+
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(add_options_submit);
+        }
+
+    }
+
+    function validateAndSubmitEditRiskFactor(event) {
+        event.preventDefault();
+        var valid = true;
+        var question = jQuery('input.question', this);
+        if(question.val() == '') {
+            valid = false;
+            question.addClass('invalid-field');
+        }
+
+        jQuery('ul.response-option-list li', this).each(function(){
+            var response_text = jQuery('input.response-text',this);
+            var response_value = jQuery('input.response-value',this);
+            if(response_text.val() == ''){
+                valid = false;
+                response_text.addClass('invalid-field');
+            }
+            if(response_value.val() == '' || !response_value.val().match(/[0-5]/)){
+                valid = false;
+                response_value.addClass('invalid-field');
+            }
+        });
+
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(add_options_submit);
+        }
+
+    }
+
+    var edit_options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: editRiskFactorSubmitted
+    };
+
+    var add_options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: addRiskFactorSubmitted
+    };
+
 
     /* DOCUMENT READY */
 
@@ -365,6 +435,8 @@
         });
 
 
+
+
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
@@ -376,8 +448,7 @@
             var el = jQuery(addNewRiskFactorField(new_risk_factor_count));
             jQuery('a.add-new-response-link', el).bind('click', addNewResponseOptionForm);
             jQuery('a.cancel-risk-factor-add', el).bind('click', cancelRiskFactorAdd);
-            /*alert(jQuery("#risk_factor_form_"+new_risk_factor_count, el).html());
-            jQuery("#risk_factor_form_"+new_risk_factor_count, el).ajaxForm(options_submit);*/
+
             new_risk_factor_count++;
 
             jQuery('ul.risk-factor-list').append(el);
@@ -396,14 +467,6 @@
             jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
             new_response_option_count++;
 
-
-            /*jQuery("form :input").change(function(){
-                form_changed = true;
-            });
-            jQuery("a", jQuery("#header")).bind('click', ask_saving);
-            jQuery("a", jQuery(".user-general-menu")).bind('click', ask_saving);
-            jQuery("a", jQuery(".user-profile-nav-buttons")).bind('click', ask_saving);
-            jQuery("a", jQuery("#footer")).bind('click', ask_saving);*/
         });
 
 
@@ -517,14 +580,23 @@
                     break;
 
             }
-            if(data){
+
+            var valid = true;
+            var mitigation_message = jQuery('input.mitigation-message', root_li);
+            if(mitigation_message.val() == ''){
+                valid = false;
+                mitigation_message.addClass('invalid-field');
+            }
+
+            if(data && valid){
+                mitigation_message.removeClass('invalid-field');
                 jQuery.ajax({
                     url: '<?php echo url_for("@save_mitigation_section") ?>',
                     type: 'POST',
                     data: data,
                     success: function() {
                         root_li.find('div.field-wrapper').hide(500);
-                        root_li.find('a.cancel').addClass('hidden');
+                        root_li.find('a.mitigation-cancel').addClass('hidden');
                     }
                 });
             }

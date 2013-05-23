@@ -73,6 +73,13 @@ class builderActions extends sfActions
                         'question' => $form->getObject()->getQuestion()
                     )
                 );
+            } else {
+                echo json_encode(
+                    array(
+                        'result' => 'Failed'
+                    )
+                );
+
             }
             //$this->redirect('@form');
         }

@@ -12,8 +12,8 @@
         <form id="risk_factor_form_<?php echo $number ?>" action="<?php echo url_for("@save_risk_factor?form_builder_id={$form_id}&new_form_num={$number}") ?>" method="post">
             <fieldset>
 
-                <?php include_partial("builder/field", array('field' => $form['question'], 'placeholder' => 'Risk factor or question')); ?>
-                <?php include_partial("builder/field", array('field' => $form['help_message'], 'placeholder' => 'Help text or link (optional)')); ?>
+                <?php include_partial("builder/field", array('field' => $form['question'], 'class' => 'question', 'placeholder' => 'Risk factor or question')); ?>
+                <?php include_partial("builder/field", array('field' => $form['help_message'], 'class' => 'help-message', 'placeholder' => 'Help text or link (optional)')); ?>
 
             </fieldset>
             <ul class="response-option-list">
@@ -25,13 +25,8 @@
     </div>
 </li>
 <script type="text/javascript">
-    jQuery(function(){
-        var add_options_submit = {
-            dataType:  'json',
-            clearForm: false,
-            success: addRiskFactorSubmitted
-        };
-        jQuery("#risk_factor_form_<?php echo $number ?>").ajaxForm(add_options_submit);
-    });
+
+    jQuery("#risk_factor_form_<?php echo $number ?>").bind('submit', validateAndSubmitAddRiskFactor)
+
 
 </script>
