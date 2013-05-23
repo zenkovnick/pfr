@@ -209,6 +209,7 @@
             //alert(root_li.html());
             jQuery("div.risk-factor-wrapper", root_li).remove();
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
+            jQuery("span.question", root_li).text(data.question);
         }
     }
 

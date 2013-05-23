@@ -59,7 +59,13 @@ class builderActions extends sfActions
             if($form->isValid()){
                 $form->getObject()->save();
                 $form->save();
-                echo json_encode(array('result' => 'OK', 'risk_id' => $form->getObject()->getId()));
+                echo json_encode(
+                    array(
+                        'result' => 'OK',
+                        'risk_id' => $form->getObject()->getId(),
+                        'question' => $form->getObject()->getQuestion()
+                    )
+                );
             }
             //$this->redirect('@form');
         }
