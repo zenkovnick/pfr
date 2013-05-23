@@ -5,7 +5,6 @@
     <form id="edit_risk_factor_form_<?php echo $risk_factor->getId() ?>"
           action="<?php echo url_for("@update_risk_factor?risk_factor_id={$risk_factor->getId()}&form_builder_id={$form_id}") ?>" method="post">
         <fieldset>
-            <a href="#" class="delete_risk_factor">Remove</a>
             <?php include_partial("builder/field", array('field' => $form['question'], 'placeholder' => 'Risk factor or question')); ?>
             <?php include_partial("builder/field", array('field' => $form['help_message'], 'placeholder' => 'Help text or link (optional)')); ?>
 
@@ -21,6 +20,7 @@
         </ul>
         <a href="" class="add-new-response-link">+ Add Response Option</a>
         <button type="submit">Save</button>
+        <a href="" class="delete_risk_factor">Delete</a>
     </form>
 </div>
 <script type="text/javascript">

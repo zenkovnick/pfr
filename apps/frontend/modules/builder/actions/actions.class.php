@@ -35,6 +35,7 @@ class builderActions extends sfActions
             if($form->isValid()){
                 $form->save();
                 $form->getObject()->setRiskBuilder(Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id')));
+                $form->getObject()->setPosition(RiskFactorFieldTable::getMaxPosition() + 1);
                 $form->getObject()->save();
                 echo json_encode(
                     array(
@@ -61,6 +62,19 @@ class builderActions extends sfActions
                 echo json_encode(array('result' => 'OK', 'risk_id' => $form->getObject()->getId()));
             }
             //$this->redirect('@form');
+        }
+        return sfView::NONE;
+    }
+
+    public function executeDeleteRiskFactor(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $risk_factor = Doctrine_Core::getTable('RiskFactorField')->find($request->getParameter('id'));
+        if($risk_factor){
+            $risk_factor->delete();
+            echo json_encode(array('result' => 'OK'));
+        } else {
+            echo json_encode(array('result' => 'Failed'));
         }
         return sfView::NONE;
     }
@@ -151,6 +165,25 @@ class builderActions extends sfActions
         $flight_information_field = Doctrine_Core::getTable("FlightInformationField")->find($field_id);
         $flight_information_field->setIsHide($field_hidding);
         $flight_information_field->save();
+    }
+
+    public function executeSaveRiskFactorPosition(sfWebRequest $request)
+    {
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $ids_json = $request->getParameter('ids');
+        $ids = array_flip(json_decode($ids_json));
+        $form_id = $request->getParameter('form_id');
+        $risk_factors = RiskFactorFieldTable::getAllRiskFactors($form_id);
+        foreach($risk_factors as $risk_factor){
+            $curr_position = $ids[$risk_factor->getId()] + 1;
+            if($risk_factor->getPosition() != $curr_position){
+                $risk_factor->setPosition($curr_position);
+                $risk_factor->save();
+            }
+        }
+
+        return sfView::NONE;
     }
 
     public function executeSaveFlightInfoPosition(sfWebRequest $request)
