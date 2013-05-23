@@ -384,10 +384,16 @@
 
             var response_el = jQuery(addNewResponseOptionField(new_response_option_count, 'default_no'));
             el.find('ul.response-option-list').append(response_el);
+            response_el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+            jQuery('a.add-note', response_el).bind('click', addRiskFactorNote);
+            jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
             new_response_option_count++;
 
             var response_el = jQuery(addNewResponseOptionField(new_response_option_count, 'default_yes'));
             el.find('ul.response-option-list').append(response_el);
+            response_el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+            jQuery('a.add-note', response_el).bind('click', addRiskFactorNote);
+            jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
             new_response_option_count++;
 
 
