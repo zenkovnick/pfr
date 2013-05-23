@@ -12,9 +12,27 @@
         <ul class="response-option-list">
             <?php foreach($form['ResponseOptions'] as $option): ?>
                 <li>
+                    <input class="response-option-id" type="hidden" value="<?php echo $option['id']->getValue() ?>" />
                     <?php include_partial("builder/field", array('field' => $option['response_text'], 'placeholder' => 'Risk factor or question')); ?>
                     <?php include_partial("builder/field", array('field' => $option['response_value'], 'placeholder' => 'Help text or link (optional)')); ?>
-                    <?php include_partial("builder/field", array('field' => $option['note'], 'placeholder' => 'Help text or link (optional)')); ?>
+                    <?php if($option['note']->getValue()): ?>
+                        <div class="remove-note-wrapper">
+                            <?php include_partial("builder/field", array('field' => $option['note'], 'placeholder' => 'Help text or link (optional)')); ?>
+                            <a href="" class="remove-note">Remove note</a>
+                        </div>
+                        <div class="add-note-wrapper hidden">
+                            <a href="" class="add-note">Add note</a>
+                        </div>
+                    <?php else: ?>
+                        <div class="remove-note-wrapper hidden">
+                            <?php include_partial("builder/field", array('field' => $option['note'], 'placeholder' => 'Help text or link (optional)')); ?>
+                            <a href="" class="remove-note">Remove note</a>
+                        </div>
+                        <div class="add-note-wrapper">
+                            <a href="" class="add-note">Add note</a>
+                        </div>
+                    <?php endif; ?>
+                    <a href="" class="delete-response-option-link hidden">Delete</a>
                 </li>
             <?php endforeach ?>
         </ul>

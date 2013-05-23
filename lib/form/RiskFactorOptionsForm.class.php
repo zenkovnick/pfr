@@ -3,7 +3,7 @@
 class RiskFactorOptionsForm extends RiskFactorFieldForm{
     public function configure()
     {
-        $this->useFields(array('question', 'help_message'));
+        parent::configure();
         $this->embedRelation("ResponseOptions");
         $this->disableCSRFProtection();
     }

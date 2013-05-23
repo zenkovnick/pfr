@@ -45,6 +45,13 @@ class builderActions extends sfActions
                         'question' => $form->getObject()->getQuestion()
                     )
                 );
+            } else {
+                echo json_encode(
+                    array(
+                        'result' => 'Failed',
+                    )
+                );
+
             }
         }
         return sfView::NONE;
@@ -113,6 +120,19 @@ class builderActions extends sfActions
         return $this->renderPartial('addNewResponseOption',array('form' => $this->form, 'number' => $number));
     }
 
+    public function executeDeleteResponseOption(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $response_option = Doctrine_Core::getTable('ResponseOptionField')->find($request->getParameter('id'));
+        $responses_in_risk_factor = ResponseOptionFieldTable::getResponsesCountByRiskFactor($response_option->getRiskFactorId());
+        if($response_option && $responses_in_risk_factor > 2){
+            $response_option->delete();
+            echo json_encode(array('result' => 'OK'));
+        } else {
+            echo json_encode(array('result' => 'Failed'));
+        }
+        return sfView::NONE;
+    }
 
 
     public function executeSaveMitigationRange(sfWebRequest $request){

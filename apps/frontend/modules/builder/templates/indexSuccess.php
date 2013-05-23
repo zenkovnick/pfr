@@ -132,18 +132,12 @@
     function addNewResponseOptionForm(event) {
         event.preventDefault();
         var el = jQuery(addNewResponseOptionField(new_response_option_count));
-        //jQuery('.delete_education', el).bind('click', deleteEducation);
-        jQuery(this).closest('li').find('ul.response-option-list').append(el);
-
+        var root_li = jQuery(this).closest('li');
+        jQuery('ul.response-option-list', root_li).append(el);
+        el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+        jQuery('a.add-note', el).bind('click', addRiskFactorNote);
+        jQuery('a.remove-note', el).bind('click', removeRiskFactorNote);
         new_response_option_count++;
-        /*jQuery("form :input").change(function(){
-         form_changed = true;
-         });
-         jQuery("a", jQuery("#header")).bind('click', ask_saving);
-         jQuery("a", jQuery(".user-general-menu")).bind('click', ask_saving);
-         jQuery("a", jQuery(".user-profile-nav-buttons")).bind('click', ask_saving);
-         jQuery("a", jQuery("#footer")).bind('click', ask_saving);*/
-
     }
 
     function editRiskFactor(event){
@@ -160,6 +154,12 @@
         }).responseText);
         jQuery('a.add-new-response-link', form_el).bind('click', addNewResponseOptionForm);
         jQuery('a.delete_risk_factor', form_el).bind('click', deleteRiskFactor);
+        jQuery('a.delete_risk_factor', form_el).bind('click', deleteRiskFactor);
+
+        jQuery("ul.response-option-list li", form_el).bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+        jQuery('a.add-note', form_el).bind('click', addRiskFactorNote);
+        jQuery('a.remove-note', form_el).bind('click', removeRiskFactorNote);
+
         root_el.append(form_el);
 
     }
@@ -189,6 +189,9 @@
             jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
             jQuery('a.delete_risk_factor', root_li).bind('click', deleteRiskFactor);
             jQuery('a.cancel-risk-factor-add', root_li).remove();
+            jQuery("ul.response-option-list li", root_li).bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+            jQuery('a.add-note', root_li).bind('click', addRiskFactorNote);
+            jQuery('a.remove-note', root_li).bind('click', removeRiskFactorNote);
 
             root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
             root_li.attr('id', 'rf_'+data.risk_id);
@@ -279,6 +282,57 @@
             jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
         }
     }
+
+    function showDeleteResponseOption(){
+       // alert(jQuery(this).closest('ul.response-option-list').find('li').length);
+        if(jQuery(this).closest('ul.response-option-list').find('li').length > 2){
+            jQuery("a.delete-response-option-link", this).removeClass("hidden").bind('click', deleteResponseOption);
+        } else {
+            jQuery("a.delete-response-option-link", this).addClass("hidden").unbind('click');
+        }
+    }
+
+    function hideDeleteResponseOption(){
+        jQuery("a.delete-response-option-link", this).addClass("hidden").unbind('click');
+    }
+
+    function deleteResponseOption(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        if(!root_li.hasClass('new-response-option')){
+            jQuery.ajax({
+                url: '<?php echo url_for('@delete_response_option') ?>',
+                data: {id: jQuery("input.response-option-id", root_li).val()},
+                dataType: 'json',
+                type: 'POST',
+                success: function(data){
+                    if(data.result == "OK"){
+                        root_li.remove();
+                    }
+                }
+            })
+        } else {
+            root_li.remove();
+        }
+    }
+
+    function addRiskFactorNote(event) {
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        jQuery("div.remove-note-wrapper", root_li).removeClass('hidden');
+        jQuery("div.add-note-wrapper", root_li).addClass('hidden');
+    }
+
+    function removeRiskFactorNote(event) {
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        jQuery("div.remove-note-wrapper", root_li).addClass('hidden');
+        jQuery("div.remove-note-wrapper input[type='text']", root_li).val('');
+        jQuery("div.add-note-wrapper", root_li).removeClass('hidden') ;
+    }
+
+
+    /* DOCUMENT READY */
 
     jQuery(document).ready(function() {
         var form_id = jQuery('form.main-form').attr('id');

@@ -16,4 +16,13 @@ class ResponseOptionFieldTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('ResponseOptionField');
     }
+
+    public static function getResponsesCountByRiskFactor($risk_factor_id){
+        return Doctrine_Query::create()
+            ->select('count(*) as responses_count')
+            ->from('ResponseOptionField rof')
+            ->where('rof.risk_factor_id = ?', $risk_factor_id)
+            ->fetchOne()
+            ->getResponsesCount();
+    }
 }
