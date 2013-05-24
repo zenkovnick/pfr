@@ -8,8 +8,8 @@
         <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
     </div>
     <div class="risk-factor-wrapper">
-        <h1>New Risk</h1>
-        <form id="risk_factor_form_<?php echo $number ?>" action="<?php echo url_for("@save_risk_factor?form_builder_id={$form_id}&new_form_num={$number}") ?>" method="post">
+        <h2>New Risk factor</h2>
+        <form id="risk_factor_form_<?php echo $number ?>" action="<?php echo url_for('@save_risk_factor?form_builder_id='.$form_id) ?>" method="post">
             <fieldset>
 
                 <?php include_partial("builder/field", array('field' => $form['question'], 'class' => 'question', 'placeholder' => 'Risk factor or question')); ?>
@@ -20,7 +20,7 @@
 
             </ul>
             <a href="" class="add-new-response-link">+ Add Response Option</a>
-            <button type="submit">Save</button>
+            <button class="btn btn-green" type="submit">Save</button>
         </form>
     </div>
 </li>

@@ -94,12 +94,21 @@ a                              { cursor: pointer; }
     cursor: pointer;
     display: block;
     float: left;
-    font: 700 25px/120% 'Titillium Web';
+    font-size: 13px;
+    font-weight: bold;
+    padding: 9px 35px;
     text-decoration: none;
 }
 .btn:hover {
     text-decoration: none;
 }
+.btn-green {
+    background: #66CC00;
+    border-color: #669900;
+    color: #FFF;
+}
+
+
 .btn-violet {
     background: #8F3FC5;
     background: -webkit-gradient(linear, left top, left bottom, from(#9E58CD), to(#8227BE));
@@ -202,6 +211,7 @@ div.error-message span.error-status-message {
 .form-builder-wrapper h1, .form-builder-wrapper h2 {
     color: #000;
     margin: 0 0 20px;
+    text-transform: capitalize;
 }
 ul.form-fields {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
@@ -220,7 +230,7 @@ ul.form-fields {
     -webkit-box-sizing: border-box;
     height: 40px;
     line-height: 40px;
-    margin: 0 20px;
+    margin: 0 20px 9px;
     padding: 0 10px;
     width: 460px;
 }
@@ -231,6 +241,7 @@ ul.form-fields {
 
 }
 .flight-information-list li {
+    background: #F2F2F2;
     border: 1px solid #CCC;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -239,19 +250,102 @@ ul.form-fields {
     height: 40px;
     line-height: 40px;
     margin: 0 20px 10px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding: 0 10px;
+    position: relative;
     width: 460px;
 }
+.flight-information-list li span.handler {
+    background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
+    border: 1px solid #CCC;
+    height: 39px;
+    left: -20px;
+    overflow: hidden;
 
+    position: absolute;
+    text-indent: -1000px;
+    top: -1px;
+    width: 19px;
+}
+.risk-factor-list {
+    background: #EBEBEB;
+    border: 1px solid #CCC;
+    overflow: hidden;
+    padding: 9px;
+    position: relative;
+}
+.risk-factor-list h2 {
+    background: #E4E4E4;
+    border-bottom: 1px solid #CCC;
+    font-size: 13px;
+    font-weight: normal;
+    margin: -9px -9px 9px;
+    padding: 14px 9px;
+}
+a#add-risk-factor-link {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    color: #1076CE;
+    display: block;
+    padding: 25px 10px;
+    text-decoration: none;
+}
+a.add-new-response-link {
+    color: #1076CE;
+    display: block;
+    padding: 25px 10px;
+    text-decoration: none;
+}
 
+#slider-range {
+    background: url(../images/slider_bg.png) repeat-y left top;
+    border: 0;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    height: 9px;
+}
+.ui-slider-range.ui-widget-header {
+    background: #FFCC00;
+}
+a.ui-slider-handle.ui-state-default.ui-corner-all {
+    background: #AFAFAF;
+    border: none;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    height: 21px;
+    width: 21px;
+}
+a.cancel-risk-factor-add {
+    color: #3C76BB;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    position: absolute;
+    right: 15px;
+    text-decoration: none;
+    top: 15px;
+}
+a.add-note {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    color: #0F76BB;
+    display: block;
+    font-size: 12px;
+    margin: 0 0 9px;
+    padding: 10px 2px;
+    text-decoration: none;
+}
 
-
-
-
-
-
-
+.risk-factor-wrapper label {
+    display: none;
+}
+.risk-factor-global-wrapper {
+    margin: 0 20px;
+}
+.risk-factor-global-wrapper input[type="text"] {
+    margin: 0 0 9px;
+    width: 440px;
+}
 
 
 

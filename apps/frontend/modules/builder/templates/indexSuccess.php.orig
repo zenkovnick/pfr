@@ -89,7 +89,11 @@
         </ul>
 
     </div>
+<<<<<<< HEAD
+    <div class="risk-factor-wrapppper">
+=======
     <div class="risk-factor-global-wrapper">
+>>>>>>> 8f003057c1b8ba26ab0ddeefc337390220b47598
         <ul class="risk-factor-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
                 <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
