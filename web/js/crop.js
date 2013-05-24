@@ -35,7 +35,7 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
 //    jQuery('#fancyboxcrop_show').fancybox({
 //        autoDimensions: true
 //    });
-    jQuery('#sf_guard_user_avatar').fileupload({
+    jQuery('#'+form_field_id).fileupload({
         url: upload_url,
         forceIframeTransport: true,
         done: function (e, data) {
