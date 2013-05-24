@@ -78,9 +78,11 @@
                     <span class="handler" style="display:inline-block; height: 100%; cursor: pointer">Handler</span>
                     <span><?php echo $flight_information_field->getInformationName() ?></span>
                     <?php if($flight_information_field->getHiddable()): ?>
-                        <span class="hiddable">
-                        <?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?>
-                    </span>
+                        <span class="hiddable hidden">
+                            <a href="" class="show-hide-field"><?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?></a>
+                        </span>
+                    <?php else: ?>
+                        <span class="uneditable hidden">Uneditable</span>
                     <?php endif ?>
                 </li>
             <?php endforeach; ?>
@@ -110,6 +112,28 @@
     jQuery("div.field-wrapper").hide();
     var new_risk_factor_count = 0;
     var new_response_option_count = 0;
+
+    function changeUneditable(){
+        jQuery('span.uneditable, span.hiddable', this).toggleClass('hidden');
+    }
+
+    function showHideField(event){
+        event.preventDefault();
+        var link = jQuery(this);
+        var root_li = link.closest('li');
+        var field_id = jQuery("input[type='hidden']", root_li).val();
+        jQuery.ajax({
+            url: '<?php echo url_for('@show_hide_field'); ?>',
+            data: {id: field_id},
+            dataType: 'json',
+            type: 'POST',
+            success: function(data){
+                if(data.result == "OK"){
+                    link.text(data.is_hide ? 'Enable Field' : "Disable field");
+                }
+            }
+        });
+    }
 
     function addNewRiskFactorField(num){
         return jQuery.ajax({
@@ -439,6 +463,8 @@
 
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
+        jQuery("ul.flight-information-list li").bind('mouseover', changeUneditable).bind('mouseout', changeUneditable);
+        jQuery("ul.flight-information-list li a.show-hide-field").bind('click', showHideField);
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
@@ -602,31 +628,6 @@
             }
 
         });
-
-
-
-        jQuery("span.hiddable").click(function(){
-            var el = jQuery(this);
-            var field_id = el.parent('li').find("input[type='hidden']").val();
-            var field_hidding = !(el.parent().hasClass('hidden-field'));
-            jQuery.ajax({
-                url: '<?php echo url_for("@save_form_field_hidding") ?>',
-                type: 'POST',
-                data: {id: field_id, hidding: field_hidding, form_id: form_id},
-                success: function() {
-                    if(el.parent().hasClass('hidden-field')) {
-                        el.parent().removeClass('hidden-field');
-                        el.text("Disable Field");
-                    } else {
-                        el.parent().addClass('hidden-field');
-                        el.text("Enable Field");
-                    }
-
-                }
-            });
-        });
-
-
 
         jQuery( "#slider-range" ).slider({
             range: true,

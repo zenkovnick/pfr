@@ -219,6 +219,23 @@ class builderActions extends sfActions
         return sfView::NONE;
     }
 
+    public function executeShowHideField(sfWebRequest $request)
+    {
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $flight_information_field = Doctrine_Core::getTable('FlightInformationField')->find($request->getParameter('id'));
+        if($flight_information_field->getHiddable()){
+            $flight_information_field->setIsHide(!$flight_information_field->getIsHide());
+            $flight_information_field->save();
+            echo json_encode(array('result' => 'OK', 'is_hide' => $flight_information_field->getIsHide()));
+        } else {
+            echo json_encode(array('result' => 'Failed'));
+        }
+        return sfView::NONE;
+    }
+
+
+
     public function executeSaveFlightInfoPosition(sfWebRequest $request)
     {
         $this->setLayout(false);
