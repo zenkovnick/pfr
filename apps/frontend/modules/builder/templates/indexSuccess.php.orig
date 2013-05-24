@@ -75,7 +75,7 @@
             <?php foreach($flight_information as $flight_information_field):?>
                 <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>">
                     <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
-                    <span class="handler hidden">Handler</span>
+                    <span class="handler" style="display:inline-block; height: 100%; cursor: pointer">Handler</span>
                     <span><?php echo $flight_information_field->getInformationName() ?></span>
                     <?php if($flight_information_field->getHiddable()): ?>
                         <span class="hiddable hidden">
@@ -89,7 +89,11 @@
         </ul>
 
     </div>
+<<<<<<< HEAD
+    <div class="risk-factor-wrapppper">
+=======
     <div class="risk-factor-global-wrapper">
+>>>>>>> 8f003057c1b8ba26ab0ddeefc337390220b47598
         <ul class="risk-factor-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
                 <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
@@ -113,9 +117,8 @@
     var new_risk_factor_count = 0;
     var new_response_option_count = 0;
 
-    function flightInformationHover(){
+    function changeUneditable(){
         jQuery('span.uneditable, span.hiddable', this).toggleClass('hidden');
-        jQuery('span.handler', this).toggleClass('hidden');
     }
 
     function showHideField(event){
@@ -462,9 +465,8 @@
 
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
-        var flight_information_field = jQuery("ul.flight-information-list li");
-        flight_information_field.bind('mouseover', flightInformationHover).bind('mouseout', flightInformationHover);
-        jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
+        jQuery("ul.flight-information-list li").bind('mouseover', changeUneditable).bind('mouseout', changeUneditable);
+        jQuery("ul.flight-information-list li a.show-hide-field").bind('click', showHideField);
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);

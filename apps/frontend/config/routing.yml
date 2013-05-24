@@ -59,6 +59,13 @@ form:
   url: /form
   param: { module: builder, action: index }
 
+new_account:
+  url: /new/account
+  param: { module: registration, action: newAccount }
+
+sign-up:
+  url: /signup
+  param: { module: registration, action: signup }
 
 homepage:
   url: /
