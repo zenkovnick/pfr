@@ -326,7 +326,7 @@ a.cancel-risk-factor-add {
     text-decoration: none;
     top: 15px;
 }
-a.add-note {
+a.add-note, a.remove-note {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #0F76BB;
     display: block;
@@ -334,6 +334,9 @@ a.add-note {
     margin: 0 0 9px;
     padding: 10px 2px;
     text-decoration: none;
+}
+a.remove-note {
+    color: #F33;
 }
 
 .risk-factor-wrapper label {
@@ -346,7 +349,19 @@ a.add-note {
     margin: 0 0 9px;
     width: 440px;
 }
+.new-response-option {
+    position: relative;
+}
+a.delete-response-option-link {
+    bottom: 10px;
+    color: #F33;
+    display: block;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
 
+}
 
 
 
