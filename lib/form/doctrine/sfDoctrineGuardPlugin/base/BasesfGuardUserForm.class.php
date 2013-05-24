@@ -16,15 +16,12 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
-      'referral_id'      => new sfWidgetFormInputText(),
-      'full_name'        => new sfWidgetFormInputText(),
+      'name'             => new sfWidgetFormInputText(),
       'username'         => new sfWidgetFormInputText(),
       'algorithm'        => new sfWidgetFormInputText(),
       'salt'             => new sfWidgetFormInputText(),
       'email_address'    => new sfWidgetFormInputText(),
       'password'         => new sfWidgetFormInputText(),
-      'phone'            => new sfWidgetFormInputText(),
-      'zip'              => new sfWidgetFormInputText(),
       'is_active'        => new sfWidgetFormInputCheckbox(),
       'is_super_admin'   => new sfWidgetFormInputCheckbox(),
       'last_login'       => new sfWidgetFormDateTime(),
@@ -33,19 +30,17 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'updated_at'       => new sfWidgetFormDateTime(),
       'groups_list'      => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
+      'accounts_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Account')),
     ));
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'referral_id'      => new sfValidatorInteger(array('required' => false)),
-      'full_name'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'name'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'username'         => new sfValidatorString(array('max_length' => 128)),
       'algorithm'        => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'salt'             => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'email_address'    => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'password'         => new sfValidatorString(array('max_length' => 128, 'required' => false)),
-      'phone'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'zip'              => new sfValidatorInteger(array('required' => false)),
       'is_active'        => new sfValidatorBoolean(array('required' => false)),
       'is_super_admin'   => new sfValidatorBoolean(array('required' => false)),
       'last_login'       => new sfValidatorDateTime(array('required' => false)),
@@ -54,6 +49,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'updated_at'       => new sfValidatorDateTime(),
       'groups_list'      => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
+      'accounts_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Account', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user[%s]');
@@ -84,12 +80,18 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       $this->setDefault('permissions_list', $this->object->Permissions->getPrimaryKeys());
     }
 
+    if (isset($this->widgetSchema['accounts_list']))
+    {
+      $this->setDefault('accounts_list', $this->object->Accounts->getPrimaryKeys());
+    }
+
   }
 
   protected function doSave($con = null)
   {
     $this->saveGroupsList($con);
     $this->savePermissionsList($con);
+    $this->saveAccountsList($con);
 
     parent::doSave($con);
   }
@@ -167,6 +169,44 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
     if (count($link))
     {
       $this->object->link('Permissions', array_values($link));
+    }
+  }
+
+  public function saveAccountsList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['accounts_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Accounts->getPrimaryKeys();
+    $values = $this->getValue('accounts_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Accounts', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Accounts', array_values($link));
     }
   }
 

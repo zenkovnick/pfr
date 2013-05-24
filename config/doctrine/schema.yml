@@ -107,3 +107,36 @@ MitigationField:
       foreignType: many
       onDelete: CASCADE
 
+Account:
+  actAs: [Timestampable]
+  columns:
+    title:             {type: integer, notnull: true }
+    photo:             {type: varchar(255)}
+    chief_pilot_email: {type: varchar(255)}
+  relations:
+    Planes:            { class: Plane, refClass: AccountPlane, local: plane_id, foreign: account_id }
+    Users:             { class: sfGuardUser, refClass: UserAccount, local: user_id, foreign: account_id }
+
+Plane:
+  actAs: [Timestampable]
+  columns:
+    tail_number:       {type: integer}
+  relations:
+    Accounts:          { class: Account, refClass: AccountPlane, local: account_id, foreign: plane_id }
+
+AccountPlane:
+    columns:
+      account_id:      { type: integer, notnull: true, primary: true }
+      plane_id:        { type: integer, notnull: true, primary: true }
+    relations:
+      Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: AccountPlane }
+      Plane:           { class: Plane, foreign: id, local: plane_id, onDelete: CASCADE, foreignAlias: AccountPlane }
+
+UserAccount:
+    columns:
+      account_id:      { type: integer, notnull: true, primary: true }
+      user_id:         { type: integer, notnull: true, primary: true }
+      is_manager:      { type: boolean, default: false }
+    relations:
+      Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: UserAccount }
+      User:            { class: User, foreign: id, local: user_id, onDelete: CASCADE, foreignAlias: UserAccount }

@@ -54,8 +54,7 @@ sfGuardUser:
   actAs:
     Timestampable: ~
   columns:
-    referral_id: integer
-    full_name: string(255)
+    name: string(255)
     username:
       type: string(128)
       notnull: true
@@ -67,8 +66,6 @@ sfGuardUser:
     email_address:
       type: string(128)
     password: string(128)
-    phone: string(255)
-    zip: integer
     is_active:
       type: boolean
       default: 1
@@ -98,6 +95,7 @@ sfGuardUser:
       foreign: permission_id
       refClass: sfGuardUserPermission
       foreignAlias: Users
+    Accounts: { class: Account, refClass: UserAccount, local: account_id, foreign: user_id }
 
 
 

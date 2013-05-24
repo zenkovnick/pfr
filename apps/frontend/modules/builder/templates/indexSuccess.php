@@ -89,7 +89,7 @@
         </ul>
 
     </div>
-    <div class="risk-factor-wrapper">
+    <div class="risk-factor-wrapppper">
         <ul class="risk-factor-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
                 <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
@@ -178,7 +178,6 @@
         }).responseText);
         jQuery('a.add-new-response-link', form_el).bind('click', addNewResponseOptionForm);
         jQuery('a.delete_risk_factor', form_el).bind('click', deleteRiskFactor);
-        jQuery('a.delete_risk_factor', form_el).bind('click', deleteRiskFactor);
 
         jQuery("ul.response-option-list li", form_el).bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
         jQuery('a.add-note', form_el).bind('click', addRiskFactorNote);
@@ -233,7 +232,6 @@
     function editRiskFactorSubmitted(data){
         if(data.result == "OK"){
             var root_li = jQuery('li#rf_'+data.risk_id);
-            //alert(root_li.html());
             jQuery("div.risk-factor-wrapper", root_li).remove();
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
             jQuery("span.question", root_li).text(data.question);
@@ -408,7 +406,7 @@
 
         if(valid){
             jQuery('.invalid-field', this).removeClass('invalid-field');
-            jQuery(this).ajaxSubmit(add_options_submit);
+            jQuery(this).ajaxSubmit(edit_options_submit);
         }
 
     }
