@@ -75,7 +75,7 @@
             <?php foreach($flight_information as $flight_information_field):?>
                 <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>">
                     <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
-                    <span class="handler" style="display:inline-block; height: 100%; cursor: pointer">Handler</span>
+                    <span class="handler hidden">Handler</span>
                     <span><?php echo $flight_information_field->getInformationName() ?></span>
                     <?php if($flight_information_field->getHiddable()): ?>
                         <span class="hiddable hidden">
@@ -113,8 +113,9 @@
     var new_risk_factor_count = 0;
     var new_response_option_count = 0;
 
-    function changeUneditable(){
+    function flightInformationHover(){
         jQuery('span.uneditable, span.hiddable', this).toggleClass('hidden');
+        jQuery('span.handler', this).toggleClass('hidden');
     }
 
     function showHideField(event){
@@ -461,8 +462,9 @@
 
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
-        jQuery("ul.flight-information-list li").bind('mouseover', changeUneditable).bind('mouseout', changeUneditable);
-        jQuery("ul.flight-information-list li a.show-hide-field").bind('click', showHideField);
+        var flight_information_field = jQuery("ul.flight-information-list li");
+        flight_information_field.bind('mouseover', flightInformationHover).bind('mouseout', flightInformationHover);
+        jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
