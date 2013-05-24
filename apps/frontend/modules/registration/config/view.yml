@@ -1,0 +1,2 @@
+all:
+  javascripts: [jquery.Jcrop.min.js, jquery.fileupload.js, crop.js, jquery.iframe-transport.js, jquery.ui.widget.js]

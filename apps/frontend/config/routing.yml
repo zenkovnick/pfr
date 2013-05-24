@@ -59,6 +59,15 @@ form:
   url: /form
   param: { module: builder, action: index }
 
+
+create_account_upload_avatar:
+  url: /new/account/upload-avatar
+  param: { module: registration, action: uploadAvatar }
+
+create_account_crop_image:
+  url: /new/account/crop-image
+  param: { module: registration, action: cropImage }
+
 create_account:
   url: /new/account
   param: { module: registration, action: createAccount }

@@ -26,7 +26,25 @@ class registrationActions extends sfActions
     }
 
     public function executeCreateAccount(sfWebRequest $request) {
-
+        $this->form = new AccountForm();
     }
 
+    public function executeUploadAvatar(sfWebRequest $request)
+    {
+        $upload_handler = new UploadHandler(array(
+            'upload_dir' => getcwd()."/uploads/avatar/",
+            'upload_url' => "/uploads/avatar/",
+            'param_name' => 'sf_guard_user'
+        ));
+        if ($request->isMethod('post'))
+        {
+            $upload_handler->post();
+        }
+        return sfView::NONE;
+    }
+
+    public function executeCropImage(sfWebRequest $request)
+    {
+        return sfView::NONE;
+    }
 }

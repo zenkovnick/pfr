@@ -1,1 +1,17 @@
-<h1>Create Account</h1>
+<!--[if IE 9]>
+<script type="text/javascript" src="/js/jquery.fileupload-ie9.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_crop_image'); ?>', '/images/no_avatar.png', [32, 32], 'photo', 'sf_guard_user_photo');
+    });
+</script>
+<?php echo($form->renderHiddenFields()) ?>
+<?php echo($form->renderGlobalErrors()) ?>
+
+<ul>
+    <li class="input-block"><?php include_partial('registration/field', array('field' => $form['title'], 'placeholder' => 'Company, Organization or Name')) ?></li>
+    <li class="input-block"><?php include_partial('registration/field', array('field' => $form['chief_pilot_email'], 'placeholder' => 'Chief Pilot\'s Email (if any)')) ?></li>
+    <li class="photo-block"><?php include_partial('registration/avatar_field', array('field' => $form['photo'])) ?></li>
+<ul>
+
