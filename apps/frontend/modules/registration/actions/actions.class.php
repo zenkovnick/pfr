@@ -9,15 +9,15 @@
 
 class registrationActions extends sfActions
 {
-    public function indexSuccess(sfWebRequest $request) {
+    public function executeIndex(sfWebRequest $request) {
 
     }
 
-    public function indexSignup(sfWebRequest $request) {
+    public function executeSignup(sfWebRequest $request) {
 
     }
 
-    public function indexCreateAccount(sfWebRequest $request) {
+    public function executeCreateAccount(sfWebRequest $request) {
 
     }
 
