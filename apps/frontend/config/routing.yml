@@ -31,6 +31,10 @@ save_risk_factor_position:
   url: /form/save-risk-factor-position
   param: { module: builder, action: saveRiskFactorPosition }
 
+show_hide_field:
+  url: /form/show-hide-field
+  param: { module: builder, action: showHideField }
+
 save_flight_info_position:
   url: /form/save-flight-info-position
   param: { module: builder, action: saveFlightInfoPosition }
