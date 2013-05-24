@@ -54,10 +54,13 @@ sfGuardUser:
   actAs:
     Timestampable: ~
   columns:
+    first_name: string(255)
+    last_name: string(255)
     name: string(255)
     username:
       type: string(128)
       notnull: true
+      unique: true
     algorithm:
       type: string(128)
       default: sha1

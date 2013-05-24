@@ -14,7 +14,15 @@ class registrationActions extends sfActions
     }
 
     public function executeSignup(sfWebRequest $request) {
-
+        $this->form = new RegistrationForm();
+        if($request->isMethod('POST')){
+            $this->form->bind($request->getPostParameter($this->form->getName()));
+            if($this->form->isValid()){
+                $user = $this->form->save();
+                $this->getUser()->signIn($user);
+                $this->redirect('@create_account');
+            }
+        }
     }
 
     public function executeCreateAccount(sfWebRequest $request) {

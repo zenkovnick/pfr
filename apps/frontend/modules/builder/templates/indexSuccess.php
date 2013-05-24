@@ -463,7 +463,7 @@
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
         var flight_information_field = jQuery("ul.flight-information-list li");
-        flight_information_field.bind('mouseover', flightInformationHover).bind('mouseout', flightInformationHover);
+        flight_information_field.bind('hover', flightInformationHover);
         jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);

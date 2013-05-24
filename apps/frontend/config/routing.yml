@@ -59,9 +59,9 @@ form:
   url: /form
   param: { module: builder, action: index }
 
-new_account:
+create_account:
   url: /new/account
-  param: { module: registration, action: newAccount }
+  param: { module: registration, action: createAccount }
 
 sign-up:
   url: /signup
