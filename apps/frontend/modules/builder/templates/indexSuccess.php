@@ -20,12 +20,12 @@
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationLowMin() ?> - <?php echo $risk_builder->getMitigationLowMax() ?></span>
                         <span class="risk-title">Low Risk</span>
-                        <a href="" class="edit hidden">Edit</a>
-                        <a href="" class="cancel hidden">Cancel</a>
+                        <a href="" class="mitigation-edit hidden">Edit</a>
+                        <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'])); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'], 'class' => 'mitigation-message')); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
                         <button class="mitigation-save">Save</button>
                     </div>
@@ -35,12 +35,12 @@
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationMediumMin() ?> - <?php echo $risk_builder->getMitigationMediumMax() ?></span>
                         <span class="risk-title">Medium Risk</span>
-                        <a href="" class="edit hidden">Edit</a>
-                        <a href="" class="cancel hidden">Cancel</a>
+                        <a href="" class="mitigation-edit hidden">Edit</a>
+                        <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'])); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'], 'class' => 'mitigation-message')); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
                         <div><?php include_partial("builder/field",
                                 array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
@@ -52,12 +52,12 @@
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationHighMin() ?>+</span>
                         <span class="risk-title">High Risk</span>
-                        <a href="" class="edit hidden">Edit</a>
-                        <a href="" class="cancel hidden">Cancel</a>
+                        <a href="" class="mitigation-edit hidden">Edit</a>
+                        <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'])); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'])); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'], 'class' => 'mitigation-message')); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
                         <div><?php include_partial("builder/field",
                                 array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
@@ -132,18 +132,12 @@
     function addNewResponseOptionForm(event) {
         event.preventDefault();
         var el = jQuery(addNewResponseOptionField(new_response_option_count));
-        //jQuery('.delete_education', el).bind('click', deleteEducation);
-        jQuery(this).closest('li').find('ul.response-option-list').append(el);
-
+        var root_li = jQuery(this).closest('li');
+        jQuery('ul.response-option-list', root_li).append(el);
+        el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+        jQuery('a.add-note', el).bind('click', addRiskFactorNote);
+        jQuery('a.remove-note', el).bind('click', removeRiskFactorNote);
         new_response_option_count++;
-        /*jQuery("form :input").change(function(){
-         form_changed = true;
-         });
-         jQuery("a", jQuery("#header")).bind('click', ask_saving);
-         jQuery("a", jQuery(".user-general-menu")).bind('click', ask_saving);
-         jQuery("a", jQuery(".user-profile-nav-buttons")).bind('click', ask_saving);
-         jQuery("a", jQuery("#footer")).bind('click', ask_saving);*/
-
     }
 
     function editRiskFactor(event){
@@ -159,6 +153,13 @@
             async: false
         }).responseText);
         jQuery('a.add-new-response-link', form_el).bind('click', addNewResponseOptionForm);
+        jQuery('a.delete_risk_factor', form_el).bind('click', deleteRiskFactor);
+        jQuery('a.delete_risk_factor', form_el).bind('click', deleteRiskFactor);
+
+        jQuery("ul.response-option-list li", form_el).bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+        jQuery('a.add-note', form_el).bind('click', addRiskFactorNote);
+        jQuery('a.remove-note', form_el).bind('click', removeRiskFactorNote);
+
         root_el.append(form_el);
 
     }
@@ -184,12 +185,18 @@
             jQuery("div.entry-header", root_li).removeClass('hidden');
             jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.risk_id);
+            jQuery("a.edit-risk-factor-link", root_li).bind('click', editRiskFactor);
+            jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
+            jQuery('a.delete_risk_factor', root_li).bind('click', deleteRiskFactor);
+            jQuery('a.cancel-risk-factor-add', root_li).remove();
+            jQuery("ul.response-option-list li", root_li).bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+            jQuery('a.add-note', root_li).bind('click', addRiskFactorNote);
+            jQuery('a.remove-note', root_li).bind('click', removeRiskFactorNote);
+
             root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
             root_li.attr('id', 'rf_'+data.risk_id);
             root_li.removeClass('new').addClass('risk-factor-entity');
-            jQuery("a.edit-risk-factor-link", root_li).bind('click', editRiskFactor);
-            jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
-            jQuery('a.cancel-risk-factor-add', root_li).remove();
+
             jQuery( "#risk-factor-container").sortable({
                 containment: "parent",
                 axis: "y",
@@ -205,6 +212,7 @@
             //alert(root_li.html());
             jQuery("div.risk-factor-wrapper", root_li).remove();
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
+            jQuery("span.question", root_li).text(data.question);
         }
     }
 
@@ -226,16 +234,175 @@
             positions.push(jQuery(this).find("input[type='hidden']").val());
         });
         var json_obj =  JSON.stringify(positions);
-<!--        jQuery.ajax({-->
-<!--            url: '--><?php //echo url_for("@save_flight_info_position") ?><!--',-->
-<!--            type: 'POST',-->
-<!--            data: {ids: json_obj, form_id: jQuery('form.main-form').attr('id')},-->
-<!--            success: function() {-->
-<!---->
-<!--            }-->
-<!--        })        -->
+        jQuery.ajax({
+            url: '<?php echo url_for("@save_risk_factor_position") ?>',
+            type: 'POST',
+            data: {ids: json_obj, form_id: jQuery('form.main-form').attr('id')},
+            success: function() {
+
+            }
+        })
     }
 
+    function deleteRiskFactor() {
+        if(confirm("Are You Sure?")){
+            var root_li = jQuery(this).closest('li');
+            jQuery.ajax({
+                url: '<?php echo url_for('@delete_risk_factor'); ?>',
+                data: {id: jQuery("input[type='hidden']", root_li).val()},
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    if(data.result == "OK"){
+                        root_li.remove();
+                    }
+                }
+            });
+        }
+        return false;
+    }
+
+
+    function disableLowNotifyCheckbox(notify_el) {
+        if(notify_el.is(':checked')){
+            jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
+        } else {
+            if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
+                jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
+            } else {
+                jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").removeAttr('disabled');
+            }
+        }
+    }
+
+    function disableMediumNotifyCheckbox(notify_el){
+        if(notify_el.is(':checked')){
+            jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
+        } else {
+            jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
+        }
+    }
+
+    function showDeleteResponseOption(){
+       // alert(jQuery(this).closest('ul.response-option-list').find('li').length);
+        if(jQuery(this).closest('ul.response-option-list').find('li').length > 2){
+            jQuery("a.delete-response-option-link", this).removeClass("hidden").bind('click', deleteResponseOption);
+        } else {
+            jQuery("a.delete-response-option-link", this).addClass("hidden").unbind('click');
+        }
+    }
+
+    function hideDeleteResponseOption(){
+        jQuery("a.delete-response-option-link", this).addClass("hidden").unbind('click');
+    }
+
+    function deleteResponseOption(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        if(!root_li.hasClass('new-response-option')){
+            jQuery.ajax({
+                url: '<?php echo url_for('@delete_response_option') ?>',
+                data: {id: jQuery("input.response-option-id", root_li).val()},
+                dataType: 'json',
+                type: 'POST',
+                success: function(data){
+                    if(data.result == "OK"){
+                        root_li.remove();
+                    }
+                }
+            })
+        } else {
+            root_li.remove();
+        }
+    }
+
+    function addRiskFactorNote(event) {
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        jQuery("div.remove-note-wrapper", root_li).removeClass('hidden');
+        jQuery("div.add-note-wrapper", root_li).addClass('hidden');
+    }
+
+    function removeRiskFactorNote(event) {
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        jQuery("div.remove-note-wrapper", root_li).addClass('hidden');
+        jQuery("div.remove-note-wrapper input[type='text']", root_li).val('');
+        jQuery("div.add-note-wrapper", root_li).removeClass('hidden') ;
+    }
+
+    function validateAndSubmitAddRiskFactor(event) {
+        event.preventDefault();
+        var valid = true;
+        var question = jQuery('input.question', this);
+        if(question.val() == '') {
+            valid = false;
+            question.addClass('invalid-field');
+        }
+
+        jQuery('ul.response-option-list li', this).each(function(){
+            var response_text = jQuery('input.response-text',this);
+            var response_value = jQuery('input.response-value',this);
+            if(response_text.val() == ''){
+                valid = false;
+                response_text.addClass('invalid-field');
+            }
+            if(response_value.val() == '' || !response_value.val().match(/[0-5]/)){
+                valid = false;
+                response_value.addClass('invalid-field');
+            }
+        });
+
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(add_options_submit);
+        }
+
+    }
+
+    function validateAndSubmitEditRiskFactor(event) {
+        event.preventDefault();
+        var valid = true;
+        var question = jQuery('input.question', this);
+        if(question.val() == '') {
+            valid = false;
+            question.addClass('invalid-field');
+        }
+
+        jQuery('ul.response-option-list li', this).each(function(){
+            var response_text = jQuery('input.response-text',this);
+            var response_value = jQuery('input.response-value',this);
+            if(response_text.val() == ''){
+                valid = false;
+                response_text.addClass('invalid-field');
+            }
+            if(response_value.val() == '' || !response_value.val().match(/[0-5]/)){
+                valid = false;
+                response_value.addClass('invalid-field');
+            }
+        });
+
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(add_options_submit);
+        }
+
+    }
+
+    var edit_options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: editRiskFactorSubmitted
+    };
+
+    var add_options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: addRiskFactorSubmitted
+    };
+
+
+    /* DOCUMENT READY */
 
     jQuery(document).ready(function() {
         var form_id = jQuery('form.main-form').attr('id');
@@ -268,6 +435,8 @@
         });
 
 
+
+
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
@@ -279,51 +448,48 @@
             var el = jQuery(addNewRiskFactorField(new_risk_factor_count));
             jQuery('a.add-new-response-link', el).bind('click', addNewResponseOptionForm);
             jQuery('a.cancel-risk-factor-add', el).bind('click', cancelRiskFactorAdd);
-            /*alert(jQuery("#risk_factor_form_"+new_risk_factor_count, el).html());
-            jQuery("#risk_factor_form_"+new_risk_factor_count, el).ajaxForm(options_submit);*/
+
             new_risk_factor_count++;
 
             jQuery('ul.risk-factor-list').append(el);
 
             var response_el = jQuery(addNewResponseOptionField(new_response_option_count, 'default_no'));
             el.find('ul.response-option-list').append(response_el);
+            response_el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+            jQuery('a.add-note', response_el).bind('click', addRiskFactorNote);
+            jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
             new_response_option_count++;
 
             var response_el = jQuery(addNewResponseOptionField(new_response_option_count, 'default_yes'));
             el.find('ul.response-option-list').append(response_el);
+            response_el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
+            jQuery('a.add-note', response_el).bind('click', addRiskFactorNote);
+            jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
             new_response_option_count++;
 
-
-            /*jQuery("form :input").change(function(){
-                form_changed = true;
-            });
-            jQuery("a", jQuery("#header")).bind('click', ask_saving);
-            jQuery("a", jQuery(".user-general-menu")).bind('click', ask_saving);
-            jQuery("a", jQuery(".user-profile-nav-buttons")).bind('click', ask_saving);
-            jQuery("a", jQuery("#footer")).bind('click', ask_saving);*/
         });
 
 
         jQuery("div.mitigation-header").mouseover(function(){
-            if(jQuery(this).find('a.cancel').hasClass('hidden')){
-               jQuery(this).find('a.edit').removeClass('hidden');
+            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden')){
+               jQuery(this).find('a.mitigation-edit').removeClass('hidden');
             }
         });
         jQuery("div.mitigation-header").mouseout(function(){
-            if(jQuery(this).find('a.cancel').hasClass('hidden')){
-                jQuery(this).find('a.edit').addClass('hidden');
+            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden')){
+                jQuery(this).find('a.mitigation-edit').addClass('hidden');
             }
         });
 
-        jQuery('a.edit').click(function(event){
+        jQuery('a.mitigation-edit').click(function(event){
             event.preventDefault();
             jQuery(this).addClass('hidden');
             var root_li = jQuery(this).closest('li');
-            root_li.find('a.cancel').removeClass('hidden');
+            root_li.find('a.mitigation-cancel').removeClass('hidden');
             root_li.find('div.field-wrapper').show(500);
         });
 
-        jQuery("a.cancel").click(function(event){
+        jQuery("a.mitigation-cancel").click(function(event){
             event.preventDefault();
             jQuery(this).addClass('hidden');
             var root_li = jQuery(this).closest('li');
@@ -414,14 +580,23 @@
                     break;
 
             }
-            if(data){
+
+            var valid = true;
+            var mitigation_message = jQuery('input.mitigation-message', root_li);
+            if(mitigation_message.val() == ''){
+                valid = false;
+                mitigation_message.addClass('invalid-field');
+            }
+
+            if(data && valid){
+                mitigation_message.removeClass('invalid-field');
                 jQuery.ajax({
                     url: '<?php echo url_for("@save_mitigation_section") ?>',
                     type: 'POST',
                     data: data,
                     success: function() {
                         root_li.find('div.field-wrapper').hide(500);
-                        root_li.find('a.cancel').addClass('hidden');
+                        root_li.find('a.mitigation-cancel').addClass('hidden');
                     }
                 });
             }
@@ -485,27 +660,6 @@
                 });
             }
         });
-
-
-        function disableLowNotifyCheckbox(notify_el) {
-            if(notify_el.is(':checked')){
-                jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
-            } else {
-                if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
-                    jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
-                } else {
-                    jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").removeAttr('disabled');
-                }
-            }
-        }
-
-        function disableMediumNotifyCheckbox(notify_el){
-            if(notify_el.is(':checked')){
-                jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
-            } else {
-                jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
-            }
-        }
 
 
     });

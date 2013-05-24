@@ -72,7 +72,8 @@ abstract class BaseMitigationField extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('RiskBuilder', array(
              'local' => 'risk_builder_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

@@ -21,7 +21,16 @@ class RiskFactorFieldTable extends Doctrine_Table
         return Doctrine_Query::create()
             ->from('RiskFactorField rff')
             ->where('rff.risk_builder_id =?', $form_id)
-            ->orderBy('rff.created_at ASC')
+            ->orderBy('rff.position ASC')
             ->execute();
+    }
+
+    public static function getMaxPosition(){
+        $query = Doctrine_Query::create()
+            ->select('MAX(rff.position) as max_position')
+            ->from('RiskFactorField rff')
+            ->fetchOne();
+        $max_position = $query->getMaxPosition();
+        return $max_position ? $max_position : 0;
     }
 }

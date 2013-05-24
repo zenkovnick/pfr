@@ -49,6 +49,7 @@ RiskFactorField:
       local: risk_builder_id
       foreign: id
       type: one
+      onDelete: CASCADE
     ResponseOptions:
       class: ResponseOptionField
       local: id
@@ -69,6 +70,7 @@ ResponseOptionField:
       local: risk_factor_id
       foreign: id
       type: one
+      onDelete: CASCADE
 
 FlightInformationField:
   actAs: [Timestampable]
@@ -84,6 +86,7 @@ FlightInformationField:
       local: risk_builder_id
       foreign: id
       type: one
+      onDelete: CASCADE
 
 MitigationField:
   actAs: [Timestampable]
@@ -102,4 +105,5 @@ MitigationField:
       foreign: id
       type: one
       foreignType: many
+      onDelete: CASCADE
 

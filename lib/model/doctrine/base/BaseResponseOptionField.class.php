@@ -53,7 +53,8 @@ abstract class BaseResponseOptionField extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('RiskFactorField', array(
              'local' => 'risk_factor_id',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));
