@@ -1,6 +1,9 @@
 <!--[if IE 9]>
 <script type="text/javascript" src="/js/jquery.fileupload-ie9.js"></script>
 <![endif]-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_crop_image'); ?>', '/images/no_avatar.png', [32, 32], 'photo', 'account_photo');
