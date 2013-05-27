@@ -2,6 +2,7 @@
 <?php include_partial('home/notice'); ?>
 <?php include_partial('home/success'); ?>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <h1>Form editor</h1>
@@ -483,7 +484,7 @@
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
         var flight_information_field = jQuery("ul.flight-information-list li");
-        flight_information_field.bind('hover', flightInformationHover);
+        flight_information_field.bind('mouseover', flightInformationHover).bind('mouseout', flightInformationHover);
         jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
