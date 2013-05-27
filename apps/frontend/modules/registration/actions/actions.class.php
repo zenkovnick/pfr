@@ -26,7 +26,23 @@ class registrationActions extends sfActions
     }
 
     public function executeCreateAccount(sfWebRequest $request) {
-        $this->form = new AccountForm();
+        if($this->getUser()->isAuthenticated()){
+            $this->form = new AccountForm();
+            if($request->isMethod('POST')){
+                $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
+                if($this->form->isValid()){
+                    $account = $this->form->save();
+                    $user_account = new UserAccount();
+                    $user_account->setAccount($account);
+                    $user_account->setUser($this->getUser()->getGuardUser());
+                    $user_account->setIsManager(true);
+                    $user_account->save();
+                    $this->redirect('@dashboard');
+                }
+            }
+        } else {
+            $this->redirect('@create_account');
+        }
     }
 
     public function executeUploadAvatar(sfWebRequest $request)
@@ -34,7 +50,7 @@ class registrationActions extends sfActions
         $upload_handler = new UploadHandler(array(
             'upload_dir' => getcwd()."/uploads/avatar/",
             'upload_url' => "/uploads/avatar/",
-            'param_name' => 'sf_guard_user'
+            'param_name' => 'account'
         ));
         if ($request->isMethod('post'))
         {

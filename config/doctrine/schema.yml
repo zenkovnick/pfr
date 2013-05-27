@@ -110,7 +110,7 @@ MitigationField:
 Account:
   actAs: [Timestampable]
   columns:
-    title:             {type: integer, notnull: true }
+    title:             {type: varchar(255), notnull: true }
     photo:             {type: varchar(255)}
     chief_pilot_email: {type: varchar(255)}
   relations:
@@ -139,4 +139,4 @@ UserAccount:
       is_manager:      { type: boolean, default: false }
     relations:
       Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: UserAccount }
-      User:            { class: User, foreign: id, local: user_id, onDelete: CASCADE, foreignAlias: UserAccount }
+      User:            { class: sfGuardUser, foreign: id, local: user_id, onDelete: CASCADE, foreignAlias: UserAccount }

@@ -9,15 +9,18 @@
  * @property integer $user_id
  * @property boolean $is_manager
  * @property Account $Account
+ * @property sfGuardUser $User
  * 
  * @method integer     getAccountId()  Returns the current record's "account_id" value
  * @method integer     getUserId()     Returns the current record's "user_id" value
  * @method boolean     getIsManager()  Returns the current record's "is_manager" value
  * @method Account     getAccount()    Returns the current record's "Account" value
+ * @method sfGuardUser getUser()       Returns the current record's "User" value
  * @method UserAccount setAccountId()  Sets the current record's "account_id" value
  * @method UserAccount setUserId()     Sets the current record's "user_id" value
  * @method UserAccount setIsManager()  Sets the current record's "is_manager" value
  * @method UserAccount setAccount()    Sets the current record's "Account" value
+ * @method UserAccount setUser()       Sets the current record's "User" value
  * 
  * @package    blueprint
  * @subpackage model
@@ -48,6 +51,11 @@ abstract class BaseUserAccount extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Account', array(
              'local' => 'account_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('sfGuardUser as User', array(
+             'local' => 'user_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
     }

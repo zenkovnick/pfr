@@ -23,7 +23,7 @@ abstract class BaseAccountFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'title'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'title'             => new sfValidatorPass(array('required' => false)),
       'photo'             => new sfValidatorPass(array('required' => false)),
       'chief_pilot_email' => new sfValidatorPass(array('required' => false)),
       'created_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -86,7 +86,7 @@ abstract class BaseAccountFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                => 'Number',
-      'title'             => 'Number',
+      'title'             => 'Text',
       'photo'             => 'Text',
       'chief_pilot_email' => 'Text',
       'created_at'        => 'Date',

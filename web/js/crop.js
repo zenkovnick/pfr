@@ -39,7 +39,6 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
         url: upload_url,
         forceIframeTransport: true,
         done: function (e, data) {
-            //console.log(data.result);
             var response = jQuery(data.result).find('html body').html();
             //alert(response);
             var object = eval('(' + response + ')');
@@ -94,7 +93,7 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
 //                image_name = file.name;
 //                jQuery('.jcrop-holder').remove();
                 jQuery('#avatar-container').html('<img id="temp_image" src="'+file_url+'">').removeClass("default-avatar");
-                jQuery('#sf_guard_user_uploaded_avatar').val(file_name);
+                jQuery('#account_uploaded_photo').val(file_name);
 //                jQuery('<img id="temp_image" src="'+file.url+'">').html(jQuery('#avatar-container'));
 //                //jQuery('#crop-form').html('<img id="temp_image" src="'+file.url+'">');
 //                jQuery('#fancyboxcrop_show').trigger('click');

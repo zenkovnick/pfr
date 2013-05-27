@@ -78,6 +78,11 @@ all:
       content_css : "",
       convert_urls : false
 
+  photo:
+    image_size:
+      height: 40
+      width: 40
+
   sf_admin_dash:
     web_dir:                      /sfAdminDashPlugin
     image_dir:                    /sfAdminDashPlugin/images/icons/

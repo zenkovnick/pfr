@@ -164,7 +164,7 @@ class UploadHandler
             default:
                 $src_img = null;
         }
-        $success = $src_img && @imagecopyresampled(
+        $success = $src_img && imagecopyresampled(
             $new_img,
             $src_img,
             0, 0, 0, 0,
@@ -353,7 +353,7 @@ class UploadHandler
     }
 
     private function resize_image($file, $with_ratio = true){
-        $new_image_size = sfConfig::get('app_avatar_image');
+        $new_image_size = sfConfig::get('app_photo_image_size');
         $path = preg_replace("/^\//", '', $file->url);
         $curr_image_size = getimagesize($path);
         if($with_ratio){

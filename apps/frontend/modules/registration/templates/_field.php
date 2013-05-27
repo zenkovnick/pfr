@@ -10,6 +10,10 @@ if(isset($disabled) && $disabled){
     $options['disabled'] = 'disabled';
 }
 
+if(isset($type) && isset($accept)){
+    $options['accept'] = $accept;
+}
+
 ?>
 
 

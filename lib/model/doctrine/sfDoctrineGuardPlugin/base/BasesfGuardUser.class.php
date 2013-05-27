@@ -23,6 +23,7 @@
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
+ * @property Doctrine_Collection $UserAccount
  * 
  * @method string              getFirstName()             Returns the current record's "first_name" value
  * @method string              getLastName()              Returns the current record's "last_name" value
@@ -42,6 +43,7 @@
  * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
+ * @method Doctrine_Collection getUserAccount()           Returns the current record's "UserAccount" collection
  * @method sfGuardUser         setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser         setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser         setName()                  Sets the current record's "name" value
@@ -60,6 +62,7 @@
  * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
+ * @method sfGuardUser         setUserAccount()           Sets the current record's "UserAccount" collection
  * 
  * @package    blueprint
  * @subpackage model
@@ -165,6 +168,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasOne('sfGuardRememberKey as RememberKeys', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('UserAccount', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

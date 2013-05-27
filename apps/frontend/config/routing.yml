@@ -1,3 +1,7 @@
+dashboard:
+  url: /dashboard
+  param: { module: dashboard, action: index }
+
 
 update_risk_factor:
   url: /form/update-risk-factor
