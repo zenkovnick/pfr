@@ -76,7 +76,20 @@ create_account:
   url: /new/account
   param: { module: registration, action: createAccount }
 
-sign-up:
+
+signin_process:
+  url: /signin/process
+  param: { module: registration, action: processSignin }
+
+signin:
+  url: /signin
+  param: { module: registration, action: signin }
+
+signout:
+  url: /signout
+  param: { module: registration, action: signout }
+
+signup:
   url: /signup
   param: { module: registration, action: signup }
 

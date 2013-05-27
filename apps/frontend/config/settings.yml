@@ -38,8 +38,8 @@ all:
 
     enabled_modules:      [default, sfGuardAuth, sfCaptchaGD, sfThumbnail, sfAdminDash]
 
-    login_module:         authentication
-    login_action:         index
+    login_module:         registration
+    login_action:         signin
 
     standard_helpers:     [Partial, Cache, I18N, Captcha]
 

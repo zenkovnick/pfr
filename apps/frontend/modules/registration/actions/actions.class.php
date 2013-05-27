@@ -13,6 +13,98 @@ class registrationActions extends sfActions
 
     }
 
+    public function executeProcessSignin($request)
+    {
+        sfContext::getInstance()->getConfiguration()->loadHelpers("Url");
+        $user = $this->getUser();
+        if ($user->isAuthenticated())
+        {
+            $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
+
+            return $this->redirect('' != $signinUrl ? $signinUrl : '@homepage');
+        }
+
+        $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
+        $this->form = new $class();
+
+        if ($request->isMethod('post'))
+        {
+            $this->form->bind($request->getParameter('signin'));
+            if ($this->form->isValid())
+            {
+                $values = $this->form->getValues();
+                $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
+
+                // always redirect to a URL set in app.yml
+                // or to the referer
+                // or to the homepage
+                $refer_page =  $this->getUser()->getAttribute('refer_page', null);
+                $this->getUser()->setAttribute('refer_page', null);
+                if(!is_null($refer_page)){
+                    $signinUrl = $refer_page;
+                } else {
+                    $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
+                }
+
+                return $this->redirect('' != $signinUrl ? $signinUrl : '@dashboard');
+                //return $this->redirect('@blog');
+            } else {
+                $this->getUser()->setFlash('error', 'Username or Password is incorrect');
+                $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
+
+                return $this->redirect('' != $signinUrl ? $signinUrl : '@dashboard');
+            }
+        }
+
+        else
+        {
+            if ($request->isXmlHttpRequest())
+            {
+                $this->getResponse()->setHeaderOnly(true);
+                $this->getResponse()->setStatusCode(401);
+
+                return sfView::NONE;
+            }
+
+            // if we have been forwarded, then the referer is the current URL
+            // if not, this is the referer of the current request
+            $user->setReferer($this->getContext()->getActionStack()->getSize() > 1 ? $request->getUri() : $request->getReferer());
+
+            $module = sfConfig::get('sf_login_module');
+            if ($this->getModuleName() != $module)
+            {
+                return $this->redirect($module.'/'.sfConfig::get('sf_login_action'));
+            }
+
+            $this->getResponse()->setStatusCode(401);
+        }
+
+    }
+
+
+    public function executeSignout($request)
+    {
+        $this->getUser()->signOut();
+        $this->getUser()->setAttribute('refer_page', null);
+
+        $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
+
+        $this->redirect($signoutUrl);
+    }
+
+    public function executeSignin($request) {
+        if($this->getUser()->isAuthenticated()){
+            $this->redirect("@dashboard");
+        }
+        else
+        {
+            $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
+            $this->form = new $class();
+
+        }
+    }
+
+
     public function executeSignup(sfWebRequest $request) {
         $this->form = new RegistrationForm();
         if($request->isMethod('POST')){
@@ -26,7 +118,7 @@ class registrationActions extends sfActions
     }
 
     public function executeCreateAccount(sfWebRequest $request) {
-//        if($this->getUser()->isAuthenticated()){
+        if($this->getUser()->isAuthenticated()){
             $this->form = new AccountForm();
             if($request->isMethod('POST')){
                 $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
@@ -40,9 +132,9 @@ class registrationActions extends sfActions
                     $this->redirect('@dashboard');
                 }
             }
-  /*      } else {
-            $this->redirect('@create_account');
-        }*/
+        } else {
+            $this->redirect('@signup');
+        }
     }
 
     public function executeUploadAvatar(sfWebRequest $request)
