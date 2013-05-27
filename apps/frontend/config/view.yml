@@ -12,7 +12,7 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [jquery.fancybox.css]
+  stylesheets:    [style.css, jquery.fancybox.css]
 
   javascripts:    [/js/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php, jquery-1.8.3.js, jquery-ui-1.8.22.custom.min.js, /js/noty/jquery.noty.js, /js/noty/layouts/top.js, /js/noty/themes/default.js, /js/jquery.maskedinput.js, /js/jquery.fancybox.js]
 
