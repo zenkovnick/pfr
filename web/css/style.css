@@ -66,7 +66,7 @@ a                              { cursor: pointer; }
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------> Main Structure <---------------------------------------------------*/
@@ -208,6 +208,29 @@ div.error-message span.error-status-message {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+.form-builder-wrapper {
+    position: relative;
+    padding-bottom: 120px;
+}
+.mitigation-fields {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+ul.scale {
+    margin: 0 -10px 10px;
+    overflow: hidden;
+    text-align: center;
+}
+ul.scale li {
+    color: #FFCC00;
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 0 19px;
+}
 .form-builder-wrapper h1, .form-builder-wrapper h2 {
     color: #000;
     margin: 0 0 20px;
@@ -237,8 +260,9 @@ ul.form-fields {
 .form-builder-wrapper input.first-field {
     height: 50px;
 }
-.flight-information-wrapper h2 {
 
+.flight-information-list {
+    padding: 0 0 50px;
 }
 .flight-information-list li {
     background: #F2F2F2;
@@ -255,17 +279,25 @@ ul.form-fields {
     position: relative;
     width: 460px;
 }
+.flight-information-list li.hidden-field {
+    border-style: dashed;
+}
+.flight-information-list li.hidden-field.solid {
+    border-style: solid;
+}
 .flight-information-list li span.handler {
     background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
     border: 1px solid #CCC;
-    height: 39px;
+    height: 38px;
     left: -20px;
     overflow: hidden;
-
     position: absolute;
     text-indent: -1000px;
     top: -1px;
     width: 19px;
+}
+.flight-information-list li.ui-sortable-helper span.handler {
+    display: block !important;
 }
 .risk-factor-list {
     background: #EBEBEB;
@@ -326,7 +358,7 @@ a.cancel-risk-factor-add {
     text-decoration: none;
     top: 15px;
 }
-a.add-note {
+a.add-note, a.remove-note {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #0F76BB;
     display: block;
@@ -334,6 +366,9 @@ a.add-note {
     margin: 0 0 9px;
     padding: 10px 2px;
     text-decoration: none;
+}
+a.remove-note {
+    color: #F33;
 }
 
 .risk-factor-wrapper label {
@@ -346,8 +381,29 @@ a.add-note {
     margin: 0 0 9px;
     width: 440px;
 }
-
-
+.new-response-option {
+    position: relative;
+}
+a.delete-response-option-link {
+    bottom: 10px;
+    color: #F33;
+    display: block;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+}
+span.uneditable {
+    color: #CCC;
+    float: right;
+    font-size: 12px;
+}
+a.show-hide-field {
+    color: #0F76BB;
+    float: right;
+    font-size: 12px;
+    text-decoration: none;
+}
 
 
 

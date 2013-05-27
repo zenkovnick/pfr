@@ -15,6 +15,18 @@
                 <li><?php include_partial("builder/field", array('field' => $form['form_instructions'])); ?></li>
             </ul>
             <ul class="mitigation-fields">
+<!--                <ul class="scale">-->
+<!--                    <li>5</li>-->
+<!--                    <li>10</li>-->
+<!--                    <li>15</li>-->
+<!--                    <li>20</li>-->
+<!--                    <li>25</li>-->
+<!--                    <li>30</li>-->
+<!--                    <li>35</li>-->
+<!--                    <li>40</li>-->
+<!--                    <li>45</li>-->
+<!--                    <li>50+</li>-->
+<!--                </ul>-->
                 <div id="slider-range"></div>
                 <li id="low" class="low-risk">
                     <div class="mitigation-header">
@@ -71,7 +83,7 @@
 
     <div class="flight-information-wrapper">
         <h2>Flight information</h2>
-        <ul class="flight-information-list" id="flight-information-container" style="height: 600px">
+        <ul class="flight-information-list" id="flight-information-container">
             <?php foreach($flight_information as $flight_information_field):?>
                 <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>">
                     <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
@@ -131,6 +143,11 @@
             success: function(data){
                 if(data.result == "OK"){
                     link.text(data.is_hide ? 'Enable Field' : "Disable field");
+                    if (data.is_hide) {
+                        link.parent().parent().removeClass('solid');
+                    } else {
+                        link.parent().parent().addClass('solid');
+                    }
                 }
             }
         });
@@ -425,6 +442,8 @@
     };
 
 
+
+
     /* DOCUMENT READY */
 
     jQuery(document).ready(function() {
@@ -449,6 +468,7 @@
                 })
             }
         });
+
 
         jQuery( "#risk-factor-container").sortable({
             containment: "parent",
@@ -650,6 +670,9 @@
                     }
                     jQuery( "li.high-risk span.risk-value" ).text((ui.values[ 1 ] + 1) + "+");
                 }
+                var left_position = ui.values[0]*10-500;
+                jQuery('#slider-range').css('background-position', left_position+'px top');
+
             },
             stop: function(event, ui) {
                 jQuery.ajax({
@@ -662,6 +685,9 @@
             }
         });
 
+        var slider_bg_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
+        jQuery('#slider-range').css('background-position', slider_bg_position+'px top');
 
     });
+
 </script>
