@@ -140,3 +140,4 @@ UserAccount:
     relations:
       Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: UserAccount }
       User:            { class: sfGuardUser, foreign: id, local: user_id, onDelete: CASCADE, foreignAlias: UserAccount }
+    actAs: [Timestampable]

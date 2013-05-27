@@ -79,6 +79,21 @@ sfGuardUser:
     photo: null
     created_at: '2013-05-24 14:22:26'
     updated_at: '2013-05-24 14:22:26'
+  sfGuardUser_2:
+    first_name: null
+    last_name: null
+    name: ''
+    username: sokolkatrin@gmail.com
+    algorithm: sha1
+    salt: 66abc227b68c3a829776887800d7a8a9
+    email_address: null
+    password: 6828f216b6a625dac44865bfe246b48a35c1ee3d
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-05-27 16:27:46'
+    photo: null
+    created_at: '2013-05-27 16:27:46'
+    updated_at: '2013-05-27 16:27:46'
 RiskBuilder:
   RiskBuilder_1:
     form_name: 'Test Builder'
@@ -102,3 +117,41 @@ RiskBuilder:
     mitigation_high_prevent_flight: true
     created_at: '2013-05-24 14:19:52'
     updated_at: '2013-05-24 14:19:52'
+Account:
+  Account_1:
+    title: Company
+    photo: ada668dbf57f4cc7204aa943473cb580.png
+    chief_pilot_email: zenkovnick@gmail.com
+    created_at: '2013-05-27 16:27:37'
+    updated_at: '2013-05-27 16:27:37'
+  Account_2:
+    title: 'Company 2'
+    photo: 2042036d41523e2c17bfbccda75d4258.jpg
+    chief_pilot_email: zenkovnick@gmail.com
+    created_at: '2013-05-27 16:27:53'
+    updated_at: '2013-05-27 16:27:53'
+UserAccount:
+  UserAccount_1_1:
+    Account: Account_1
+    User: sfGuardUser_1
+    is_manager: true
+    created_at: '2013-05-27 16:27:37'
+    updated_at: '2013-05-27 16:27:37'
+  UserAccount_1_2:
+    Account: Account_1
+    User: sfGuardUser_2
+    is_manager: false
+    created_at: '2013-05-27 17:00:00'
+    updated_at: '2013-05-27 17:00:00'
+  UserAccount_2_1:
+    Account: Account_2
+    User: sfGuardUser_1
+    is_manager: false
+    created_at: '2013-05-27 17:00:00'
+    updated_at: '2013-05-27 17:00:00'
+  UserAccount_2_2:
+    Account: Account_2
+    User: sfGuardUser_2
+    is_manager: true
+    created_at: '2013-05-27 16:27:53'
+    updated_at: '2013-05-27 16:27:53'

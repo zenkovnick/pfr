@@ -72,6 +72,11 @@ create_account_crop_image:
   url: /new/account/crop-image
   param: { module: registration, action: cropImage }
 
+select_account:
+  url: /select
+  param: { module: registration, action: selectAccount }
+
+
 create_account:
   url: /new/account
   param: { module: registration, action: createAccount }

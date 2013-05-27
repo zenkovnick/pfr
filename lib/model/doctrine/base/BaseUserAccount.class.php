@@ -58,5 +58,9 @@ abstract class BaseUserAccount extends sfDoctrineRecord
              'local' => 'user_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
+        $this->actAs($timestampable0);
     }
 }

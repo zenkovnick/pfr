@@ -16,4 +16,37 @@ class AccountTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Account');
     }
+
+    public static function getAllUserAccounts($user) {
+        $accounts = Doctrine_Query::create()
+            ->from('Account a')
+            ->leftJoin('a.UserAccount ua')
+            ->where('ua.user_id = ?', $user->getId())
+            ->execute();
+
+        $result = array();
+        foreach($accounts as $account){
+            $manager = self::getAccountManagers($account->getId());
+            $result[$account->getId()]['title'] = $account->getTitle();
+            $result[$account->getId()]['photo'] = $account->getPhoto();
+            $result[$account->getId()]['manager'] = $manager;
+        }
+        return $result;
+    }
+
+    public static function getAccountManagers($account_id){
+        $manager = Doctrine_Manager::getInstance()->getCurrentConnection();
+        $query = "SELECT u.username
+FROM user_account ua
+        INNER JOIN
+        (
+            SELECT account_id, MIN(created_at) min_date
+            FROM user_account
+            WHERE is_manager = 1 AND account_id = $account_id
+            GROUP BY account_id
+        ) ua2 ON ua.account_id = ua2.account_id AND ua.created_at = ua2.min_date
+LEFT JOIN sf_guard_user u ON ua.user_id = u.id
+";
+        return $manager->execute($query)->fetchColumn(0);
+    }
 }

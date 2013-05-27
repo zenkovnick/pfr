@@ -13,6 +13,74 @@ class registrationActions extends sfActions
 
     }
 
+    public function executeSignin($request) {
+        if($this->getUser()->isAuthenticated()){
+            $this->redirect("@dashboard");
+        }
+        else
+        {
+            $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
+            $this->form = new $class();
+
+        }
+    }
+
+
+    public function executeSignup(sfWebRequest $request) {
+        $this->form = new RegistrationForm();
+        if($request->isMethod('POST')){
+            $this->form->bind($request->getPostParameter($this->form->getName()));
+            if($this->form->isValid()){
+                $user = $this->form->save();
+                $this->getUser()->signIn($user);
+                $this->redirect('@create_account');
+            }
+        }
+    }
+
+    public function executeSelectAccount(sfWebRequest $request) {
+        $this->accounts = AccountTable::getAllUserAccounts($this->getUser()->getGuardUser());
+    }
+
+    public function executeCreateAccount(sfWebRequest $request) {
+        if($this->getUser()->isAuthenticated()){
+            $this->form = new AccountForm();
+            if($request->isMethod('POST')){
+                $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
+                if($this->form->isValid()){
+                    $account = $this->form->save();
+                    $user_account = new UserAccount();
+                    $user_account->setAccount($account);
+                    $user_account->setUser($this->getUser()->getGuardUser());
+                    $user_account->setIsManager(true);
+                    $user_account->save();
+                    $this->redirect('@dashboard');
+                }
+            }
+        } else {
+            $this->redirect('@signup');
+        }
+    }
+
+    public function executeUploadAvatar(sfWebRequest $request)
+    {
+        $upload_handler = new UploadHandler(array(
+            'upload_dir' => getcwd()."/uploads/avatar/",
+            'upload_url' => "/uploads/avatar/",
+            'param_name' => 'account'
+        ));
+        if ($request->isMethod('post'))
+        {
+            $upload_handler->post();
+        }
+        return sfView::NONE;
+    }
+
+    public function executeCropImage(sfWebRequest $request)
+    {
+        return sfView::NONE;
+    }
+
     public function executeProcessSignin($request)
     {
         sfContext::getInstance()->getConfiguration()->loadHelpers("Url");
@@ -90,69 +158,5 @@ class registrationActions extends sfActions
         $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
 
         $this->redirect($signoutUrl);
-    }
-
-    public function executeSignin($request) {
-        if($this->getUser()->isAuthenticated()){
-            $this->redirect("@dashboard");
-        }
-        else
-        {
-            $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
-            $this->form = new $class();
-
-        }
-    }
-
-
-    public function executeSignup(sfWebRequest $request) {
-        $this->form = new RegistrationForm();
-        if($request->isMethod('POST')){
-            $this->form->bind($request->getPostParameter($this->form->getName()));
-            if($this->form->isValid()){
-                $user = $this->form->save();
-                $this->getUser()->signIn($user);
-                $this->redirect('@create_account');
-            }
-        }
-    }
-
-    public function executeCreateAccount(sfWebRequest $request) {
-        if($this->getUser()->isAuthenticated()){
-            $this->form = new AccountForm();
-            if($request->isMethod('POST')){
-                $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
-                if($this->form->isValid()){
-                    $account = $this->form->save();
-                    $user_account = new UserAccount();
-                    $user_account->setAccount($account);
-                    $user_account->setUser($this->getUser()->getGuardUser());
-                    $user_account->setIsManager(true);
-                    $user_account->save();
-                    $this->redirect('@dashboard');
-                }
-            }
-        } else {
-            $this->redirect('@signup');
-        }
-    }
-
-    public function executeUploadAvatar(sfWebRequest $request)
-    {
-        $upload_handler = new UploadHandler(array(
-            'upload_dir' => getcwd()."/uploads/avatar/",
-            'upload_url' => "/uploads/avatar/",
-            'param_name' => 'account'
-        ));
-        if ($request->isMethod('post'))
-        {
-            $upload_handler->post();
-        }
-        return sfView::NONE;
-    }
-
-    public function executeCropImage(sfWebRequest $request)
-    {
-        return sfView::NONE;
     }
 }

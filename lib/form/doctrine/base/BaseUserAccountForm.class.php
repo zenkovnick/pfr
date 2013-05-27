@@ -18,12 +18,16 @@ abstract class BaseUserAccountForm extends BaseFormDoctrine
       'account_id' => new sfWidgetFormInputHidden(),
       'user_id'    => new sfWidgetFormInputHidden(),
       'is_manager' => new sfWidgetFormInputCheckbox(),
+      'created_at' => new sfWidgetFormDateTime(),
+      'updated_at' => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'account_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('account_id')), 'empty_value' => $this->getObject()->get('account_id'), 'required' => false)),
       'user_id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('user_id')), 'empty_value' => $this->getObject()->get('user_id'), 'required' => false)),
       'is_manager' => new sfValidatorBoolean(array('required' => false)),
+      'created_at' => new sfValidatorDateTime(),
+      'updated_at' => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('user_account[%s]');
