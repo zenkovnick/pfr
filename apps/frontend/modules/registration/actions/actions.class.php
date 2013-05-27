@@ -26,7 +26,7 @@ class registrationActions extends sfActions
     }
 
     public function executeCreateAccount(sfWebRequest $request) {
-        if($this->getUser()->isAuthenticated()){
+//        if($this->getUser()->isAuthenticated()){
             $this->form = new AccountForm();
             if($request->isMethod('POST')){
                 $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
@@ -40,9 +40,9 @@ class registrationActions extends sfActions
                     $this->redirect('@dashboard');
                 }
             }
-        } else {
+  /*      } else {
             $this->redirect('@create_account');
-        }
+        }*/
     }
 
     public function executeUploadAvatar(sfWebRequest $request)
