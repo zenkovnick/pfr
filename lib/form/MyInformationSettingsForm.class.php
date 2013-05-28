@@ -12,10 +12,23 @@ class MyInformationSettingsForm extends sfGuardUserForm {
 
         $this->widgetSchema['uploaded_photo'] = new sfWidgetFormInputHidden();
         $this->validatorSchema['uploaded_photo'] = new sfValidatorPass();
+
+        $this->setWidget('new_password', new sfWidgetFormInputPassword());
+        $this->setWidget('new_password_confirm', new sfWidgetFormInputPassword());
+
+        $this->setValidator('new_password', new sfValidatorPass(array('required' => false)));
+        $this->setValidator('new_password_confirm', new sfValidatorPass(array('required' => false)));
+
+        $this->mergePostValidator(new sfValidatorSchemaCompare('new_password', sfValidatorSchemaCompare::EQUAL, 'new_password_confirm', array(), array('invalid' => "Passwords don't match")));
+
     }
 
     protected function doSave($con = null)
     {
+        if($this->getValue('new_password') && $this->getValue('new_password_confirm')){
+            $this->getObject()->setPassword($this->getValue('new_password'));
+        }
+
         if($this->getObject()->isNew() && $this->getValue('uploaded_photo') != '')
         {
             $reset_avatar = true;

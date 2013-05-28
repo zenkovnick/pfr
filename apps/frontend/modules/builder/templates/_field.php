@@ -12,8 +12,9 @@ if(isset($disabled) && $disabled){
 
 ?>
 
-
-<?php echo $field->renderLabel() ?>
+<?php if($label !== false): ?>
+    <?php echo $field->renderLabel() ?>
+<?php endif ?>
 
 <?php
     echo $field->render($options);

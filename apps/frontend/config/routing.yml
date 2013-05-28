@@ -1,11 +1,26 @@
 dashboard:
   url: /:account_id/dashboard
   param: { module: dashboard, action: index }
+  requirements:
+    account_id: \d+
+
+process_account_data:
+  url: /:account_id/settings/process-account-data
+  param: { module: settings, action: processAccountData }
+  requirements:
+    account_id: \d+
+
+process_my_information_data:
+  url: /:account_id/settings/process-my-information-data
+  param: { module: settings, action: processMyInformationData }
+  requirements:
+    account_id: \d+
 
 settings:
   url: /:account_id/settings
   param: { module: settings, action: index }
-
+  requirements:
+    account_id: \d+
 
 update_risk_factor:
   url: /form/update-risk-factor

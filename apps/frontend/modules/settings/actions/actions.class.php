@@ -11,4 +11,14 @@ class settingsActions extends sfActions {
         $this->account_form = new AccountForm($this->account);
         $this->user_form = new MyInformationSettingsForm($user);
     }
+
+    public function executeProcessMyInformationData(sfWebRequest $request){
+        $this->form = new MyInformationSettingsForm();
+        if($request->isMethod('POST')){
+            $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            if($this->form->isValid()){
+                $this->form->save();
+            }
+        }
+    }
 }
