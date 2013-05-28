@@ -13,12 +13,15 @@ class registrationActions extends sfActions
 
     }
 
-    public function executeSignin($request) {
+    public function executeSignin(sfWebRequest $request) {
         if($this->getUser()->isAuthenticated()){
-            $this->redirect("@dashboard");
+            $this->redirect("@select_account");
         }
         else
         {
+            if($request->getParameter('redirect_to')){
+                $this->getUser()->setAttribute('redirect_to', $request->getParameter('redirect_to'));
+            }
             $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
             $this->form = new $class();
 
@@ -40,6 +43,9 @@ class registrationActions extends sfActions
 
     public function executeSelectAccount(sfWebRequest $request) {
         $this->accounts = AccountTable::getAllUserAccounts($this->getUser()->getGuardUser());
+        if($this->accounts->count() == 0){
+            $this->redirect('@create_account');
+        }
     }
 
     public function executeCreateAccount(sfWebRequest $request) {
@@ -108,21 +114,29 @@ class registrationActions extends sfActions
                 // always redirect to a URL set in app.yml
                 // or to the referer
                 // or to the homepage
-                $refer_page =  $this->getUser()->getAttribute('refer_page', null);
-                $this->getUser()->setAttribute('refer_page', null);
-                if(!is_null($refer_page)){
-                    $signinUrl = $refer_page;
+                $route = $user->getAttribute('redirect_to');
+                $user->getAttributeHolder()->remove('redirect_to');
+                if($route){
+                    $this->redirect("@{$route}");
                 } else {
-                    $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
+                    $refer_page =  $this->getUser()->getAttribute('refer_page', null);
+                    $this->getUser()->setAttribute('refer_page', null);
+                    if(!is_null($refer_page)){
+                        $signinUrl = $refer_page;
+                    } else {
+                        $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
+                    }
+
+                    $this->redirect('' != $signinUrl ? $signinUrl : '@select_account');
+
                 }
 
-                return $this->redirect('' != $signinUrl ? $signinUrl : '@dashboard');
                 //return $this->redirect('@blog');
             } else {
                 $this->getUser()->setFlash('error', 'Username or Password is incorrect');
                 $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
 
-                return $this->redirect('' != $signinUrl ? $signinUrl : '@dashboard');
+                $this->redirect('' != $signinUrl ? $signinUrl : '@dashboard');
             }
         }
 

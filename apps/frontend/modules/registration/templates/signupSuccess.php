@@ -11,7 +11,7 @@
     </form>
     <div>
         <span>Already a user?</span>
-        <a href="" class="sign-in-link">Sign In</a>
+        <a href="<?php echo url_for("@signin?redirect_to=select_account") ?>" class="sign-in-link">Sign In</a>
     </div>
 </div>
 
