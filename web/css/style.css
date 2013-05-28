@@ -209,14 +209,11 @@ div.error-message span.error-status-message {
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 .form-builder-wrapper {
-    position: relative;
-    padding-top: 195px;
+    /*position: relative;*/
+    padding-top: 175px;
 }
-.mitigation-fields {
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*position: absolute;*/
-    /*right: 0;*/
+.main-form > .btn.btn-green {
+    float: right;
 }
 ul.scale {
     margin: 0 -22px 10px 48px;
@@ -277,13 +274,12 @@ ul.scale li#li-50 {
 }
 ul.form-fields {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
-    left: 0;
-    margin: 0 0 20px;
+    left: 50%;
+    margin-left: -250px;
     overflow: hidden;
     padding: 0 0 20px;
     position: absolute;
-    right: 0;
-    top: 15px;
+    top: 155px;
 }
 .form-builder-wrapper input[type="text"] {
     background: #FFF;
@@ -307,6 +303,7 @@ ul.form-fields {
 
 .flight-information-list {
     padding: 0 0 50px;
+    /*position: relative;*/
 }
 .flight-information-list li {
     background: #F2F2F2;
@@ -344,15 +341,16 @@ ul.form-fields {
     display: block !important;
 }
 .risk-factor-list {
-    background: #EBEBEB;
-    border: 1px solid #CCC;
+
     overflow: hidden;
-    padding: 9px 0;
     position: relative;
 }
-.risk-factor-list li {
+.risk-factor-list > li {
+    background: #EBEBEB;
+    border: 1px solid #CCC;
+    margin: 0 0 20px;
     overflow: hidden;
-    padding: 0 9px;
+    padding: 9px;
 }
 .risk-factor-list h2 {
     background: #E4E4E4;
@@ -456,14 +454,79 @@ a.show-hide-field {
     font-size: 12px;
     text-decoration: none;
 }
-.flight-information-wrapper {
-    position: static;
+.mitigation-fields {
+    margin: 22px 0 20px;
 }
+.mitigation-fields li.risk-value-edit {
+    background: #EBEBEB;
+    border: 1px solid #CCC;
+    margin: 9px;
+    overflow: hidden;
+    /*padding: 9px;*/
+    position: relative;
+}
+.mitigation-fields li.risk-value-edit .mitigation-header {
+    background: #F2F2F2;
+    border-bottom: 1px solid #CCCCCC;
+    margin: 0 0 -1px;
+    overflow: hidden;
+    padding: 14px 9px;
+}
+.mitigation-fields li.risk-value-edit .mitigation-header:hover {
+    background: #E4E4E4;
+}
+.mitigation-fields li.risk-value-edit .mitigation-header span.risk-value {
+    border: 1px solid;
+    display: block;
+    float: left;
+    margin: -14px 9px -14px -9px;
+    padding: 14px 9px 13px;
+    text-align: center;
+    width: 59px;
+}
+.mitigation-fields li.risk-value-edit .field-wrapper {
+    padding: 9px;
+}
+.mitigation-fields li.risk-value-edit input[type="text"] {
+    margin: 0 0 9px;
+}
+.mitigation-fields li.risk-value-edit .checkbox-wrapper {
+    margin: 0 0 9px;
+    overflow: hidden;
 
-
-
-
-
+}
+.mitigation-fields li.risk-value-edit input[type="checkbox"] {
+    clear: both;
+    display: block;
+    float: left;
+    margin: 0 9px 9px 0;
+}
+.mitigation-fields li.risk-value-edit .btn.btn-green {
+    clear: both;
+    margin-bottom: 9px;
+}
+.mitigation-fields li.risk-value-edit.low-risk .mitigation-header span.risk-value {
+    background: #66CC00;
+    border-color: #669900;
+}
+.mitigation-fields li.risk-value-edit.medium-risk .mitigation-header span.risk-value {
+    background: #FFCC00;
+    border-color: #FF9900;
+}
+.mitigation-fields li.risk-value-edit.high-risk .mitigation-header span.risk-value {
+    background: #FF3333;
+    border-color: #FF0000;
+}
+a.mitigation-edit, a.mitigation-cancel {
+    color: #3C76BB;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    text-decoration: none;
+    top: 15px;
+}
 
 
 
