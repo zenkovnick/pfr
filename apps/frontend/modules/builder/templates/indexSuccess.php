@@ -126,9 +126,9 @@
     var new_risk_factor_count = 0;
     var new_response_option_count = 0;
 
-    function flightInformationHover(){
-        jQuery('span.uneditable, span.hiddable', this).toggleClass('hidden');
-        jQuery('span.handler', this).toggleClass('hidden');
+    function flightInformationOver(){
+        jQuery('span.uneditable, span.hiddable', this).removeClass('hidden');
+        jQuery('span.handler', this).removeClass('hidden');
     }
     function colorScale(lower, higher) {
         var green = Math.floor(lower/5),
@@ -139,6 +139,12 @@
         jQuery('ul.scale li:nth-child('+red+')').nextAll().addClass('red');
         jQuery('ul.scale li:nth-child('+red+')').addClass('red');
     }
+
+    function flightInformationOut(){
+        jQuery('span.uneditable, span.hiddable', this).addClass('hidden');
+        jQuery('span.handler', this).addClass('hidden');
+    }
+
 
     function showHideField(event){
         event.preventDefault();
@@ -493,7 +499,7 @@
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
         var flight_information_field = jQuery("ul.flight-information-list li");
-        flight_information_field.bind('mouseover', flightInformationHover).bind('mouseout', flightInformationHover);
+        flight_information_field.bind('mouseover', flightInformationOver).bind('mouseout', flightInformationOut);
         jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);

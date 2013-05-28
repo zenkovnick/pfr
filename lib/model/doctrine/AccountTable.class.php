@@ -21,20 +21,22 @@ class AccountTable extends Doctrine_Table
         $accounts = Doctrine_Query::create()
             ->from('Account a')
             ->leftJoin('a.UserAccount ua')
+            ->leftJoin('a.Manager m')
             ->where('ua.user_id = ?', $user->getId())
             ->execute();
 
-        $result = array();
+        /*$result = array();
         foreach($accounts as $account){
             $manager = self::getAccountManagers($account->getId());
             $result[$account->getId()]['title'] = $account->getTitle();
             $result[$account->getId()]['photo'] = $account->getPhoto();
             $result[$account->getId()]['manager'] = $manager;
-        }
-        return $result;
+        }*/
+        //return $result;
+        return $accounts;
     }
 
-    public static function getAccountManagers($account_id){
+    /*public static function getAccountManagers($account_id){
         $manager = Doctrine_Manager::getInstance()->getCurrentConnection();
         $query = "SELECT u.username
 FROM user_account ua
@@ -48,5 +50,5 @@ FROM user_account ua
 LEFT JOIN sf_guard_user u ON ua.user_id = u.id
 ";
         return $manager->execute($query)->fetchColumn(0);
-    }
+    }*/
 }
