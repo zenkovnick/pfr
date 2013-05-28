@@ -29,7 +29,7 @@ class MyInformationSettingsForm extends sfGuardUserForm {
             $this->getObject()->setPassword($this->getValue('new_password'));
         }
 
-        if($this->getObject()->isNew() && $this->getValue('uploaded_photo') != '')
+        if($this->getValue('uploaded_photo') != '')
         {
             $reset_avatar = true;
         }

@@ -23,7 +23,7 @@ function clearCoords()
     },500);
 };
 
-function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_type, form_field_id)
+function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_type, form_field_id, container_id, uploaded_field_id)
 {
 //    jQuery('#remove_image').click(function(){
 //        jQuery('#photo').attr('src', default_image );
@@ -92,8 +92,9 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
                 //console.log(file);
 //                image_name = file.name;
 //                jQuery('.jcrop-holder').remove();
-                jQuery('#avatar-container').html('<img id="temp_image" src="'+file_url+'">').removeClass("default-avatar");
-                jQuery('#account_uploaded_photo').val(file_name);
+            jQuery('#'+container_id).html('<img id="temp_image" src="'+file_url+'">').removeClass("default-avatar");
+            jQuery('#'+uploaded_field_id).val(file_name);
+
 //                jQuery('<img id="temp_image" src="'+file.url+'">').html(jQuery('#avatar-container'));
 //                //jQuery('#crop-form').html('<img id="temp_image" src="'+file.url+'">');
 //                jQuery('#fancyboxcrop_show').trigger('click');

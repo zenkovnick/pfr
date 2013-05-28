@@ -3,7 +3,7 @@
         <?php echo $form->renderGlobalErrors();?>
         <?php echo $form->renderHiddenFields();?>
         <ul class="sign-up-field-list">
-            <li><?php include_partial("registration/field", array('field' => $form['name'])); ?></li>
+            <li><?php include_partial("registration/field", array('field' => $form['first_name'])); ?></li>
             <li><?php include_partial("registration/field", array('field' => $form['username'], 'class' => 'email')); ?></li>
             <li><?php include_partial("registration/field", array('field' => $form['password'])); ?></li>
         </ul>

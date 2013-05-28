@@ -213,6 +213,7 @@
     function editRiskFactor(event){
         event.preventDefault();
         var root_el = jQuery(this).closest('li.risk-factor-entity');
+        root_el.addClass('editing');
         jQuery(this).addClass('hidden');
         root_el.find('a.cancel-risk-factor-link').removeClass('hidden');
         var risk_factor_id= root_el.find('input[type="hidden"]').val();
@@ -238,6 +239,7 @@
         var root_li = jQuery(this).closest('li.risk-factor-entity');
         jQuery(this).addClass('hidden');
         root_li.find("div.risk-factor-wrapper").remove();
+        root_li.removeClass('editing');
     }
 
     function cancelRiskFactorAdd(event){

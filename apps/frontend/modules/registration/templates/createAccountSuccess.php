@@ -6,7 +6,8 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_crop_image'); ?>', '/images/no_avatar.png', [32, 32], 'photo', 'account_photo');
+        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_crop_image'); ?>',
+            '/images/no_avatar.png', [32, 32], 'photo', 'account_photo', 'avatar_container', 'account_uploaded_photo');
     });
 </script>
 

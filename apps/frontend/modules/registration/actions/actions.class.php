@@ -62,7 +62,7 @@ class registrationActions extends sfActions
                     $user_account->setUser($this->user);
                     $user_account->setIsManager(true);
                     $user_account->save();
-                    $this->redirect('@dashboard');
+                    $this->redirect("@dashboard?account_id={$account->getId()}");
                 }
             }
         } else {

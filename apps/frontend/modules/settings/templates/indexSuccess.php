@@ -1,6 +1,5 @@
 <?php include_partial('menu/header_menu', array('account_id' => $account->getId())); ?>
 
-
 <!--[if IE 9]>
 <script type="text/javascript" src="/js/jquery.fileupload-ie9.js"></script>
 <![endif]-->
@@ -9,7 +8,10 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_crop_image'); ?>', '/images/no_avatar.png', [32, 32], 'photo', 'account_photo');
+        init_crop('<?php echo url_for('@my_information_upload_avatar'); ?>', '<?php echo url_for('@my_information_crop_image'); ?>',
+            '/images/no_avatar.png', [32, 32], 'photo', 'sf_guard_user_photo', 'user_avatar_container', 'sf_guard_user_uploaded_photo');
+        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_crop_image'); ?>',
+            '/images/no_avatar.png', [32, 32], 'photo', 'account_photo', 'account_avatar_container', 'account_uploaded_photo');
     });
 </script>
 
@@ -23,17 +25,17 @@
             <?php echo($user_form->renderHiddenFields()) ?>
             <?php echo($user_form->renderGlobalErrors()) ?>
             <ul>
-                <li class="photo-block"><?php include_partial('registration/avatar_field', array('field' => $user_form['photo'])) ?></li>
-                <li class="input-block"><?php include_partial('registration/field',
-                        array('field' => $user_form['name'], 'placeholder' => 'Name')) ?>
+                <li class="photo-block"><?php include_partial('settings/user_avatar_field', array('field' => $user_form['photo'], 'user' => $user)) ?></li>
+                <li class="input-block"><?php include_partial('settings/field',
+                        array('field' => $user_form['first_name'], 'placeholder' => 'Name')) ?>
                 </li>
-                <li class="input-block"><?php include_partial('registration/field',
+                <li class="input-block"><?php include_partial('settings/field',
                         array('field' => $user_form['username'], 'class' => 'username', 'placeholder' => 'Email')) ?>
                 </li>
-                <li class="input-block"><?php include_partial('registration/field',
+                <li class="input-block"><?php include_partial('settings/field',
                         array('field' => $user_form['new_password'], 'class' => 'new-password', 'placeholder' => 'New Password')) ?>
                 </li>
-                <li class="input-block"><?php include_partial('registration/field',
+                <li class="input-block"><?php include_partial('settings/field',
                         array('field' => $user_form['new_password_confirm'], 'class' => 'new-password-confirm', 'placeholder' => 'New Password Confirm')) ?>
                 </li>
                 <li><button type="submit">Save</button></li>
@@ -45,7 +47,9 @@
 </ul>
 
 <script type="text/javascript">
-
+    function informationSubmitted(data){
+        alert('a');
+    }
     var information_submit = {
         dataType:  'json',
         clearForm: false,
@@ -76,10 +80,6 @@
             jQuery(this).ajaxSubmit(information_submit);
         }
 
-    }
-
-    function informationSubmitted(data){
-        alert(data.result);
     }
 
     jQuery(document).ready(function(){
