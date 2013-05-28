@@ -670,6 +670,10 @@
             min: 0,
             max: 49,
             values: [<?php echo $risk_builder->getMitigationLowMax() ?>, <?php echo $risk_builder->getMitigationMediumMax() ?> ],
+            create: function( event, ui ) {
+                colorScale('<?php echo $risk_builder->getMitigationLowMax() ?>', '<?php echo $risk_builder->getMitigationMediumMax() ?>');
+            },
+
             slide: function( event, ui ) {
                 if(ui.values[ 0 ] == ui.values[ 1 ]){
                     return false;
