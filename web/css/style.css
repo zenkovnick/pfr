@@ -219,18 +219,57 @@ div.error-message span.error-status-message {
     right: 0;
 }
 ul.scale {
-    margin: 0 -10px 10px;
+    margin: 0 -22px 10px 48px;
     overflow: hidden;
-    text-align: center;
 }
 ul.scale li {
     color: #FFCC00;
-    display: inline-block;
+    display: block;
     float: left;
     font-size: 12px;
     overflow: hidden;
-    padding: 0 19px;
+    /*padding: 0 0 0 49px;*/
+    width: 45px;
 }
+ul.scale li.green {
+    color: #66CC00;
+}
+ul.scale li.red {
+    color: #FF3333;
+}
+ul.scale li#li-10 {
+    padding-left: 1px;
+}
+ul.scale li#li-15 {
+    padding-left: 7px;
+}
+ul.scale li#li-20 {
+    padding-left: 7px;
+}
+ul.scale li#li-25 {
+    padding-left: 5px;
+}
+ul.scale li#li-25 {
+    padding-left: 5px;
+}
+ul.scale li#li-30 {
+    padding-left: 7px;
+}
+ul.scale li#li-35 {
+    padding-left: 4px;
+}
+ul.scale li#li-40 {
+    padding-left: 7px;
+}
+ul.scale li#li-45 {
+    padding-left: 5px;
+    width: 38px;
+}
+ul.scale li#li-50 {
+    text-align: right;
+    width: 25px;
+}
+
 .form-builder-wrapper h1, .form-builder-wrapper h2 {
     color: #000;
     margin: 0 0 20px;
@@ -404,7 +443,9 @@ a.show-hide-field {
     font-size: 12px;
     text-decoration: none;
 }
-
+.flight-information-wrapper {
+    /*position: static;*/
+}
 
 
 

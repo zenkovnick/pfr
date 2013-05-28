@@ -16,18 +16,18 @@
                 <li><?php include_partial("builder/field", array('field' => $form['form_instructions'])); ?></li>
             </ul>
             <ul class="mitigation-fields">
-<!--                <ul class="scale">-->
-<!--                    <li>5</li>-->
-<!--                    <li>10</li>-->
-<!--                    <li>15</li>-->
-<!--                    <li>20</li>-->
-<!--                    <li>25</li>-->
-<!--                    <li>30</li>-->
-<!--                    <li>35</li>-->
-<!--                    <li>40</li>-->
-<!--                    <li>45</li>-->
-<!--                    <li>50+</li>-->
-<!--                </ul>-->
+                <ul class="scale">
+                    <li id="li-5">5</li>
+                    <li id="li-10">10</li>
+                    <li id="li-15">15</li>
+                    <li id="li-20">20</li>
+                    <li id="li-25">25</li>
+                    <li id="li-30">30</li>
+                    <li id="li-35">35</li>
+                    <li id="li-40">40</li>
+                    <li id="li-45">45</li>
+                    <li id="li-50">50+</li>
+                </ul>
                 <div id="slider-range"></div>
                 <li id="low" class="low-risk">
                     <div class="mitigation-header">
@@ -129,6 +129,15 @@
     function flightInformationHover(){
         jQuery('span.uneditable, span.hiddable', this).toggleClass('hidden');
         jQuery('span.handler', this).toggleClass('hidden');
+    }
+    function colorScale(lower, higher) {
+        var green = Math.floor(lower/5),
+            red   = Math.ceil(higher/5);
+        jQuery('ul.scale li').removeClass();
+        jQuery('ul.scale li:nth-child('+green+')').prevAll().addClass('green');
+        jQuery('ul.scale li:nth-child('+green+')').addClass('green');
+        jQuery('ul.scale li:nth-child('+red+')').nextAll().addClass('red');
+        jQuery('ul.scale li:nth-child('+red+')').addClass('red');
     }
 
     function showHideField(event){
@@ -673,6 +682,7 @@
                 }
                 var left_position = ui.values[0]*10-500;
                 jQuery('#slider-range').css('background-position', left_position+'px top');
+                colorScale(ui.values[0], ui.values[1]);
 
             },
             stop: function(event, ui) {
