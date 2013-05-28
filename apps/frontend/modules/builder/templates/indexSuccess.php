@@ -54,24 +54,31 @@
             <?php echo $form->renderGlobalErrors();?>
             <?php echo $form->renderHiddenFields();?>
             <ul class="form-fields">
-                <li><?php include_partial("builder/field", array('field' => $form['form_name'], 'class' => 'first-field')); ?></li>
-                <li><?php include_partial("builder/field", array('field' => $form['form_instructions'])); ?></li>
+                <li><?php include_partial("builder/field", array('field' => $form['form_name'], 'class' => 'first-field', 'label' => false)); ?></li>
+                <li><?php include_partial("builder/field", array('field' => $form['form_instructions'], 'label' => false)); ?></li>
             </ul>
             <ul class="mitigation-fields">
-                <ul class="scale">
-                    <li id="li-5">5</li>
-                    <li id="li-10">10</li>
-                    <li id="li-15">15</li>
-                    <li id="li-20">20</li>
-                    <li id="li-25">25</li>
-                    <li id="li-30">30</li>
-                    <li id="li-35">35</li>
-                    <li id="li-40">40</li>
-                    <li id="li-45">45</li>
-                    <li id="li-50">50+</li>
-                </ul>
-                <div id="slider-range"></div>
-                <li id="low" class="low-risk">
+                <li>
+                    <h2>Risk factor mitigation</h2>
+                </li>
+                <li>
+                    <ul class="scale">
+                        <li id="li-5">5</li>
+                        <li id="li-10">10</li>
+                        <li id="li-15">15</li>
+                        <li id="li-20">20</li>
+                        <li id="li-25">25</li>
+                        <li id="li-30">30</li>
+                        <li id="li-35">35</li>
+                        <li id="li-40">40</li>
+                        <li id="li-45">45</li>
+                        <li id="li-50">50+</li>
+                    </ul>
+                </li>
+                <li>
+                    <div id="slider-range"></div>
+                </li>
+                <li id="low" class="risk-value-edit low-risk">
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationLowMin() ?> - <?php echo $risk_builder->getMitigationLowMax() ?></span>
                         <span class="risk-title">Low Risk</span>
@@ -79,14 +86,14 @@
                         <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'], 'class' => 'mitigation-message')); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'], 'class' => 'mitigation-instructions')); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
-                        <button class="mitigation-save">Save</button>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
+                        <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
+                        <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
 
-                <li id="medium" class="medium-risk">
+                <li id="medium" class="risk-value-edit medium-risk">
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationMediumMin() ?> - <?php echo $risk_builder->getMitigationMediumMax() ?></span>
                         <span class="risk-title">Medium Risk</span>
@@ -94,16 +101,16 @@
                         <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'], 'class' => 'mitigation-message')); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'], 'class' => 'mitigation-instructions')); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
-                        <div><?php include_partial("builder/field",
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
+                        <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
+                        <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
-                        <button class="mitigation-save">Save</button>
+                        <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
 
-                <li id="high" class="high-risk">
+                <li id="high" class="risk-value-edit high-risk">
                     <div class="mitigation-header">
                         <span class="risk-value"><?php echo $risk_builder->getMitigationHighMin() ?>+</span>
                         <span class="risk-title">High Risk</span>
@@ -111,16 +118,16 @@
                         <a href="" class="mitigation-cancel hidden">Cancel</a>
                     </div>
                     <div class="field-wrapper">
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'], 'class' => 'mitigation-message')); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'], 'class' => 'mitigation-instructions')); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
-                        <div><?php include_partial("builder/field",
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
+                        <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
+                        <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
-                        <button class="mitigation-save">Save</button>
+                        <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
             </ul>
-            <button type="submit">Save and Exit</button>
+            <button class="btn btn-green" type="submit">Save and Exit</button>
         </form>
     </div>
 
@@ -137,7 +144,7 @@
     }
     function colorScale(lower, higher) {
         var green = Math.floor(lower/5),
-            red   = Math.ceil(higher/5);
+            red   = Math.floor(higher/5);
         jQuery('ul.scale li').removeClass();
         jQuery('ul.scale li:nth-child('+green+')').prevAll().addClass('green');
         jQuery('ul.scale li:nth-child('+green+')').addClass('green');
