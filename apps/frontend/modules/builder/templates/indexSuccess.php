@@ -270,6 +270,7 @@
                 containment: "parent",
                 axis: "y",
                 handle: "span.handler",
+                scroll: false,
                 stop: saveRiskFactorPosition
             });
         }
@@ -480,6 +481,7 @@
             containment: "parent",
             axis: "y",
             handle: "span.handler",
+            scroll: false,
             stop: function() {
                 var positions = new Array();
                 jQuery("#flight-information-container li").each(function(){
@@ -502,6 +504,7 @@
             containment: "parent",
             axis: "y",
             handle: "span.handler",
+            scroll: false,
             stop: saveRiskFactorPosition
         });
 
