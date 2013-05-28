@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="/js/jquery.ui.touch-punch.min.js"></script>
+
 <h1>Form editor</h1>
 <div class="form-builder-wrapper">
 
@@ -270,6 +270,7 @@
                 containment: "parent",
                 axis: "y",
                 handle: "span.handler",
+                scroll: false,
                 stop: saveRiskFactorPosition
             });
         }
@@ -480,6 +481,7 @@
             containment: "parent",
             axis: "y",
             handle: "span.handler",
+            scroll: false,
             stop: function() {
                 var positions = new Array();
                 jQuery("#flight-information-container li").each(function(){
@@ -502,6 +504,7 @@
             containment: "parent",
             axis: "y",
             handle: "span.handler",
+            scroll: false,
             stop: saveRiskFactorPosition
         });
 

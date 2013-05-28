@@ -343,7 +343,7 @@ ul.form-fields {
 .risk-factor-list {
 
     overflow: hidden;
-    position: relative;
+    /*position: relative;*/
 }
 .risk-factor-list > li {
     background: #EBEBEB;
