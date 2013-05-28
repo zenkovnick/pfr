@@ -10,6 +10,11 @@
     });
 </script>
 
+
+<?php if($sf_user->isAuthenticated()): ?>
+    <a href="<?php echo url_for("@signout"); ?>">Sign Out</a>
+<?php endif ?>
+
 <form id="create_account_form" method="post">
     <?php echo($form->renderHiddenFields()) ?>
     <?php echo($form->renderGlobalErrors()) ?>
