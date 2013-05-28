@@ -11,11 +11,13 @@ if(isset($disabled) && $disabled){
 }
 
 ?>
-
-<?php if($options['label'] !== false): ?>
+<?php if(isset($label)): ?>
+    <?php if($label !== false): ?>
+        <?php echo $field->renderLabel() ?>
+    <?php endif ?>
+<?php else: ?>
     <?php echo $field->renderLabel() ?>
 <?php endif ?>
-
 <?php
     echo $field->render($options);
     echo $field->renderError()
