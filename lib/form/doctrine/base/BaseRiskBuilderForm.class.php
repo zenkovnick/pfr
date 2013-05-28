@@ -16,6 +16,7 @@ abstract class BaseRiskBuilderForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                                => new sfWidgetFormInputHidden(),
+      'account_id'                        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Account'), 'add_empty' => true)),
       'form_name'                         => new sfWidgetFormInputText(),
       'form_instructions'                 => new sfWidgetFormInputText(),
       'mitigation_low_message'            => new sfWidgetFormInputText(),
@@ -41,6 +42,7 @@ abstract class BaseRiskBuilderForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'account_id'                        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Account'), 'required' => false)),
       'form_name'                         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'form_instructions'                 => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'mitigation_low_message'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),

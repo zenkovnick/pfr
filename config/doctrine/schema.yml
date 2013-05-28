@@ -1,6 +1,7 @@
 RiskBuilder:
   actAs: [Timestampable]
   columns:
+    account_id:                    {type: integer }
     form_name:                     {type: string(255)}
     form_instructions:             {type: string(255)}
     mitigation_low_message:        {type: string(255)}
@@ -33,6 +34,12 @@ RiskBuilder:
       local: id
       foreign: risk_builder_id
       type: many
+      onDelete: CASCADE
+    Account:
+      class: Account
+      local: account_id
+      foreign: id
+      type: one
       onDelete: CASCADE
 
 
@@ -123,7 +130,12 @@ Account:
       foreign: id
       type: one
       onDelete: CASCADE
-
+    RiskBuilders:
+      class: RiskBuilder
+      local: id
+      foreign: account_id
+      type: many
+      onDelete: CASCADE
 Plane:
   actAs: [Timestampable]
   columns:

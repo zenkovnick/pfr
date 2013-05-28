@@ -13,6 +13,7 @@ abstract class BaseRiskBuilderFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'account_id'                        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Account'), 'add_empty' => true)),
       'form_name'                         => new sfWidgetFormFilterInput(),
       'form_instructions'                 => new sfWidgetFormFilterInput(),
       'mitigation_low_message'            => new sfWidgetFormFilterInput(),
@@ -37,6 +38,7 @@ abstract class BaseRiskBuilderFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'account_id'                        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Account'), 'column' => 'id')),
       'form_name'                         => new sfValidatorPass(array('required' => false)),
       'form_instructions'                 => new sfValidatorPass(array('required' => false)),
       'mitigation_low_message'            => new sfValidatorPass(array('required' => false)),
@@ -78,6 +80,7 @@ abstract class BaseRiskBuilderFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'                                => 'Number',
+      'account_id'                        => 'ForeignKey',
       'form_name'                         => 'Text',
       'form_instructions'                 => 'Text',
       'mitigation_low_message'            => 'Text',

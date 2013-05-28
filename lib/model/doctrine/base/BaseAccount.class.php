@@ -12,6 +12,7 @@
  * @property Doctrine_Collection $Planes
  * @property Doctrine_Collection $Users
  * @property sfGuardUser $Manager
+ * @property Doctrine_Collection $RiskBuilders
  * @property Doctrine_Collection $AccountPlane
  * @property Doctrine_Collection $UserAccount
  * 
@@ -22,6 +23,7 @@
  * @method Doctrine_Collection getPlanes()            Returns the current record's "Planes" collection
  * @method Doctrine_Collection getUsers()             Returns the current record's "Users" collection
  * @method sfGuardUser         getManager()           Returns the current record's "Manager" value
+ * @method Doctrine_Collection getRiskBuilders()      Returns the current record's "RiskBuilders" collection
  * @method Doctrine_Collection getAccountPlane()      Returns the current record's "AccountPlane" collection
  * @method Doctrine_Collection getUserAccount()       Returns the current record's "UserAccount" collection
  * @method Account             setTitle()             Sets the current record's "title" value
@@ -31,6 +33,7 @@
  * @method Account             setPlanes()            Sets the current record's "Planes" collection
  * @method Account             setUsers()             Sets the current record's "Users" collection
  * @method Account             setManager()           Sets the current record's "Manager" value
+ * @method Account             setRiskBuilders()      Sets the current record's "RiskBuilders" collection
  * @method Account             setAccountPlane()      Sets the current record's "AccountPlane" collection
  * @method Account             setUserAccount()       Sets the current record's "UserAccount" collection
  * 
@@ -78,6 +81,11 @@ abstract class BaseAccount extends sfDoctrineRecord
         $this->hasOne('sfGuardUser as Manager', array(
              'local' => 'managed_by_id',
              'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasMany('RiskBuilder as RiskBuilders', array(
+             'local' => 'id',
+             'foreign' => 'account_id',
              'onDelete' => 'CASCADE'));
 
         $this->hasMany('AccountPlane', array(
