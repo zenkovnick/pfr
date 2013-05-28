@@ -1,0 +1,2 @@
+all:
+  javascripts: [jquery.form.js, jquery.validate.js, jquery-1.10.0.js, jquery.ui.widget.js, jquery.Jcrop.min.js, jquery.fileupload.js, crop.js, jquery.iframe-transport.js]
