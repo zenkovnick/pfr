@@ -17,7 +17,7 @@
         <h2>Flight information</h2>
         <ul class="flight-information-list" id="flight-information-container">
             <?php foreach($flight_information as $flight_information_field):?>
-                <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>">
+                <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "solid" ?>">
                     <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
                     <span class="handler hidden">Handler</span>
                     <span><?php echo $flight_information_field->getInformationName() ?></span>
@@ -172,9 +172,11 @@
                 if(data.result == "OK"){
                     link.text(data.is_hide ? 'Enable Field' : "Disable field");
                     if (data.is_hide) {
-                        link.parent().parent().removeClass('solid');
+                        root_li.removeClass('solid');
+                        root_li.addClass('hidden-field');
                     } else {
-                        link.parent().parent().addClass('solid');
+                        root_li.addClass('solid');
+                        root_li.removeClass('hidden-field');
                     }
                 }
             }
