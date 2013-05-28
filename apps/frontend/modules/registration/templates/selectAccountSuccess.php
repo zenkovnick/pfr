@@ -2,9 +2,9 @@
 <ul>
     <?php foreach($accounts as $account): ?>
         <li>
-            <img src="/uploads/avatar/<?php echo $account['photo'] ?>" />
-            <a href=""><?php echo $account['title'] ?></a>
-            <span><?php echo $account['manager'] ?></span>
+            <img src="/uploads/avatar/<?php echo $account->getPhoto() ?>" />
+            <a href=""><?php echo $account->getTitle() ?></a>
+            <span><?php echo $account->getManager()->getUsername() ?></span>
         </li>
     <?php endforeach; ?>
 </ul>

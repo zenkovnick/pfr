@@ -47,11 +47,13 @@ class registrationActions extends sfActions
             $this->form = new AccountForm();
             if($request->isMethod('POST')){
                 $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
+                $this->user = $this->getUser()->getGuardUser();
                 if($this->form->isValid()){
                     $account = $this->form->save();
+                    $account->setManager($this->user);
                     $user_account = new UserAccount();
                     $user_account->setAccount($account);
-                    $user_account->setUser($this->getUser()->getGuardUser());
+                    $user_account->setUser($this->user);
                     $user_account->setIsManager(true);
                     $user_account->save();
                     $this->redirect('@dashboard');

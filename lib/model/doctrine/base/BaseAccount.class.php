@@ -8,23 +8,29 @@
  * @property varchar $title
  * @property varchar $photo
  * @property varchar $chief_pilot_email
+ * @property integer $managed_by_id
  * @property Doctrine_Collection $Planes
  * @property Doctrine_Collection $Users
+ * @property sfGuardUser $Manager
  * @property Doctrine_Collection $AccountPlane
  * @property Doctrine_Collection $UserAccount
  * 
  * @method varchar             getTitle()             Returns the current record's "title" value
  * @method varchar             getPhoto()             Returns the current record's "photo" value
  * @method varchar             getChiefPilotEmail()   Returns the current record's "chief_pilot_email" value
+ * @method integer             getManagedById()       Returns the current record's "managed_by_id" value
  * @method Doctrine_Collection getPlanes()            Returns the current record's "Planes" collection
  * @method Doctrine_Collection getUsers()             Returns the current record's "Users" collection
+ * @method sfGuardUser         getManager()           Returns the current record's "Manager" value
  * @method Doctrine_Collection getAccountPlane()      Returns the current record's "AccountPlane" collection
  * @method Doctrine_Collection getUserAccount()       Returns the current record's "UserAccount" collection
  * @method Account             setTitle()             Sets the current record's "title" value
  * @method Account             setPhoto()             Sets the current record's "photo" value
  * @method Account             setChiefPilotEmail()   Sets the current record's "chief_pilot_email" value
+ * @method Account             setManagedById()       Sets the current record's "managed_by_id" value
  * @method Account             setPlanes()            Sets the current record's "Planes" collection
  * @method Account             setUsers()             Sets the current record's "Users" collection
+ * @method Account             setManager()           Sets the current record's "Manager" value
  * @method Account             setAccountPlane()      Sets the current record's "AccountPlane" collection
  * @method Account             setUserAccount()       Sets the current record's "UserAccount" collection
  * 
@@ -51,6 +57,9 @@ abstract class BaseAccount extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 255,
              ));
+        $this->hasColumn('managed_by_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
     }
 
     public function setUp()
@@ -65,6 +74,11 @@ abstract class BaseAccount extends sfDoctrineRecord
              'refClass' => 'UserAccount',
              'local' => 'user_id',
              'foreign' => 'account_id'));
+
+        $this->hasOne('sfGuardUser as Manager', array(
+             'local' => 'managed_by_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
 
         $this->hasMany('AccountPlane', array(
              'local' => 'id',
