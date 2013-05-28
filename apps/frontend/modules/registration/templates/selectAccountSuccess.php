@@ -6,8 +6,10 @@
 <ul>
     <?php foreach($accounts as $account): ?>
         <li>
-            <img src="/uploads/avatar/<?php echo $account->getPhoto() ?>" />
-            <a href=""><?php echo $account->getTitle() ?></a>
+            <?php if($account->getPhoto()): ?>
+                <img src="/uploads/avatar/<?php echo $account->getPhoto() ?>" />
+            <?php endif ?>
+            <a href="<?php echo url_for("@dashboard?account_id={$account->getId()}") ?>"><?php echo $account->getTitle() ?></a>
             <span><?php echo $account->getManager()->getUsername() ?></span>
         </li>
     <?php endforeach; ?>

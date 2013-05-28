@@ -27,14 +27,15 @@ class sfGuardUserTable extends PluginsfGuardUserTable
         return $q->fetchOne();
     }
 
-    public static function existsVkUser($user_id){
-        $user = self::getInstance()->findOneBy('vk_id', $user_id);
-        return $user ? $user : false;
-    }
 
-    public static function existsFbUser($id){
-        $user = self::getInstance()->findOneBy('facebook_id', $id);
-        return $user ? $user : false;
+    public static function checkUserAccountAccess($account_id, $user_id) {
+        $user = Doctrine_Query::create()
+            ->from("sfGuardUser u")
+            ->leftJoin("u.UserAccount ua")
+            ->where("ua.account_id = ?", $account_id)
+            ->andWhere('ua.user_id = ?', $user_id)
+            ->execute();
+        return $user->count() > 0;
     }
 
     public static function existEmail($email)

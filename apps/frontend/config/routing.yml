@@ -1,6 +1,10 @@
 dashboard:
-  url: /dashboard
+  url: /:account_id/dashboard
   param: { module: dashboard, action: index }
+
+settings:
+  url: /:account_id/settings
+  param: { module: settings, action: index }
 
 
 update_risk_factor:
