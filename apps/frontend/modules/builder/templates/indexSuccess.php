@@ -11,6 +11,44 @@
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <h1>Form editor</h1>
 <div class="form-builder-wrapper">
+
+
+    <div class="flight-information-wrapper">
+        <h2>Flight information</h2>
+        <ul class="flight-information-list" id="flight-information-container">
+            <?php foreach($flight_information as $flight_information_field):?>
+                <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>">
+                    <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
+                    <span class="handler hidden">Handler</span>
+                    <span><?php echo $flight_information_field->getInformationName() ?></span>
+                    <?php if($flight_information_field->getHiddable()): ?>
+                        <span class="hiddable hidden">
+                            <a href="" class="show-hide-field"><?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?></a>
+                        </span>
+                    <?php else: ?>
+                        <span class="uneditable hidden">Uneditable</span>
+                    <?php endif ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
+    </div>
+    <div class="risk-factor-global-wrapper">
+        <ul class="risk-factor-list" id="risk-factor-container">
+            <?php foreach($risk_factors as $risk_factor): ?>
+                <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
+                    <span class="handler">Handler</span>
+                    <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
+                    <div class="entry-header">
+                        <span class="question"><?php echo $risk_factor->getQuestion() ?></span>
+                        <a href="" class="edit-risk-factor-link hidden">Edit</a>
+                        <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <a href="" id="add-risk-factor-link">+ Add Risk Factor</a>
+    </div>
     <div>
         <form id="<?php echo $risk_builder->getId(); ?>" method="post" class="main-form">
             <?php echo $form->renderGlobalErrors();?>
@@ -60,7 +98,7 @@
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
                         <div><?php include_partial("builder/field",
-                                array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
+                            array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
                         <button class="mitigation-save">Save</button>
                     </div>
                 </li>
@@ -77,50 +115,13 @@
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'], 'class' => 'mitigation-instructions')); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
                         <div><?php include_partial("builder/field",
-                                array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
+                            array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
                         <button class="mitigation-save">Save</button>
                     </div>
                 </li>
             </ul>
             <button type="submit">Save and Exit</button>
         </form>
-    </div>
-
-    <div class="flight-information-wrapper">
-        <h2>Flight information</h2>
-        <ul class="flight-information-list" id="flight-information-container">
-            <?php foreach($flight_information as $flight_information_field):?>
-                <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "" ?>">
-                    <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
-                    <span class="handler hidden">Handler</span>
-                    <span><?php echo $flight_information_field->getInformationName() ?></span>
-                    <?php if($flight_information_field->getHiddable()): ?>
-                        <span class="hiddable hidden">
-                            <a href="" class="show-hide-field"><?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?></a>
-                        </span>
-                    <?php else: ?>
-                        <span class="uneditable hidden">Uneditable</span>
-                    <?php endif ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-
-    </div>
-    <div class="risk-factor-global-wrapper">
-        <ul class="risk-factor-list" id="risk-factor-container">
-            <?php foreach($risk_factors as $risk_factor): ?>
-                <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
-                    <span class="handler">Handler</span>
-                    <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
-                    <div class="entry-header">
-                        <span class="question"><?php echo $risk_factor->getQuestion() ?></span>
-                        <a href="" class="edit-risk-factor-link hidden">Edit</a>
-                        <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
-                    </div>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <a href="" id="add-risk-factor-link">+ Add Risk Factor</a>
     </div>
 
 </div>

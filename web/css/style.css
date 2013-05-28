@@ -210,13 +210,13 @@ div.error-message span.error-status-message {
 /*--------------------------------------------------------------------------------------------------------------------*/
 .form-builder-wrapper {
     position: relative;
-    padding-bottom: 120px;
+    padding-top: 195px;
 }
 .mitigation-fields {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*position: absolute;*/
+    /*right: 0;*/
 }
 ul.scale {
     margin: 0 -22px 10px 48px;
@@ -277,9 +277,13 @@ ul.scale li#li-50 {
 }
 ul.form-fields {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
+    left: 0;
     margin: 0 0 20px;
     overflow: hidden;
     padding: 0 0 20px;
+    position: absolute;
+    right: 0;
+    top: 15px;
 }
 .form-builder-wrapper input[type="text"] {
     background: #FFF;
@@ -290,6 +294,7 @@ ul.form-fields {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    font-size: 1em;
     height: 40px;
     line-height: 40px;
     margin: 0 20px 9px;
@@ -342,8 +347,12 @@ ul.form-fields {
     background: #EBEBEB;
     border: 1px solid #CCC;
     overflow: hidden;
-    padding: 9px;
+    padding: 9px 0;
     position: relative;
+}
+.risk-factor-list li {
+    overflow: hidden;
+    padding: 0 9px;
 }
 .risk-factor-list h2 {
     background: #E4E4E4;
@@ -374,6 +383,7 @@ a.add-new-response-link {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     height: 9px;
+    margin-bottom: 29px;
 }
 .ui-slider-range.ui-widget-header {
     background: #FFCC00;
@@ -420,6 +430,9 @@ a.remove-note {
     margin: 0 0 9px;
     width: 440px;
 }
+/*.risk-factor-container {*/
+    /*overflow: hidden;*/
+/*}*/
 .new-response-option {
     position: relative;
 }
@@ -444,7 +457,7 @@ a.show-hide-field {
     text-decoration: none;
 }
 .flight-information-wrapper {
-    /*position: static;*/
+    position: static;
 }
 
 
