@@ -4,7 +4,7 @@ class MyInformationSettingsForm extends sfGuardUserForm {
 
     public function  configure() {
         $this->useFields(array(
-            'name', 'username', 'photo'
+            'first_name', 'username', 'photo'
         ));
 
         $this->widgetSchema['photo'] = new sfWidgetFormInputFile();

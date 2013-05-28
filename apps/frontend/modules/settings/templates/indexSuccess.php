@@ -24,7 +24,7 @@
             <?php echo($user_form->renderGlobalErrors()) ?>
             <ul>
                 <li class="photo-block"><?php include_partial('registration/avatar_field', array('field' => $user_form['photo'])) ?></li>
-                <li class="input-block"><?php include_partial('registration/field', array('field' => $user_form['name'], 'placeholder' => 'Name')) ?></li>
+                <li class="input-block"><?php include_partial('registration/field', array('field' => $user_form['first_name'], 'placeholder' => 'Name')) ?></li>
                 <li class="input-block"><?php include_partial('registration/field', array('field' => $user_form['username'], 'placeholder' => 'Email')) ?></li>
                 <li class="input-block"><?php include_partial('registration/field', array('field' => $user_form['new_password'], 'placeholder' => 'New Password')) ?></li>
                 <li class="input-block"><?php include_partial('registration/field', array('field' => $user_form['new_password_confirm'], 'placeholder' => 'New Password Confirm')) ?></li>

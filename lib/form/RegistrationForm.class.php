@@ -10,12 +10,12 @@
 class RegistrationForm extends sfGuardRegisterForm {
     public function configure(){
         $this->useFields(array(
-            'name', 'username', 'password'
+            'first_name', 'username', 'password'
         ));
 
         $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
 
-        $this->validatorSchema['name'] = new sfValidatorString(array('required' => true));
+        $this->validatorSchema['first_name'] = new sfValidatorString(array('required' => true));
         $this->validatorSchema['username'] = new sfValidatorEmail(array('required' => true));
         $this->validatorSchema['password'] = new sfValidatorPass(array('required' => true));
 
