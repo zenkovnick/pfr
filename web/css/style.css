@@ -393,8 +393,8 @@ ul.form-fields {
 }
 
 .flight-information-list {
-    padding: 10px 0;
-    /*position: relative;*/
+    overflow: hidden;
+    padding: 20px 0;
 }
 .flight-information-list li {
     margin: 9px 0;
@@ -441,6 +441,7 @@ ul.form-fields {
 }
 .risk-factor-list {
     overflow: hidden;
+    padding: 20px 0;
 }
 .risk-factor-list > li {
     margin: 9px 0;
