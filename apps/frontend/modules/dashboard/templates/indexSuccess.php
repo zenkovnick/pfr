@@ -1,4 +1,6 @@
-<?php include_partial('menu/header_menu', array('account_id' => $account->getId())); ?>
+<?php slot('header') ?>
+    <?php include_partial('menu/header_menu', array('account_id' => $account->getId(), 'account' => $account)); ?>
+<?php end_slot() ?>
 
 <h1>Dashboard</h1>
 

@@ -1,4 +1,4 @@
-<div class="risk-factor-wrapper">
+<div class="risk-factor-wrapper" style="display:none">
     <h1><?php echo $risk_factor->getQuestion() ?></h1>
     <?php echo $form->renderGlobalErrors();?>
     <?php echo $form->renderHiddenFields();?>
