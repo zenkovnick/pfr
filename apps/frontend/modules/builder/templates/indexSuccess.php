@@ -18,16 +18,18 @@
         <ul class="flight-information-list" id="flight-information-container">
             <?php foreach($flight_information as $flight_information_field):?>
                 <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "solid" ?>">
-                    <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
                     <span class="handler hidden">Handler</span>
-                    <span><?php echo $flight_information_field->getInformationName() ?></span>
-                    <?php if($flight_information_field->getHiddable()): ?>
+                    <div class="element-wrapper">
+                        <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
+                        <span><?php echo $flight_information_field->getInformationName() ?></span>
+                        <?php if($flight_information_field->getHiddable()): ?>
                         <span class="hiddable hidden">
                             <a href="" class="show-hide-field"><?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?></a>
                         </span>
-                    <?php else: ?>
+                        <?php else: ?>
                         <span class="uneditable hidden">Uneditable</span>
-                    <?php endif ?>
+                        <?php endif ?>
+                    </div>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -37,7 +39,7 @@
         <ul class="risk-factor-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
                 <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
-                    <span class="handler">Handler</span>
+                    <span class="handler hidden">Handler</span>
                     <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
                     <div class="entry-header">
                         <span class="question"><?php echo $risk_factor->getQuestion() ?></span>
@@ -144,12 +146,14 @@
     }
     function colorScale(lower, higher) {
         var green = Math.floor(lower/5),
-            red   = Math.floor(higher/5);
+            red   = Math.ceil(higher/5);
         jQuery('ul.scale li').removeClass();
         jQuery('ul.scale li:nth-child('+green+')').prevAll().addClass('green');
         jQuery('ul.scale li:nth-child('+green+')').addClass('green');
         jQuery('ul.scale li:nth-child('+red+')').nextAll().addClass('red');
-        jQuery('ul.scale li:nth-child('+red+')').addClass('red');
+        if ( Math.ceil(higher/5) != (higher/5) ) {
+            jQuery('ul.scale li:nth-child('+red+')').addClass('red');
+        }
     }
 
     function flightInformationOut(){
@@ -292,12 +296,14 @@
     function showRiskFactorEditLink(){
         if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
             jQuery(this).find('a.edit-risk-factor-link').removeClass('hidden');
+            jQuery(this).find('.handler').removeClass('hidden');
         }
     }
 
     function hideRiskFactorEditLink(){
         if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
             jQuery(this).find('a.edit-risk-factor-link').addClass('hidden');
+            jQuery(this).find('.handler').addClass('hidden');
         }
     }
 
@@ -502,7 +508,6 @@
                 })
             }
         });
-
 
         jQuery( "#risk-factor-container").sortable({
             containment: "parent",
