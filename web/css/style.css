@@ -86,7 +86,9 @@ a                              { cursor: pointer; }
 
 .header div.header-account-information {
     float: left;
-    border-right: 1px solid #E4E4E4
+    border-right: 1px solid #E4E4E4;
+    width: 15%;
+    min-width: 200px;
 }
 
 .header div.header-account-information .header-account-avatar {
@@ -105,6 +107,7 @@ a                              { cursor: pointer; }
 .header div.header-link-block {
     float: left;
     padding: 0 0 0 14px;
+    width: 15%;
 
 }
 
@@ -121,7 +124,7 @@ a                              { cursor: pointer; }
     float:right;
     position: relative;
     height: 60px;
-    width: 500px;
+    width: 350px;
 }
 
 .header .header-user-information {
