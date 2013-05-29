@@ -165,8 +165,9 @@ a                              { cursor: pointer; }
 
 .wrapper {
     margin: 0 auto;
+    max-width: 500px;
     padding: 0 20px;
-    width: 500px;
+    width: 100%;
 }
 
 /*----------------------------------------------------------------------------------*/
@@ -294,6 +295,9 @@ div.error-message span.error-status-message {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+h1 {
+    margin-left: 20px;
+}
 .form-builder-wrapper {
     margin-bottom: 150px;
     padding-top: 175px;
@@ -354,7 +358,7 @@ ul.scale li#li-50 {
 
 .form-builder-wrapper h1, .form-builder-wrapper h2 {
     color: #000;
-    margin: 0 0 20px;
+    margin: 0 0 20px 20px;
     text-transform: capitalize;
 }
 ul.form-fields {
@@ -387,7 +391,7 @@ ul.form-fields {
 }
 
 .flight-information-list {
-    padding: 0 0 50px;
+    padding: 10px 0;
     /*position: relative;*/
 }
 .flight-information-list li {
@@ -435,6 +439,7 @@ ul.form-fields {
 .risk-factor-list > li {
     margin: 0 0 9px;
     overflow: hidden;
+    padding: 5px 0;
 }
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
