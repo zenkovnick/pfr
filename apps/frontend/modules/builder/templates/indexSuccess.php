@@ -97,6 +97,8 @@
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
+                        <input name="risk_builder[low_mitigation_val]" id="low_mitigation_val" type="hidden" value="<?php echo $form['mitigation_low_notify']->getValue() ? 1:0; ?>" />
+
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
@@ -114,6 +116,7 @@
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
+                        <input name="risk_builder[medium_mitigation_val]" id="medium_mitigation_val" type="hidden" value="<?php echo $form['mitigation_medium_notify']->getValue() ? 1:0; ?>" />
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
@@ -131,6 +134,7 @@
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
+                        <input name="risk_builder[high_mitigation_val]" id="high_mitigation_val" type="hidden" value="<?php echo $form['mitigation_high_notify']->getValue() ? 1:0; ?>" />
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
@@ -354,9 +358,12 @@
 
     function disableLowNotifyCheckbox(notify_el) {
         if(notify_el.is(':checked')){
-            jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled').attr('checked', true);
+            jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").prop('checked', true).prop('disabled', 'disabled');
+            jQuery("#low_mitigation_val, #medium_mitigation_val, #high_mitigation_val").val(1);
         } else {
             if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
+                jQuery("#low_mitigation_val").val(0);
+                jQuery("#medium_mitigation_val, #high_mitigation_val").val(1);
                 jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
             } else {
                 jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").removeAttr('disabled');
@@ -366,9 +373,20 @@
 
     function disableMediumNotifyCheckbox(notify_el){
         if(notify_el.is(':checked')){
-            jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled').attr('checked', true);
+            jQuery("#risk_builder_mitigation_high_notify").prop('checked', true).prop('disabled', 'disabled');
+            jQuery("#medium_mitigation_val, #high_mitigation_val").val(1);
         } else {
             jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
+            jQuery("#medium_mitigation_val").val(0);
+            jQuery("#high_mitigation_val").val(1);
+        }
+    }
+
+    function disableHighNotifyCheckbox(notify_el){
+        if(notify_el.is(':checked')){
+            jQuery("#high_mitigation_val").val(1);
+        } else {
+            jQuery("#high_mitigation_val").val(0);
         }
     }
 
@@ -636,6 +654,7 @@
                             jQuery("#risk_builder_mitigation_high_instructions").val(data.mitigation_high_message);
                             jQuery("#risk_builder_mitigation_high_notify").prop('checked', data.mitigation_high_notify);
                             jQuery("#risk_builder_mitigation_high_prevent_flight").prop('checked', data.mitigation_high_prevent_flight);
+                            disableHighNotifyCheckbox(jQuery("#risk_builder_mitigation_high_notify"));
                             break;
 
                     }
@@ -656,6 +675,9 @@
             disableMediumNotifyCheckbox(jQuery(this));
         });
 
+        jQuery("#risk_builder_mitigation_high_notify").click(function(){
+            disableHighNotifyCheckbox(jQuery(this));
+        });
 
 
 

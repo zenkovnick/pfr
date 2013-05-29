@@ -33,11 +33,30 @@ class RiskBuilderForm extends BaseRiskBuilderForm
 
     protected function doSave($con = null)
     {
-        $this->getObject()->setMitigationLowNotify($this->getValue('mitigation_low_notify') == 'on');
-        $this->getObject()->setMitigationMediumNotify($this->getValue('mitigation_medium_notify') == 'on');
-        $this->getObject()->setMitigationHighNotify($this->getValue('mitigation_high_notify') == 'on');
+
         parent::doSave($con);
+        /*if($this->getValue('mitigation_medium_notify')){
+            $this->getObject()->setMitigationMediumNotify($this->getValue('mitigation_medium_notify'));
+        } else {
+            $this->getObject()->setMitigationMediumNotify(true);
+        }
+        if($this->getValue('mitigation_high_notify')){
+            $this->getObject()->setMitigationHighNotify($this->getValue('mitigation_high_notify'));
+        } else {
+            $this->getObject()->setMitigationHighNotify(true);
+        }
+        $this->getObject()->save();*/
 
+    }
 
+    public function bind(array $taintedValues = null, array $taintedFiles = null){
+        $taintedValues['mitigation_low_notify'] = $taintedValues['low_mitigation_val'];
+        $taintedValues['mitigation_medium_notify'] = $taintedValues['medium_mitigation_val'];
+        $taintedValues['mitigation_high_notify'] = $taintedValues['high_mitigation_val'];
+
+        unset($taintedValues['low_mitigation_val']);
+        unset($taintedValues['medium_mitigation_val']);
+        unset($taintedValues['high_mitigation_val']);
+        parent::bind($taintedValues, $taintedFiles);
     }
 }

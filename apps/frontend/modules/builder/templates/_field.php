@@ -7,7 +7,7 @@ if(isset($placeholder))
     $options['placeholder'] = $placeholder;
 
 if(isset($disabled) && $disabled){
-    $options['readonly'] = 'readonly';
+    $options['disabled'] = 'disabled';
 }
 
 ?>
