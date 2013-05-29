@@ -2,43 +2,43 @@ FlightInformationField:
   FlightInformationField_1:
     RiskBuilder: RiskBuilder_1
     information_name: 'Plane(tail number):'
-    position: '5'
+    position: '2'
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:52'
-    updated_at: '2013-05-28 11:10:56'
+    updated_at: '2013-05-29 15:26:06'
   FlightInformationField_2:
     RiskBuilder: RiskBuilder_1
     information_name: 'Pilot in command(PIC):'
-    position: '4'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-28 11:11:26'
-  FlightInformationField_3:
-    RiskBuilder: RiskBuilder_1
-    information_name: 'Second in command(SIC):'
-    position: '2'
-    hiddable: true
-    is_hide: false
-    created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-28 11:11:26'
-  FlightInformationField_4:
-    RiskBuilder: RiskBuilder_1
-    information_name: 'Departure date:'
     position: '7'
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-28 11:10:56'
-  FlightInformationField_5:
+    updated_at: '2013-05-29 15:22:25'
+  FlightInformationField_3:
     RiskBuilder: RiskBuilder_1
-    information_name: 'Scheduled time of departure:'
+    information_name: 'Second in command(SIC):'
     position: '1'
+    hiddable: true
+    is_hide: true
+    created_at: '2013-05-24 14:19:53'
+    updated_at: '2013-05-29 15:26:06'
+  FlightInformationField_4:
+    RiskBuilder: RiskBuilder_1
+    information_name: 'Departure date:'
+    position: '4'
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-28 11:11:26'
+    updated_at: '2013-05-29 15:26:06'
+  FlightInformationField_5:
+    RiskBuilder: RiskBuilder_1
+    information_name: 'Scheduled time of departure:'
+    position: '5'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-05-24 14:19:53'
+    updated_at: '2013-05-29 15:22:18'
   FlightInformationField_6:
     RiskBuilder: RiskBuilder_1
     information_name: 'Departing from:'
@@ -46,7 +46,7 @@ FlightInformationField:
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-28 11:11:26'
+    updated_at: '2013-05-29 15:26:06'
   FlightInformationField_7:
     RiskBuilder: RiskBuilder_1
     information_name: 'Flying to:'
@@ -54,7 +54,7 @@ FlightInformationField:
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-28 11:10:56'
+    updated_at: '2013-05-29 15:22:25'
   FlightInformationField_8:
     RiskBuilder: RiskBuilder_1
     information_name: 'Trip number:'
@@ -62,12 +62,62 @@ FlightInformationField:
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-24 14:19:53'
+    updated_at: '2013-05-29 15:22:25'
+ResponseOptionField:
+  ResponseOptionField_1:
+    RiskFactorField: RiskFactorField_1
+    response_text: No
+    response_value: '0'
+    note: ''
+    created_at: '2013-05-28 12:04:26'
+    updated_at: '2013-05-28 12:04:26'
+  ResponseOptionField_2:
+    RiskFactorField: RiskFactorField_1
+    response_text: Yes
+    response_value: '3'
+    note: ''
+    created_at: '2013-05-28 12:04:26'
+    updated_at: '2013-05-28 12:04:26'
+  ResponseOptionField_3:
+    RiskFactorField: RiskFactorField_1
+    response_text: jhjhjhhjjh
+    response_value: '2'
+    note: ''
+    created_at: '2013-05-28 12:04:26'
+    updated_at: '2013-05-28 12:04:26'
+  ResponseOptionField_4:
+    RiskFactorField: RiskFactorField_2
+    response_text: No
+    response_value: '0'
+    note: ''
+    created_at: '2013-05-28 12:05:24'
+    updated_at: '2013-05-28 12:05:24'
+  ResponseOptionField_5:
+    RiskFactorField: RiskFactorField_2
+    response_text: Yes
+    response_value: '3'
+    note: ''
+    created_at: '2013-05-28 12:05:24'
+    updated_at: '2013-05-28 12:05:24'
+  ResponseOptionField_6:
+    RiskFactorField: RiskFactorField_3
+    response_text: No
+    response_value: '0'
+    note: ''
+    created_at: '2013-05-29 09:46:14'
+    updated_at: '2013-05-29 09:46:14'
+  ResponseOptionField_7:
+    RiskFactorField: RiskFactorField_3
+    response_text: Yes
+    response_value: '3'
+    note: ''
+    created_at: '2013-05-29 09:46:14'
+    updated_at: '2013-05-29 09:46:14'
 sfGuardUser:
   sfGuardUser_1:
-    first_name: null
+    first_name: Nick
     last_name: null
-    name: ''
+    name: Nick
     username: zenkovnick@gmail.com
     algorithm: sha1
     salt: d2d1e0ddf514a7a33aef0bc5fc6c1e4a
@@ -75,10 +125,10 @@ sfGuardUser:
     password: c2d4d2d76dcf70c2c4da300100991c99ff336eed
     is_active: true
     is_super_admin: true
-    last_login: '2013-05-28 10:59:49'
+    last_login: '2013-05-29 15:19:20'
     photo: null
     created_at: '2013-05-24 14:22:26'
-    updated_at: '2013-05-28 10:59:49'
+    updated_at: '2013-05-29 15:19:20'
   sfGuardUser_2:
     first_name: null
     last_name: null
@@ -94,6 +144,21 @@ sfGuardUser:
     photo: null
     created_at: '2013-05-27 16:27:46'
     updated_at: '2013-05-27 16:27:46'
+  sfGuardUser_3:
+    first_name: Nick
+    last_name: null
+    name: Nick
+    username: zennick@mail.ru
+    algorithm: sha1
+    salt: 2cf9504483d29ded71b2636250231192
+    email_address: null
+    password: 1a5f4389a9f58bc88d428dbcac5b55407fd567e5
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-05-28 16:46:54'
+    photo: dd0e899a189d38a0b8917925ab12cac8.png
+    created_at: '2013-05-28 16:46:54'
+    updated_at: '2013-05-28 17:28:50'
 RiskBuilder:
   RiskBuilder_1:
     Account: Account_1
@@ -102,11 +167,11 @@ RiskBuilder:
     mitigation_low_message: 'Ready to fly!'
     mitigation_low_instructions: ''
     mitigation_low_min: '0'
-    mitigation_low_max: '14'
+    mitigation_low_max: '15'
     mitigation_low_notify: true
     mitigation_medium_message: 'Looks a bit risky'
     mitigation_medium_instructions: ''
-    mitigation_medium_min: '15'
+    mitigation_medium_min: '16'
     mitigation_medium_max: '30'
     mitigation_medium_notify: true
     mitigation_medium_require_details: true
@@ -117,7 +182,7 @@ RiskBuilder:
     mitigation_high_notify: true
     mitigation_high_prevent_flight: true
     created_at: '2013-05-24 14:19:52'
-    updated_at: '2013-05-28 11:15:38'
+    updated_at: '2013-05-28 17:39:33'
 Account:
   Account_1:
     title: Company
@@ -133,6 +198,13 @@ Account:
     Manager: sfGuardUser_1
     created_at: '2013-05-27 16:27:53'
     updated_at: '2013-05-27 16:27:53'
+  Account_3:
+    title: 'Company 4 '
+    photo: 849f9f65ab8d6b2daac4bd8bac06b93e.jpg
+    chief_pilot_email: zenkovnick@gmail.com
+    Manager: sfGuardUser_3
+    created_at: '2013-05-28 16:47:29'
+    updated_at: '2013-05-28 16:47:29'
 UserAccount:
   UserAccount_1_1:
     Account: Account_1
@@ -146,15 +218,37 @@ UserAccount:
     is_manager: false
     created_at: '2013-05-27 17:00:00'
     updated_at: '2013-05-27 17:00:00'
-  UserAccount_2_1:
-    Account: Account_2
-    User: sfGuardUser_1
-    is_manager: false
-    created_at: '2013-05-27 17:00:00'
-    updated_at: '2013-05-27 17:00:00'
   UserAccount_2_2:
     Account: Account_2
     User: sfGuardUser_2
     is_manager: true
     created_at: '2013-05-27 16:27:53'
     updated_at: '2013-05-27 16:27:53'
+  UserAccount_3_3:
+    Account: Account_3
+    User: sfGuardUser_3
+    is_manager: true
+    created_at: '2013-05-28 16:47:29'
+    updated_at: '2013-05-28 16:47:29'
+RiskFactorField:
+  RiskFactorField_1:
+    RiskBuilder: RiskBuilder_1
+    question: jkkjkjjkjk
+    help_message: ''
+    position: '2'
+    created_at: '2013-05-28 12:04:26'
+    updated_at: '2013-05-29 15:22:29'
+  RiskFactorField_2:
+    RiskBuilder: RiskBuilder_1
+    question: jjjjjjkjhhjjh
+    help_message: ''
+    position: '3'
+    created_at: '2013-05-28 12:05:24'
+    updated_at: '2013-05-29 15:22:29'
+  RiskFactorField_3:
+    RiskBuilder: RiskBuilder_1
+    question: hjjjhhjhjjh
+    help_message: ''
+    position: '1'
+    created_at: '2013-05-29 09:46:14'
+    updated_at: '2013-05-29 15:22:29'

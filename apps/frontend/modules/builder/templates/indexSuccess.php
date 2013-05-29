@@ -41,6 +41,7 @@
 
     </div>
     <div class="risk-factor-global-wrapper">
+        <h2>Risk Analysis</h2>
         <ul class="risk-factor-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
                 <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">

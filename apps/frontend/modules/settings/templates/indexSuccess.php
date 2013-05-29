@@ -17,9 +17,6 @@
     });
 </script>
 
-
-<a href="<?php echo url_for("@signout") ?>">Sign Out</a>
-
 <h1>Settings</h1>
 
 <ul class="settings-list">
@@ -47,20 +44,48 @@
         </form>
 
     </li>
+    <li class="account-information">
+        <form id="account_information_settings_form" action="<?php echo url_for("@process_account_information_data?account_id={$account->getId()}") ?>" enctype="multipart/form-data" method="post">
+            <?php echo($account_form->renderHiddenFields()) ?>
+            <?php echo($account_form->renderGlobalErrors()) ?>
+            <ul>
+                <li class="photo-block"><?php include_partial('settings/account_avatar_field', array('field' => $account_form['photo'], 'account' => $account)) ?></li>
+                <li class="input-block"><?php include_partial('settings/field',
+                        array('field' => $account_form['title'], 'class' => 'account_title', 'placeholder' => 'Title')) ?>
+                </li>
+                <li class="input-block"><?php include_partial('settings/field',
+                        array('field' => $account_form['chief_pilot_name'], 'class' => 'cpn', 'placeholder' => 'Chief Pilot Name')) ?>
+                </li>
+                <li><button type="submit">Save</button></li>
+            </ul>
+
+        </form>
+
+    </li>
 </ul>
 
 <script type="text/javascript">
-    function informationSubmitted(data){
-        alert('a');
-    }
     var information_submit = {
         dataType:  'json',
         clearForm: false,
         success: informationSubmitted
     };
 
+    var account_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: accountSubmitted
+    };
+
     var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
 
+    function informationSubmitted(data){
+        jQuery('span.header-user-avatar img').attr('src', jQuery('li.my-information img#temp_image').attr('src'));
+    }
+
+    function accountSubmitted(data){
+        jQuery('span.header-account-avatar img').attr('src', jQuery('li.account-information img#temp_image').attr('src'));
+    }
     function validateAndSubmitInformationForm(event) {
         event.preventDefault();
         var valid = true;
@@ -85,7 +110,30 @@
 
     }
 
+    function validateAndSubmitAccountForm(event) {
+        event.preventDefault();
+        var valid = true;
+        var title = jQuery('input.title', this);
+        var cpn = jQuery('input.cpn', this);
+
+        if(title.val() == '') {
+            valid = false;
+            title.addClass('invalid-field');
+        }
+
+        if(cpn.val() == ''){
+            valid = false;
+            cpn.addClass('invalid-field');
+        }
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(account_submit);
+        }
+
+    }
+
     jQuery(document).ready(function(){
-        jQuery("#my_information_settings_form").bind('submit', validateAndSubmitInformationForm)
+        jQuery("#my_information_settings_form").bind('submit', validateAndSubmitInformationForm);
+        jQuery("#account_information_settings_form").bind('submit', validateAndSubmitAccountForm);
     });
 </script>
