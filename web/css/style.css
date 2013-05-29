@@ -305,6 +305,7 @@ h1 {
 }
 .main-form > .btn.btn-green {
     float: right;
+    margin-right: 20px;
 }
 ul.scale {
     margin: 0 -22px 10px 54px;
@@ -396,6 +397,7 @@ ul.form-fields {
     /*position: relative;*/
 }
 .flight-information-list li {
+    margin: 9px 0;
     overflow: hidden;
 }
 .flight-information-list li .element-wrapper {
@@ -407,7 +409,7 @@ ul.form-fields {
     color: #000;
     height: 40px;
     line-height: 40px;
-    margin: 0 20px 10px 0;
+    margin: 0 20px 0 0;
     overflow: hidden;
     padding: 0 10px;
     position: relative;
@@ -438,7 +440,7 @@ ul.form-fields {
     display: block !important;
 }
 .risk-factor-list > li {
-    margin: 0 0 9px;
+    margin: 9px 0;
     overflow: hidden;
     padding: 5px 0;
 }
@@ -496,6 +498,7 @@ a#add-risk-factor-link {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #1076CE;
     display: block;
+    margin: 0 0 0 20px;
     padding: 25px 10px;
     text-decoration: none;
 }
