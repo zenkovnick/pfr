@@ -25,7 +25,19 @@ class RiskBuilderForm extends BaseRiskBuilderForm
       $this->validatorSchema['mitigation_high_message'] = new sfValidatorString(array('required' => true));
 
       $this->widgetSchema->setLabels(array(
-
+          'mitigation_low_notify' => 'Notify chief pilot about all risks (low to high)',
+          'mitigation_medium_notify' => 'Notify chief pilot about medium to high risk flights',
+          'mitigation_high_notify' => 'Notify chief pilot about high risk flights',
       ));
   }
+
+    protected function doSave($con = null)
+    {
+        $this->getObject()->setMitigationLowNotify($this->getValue('mitigation_low_notify') == 'on');
+        $this->getObject()->setMitigationMediumNotify($this->getValue('mitigation_medium_notify') == 'on');
+        $this->getObject()->setMitigationHighNotify($this->getValue('mitigation_high_notify') == 'on');
+        parent::doSave($con);
+
+
+    }
 }

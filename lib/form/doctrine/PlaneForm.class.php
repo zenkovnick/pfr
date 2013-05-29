@@ -12,5 +12,8 @@ class PlaneForm extends BasePlaneForm
 {
   public function configure()
   {
+      $this->useFields(array(
+         'tail_number'
+      ));
   }
 }
