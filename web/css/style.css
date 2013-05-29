@@ -437,6 +437,9 @@ ul.form-fields {
 .flight-information-list li.ui-sortable-helper span.handler {
     display: block !important;
 }
+.risk-factor-list {
+    overflow: hidden;
+}
 .risk-factor-list > li {
     margin: 0 0 9px;
     overflow: hidden;
