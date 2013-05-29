@@ -4,6 +4,31 @@ dashboard:
   requirements:
     account_id: \d+
 
+update_plane:
+  url: /settings/update-plane
+  param: { module: settings, action: updatePlane}
+
+save_plane:
+  url: /settings/save-plane
+  param: { module: settings, action: savePlane }
+
+delete_plane:
+  url: /settings/delete-plane
+  param: { module: settings, action: deletePlane }
+
+edit_plane_field:
+  url: /settings/edit-plane-field
+  param: { module: settings, action: editPlaneField }
+
+add_new_plane_field:
+  url: /settings/add-new-plane-field
+  param: { module: settings, action: addNewPlaneField }
+
+save_plane_position:
+  url: /settings/save-plane-position
+  param: { module: settings, action: savePlanerPosition }
+
+
 process_account_information_data:
   url: /:account_id/settings/process-account-data
   param: { module: settings, action: processAccountData }
@@ -29,6 +54,9 @@ settings:
   param: { module: settings, action: index }
   requirements:
     account_id: \d+
+
+
+
 
 update_risk_factor:
   url: /form/update-risk-factor

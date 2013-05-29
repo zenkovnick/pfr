@@ -62,7 +62,7 @@
             <?php echo $form->renderGlobalErrors();?>
             <?php echo $form->renderHiddenFields();?>
             <ul class="form-fields">
-                <li><?php include_partial("builder/field", array('field' => $form['form_name'], 'class' => 'first-field', 'label' => false)); ?></li>
+                <li><?php include_partial("builder/field", array('field' => $form['form_name'], 'class' => 'form-title', 'label' => false)); ?></li>
                 <li><?php include_partial("builder/field", array('field' => $form['form_instructions'], 'label' => false)); ?></li>
             </ul>
             <ul class="mitigation-fields">
@@ -354,7 +354,7 @@
 
     function disableLowNotifyCheckbox(notify_el) {
         if(notify_el.is(':checked')){
-            jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
+            jQuery("#risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").attr('disabled', 'disabled').attr('checked', true);
         } else {
             if(jQuery('#risk_builder_mitigation_medium_notify').is(':checked')){
                 jQuery("#risk_builder_mitigation_medium_notify").removeAttr('disabled');
@@ -366,7 +366,7 @@
 
     function disableMediumNotifyCheckbox(notify_el){
         if(notify_el.is(':checked')){
-            jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled');
+            jQuery("#risk_builder_mitigation_high_notify").attr('disabled', 'disabled').attr('checked', true);
         } else {
             jQuery("#risk_builder_mitigation_high_notify").removeAttr('disabled');
         }
@@ -478,6 +478,24 @@
 
     }
 
+    function validateAndSubmitMainForm(event) {
+        event.preventDefault();
+        var valid = true;
+        var form = jQuery(this).closest('form.main-form')
+        var form_title = jQuery('input.form-title', form);
+        if(form_title.val() == '') {
+            valid = false;
+            form_title.addClass('invalid-field');
+        }
+
+        if(valid){
+            jQuery('.invalid-field', form).removeClass('invalid-field');
+            jQuery(form).submit();
+        }
+        return false;
+
+    }
+
     var edit_options_submit = {
         dataType:  'json',
         clearForm: false,
@@ -538,6 +556,7 @@
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
+        jQuery("form.main-form button[type='submit']").bind('click', validateAndSubmitMainForm);
 
         jQuery('#add-risk-factor-link').click(function(event){
             event.preventDefault();

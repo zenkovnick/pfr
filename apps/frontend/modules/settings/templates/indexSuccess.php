@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/js/jquery.ui.touch-punch.min.js"></script>
+
 <script type="text/javascript">
     jQuery(document).ready(function(){
         init_crop('<?php echo url_for('@my_information_upload_avatar'); ?>', '<?php echo url_for('@my_information_crop_image'); ?>',
@@ -18,7 +20,7 @@
 </script>
 
 <h1>Settings</h1>
-
+<input type="hidden" value="<?php echo $account->getId() ?>" class="account-id">
 <ul class="settings-list">
     <li class="my-information">
         <form id="my_information_settings_form" action="<?php echo url_for("@process_my_information_data?account_id={$account->getId()}") ?>" enctype="multipart/form-data" method="post">
@@ -62,6 +64,22 @@
         </form>
 
     </li>
+    <li class="planes">
+        <ul class="plane-list" id="plane_container">
+            <?php foreach($planes as $plane): ?>
+                <li class="plane" id="plane_<?php echo $plane->getId() ?>">
+                    <span class="handler hidden">Handler</span>
+                    <input type="hidden" value="<?php echo $plane->getId() ?>" />
+                    <div class="plane-header">
+                        <span class="tail-number"><?php echo $plane->getTailNumber() ?></span>
+                        <a href="" class="edit-plane-link hidden">Edit</a>
+                        <a href="" class="cancel-plane-link hidden">Cancel</a>
+                    </div>
+                </li>
+            <?php endforeach ?>
+        </ul>
+        <a href="" id="add-plane-link">+ New Plane</a>
+    </li>
 </ul>
 
 <script type="text/javascript">
@@ -77,7 +95,17 @@
         success: accountSubmitted
     };
 
+    var add_plane_options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: addPlaneSubmitted
+    };
+
+    var new_plane_count = 0;
+    var show_delay = 500;
+    var hide_delay = 500;
     var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
+    var account_id = null;
 
     function informationSubmitted(data){
         jQuery('span.header-user-avatar img').attr('src', jQuery('li.my-information img#temp_image').attr('src'));
@@ -132,8 +160,112 @@
 
     }
 
+
+    function showPlaneEditLink(){
+        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-plane-link').removeClass('hidden');
+            jQuery(this).find('.handler').removeClass('hidden');
+        }
+    }
+
+    function hidePlaneEditLink(){
+        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-plane-link').addClass('hidden');
+            jQuery(this).find('.handler').addClass('hidden');
+        }
+    }
+
+    function addNewPlaneField(num){
+        return jQuery.ajax({
+            type: 'POST',
+            data: {plane_num: num, account_id: account_id},
+            url: '<?php echo url_for("@add_new_plane_field"); ?>',
+            async: false
+        }).responseText;
+    }
+
+    function addPlane(event){
+        event.preventDefault();
+        var el = jQuery(addNewPlaneField(new_plane_count));
+        jQuery('a.cancel-plane-add', el).bind('click', cancelPlaneAdd);
+        new_plane_count++;
+        jQuery('ul.plane-list').append(el);
+        el.show(show_delay);
+    }
+
+    function cancelPlaneAdd(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li.new');
+        root_li.hide(hide_delay, function(){jQuery(this).remove()});
+    }
+
+    function validateAndSubmitAddPlane(event) {
+        event.preventDefault();
+        var valid = true;
+        var tail_number = jQuery('input.tail-number', this);
+        if(tail_number.val() == '') {
+            valid = false;
+            tail_number.addClass('invalid-field');
+        }
+
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(add_plane_options_submit);
+        }
+
+    }
+
+    function addPlaneSubmitted(data){
+        if(data.result == "OK"){
+            var root_li = jQuery('li#new_'+data.new_form_num);
+            jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+            jQuery("span.question", root_li).text(data.tail_number);
+            jQuery("div.plane-header", root_li).removeClass('hidden');
+            jQuery("span.handler", root_li).removeClass('hidden');
+            jQuery("input[type='hidden']", root_li).val(data.plane_id);
+            /*jQuery("a.edit-risk-factor-link", root_li).bind('click', editRiskFactor);
+            jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
+            jQuery('a.delete_risk_factor', root_li).bind('click', deletePlane);*/
+            jQuery('a.cancel-plane-add', root_li).remove();
+            root_li.bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
+            root_li.attr('id', 'rf_'+data.plane_id);
+            root_li.removeClass('new').addClass('plane-entity');
+
+            jQuery( "#plane_container").sortable({
+                containment: "parent",
+                axis: "y",
+                handle: "span.handler",
+                scroll: false,
+                stop: savePlanePosition
+            });
+        }
+    }
+
+    function savePlanePosition(){
+        var positions = new Array();
+        jQuery("#plane_container li").each(function(){
+            positions.push(jQuery(this).find("input[type='hidden']").val());
+        });
+        var json_obj =  JSON.stringify(positions);
+        jQuery.ajax({
+            url: '<?php echo url_for("@save_plane_position") ?>',
+            type: 'POST',
+            data: {ids: json_obj, account_id: account_id},
+            success: function() {
+
+            }
+        })
+    }
+
     jQuery(document).ready(function(){
+        account_id = jQuery("input[type='hidden'].account-id").val();
+
         jQuery("#my_information_settings_form").bind('submit', validateAndSubmitInformationForm);
         jQuery("#account_information_settings_form").bind('submit', validateAndSubmitAccountForm);
+
+        jQuery("li.plane").bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
+        /*jQuery("a.edit-plane-link").bind('click', editRiskFactor);
+        jQuery("a.cancel-plane-link").bind('click', cancelRiskFactorEdit);*/
+        jQuery('#add-plane-link').bind('click', addPlane);
     });
 </script>

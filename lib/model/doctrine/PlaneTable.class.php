@@ -16,4 +16,12 @@ class PlaneTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Plane');
     }
+
+    public static function getPlanesByAccount($account_id){
+        return Doctrine_Query::create()
+            ->from("Plane p")
+            ->leftJoin('p.AccountPlane ap')
+            ->where('ap.account_id = ?', $account_id)
+            ->execute();
+    }
 }
