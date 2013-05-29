@@ -5,6 +5,11 @@
     Select Account – Preflight Risk
 <?php end_slot() ?>
 
+<?php slot('header') ?>
+    <?php include_partial('menu/header_menu') ?>
+<?php end_slot() ?>
+
+
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -137,6 +142,9 @@
     jQuery("div.field-wrapper").hide();
     var new_risk_factor_count = 0;
     var new_response_option_count = 0;
+    var show_delay = 500;
+    var hide_delay = 500;
+
 
     function flightInformationOver(){
         jQuery('span.uneditable, span.hiddable', this).removeClass('hidden');
@@ -233,6 +241,7 @@
         jQuery('a.remove-note', form_el).bind('click', removeRiskFactorNote);
 
         root_el.append(form_el);
+        form_el.show(show_delay);
 
     }
 
@@ -240,20 +249,20 @@
         event.preventDefault();
         var root_li = jQuery(this).closest('li.risk-factor-entity');
         jQuery(this).addClass('hidden');
-        root_li.find("div.risk-factor-wrapper").remove();
+        root_li.find("div.risk-factor-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
         root_li.removeClass('editing');
     }
 
     function cancelRiskFactorAdd(event){
         event.preventDefault();
         var root_li = jQuery(this).closest('li.new');
-        root_li.remove();
+        root_li.hide(hide_delay, function(){jQuery(this).remove()});
     }
 
     function addRiskFactorSubmitted(data){
         if(data.result == "OK"){
             var root_li = jQuery('li#new_'+data.new_form_num);
-            jQuery("div.risk-factor-wrapper", root_li).remove();
+            jQuery("div.risk-factor-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("span.question", root_li).text(data.question);
             jQuery("div.entry-header", root_li).removeClass('hidden');
             jQuery("span.handler", root_li).removeClass('hidden');
@@ -283,7 +292,7 @@
     function editRiskFactorSubmitted(data){
         if(data.result == "OK"){
             var root_li = jQuery('li#rf_'+data.risk_id);
-            jQuery("div.risk-factor-wrapper", root_li).remove();
+            jQuery("div.risk-factor-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
             jQuery("span.question", root_li).text(data.question);
         }
@@ -548,6 +557,7 @@
             jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
             new_response_option_count++;
 
+            el.show(show_delay);
         });
 
 
@@ -567,14 +577,14 @@
             jQuery(this).addClass('hidden');
             var root_li = jQuery(this).closest('li');
             root_li.find('a.mitigation-cancel').removeClass('hidden');
-            root_li.find('div.field-wrapper').show(500);
+            root_li.find('div.field-wrapper').show(show_delay);
         });
 
         jQuery("a.mitigation-cancel").click(function(event){
             event.preventDefault();
             jQuery(this).addClass('hidden');
             var root_li = jQuery(this).closest('li');
-            root_li.find('div.field-wrapper').hide(500);
+            root_li.find('div.field-wrapper').hide(hide_delay);
             var type = root_li.attr('id');
             jQuery.ajax({
                 url: '<?php echo url_for("@cancel_mitigation_section") ?>',
@@ -676,7 +686,7 @@
                     type: 'POST',
                     data: data,
                     success: function() {
-                        root_li.find('div.field-wrapper').hide(500);
+                        root_li.find('div.field-wrapper').hide(hide_delay);
                         root_li.find('a.mitigation-cancel').addClass('hidden');
                     }
                 });
