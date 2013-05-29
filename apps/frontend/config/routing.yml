@@ -4,7 +4,7 @@ dashboard:
   requirements:
     account_id: \d+
 
-process_account_data:
+process_account_information_data:
   url: /:account_id/settings/process-account-data
   param: { module: settings, action: processAccountData }
   requirements:

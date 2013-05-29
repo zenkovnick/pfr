@@ -13,7 +13,7 @@ class AccountForm extends BaseAccountForm
   public function configure()
   {
       $this->useFields(array(
-          'title', 'photo', 'chief_pilot_email'
+          'title', 'photo', 'chief_pilot_name'
       ));
 
       $this->widgetSchema['photo'] = new sfWidgetFormInputFile();
@@ -27,7 +27,7 @@ class AccountForm extends BaseAccountForm
 
     protected function doSave($con = null)
     {
-        if($this->getObject()->isNew() && $this->getValue('uploaded_photo') != '')
+        if($this->getValue('uploaded_photo') != '')
         {
             $reset_avatar = true;
         }

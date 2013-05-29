@@ -120,6 +120,7 @@ Account:
     title:             {type: varchar(255), notnull: true }
     photo:             {type: varchar(255)}
     chief_pilot_email: {type: varchar(255)}
+    chief_pilot_name:  {type: varchar(255)}
     managed_by_id:     {type: integer}
   relations:
     Planes:            { class: Plane, refClass: AccountPlane, local: plane_id, foreign: account_id }

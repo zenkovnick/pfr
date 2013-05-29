@@ -8,6 +8,7 @@
  * @property varchar $title
  * @property varchar $photo
  * @property varchar $chief_pilot_email
+ * @property varchar $chief_pilot_name
  * @property integer $managed_by_id
  * @property Doctrine_Collection $Planes
  * @property Doctrine_Collection $Users
@@ -19,6 +20,7 @@
  * @method varchar             getTitle()             Returns the current record's "title" value
  * @method varchar             getPhoto()             Returns the current record's "photo" value
  * @method varchar             getChiefPilotEmail()   Returns the current record's "chief_pilot_email" value
+ * @method varchar             getChiefPilotName()    Returns the current record's "chief_pilot_name" value
  * @method integer             getManagedById()       Returns the current record's "managed_by_id" value
  * @method Doctrine_Collection getPlanes()            Returns the current record's "Planes" collection
  * @method Doctrine_Collection getUsers()             Returns the current record's "Users" collection
@@ -29,6 +31,7 @@
  * @method Account             setTitle()             Sets the current record's "title" value
  * @method Account             setPhoto()             Sets the current record's "photo" value
  * @method Account             setChiefPilotEmail()   Sets the current record's "chief_pilot_email" value
+ * @method Account             setChiefPilotName()    Sets the current record's "chief_pilot_name" value
  * @method Account             setManagedById()       Sets the current record's "managed_by_id" value
  * @method Account             setPlanes()            Sets the current record's "Planes" collection
  * @method Account             setUsers()             Sets the current record's "Users" collection
@@ -57,6 +60,10 @@ abstract class BaseAccount extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('chief_pilot_email', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
+             ));
+        $this->hasColumn('chief_pilot_name', 'varchar', 255, array(
              'type' => 'varchar',
              'length' => 255,
              ));

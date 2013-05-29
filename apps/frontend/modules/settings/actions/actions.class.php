@@ -29,6 +29,23 @@ class settingsActions extends sfActions {
         return sfView::NONE;
     }
 
+    public function executeProcessAccountData(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $this->user = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->form = new AccountForm($this->user);
+        if($request->isMethod('POST')){
+            $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            if($this->form->isValid()){
+                $this->form->save();
+                echo json_encode(array('result' => 'OK'));
+            } else {
+                echo json_encode(array('result' => 'Not Valid'));
+            }
+        }
+        return sfView::NONE;
+    }
+
     public function executeUploadAvatar(sfWebRequest $request)
     {
         $upload_handler = new UploadHandler(array(
