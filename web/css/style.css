@@ -95,10 +95,10 @@ a                              { cursor: pointer; }
 }
 
 .header div.header-account-information .header-account-title {
-    display: table-cell;
+    display: inline-block;
     vertical-align: middle;
     padding: 0 15px;
-    height: 60px;
+    margin: 22px 0;
     font: 600 16px/100% Arial;
 }
 
