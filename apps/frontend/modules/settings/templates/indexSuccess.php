@@ -1,4 +1,6 @@
-<?php include_partial('menu/header_menu', array('account_id' => $account->getId())); ?>
+<?php slot('header') ?>
+    <?php include_partial('menu/header_menu', array('account_id' => $account->getId(), 'account' => $account)); ?>
+<?php end_slot() ?>
 
 <!--[if IE 9]>
 <script type="text/javascript" src="/js/jquery.fileupload-ie9.js"></script>
@@ -14,6 +16,7 @@
             '/images/no_avatar.png', [32, 32], 'photo', 'account_photo', 'account_avatar_container', 'account_uploaded_photo');
     });
 </script>
+
 
 <a href="<?php echo url_for("@signout") ?>">Sign Out</a>
 

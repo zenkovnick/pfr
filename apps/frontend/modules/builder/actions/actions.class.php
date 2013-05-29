@@ -13,7 +13,8 @@ class builderActions extends sfActions
 
     public function executeIndex(sfWebRequest $request)
     {
-        $this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find(1);
+        $this->form_id = 1;
+        $this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id);
         $this->form = new RiskBuilderForm($this->risk_builder);
         $this->flight_information = FlightInformationFieldTable::getAllFields($this->risk_builder->getId());
         $this->risk_factors = RiskFactorFieldTable::getAllRiskFactors($this->risk_builder->getId());

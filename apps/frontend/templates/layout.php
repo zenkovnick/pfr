@@ -17,6 +17,8 @@
 </head>
 <body>
     <div class="header">
+        <?php if(!include_slot('header')): ?>
+        <?php endif ?>
     </div>
     <div class="content">
         <div class="wrapper">
