@@ -295,7 +295,7 @@ div.error-message span.error-status-message {
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 .form-builder-wrapper {
-    /*position: relative;*/
+    margin-bottom: 150px;
     padding-top: 175px;
 }
 .main-form > .btn.btn-green {
