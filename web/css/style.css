@@ -345,7 +345,7 @@ ul.scale li#li-40 {
 }
 ul.scale li#li-45 {
     padding-left: 5px;
-    width: 38px;
+    width: 34px;
 }
 ul.scale li#li-50 {
     text-align: right;
@@ -417,7 +417,7 @@ ul.form-fields {
 .flight-information-list li span.handler, .risk-factor-list > li span.handler {
     background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
     border: 1px solid #CCC;
-    /*display: block !important;*/
+    cursor: pointer;
     float: left;
     height: 38px;
     overflow: hidden;
@@ -433,11 +433,7 @@ ul.form-fields {
     display: block !important;
 }
 .risk-factor-list > li {
-    /*background: none repeat scroll 0 0 #EBEBEB;*/
-    /*border: 1px solid #CCCCCC;*/
-    /*height: 38px;*/
     margin: 0 0 9px;
-    /*position: relative;*/
     overflow: hidden;
 }
 .risk-factor-list > li .entry-header {
@@ -450,16 +446,11 @@ ul.form-fields {
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
     border: 1px solid #CCC;
-    border-top: 0;
+    /*border-top: 0;*/
     margin: 0 0 0 20px;
     overflow: hidden;
     padding: 9px;
 }
-
-
-
-
-
 
 .risk-factor-list > li.editing, .risk-factor-list > li.new {
     height: auto;
@@ -477,18 +468,7 @@ ul.form-fields {
     font-size: 12px;
     text-decoration: none;
 }
-/*.risk-factor-list > li span.handler {*/
-    /*background: url("../images/hendler_bg.png") no-repeat scroll center center #D7D7D7;*/
-    /*border: 1px solid #CCCCCC;*/
-    /*display: none;*/
-    /*height: 38px;*/
-    /*left: -21px;*/
-    /*overflow: hidden;*/
-    /*position: absolute;*/
-    /*text-indent: -1000px;*/
-    /*top: -1px;*/
-    /*width: 19px;*/
-/*}*/
+
 .risk-factor-list > li a.delete_risk_factor {
     bottom: 10px;
     color: #FF3333;
@@ -574,9 +554,7 @@ a.remove-note {
     margin: 0 0 9px;
     width: 440px;
 }
-/*.risk-factor-container {*/
-    /*overflow: hidden;*/
-/*}*/
+
 .new-response-option {
     position: relative;
 }
@@ -608,7 +586,6 @@ a.show-hide-field {
     border: 1px solid #CCC;
     margin: 9px;
     overflow: hidden;
-    /*padding: 9px;*/
     position: relative;
 }
 .mitigation-fields li.risk-value-edit .mitigation-header {
@@ -635,6 +612,7 @@ a.show-hide-field {
 }
 .mitigation-fields li.risk-value-edit input[type="text"] {
     margin: 0 0 9px;
+    width: 100%;
 }
 .mitigation-fields li.risk-value-edit .checkbox-wrapper {
     margin: 0 0 9px;
@@ -668,10 +646,11 @@ a.mitigation-edit, a.mitigation-cancel {
     display: block;
     font-size: 12px;
     font-weight: bold;
+    padding: 5px;
     position: absolute;
-    right: 15px;
+    right: 10px;
     text-decoration: none;
-    top: 15px;
+    top: 10px;
 }
 
 
