@@ -6,7 +6,7 @@ body {
     background: #F2F2F2;
     padding:0;
     margin:0;
-    font: 14px 'PT Sans', Arial, Verdana, Helvetica, sans-serif;
+    font: 14px Arial, Verdana, Helvetica, sans-serif;
     color:#000;
     height: 100%;
     overflow-x: hidden;
@@ -76,7 +76,91 @@ a                              { cursor: pointer; }
     border-bottom: 1px solid #E4E4E4;
     height: 60px;
     margin: 0 0 42px;
+    position: relative;
 }
+
+.header a{
+    color: #0F76BB;
+    text-decoration: none;
+}
+
+.header div.header-account-information {
+    float: left;
+    border-right: 1px solid #E4E4E4
+}
+
+.header div.header-account-information .header-account-avatar {
+    display:block;
+    float:left;
+}
+
+.header div.header-account-information .header-account-title {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 15px;
+    height: 60px;
+    font: 600 16px/100% Arial;
+}
+
+.header div.header-link-block {
+    float: left;
+    padding: 0 0 0 14px;
+
+}
+
+.header div.header-link-block span.header-link{
+    display: table-cell;
+    vertical-align: middle;
+    height: 60px;
+    padding: 0 20px 0 0;
+}
+
+
+
+.header .header-user-information-wrapper {
+    float:right;
+    position: relative;
+    height: 60px;
+    width: 500px;
+}
+
+.header .header-user-information {
+    float:right;
+    height: 40px;
+    top: 50%;
+    margin: -20px 10px 0 0;
+    position: absolute;
+    right: 0;
+    clear: both;
+
+}
+
+.header .header-user-information .user-wrapper {
+    width: 350px;
+    padding: 5px 0;
+}
+
+.header .header-user-avatar {
+    float:right;
+}
+
+.header .header-user-information .header-user-name,
+.header .header-user-information .header-user-email {
+    display: inline-block;
+    float: right;
+    margin: 0 25px;
+}
+
+.header .header-user-information .header-user-name {
+    font: 800 14px/100% Arial;
+}
+
+
+.header .header-user-information .header-user-email {
+    font: 400 12px/100% Arial;
+    color: #999;
+}
+
 .wrapper {
     margin: 0 auto;
     padding: 0 20px;
