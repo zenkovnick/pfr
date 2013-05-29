@@ -1,5 +1,5 @@
 <div class="risk-factor-wrapper" style="display:none">
-    <h1><?php echo $risk_factor->getQuestion() ?></h1>
+<!--    <h1>--><?php //echo $risk_factor->getQuestion() ?><!--</h1>-->
     <?php echo $form->renderGlobalErrors();?>
     <?php echo $form->renderHiddenFields();?>
     <form id="edit_risk_factor_form_<?php echo $risk_factor->getId() ?>"
@@ -37,7 +37,7 @@
             <?php endforeach ?>
         </ul>
         <a href="" class="add-new-response-link">+ Add Response Option</a>
-        <button type="submit">Save</button>
+        <button class="btn btn-green" type="submit">Save</button>
         <a href="" class="delete_risk_factor">Delete</a>
     </form>
 </div>
