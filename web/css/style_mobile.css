@@ -175,8 +175,8 @@ a                              { cursor: pointer; }
 
 .wrapper {
     margin: 0 auto;
-    max-width: 500px;
-    min-width: 500px;
+    max-width: 100%;
+    min-width: 100%;
     padding: 0 20px;
     width: 100%;
 }
@@ -423,7 +423,7 @@ ul.form-fields {
     overflow: hidden;
     padding: 0 10px;
     position: relative;
-    width: 90% !important;
+    width: 95% !important;
 }
 .flight-information-list li.hidden-field .element-wrapper {
     border-style: dashed;
