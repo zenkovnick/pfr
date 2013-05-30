@@ -68,6 +68,16 @@ a                              { cursor: pointer; }
 .hidden {
     display: none !important;
 }
+
+.truncate {
+    display: block;
+    float: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -moz-binding: url(ellipsis.xml#ellipsis);
+    white-space: nowrap !important;
+}
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------> Main Structure <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -455,6 +465,11 @@ ul.form-fields {
     overflow: hidden;
     padding: 11px 9px;
 }
+
+.risk-factor-list > li .entry-header span{
+    width: 90%;
+}
+
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
     border: 1px solid #CCC;

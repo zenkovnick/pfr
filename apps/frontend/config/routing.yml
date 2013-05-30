@@ -3,6 +3,32 @@ dashboard:
   param: { module: dashboard, action: index }
   requirements:
     account_id: \d+
+    
+
+update_pilot:
+  url: /settings/update-pilot
+  param: { module: settings, action: updatePilot}
+
+save_pilot:
+  url: /settings/save-pilot
+  param: { module: settings, action: savePilot }
+
+delete_pilot:
+  url: /settings/delete-pilot
+  param: { module: settings, action: deletePilot }
+
+edit_pilot:
+  url: /settings/edit-pilot
+  param: { module: settings, action: editPilotField }
+
+add_new_pilot_field:
+  url: /settings/add-new-pilot-field
+  param: { module: settings, action: addNewPilotField }
+
+save_pilot_position:
+  url: /settings/save-pilot-position
+  param: { module: settings, action: savePilotPosition }
+      
 
 update_plane:
   url: /settings/update-plane

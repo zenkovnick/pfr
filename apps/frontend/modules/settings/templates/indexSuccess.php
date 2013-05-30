@@ -107,7 +107,20 @@
         success: editPlaneSubmitted
     };
 
+    var add_pilot_options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: addPilotSubmitted
+    };
+
+    var edit_pilot_options_submit = {
+        dataType:  'json',
+        clearForm: false,
+        success: editPilotSubmitted
+    };
+
     var new_plane_count = 0;
+    var new_pilot_count = 0;
     var show_delay = 500;
     var hide_delay = 500;
     var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
@@ -166,7 +179,7 @@
 
     }
 
-
+    /* PLANE */
     function showPlaneEditLink(){
         if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
             jQuery(this).find('a.edit-plane-link').removeClass('hidden');
@@ -333,6 +346,177 @@
             }
         })
     }
+
+    /* PILOT */
+
+    function showPilotEditLink(){
+        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-plane-link').removeClass('hidden');
+            jQuery(this).find('.handler').removeClass('hidden');
+        }
+    }
+
+    function hidePlaneEditLink(){
+        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-plane-link').addClass('hidden');
+            jQuery(this).find('.handler').addClass('hidden');
+        }
+    }
+
+    function addNewPlaneField(num){
+        return jQuery.ajax({
+            type: 'POST',
+            data: {plane_num: num, account_id: account_id},
+            url: '<?php echo url_for("@add_new_plane_field"); ?>',
+            async: false
+        }).responseText;
+    }
+
+    function addPlane(event){
+        event.preventDefault();
+        var el = jQuery(addNewPlaneField(new_plane_count));
+        jQuery('a.cancel-plane-add', el).bind('click', cancelPlaneAdd);
+        new_plane_count++;
+        jQuery('ul.plane-list').append(el);
+        el.show(show_delay);
+    }
+
+    function cancelPlaneAdd(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li.new');
+        root_li.hide(hide_delay, function(){jQuery(this).remove()});
+    }
+
+    function validateAndSubmitAddPlane(event) {
+        event.preventDefault();
+        var valid = true;
+        var tail_number = jQuery('input.tail-number', this);
+        if(tail_number.val() == '') {
+            valid = false;
+            tail_number.addClass('invalid-field');
+        }
+
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(add_plane_options_submit);
+        }
+
+    }
+
+    function addPlaneSubmitted(data){
+        if(data.result == "OK"){
+            var root_li = jQuery('li#new_'+data.new_form_num);
+            jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+            jQuery("span.tail-number", root_li).text(data.tail_number);
+            jQuery("div.plane-header", root_li).removeClass('hidden');
+            //jQuery("span.handler", root_li).removeClass('hidden');
+            jQuery("input[type='hidden']", root_li).val(data.plane_id);
+            jQuery("a.edit-risk-factor-link", root_li).bind('click', editPlane);
+            jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelPlaneEdit);
+            jQuery('a.delete_risk_factor', root_li).bind('click', deletePlane);
+            jQuery('a.cancel-plane-add', root_li).remove();
+            root_li.bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
+            root_li.attr('id', 'rf_'+data.plane_id);
+            root_li.removeClass('new').addClass('plane-entity');
+
+            jQuery( "#plane_container").sortable({
+                containment: "parent",
+                axis: "y",
+                handle: "span.handler",
+                scroll: false,
+                stop: savePlanePosition
+            });
+        }
+    }
+
+    function editPlane(event){
+        event.preventDefault();
+        var root_el = jQuery(this).closest('li.plane-entity');
+        root_el.addClass('editing');
+        jQuery(this).addClass('hidden');
+        root_el.find('a.cancel-plane-link').removeClass('hidden');
+        var plane_id= root_el.find('input[type="hidden"]').val();
+        var form_el = jQuery(jQuery.ajax({
+            type: 'GET',
+            data: {plane_id: plane_id, account_id: account_id},
+            url: '<?php echo url_for("@edit_plane"); ?>',
+            async: false
+        }).responseText);
+        jQuery('a.delete-plane', form_el).bind('click', deletePlane);
+
+        root_el.append(form_el);
+        form_el.show(show_delay);
+
+    }
+
+    function validateAndSubmitEditPlane(event) {
+        event.preventDefault();
+        var valid = true;
+        var tail_number = jQuery('input.tail-number', this);
+        if(tail_number.val() == '') {
+            valid = false;
+            tail_number.addClass('invalid-field');
+        }
+
+        if(valid){
+            jQuery('.invalid-field', this).removeClass('invalid-field');
+            jQuery(this).ajaxSubmit(edit_plane_options_submit);
+        }
+
+    }
+
+    function editPlaneSubmitted(data){
+        if(data.result == "OK"){
+            var root_li = jQuery('li#plane_'+data.plane_id);
+            jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+            jQuery("a.cancel-plane-link", root_li).addClass('hidden');
+            jQuery("span.tail-number", root_li).text(data.tail_number);
+        }
+    }
+
+    function cancelPlaneEdit(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li.plane-entity');
+        jQuery(this).addClass('hidden');
+        root_li.find("div.plane-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
+        root_li.removeClass('editing');
+    }
+
+    function deletePlane() {
+        if(confirm("Are You Sure?")){
+            var root_li = jQuery(this).closest('li');
+            jQuery.ajax({
+                url: '<?php echo url_for('@delete_plane'); ?>',
+                data: {id: jQuery("input[type='hidden']", root_li).val()},
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    if(data.result == "OK"){
+                        root_li.remove();
+                    }
+                }
+            });
+        }
+        return false;
+    }
+
+    function savePlanePosition(){
+        var positions = new Array();
+        jQuery("#plane_container li").each(function(){
+            positions.push(jQuery(this).find("input[type='hidden']").val());
+        });
+        var json_obj =  JSON.stringify(positions);
+        jQuery.ajax({
+            url: '<?php echo url_for("@save_plane_position") ?>',
+            type: 'POST',
+            data: {ids: json_obj, account_id: account_id},
+            success: function() {
+
+            }
+        })
+    }
+
+
 
     jQuery(document).ready(function(){
         account_id = jQuery("input[type='hidden'].account-id").val();

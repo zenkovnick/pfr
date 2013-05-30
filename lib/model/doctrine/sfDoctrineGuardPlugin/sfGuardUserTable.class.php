@@ -59,4 +59,24 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->fetchOne();
         return !$user ? true : false;
     }
+
+    public static function getPilotsByAccount($account_id){
+        return Doctrine_Query::create()
+            ->from("sfGuardUser u")
+            ->leftJoin('u.UserAccount ua')
+            ->where('ua.account_id = ?', $account_id)
+            ->orderBy('u.position')
+            ->execute();
+    }
+
+    public static function getMaxPosition($account_id){
+        $query = Doctrine_Query::create()
+            ->select('MAX(u.position) as max_position')
+            ->from('sfGuardUser u')
+            ->leftJoin('u.UserAccount ua')
+            ->where('ua.account_id = ?', $account_id)
+            ->fetchOne();
+        $max_position = $query->getMaxPosition();
+        return $max_position ? $max_position : 0;
+    }
 }

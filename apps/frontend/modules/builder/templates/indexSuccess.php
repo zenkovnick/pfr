@@ -48,7 +48,7 @@
                     <span class="handler hidden">Handler</span>
                     <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
                     <div class="entry-header">
-                        <span class="question"><?php echo $risk_factor->getQuestion() ?></span>
+                        <span class="question truncate"><?php echo $risk_factor->getQuestion() ?></span>
                         <a href="" class="edit-risk-factor-link hidden">Edit</a>
                         <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
                     </div>
@@ -232,7 +232,7 @@
     function editRiskFactor(event){
         event.preventDefault();
         var root_el = jQuery(this).closest('li.risk-factor-entity');
-        root_el.addClass('editing');
+        root_el.addClass('editing').removeClass('truncate');
         jQuery(this).addClass('hidden');
         root_el.find('a.cancel-risk-factor-link').removeClass('hidden');
         var risk_factor_id= root_el.find('input[type="hidden"]').val();
@@ -259,7 +259,7 @@
         var root_li = jQuery(this).closest('li.risk-factor-entity');
         jQuery(this).addClass('hidden');
         root_li.find("div.risk-factor-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
-        root_li.removeClass('editing');
+        root_li.removeClass('editing').addClass('truncate');
     }
 
     function cancelRiskFactorAdd(event){
@@ -304,6 +304,7 @@
             jQuery("div.risk-factor-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
             jQuery("span.question", root_li).text(data.question);
+            root_li.removeClass("editing").addClass('truncate');
         }
     }
 

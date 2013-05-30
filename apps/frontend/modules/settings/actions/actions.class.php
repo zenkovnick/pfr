@@ -48,6 +48,7 @@ class settingsActions extends sfActions {
     }
 
 
+    /* PLANE */
 
     public function executeSavePlane(sfWebRequest $request) {
         $this->setLayout(false);
@@ -161,6 +162,120 @@ class settingsActions extends sfActions {
         return sfView::NONE;
     }
 
+
+    /* PILOT */
+
+    public function executeSavePilot(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $form = new PilotForm();
+        if($request->isMethod('post')){
+            $form->bind($request->getParameter($form->getName()));
+            if($form->isValid()){
+                $pilot = $form->save();
+                $user_account = new UserAccount();
+                $user_account->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
+                $user_account->setUser($pilot);
+                $user_account->save();
+                $pilot->setPosition(PlaneTable::getMaxPosition($request->getParameter('account_id')) + 1);
+                $pilot->save();
+                echo json_encode(
+                    array(
+                        'result' => 'OK',
+                        'pilot_id' => $pilot->getId(),
+                        'new_form_num' => $request->getParameter('new_form_num'),
+                        'name' => $pilot->getFirstName()
+                    )
+                );
+            } else {
+                echo json_encode(
+                    array(
+                        'result' => 'Failed',
+                    )
+                );
+
+            }
+        }
+        return sfView::NONE;
+    }
+
+    public function executeUpdatePilot(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $form = new PilotForm(Doctrine_Core::getTable('sfGuardUser')->find($request->getParameter('pilot_id')));
+        if($request->isMethod('post')){
+            $form->bind($request->getParameter($form->getName()));
+            if($form->isValid()){
+                $form->getObject()->save();
+                $form->save();
+                echo json_encode(
+                    array(
+                        'result' => 'OK',
+                        'pilot_id' => $form->getObject()->getId(),
+                        'name' => $form->getObject()->getFirstName()
+                    )
+                );
+            } else {
+                echo json_encode(
+                    array(
+                        'result' => 'Failed'
+                    )
+                );
+
+            }
+            //$this->redirect('@form');
+        }
+        return sfView::NONE;
+    }
+
+    public function executeDeletePilot(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $pilot = Doctrine_Core::getTable('sfGuardUser')->find($request->getParameter('id'));
+        if($pilot && $pilot->getId() != $this->getUser()->getGuardUser()->getId()){
+            $pilot->delete();
+            echo json_encode(array('result' => 'OK'));
+        } else {
+            echo json_encode(array('result' => 'Failed'));
+        }
+        return sfView::NONE;
+    }
+
+    public function executeEditPilotField(sfWebRequest $request){
+        $this->forward404unless($request->isXmlHttpRequest());
+        $pilot_id = intval($request->getParameter("pilot_id"));
+        $account_id = intval($request->getParameter("account_id"));
+        $pilot = Doctrine_Core::getTable('sfGuardUser')->find($pilot_id);
+        $this->form = new PilotForm($pilot);
+        return $this->renderPartial('editPilot',array('form' => $this->form, 'pilot' => $pilot, 'account_id' => $account_id));
+    }
+
+    public function executeAddNewPilotField(sfWebRequest $request){
+        $this->forward404unless($request->isXmlHttpRequest());
+        $number = intval($request->getPostParameter("pilot_num"));
+        $account_id = intval($request->getPostParameter("account_id"));
+        $this->form = new PilotForm();
+        return $this->renderPartial('addNewPilot',array('form' => $this->form, 'number' => $number, 'account_id' => $account_id));
+    }
+
+    public function executeSavePilotPosition(sfWebRequest $request)
+    {
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $ids_json = $request->getParameter('ids');
+        $ids = array_flip(json_decode($ids_json));
+        $account_id = $request->getParameter('account_id');
+        $pilots = sfGuardUserTable::getPilotsByAccount($account_id);
+        foreach($pilots as $pilot){
+            $curr_position = $ids[$pilot->getId()] + 1;
+            if($pilot->getPosition() != $curr_position){
+                $pilot->setPosition($curr_position);
+                $pilot->save();
+            }
+        }
+
+        return sfView::NONE;
+    }
 
 
     public function executeUploadAvatar(sfWebRequest $request)
