@@ -225,6 +225,7 @@
         el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
         jQuery('a.add-note', el).bind('click', addRiskFactorNote);
         jQuery('a.remove-note', el).bind('click', removeRiskFactorNote);
+
         new_response_option_count++;
     }
 
