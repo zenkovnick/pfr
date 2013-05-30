@@ -194,7 +194,7 @@ a                              { cursor: pointer; }
     float: left;
     font-size: 13px;
     font-weight: bold;
-    padding: 9px 35px;
+    padding: 20px 70px;
     text-decoration: none;
 }
 .btn:hover {
@@ -311,7 +311,7 @@ h1 {
 }
 .form-builder-wrapper {
     margin-bottom: 150px;
-    padding-top: 175px;
+    padding-top: 220px;
 }
 .main-form > .btn.btn-green {
     float: right;
@@ -375,12 +375,13 @@ ul.scale li#li-50 {
 }
 ul.form-fields {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
-    left: 50%;
-    margin-left: -250px;
+    left: 2%;
+    /*margin-left: -250px;*/
     overflow: hidden;
-    padding: 0 0 20px;
+    padding: 0 0 60px;
     position: absolute;
     top: 155px;
+    width: 97%;
 }
 .form-builder-wrapper input[type="text"] {
     background: #FFF;
@@ -392,11 +393,11 @@ ul.form-fields {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     font-size: 1em;
-    height: 40px;
+    height: 80px;
     line-height: 40px;
     margin: 0 20px 9px;
     padding: 0 10px;
-    width: 90% !important;
+    width: 98% !important;
 }
 .form-builder-wrapper input.first-field {
     height: 50px;
@@ -417,8 +418,8 @@ ul.form-fields {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     color: #000;
-    height: 40px;
-    line-height: 40px;
+    height: 80px;
+    line-height: 80px;
     margin: 0 20px 0 0;
     overflow: hidden;
     padding: 0 10px;
@@ -436,10 +437,10 @@ ul.form-fields {
     border: 1px solid #CCC;
     cursor: pointer;
     float: left;
-    height: 38px;
+    height: 78px;
     overflow: hidden;
     text-indent: -1000px;
-    width: 18px;
+    width: 30px;
 }
 .flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden {
     background: none;
@@ -457,13 +458,14 @@ ul.form-fields {
     margin: 9px 0;
     overflow: hidden;
     padding: 5px 0;
+    width: 98%;
 }
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
     border: 1px solid #CCCCCC;
     margin: 0 0 0 10px;
     overflow: hidden;
-    padding: 11px 9px;
+    padding: 31px 9px;
 }
 
 .risk-factor-list > li .entry-header span{
@@ -473,10 +475,10 @@ ul.form-fields {
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
     border: 1px solid #CCC;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 32px;
     overflow: hidden;
-    padding: 9px;
-    width: 90%;
+    padding: 10px;
+    width: 97%;
 }
 
 .risk-factor-list > li.editing, .risk-factor-list > li.new {
@@ -512,7 +514,7 @@ ul.form-fields {
     font-size: 13px;
     font-weight: normal;
     margin: -9px -9px 9px;
-    padding: 14px 9px;
+    padding: 34px 9px;
 }
 a#add-risk-factor-link {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
@@ -616,13 +618,14 @@ a.show-hide-field {
     margin: 9px;
     overflow: hidden;
     position: relative;
+    width: 97%;
 }
 .mitigation-fields li.risk-value-edit .mitigation-header {
     background: #F2F2F2;
     border-bottom: 1px solid #CCCCCC;
     margin: 0 0 -1px;
     overflow: hidden;
-    padding: 14px 9px;
+    padding: 34px 9px;
 }
 .mitigation-fields li.risk-value-edit .mitigation-header:hover {
     background: #E4E4E4;
@@ -632,10 +635,10 @@ a.show-hide-field {
     color: #FFF;
     display: block;
     float: left;
-    margin: -14px 9px -14px -9px;
-    padding: 14px 9px 13px;
+    margin: -34px 9px -34px -9px;
+    padding: 34px 9px 33px;
     text-align: center;
-    width: 59px;
+    width: 100px;
 }
 .mitigation-fields li.risk-value-edit .field-wrapper {
     padding: 9px;
@@ -680,7 +683,7 @@ a.mitigation-edit, a.mitigation-cancel {
     position: absolute;
     right: 10px;
     text-decoration: none;
-    top: 10px;
+    top: 30px;
 }
 
 
