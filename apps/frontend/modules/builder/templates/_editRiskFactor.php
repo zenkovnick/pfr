@@ -45,6 +45,8 @@
     jQuery(function(){
 
         jQuery("#edit_risk_factor_form_<?php echo $risk_factor->getId() ?>").bind('submit', validateAndSubmitEditRiskFactor)
+        jQuery(".response-value").spinner({max: 5, min: 0}).prop('readonly', 'readonly');
+        //jQuery(".response-value").spinner("option", "icons", { down: "/images/spinner_down.png", up: "/images/spinner_up.png" });
     });
 
 </script>

@@ -584,6 +584,39 @@ a.remove-note {
     width: 440px;
 }
 
+.risk-factor-global-wrapper input[type="text"].response-text
+{
+    margin: 0;
+    width: 370px;
+    float: left;
+}
+
+.risk-factor-global-wrapper input[type="text"].response-value
+{
+    width: 55px;
+    float: right;
+    margin: 0;
+
+}
+
+span.ui-spinner {
+    margin: 0 0 9px 15px;
+    border: 0;
+    border-radius: 0;
+    display: inline-block;
+}
+
+.ui-spinner-up {
+    top: 1px !important;
+    right: 1px !important;
+}
+
+.ui-spinner-down {
+    bottom: 1px !important;
+    right: 1px !important;
+
+}
+
 .new-response-option {
     position: relative;
 }
