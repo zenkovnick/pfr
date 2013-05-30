@@ -307,7 +307,7 @@ div.error-message span.error-status-message {
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 h1 {
-    margin-left: 20px;
+    margin-left: 35px;
 }
 .form-builder-wrapper {
     margin-bottom: 150px;
@@ -372,6 +372,10 @@ ul.scale li#li-50 {
     color: #000;
     margin: 0 0 20px 20px;
     text-transform: capitalize;
+}
+
+.form-builder-wrapper h2 {
+    margin: 0 0 20px 35px;
 }
 ul.form-fields {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
