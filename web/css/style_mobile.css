@@ -584,7 +584,7 @@ a.remove-note {
 }
 .risk-factor-global-wrapper input[type="text"] {
     margin: 0 0 9px;
-    width: 90% !important;
+    width: 93% !important;
 }
 
 .risk-factor-global-wrapper input[type="text"].response-text
@@ -607,7 +607,7 @@ span.ui-spinner {
     border: 0;
     border-radius: 0;
     display: inline-block;
-    width: 7%;
+    width: 10%;
 }
 
 .ui-spinner-up {
