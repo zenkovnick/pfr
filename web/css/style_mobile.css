@@ -615,7 +615,7 @@ a.show-hide-field {
 }
 .mitigation-fields li.risk-value-edit {
     background: #EBEBEB;
-    border: 1px solid #CCC;
+    border: 3px solid #CCC;
     margin: 9px;
     overflow: hidden;
     position: relative;
@@ -623,7 +623,7 @@ a.show-hide-field {
 }
 .mitigation-fields li.risk-value-edit .mitigation-header {
     background: #F2F2F2;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 3px solid #CCCCCC;
     margin: 0 0 -1px;
     overflow: hidden;
     padding: 34px 9px;
@@ -632,7 +632,7 @@ a.show-hide-field {
     background: #E4E4E4;
 }
 .mitigation-fields li.risk-value-edit .mitigation-header span.risk-value {
-    border: 1px solid;
+    border: 3px solid;
     color: #FFF;
     display: block;
     float: left;
