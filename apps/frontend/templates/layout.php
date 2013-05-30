@@ -20,6 +20,12 @@
                 type: "text/css",
                 href: "/css/style_mobile.css"
             }).appendTo("head");
+        } else {
+            $("<link/>", {
+                rel: "stylesheet",
+                type: "text/css",
+                href: "/css/style.css"
+            }).appendTo("head");
         }
     </script>
 </head>
