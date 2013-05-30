@@ -11,7 +11,7 @@
     <a href="" class="delete-response-option-link hidden">Delete</a>
 </li>
 <script type="text/javascript">
-    
+
     jQuery(".response-value").spinner({max: 5, min: 0}).prop('readonly', 'readonly');
 
 </script>

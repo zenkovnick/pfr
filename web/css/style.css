@@ -497,15 +497,23 @@ ul.form-fields {
     text-decoration: none;
 }
 
+.risk-factor-list > li a.edit-risk-factor-link:hover, .risk-factor-list > li a.cancel-risk-factor-link:hover{
+    text-decoration: underline;
+}
+
 .risk-factor-list > li a.delete_risk_factor {
-    bottom: 10px;
+    bottom: 20px;
     color: #FF3333;
     display: block;
     font-size: 12px;
     position: absolute;
-    right: 10px;
+    right: 20px;
     text-decoration: none;
 }
+.risk-factor-list > li a.delete_risk_factor:hover {
+    text-decoration: underline;
+}
+
 .risk-factor-list h2 {
     background: #E4E4E4;
     border-bottom: 1px solid #CCC;
@@ -522,12 +530,21 @@ a#add-risk-factor-link {
     padding: 25px 10px;
     text-decoration: none;
 }
+a#add-risk-factor-link:hover{
+    text-decoration: underline;
+}
+
 a.add-new-response-link {
     color: #1076CE;
     display: block;
     padding: 25px 10px;
     text-decoration: none;
 }
+
+a.add-new-response-link:hover {
+    text-decoration: underline;
+}
+
 
 #slider-range {
     background: url(../images/slider_bg.png) repeat-y left top;
@@ -560,6 +577,11 @@ a.cancel-risk-factor-add {
     text-decoration: none;
     top: 15px;
 }
+
+a.cancel-risk-factor-add:hover {
+    text-decoration: underline;
+
+}
 a.add-note, a.remove-note {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #0F76BB;
@@ -571,6 +593,10 @@ a.add-note, a.remove-note {
 }
 a.remove-note {
     color: #F33;
+}
+
+a.add-note:hover, a.remove-note:hover{
+    text-decoration: underline;
 }
 
 .risk-factor-wrapper label {
@@ -629,6 +655,10 @@ a.delete-response-option-link {
     right: 10px;
     text-decoration: none;
 }
+
+a.delete-response-option-link:hover {
+    text-decoration: underline;
+}
 span.uneditable {
     color: #CCC;
     float: right;
@@ -640,6 +670,10 @@ a.show-hide-field {
     font-size: 12px;
     text-decoration: none;
 }
+a.show-hide-field:hover {
+    text-decoration: underline;
+}
+
 .mitigation-fields {
     margin: 22px 10px 20px;
 }
@@ -714,6 +748,10 @@ a.mitigation-edit, a.mitigation-cancel {
     right: 10px;
     text-decoration: none;
     top: 10px;
+}
+
+a.mitigation-edit:hover, a.mitigation-cancel:hover {
+    text-decoration: underline;
 }
 
 
