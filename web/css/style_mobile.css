@@ -375,7 +375,7 @@ ul.scale li#li-50 {
 }
 ul.form-fields {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
-    left: 2%;
+    left: 4%;
     /*margin-left: -250px;*/
     overflow: hidden;
     padding: 0 0 60px;
