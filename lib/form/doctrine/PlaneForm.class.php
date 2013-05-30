@@ -15,5 +15,7 @@ class PlaneForm extends BasePlaneForm
       $this->useFields(array(
          'tail_number'
       ));
+
+      $this->disableCSRFProtection();
   }
 }

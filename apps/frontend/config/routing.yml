@@ -16,8 +16,8 @@ delete_plane:
   url: /settings/delete-plane
   param: { module: settings, action: deletePlane }
 
-edit_plane_field:
-  url: /settings/edit-plane-field
+edit_plane:
+  url: /settings/edit-plane
   param: { module: settings, action: editPlaneField }
 
 add_new_plane_field:
@@ -26,7 +26,7 @@ add_new_plane_field:
 
 save_plane_position:
   url: /settings/save-plane-position
-  param: { module: settings, action: savePlanerPosition }
+  param: { module: settings, action: savePlanePosition }
 
 
 process_account_information_data:
@@ -148,6 +148,10 @@ signin:
 signout:
   url: /signout
   param: { module: registration, action: signout }
+
+signup_invite:
+  url: /signup/:token
+  param: { module: registration, action: signup }
 
 signup:
   url: /signup

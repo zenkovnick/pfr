@@ -47,6 +47,8 @@ class settingsActions extends sfActions {
         return sfView::NONE;
     }
 
+
+
     public function executeSavePlane(sfWebRequest $request) {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
@@ -54,16 +56,19 @@ class settingsActions extends sfActions {
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
-                $form->save();
-                $form->getObject()->setAccounts(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
-                $form->getObject()->setPosition(RiskFactorFieldTable::getMaxPosition() + 1);
-                $form->getObject()->save();
+                $plane = $form->save();
+                $account_plane = new AccountPlane();
+                $account_plane->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
+                $account_plane->setPlane($plane);
+                $account_plane->save();
+                $plane->setPosition(PlaneTable::getMaxPosition($request->getParameter('account_id')) + 1);
+                $plane->save();
                 echo json_encode(
                     array(
                         'result' => 'OK',
-                        'risk_id' => $form->getObject()->getId(),
+                        'account_id' => $plane->getId(),
                         'new_form_num' => $request->getParameter('new_form_num'),
-                        'question' => $form->getObject()->getQuestion()
+                        'tail_number' => $plane->getTailNumber()
                     )
                 );
             } else {
@@ -81,7 +86,7 @@ class settingsActions extends sfActions {
     public function executeUpdatePlane(sfWebRequest $request) {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
-        $form = new RiskFactorOptionsForm(Doctrine_Core::getTable('RiskFactorField')->find($request->getParameter('risk_factor_id')));
+        $form = new PlaneForm(Doctrine_Core::getTable('Plane')->find($request->getParameter('plane_id')));
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
@@ -90,8 +95,8 @@ class settingsActions extends sfActions {
                 echo json_encode(
                     array(
                         'result' => 'OK',
-                        'risk_id' => $form->getObject()->getId(),
-                        'question' => $form->getObject()->getQuestion()
+                        'plane_id' => $form->getObject()->getId(),
+                        'tail_number' => $form->getObject()->getTailNumber()
                     )
                 );
             } else {
@@ -110,14 +115,23 @@ class settingsActions extends sfActions {
     public function executeDeletePlane(sfWebRequest $request) {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
-        $risk_factor = Doctrine_Core::getTable('RiskFactorField')->find($request->getParameter('id'));
-        if($risk_factor){
-            $risk_factor->delete();
+        $plane = Doctrine_Core::getTable('Plane')->find($request->getParameter('id'));
+        if($plane){
+            $plane->delete();
             echo json_encode(array('result' => 'OK'));
         } else {
             echo json_encode(array('result' => 'Failed'));
         }
         return sfView::NONE;
+    }
+
+    public function executeEditPlaneField(sfWebRequest $request){
+        $this->forward404unless($request->isXmlHttpRequest());
+        $plane_id = intval($request->getParameter("plane_id"));
+        $account_id = intval($request->getParameter("account_id"));
+        $plane = Doctrine_Core::getTable('Plane')->find($plane_id);
+        $this->form = new PlaneForm($plane);
+        return $this->renderPartial('editPlane',array('form' => $this->form, 'plane' => $plane, 'account_id' => $account_id));
     }
 
     public function executeAddNewPlaneField(sfWebRequest $request){
@@ -134,13 +148,13 @@ class settingsActions extends sfActions {
         $this->forward404Unless($request->isXmlHttpRequest());
         $ids_json = $request->getParameter('ids');
         $ids = array_flip(json_decode($ids_json));
-        $form_id = $request->getParameter('form_id');
-        $risk_factors = RiskFactorFieldTable::getAllRiskFactors($form_id);
-        foreach($risk_factors as $risk_factor){
-            $curr_position = $ids[$risk_factor->getId()] + 1;
-            if($risk_factor->getPosition() != $curr_position){
-                $risk_factor->setPosition($curr_position);
-                $risk_factor->save();
+        $account_id = $request->getParameter('account_id');
+        $planes = PlaneTable::getPlanesByAccount($account_id);
+        foreach($planes as $plane){
+            $curr_position = $ids[$plane->getId()] + 1;
+            if($plane->getPosition() != $curr_position){
+                $plane->setPosition($curr_position);
+                $plane->save();
             }
         }
 

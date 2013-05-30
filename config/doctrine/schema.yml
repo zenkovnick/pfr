@@ -140,7 +140,8 @@ Account:
 Plane:
   actAs: [Timestampable]
   columns:
-    tail_number:       {type: integer}
+    tail_number:       {type: integer }
+    position:          {type: integer }
   relations:
     Accounts:          { class: Account, refClass: AccountPlane, local: account_id, foreign: plane_id }
 

@@ -17,6 +17,7 @@ abstract class BasePlaneForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'            => new sfWidgetFormInputHidden(),
       'tail_number'   => new sfWidgetFormInputText(),
+      'position'      => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
       'accounts_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Account')),
@@ -25,6 +26,7 @@ abstract class BasePlaneForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'tail_number'   => new sfValidatorInteger(array('required' => false)),
+      'position'      => new sfValidatorInteger(array('required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
       'accounts_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Account', 'required' => false)),
