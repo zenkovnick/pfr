@@ -539,7 +539,8 @@ a.add-new-response-link {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     height: 9px;
-    margin: 0 10px 29px;
+    margin: 0 auto 29px;
+    max-width: 460px;
 }
 .ui-slider-range.ui-widget-header {
     background: #FFCC00;
