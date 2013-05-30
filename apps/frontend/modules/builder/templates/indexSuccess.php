@@ -259,7 +259,7 @@
         var root_li = jQuery(this).closest('li.risk-factor-entity');
         jQuery(this).addClass('hidden');
         root_li.find("div.risk-factor-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
-        root_li.removeClass('editing').addClass('truncate');
+        root_li.removeClass('editing');
     }
 
     function cancelRiskFactorAdd(event){
@@ -272,7 +272,7 @@
         if(data.result == "OK"){
             var root_li = jQuery('li#new_'+data.new_form_num);
             jQuery("div.risk-factor-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
-            jQuery("span.question", root_li).text(data.question);
+            jQuery("span.question", root_li).text(data.question).addClass('truncate');
             jQuery("div.entry-header", root_li).removeClass('hidden');
             jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.risk_id);
@@ -304,7 +304,7 @@
             jQuery("div.risk-factor-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
             jQuery("span.question", root_li).text(data.question);
-            root_li.removeClass("editing").addClass('truncate');
+            root_li.removeClass("editing");
         }
     }
 
