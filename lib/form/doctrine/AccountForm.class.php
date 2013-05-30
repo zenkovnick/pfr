@@ -13,7 +13,7 @@ class AccountForm extends BaseAccountForm
   public function configure()
   {
       $this->useFields(array(
-          'title', 'photo', 'chief_pilot_name'
+          'title', 'photo', 'chief_pilot_name', 'chief_pilot_email'
       ));
 
       $this->widgetSchema['photo'] = new sfWidgetFormInputFile();
