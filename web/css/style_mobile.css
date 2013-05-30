@@ -621,7 +621,9 @@ span.ui-spinner {
 
 }
 
-
+.ui-spinner-button {
+    width: 30%;
+}
 
 .new-response-option {
     position: relative;

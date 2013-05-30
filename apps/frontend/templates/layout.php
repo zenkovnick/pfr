@@ -14,7 +14,7 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <script type="text/javascript">
-        if( /Chromium|Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
             $("<link/>", {
                 rel: "stylesheet",
                 type: "text/css",
