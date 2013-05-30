@@ -584,13 +584,13 @@ a.remove-note {
 }
 .risk-factor-global-wrapper input[type="text"] {
     margin: 0 0 9px;
-    width: 93% !important;
+    width: 98% !important;
 }
 
 .risk-factor-global-wrapper input[type="text"].response-text
 {
     margin: 0;
-    width: 82% !important;
+    width: 85% !important;
     float: left;
 }
 
@@ -607,7 +607,7 @@ span.ui-spinner {
     border: 0;
     border-radius: 0;
     display: inline-block;
-    width: 10%;
+    width: 12%;
 }
 
 .ui-spinner-up {
