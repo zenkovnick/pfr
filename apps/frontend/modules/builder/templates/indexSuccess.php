@@ -11,7 +11,11 @@
 
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-
+<script type="text/javascript">
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+        jQuery("head").append("<link rel='stylesheet' href='/css/style_mobile.css' type='text/css'")
+    }
+</script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <h1>Form editor</h1>
