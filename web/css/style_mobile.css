@@ -449,6 +449,9 @@ ul.form-fields {
     text-indent: -1000px;
     width: 30px;
 }
+.flight-information-list li span.handler {
+    height: 76px;
+}
 .flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden {
     background: none;
     border: 2px solid transparent;
