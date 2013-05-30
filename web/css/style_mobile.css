@@ -317,9 +317,12 @@ h1 {
     float: right;
     margin-right: 20px;
 }
+
 ul.scale {
-    margin: 0 -22px 10px 54px;
+    max-width: 460px;
+    margin: 0 auto 10px;
     overflow: hidden;
+    padding: 0 0 0 89px;
 }
 ul.scale li {
     color: #FFCC00;
