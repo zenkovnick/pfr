@@ -385,7 +385,7 @@ ul.form-fields {
 }
 .form-builder-wrapper input[type="text"] {
     background: #FFF;
-    border: 1px solid #CCC;
+    border: 3px solid #CCC;
     border-radius: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -413,7 +413,7 @@ ul.form-fields {
 }
 .flight-information-list li .element-wrapper {
     background: #F2F2F2;
-    border: 1px solid #CCC;
+    border: 3px solid #CCC;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -434,7 +434,7 @@ ul.form-fields {
 }
 .flight-information-list li span.handler, .risk-factor-list > li span.handler {
     background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
-    border: 1px solid #CCC;
+    border: 3px solid #CCC;
     cursor: pointer;
     float: left;
     height: 78px;
@@ -444,7 +444,7 @@ ul.form-fields {
 }
 .flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden {
     background: none;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
     display: block !important;
 }
 .flight-information-list li.ui-sortable-helper span.handler {
@@ -462,7 +462,7 @@ ul.form-fields {
 }
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
-    border: 1px solid #CCCCCC;
+    border: 3px solid #CCCCCC;
     margin: 0 0 0 10px;
     overflow: hidden;
     padding: 31px 9px;
@@ -474,7 +474,7 @@ ul.form-fields {
 
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
-    border: 1px solid #CCC;
+    border: 3px solid #CCC;
     margin: 0 0 0 32px;
     overflow: hidden;
     padding: 10px;
@@ -510,7 +510,7 @@ ul.form-fields {
 }
 .risk-factor-list h2 {
     background: #E4E4E4;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 3px solid #CCC;
     font-size: 13px;
     font-weight: normal;
     margin: -9px -9px 9px;
@@ -523,6 +523,7 @@ a#add-risk-factor-link {
     margin: 0 0 0 20px;
     padding: 25px 10px;
     text-decoration: none;
+    width: 95%;
 }
 a.add-new-response-link {
     color: #1076CE;
