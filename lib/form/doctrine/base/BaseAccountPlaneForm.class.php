@@ -17,11 +17,13 @@ abstract class BaseAccountPlaneForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'account_id' => new sfWidgetFormInputHidden(),
       'plane_id'   => new sfWidgetFormInputHidden(),
+      'position'   => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'account_id' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('account_id')), 'empty_value' => $this->getObject()->get('account_id'), 'required' => false)),
       'plane_id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('plane_id')), 'empty_value' => $this->getObject()->get('plane_id'), 'required' => false)),
+      'position'   => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('account_plane[%s]');

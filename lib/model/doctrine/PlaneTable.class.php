@@ -22,7 +22,7 @@ class PlaneTable extends Doctrine_Table
             ->from("Plane p")
             ->leftJoin('p.AccountPlane ap')
             ->where('ap.account_id = ?', $account_id)
-            ->orderBy('p.position')
+            ->orderBy('ap.position')
             ->execute();
     }
 
@@ -36,4 +36,9 @@ class PlaneTable extends Doctrine_Table
         $max_position = $query->getMaxPosition();
         return $max_position ? $max_position : 0;
     }
-}
+
+    public static function existPlane($tail_number)
+    {
+        $plane = self::getInstance()->findOneBy('tail_number', $tail_number);
+        return $plane ? $plane : false;
+    }}

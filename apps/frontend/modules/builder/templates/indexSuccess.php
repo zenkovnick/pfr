@@ -11,7 +11,6 @@
 
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <h1>Form editor</h1>
@@ -226,6 +225,7 @@
         el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
         jQuery('a.add-note', el).bind('click', addRiskFactorNote);
         jQuery('a.remove-note', el).bind('click', removeRiskFactorNote);
+
         new_response_option_count++;
     }
 
@@ -259,7 +259,7 @@
         var root_li = jQuery(this).closest('li.risk-factor-entity');
         jQuery(this).addClass('hidden');
         root_li.find("div.risk-factor-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
-        root_li.removeClass('editing').addClass('truncate');
+        root_li.removeClass('editing');
     }
 
     function cancelRiskFactorAdd(event){
@@ -272,7 +272,7 @@
         if(data.result == "OK"){
             var root_li = jQuery('li#new_'+data.new_form_num);
             jQuery("div.risk-factor-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
-            jQuery("span.question", root_li).text(data.question);
+            jQuery("span.question", root_li).text(data.question).addClass('truncate');
             jQuery("div.entry-header", root_li).removeClass('hidden');
             jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.risk_id);
@@ -304,7 +304,7 @@
             jQuery("div.risk-factor-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
             jQuery("span.question", root_li).text(data.question);
-            root_li.removeClass("editing").addClass('truncate');
+            root_li.removeClass("editing");
         }
     }
 

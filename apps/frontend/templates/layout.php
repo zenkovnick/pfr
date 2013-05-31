@@ -13,7 +13,21 @@
     <?php include_metas() ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
-
+    <script type="text/javascript">
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+            $("<link/>", {
+                rel: "stylesheet",
+                type: "text/css",
+                href: "/css/style_mobile.css"
+            }).appendTo("head");
+        } else {
+            $("<link/>", {
+                rel: "stylesheet",
+                type: "text/css",
+                href: "/css/style.css"
+            }).appendTo("head");
+        }
+    </script>
 </head>
 <body>
     <div class="header">

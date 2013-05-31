@@ -1,4 +1,4 @@
-<li class="new" id="new_<?php echo $number ?>" style="display: none">
+<li class="new" id="new_plane_<?php echo $number ?>" style="display: none">
     <a href="" class="cancel-plane-add">Cancel</a>
     <span class="handler hidden">Handler</span>
     <input type="hidden" value="" />

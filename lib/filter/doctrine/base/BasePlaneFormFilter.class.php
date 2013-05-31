@@ -14,7 +14,6 @@ abstract class BasePlaneFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'tail_number'   => new sfWidgetFormFilterInput(),
-      'position'      => new sfWidgetFormFilterInput(),
       'created_at'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'accounts_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Account')),
@@ -22,7 +21,6 @@ abstract class BasePlaneFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'tail_number'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'position'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'accounts_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Account', 'required' => false)),
@@ -65,7 +63,6 @@ abstract class BasePlaneFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'            => 'Number',
       'tail_number'   => 'Number',
-      'position'      => 'Number',
       'created_at'    => 'Date',
       'updated_at'    => 'Date',
       'accounts_list' => 'ManyKey',

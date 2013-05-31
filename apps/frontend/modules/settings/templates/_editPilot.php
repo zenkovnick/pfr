@@ -1,20 +1,26 @@
-<div class="plane-wrapper" style="display:none">
+<div class="pilot-wrapper" style="display:none">
 <!--    <h1>--><?php //echo $risk_factor->getQuestion() ?><!--</h1>-->
     <?php echo $form->renderGlobalErrors();?>
     <?php echo $form->renderHiddenFields();?>
-    <form id="edit_plane_form_<?php echo $plane->getId() ?>"
-          action="<?php echo url_for("@update_plane?plane_id={$plane->getId()}&account_id={$account_id}") ?>" method="post">
+    <form id="edit_pilot_form_<?php echo $pilot->getId() ?>"
+          action="<?php echo url_for("@update_pilot?pilot_id={$pilot->getId()}&account_id={$account->getId()}") ?>" method="post">
         <fieldset>
-            <?php include_partial("settings/field", array('field' => $form['tail_number'], 'class' => 'tail-number', 'placeholder' => 'Tail Number')); ?>
+            <?php include_partial("settings/field", array('field' => $form['first_name'], 'class' => 'name', 'placeholder' => 'Name')); ?>
+            <?php include_partial("settings/field", array('field' => $form['username'], 'class' => 'username', 'placeholder' => 'Email')); ?>
+            <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
+                <?php include_partial("settings/field", array('field' => $form['can_manage'], 'class' => 'can-manage')); ?>
+            <?php endif ?>
         </fieldset>
         <button class="btn btn-green" type="submit">Save</button>
-        <a href="" class="delete-plane">Delete</a>
+        <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
+            <a href="" class="delete-pilot">Delete</a>
+        <?php endif ?>
     </form>
 </div>
 <script type="text/javascript">
     jQuery(function(){
 
-        jQuery("#edit_plane_form_<?php echo $plane->getId() ?>").bind('submit', validateAndSubmitEditPlane)
+        jQuery("#edit_pilot_form_<?php echo $pilot->getId() ?>").bind('submit', validateAndSubmitEditPilot)
     });
 
 </script>

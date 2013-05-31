@@ -80,8 +80,6 @@ sfGuardUser:
     photo:
       type: string(255)
       default: null
-    position:
-      type: integer
   indexes:
     is_active_idx:
       fields: [is_active]

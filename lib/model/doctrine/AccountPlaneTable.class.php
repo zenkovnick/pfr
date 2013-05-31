@@ -16,4 +16,30 @@ class AccountPlaneTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('AccountPlane');
     }
+
+    public static function existPlaneInAccount($plane_id, $account_id){
+        return Doctrine_Query::create()
+            ->from("AccountPlane ap")
+            ->where("ap.plane_id = ?", $plane_id)
+            ->andWhere("ap.account_id = ?", $account_id)
+            ->fetchOne();
+    }
+
+    public static function getPlanesByAccount($account_id){
+        return Doctrine_Query::create()
+            ->from("AccountPlane ap")
+            ->where('ap.account_id = ?', $account_id)
+            ->orderBy('ap.position')
+            ->execute();
+    }
+
+    public static function getMaxPosition($account_id){
+        $query = Doctrine_Query::create()
+            ->select('MAX(ap.position) as max_position')
+            ->from('AccountPlane ap')
+            ->where('ap.account_id = ?', $account_id)
+            ->fetchOne();
+        $max_position = $query->getMaxPosition();
+        return $max_position ? $max_position : 0;
+    }
 }
