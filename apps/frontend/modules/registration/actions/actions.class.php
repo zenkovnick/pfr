@@ -31,6 +31,15 @@ class registrationActions extends sfActions
 
     public function executeSignup(sfWebRequest $request) {
         $this->form = new RegistrationForm();
+        if($request->getParameter('token')){
+            $invited_user = Doctrine_Core::getTable('sfGuardUser')->findOneBy('invite_token', $request->getParameter('token'));
+            if($invited_user){
+                $this->form->setDefaults(array(
+                    'username' => $invited_user->getUsername(),
+                    'first_name' => $invited_user->getFirstName(),
+                ));
+            }
+        }
         if($request->isMethod('POST')){
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){

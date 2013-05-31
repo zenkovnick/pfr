@@ -80,6 +80,7 @@ sfGuardUser:
     photo:
       type: string(255)
       default: null
+    invite_token: string(255)
   indexes:
     is_active_idx:
       fields: [is_active]

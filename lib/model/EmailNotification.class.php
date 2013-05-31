@@ -15,7 +15,7 @@ class EmailNotification {
         MCSendMail::getInstance()->setMessageText($text);
         MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_notification_from_email', 'support@preflightrisk.com'));
         MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_notification_from_name', 'PreFlightRisk'));
-        MCSendMail::getInstance()->setMessageSubject(sfConfig::get('app_password_reset_title', 'Invite to PreFlightRisk'));
+        MCSendMail::getInstance()->setMessageSubject(sfConfig::get('app_email_notification_title', 'Invite to PreFlightRisk'));
         MCSendMail::getInstance()->setMessageAddTo(array('email'=>$guest->getUsername(), 'name' => $guest->getFirstName() ? $guest->getFirstName() : null));
         MCSendMail::getInstance()->sendMail(true);
     }

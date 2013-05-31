@@ -22,9 +22,9 @@ all:
 
 
   email_notification:
-    from_name: 'Support@TheSolution.org'
-    from_email: 'Support@TheSolution.org'
-    title: '[TS] Welcome to TheSolution.org'
+    from_name: 'PreFlightRisk'
+    from_email: 'support@preflightrisk.com'
+    title: 'Invite to PreFlightRisk'
     message: "You have ben registered in Blueprint project.\n\rYour password is %password%\n\rPlease use this link to activate your accout - %activation_link%\n\r"
 
   mailchimp:

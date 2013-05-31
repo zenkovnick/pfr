@@ -51,6 +51,10 @@ class sfGuardUser extends PluginsfGuardUser
         $this->save();
     }
 
+    public function generateToken() {
+        return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
+
 
 
     public function changePassword($new_password)

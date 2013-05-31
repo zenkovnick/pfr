@@ -219,12 +219,18 @@ class settingsActions extends sfActions {
                 $values = $form->getTaintedValues();
                 if(sfGuardUserTable::checkUserByUsername($values['username'])){
                     $pilot = $form->save();
+                    $pilot->setInviteToken($pilot->generateToken());
+                    $pilot->setIsActive(false);
+                    $pilot->save();
                     $user_account = new UserAccount();
                     $user_account->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
                     $user_account->setUser($pilot);
                     $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
                     $user_account->setIsManager($values['can_manage']);
                     $user_account->save();
+
+                    $url = $this->generateUrl('signup_invite', array('token' => $pilot->getInviteToken()), true);
+                    EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url);
                     echo json_encode(
                         array(
                             'result' => 'OK',
