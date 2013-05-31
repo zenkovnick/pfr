@@ -84,13 +84,17 @@
         <li class="pilots">
             <ul class="pilot-list" id="pilot_container">
                 <?php foreach($pilots as $pilot): ?>
-                    <li class="pilot-entity" id="pilot_<?php echo $pilot->getId() ?>">
+                    <li class="pilot-entity <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
                         <span class="handler hidden">Handler</span>
                         <input type="hidden" value="<?php echo $pilot->getId() ?>" />
                         <div class="pilot-header">
                             <span class="name"><?php echo $pilot->getFirstName() ?></span>
-                            <a href="" class="edit-pilot-link hidden">Edit</a>
-                            <a href="" class="cancel-pilot-link hidden">Cancel</a>
+                            <?php if($pilot->getIsActive()): ?>
+                                <a href="" class="edit-pilot-link hidden">Edit</a>
+                                <a href="" class="cancel-pilot-link hidden">Cancel</a>
+                            <?php else: ?>
+                                <span class="invited">(Invited)</span>
+                            <?php endif ?>
                         </div>
                     </li>
                 <?php endforeach ?>
@@ -385,16 +389,16 @@
     /* PILOT */
 
     function showPilotEditLink(){
+        jQuery(this).find('.handler').removeClass('hidden');
         if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
             jQuery(this).find('a.edit-pilot-link').removeClass('hidden');
-            jQuery(this).find('.handler').removeClass('hidden');
         }
     }
 
     function hidePilotEditLink(){
+        jQuery(this).find('.handler').addClass('hidden');
         if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
             jQuery(this).find('a.edit-pilot-link').addClass('hidden');
-            jQuery(this).find('.handler').addClass('hidden');
         }
     }
 
