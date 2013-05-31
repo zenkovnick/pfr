@@ -643,9 +643,10 @@ span.ui-spinner {
 
 }
 
-.new-response-option {
+.new-response-option, .response-option {
     position: relative;
 }
+
 a.delete-response-option-link {
     bottom: 10px;
     color: #F33;

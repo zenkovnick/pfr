@@ -11,7 +11,7 @@
         </fieldset>
         <ul class="response-option-list">
             <?php foreach($form['ResponseOptions'] as $option): ?>
-                <li>
+                <li class="response-option">
                     <input class="response-option-id" type="hidden" value="<?php echo $option['id']->getValue() ?>" />
                     <?php include_partial("builder/field", array('field' => $option['response_text'], 'class' => 'response-text', 'placeholder' => 'Risk factor or question')); ?>
                     <?php include_partial("builder/field", array('field' => $option['response_value'], 'class' => 'response-value', 'placeholder' => 'Help text or link (optional)')); ?>

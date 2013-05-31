@@ -629,7 +629,7 @@ span.ui-spinner {
     width: 35% !important;
 }
 
-.new-response-option {
+.new-response-option, .response-option {
     position: relative;
 }
 a.delete-response-option-link {
