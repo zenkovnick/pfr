@@ -8,17 +8,20 @@
  * @property integer $account_id
  * @property integer $user_id
  * @property boolean $is_manager
+ * @property integer $position
  * @property Account $Account
  * @property sfGuardUser $User
  * 
  * @method integer     getAccountId()  Returns the current record's "account_id" value
  * @method integer     getUserId()     Returns the current record's "user_id" value
  * @method boolean     getIsManager()  Returns the current record's "is_manager" value
+ * @method integer     getPosition()   Returns the current record's "position" value
  * @method Account     getAccount()    Returns the current record's "Account" value
  * @method sfGuardUser getUser()       Returns the current record's "User" value
  * @method UserAccount setAccountId()  Sets the current record's "account_id" value
  * @method UserAccount setUserId()     Sets the current record's "user_id" value
  * @method UserAccount setIsManager()  Sets the current record's "is_manager" value
+ * @method UserAccount setPosition()   Sets the current record's "position" value
  * @method UserAccount setAccount()    Sets the current record's "Account" value
  * @method UserAccount setUser()       Sets the current record's "User" value
  * 
@@ -43,6 +46,9 @@ abstract class BaseUserAccount extends sfDoctrineRecord
         $this->hasColumn('is_manager', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
+             ));
+        $this->hasColumn('position', 'integer', null, array(
+             'type' => 'integer',
              ));
     }
 

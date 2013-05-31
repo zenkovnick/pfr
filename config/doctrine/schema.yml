@@ -141,7 +141,6 @@ Plane:
   actAs: [Timestampable]
   columns:
     tail_number:       {type: integer }
-    position:          {type: integer }
   relations:
     Accounts:          { class: Account, refClass: AccountPlane, local: account_id, foreign: plane_id }
 
@@ -149,6 +148,7 @@ AccountPlane:
     columns:
       account_id:      { type: integer, notnull: true, primary: true }
       plane_id:        { type: integer, notnull: true, primary: true }
+      position:        { type: integer }
     relations:
       Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: AccountPlane }
       Plane:           { class: Plane, foreign: id, local: plane_id, onDelete: CASCADE, foreignAlias: AccountPlane }
@@ -158,6 +158,7 @@ UserAccount:
       account_id:      { type: integer, notnull: true, primary: true }
       user_id:         { type: integer, notnull: true, primary: true }
       is_manager:      { type: boolean, default: false }
+      position:        { type: integer }
     relations:
       Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: UserAccount }
       User:            { class: sfGuardUser, foreign: id, local: user_id, onDelete: CASCADE, foreignAlias: UserAccount }

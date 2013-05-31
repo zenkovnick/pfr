@@ -8,9 +8,10 @@ class settingsActions extends sfActions {
             $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
         }
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
-        $this->planes = PlaneTable::getPlanesByAccount($account_id);
         $this->account_form = new AccountForm($this->account);
         $this->user_form = new MyInformationSettingsForm($this->user);
+        $this->planes = PlaneTable::getPlanesByAccount($account_id);
+        $this->pilots = sfGuardUserTable::getPilotsByAccount($account_id);
     }
 
     public function executeProcessMyInformationData(sfWebRequest $request){
@@ -57,21 +58,34 @@ class settingsActions extends sfActions {
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
-                $plane = $form->save();
-                $account_plane = new AccountPlane();
-                $account_plane->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
-                $account_plane->setPlane($plane);
-                $account_plane->save();
-                $plane->setPosition(PlaneTable::getMaxPosition($request->getParameter('account_id')) + 1);
-                $plane->save();
-                echo json_encode(
-                    array(
-                        'result' => 'OK',
-                        'account_id' => $plane->getId(),
-                        'new_form_num' => $request->getParameter('new_form_num'),
-                        'tail_number' => $plane->getTailNumber()
-                    )
-                );
+                $values = $form->getTaintedValues();
+                if(!($plane = PlaneTable::existPlane($values['tail_number']))){
+                    $plane = $form->save();
+                }
+                if(!AccountPlaneTable::existPlaneInAccount($plane->getId(), $request->getParameter('account_id'))){
+                    $account_plane = new AccountPlane();
+                    $account_plane->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
+                    $account_plane->setPlane($plane);
+                    $account_plane->setPosition(AccountPlaneTable::getMaxPosition($request->getParameter('account_id')) + 1);
+                    $account_plane->save();
+                    echo json_encode(
+                        array(
+                            'result' => 'OK',
+                            'plane_id' => $plane->getId(),
+                            'new_form_num' => $request->getParameter('new_form_num'),
+                            'tail_number' => $plane->getTailNumber()
+                        )
+                    );
+                } else {
+                    $error_fields[] = 'tail_number';
+                    echo json_encode(
+                        array(
+                            'result' => 'Failed',
+                            'error_fields' => $error_fields,
+                            'new_form_num' => $request->getParameter('new_form_num'),
+                        )
+                    );
+                }
             } else {
                 echo json_encode(
                     array(
@@ -87,19 +101,46 @@ class settingsActions extends sfActions {
     public function executeUpdatePlane(sfWebRequest $request) {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
-        $form = new PlaneForm(Doctrine_Core::getTable('Plane')->find($request->getParameter('plane_id')));
+        $old_plane = Doctrine_Core::getTable('Plane')->find($request->getParameter('plane_id'));
+        $form = new PlaneForm($old_plane);
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
-                $form->getObject()->save();
-                $form->save();
-                echo json_encode(
-                    array(
-                        'result' => 'OK',
-                        'plane_id' => $form->getObject()->getId(),
-                        'tail_number' => $form->getObject()->getTailNumber()
-                    )
-                );
+                $values = $form->getTaintedValues();
+                if($old_plane->getTailNumber() != $values['tail_number']){
+                    if(!($plane = PlaneTable::existPlane($values['tail_number']))){
+                        $form->getObject()->save();
+                        $plane = $form->save();
+                        echo json_encode(
+                            array(
+                                'result' => 'OK',
+                                'plane_id' => $plane->getId(),
+                                'tail_number' => $plane->getTailNumber()
+                            )
+                        );
+                    } else {
+                        $old_account_plane = AccountPlaneTable::existPlaneInAccount($old_plane->getId(), $request->getParameter('account_id'));
+                        $old_account_plane->setPlane($plane);
+                        $old_account_plane->save();
+                        echo json_encode(
+                            array(
+                                'result' => 'Changed',
+                                'new_plane_id' => $plane->getId(),
+                                'old_plane_id' => $old_plane->getId(),
+                                'tail_number' => $plane->getTailNumber()
+                            )
+                        );
+                    }
+                } else {
+                    echo json_encode(
+                        array(
+                            'result' => 'OK',
+                            'plane_id' => $old_plane->getId(),
+                            'tail_number' => $old_plane->getTailNumber()
+                        )
+                    );
+
+                }
             } else {
                 echo json_encode(
                     array(
@@ -150,12 +191,12 @@ class settingsActions extends sfActions {
         $ids_json = $request->getParameter('ids');
         $ids = array_flip(json_decode($ids_json));
         $account_id = $request->getParameter('account_id');
-        $planes = PlaneTable::getPlanesByAccount($account_id);
-        foreach($planes as $plane){
-            $curr_position = $ids[$plane->getId()] + 1;
-            if($plane->getPosition() != $curr_position){
-                $plane->setPosition($curr_position);
-                $plane->save();
+        $account_planes = AccountPlaneTable::getPlanesByAccount($account_id);
+        foreach($account_planes as $account_plane){
+            $curr_position = $ids[$account_plane->getPlaneId()] + 1;
+            if($account_plane->getPosition() != $curr_position){
+                $account_plane->setPosition($curr_position);
+                $account_plane->save();
             }
         }
 
@@ -172,25 +213,43 @@ class settingsActions extends sfActions {
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
-                $pilot = $form->save();
-                $user_account = new UserAccount();
-                $user_account->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
-                $user_account->setUser($pilot);
-                $user_account->save();
-                $pilot->setPosition(PlaneTable::getMaxPosition($request->getParameter('account_id')) + 1);
-                $pilot->save();
-                echo json_encode(
-                    array(
-                        'result' => 'OK',
-                        'pilot_id' => $pilot->getId(),
-                        'new_form_num' => $request->getParameter('new_form_num'),
-                        'name' => $pilot->getFirstName()
-                    )
-                );
+                $values = $form->getTaintedValues();
+                if(sfGuardUserTable::checkUserByUsername($values['username'])){
+                    $pilot = $form->save();
+                    $user_account = new UserAccount();
+                    $user_account->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
+                    $user_account->setUser($pilot);
+                    $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
+                    $user_account->save();
+                    echo json_encode(
+                        array(
+                            'result' => 'OK',
+                            'pilot_id' => $pilot->getId(),
+                            'new_form_num' => $request->getParameter('new_form_num'),
+                            'name' => $pilot->getFirstName()
+                        )
+                    );
+                } else {
+                    echo json_encode(
+                        array(
+                            'result' => 'Failed',
+                            'type' => 'username_exists',
+                            'new_form_num' => $request->getParameter('new_form_num'),
+                        )
+                    );
+                }
+
             } else {
+                $errors = $form->getErrorSchema()->getErrors();
+                $error_fields = array();
+                foreach($errors as $key => $error){
+                    $error_fields[] = $key;
+                }
                 echo json_encode(
                     array(
                         'result' => 'Failed',
+                        'error_fields' => $error_fields,
+                        'new_form_num' => $request->getParameter('new_form_num'),
                     )
                 );
 
@@ -216,9 +275,16 @@ class settingsActions extends sfActions {
                     )
                 );
             } else {
+                $errors = $form->getErrorSchema()->getErrors();
+                $error_fields = array();
+                foreach($errors as $key => $error){
+                    $error_fields[] = $key;
+                }
                 echo json_encode(
                     array(
-                        'result' => 'Failed'
+                        'result' => 'Failed',
+                        'error_fields' => $error_fields,
+                        'pilot_id' => $request->getParameter('pilot_id'),
                     )
                 );
 
@@ -265,12 +331,12 @@ class settingsActions extends sfActions {
         $ids_json = $request->getParameter('ids');
         $ids = array_flip(json_decode($ids_json));
         $account_id = $request->getParameter('account_id');
-        $pilots = sfGuardUserTable::getPilotsByAccount($account_id);
-        foreach($pilots as $pilot){
-            $curr_position = $ids[$pilot->getId()] + 1;
-            if($pilot->getPosition() != $curr_position){
-                $pilot->setPosition($curr_position);
-                $pilot->save();
+        $account_pilots = UserAccountTable::getPilotsByAccount($account_id);
+        foreach($account_pilots as $account_pilot){
+            $curr_position = $ids[$account_pilot->getUserId()] + 1;
+            if($account_pilot->getPosition() != $curr_position){
+                $account_pilot->setPosition($curr_position);
+                $account_pilot->save();
             }
         }
 

@@ -80,6 +80,22 @@
         </ul>
         <a href="" id="add-plane-link">+ New Plane</a>
     </li>
+    <li class="pilots">
+        <ul class="pilot-list" id="pilot_container">
+            <?php foreach($pilots as $pilot): ?>
+                <li class="pilot-entity" id="pilot_<?php echo $pilot->getId() ?>">
+                    <span class="handler hidden">Handler</span>
+                    <input type="hidden" value="<?php echo $pilot->getId() ?>" />
+                    <div class="pilot-header">
+                        <span class="name"><?php echo $pilot->getFirstName() ?></span>
+                        <a href="" class="edit-pilot-link hidden">Edit</a>
+                        <a href="" class="cancel-pilot-link hidden">Cancel</a>
+                    </div>
+                </li>
+            <?php endforeach ?>
+        </ul>
+        <a href="" id="add-pilot-link">+ New Pilot</a>
+    </li>
 </ul>
 
 <script type="text/javascript">
@@ -235,19 +251,19 @@
     }
 
     function addPlaneSubmitted(data){
+        var root_li = jQuery('li#new_plane_'+data.new_form_num);
         if(data.result == "OK"){
-            var root_li = jQuery('li#new_'+data.new_form_num);
             jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("span.tail-number", root_li).text(data.tail_number);
             jQuery("div.plane-header", root_li).removeClass('hidden');
             //jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.plane_id);
-            jQuery("a.edit-risk-factor-link", root_li).bind('click', editPlane);
-            jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelPlaneEdit);
-            jQuery('a.delete_risk_factor', root_li).bind('click', deletePlane);
+            jQuery("a.edit-plane-link", root_li).bind('click', editPlane);
+            jQuery("a.cancel-plane-link", root_li).bind('click', cancelPlaneEdit);
+            jQuery('a.delete_plane', root_li).bind('click', deletePlane);
             jQuery('a.cancel-plane-add', root_li).remove();
             root_li.bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
-            root_li.attr('id', 'rf_'+data.plane_id);
+            root_li.attr('id', 'plane_'+data.plane_id);
             root_li.removeClass('new').addClass('plane-entity');
 
             jQuery( "#plane_container").sortable({
@@ -257,6 +273,14 @@
                 scroll: false,
                 stop: savePlanePosition
             });
+        }  else if(data.result == "Failed"){
+
+            for(var i in data.error_fields){
+                if(data.error_fields.hasOwnProperty(i)){
+                    jQuery("#plane_"+data.error_fields[i], root_li).addClass('invalid-field');
+                }
+            }
+
         }
     }
 
@@ -297,11 +321,20 @@
     }
 
     function editPlaneSubmitted(data){
+        var root_li = null;
         if(data.result == "OK"){
-            var root_li = jQuery('li#plane_'+data.plane_id);
+            jQuery('li#plane_'+data.plane_id);
             jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-plane-link", root_li).addClass('hidden');
             jQuery("span.tail-number", root_li).text(data.tail_number);
+        } else if(data.result == "Changed") {
+            root_li = jQuery('li#plane_'+data.old_plane_id);
+            root_li.attr('id', 'plane_'+data.new_plane_id);
+            jQuery("input[type='hidden']").val(data.new_plane_id);
+            jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+            jQuery("a.cancel-plane-link", root_li).addClass('hidden');
+            jQuery("span.tail-number", root_li).text(data.tail_number);
+
         }
     }
 
@@ -350,143 +383,172 @@
     /* PILOT */
 
     function showPilotEditLink(){
-        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
-            jQuery(this).find('a.edit-plane-link').removeClass('hidden');
+        if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-pilot-link').removeClass('hidden');
             jQuery(this).find('.handler').removeClass('hidden');
         }
     }
 
-    function hidePlaneEditLink(){
-        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
-            jQuery(this).find('a.edit-plane-link').addClass('hidden');
+    function hidePilotEditLink(){
+        if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-pilot-link').addClass('hidden');
             jQuery(this).find('.handler').addClass('hidden');
         }
     }
 
-    function addNewPlaneField(num){
+    function addNewPilotField(num){
         return jQuery.ajax({
             type: 'POST',
-            data: {plane_num: num, account_id: account_id},
-            url: '<?php echo url_for("@add_new_plane_field"); ?>',
+            data: {pilot_num: num, account_id: account_id},
+            url: '<?php echo url_for("@add_new_pilot_field"); ?>',
             async: false
         }).responseText;
     }
 
-    function addPlane(event){
+    function addPilot(event){
         event.preventDefault();
-        var el = jQuery(addNewPlaneField(new_plane_count));
-        jQuery('a.cancel-plane-add', el).bind('click', cancelPlaneAdd);
-        new_plane_count++;
-        jQuery('ul.plane-list').append(el);
+        var el = jQuery(addNewPilotField(new_pilot_count));
+        jQuery('a.cancel-pilot-add', el).bind('click', cancelPilotAdd);
+        new_pilot_count++;
+        jQuery('ul.pilot-list').append(el);
         el.show(show_delay);
     }
 
-    function cancelPlaneAdd(event){
+    function cancelPilotAdd(event){
         event.preventDefault();
         var root_li = jQuery(this).closest('li.new');
         root_li.hide(hide_delay, function(){jQuery(this).remove()});
     }
 
-    function validateAndSubmitAddPlane(event) {
+    function validateAndSubmitAddPilot(event) {
         event.preventDefault();
         var valid = true;
-        var tail_number = jQuery('input.tail-number', this);
-        if(tail_number.val() == '') {
+        var name = jQuery('input.name', this);
+        if(name.val() == '') {
             valid = false;
-            tail_number.addClass('invalid-field');
+            name.addClass('invalid-field');
+        }
+        var username = jQuery('input.username', this);
+        if(username.val() == '') {
+            valid = false;
+            username.addClass('invalid-field');
         }
 
         if(valid){
             jQuery('.invalid-field', this).removeClass('invalid-field');
-            jQuery(this).ajaxSubmit(add_plane_options_submit);
+            jQuery(this).ajaxSubmit(add_pilot_options_submit);
         }
 
     }
 
-    function addPlaneSubmitted(data){
+    function addPilotSubmitted(data){
+        var root_li = jQuery('li#new_pilot_'+data.new_form_num);
         if(data.result == "OK"){
-            var root_li = jQuery('li#new_'+data.new_form_num);
-            jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
-            jQuery("span.tail-number", root_li).text(data.tail_number);
-            jQuery("div.plane-header", root_li).removeClass('hidden');
-            //jQuery("span.handler", root_li).removeClass('hidden');
-            jQuery("input[type='hidden']", root_li).val(data.plane_id);
-            jQuery("a.edit-risk-factor-link", root_li).bind('click', editPlane);
-            jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelPlaneEdit);
-            jQuery('a.delete_risk_factor', root_li).bind('click', deletePlane);
-            jQuery('a.cancel-plane-add', root_li).remove();
-            root_li.bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
-            root_li.attr('id', 'rf_'+data.plane_id);
-            root_li.removeClass('new').addClass('plane-entity');
 
-            jQuery( "#plane_container").sortable({
+            jQuery("span.name", root_li).text(data.name);
+
+            jQuery("div.pilot-header", root_li).removeClass('hidden');
+            //jQuery("span.handler", root_li).removeClass('hidden');
+            jQuery("input[type='hidden']", root_li).val(data.pilot_id);
+            jQuery("a.edit-pilot-link", root_li).bind('click', editPilot);
+            jQuery("a.cancel-pilot-link", root_li).bind('click', cancelPilotEdit);
+            jQuery('a.delete_pilot', root_li).bind('click', deletePilot);
+            jQuery('a.cancel-pilot-add', root_li).remove();
+            root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
+            root_li.attr('id', 'pilot_'+data.pilot_id);
+            root_li.removeClass('new').addClass('pilot-entity');
+
+            jQuery( "#pilot_container").sortable({
                 containment: "parent",
                 axis: "y",
                 handle: "span.handler",
                 scroll: false,
-                stop: savePlanePosition
+                stop: savePilotPosition
             });
+            jQuery("div.pilot-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+        } else if(data.result == "Failed"){
+
+            for(var i in data.error_fields){
+                if(data.error_fields.hasOwnProperty(i)){
+                    jQuery("#sf_guard_user_"+data.error_fields[i], root_li).addClass('invalid-field');
+                }
+            }
+
         }
     }
 
-    function editPlane(event){
+    function editPilot(event){
         event.preventDefault();
-        var root_el = jQuery(this).closest('li.plane-entity');
+        var root_el = jQuery(this).closest('li.pilot-entity');
         root_el.addClass('editing');
         jQuery(this).addClass('hidden');
-        root_el.find('a.cancel-plane-link').removeClass('hidden');
-        var plane_id= root_el.find('input[type="hidden"]').val();
+        root_el.find('a.cancel-pilot-link').removeClass('hidden');
+        var pilot_id= root_el.find('input[type="hidden"]').val();
         var form_el = jQuery(jQuery.ajax({
             type: 'GET',
-            data: {plane_id: plane_id, account_id: account_id},
-            url: '<?php echo url_for("@edit_plane"); ?>',
+            data: {pilot_id: pilot_id, account_id: account_id},
+            url: '<?php echo url_for("@edit_pilot"); ?>',
             async: false
         }).responseText);
-        jQuery('a.delete-plane', form_el).bind('click', deletePlane);
+        jQuery('a.delete-pilot', form_el).bind('click', deletePilot);
 
         root_el.append(form_el);
         form_el.show(show_delay);
 
     }
 
-    function validateAndSubmitEditPlane(event) {
+    function validateAndSubmitEditPilot(event) {
         event.preventDefault();
         var valid = true;
-        var tail_number = jQuery('input.tail-number', this);
-        if(tail_number.val() == '') {
+        var name = jQuery('input.name', this);
+        if(name.val() == '') {
             valid = false;
-            tail_number.addClass('invalid-field');
+            name.addClass('invalid-field');
         }
+        var username = jQuery('input.username', this);
+        if(username.val() == '') {
+            valid = false;
+            username.addClass('invalid-field');
+        }
+
 
         if(valid){
             jQuery('.invalid-field', this).removeClass('invalid-field');
-            jQuery(this).ajaxSubmit(edit_plane_options_submit);
+            jQuery(this).ajaxSubmit(edit_pilot_options_submit);
         }
 
     }
 
-    function editPlaneSubmitted(data){
+    function editPilotSubmitted(data){
+        var root_li = jQuery('li#pilot_'+data.pilot_id);
         if(data.result == "OK"){
-            var root_li = jQuery('li#plane_'+data.plane_id);
-            jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
-            jQuery("a.cancel-plane-link", root_li).addClass('hidden');
-            jQuery("span.tail-number", root_li).text(data.tail_number);
+            jQuery("div.pilot-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+            jQuery("a.cancel-pilot-link", root_li).addClass('hidden');
+            jQuery("span.name", root_li).text(data.name);
+        } else if(data.result == "Failed"){
+
+            for(var i in data.error_fields){
+                if(data.error_fields.hasOwnProperty(i)){
+                    jQuery("#sf_guard_user_"+data.error_fields[i], root_li).addClass('invalid-field');
+                }
+            }
+
         }
     }
 
-    function cancelPlaneEdit(event){
+    function cancelPilotEdit(event){
         event.preventDefault();
-        var root_li = jQuery(this).closest('li.plane-entity');
+        var root_li = jQuery(this).closest('li.pilot-entity');
         jQuery(this).addClass('hidden');
-        root_li.find("div.plane-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
+        root_li.find("div.pilot-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
         root_li.removeClass('editing');
     }
 
-    function deletePlane() {
+    function deletePilot() {
         if(confirm("Are You Sure?")){
             var root_li = jQuery(this).closest('li');
             jQuery.ajax({
-                url: '<?php echo url_for('@delete_plane'); ?>',
+                url: '<?php echo url_for('@delete_pilot'); ?>',
                 data: {id: jQuery("input[type='hidden']", root_li).val()},
                 type: 'POST',
                 dataType: 'json',
@@ -500,14 +562,14 @@
         return false;
     }
 
-    function savePlanePosition(){
+    function savePilotPosition(){
         var positions = new Array();
-        jQuery("#plane_container li").each(function(){
+        jQuery("#pilot_container li").each(function(){
             positions.push(jQuery(this).find("input[type='hidden']").val());
         });
         var json_obj =  JSON.stringify(positions);
         jQuery.ajax({
-            url: '<?php echo url_for("@save_plane_position") ?>',
+            url: '<?php echo url_for("@save_pilot_position") ?>',
             type: 'POST',
             data: {ids: json_obj, account_id: account_id},
             success: function() {
@@ -528,12 +590,26 @@
         jQuery("a.edit-plane-link").bind('click', editPlane);
         jQuery("a.cancel-plane-link").bind('click', cancelPlaneEdit);
         jQuery('#add-plane-link').bind('click', addPlane);
+
+        jQuery("li.pilot-entity").bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
+        jQuery("a.edit-pilot-link").bind('click', editPilot);
+        jQuery("a.cancel-pilot-link").bind('click', cancelPilotEdit);
+        jQuery('#add-pilot-link').bind('click', addPilot);
+
         jQuery( "#plane_container").sortable({
             containment: "parent",
             axis: "y",
             handle: "span.handler",
             scroll: false,
             stop: savePlanePosition
+        });
+
+        jQuery( "#pilot_container").sortable({
+            containment: "parent",
+            axis: "y",
+            handle: "span.handler",
+            scroll: false,
+            stop: savePilotPosition
         });
     });
 </script>

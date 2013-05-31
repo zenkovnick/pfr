@@ -7,15 +7,18 @@
  * 
  * @property integer $account_id
  * @property integer $plane_id
+ * @property integer $position
  * @property Account $Account
  * @property Plane $Plane
  * 
  * @method integer      getAccountId()  Returns the current record's "account_id" value
  * @method integer      getPlaneId()    Returns the current record's "plane_id" value
+ * @method integer      getPosition()   Returns the current record's "position" value
  * @method Account      getAccount()    Returns the current record's "Account" value
  * @method Plane        getPlane()      Returns the current record's "Plane" value
  * @method AccountPlane setAccountId()  Sets the current record's "account_id" value
  * @method AccountPlane setPlaneId()    Sets the current record's "plane_id" value
+ * @method AccountPlane setPosition()   Sets the current record's "position" value
  * @method AccountPlane setAccount()    Sets the current record's "Account" value
  * @method AccountPlane setPlane()      Sets the current record's "Plane" value
  * 
@@ -36,6 +39,9 @@ abstract class BaseAccountPlane extends sfDoctrineRecord
         $this->hasColumn('plane_id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
+             ));
+        $this->hasColumn('position', 'integer', null, array(
+             'type' => 'integer',
              ));
     }
 

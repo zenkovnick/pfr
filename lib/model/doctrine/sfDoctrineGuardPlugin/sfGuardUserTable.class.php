@@ -65,7 +65,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->from("sfGuardUser u")
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account_id)
-            ->orderBy('u.position')
+            ->orderBy('ua.position')
             ->execute();
     }
 

@@ -13,9 +13,11 @@ abstract class BaseAccountPlaneFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'position'   => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
+      'position'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('account_plane_filters[%s]');
@@ -37,6 +39,7 @@ abstract class BaseAccountPlaneFormFilter extends BaseFormFilterDoctrine
     return array(
       'account_id' => 'Number',
       'plane_id'   => 'Number',
+      'position'   => 'Number',
     );
   }
 }
