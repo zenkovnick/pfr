@@ -12,6 +12,9 @@ class settingsActions extends sfActions {
         $this->user_form = new MyInformationSettingsForm($this->user);
         $this->planes = PlaneTable::getPlanesByAccount($account_id);
         $this->pilots = sfGuardUserTable::getPilotsByAccount($account_id);
+        $user_account = UserAccountTable::getUserAccount($this->getUser()->getGuardUser()->getId(), $account_id);
+
+        $this->can_manage = $user_account->getIsManager();
     }
 
     public function executeProcessMyInformationData(sfWebRequest $request){
@@ -220,6 +223,7 @@ class settingsActions extends sfActions {
                     $user_account->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
                     $user_account->setUser($pilot);
                     $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
+                    $user_account->setIsManager($values['can_manage']);
                     $user_account->save();
                     echo json_encode(
                         array(
@@ -262,11 +266,17 @@ class settingsActions extends sfActions {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
         $form = new PilotForm(Doctrine_Core::getTable('sfGuardUser')->find($request->getParameter('pilot_id')));
+        $user_account = UserAccountTable::getUserAccount($request->getParameter('pilot_id'), $request->getParameter('account_id'));
+        $form->setDefault('can_manage',$user_account->getIsManager());
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
+                $values = $form->getTaintedValues();
                 $form->getObject()->save();
                 $form->save();
+                $user_account->setIsManager(isset($values['can_manage']) ? true : false);
+                $user_account->save();
+
                 echo json_encode(
                     array(
                         'result' => 'OK',
@@ -313,7 +323,10 @@ class settingsActions extends sfActions {
         $account_id = intval($request->getParameter("account_id"));
         $pilot = Doctrine_Core::getTable('sfGuardUser')->find($pilot_id);
         $this->form = new PilotForm($pilot);
-        return $this->renderPartial('editPilot',array('form' => $this->form, 'pilot' => $pilot, 'account_id' => $account_id));
+        $user_account = UserAccountTable::getUserAccount($pilot_id, $account_id);
+        $account = $user_account->getAccount();
+        $this->form->setDefault('can_manage', $user_account->getIsManager());
+        return $this->renderPartial('editPilot',array('form' => $this->form, 'pilot' => $pilot, 'account' => $account));
     }
 
     public function executeAddNewPilotField(sfWebRequest $request){
