@@ -296,4 +296,5 @@ class settingsActions extends sfActions {
     {
         return sfView::NONE;
     }
+
 }

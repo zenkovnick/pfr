@@ -34,7 +34,7 @@ all:
     monthly_news_feed: '8448c32b1c'
 
   mandrill:
-    api_key: 'idgZJSvl5LhbphPFzt-hFg'
+    api_key: 'Yv1t_hEvBEXYuT1vlY9YDg'
 
   password:
     change_title: 'Password change'
