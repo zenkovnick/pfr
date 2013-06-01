@@ -448,7 +448,9 @@
     }
 
     function addPilotSubmitted(data){
+        alert('a');
         var root_li = jQuery('li#new_pilot_'+data.new_form_num);
+
         if(data.result == "OK"){
 
             jQuery("span.name", root_li).text(data.name);

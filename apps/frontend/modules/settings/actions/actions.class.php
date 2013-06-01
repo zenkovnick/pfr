@@ -226,11 +226,9 @@ class settingsActions extends sfActions {
                     $user_account->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
                     $user_account->setUser($pilot);
                     $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
-                    $user_account->setIsManager($values['can_manage']);
+                    $user_account->setIsManager(isset($values['can_manage']));
                     $user_account->save();
 
-                    $url = $this->generateUrl('signup_invite', array('token' => $pilot->getInviteToken()), true);
-                    EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url);
                     echo json_encode(
                         array(
                             'result' => 'OK',
@@ -239,6 +237,8 @@ class settingsActions extends sfActions {
                             'name' => $pilot->getFirstName()
                         )
                     );
+                    //$url = $this->generateUrl('signup_invite', array('token' => $pilot->getInviteToken()), true);
+                    //EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url);
                 } else {
                     echo json_encode(
                         array(
