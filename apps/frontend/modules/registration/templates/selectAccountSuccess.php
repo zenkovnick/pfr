@@ -13,4 +13,7 @@
             <span><?php echo $account->getManager()->getUsername() ?></span>
         </li>
     <?php endforeach; ?>
+    <li>
+        <a href="<?php echo url_for('@create_account') ?>">Create Account</a>
+    </li>
 </ul>

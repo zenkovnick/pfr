@@ -10,6 +10,10 @@
  * @property varchar $chief_pilot_email
  * @property varchar $chief_pilot_name
  * @property integer $managed_by_id
+ * @property boolean $has_modified_form
+ * @property boolean $has_plane
+ * @property boolean $has_pilot
+ * @property boolean $has_flight
  * @property Doctrine_Collection $Planes
  * @property Doctrine_Collection $Users
  * @property sfGuardUser $Manager
@@ -22,6 +26,10 @@
  * @method varchar             getChiefPilotEmail()   Returns the current record's "chief_pilot_email" value
  * @method varchar             getChiefPilotName()    Returns the current record's "chief_pilot_name" value
  * @method integer             getManagedById()       Returns the current record's "managed_by_id" value
+ * @method boolean             getHasModifiedForm()   Returns the current record's "has_modified_form" value
+ * @method boolean             getHasPlane()          Returns the current record's "has_plane" value
+ * @method boolean             getHasPilot()          Returns the current record's "has_pilot" value
+ * @method boolean             getHasFlight()         Returns the current record's "has_flight" value
  * @method Doctrine_Collection getPlanes()            Returns the current record's "Planes" collection
  * @method Doctrine_Collection getUsers()             Returns the current record's "Users" collection
  * @method sfGuardUser         getManager()           Returns the current record's "Manager" value
@@ -33,6 +41,10 @@
  * @method Account             setChiefPilotEmail()   Sets the current record's "chief_pilot_email" value
  * @method Account             setChiefPilotName()    Sets the current record's "chief_pilot_name" value
  * @method Account             setManagedById()       Sets the current record's "managed_by_id" value
+ * @method Account             setHasModifiedForm()   Sets the current record's "has_modified_form" value
+ * @method Account             setHasPlane()          Sets the current record's "has_plane" value
+ * @method Account             setHasPilot()          Sets the current record's "has_pilot" value
+ * @method Account             setHasFlight()         Sets the current record's "has_flight" value
  * @method Account             setPlanes()            Sets the current record's "Planes" collection
  * @method Account             setUsers()             Sets the current record's "Users" collection
  * @method Account             setManager()           Sets the current record's "Manager" value
@@ -69,6 +81,22 @@ abstract class BaseAccount extends sfDoctrineRecord
              ));
         $this->hasColumn('managed_by_id', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('has_modified_form', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('has_plane', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('has_pilot', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('has_flight', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
     }
 

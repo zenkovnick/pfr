@@ -65,7 +65,7 @@
             </form>
 
         </li>
-        <li class="planes">
+        <li class="planes" id="planes">
             <ul class="plane-list" id="plane_container">
                 <?php foreach($planes as $plane): ?>
                     <li class="plane-entity" id="plane_<?php echo $plane->getId() ?>">
@@ -81,7 +81,7 @@
             </ul>
             <a href="" id="add-plane-link">+ New Plane</a>
         </li>
-        <li class="pilots">
+        <li class="pilots" id="pilots">
             <ul class="pilot-list" id="pilot_container">
                 <?php foreach($pilots as $pilot): ?>
                     <li class="pilot-entity <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
@@ -100,6 +100,9 @@
                 <?php endforeach ?>
             </ul>
             <a href="" id="add-pilot-link">+ New Pilot</a>
+        </li>
+        <li>
+            <a href="<?php echo url_for("@form?id={$assessment_form->getId()}") ?>">Modify Risk Assessment Form</a>
         </li>
     <?php endif ?>
 </ul>

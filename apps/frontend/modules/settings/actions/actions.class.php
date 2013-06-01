@@ -13,6 +13,7 @@ class settingsActions extends sfActions {
         $this->planes = PlaneTable::getPlanesByAccount($account_id);
         $this->pilots = sfGuardUserTable::getPilotsByAccount($account_id);
         $user_account = UserAccountTable::getUserAccount($this->getUser()->getGuardUser()->getId(), $account_id);
+        $this->assessment_form = Doctrine_Core::getTable('RiskBuilder')->findOneBy('account_id', $account_id);
 
         $this->can_manage = $user_account->getIsManager();
     }

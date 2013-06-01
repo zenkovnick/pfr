@@ -72,6 +72,10 @@ class registrationActions extends sfActions
                     $user_account->setUser($this->user);
                     $user_account->setIsManager(true);
                     $user_account->save();
+
+                    $risk_builder = new RiskBuilder();
+                    $risk_builder->createDefaultForm($account);
+
                     $this->redirect("@dashboard?account_id={$account->getId()}");
                 }
             }
