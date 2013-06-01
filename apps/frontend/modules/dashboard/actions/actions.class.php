@@ -12,18 +12,30 @@ class dashboardActions extends sfActions {
             $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
         }
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
-
+        if(!$this->checkConditions($this->account)){
+            $this->setTemplate('firstTime');
+        }
     }
 
 
-    private function checkConditions($account_id) {
-        $this->check_conditions = array();
-        $this->check_conditions['signup'] = $this->getUser()->getGuardUser() ? true : false;
-        $this->check_conditions['plane'] = AccountPlaneTable::getPlanesByAccount($account_id) > 0;
-        $risk_builder = Doctrine_Core::getTable('RiskBuilder')->findOneBy('account_id', $account_id);
-        $this->check_conditions['form'] = !$risk_builder->getIsDefault();
-        $this->check_conditions['signup'] = $this->getUser()->getGuardUser() ? true : false;
-        $this->check_conditions['signup'] = $this->getUser()->getGuardUser() ? true : false;
+    private function checkConditions($account) {
+        $valid = true;
+
+        if(AccountPlaneTable::getPlanesByAccount($account->getId())->count() > 0) {
+            $account->setHasPlane(true);
+        } else {
+            $valid = false;
+            $account->setHasPlane(false);
+        }
+
+        /*if(Doctrine_Core::getTable('Flight')->findOneBy('account_id', $account->getId())) {
+            $account->setHasFlight(true);
+        } else {
+            $valid = false;
+            $account->setHasFlight(false);
+        }*/
+
+        return $valid;
 
     }
 }
