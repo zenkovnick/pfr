@@ -47,7 +47,21 @@ class registrationActions extends sfActions
                 }
                 $this->getUser()->signIn($user);
                 $this->redirect('@create_account');
+            }/* else {
+            $errors = $this->form->getErrorSchema()->getErrors();
+            $error_fields = array();
+            foreach($errors as $key => $error){
+                $error_fields[] = $key;
             }
+            echo json_encode(
+                array(
+                    'result' => 'Failed',
+                    'error_fields' => $error_fields,
+                    'new_form_num' => $request->getParameter('new_form_num'),
+                )
+            );
+
+            }*/
         }
     }
 

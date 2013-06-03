@@ -1,3 +1,17 @@
+mitigate_flight:
+  url: /:account_id/edit/flight
+  param: { module: flight, action: mitigate }
+  requirements:
+    account_id: \d+
+
+
+create_flight:
+  url: /:account_id/new/flight
+  param: { module: flight, action: new }
+  requirements:
+    account_id: \d+
+
+
 skip_pilot_condition:
   url: /:account_id/dashboard/skip-pilot-condition
   param: { module: dashboard, action: skipPilotCondition }

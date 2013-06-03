@@ -21,6 +21,7 @@
  * @property Doctrine_Collection $RiskBuilders
  * @property Doctrine_Collection $AccountPlane
  * @property Doctrine_Collection $UserAccount
+ * @property Doctrine_Collection $Flight
  * 
  * @method varchar             getTitle()             Returns the current record's "title" value
  * @method varchar             getPhoto()             Returns the current record's "photo" value
@@ -38,6 +39,7 @@
  * @method Doctrine_Collection getRiskBuilders()      Returns the current record's "RiskBuilders" collection
  * @method Doctrine_Collection getAccountPlane()      Returns the current record's "AccountPlane" collection
  * @method Doctrine_Collection getUserAccount()       Returns the current record's "UserAccount" collection
+ * @method Doctrine_Collection getFlight()            Returns the current record's "Flight" collection
  * @method Account             setTitle()             Sets the current record's "title" value
  * @method Account             setPhoto()             Sets the current record's "photo" value
  * @method Account             setChiefPilotEmail()   Sets the current record's "chief_pilot_email" value
@@ -54,6 +56,7 @@
  * @method Account             setRiskBuilders()      Sets the current record's "RiskBuilders" collection
  * @method Account             setAccountPlane()      Sets the current record's "AccountPlane" collection
  * @method Account             setUserAccount()       Sets the current record's "UserAccount" collection
+ * @method Account             setFlight()            Sets the current record's "Flight" collection
  * 
  * @package    blueprint
  * @subpackage model
@@ -135,6 +138,10 @@ abstract class BaseAccount extends sfDoctrineRecord
              'foreign' => 'account_id'));
 
         $this->hasMany('UserAccount', array(
+             'local' => 'id',
+             'foreign' => 'account_id'));
+
+        $this->hasMany('Flight', array(
              'local' => 'id',
              'foreign' => 'account_id'));
 

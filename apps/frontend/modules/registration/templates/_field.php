@@ -21,5 +21,5 @@ if(isset($type) && isset($accept)){
 
 <?php
     echo $field->render($options);
-
+    echo $field->renderError();
 ?>

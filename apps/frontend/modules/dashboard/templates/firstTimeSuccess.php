@@ -1,6 +1,7 @@
 <?php slot('header') ?>
     <?php include_partial('menu/header_menu', array('account' => $account)); ?>
 <?php end_slot() ?>
+<a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>">New Flight</a>
 <div>
     <ul class="conditions">
         <li class="signup-condition condition">
