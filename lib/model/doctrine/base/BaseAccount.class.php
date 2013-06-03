@@ -13,6 +13,7 @@
  * @property boolean $has_modified_form
  * @property boolean $has_plane
  * @property boolean $has_pilot
+ * @property boolean $has_skipped_pilot
  * @property boolean $has_flight
  * @property Doctrine_Collection $Planes
  * @property Doctrine_Collection $Users
@@ -29,6 +30,7 @@
  * @method boolean             getHasModifiedForm()   Returns the current record's "has_modified_form" value
  * @method boolean             getHasPlane()          Returns the current record's "has_plane" value
  * @method boolean             getHasPilot()          Returns the current record's "has_pilot" value
+ * @method boolean             getHasSkippedPilot()   Returns the current record's "has_skipped_pilot" value
  * @method boolean             getHasFlight()         Returns the current record's "has_flight" value
  * @method Doctrine_Collection getPlanes()            Returns the current record's "Planes" collection
  * @method Doctrine_Collection getUsers()             Returns the current record's "Users" collection
@@ -44,6 +46,7 @@
  * @method Account             setHasModifiedForm()   Sets the current record's "has_modified_form" value
  * @method Account             setHasPlane()          Sets the current record's "has_plane" value
  * @method Account             setHasPilot()          Sets the current record's "has_pilot" value
+ * @method Account             setHasSkippedPilot()   Sets the current record's "has_skipped_pilot" value
  * @method Account             setHasFlight()         Sets the current record's "has_flight" value
  * @method Account             setPlanes()            Sets the current record's "Planes" collection
  * @method Account             setUsers()             Sets the current record's "Users" collection
@@ -91,6 +94,10 @@ abstract class BaseAccount extends sfDoctrineRecord
              'default' => false,
              ));
         $this->hasColumn('has_pilot', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('has_skipped_pilot', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
              ));

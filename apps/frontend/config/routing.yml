@@ -1,3 +1,9 @@
+skip_pilot_condition:
+  url: /:account_id/dashboard/skip-pilot-condition
+  param: { module: dashboard, action: skipPilotCondition }
+  requirements:
+    account_id: \d+
+
 dashboard:
   url: /:account_id/dashboard
   param: { module: dashboard, action: index }

@@ -125,6 +125,7 @@ Account:
     has_modified_form: {type: boolean, default: false}
     has_plane:         {type: boolean, default: false}
     has_pilot:         {type: boolean, default: false}
+    has_skipped_pilot: {type: boolean, default: false}
     has_flight:        {type: boolean, default: false}
   relations:
     Planes:            { class: Plane, refClass: AccountPlane, local: plane_id, foreign: account_id }
