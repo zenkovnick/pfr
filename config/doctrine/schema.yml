@@ -176,6 +176,7 @@ Flight:
       pic_id:          {type: integer }
       sic_id:          {type: integer }
       trip_number:     {type: varchar(255)}
+      airport_from:    {type: varchar(255)}
       airport_to:      {type: varchar(255)}
       departure_date:  {type: datetime}
       risk_factor_sum: {type: integer }

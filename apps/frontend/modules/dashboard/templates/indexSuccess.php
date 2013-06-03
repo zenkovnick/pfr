@@ -4,5 +4,4 @@
 
 <h1>Dashboard</h1>
 
-<?php echo $account->getTitle() ?>
-<a href="<?php echo url_for("@signout") ?>">Sign Out</a>
+<a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>">New Flight</a>

@@ -52,4 +52,12 @@ class RiskBuilder extends BaseRiskBuilder
 
         }
     }
+
+    public function getOrderedFlightInformationFields() {
+        return FlightInformationFieldTable::getAllFields($this->getId());
+    }
+
+    public function getOrderedRiskFactors() {
+        return RiskFactorFieldTable::getAllRiskFactors($this->getId());
+    }
 }

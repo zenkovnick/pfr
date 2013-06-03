@@ -12,4 +12,44 @@
  */
 class Flight extends BaseFlight
 {
+    public function generateFromDB($account_obj){
+        $this->setAccount($account_obj);
+
+        $risk_builder = $this->getAccount()->getRiskBuilders()->getFirst(); /* Change if there are more than one risk builder in account */
+
+        $result = array();
+        $result['form_name']  = $risk_builder->getFormName();
+        $result['form_instructions'] = $risk_builder->getFormInstructions();
+        $result['from_airport'] = null;
+        $result['to_airport'] = null;
+        $result['departure_date'] = null;
+        $result['departure_time'] = null;
+        foreach($risk_builder->getOrderedFlightInformationFields() as $field){
+            if(!$field->getIsHide()){
+                $flight_information['name'] = $field->getInformationName();
+                $flight_information['value'] = null;
+                $result['flight_information'][] = $flight_information;
+            }
+        }
+        $result['risk_analysis'] = array();
+        foreach($risk_builder->getOrderedRiskFactors() as $field){
+            $risk_factor = array();
+            $risk_factor['question'] = $field->getQuestion();
+            $risk_factor['help_message'] = $field->getHelpMessage();
+            $risk_factor['mitigation'] = null;
+            $risk_factor['selected_response'] = null;
+            $risk_factor['response_options'] = array();
+            foreach($field->getResponseOptions() as $option){
+                $response = array();
+                $response['text'] = $option->getResponseText();
+                $response['value'] = $option->getResponseValue();
+                $response['note'] = $option->getNote();
+                $risk_factor['response_options'][] = $response;
+            }
+            $result['risk_analysis'][] = $risk_factor;
+        }
+        $this->setInfo(json_encode($result));
+        $this->save();
+        return $result;
+    }
 }

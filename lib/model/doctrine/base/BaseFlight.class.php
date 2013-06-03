@@ -10,6 +10,7 @@
  * @property integer $pic_id
  * @property integer $sic_id
  * @property varchar $trip_number
+ * @property varchar $airport_from
  * @property varchar $airport_to
  * @property datetime $departure_date
  * @property integer $risk_factor_sum
@@ -25,6 +26,7 @@
  * @method integer     getPicId()           Returns the current record's "pic_id" value
  * @method integer     getSicId()           Returns the current record's "sic_id" value
  * @method varchar     getTripNumber()      Returns the current record's "trip_number" value
+ * @method varchar     getAirportFrom()     Returns the current record's "airport_from" value
  * @method varchar     getAirportTo()       Returns the current record's "airport_to" value
  * @method datetime    getDepartureDate()   Returns the current record's "departure_date" value
  * @method integer     getRiskFactorSum()   Returns the current record's "risk_factor_sum" value
@@ -39,6 +41,7 @@
  * @method Flight      setPicId()           Sets the current record's "pic_id" value
  * @method Flight      setSicId()           Sets the current record's "sic_id" value
  * @method Flight      setTripNumber()      Sets the current record's "trip_number" value
+ * @method Flight      setAirportFrom()     Sets the current record's "airport_from" value
  * @method Flight      setAirportTo()       Sets the current record's "airport_to" value
  * @method Flight      setDepartureDate()   Sets the current record's "departure_date" value
  * @method Flight      setRiskFactorSum()   Sets the current record's "risk_factor_sum" value
@@ -72,6 +75,10 @@ abstract class BaseFlight extends sfDoctrineRecord
              'type' => 'integer',
              ));
         $this->hasColumn('trip_number', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
+             ));
+        $this->hasColumn('airport_from', 'varchar', 255, array(
              'type' => 'varchar',
              'length' => 255,
              ));
