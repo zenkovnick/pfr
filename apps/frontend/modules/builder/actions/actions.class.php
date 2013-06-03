@@ -13,8 +13,9 @@ class builderActions extends sfActions
 
     public function executeIndex(sfWebRequest $request)
     {
-        $this->form_id = 1;
-        $this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id);
+        $this->form_id = $request->getParameter('id');
+        $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
+        $this->account = $this->risk_builder->getAccount();
         $this->form = new RiskBuilderForm($this->risk_builder);
         $this->flight_information = FlightInformationFieldTable::getAllFields($this->risk_builder->getId());
         $this->risk_factors = RiskFactorFieldTable::getAllRiskFactors($this->risk_builder->getId());
@@ -35,9 +36,16 @@ class builderActions extends sfActions
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
                 $form->save();
-                $form->getObject()->setRiskBuilder(Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id')));
+                $risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id'));
+                $account = $risk_builder->getAccount();
+                if(!$account->getHasModifiedForm){
+                    $account->setHasModifiedForm(true);
+                    $account->save();
+                }
+                $form->getObject()->setRiskBuilder($risk_builder);
                 $form->getObject()->setPosition(RiskFactorFieldTable::getMaxPosition() + 1);
                 $form->getObject()->save();
+
                 echo json_encode(
                     array(
                         'result' => 'OK',
@@ -151,6 +159,12 @@ class builderActions extends sfActions
         $risk_builder->setMitigationMediumMin($request->getParameter('low_max') + 1);
         $risk_builder->setMitigationMediumMax($request->getParameter('medium_max'));
         $risk_builder->setMitigationHighMin($request->getParameter('medium_max') + 1);
+        $account = $risk_builder->getAccount();
+        if(!$account->getHasModifiedForm){
+            $account->setHasModifiedForm(true);
+            $account->save();
+        }
+
         $risk_builder->save();
         return sfView::NONE;
     }
@@ -188,6 +202,12 @@ class builderActions extends sfActions
                 break;
         }
         $risk_builder->save();
+        $account = $risk_builder->getAccount();
+        if(!$account->getHasModifiedForm){
+            $account->setHasModifiedForm(true);
+            $account->save();
+        }
+
         return sfView::NONE;
     }
 
@@ -199,6 +219,12 @@ class builderActions extends sfActions
         $flight_information_field = Doctrine_Core::getTable("FlightInformationField")->find($field_id);
         $flight_information_field->setIsHide($field_hidding);
         $flight_information_field->save();
+        $account = $flight_information_field->getRiskBuilder()->getAccount();
+        if(!$account->getHasModifiedForm){
+            $account->setHasModifiedForm(true);
+            $account->save();
+        }
+
     }
 
     public function executeSaveRiskFactorPosition(sfWebRequest $request)
@@ -216,6 +242,13 @@ class builderActions extends sfActions
                 $risk_factor->save();
             }
         }
+        $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getParameter('form_id'));
+        $account = $risk_builder->getAccount();
+        if(!$account->getHasModifiedForm){
+            $account->setHasModifiedForm(true);
+            $account->save();
+        }
+
 
         return sfView::NONE;
     }
@@ -228,6 +261,12 @@ class builderActions extends sfActions
         if($flight_information_field->getHiddable()){
             $flight_information_field->setIsHide(!$flight_information_field->getIsHide());
             $flight_information_field->save();
+            $account = $flight_information_field->getRiskBuilder()->getAccount();
+            if(!$account->getHasModifiedForm){
+                $account->setHasModifiedForm(true);
+                $account->save();
+            }
+
             echo json_encode(array('result' => 'OK', 'is_hide' => $flight_information_field->getIsHide()));
         } else {
             echo json_encode(array('result' => 'Failed'));
@@ -251,6 +290,12 @@ class builderActions extends sfActions
                 $flight_information_field->setPosition($curr_position);
                 $flight_information_field->save();
             }
+        }
+        $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getParameter('form_id'));
+        $account = $risk_builder->getAccount();
+        if(!$account->getHasModifiedForm){
+            $account->setHasModifiedForm(true);
+            $account->save();
         }
 
         return sfView::NONE;

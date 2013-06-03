@@ -85,7 +85,7 @@ FlightInformationField:
     risk_builder_id:          {type: integer}
     information_name: {type: string(255)}
     position:         {type: integer}
-    hiddable:         {type: boolean}
+    hiddable:         {type: boolean }
     is_hide:          {type: boolean, default: false}
   relations:
     RiskBuilder:
@@ -122,6 +122,10 @@ Account:
     chief_pilot_email: {type: varchar(255)}
     chief_pilot_name:  {type: varchar(255)}
     managed_by_id:     {type: integer}
+    has_modified_form: {type: boolean, default: false}
+    has_plane:         {type: boolean, default: false}
+    has_pilot:         {type: boolean, default: false}
+    has_flight:        {type: boolean, default: false}
   relations:
     Planes:            { class: Plane, refClass: AccountPlane, local: plane_id, foreign: account_id }
     Users:             { class: sfGuardUser, refClass: UserAccount, local: user_id, foreign: account_id }

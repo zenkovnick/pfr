@@ -9,6 +9,9 @@ class PilotForm extends sfGuardUserForm {
         $this->validatorSchema['first_name'] = new sfValidatorString(array('required' => true));
         $this->validatorSchema['username'] = new sfValidatorEmail(array('required' => true));
 
+        $this->setWidget('can_manage', new sfWidgetFormInputCheckbox());
+        $this->setValidator('can_manage', new sfValidatorBoolean());
+
         $this->disableCSRFProtection();
     }
 }

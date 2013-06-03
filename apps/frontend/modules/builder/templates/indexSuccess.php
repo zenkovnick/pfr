@@ -6,7 +6,7 @@
 <?php end_slot() ?>
 
 <?php slot('header') ?>
-    <?php include_partial('menu/header_menu') ?>
+    <?php include_partial('menu/header_menu', array('account' => $account)) ?>
 <?php end_slot() ?>
 
 

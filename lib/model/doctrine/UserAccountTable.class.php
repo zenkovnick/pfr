@@ -34,4 +34,13 @@ class UserAccountTable extends Doctrine_Table
         $max_position = $query->getMaxPosition();
         return $max_position ? $max_position : 0;
     }
+
+    public static function getUserAccount($user_id, $account_id){
+        return Doctrine_Query::create()
+            ->from('UserAccount ua')
+            ->leftJoin('ua.Account a')
+            ->where('ua.user_id = ?', $user_id)
+            ->andWhere('ua.account_id = ?', $account_id)
+            ->fetchOne();
+    }
 }

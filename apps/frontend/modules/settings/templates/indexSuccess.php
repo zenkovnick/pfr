@@ -46,56 +46,65 @@
         </form>
 
     </li>
-    <li class="account-information">
-        <form id="account_information_settings_form" action="<?php echo url_for("@process_account_information_data?account_id={$account->getId()}") ?>" enctype="multipart/form-data" method="post">
-            <?php echo($account_form->renderHiddenFields()) ?>
-            <?php echo($account_form->renderGlobalErrors()) ?>
-            <ul>
-                <li class="photo-block"><?php include_partial('settings/account_avatar_field', array('field' => $account_form['photo'], 'account' => $account)) ?></li>
-                <li class="input-block"><?php include_partial('settings/field',
-                        array('field' => $account_form['title'], 'class' => 'account_title', 'placeholder' => 'Title')) ?>
-                </li>
-                <li class="input-block"><?php include_partial('settings/field',
-                        array('field' => $account_form['chief_pilot_name'], 'class' => 'cpn', 'placeholder' => 'Chief Pilot Name')) ?>
-                </li>
-                <li><button type="submit">Save</button></li>
+    <?php if($can_manage): ?>
+        <li class="account-information">
+            <form id="account_information_settings_form" action="<?php echo url_for("@process_account_information_data?account_id={$account->getId()}") ?>" enctype="multipart/form-data" method="post">
+                <?php echo($account_form->renderHiddenFields()) ?>
+                <?php echo($account_form->renderGlobalErrors()) ?>
+                <ul>
+                    <li class="photo-block"><?php include_partial('settings/account_avatar_field', array('field' => $account_form['photo'], 'account' => $account)) ?></li>
+                    <li class="input-block"><?php include_partial('settings/field',
+                            array('field' => $account_form['title'], 'class' => 'account_title', 'placeholder' => 'Title')) ?>
+                    </li>
+                    <li class="input-block"><?php include_partial('settings/field',
+                            array('field' => $account_form['chief_pilot_name'], 'class' => 'cpn', 'placeholder' => 'Chief Pilot Name')) ?>
+                    </li>
+                    <li><button type="submit">Save</button></li>
+                </ul>
+
+            </form>
+
+        </li>
+        <li class="planes" id="planes">
+            <ul class="plane-list" id="plane_container">
+                <?php foreach($planes as $plane): ?>
+                    <li class="plane-entity" id="plane_<?php echo $plane->getId() ?>">
+                        <span class="handler hidden">Handler</span>
+                        <input type="hidden" value="<?php echo $plane->getId() ?>" />
+                        <div class="plane-header">
+                            <span class="tail-number"><?php echo $plane->getTailNumber() ?></span>
+                            <a href="" class="edit-plane-link hidden">Edit</a>
+                            <a href="" class="cancel-plane-link hidden">Cancel</a>
+                        </div>
+                    </li>
+                <?php endforeach ?>
             </ul>
-
-        </form>
-
-    </li>
-    <li class="planes">
-        <ul class="plane-list" id="plane_container">
-            <?php foreach($planes as $plane): ?>
-                <li class="plane-entity" id="plane_<?php echo $plane->getId() ?>">
-                    <span class="handler hidden">Handler</span>
-                    <input type="hidden" value="<?php echo $plane->getId() ?>" />
-                    <div class="plane-header">
-                        <span class="tail-number"><?php echo $plane->getTailNumber() ?></span>
-                        <a href="" class="edit-plane-link hidden">Edit</a>
-                        <a href="" class="cancel-plane-link hidden">Cancel</a>
-                    </div>
-                </li>
-            <?php endforeach ?>
-        </ul>
-        <a href="" id="add-plane-link">+ New Plane</a>
-    </li>
-    <li class="pilots">
-        <ul class="pilot-list" id="pilot_container">
-            <?php foreach($pilots as $pilot): ?>
-                <li class="pilot-entity" id="pilot_<?php echo $pilot->getId() ?>">
-                    <span class="handler hidden">Handler</span>
-                    <input type="hidden" value="<?php echo $pilot->getId() ?>" />
-                    <div class="pilot-header">
-                        <span class="name"><?php echo $pilot->getFirstName() ?></span>
-                        <a href="" class="edit-pilot-link hidden">Edit</a>
-                        <a href="" class="cancel-pilot-link hidden">Cancel</a>
-                    </div>
-                </li>
-            <?php endforeach ?>
-        </ul>
-        <a href="" id="add-pilot-link">+ New Pilot</a>
-    </li>
+            <a href="" id="add-plane-link">+ New Plane</a>
+        </li>
+        <li class="pilots" id="pilots">
+            <ul class="pilot-list" id="pilot_container">
+                <?php foreach($pilots as $pilot): ?>
+                    <li class="pilot-entity <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
+                        <span class="handler hidden">Handler</span>
+                        <input type="hidden" value="<?php echo $pilot->getId() ?>" />
+                        <div class="pilot-header">
+                            <span class="name"><?php echo $pilot->getFirstName() ?></span>
+                            <?php if($pilot->getIsActive()): ?>
+                                <a href="" class="edit-pilot-link hidden">Edit</a>
+                                <a href="" class="cancel-pilot-link hidden">Cancel</a>
+                            <?php else: ?>
+                                <span class="invited">(Invited)</span>
+                            <?php endif ?>
+                        </div>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+            <a href="" id="add-pilot-link">+ New Pilot</a>
+        </li>
+        <li>
+            <a href="<?php echo url_for("@form?id={$assessment_form->getId()}") ?>">Modify Risk Assessment Form</a>
+        </li>
+    <?php endif ?>
 </ul>
 
 <script type="text/javascript">
@@ -383,16 +392,16 @@
     /* PILOT */
 
     function showPilotEditLink(){
+        jQuery(this).find('.handler').removeClass('hidden');
         if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
             jQuery(this).find('a.edit-pilot-link').removeClass('hidden');
-            jQuery(this).find('.handler').removeClass('hidden');
         }
     }
 
     function hidePilotEditLink(){
+        jQuery(this).find('.handler').addClass('hidden');
         if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
             jQuery(this).find('a.edit-pilot-link').addClass('hidden');
-            jQuery(this).find('.handler').addClass('hidden');
         }
     }
 
@@ -442,7 +451,9 @@
     }
 
     function addPilotSubmitted(data){
+        alert('a');
         var root_li = jQuery('li#new_pilot_'+data.new_form_num);
+
         if(data.result == "OK"){
 
             jQuery("span.name", root_li).text(data.name);

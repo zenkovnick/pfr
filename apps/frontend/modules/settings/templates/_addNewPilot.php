@@ -15,6 +15,7 @@
             <fieldset>
                 <?php include_partial("settings/field", array('field' => $form['first_name'], 'class' => 'name', 'placeholder' => 'Name')); ?>
                 <?php include_partial("settings/field", array('field' => $form['username'], 'class' => 'username', 'placeholder' => 'Email')); ?>
+                <?php include_partial("settings/field", array('field' => $form['can_manage'], 'class' => 'can-manage', 'placeholder' => 'Email')); ?>
             </fieldset>
             <button class="btn btn-green" type="submit">Save</button>
         </form>

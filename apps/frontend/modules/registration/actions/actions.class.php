@@ -30,11 +30,21 @@ class registrationActions extends sfActions
 
 
     public function executeSignup(sfWebRequest $request) {
-        $this->form = new RegistrationForm();
+        if($request->getParameter('token')){
+            $invited_user = Doctrine_Core::getTable('sfGuardUser')->findOneBy('invite_token', $request->getParameter('token'));
+            if($invited_user){
+                $this->form = new RegistrationForm($invited_user);
+            }
+        } else {
+            $this->form = new RegistrationForm();
+        }
         if($request->isMethod('POST')){
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){
                 $user = $this->form->save();
+                if($request->getParameter('token')){
+                    $user->setIsActive(true);
+                }
                 $this->getUser()->signIn($user);
                 $this->redirect('@create_account');
             }
@@ -62,6 +72,10 @@ class registrationActions extends sfActions
                     $user_account->setUser($this->user);
                     $user_account->setIsManager(true);
                     $user_account->save();
+
+                    $risk_builder = new RiskBuilder();
+                    $risk_builder->createDefaultForm($account);
+
                     $this->redirect("@dashboard?account_id={$account->getId()}");
                 }
             }
