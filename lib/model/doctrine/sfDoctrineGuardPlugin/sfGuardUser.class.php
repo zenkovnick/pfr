@@ -13,6 +13,16 @@
 class sfGuardUser extends PluginsfGuardUser
 {
 
+    public function __toString()
+    {
+        return (string) $this->getFirstName();
+    }
+
+    public function getUserTitle($parameters){
+        $curr_user = $parameters['curr_user'];
+        return $this === $curr_user ? $this->getFirstName()." (Me)" : $this->getFirstName();
+    }
+
 
     public function generatePassword()
     {

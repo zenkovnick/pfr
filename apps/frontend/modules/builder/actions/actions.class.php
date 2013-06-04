@@ -160,7 +160,7 @@ class builderActions extends sfActions
         $risk_builder->setMitigationMediumMax($request->getParameter('medium_max'));
         $risk_builder->setMitigationHighMin($request->getParameter('medium_max') + 1);
         $account = $risk_builder->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -203,7 +203,7 @@ class builderActions extends sfActions
         }
         $risk_builder->save();
         $account = $risk_builder->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -220,7 +220,7 @@ class builderActions extends sfActions
         $flight_information_field->setIsHide($field_hidding);
         $flight_information_field->save();
         $account = $flight_information_field->getRiskBuilder()->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -244,7 +244,7 @@ class builderActions extends sfActions
         }
         $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getParameter('form_id'));
         $account = $risk_builder->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -262,7 +262,7 @@ class builderActions extends sfActions
             $flight_information_field->setIsHide(!$flight_information_field->getIsHide());
             $flight_information_field->save();
             $account = $flight_information_field->getRiskBuilder()->getAccount();
-            if(!$account->getHasModifiedForm){
+            if(!$account->getHasModifiedForm()){
                 $account->setHasModifiedForm(true);
                 $account->save();
             }

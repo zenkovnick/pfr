@@ -7,10 +7,9 @@
         <?php echo $form->renderGlobalErrors();?>
         <?php echo $form->renderHiddenFields();?>
         <ul class="flight-field-list">
-            <li><?php include_partial("registration/field", array('field' => $form['airport_to'])); ?></li>
-            <li><?php include_partial("registration/field", array('field' => $form['airport_from'])); ?></li>
-            <li><?php include_partial("registration/field", array('field' => $form['departure_date'])); ?></li>
-            <li><?php include_partial("registration/field", array('field' => $form['departure_time'])); ?></li>
+            <?php foreach($form as $field): ?>
+                <li><?php include_partial("registration/field", array('field' => $field)); ?></li>
+            <?php endforeach; ?>
         </ul>
 
 

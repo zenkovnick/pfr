@@ -41,4 +41,7 @@ class PlaneTable extends Doctrine_Table
     {
         $plane = self::getInstance()->findOneBy('tail_number', $tail_number);
         return $plane ? $plane : false;
-    }}
+    }
+
+}
+

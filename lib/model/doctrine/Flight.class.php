@@ -52,4 +52,16 @@ class Flight extends BaseFlight
         $this->save();
         return $result;
     }
+
+    public function generateKeyByTitle($title){
+        return strtolower(preg_replace('/\([a-zA-Z_]*\)/i','',str_replace(':', '', str_replace(' ', '_', $title))));
+    }
+
+    public function getResponseOptionTitles($risk_factor){
+        $response_option_titles = array();
+        foreach($risk_factor['response_options'] as $response_option){
+            $response_option_titles[] = $response_option['text'];
+        }
+        return $response_option_titles;
+    }
 }

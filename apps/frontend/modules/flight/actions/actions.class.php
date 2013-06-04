@@ -6,7 +6,7 @@ class flightActions extends sfActions {
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $this->flight = new Flight();
         $this->data_fields = $this->flight->generateFromDB($this->account);
-        $this->form = new FlightForm($this->flight);
+        $this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
 
     }
 
