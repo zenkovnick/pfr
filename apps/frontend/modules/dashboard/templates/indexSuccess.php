@@ -5,3 +5,16 @@
 <h1>Dashboard</h1>
 
 <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>">New Flight</a>
+<ul>
+    <?php foreach($flights as $flight): ?>
+        <li>
+            <?php if(!$flight->getCompleted()): ?>
+                <span>Drafted</span>
+                <span><?php echo $flight->getId() ?></span>
+                <a href="<?php echo url_for("@complete_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
+            <?php else: ?>
+                <span><?php echo $flight->getId()." ".$flight->getTripNumber() ?></span>
+            <?php endif ?>
+        </li>
+    <?php endforeach ?>
+</ul>

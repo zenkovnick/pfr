@@ -1,9 +1,14 @@
+complete_flight:
+  url: /:account_id/complete/flight
+  param: { module: flight, action: complete }
+  requirements:
+    account_id: \d+
+
 mitigate_flight:
   url: /:account_id/edit/flight
   param: { module: flight, action: mitigate }
   requirements:
     account_id: \d+
-
 
 create_flight:
   url: /:account_id/new/flight
@@ -11,6 +16,12 @@ create_flight:
   requirements:
     account_id: \d+
 
+
+preview_form:
+  url: /:account_id/preview-form
+  param: { module: flight, action: previewForm }
+  requirements:
+    account_id: \d+
 
 skip_pilot_condition:
   url: /:account_id/dashboard/skip-pilot-condition
@@ -103,6 +114,10 @@ settings:
 
 
 
+
+preview_submit:
+  url: /form/preview-submit
+  param: { module: builder, action: previewSubmit }
 
 update_risk_factor:
   url: /form/update-risk-factor

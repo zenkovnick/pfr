@@ -12,16 +12,17 @@
  */
 class Flight extends BaseFlight
 {
-    public function generateFromDB($account_obj){
-        $this->setAccount($account_obj);
+    public static function generateFromDB($account_obj){
+        //$this->setAccount($account_obj);
 
-        $risk_builder = $this->getAccount()->getRiskBuilders()->getFirst(); /* Change if there are more than one risk builder in account */
+        //$risk_builder = $this->getAccount()->getRiskBuilders()->getFirst(); /* Change if there are more than one risk builder in account */
+        $risk_builder = $account_obj->getRiskBuilders()->getFirst();
 
         $result = array();
         $result['form_name']  = $risk_builder->getFormName();
         $result['form_instructions'] = $risk_builder->getFormInstructions();
-        $result['from_airport'] = null;
-        $result['to_airport'] = null;
+        $result['airport_from'] = null;
+        $result['airport_to'] = null;
         $result['departure_date'] = null;
         $result['departure_time'] = null;
         foreach($risk_builder->getOrderedFlightInformationFields() as $field){
@@ -48,9 +49,9 @@ class Flight extends BaseFlight
             }
             $result['risk_analysis'][] = $risk_factor;
         }
-        $this->setInfo(json_encode($result));
-        $this->save();
-        return $result;
+        /*$this->setInfo(json_encode($result));
+        $this->save();*/
+        return json_encode($result);
     }
 
     public function generateKeyByTitle($title){

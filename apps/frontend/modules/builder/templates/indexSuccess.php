@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
-<h1>Form editor</h1>
+
 <div class="form-builder-wrapper">
 
-
+    <h1>Form editor</h1>
     <div class="flight-information-wrapper">
         <h2>Flight information</h2>
         <ul class="flight-information-list" id="flight-information-container">
@@ -138,10 +138,21 @@
                     </div>
                 </li>
             </ul>
+            <button class="preview-mode-link" type="submit">Preview Form</button>
             <button class="btn btn-green" type="submit">Save and Exit</button>
         </form>
     </div>
 
+</div>
+<div class="preview-mode hidden">
+    <h1>Preview Mode</h1>
+    <button class="save-and-exit">Save and Exit</button>
+    <a href="" class="back-to-form">Back to the form builder</a>
+    <div class="flight">
+        <form id="preview_form" method="POST">
+            <?php include_partial('flight/form', array('form' => $preview_form)); ?>
+        </form>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -500,19 +511,52 @@
     function validateAndSubmitMainForm(event) {
         event.preventDefault();
         var valid = true;
-        var form = jQuery(this).closest('form.main-form')
+        var form = jQuery(this).closest('form.main-form');
         var form_title = jQuery('input.form-title', form);
         if(form_title.val() == '') {
             valid = false;
             form_title.addClass('invalid-field');
         }
-
+        //alert('a');
         if(valid){
             jQuery('.invalid-field', form).removeClass('invalid-field');
-            jQuery(form).submit();
+            if(jQuery(this).hasClass('preview-mode-link')){
+                form.ajaxSubmit(main_form_submit);
+            } else {
+                return true;
+            }
         }
         return false;
 
+    }
+
+    function validateAndSubmitMainFormPreview(event) {
+        event.preventDefault();
+        alert('a');
+        var form = jQuery(this).closest('form.main-form');
+        var valid = true;
+
+    }
+
+    function mainFormSubmitted(data){
+
+    }
+
+    function switchToPreview(event){
+        event.preventDefault();
+        jQuery("div.form-builder-wrapper").addClass('hidden');
+        jQuery("div.preview-mode").removeClass('hidden');
+    }
+
+    function switchToForm(event){
+        event.preventDefault();
+        jQuery("div.form-builder-wrapper").removeClass('hidden');
+        jQuery("div.preview-mode").addClass('hidden');
+    }
+
+    function saveAndExit(event){
+        event.preventDefault();
+        jQuery("form.main-form").submit();
     }
 
     var edit_options_submit = {
@@ -527,7 +571,12 @@
         success: addRiskFactorSubmitted
     };
 
-
+    var main_form_submit = {
+        dataType:  'json',
+        url: '<?php echo url_for('@preview_submit') ?>',
+        clearForm: false,
+        success: mainFormSubmitted
+    };
 
 
     /* DOCUMENT READY */
@@ -575,7 +624,9 @@
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
-        jQuery("form.main-form button[type='submit']").bind('click', validateAndSubmitMainForm);
+        jQuery("form.main-form").bind('submit', validateAndSubmitMainForm);
+        jQuery("button.save-and-exit").bind('click', saveAndExit);
+        jQuery("a.back-to-form").bind('click', switchToForm);
 
         jQuery('#add-risk-factor-link').click(function(event){
             event.preventDefault();

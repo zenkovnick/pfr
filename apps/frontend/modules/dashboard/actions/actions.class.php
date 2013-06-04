@@ -15,6 +15,8 @@ class dashboardActions extends sfActions {
         if(!$this->checkConditions($this->account)){
             $this->form = $this->account->getRiskBuilders()->getFirst();  /* Change if account will have more than one risk assessment form */
             $this->setTemplate('firstTime');
+        } else {
+            $this->flights = Doctrine_Core::getTable('Flight')->findBy('account_id', $account_id);
         }
     }
 

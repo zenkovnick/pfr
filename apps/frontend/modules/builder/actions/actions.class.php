@@ -19,13 +19,40 @@ class builderActions extends sfActions
         $this->form = new RiskBuilderForm($this->risk_builder);
         $this->flight_information = FlightInformationFieldTable::getAllFields($this->risk_builder->getId());
         $this->risk_factors = RiskFactorFieldTable::getAllRiskFactors($this->risk_builder->getId());
+
+        $this->flight = new Flight();
+        $this->data_fields = $this->flight->generateFromDB($this->account);
+        $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
+
+
         if($request->isMethod('post')){
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){
                 $this->form->save();
-                $this->redirect("@form");
+                $this->redirect("@settings?account_id={$this->account->getId()}");
             }
         }
+    }
+
+    public function executePreviewSubmit(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $this->form_id = $request->getParameter('id');
+        $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
+        $this->account = $this->risk_builder->getAccount();
+        $this->form = new RiskBuilderForm($this->risk_builder);
+
+
+
+        if($request->isMethod('post')){
+            $this->form->bind($request->getPostParameter($this->form->getName()));
+            if($this->form->isValid()){
+                $this->flight = new Flight();
+                $this->data_fields = $this->flight->generateFromDB($this->account);
+                $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
+            }
+        }
+        return sfView::NONE;
     }
 
     public function executeSaveRiskFactor(sfWebRequest $request) {
