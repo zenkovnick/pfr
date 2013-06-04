@@ -13,6 +13,7 @@
  * @property boolean $has_modified_form
  * @property boolean $has_plane
  * @property boolean $has_pilot
+ * @property boolean $has_skipped_pilot
  * @property boolean $has_flight
  * @property Doctrine_Collection $Planes
  * @property Doctrine_Collection $Users
@@ -20,6 +21,7 @@
  * @property Doctrine_Collection $RiskBuilders
  * @property Doctrine_Collection $AccountPlane
  * @property Doctrine_Collection $UserAccount
+ * @property Doctrine_Collection $Flight
  * 
  * @method varchar             getTitle()             Returns the current record's "title" value
  * @method varchar             getPhoto()             Returns the current record's "photo" value
@@ -29,6 +31,7 @@
  * @method boolean             getHasModifiedForm()   Returns the current record's "has_modified_form" value
  * @method boolean             getHasPlane()          Returns the current record's "has_plane" value
  * @method boolean             getHasPilot()          Returns the current record's "has_pilot" value
+ * @method boolean             getHasSkippedPilot()   Returns the current record's "has_skipped_pilot" value
  * @method boolean             getHasFlight()         Returns the current record's "has_flight" value
  * @method Doctrine_Collection getPlanes()            Returns the current record's "Planes" collection
  * @method Doctrine_Collection getUsers()             Returns the current record's "Users" collection
@@ -36,6 +39,7 @@
  * @method Doctrine_Collection getRiskBuilders()      Returns the current record's "RiskBuilders" collection
  * @method Doctrine_Collection getAccountPlane()      Returns the current record's "AccountPlane" collection
  * @method Doctrine_Collection getUserAccount()       Returns the current record's "UserAccount" collection
+ * @method Doctrine_Collection getFlight()            Returns the current record's "Flight" collection
  * @method Account             setTitle()             Sets the current record's "title" value
  * @method Account             setPhoto()             Sets the current record's "photo" value
  * @method Account             setChiefPilotEmail()   Sets the current record's "chief_pilot_email" value
@@ -44,6 +48,7 @@
  * @method Account             setHasModifiedForm()   Sets the current record's "has_modified_form" value
  * @method Account             setHasPlane()          Sets the current record's "has_plane" value
  * @method Account             setHasPilot()          Sets the current record's "has_pilot" value
+ * @method Account             setHasSkippedPilot()   Sets the current record's "has_skipped_pilot" value
  * @method Account             setHasFlight()         Sets the current record's "has_flight" value
  * @method Account             setPlanes()            Sets the current record's "Planes" collection
  * @method Account             setUsers()             Sets the current record's "Users" collection
@@ -51,6 +56,7 @@
  * @method Account             setRiskBuilders()      Sets the current record's "RiskBuilders" collection
  * @method Account             setAccountPlane()      Sets the current record's "AccountPlane" collection
  * @method Account             setUserAccount()       Sets the current record's "UserAccount" collection
+ * @method Account             setFlight()            Sets the current record's "Flight" collection
  * 
  * @package    blueprint
  * @subpackage model
@@ -94,6 +100,10 @@ abstract class BaseAccount extends sfDoctrineRecord
              'type' => 'boolean',
              'default' => false,
              ));
+        $this->hasColumn('has_skipped_pilot', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
         $this->hasColumn('has_flight', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
@@ -128,6 +138,10 @@ abstract class BaseAccount extends sfDoctrineRecord
              'foreign' => 'account_id'));
 
         $this->hasMany('UserAccount', array(
+             'local' => 'id',
+             'foreign' => 'account_id'));
+
+        $this->hasMany('Flight', array(
              'local' => 'id',
              'foreign' => 'account_id'));
 

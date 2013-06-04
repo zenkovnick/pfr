@@ -35,26 +35,6 @@
             "hiddable": true
         },
         {
-            "information_name": "Departure date:",
-            "position": 4,
-            "hiddable": false
-        },
-        {
-            "information_name": "Scheduled time of departure:",
-            "position": 5,
-            "hiddable": false
-        },
-        {
-            "information_name": "Departing from:",
-            "position": 6,
-            "hiddable": false
-        },
-        {
-            "information_name": "Flying to:",
-            "position": 7,
-            "hiddable": false
-        },
-        {
             "information_name": "Trip number",
             "position": 8,
             "hiddable": false

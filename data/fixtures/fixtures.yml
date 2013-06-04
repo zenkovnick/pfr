@@ -2,19 +2,19 @@ FlightInformationField:
   FlightInformationField_1:
     RiskBuilder: RiskBuilder_1
     information_name: 'Plane(tail number):'
-    position: '2'
+    position: '3'
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:52'
-    updated_at: '2013-05-29 15:26:06'
+    updated_at: '2013-06-03 15:38:29'
   FlightInformationField_2:
     RiskBuilder: RiskBuilder_1
     information_name: 'Pilot in command(PIC):'
-    position: '7'
+    position: '2'
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-29 15:22:25'
+    updated_at: '2013-06-03 15:38:29'
   FlightInformationField_3:
     RiskBuilder: RiskBuilder_1
     information_name: 'Second in command(SIC):'
@@ -25,40 +25,8 @@ FlightInformationField:
     updated_at: '2013-05-29 15:26:06'
   FlightInformationField_4:
     RiskBuilder: RiskBuilder_1
-    information_name: 'Departure date:'
-    position: '4'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-29 15:26:06'
-  FlightInformationField_5:
-    RiskBuilder: RiskBuilder_1
-    information_name: 'Scheduled time of departure:'
-    position: '5'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-29 15:22:18'
-  FlightInformationField_6:
-    RiskBuilder: RiskBuilder_1
-    information_name: 'Departing from:'
-    position: '3'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-29 15:26:06'
-  FlightInformationField_7:
-    RiskBuilder: RiskBuilder_1
-    information_name: 'Flying to:'
-    position: '6'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-05-29 15:22:25'
-  FlightInformationField_8:
-    RiskBuilder: RiskBuilder_1
     information_name: 'Trip number:'
-    position: '8'
+    position: '4'
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
@@ -125,14 +93,15 @@ sfGuardUser:
     password: c2d4d2d76dcf70c2c4da300100991c99ff336eed
     is_active: true
     is_super_admin: true
-    last_login: '2013-05-29 15:19:20'
+    last_login: '2013-06-03 15:38:10'
     photo: null
+    invite_token: null
     created_at: '2013-05-24 14:22:26'
-    updated_at: '2013-05-29 15:19:20'
+    updated_at: '2013-06-03 15:38:10'
   sfGuardUser_2:
     first_name: Katrin
     last_name: null
-    name: ''
+    name: Katrin
     username: sokolkatrin@gmail.com
     algorithm: sha1
     salt: 66abc227b68c3a829776887800d7a8a9
@@ -142,6 +111,7 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-05-27 16:27:46'
     photo: null
+    invite_token: null
     created_at: '2013-05-27 16:27:46'
     updated_at: '2013-05-27 16:27:46'
   sfGuardUser_3:
@@ -157,6 +127,7 @@ sfGuardUser:
     is_super_admin: false
     last_login: '2013-05-28 16:46:54'
     photo: dd0e899a189d38a0b8917925ab12cac8.png
+    invite_token: null
     created_at: '2013-05-28 16:46:54'
     updated_at: '2013-05-28 17:28:50'
 RiskBuilder:
@@ -183,51 +154,83 @@ RiskBuilder:
     mitigation_high_prevent_flight: true
     created_at: '2013-05-24 14:19:52'
     updated_at: '2013-05-28 17:39:33'
+AccountPlane:
+  AccountPlane_1_1:
+    Account: Account_1
+    Plane: Plane_1
+    position: '1'
 Account:
   Account_1:
     title: Company
     photo: ada668dbf57f4cc7204aa943473cb580.png
     chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
     Manager: sfGuardUser_2
+    has_modified_form: true
+    has_plane: true
+    has_pilot: true
+    has_skipped_pilot: false
+    has_flight: true
     created_at: '2013-05-27 16:27:37'
-    updated_at: '2013-05-27 16:27:37'
+    updated_at: '2013-06-03 15:38:29'
   Account_2:
     title: 'Company 2'
     photo: 2042036d41523e2c17bfbccda75d4258.jpg
     chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
     Manager: sfGuardUser_1
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
     created_at: '2013-05-27 16:27:53'
     updated_at: '2013-05-27 16:27:53'
   Account_3:
     title: 'Company 4 '
     photo: 849f9f65ab8d6b2daac4bd8bac06b93e.jpg
     chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
     Manager: sfGuardUser_3
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
     created_at: '2013-05-28 16:47:29'
     updated_at: '2013-05-28 16:47:29'
+Plane:
+  Plane_1:
+    tail_number: '677'
+    created_at: '2013-06-03 15:38:23'
+    updated_at: '2013-06-03 15:38:23'
 UserAccount:
   UserAccount_1_1:
     Account: Account_1
     User: sfGuardUser_1
     is_manager: true
+    position: null
     created_at: '2013-05-27 16:27:37'
     updated_at: '2013-05-27 16:27:37'
   UserAccount_1_2:
     Account: Account_1
     User: sfGuardUser_2
     is_manager: true
+    position: null
     created_at: '2013-05-27 17:00:00'
     updated_at: '2013-05-27 17:00:00'
   UserAccount_2_2:
     Account: Account_2
     User: sfGuardUser_2
     is_manager: true
+    position: null
     created_at: '2013-05-27 16:27:53'
     updated_at: '2013-05-27 16:27:53'
   UserAccount_3_3:
     Account: Account_3
     User: sfGuardUser_3
     is_manager: true
+    position: null
     created_at: '2013-05-28 16:47:29'
     updated_at: '2013-05-28 16:47:29'
 RiskFactorField:

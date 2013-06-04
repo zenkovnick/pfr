@@ -125,6 +125,7 @@ Account:
     has_modified_form: {type: boolean, default: false}
     has_plane:         {type: boolean, default: false}
     has_pilot:         {type: boolean, default: false}
+    has_skipped_pilot: {type: boolean, default: false}
     has_flight:        {type: boolean, default: false}
   relations:
     Planes:            { class: Plane, refClass: AccountPlane, local: plane_id, foreign: account_id }
@@ -167,3 +168,22 @@ UserAccount:
       Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: UserAccount }
       User:            { class: sfGuardUser, foreign: id, local: user_id, onDelete: CASCADE, foreignAlias: UserAccount }
     actAs: [Timestampable]
+
+Flight:
+    columns:
+      account_id:      {type: integer }
+      plane_id:        {type: integer }
+      pic_id:          {type: integer }
+      sic_id:          {type: integer }
+      trip_number:     {type: varchar(255)}
+      airport_from:    {type: varchar(255)}
+      airport_to:      {type: varchar(255)}
+      departure_date:  {type: datetime}
+      risk_factor_sum: {type: integer }
+      mitigation_sum:  {type: integer }
+      info:            {type: text }
+    relations:
+      Account: {class: Account, local: account_id, foreign: id, type: one, onDelete: CASCADE}
+      Plane:   {class: Plane, local: plane_id, foreign: id, type: one, onDelete: CASCADE}
+      PIC:     {class: sfGuardUser, local: pic_id, foreign: id, type: one, onDelete: CASCADE}
+      SIC:     {class: sfGuardUser, local: sic_id, foreign: id, type: one, onDelete: CASCADE}

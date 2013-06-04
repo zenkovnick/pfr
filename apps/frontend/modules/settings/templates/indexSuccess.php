@@ -1,5 +1,5 @@
 <?php slot('header') ?>
-    <?php include_partial('menu/header_menu', array('account_id' => $account->getId(), 'account' => $account)); ?>
+    <?php include_partial('menu/header_menu', array('account' => $account)); ?>
 <?php end_slot() ?>
 
 <!--[if IE 9]>
@@ -79,7 +79,7 @@
                     </li>
                 <?php endforeach ?>
             </ul>
-            <a href="" id="add-plane-link">+ New Plane</a>
+            <a href="" id="add-plane-link" class="add-new">+ New Plane</a>
         </li>
         <li class="pilots" id="pilots">
             <ul class="pilot-list" id="pilot_container">
@@ -99,7 +99,7 @@
                     </li>
                 <?php endforeach ?>
             </ul>
-            <a href="" id="add-pilot-link">+ New Pilot</a>
+            <a href="" id="add-pilot-link" class="add-new">+ New Pilot</a>
         </li>
         <li>
             <a href="<?php echo url_for("@form?id={$assessment_form->getId()}") ?>">Modify Risk Assessment Form</a>
@@ -592,6 +592,7 @@
 
 
     jQuery(document).ready(function(){
+
         account_id = jQuery("input[type='hidden'].account-id").val();
 
         jQuery("#my_information_settings_form").bind('submit', validateAndSubmitInformationForm);
@@ -606,6 +607,12 @@
         jQuery("a.edit-pilot-link").bind('click', editPilot);
         jQuery("a.cancel-pilot-link").bind('click', cancelPilotEdit);
         jQuery('#add-pilot-link').bind('click', addPilot);
+
+        if(window.location.hash){
+            var el = jQuery(window.location.hash);
+            jQuery('a.add-new', el).trigger('click');
+        }
+
 
         jQuery( "#plane_container").sortable({
             containment: "parent",

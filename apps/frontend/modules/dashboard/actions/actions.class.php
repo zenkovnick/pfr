@@ -13,6 +13,7 @@ class dashboardActions extends sfActions {
         }
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
         if(!$this->checkConditions($this->account)){
+            $this->form = $this->account->getRiskBuilders()->getFirst();  /* Change if account will have more than one risk assessment form */
             $this->setTemplate('firstTime');
         }
     }
@@ -21,11 +22,31 @@ class dashboardActions extends sfActions {
     private function checkConditions($account) {
         $valid = true;
 
+        $valid = $this->getUser()->getGuardUser() ? true : false;
+
         if(AccountPlaneTable::getPlanesByAccount($account->getId())->count() > 0) {
             $account->setHasPlane(true);
         } else {
             $valid = false;
             $account->setHasPlane(false);
+        }
+
+        if(!$account->getHasSkippedPilot()){
+            if(UserAccountTable::getPilotsByAccount($account->getId())->count() > 1){
+                $account->setHasPilot(true);
+            } else {
+                $account->setHasPilot(false);
+                $valid = false;
+
+            }
+        }
+
+        if(!$account->getHasModifiedForm()){
+            $valid = false;
+        }
+
+        if(!$account->getHasFlight()){
+            $valid = false;
         }
 
         /*if(Doctrine_Core::getTable('Flight')->findOneBy('account_id', $account->getId())) {
@@ -35,7 +56,18 @@ class dashboardActions extends sfActions {
             $account->setHasFlight(false);
         }*/
 
+        $account->save();
         return $valid;
 
+    }
+
+    public function executeSkipPilotCondition(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $this->forward404Unless($this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
+        $this->account->setHasSkippedPilot(true);
+        $this->account->save();
+        echo json_encode(array('result'=>'OK'));
+        return sfView::NONE;
     }
 }

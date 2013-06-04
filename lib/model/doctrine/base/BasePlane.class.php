@@ -8,13 +8,16 @@
  * @property integer $tail_number
  * @property Doctrine_Collection $Accounts
  * @property Doctrine_Collection $AccountPlane
+ * @property Doctrine_Collection $Flight
  * 
  * @method integer             getTailNumber()   Returns the current record's "tail_number" value
  * @method Doctrine_Collection getAccounts()     Returns the current record's "Accounts" collection
  * @method Doctrine_Collection getAccountPlane() Returns the current record's "AccountPlane" collection
+ * @method Doctrine_Collection getFlight()       Returns the current record's "Flight" collection
  * @method Plane               setTailNumber()   Sets the current record's "tail_number" value
  * @method Plane               setAccounts()     Sets the current record's "Accounts" collection
  * @method Plane               setAccountPlane() Sets the current record's "AccountPlane" collection
+ * @method Plane               setFlight()       Sets the current record's "Flight" collection
  * 
  * @package    blueprint
  * @subpackage model
@@ -40,6 +43,10 @@ abstract class BasePlane extends sfDoctrineRecord
              'foreign' => 'plane_id'));
 
         $this->hasMany('AccountPlane', array(
+             'local' => 'id',
+             'foreign' => 'plane_id'));
+
+        $this->hasMany('Flight', array(
              'local' => 'id',
              'foreign' => 'plane_id'));
 

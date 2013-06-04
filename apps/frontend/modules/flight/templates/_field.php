@@ -10,16 +10,15 @@ if(isset($disabled) && $disabled){
     $options['disabled'] = 'disabled';
 }
 
-if(isset($type) && isset($accept)){
-    $options['accept'] = $accept;
-}
-
 ?>
 
 
-<?php echo $field->renderLabel() ?>
+<?php if($label): ?>
+    <?php echo $field->renderLabel() ?>
+<?php endif ?>
 
 <?php
     echo $field->render($options);
-    echo $field->renderError();
+    echo $field->renderError()
+
 ?>

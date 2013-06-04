@@ -293,7 +293,7 @@ class builderActions extends sfActions
         }
         $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getParameter('form_id'));
         $account = $risk_builder->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
