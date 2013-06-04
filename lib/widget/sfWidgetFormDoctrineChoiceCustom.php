@@ -36,7 +36,7 @@ class sfWidgetFormDoctrineChoiceCustom extends sfWidgetFormChoice
         $this->addRequiredOption('model');
         $this->addOption('add_empty', false);
         $this->addOption('method', '__toString');
-        $this->addOption('key_method', 'getPrimaryKey');
+        $this->addOption('key_method', 'getId');
         $this->addOption('order_by', null);
         $this->addOption('query', null);
         $this->addOption('multiple', false);

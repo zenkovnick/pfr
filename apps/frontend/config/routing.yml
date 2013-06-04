@@ -1,3 +1,7 @@
+get_risk:
+  url: /flight/get-risk
+  param: { module: flight, action: getRisk }
+
 complete_flight:
   url: /:account_id/complete/flight
   param: { module: flight, action: complete }

@@ -5,7 +5,7 @@ class flightActions extends sfActions {
     public function executeNew(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $this->flight = new Flight();
-        $this->data_fields = $this->flight->generateFromDB($this->account);
+        $this->data_fields = json_decode($this->flight->generateFromDB($this->account), true);
         //$this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
         $this->form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account, 'drafted' => $request->getParameter('drafted')));
         if($request->isMethod('POST')){
@@ -25,7 +25,7 @@ class flightActions extends sfActions {
     public function executeComplete(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
-        $this->data_fields = $this->flight->generateFromDB($this->account);
+        $this->data_fields = json_decode($this->flight->generateFromDB($this->account), true);
         $this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account, 'drafted' => !$this->flight->getCompleted()));
         if($request->isMethod('POST')){
             $this->form->bind($request->getParameter($this->form->getName()));
@@ -58,5 +58,17 @@ class flightActions extends sfActions {
 
     public function executeMitigate(sfWebRequest $request){
 
+    }
+
+    public function executeGetRisk(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $response_option = Doctrine_Core::getTable('ResponseOptionField')->find($request->getParameter('id'));
+        echo json_encode(array(
+            'result'=>'OK',
+            'risk' => $response_option->getResponseValue() > 0 ? $response_option->getResponseValue() : null,
+            'note' => $response_option->getResponseValue() > 0 ? $response_option->getNote() : null
+        ));
+        return sfView::NONE;
     }
 }

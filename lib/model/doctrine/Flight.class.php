@@ -45,7 +45,7 @@ class Flight extends BaseFlight
                 $response['text'] = $option->getResponseText();
                 $response['value'] = $option->getResponseValue();
                 $response['note'] = $option->getNote();
-                $risk_factor['response_options'][] = $response;
+                $risk_factor['response_options'][$option->getId()] = $response;
             }
             $result['risk_analysis'][] = $risk_factor;
         }
@@ -84,7 +84,7 @@ class Flight extends BaseFlight
                 $response['text'] = $option->getResponseText();
                 $response['value'] = $option->getResponseValue();
                 $response['note'] = $option->getNote();
-                $risk_factor['response_options'][] = $response;
+                $risk_factor['response_options'][$option->getId()] = $response;
             }
             $result['risk_analysis'][] = $risk_factor;
         }
@@ -93,14 +93,14 @@ class Flight extends BaseFlight
         return json_encode($result);
     }
 
-    public function generateKeyByTitle($title){
+    public static function generateKeyByTitle($title){
         return strtolower(preg_replace('/\([a-zA-Z_]*\)/i','',str_replace(':', '', str_replace(' ', '_', $title))));
     }
 
     public function getResponseOptionTitles($risk_factor){
         $response_option_titles = array();
-        foreach($risk_factor['response_options'] as $response_option){
-            $response_option_titles[] = $response_option['text'];
+        foreach($risk_factor['response_options'] as $id => $response_option){
+            $response_option_titles[$id] = $response_option['text'];
         }
         return $response_option_titles;
     }
