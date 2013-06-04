@@ -150,7 +150,6 @@
     <a href="" class="back-to-form">Back to the form builder</a>
     <div class="flight">
         <form id="preview_form" method="POST">
-            <?php include_partial('flight/form', array('form' => $preview_form)); ?>
         </form>
     </div>
 </div>
@@ -520,32 +519,29 @@
         //alert('a');
         if(valid){
             jQuery('.invalid-field', form).removeClass('invalid-field');
+
             if(jQuery(this).hasClass('preview-mode-link')){
                 form.ajaxSubmit(main_form_submit);
             } else {
-                return true;
+                form.submit();
             }
         }
         return false;
 
     }
 
-    function validateAndSubmitMainFormPreview(event) {
-        event.preventDefault();
-        alert('a');
-        var form = jQuery(this).closest('form.main-form');
-        var valid = true;
-
-    }
 
     function mainFormSubmitted(data){
-
+        if(data.result == "OK"){
+            jQuery("#preview_form").html(data.form_data);
+            jQuery("div.form-builder-wrapper").addClass('hidden');
+            jQuery("div.preview-mode").removeClass('hidden');
+        }
     }
 
     function switchToPreview(event){
         event.preventDefault();
-        jQuery("div.form-builder-wrapper").addClass('hidden');
-        jQuery("div.preview-mode").removeClass('hidden');
+
     }
 
     function switchToForm(event){
@@ -573,7 +569,7 @@
 
     var main_form_submit = {
         dataType:  'json',
-        url: '<?php echo url_for('@preview_submit') ?>',
+        url: '<?php echo url_for("@preview_submit?id={$risk_builder->getId()}") ?>',
         clearForm: false,
         success: mainFormSubmitted
     };
@@ -624,7 +620,7 @@
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
-        jQuery("form.main-form").bind('submit', validateAndSubmitMainForm);
+        jQuery("form.main-form button[type='submit']").bind('click', validateAndSubmitMainForm);
         jQuery("button.save-and-exit").bind('click', saveAndExit);
         jQuery("a.back-to-form").bind('click', switchToForm);
 

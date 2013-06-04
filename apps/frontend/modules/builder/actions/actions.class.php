@@ -48,8 +48,10 @@ class builderActions extends sfActions
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){
                 $this->flight = new Flight();
-                $this->data_fields = $this->flight->generateFromDB($this->account);
+                $this->data_fields = $this->flight->generateFromDBAndForm($this->account, $this->form);
                 $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
+                $form_data = $this->getPartial('flight/form', array('form' => $this->preview_form));
+                echo json_encode(array('result' => 'OK', 'form_data' => $form_data));
             }
         }
         return sfView::NONE;
