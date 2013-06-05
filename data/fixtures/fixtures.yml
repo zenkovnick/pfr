@@ -129,39 +129,6 @@ sfGuardUser:
     photo: dd0e899a189d38a0b8917925ab12cac8.png
     invite_token: null
     created_at: '2013-05-28 16:46:54'
-    updated_at: '2013-05-28 17:28:50'
-  sfGuardUser_4:
-    first_name: 'Nata 2'
-    last_name: null
-    name: 'Nata 2'
-    username: nata2@asdasd.ru
-    algorithm: sha1
-    salt: 8ea7df65af470bd5c90cb56973eeb6b7
-    email_address: null
-    password: 08894629a3650d27949082e0693161b5cc1e04ca
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-06-03 11:54:34'
-    photo: null
-    invite_token: null
-    created_at: '2013-06-03 07:43:42'
-    updated_at: '2013-06-03 11:54:34'
-  sfGuardUser_5:
-    first_name: Nata
-    last_name: null
-    name: Nata
-    username: nata@asdasd.ru
-    algorithm: sha1
-    salt: 6373a9e9339d5cf499846e2fe3e9bd8b
-    email_address: null
-    password: 952032024778057757b64fc59929e5353a1089de
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-06-03 07:47:32'
-    photo: null
-    invite_token: null
-    created_at: '2013-06-03 07:47:32'
-    updated_at: '2013-06-03 07:47:32'
 RiskBuilder:
   RiskBuilder_1:
     Account: Account_1
