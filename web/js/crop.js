@@ -41,6 +41,7 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
         done: function (e, data) {
             var response = jQuery(data.result).find('html body').html();
             //alert(response);
+
             var object = eval('(' + response + ')');
             /*response = "<HTML>"+response+"</HTML>";
             var response_html = null;

@@ -347,10 +347,13 @@ class UploadHandler
             $file->size = $file_size;
         }
         if(in_array($file->type, $this->image_types) && !$file->error){
-            //list($file->base_name, $file->ext) = explode('.', $file->name);
+            list($file->base_name, $file->ext) = explode('.', $file->name);
             $this->resize_image($file);
-            /*$file->cropped_url = $this->options['upload_url'].$file->base_name.'_cropped.'.$file->ext;
-            $this->cropAvatar($file->url, $file->url_cropped);*/
+            $file->cropped_url_in = sfConfig::get('sf_upload_dir').'/avatar/'.$file->name;
+            $file->cropped_url_out = sfConfig::get('sf_upload_dir').'/avatar/'.$file->base_name.'_cropped.'.$file->ext;
+            $this->cropAvatar($file->cropped_url_in, $file->cropped_url_out);
+            unlink($file->cropped_url_in);
+            rename($file->cropped_url_out, $file->cropped_url_in);
         }
         return $file;
     }
@@ -361,10 +364,10 @@ class UploadHandler
         $curr_image_size = getimagesize($path);
         if($with_ratio)
         {
-            if($curr_image_size['width'] >= $curr_image_size['height']){
-                $this->resizeToWidth($curr_image_size, $new_image_size);
-            } else {
+            if($curr_image_size[0] >= $curr_image_size[1]){
                 $this->resizeToHeight($curr_image_size, $new_image_size);
+            } else {
+                $this->resizeToWidth($curr_image_size, $new_image_size);
             }
         }
         if($file->type == 'image/x-png'){
@@ -399,6 +402,9 @@ class UploadHandler
                 $min = $h_i;
                 $rest = $w_i - $h_i;
                 $x_o = ceil($rest / 2);
+            } else {
+                $rest = $h_i - $w_i;
+                $y_o = ceil($rest / 2);
             }
             $w_o = $h_o = $min;
         } else {
@@ -426,7 +432,7 @@ class UploadHandler
 
     private function resizeToHeight($curr_size, &$size) {
 
-        $ratio = $curr_size[1] / $curr_size[0];
+        $ratio = $curr_size[0] / $curr_size[1];
         $size['width'] = ceil($size['width'] * $ratio);
     }
 

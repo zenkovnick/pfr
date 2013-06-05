@@ -80,8 +80,8 @@ all:
 
   photo:
     image_size:
-      height: 40
-      width: 40
+      height: 60
+      width: 60
 
   sf_admin_dash:
     web_dir:                      /sfAdminDashPlugin
