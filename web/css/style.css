@@ -6,7 +6,7 @@ body {
     background: #F2F2F2;
     padding:0;
     margin:0;
-    font: 14px Arial, Verdana, Helvetica, sans-serif;
+    font: 14px/100% Arial, Verdana, Helvetica, sans-serif;
     color:#000;
     height: 100%;
     overflow-x: hidden;
@@ -81,15 +81,26 @@ a                              { cursor: pointer; }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------> Main Structure <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+.wrapper {
+    margin: 0 auto;
+    max-width: 100%;
+    width: 500px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------> HEADER <-------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 .header {
     background: #FFF;
     border-bottom: 1px solid #E4E4E4;
     height: 60px;
     margin: 0 0 42px;
+    overflow: hidden;
     position: relative;
+    width: 100%;
 }
 
-.header a{
+.header a {
     color: #0F76BB;
     text-decoration: none;
 }
@@ -101,86 +112,65 @@ a                              { cursor: pointer; }
 }
 
 .header div.header-account-information .header-account-avatar {
+    background: #000;
     display:block;
     float:left;
+    min-height: 60px;
+    min-width: 60px;
 }
 
 .header div.header-account-information .header-account-title {
     display: inline-block;
-    vertical-align: middle;
+    font-size: 1.14em;
+    font-weight: 600;
+    margin: 22px 0;
     padding: 0 15px;
-    margin: 22px auto;
-    font: 600 16px/100% Arial;
 }
 
-.header div.header-link-block {
+ul.header-link-block {
     float: left;
-    padding: 0 0 0 14px;
-    width: 15%;
-
+    overflow: hidden;
+}
+ul.header-link-block li {
+    float: left;
+    overflow: hidden;
+}
+ul.header-link-block li a {
+    color: #0F76BB;
+    display: block;
+    padding: 23px 10px;
+    text-decoration: none;
 }
 
-.header div.header-link-block span.header-link{
-    display: table-cell;
-    vertical-align: middle;
-    height: 60px;
-    padding: 0 20px 0 0;
-}
-
-
-
-.header .header-user-information-wrapper {
+.header-user-information-wrapper {
     float:right;
-    position: relative;
-    height: 60px;
-    width: 350px;
+    overflow: hidden;
 }
-
-.header .header-user-information {
+.header-user-avatar {
+    background: #333;
+    border: 1px solid #000;
+    display: block;
     float:right;
-    height: 40px;
-    top: 50%;
-    margin: -20px 10px 0 0;
-    position: absolute;
-    right: 0;
-    clear: both;
+    height: 65%;
+    margin: 10px 20px 10px 10px;
+    overflow: hidden;
 
+    min-height: 40px;
+    min-width: 40px;
 }
 
-.header .header-user-information .user-wrapper {
-    width: 350px;
-    padding: 5px 0;
-}
-
-.header .header-user-avatar {
-    float:right;
-}
-
-.header .header-user-information .header-user-name,
-.header .header-user-information .header-user-email {
-    display: inline-block;
+.user-wrapper {
     float: right;
-    margin: 0 25px;
+    overflow: hidden;
+    padding: 15px 0;
 }
-
-.header .header-user-information .header-user-name {
-    font: 800 14px/100% Arial;
+.user-wrapper .header-user-name, .user-wrapper .header-user-email {
+    display: block;
 }
-
-
-.header .header-user-information .header-user-email {
-    font: 400 12px/100% Arial;
+.user-wrapper .header-user-email {
     color: #999;
+    font-size: 0.85em;
 }
-
-.wrapper {
-    margin: 0 auto;
-    max-width: 500px;
-    min-width: 500px;
-    padding: 0 20px;
-    width: 100%;
-}
-
 /*----------------------------------------------------------------------------------*/
 /*-------------------------------> Styles of buttons <------------------------------*/
 /*----------------------------------------------------------------------------------*/
@@ -207,102 +197,113 @@ a                              { cursor: pointer; }
 }
 
 
-.btn-violet {
-    background: #8F3FC5;
-    background: -webkit-gradient(linear, left top, left bottom, from(#9E58CD), to(#8227BE));
-    background: -webkit-linear-gradient(top, #9E58CD, #8227BE);
-    background: -moz-linear-gradient(top, #9E58CD, #8227BE);
-    background: -ms-linear-gradient(top, #9E58CD, #8227BE);
-    background: -o-linear-gradient(top, #9E58CD, #8227BE);
-    background-image: -ms-linear-gradient(top, #9E58CD 0%, #8227BE 100%);
-    border-color: #DCDCDC;
-    color: #FFF;
-    cursor: pointer;
-    padding: 5px 15px;
-    text-shadow: 1px 1px 1px #282828;
-}
-.btn-violet:hover {
-    background: #B74CFF;
-    background: -webkit-gradient(linear, left top, left bottom, from(#CA6CFF), to(#A42AF4));
-    background: -webkit-linear-gradient(top, #CA6CFF, #A42AF4);
-    background: -moz-linear-gradient(top, #CA6CFF, #A42AF4);
-    background: -ms-linear-gradient(top, #CA6CFF, #A42AF4);
-    background: -o-linear-gradient(top, #CA6CFF, #A42AF4);
-    background-image: -ms-linear-gradient(top, #CA6CFF 0%, #A42AF4 100%);
-}
-.btn-grey {
-    background: #EEE;
-    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#DBDBDB));
-    background: -webkit-linear-gradient(top, #FFFFFF, #DBDBDB);
-    background: -moz-linear-gradient(top, #FFFFFF, #DBDBDB);
-    background: -ms-linear-gradient(top, #FFFFFF, #DBDBDB);
-    background: -o-linear-gradient(top, #FFFFFF, #DBDBDB);
-    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #DBDBDB 100%);
-    border-color: #E5E5E5;
-    color: #8F3DC5;
-    cursor: pointer;
-    padding: 5px 15px;
-    text-shadow: 0px 1px 1px #FFF;
-}
-.btn-grey:hover {
-    background: #FFF;
-    background: -moz-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(75%,#FEFEFE), color-stop(100%,#F0F0F0));
-    background: -webkit-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);
-    background: -o-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);
-    background: -ms-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);
-    background: linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);
-}
+/*.btn-violet {*/
+    /*background: #8F3FC5;*/
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#9E58CD), to(#8227BE));*/
+    /*background: -webkit-linear-gradient(top, #9E58CD, #8227BE);*/
+    /*background: -moz-linear-gradient(top, #9E58CD, #8227BE);*/
+    /*background: -ms-linear-gradient(top, #9E58CD, #8227BE);*/
+    /*background: -o-linear-gradient(top, #9E58CD, #8227BE);*/
+    /*background-image: -ms-linear-gradient(top, #9E58CD 0%, #8227BE 100%);*/
+    /*border-color: #DCDCDC;*/
+    /*color: #FFF;*/
+    /*cursor: pointer;*/
+    /*padding: 5px 15px;*/
+    /*text-shadow: 1px 1px 1px #282828;*/
+/*}*/
+/*.btn-violet:hover {*/
+    /*background: #B74CFF;*/
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#CA6CFF), to(#A42AF4));*/
+    /*background: -webkit-linear-gradient(top, #CA6CFF, #A42AF4);*/
+    /*background: -moz-linear-gradient(top, #CA6CFF, #A42AF4);*/
+    /*background: -ms-linear-gradient(top, #CA6CFF, #A42AF4);*/
+    /*background: -o-linear-gradient(top, #CA6CFF, #A42AF4);*/
+    /*background-image: -ms-linear-gradient(top, #CA6CFF 0%, #A42AF4 100%);*/
+/*}*/
+/*.btn-grey {*/
+    /*background: #EEE;*/
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#DBDBDB));*/
+    /*background: -webkit-linear-gradient(top, #FFFFFF, #DBDBDB);*/
+    /*background: -moz-linear-gradient(top, #FFFFFF, #DBDBDB);*/
+    /*background: -ms-linear-gradient(top, #FFFFFF, #DBDBDB);*/
+    /*background: -o-linear-gradient(top, #FFFFFF, #DBDBDB);*/
+    /*background-image: -ms-linear-gradient(top, #FFFFFF 0%, #DBDBDB 100%);*/
+    /*border-color: #E5E5E5;*/
+    /*color: #8F3DC5;*/
+    /*cursor: pointer;*/
+    /*padding: 5px 15px;*/
+    /*text-shadow: 0px 1px 1px #FFF;*/
+/*}*/
+/*.btn-grey:hover {*/
+    /*background: #FFF;*/
+    /*background: -moz-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);*/
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(75%,#FEFEFE), color-stop(100%,#F0F0F0));*/
+    /*background: -webkit-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);*/
+    /*background: -o-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);*/
+    /*background: -ms-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);*/
+    /*background: linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);*/
+/*}*/
 
 
 
-.error_list {
-  color: #F00;
-}
+/*.error_list {*/
+  /*color: #F00;*/
+/*}*/
 
-.invalid-field {
-    border: 1px solid red !important;
-}
+/*.invalid-field {*/
+    /*border: 1px solid red !important;*/
+/*}*/
 
 /*----------------------------------------------------------------------------------*/
 /*--------------------------------> Error Pages <-----------------------------------*/
 /*----------------------------------------------------------------------------------*/
 
-.error-page {
-    position: relative;
-    overflow: visible !important;
+/*.error-page {*/
+    /*position: relative;*/
+    /*overflow: visible !important;*/
+/*}*/
+
+/*.error-page div.error-page-wrapper {*/
+    /*height: 250px;*/
+    /*width: 680px;*/
+    /*position: relative;*/
+    /*margin: 0 auto 0;*/
+    /*padding: 150px 0;*/
+/*}*/
+
+/*div.error-page-wrapper h1{*/
+    /*font: 54px/120% 'Titillium Web';*/
+    /*color: #777;*/
+/*}*/
+
+/*div.error-page-wrapper div.error-code-status{*/
+    /*margin-top: 100px;*/
+    /*font: 900 54px/120% 'Titillium Web';*/
+/*}*/
+
+/*div.error-code-status span.error-code{*/
+    /*color: #212121;*/
+/*}*/
+
+/*div.error-code-status span.error-code-message{*/
+    /*color: #7F24BD;*/
+/*}*/
+
+/*div.error-message span.error-status-message {*/
+    /*font: 20px/120% 'Titillium Web';*/
+    /*color: #666666;*/
+/*}*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------> Sign In <------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+.sign-in-form input {
+    background: #FFF;
+    border: 1px solid #CCC;
+
 }
 
-.error-page div.error-page-wrapper {
-    height: 250px;
-    width: 680px;
-    position: relative;
-    margin: 0 auto 0;
-    padding: 150px 0;
-}
 
-div.error-page-wrapper h1{
-    font: 54px/120% 'Titillium Web';
-    color: #777;
-}
 
-div.error-page-wrapper div.error-code-status{
-    margin-top: 100px;
-    font: 900 54px/120% 'Titillium Web';
-}
-
-div.error-code-status span.error-code{
-    color: #212121;
-}
-
-div.error-code-status span.error-code-message{
-    color: #7F24BD;
-}
-
-div.error-message span.error-status-message {
-    font: 20px/120% 'Titillium Web';
-    color: #666666;
-}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -370,6 +371,7 @@ ul.scale li#li-50 {
 
 .form-builder-wrapper h1, .form-builder-wrapper h2 {
     color: #000;
+    font-size: 1.14em;
     margin: 0 0 20px 20px;
     text-transform: capitalize;
 }
@@ -377,10 +379,12 @@ ul.form-fields {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     left: 50%;
     margin-left: -250px;
+    max-width: 500px;
     overflow: hidden;
     padding: 0 0 20px;
     position: absolute;
     top: 155px;
+    width: 100%;
 }
 .form-builder-wrapper input[type="text"] {
     background: #FFF;
@@ -391,15 +395,13 @@ ul.form-fields {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    font-size: 1em;
-    height: 40px;
-    line-height: 40px;
     margin: 0 20px 9px;
-    padding: 0 10px;
-    width: 460px;
+    padding: 10px;
+    width: 92%;
 }
-.form-builder-wrapper input.first-field {
-    height: 50px;
+.form-builder-wrapper input.form-title {
+    font-size: 1.43em;
+    font-weight: bold;
 }
 
 .flight-information-list {
@@ -409,6 +411,7 @@ ul.form-fields {
 .flight-information-list li {
     margin: 9px 0;
     overflow: hidden;
+    position: relative;
 }
 .flight-information-list li .element-wrapper {
     background: #F2F2F2;
@@ -419,11 +422,11 @@ ul.form-fields {
     color: #000;
     height: 40px;
     line-height: 40px;
-    margin: 0 20px 0 0;
+    margin: 0 20px 0 20px;
     overflow: hidden;
-    padding: 0 10px;
+    padding: 0px 10px;
     position: relative;
-    width: 460px;
+    width: 92%;
 }
 .flight-information-list li.hidden-field .element-wrapper {
     border-style: dashed;
@@ -434,11 +437,16 @@ ul.form-fields {
 .flight-information-list li span.handler, .risk-factor-list > li span.handler {
     background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
     border: 1px solid #CCC;
+    bottom: 0;
     cursor: pointer;
+    display: block;
     float: left;
     height: 38px;
+    left: 0;
     overflow: hidden;
+    position: absolute;
     text-indent: -1000px;
+    top: 0;
     width: 18px;
 }
 .flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden {
@@ -446,9 +454,12 @@ ul.form-fields {
     border: 1px solid transparent;
     display: block !important;
 }
-.flight-information-list li.ui-sortable-helper span.handler {
-    display: block !important;
-}
+
+
+
+/*.flight-information-list li.ui-sortable-helper span.handler {*/
+    /*display: block !important;*/
+/*}*/
 .risk-factor-list {
     overflow: hidden;
     padding: 20px 0;
@@ -456,19 +467,19 @@ ul.form-fields {
 .risk-factor-list > li {
     margin: 9px 0;
     overflow: hidden;
-    padding: 5px 0;
+    position: relative;
 }
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
     border: 1px solid #CCCCCC;
-    margin: 0 0 0 10px;
+    margin: 0 20px;
     overflow: hidden;
     padding: 11px 9px;
 }
 
-.risk-factor-list > li .entry-header span{
-    width: 90%;
-}
+/*.risk-factor-list > li .entry-header span{*/
+    /*width: 90%;*/
+/*}*/
 
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
@@ -478,18 +489,36 @@ ul.form-fields {
     padding: 9px;
     width: 440px;
 }
-
-.risk-factor-list > li.editing, .risk-factor-list > li.new {
-    height: auto;
-    overflow: hidden;
-    position: relative;
-}
-
-
-.risk-factor-list > li.editing .entry-header {
-    background: #E4E4E4;
+.risk-factor-list > li .risk-factor-wrapper fieldset {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
 
 }
+.risk-factor-list > li .risk-factor-wrapper input[type="text"] {
+    margin: 9px 0;
+    padding: 8px 10px;
+    width: 100%;
+
+}
+.risk-factor-list > li .risk-factor-wrapper span.ui-spinner input[type="text"] {
+    padding: 6px 10px;
+}
+.risk-factor-list > li .risk-factor-wrapper span.ui-spinner {
+    margin-top: 9px;
+}
+.risk-factor-list > li .risk-factor-wrapper .btn-green {
+    margin-top: 9px;
+}
+/*.risk-factor-list > li.editing, .risk-factor-list > li.new {*/
+    /*height: auto;*/
+    /*overflow: hidden;*/
+    /*position: relative;*/
+/*}*/
+
+
+/*.risk-factor-list > li.editing .entry-header {*/
+    /*background: #E4E4E4;*/
+
+/*}*/
 .risk-factor-list > li a.edit-risk-factor-link, .risk-factor-list > li a.cancel-risk-factor-link {
     color: #0F76BB;
     float: right;
@@ -497,9 +526,9 @@ ul.form-fields {
     text-decoration: none;
 }
 
-.risk-factor-list > li a.edit-risk-factor-link:hover, .risk-factor-list > li a.cancel-risk-factor-link:hover{
-    text-decoration: underline;
-}
+/*.risk-factor-list > li a.edit-risk-factor-link:hover, .risk-factor-list > li a.cancel-risk-factor-link:hover{*/
+    /*text-decoration: underline;*/
+/*}*/
 
 .risk-factor-list > li a.delete_risk_factor {
     bottom: 20px;
@@ -514,14 +543,14 @@ ul.form-fields {
     text-decoration: underline;
 }
 
-.risk-factor-list h2 {
-    background: #E4E4E4;
-    border-bottom: 1px solid #CCC;
-    font-size: 13px;
-    font-weight: normal;
-    margin: -9px -9px 9px;
-    padding: 14px 9px;
-}
+/*.risk-factor-list h2 {*/
+    /*background: #E4E4E4;*/
+    /*border-bottom: 1px solid #CCC;*/
+    /*font-size: 13px;*/
+    /*font-weight: normal;*/
+    /*margin: -9px -9px 9px;*/
+    /*padding: 14px 9px;*/
+/*}*/
 a#add-risk-factor-link {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #1076CE;
@@ -537,7 +566,7 @@ a#add-risk-factor-link:hover{
 a.add-new-response-link {
     color: #1076CE;
     display: block;
-    padding: 25px 10px;
+    padding: 25px 0px;
     text-decoration: none;
 }
 
@@ -587,7 +616,6 @@ a.add-note, a.remove-note {
     color: #0F76BB;
     display: block;
     font-size: 12px;
-    margin: 0 0 9px;
     padding: 10px 2px;
     text-decoration: none;
 }
@@ -599,30 +627,28 @@ a.add-note:hover, a.remove-note:hover{
     text-decoration: underline;
 }
 
-.risk-factor-wrapper label {
-    display: none;
-}
-.risk-factor-global-wrapper {
-    margin: 0 20px 0 0;
-}
-.risk-factor-global-wrapper input[type="text"] {
-    margin: 0 0 9px;
-    width: 440px;
-}
+/*.risk-factor-wrapper label {*/
+    /*display: none;*/
+/*}*/
+/*.risk-factor-global-wrapper {*/
+    /*margin: 0 20px 0 0;*/
+/*}*/
+/*.risk-factor-global-wrapper input[type="text"] {*/
+    /*margin: 0 0 9px;*/
+    /*width: 440px;*/
+/*}*/
 
-.risk-factor-global-wrapper input[type="text"].response-text
-{
+.risk-factor-global-wrapper input[type="text"].response-text {
     margin: 0;
-    width: 370px;
     float: left;
+    width: 84% !important;
+
 }
 
-.risk-factor-global-wrapper input[type="text"].response-value
-{
-    width: 55px;
+.risk-factor-global-wrapper input[type="text"].response-value {
     float: right;
-    margin: 0;
-
+    margin: 0 !important;
+    width: 100%;
 }
 
 span.ui-spinner {
@@ -630,6 +656,7 @@ span.ui-spinner {
     border: 0;
     border-radius: 0;
     display: inline-block;
+    width: 12.5%;
 }
 
 .ui-spinner-up {
@@ -645,6 +672,9 @@ span.ui-spinner {
 
 .new-response-option, .response-option {
     position: relative;
+}
+.new-response-option label, .response-option label {
+    display: none;
 }
 
 a.delete-response-option-link {

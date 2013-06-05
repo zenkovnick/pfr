@@ -1,4 +1,5 @@
-<form action="<?php echo url_for('@signin_process') ?>" method="post">
+<h1>Sign in</h1>
+<form class="sign-in-form" action="<?php echo url_for('@signin_process') ?>" method="post">
     <fieldset class="blog-login">
         <?php echo($form->renderHiddenFields()) ?>
         <?php echo($form->renderGlobalErrors()) ?>
