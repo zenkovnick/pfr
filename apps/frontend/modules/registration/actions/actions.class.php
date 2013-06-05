@@ -44,9 +44,12 @@ class registrationActions extends sfActions
                 $user = $this->form->save();
                 if($request->getParameter('token')){
                     $user->setIsActive(true);
+                    $this->getUser()->signIn($user);
+                    $this->redirect("dashboard?account_id={$user->getAccount()->getId()}");
+                } else {
+                    $this->getUser()->signIn($user);
+                    $this->redirect('@create_account');
                 }
-                $this->getUser()->signIn($user);
-                $this->redirect('@create_account');
             }/* else {
             $errors = $this->form->getErrorSchema()->getErrors();
             $error_fields = array();

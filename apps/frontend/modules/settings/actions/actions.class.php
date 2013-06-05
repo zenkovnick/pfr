@@ -238,8 +238,8 @@ class settingsActions extends sfActions {
                             'name' => $pilot->getFirstName()
                         )
                     );
-                    //$url = $this->generateUrl('signup_invite', array('token' => $pilot->getInviteToken()), true);
-                    //EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url);
+                    $url = $this->generateUrl('signup_invite', array('token' => $pilot->getInviteToken()), true);
+                    EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url);
                 } else {
                     echo json_encode(
                         array(
