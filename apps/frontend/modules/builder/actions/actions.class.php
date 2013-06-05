@@ -41,6 +41,7 @@ class builderActions extends sfActions
         $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
         $this->account = $this->risk_builder->getAccount();
         $this->form = new RiskBuilderForm($this->risk_builder);
+        $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
 
 
 
@@ -50,7 +51,7 @@ class builderActions extends sfActions
                 $this->flight = new Flight();
                 $this->data_fields = json_decode($this->flight->generateFromDBAndForm($this->account, $this->form), true);
                 $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
-                $form_data = $this->getPartial('flight/form', array('form' => $this->preview_form, 'data' => $this->data_fields));
+                $form_data = $this->getPartial('flight/form', array('form' => $this->preview_form, 'data' => $this->data_fields, 'users' => $this->users));
                 echo json_encode(array('result' => 'OK', 'form_data' => $form_data));
             }
         }

@@ -129,7 +129,6 @@ sfGuardUser:
     photo: dd0e899a189d38a0b8917925ab12cac8.png
     invite_token: null
     created_at: '2013-05-28 16:46:54'
-    updated_at: '2013-05-28 17:28:50'
 RiskBuilder:
   RiskBuilder_1:
     Account: Account_1

@@ -103,4 +103,5 @@ class sfWidgetFormDoctrineChoiceCustom extends sfWidgetFormChoice
 
         return $choices;
     }
+
 }

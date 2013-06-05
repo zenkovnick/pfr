@@ -2,6 +2,10 @@ get_risk:
   url: /flight/get-risk
   param: { module: flight, action: getRisk }
 
+get_pilot:
+  url: /flight/get-user
+  param: { module: flight, action: getUser }
+
 complete_flight:
   url: /:account_id/complete/flight
   param: { module: flight, action: complete }

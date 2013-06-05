@@ -29,10 +29,25 @@ class FlightForm extends BaseFormDoctrine
       } else {
           $data_fields = json_decode($this->getObject()->getInfo(), true);
       }
+
       foreach($data_fields as $key => $data_field){
           if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions"){
               $this->setWidget($key, new sfWidgetFormInput());
               $this->setValidator($key, new sfValidatorString());
+              if(!$this->isNew()){
+                  if($key == "departure_date"){
+                      $this->setDefault($key, date('Y-m-d', strtotime($this->getObject()->getDepartureDate())));
+                  } else if($key == "departure_time"){
+                      $this->setDefault($key, date('H:i', strtotime($this->getObject()->getDepartureDate())));
+                  }
+              } else {
+                  if($key == "departure_date"){
+                      $this->setDefault($key, date('Y-m-d', time()));
+                  } else if($key == "departure_time"){
+                      $this->setDefault($key, date('H:i', time()));
+                  }
+              }
+
           } else if($key == "flight_information") {
               foreach($data_field as $fi){
                   $key = $this->getObject()->generateKeyByTitle($fi['name']);
@@ -70,10 +85,14 @@ class FlightForm extends BaseFormDoctrine
           } else if($key == 'risk_analysis'){
               $index = 0;
               foreach($data_field as $risk_factor){
-                  $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $this->getObject()->getResponseOptionTitles($risk_factor))));
-                  $this->setValidator("flight_risk_factor_{$index}", new sfValidatorChoice(array('choices' => array_keys($this->getObject()->getResponseOptionTitles($risk_factor)))));
+                  $options = $this->getObject()->getResponseOptionTitles($risk_factor);
+                  $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $options)));
+                  $this->setValidator("flight_risk_factor_{$index}", new sfValidatorChoice(array('choices' => array_keys($options))));
                   if(!is_null($risk_factor['selected_response'])){
                       $this->setDefault("flight_risk_factor_{$index}", $risk_factor['selected_response']);
+                  } else {
+                      reset($options);
+                      $this->setDefault("flight_risk_factor_{$index}", key($options));
                   }
                   $this->widgetSchema->setLabel("flight_risk_factor_{$index}", $risk_factor['question']);
                   $index++;
@@ -107,7 +126,9 @@ class FlightForm extends BaseFormDoctrine
         if($this->getObject()->getCompleted()){
             $mitigation_score = 0;
         }
-        $taintedValues['departure_date'] = date('Y m d H:i',strtotime($taintedValues['departure_date']) + strtotime($taintedValues['departure_time']));
+        $taintedValues['departure_date'] = date('Y-m-d H:i', strtotime($taintedValues['departure_time']));
+        $data_fields['departure_date']= date('Y-m-d', strtotime($taintedValues['departure_time']));
+        $data_fields['departure_time']= date('H:i', strtotime($taintedValues['departure_time']));
         foreach($data_fields as $key => $data_field){
             if($key == "risk_analysis"){
                 for($i = 0; $i < count($data_field); $i++){
