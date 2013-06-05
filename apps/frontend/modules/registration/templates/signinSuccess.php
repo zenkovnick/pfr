@@ -6,17 +6,17 @@
 
         <ul>
             <li class="text">
-                <?php include_partial("builder/field", array('field' => $form['username'], 'placeholder' => 'Email')); ?>
+                <?php include_partial("builder/field", array('field' => $form['username'], 'placeholder' => 'Email', 'label' => false)); ?>
             </li>
 
             <li class="text">
-                <?php include_partial("builder/field", array('field' => $form['password'], 'placeholder' => 'Password')); ?>
+                <?php include_partial("builder/field", array('field' => $form['password'], 'placeholder' => 'Password', 'label' => false)); ?>
             </li>
         </ul>
-        <button class="btn-grey" type="submit">Sign In</button>
+        <button class="btn btn-grey" type="submit">Sign In</button>
 
         <span>
-            <span>If you are new here create account or</span>
+            If you are new here create account or
             <a href="<?php echo url_for('@signup') ?>">Sign Up</a>
         </span>
 
@@ -24,6 +24,7 @@
 </form>
 
 <script type="text/javascript">
+    jQuery('body').addClass('sign-in');
     jQuery('[placeholder]').focus(function() {
         var input = jQuery(this);
         if (input.val() == input.attr('placeholder')) {

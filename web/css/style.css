@@ -86,7 +86,15 @@ a                              { cursor: pointer; }
     max-width: 100%;
     width: 500px;
 }
-
+a.logo {
+    background: url(../images/logo.png) no-repeat left top;
+    display: none;
+    height: 60px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-indent: -1000px;
+    width: 114px;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------> HEADER <-------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -195,7 +203,12 @@ ul.header-link-block li a {
     border-color: #669900;
     color: #FFF;
 }
-
+.btn-grey {
+    background: #CCC;
+    border-color: #999;
+    color: #FFF;
+    cursor: pointer;
+}
 
 /*.btn-violet {*/
     /*background: #8F3FC5;*/
@@ -220,20 +233,7 @@ ul.header-link-block li a {
     /*background: -o-linear-gradient(top, #CA6CFF, #A42AF4);*/
     /*background-image: -ms-linear-gradient(top, #CA6CFF 0%, #A42AF4 100%);*/
 /*}*/
-/*.btn-grey {*/
-    /*background: #EEE;*/
-    /*background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#DBDBDB));*/
-    /*background: -webkit-linear-gradient(top, #FFFFFF, #DBDBDB);*/
-    /*background: -moz-linear-gradient(top, #FFFFFF, #DBDBDB);*/
-    /*background: -ms-linear-gradient(top, #FFFFFF, #DBDBDB);*/
-    /*background: -o-linear-gradient(top, #FFFFFF, #DBDBDB);*/
-    /*background-image: -ms-linear-gradient(top, #FFFFFF 0%, #DBDBDB 100%);*/
-    /*border-color: #E5E5E5;*/
-    /*color: #8F3DC5;*/
-    /*cursor: pointer;*/
-    /*padding: 5px 15px;*/
-    /*text-shadow: 0px 1px 1px #FFF;*/
-/*}*/
+
 /*.btn-grey:hover {*/
     /*background: #FFF;*/
     /*background: -moz-linear-gradient(top, #FFFFFF 0%, #FEFEFE 75%, #F0F0F0 100%);*/
@@ -296,14 +296,71 @@ ul.header-link-block li a {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------> Sign In <------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-.sign-in-form input {
+.sign-in .header a.logo, .sign-up .header a.logo {
+    display: block;
+}
+.sign-in .wrapper, .sign-up .wrapper {
+    max-width: 300px;
+}
+.sign-in h1, .sign-up h1 {
+    color: #414042;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 22px;
+    text-align: center;
+    text-transform: capitalize;
+}
+.sign-in-form {
+    overflow: hidden;
+    width: 100%;
+}
+.sign-in-form input, .sign-up input {
     background: #FFF;
     border: 1px solid #CCC;
-
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0 0 9px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
 }
-
-
-
+.sign-in-form input.placeholder, .sign-up input.placeholder {
+    color: #CCC;
+}
+.sign-in-form input::-webkit-input-placeholder, .sign-up input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #CCC !important;
+}
+.sign-in-form input:-moz-placeholder, .sign-up input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #CCC !important;
+}
+.sign-in-form input::-moz-placeholder, .sign-up input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #CCC;
+}
+.sign-in-form input:-ms-input-placeholder, .sign-up input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #CCC;
+}
+.sign-in .btn-grey, .sign-up .btn-grey {
+    margin-bottom: 9px;
+    width: 100%;
+}
+.sign-in-form span, .sign-up span {
+    color: #999;
+    display: block;
+    font-size: 0.85em;
+    text-align: center;
+}
+.sign-in-form span a, .sign-up span a {
+    color: #3E8CD7;
+    cursor: pointer;
+    text-decoration: none;
+}
+.sign-in-form span a:hover, .sign-up span a:hover {
+    text-decoration: underline;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/

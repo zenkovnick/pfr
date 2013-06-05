@@ -32,6 +32,7 @@
 </head>
 <body>
     <div class="header">
+        <a href="#" class="logo">PreflightRisk</a>
         <?php if(!include_slot('header')): ?>
         <?php endif ?>
     </div>
