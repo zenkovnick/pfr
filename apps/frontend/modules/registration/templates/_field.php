@@ -15,9 +15,13 @@ if(isset($type) && isset($accept)){
 }
 
 ?>
-
-
+<?php if(isset($label)): ?>
+<?php if($label !== false): ?>
+    <?php echo $field->renderLabel() ?>
+    <?php endif ?>
+<?php else: ?>
 <?php echo $field->renderLabel() ?>
+<?php endif ?>
 
 <?php
     echo $field->render($options);

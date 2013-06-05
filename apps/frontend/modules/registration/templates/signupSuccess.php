@@ -1,21 +1,23 @@
+<h1>Sign up</h1>
 <div class="sign-up">
     <form id="sign_up_form" method="POST">
         <?php echo $form->renderGlobalErrors();?>
         <?php echo $form->renderHiddenFields();?>
         <ul class="sign-up-field-list">
-            <li><?php include_partial("registration/field", array('field' => $form['first_name'])); ?></li>
-            <li><?php include_partial("registration/field", array('field' => $form['username'], 'class' => 'email')); ?></li>
-            <li><?php include_partial("registration/field", array('field' => $form['password'])); ?></li>
+            <li><?php include_partial("registration/field", array('field' => $form['first_name'], 'label' => false, 'placeholder' => 'Your Name')); ?></li>
+            <li><?php include_partial("registration/field", array('field' => $form['username'], 'class' => 'email', 'label' => false, 'placeholder' => 'Email' )); ?></li>
+            <li><?php include_partial("registration/field", array('field' => $form['password'], 'label' => false, 'placeholder' => 'Password' )); ?></li>
         </ul>
-        <button type="submit" class="disabled">Sign Up</button>
+        <button type="submit" class="disabled btn btn-grey">Sign Up</button>
     </form>
-    <div>
-        <span>Already a user?</span>
+    <span>
+        Already a user?
         <a href="<?php echo url_for("@signin?redirect_to=select_account") ?>" class="sign-in-link">Sign In</a>
-    </div>
+    </span>
 </div>
 
 <script type="text/javascript">
+    jQuery('body').addClass('sign-up');
     var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
     function changeFieldContent(){
         var filled = true;
