@@ -69,6 +69,15 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->execute();
     }
 
+    public static function getPilotsByAccountArray($account_id){
+        $pilot_collection = self::getPilotsByAccount($account_id);
+        $pilot_array = array();
+        foreach($pilot_collection as $pilot){
+            $pilot_array[$pilot->getId()] = $pilot;
+        }
+        return $pilot_array;
+    }
+
     public static function getMaxPosition($account_id){
         $query = Doctrine_Query::create()
             ->select('MAX(u.position) as max_position')

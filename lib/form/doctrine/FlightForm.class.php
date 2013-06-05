@@ -29,6 +29,7 @@ class FlightForm extends BaseFormDoctrine
       } else {
           $data_fields = json_decode($this->getObject()->getInfo(), true);
       }
+
       foreach($data_fields as $key => $data_field){
           if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions"){
               $this->setWidget($key, new sfWidgetFormInput());
@@ -70,10 +71,14 @@ class FlightForm extends BaseFormDoctrine
           } else if($key == 'risk_analysis'){
               $index = 0;
               foreach($data_field as $risk_factor){
-                  $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $this->getObject()->getResponseOptionTitles($risk_factor))));
-                  $this->setValidator("flight_risk_factor_{$index}", new sfValidatorChoice(array('choices' => array_keys($this->getObject()->getResponseOptionTitles($risk_factor)))));
+                  $options = $this->getObject()->getResponseOptionTitles($risk_factor);
+                  $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $options)));
+                  $this->setValidator("flight_risk_factor_{$index}", new sfValidatorChoice(array('choices' => array_keys($options))));
                   if(!is_null($risk_factor['selected_response'])){
                       $this->setDefault("flight_risk_factor_{$index}", $risk_factor['selected_response']);
+                  } else {
+                      reset($options);
+                      $this->setDefault("flight_risk_factor_{$index}", key($options));
                   }
                   $this->widgetSchema->setLabel("flight_risk_factor_{$index}", $risk_factor['question']);
                   $index++;

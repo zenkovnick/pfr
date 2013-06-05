@@ -1,20 +1,171 @@
+UserAccount:
+  UserAccount_1_1:
+    Account: Account_1
+    User: sfGuardUser_1
+    is_manager: true
+    position: null
+    created_at: '2013-05-27 16:27:37'
+    updated_at: '2013-05-27 16:27:37'
+  UserAccount_1_2:
+    Account: Account_1
+    User: sfGuardUser_2
+    is_manager: true
+    position: null
+    created_at: '2013-05-27 17:00:00'
+    updated_at: '2013-05-27 17:00:00'
+  UserAccount_2_2:
+    Account: Account_2
+    User: sfGuardUser_2
+    is_manager: true
+    position: null
+    created_at: '2013-05-27 16:27:53'
+    updated_at: '2013-05-27 16:27:53'
+  UserAccount_3_3:
+    Account: Account_3
+    User: sfGuardUser_3
+    is_manager: true
+    position: null
+    created_at: '2013-05-28 16:47:29'
+    updated_at: '2013-05-28 16:47:29'
+  UserAccount_4_4:
+    Account: Account_4
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  UserAccount_5_5:
+    Account: Account_5
+    User: sfGuardUser_5
+    is_manager: true
+    position: null
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  UserAccount_6_4:
+    Account: Account_6
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+RiskFactorField:
+  RiskFactorField_1:
+    RiskBuilder: RiskBuilder_1
+    question: jkkjkjjkjk
+    help_message: ''
+    position: '2'
+    created_at: '2013-05-28 12:04:26'
+    updated_at: '2013-05-29 15:22:29'
+  RiskFactorField_2:
+    RiskBuilder: RiskBuilder_1
+    question: jjjjjjkjhhjjh
+    help_message: ''
+    position: '3'
+    created_at: '2013-05-28 12:05:24'
+    updated_at: '2013-05-29 15:22:29'
+  RiskFactorField_3:
+    RiskBuilder: RiskBuilder_1
+    question: 'hjjjhhjhjjh dfg dfg dfg dfg dfgdf gdf gdfg dfg dfg dfgdfgdfgdfgdfg dfgdfgdfg dfg dfg df'
+    help_message: ''
+    position: '1'
+    created_at: '2013-05-29 09:46:14'
+    updated_at: '2013-06-04 10:42:09'
+Account:
+  Account_1:
+    title: Company
+    photo: ada668dbf57f4cc7204aa943473cb580.png
+    chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
+    Manager: sfGuardUser_2
+    has_modified_form: false
+    has_plane: false
+    has_pilot: true
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-05-27 16:27:37'
+    updated_at: '2013-06-04 10:41:31'
+  Account_2:
+    title: 'Company 2'
+    photo: 2042036d41523e2c17bfbccda75d4258.jpg
+    chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
+    Manager: sfGuardUser_1
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-05-27 16:27:53'
+    updated_at: '2013-05-27 16:27:53'
+  Account_3:
+    title: 'Company 4 '
+    photo: 849f9f65ab8d6b2daac4bd8bac06b93e.jpg
+    chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
+    Manager: sfGuardUser_3
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-05-28 16:47:29'
+    updated_at: '2013-05-28 16:47:29'
+  Account_4:
+    title: ''
+    photo: null
+    chief_pilot_email: ''
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  Account_5:
+    title: ''
+    photo: null
+    chief_pilot_email: ''
+    chief_pilot_name: null
+    Manager: sfGuardUser_5
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  Account_6:
+    title: 'My company 2'
+    photo: cdf2d53aa43166bb50482bd4aaa670fa.jpg
+    chief_pilot_email: nata@asdasd.ru
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
 FlightInformationField:
   FlightInformationField_1:
     RiskBuilder: RiskBuilder_1
     information_name: 'Plane(tail number):'
-    position: '3'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-05-24 14:19:52'
-    updated_at: '2013-06-03 15:38:29'
-  FlightInformationField_2:
-    RiskBuilder: RiskBuilder_1
-    information_name: 'Pilot in command(PIC):'
     position: '2'
     hiddable: false
     is_hide: false
+    created_at: '2013-05-24 14:19:52'
+    updated_at: '2013-05-29 15:26:06'
+  FlightInformationField_2:
+    RiskBuilder: RiskBuilder_1
+    information_name: 'Pilot in command(PIC):'
+    position: '7'
+    hiddable: false
+    is_hide: false
     created_at: '2013-05-24 14:19:53'
-    updated_at: '2013-06-03 15:38:29'
+    updated_at: '2013-05-29 15:22:25'
   FlightInformationField_3:
     RiskBuilder: RiskBuilder_1
     information_name: 'Second in command(SIC):'
@@ -25,12 +176,317 @@ FlightInformationField:
     updated_at: '2013-05-29 15:26:06'
   FlightInformationField_4:
     RiskBuilder: RiskBuilder_1
-    information_name: 'Trip number:'
+    information_name: 'Departure date:'
     position: '4'
     hiddable: false
     is_hide: false
     created_at: '2013-05-24 14:19:53'
+    updated_at: '2013-05-29 15:26:06'
+  FlightInformationField_5:
+    RiskBuilder: RiskBuilder_1
+    information_name: 'Scheduled time of departure:'
+    position: '5'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-05-24 14:19:53'
+    updated_at: '2013-05-29 15:22:18'
+  FlightInformationField_6:
+    RiskBuilder: RiskBuilder_1
+    information_name: 'Departing from:'
+    position: '3'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-05-24 14:19:53'
+    updated_at: '2013-05-29 15:26:06'
+  FlightInformationField_7:
+    RiskBuilder: RiskBuilder_1
+    information_name: 'Flying to:'
+    position: '6'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-05-24 14:19:53'
     updated_at: '2013-05-29 15:22:25'
+  FlightInformationField_8:
+    RiskBuilder: RiskBuilder_1
+    information_name: 'Trip number:'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-05-24 14:19:53'
+    updated_at: '2013-05-29 15:22:25'
+  FlightInformationField_9:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_10:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_11:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_12:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Departure date:'
+    position: '4'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_13:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Scheduled time of departure:'
+    position: '5'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_14:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Departing from:'
+    position: '6'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_15:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Flying to:'
+    position: '7'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_16:
+    RiskBuilder: RiskBuilder_2
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  FlightInformationField_17:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_18:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_19:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_20:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Departure date:'
+    position: '4'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_21:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Scheduled time of departure:'
+    position: '5'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_22:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Departing from:'
+    position: '6'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_23:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Flying to:'
+    position: '7'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_24:
+    RiskBuilder: RiskBuilder_3
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  FlightInformationField_25:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+  FlightInformationField_26:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+  FlightInformationField_27:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+  FlightInformationField_28:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Departure date:'
+    position: '4'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+  FlightInformationField_29:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Scheduled time of departure:'
+    position: '5'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+  FlightInformationField_30:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Departing from:'
+    position: '6'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+  FlightInformationField_31:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Flying to:'
+    position: '7'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+  FlightInformationField_32:
+    RiskBuilder: RiskBuilder_4
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
+sfGuardUser:
+  sfGuardUser_1:
+    first_name: Nick
+    last_name: null
+    name: Nick
+    username: zenkovnick@gmail.com
+    algorithm: sha1
+    salt: d2d1e0ddf514a7a33aef0bc5fc6c1e4a
+    email_address: null
+    password: c2d4d2d76dcf70c2c4da300100991c99ff336eed
+    is_active: true
+    is_super_admin: true
+    last_login: '2013-06-05 04:36:56'
+    photo: null
+    invite_token: null
+    created_at: '2013-05-24 14:22:26'
+    updated_at: '2013-06-05 04:36:56'
+  sfGuardUser_2:
+    first_name: Katrin
+    last_name: null
+    name: Katrin
+    username: sokolkatrin@gmail.com
+    algorithm: sha1
+    salt: 66abc227b68c3a829776887800d7a8a9
+    email_address: null
+    password: 6828f216b6a625dac44865bfe246b48a35c1ee3d
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-05-27 16:27:46'
+    photo: null
+    invite_token: null
+    created_at: '2013-05-27 16:27:46'
+    updated_at: '2013-05-27 16:27:46'
+  sfGuardUser_3:
+    first_name: Nick
+    last_name: null
+    name: Nick
+    username: zennick@mail.ru
+    algorithm: sha1
+    salt: 2cf9504483d29ded71b2636250231192
+    email_address: null
+    password: 1a5f4389a9f58bc88d428dbcac5b55407fd567e5
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-05-28 16:46:54'
+    photo: dd0e899a189d38a0b8917925ab12cac8.png
+    invite_token: null
+    created_at: '2013-05-28 16:46:54'
+    updated_at: '2013-05-28 17:28:50'
+  sfGuardUser_4:
+    first_name: 'Nata 2'
+    last_name: null
+    name: 'Nata 2'
+    username: nata2@asdasd.ru
+    algorithm: sha1
+    salt: 8ea7df65af470bd5c90cb56973eeb6b7
+    email_address: null
+    password: 08894629a3650d27949082e0693161b5cc1e04ca
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-06-03 11:54:34'
+    photo: null
+    invite_token: null
+    created_at: '2013-06-03 07:43:42'
+    updated_at: '2013-06-03 11:54:34'
+  sfGuardUser_5:
+    first_name: Nata
+    last_name: null
+    name: Nata
+    username: nata@asdasd.ru
+    algorithm: sha1
+    salt: 6373a9e9339d5cf499846e2fe3e9bd8b
+    email_address: null
+    password: 952032024778057757b64fc59929e5353a1089de
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-06-03 07:47:32'
+    photo: null
+    invite_token: null
+    created_at: '2013-06-03 07:47:32'
+    updated_at: '2013-06-03 07:47:32'
 ResponseOptionField:
   ResponseOptionField_1:
     RiskFactorField: RiskFactorField_1
@@ -81,55 +537,6 @@ ResponseOptionField:
     note: ''
     created_at: '2013-05-29 09:46:14'
     updated_at: '2013-05-29 09:46:14'
-sfGuardUser:
-  sfGuardUser_1:
-    first_name: Nick
-    last_name: null
-    name: Nick
-    username: zenkovnick@gmail.com
-    algorithm: sha1
-    salt: d2d1e0ddf514a7a33aef0bc5fc6c1e4a
-    email_address: null
-    password: c2d4d2d76dcf70c2c4da300100991c99ff336eed
-    is_active: true
-    is_super_admin: true
-    last_login: '2013-06-03 15:38:10'
-    photo: null
-    invite_token: null
-    created_at: '2013-05-24 14:22:26'
-    updated_at: '2013-06-03 15:38:10'
-  sfGuardUser_2:
-    first_name: Katrin
-    last_name: null
-    name: Katrin
-    username: sokolkatrin@gmail.com
-    algorithm: sha1
-    salt: 66abc227b68c3a829776887800d7a8a9
-    email_address: null
-    password: 6828f216b6a625dac44865bfe246b48a35c1ee3d
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-05-27 16:27:46'
-    photo: null
-    invite_token: null
-    created_at: '2013-05-27 16:27:46'
-    updated_at: '2013-05-27 16:27:46'
-  sfGuardUser_3:
-    first_name: Nick
-    last_name: null
-    name: Nick
-    username: zennick@mail.ru
-    algorithm: sha1
-    salt: 2cf9504483d29ded71b2636250231192
-    email_address: null
-    password: 1a5f4389a9f58bc88d428dbcac5b55407fd567e5
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-05-28 16:46:54'
-    photo: dd0e899a189d38a0b8917925ab12cac8.png
-    invite_token: null
-    created_at: '2013-05-28 16:46:54'
-    updated_at: '2013-05-28 17:28:50'
 RiskBuilder:
   RiskBuilder_1:
     Account: Account_1
@@ -154,104 +561,72 @@ RiskBuilder:
     mitigation_high_prevent_flight: true
     created_at: '2013-05-24 14:19:52'
     updated_at: '2013-05-28 17:39:33'
-AccountPlane:
-  AccountPlane_1_1:
-    Account: Account_1
-    Plane: Plane_1
-    position: '1'
-Account:
-  Account_1:
-    title: Company
-    photo: ada668dbf57f4cc7204aa943473cb580.png
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
-    Manager: sfGuardUser_2
-    has_modified_form: true
-    has_plane: true
-    has_pilot: true
-    has_skipped_pilot: false
-    has_flight: true
-    created_at: '2013-05-27 16:27:37'
-    updated_at: '2013-06-03 15:38:29'
-  Account_2:
-    title: 'Company 2'
-    photo: 2042036d41523e2c17bfbccda75d4258.jpg
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
-    Manager: sfGuardUser_1
-    has_modified_form: false
-    has_plane: false
-    has_pilot: false
-    has_skipped_pilot: false
-    has_flight: false
-    created_at: '2013-05-27 16:27:53'
-    updated_at: '2013-05-27 16:27:53'
-  Account_3:
-    title: 'Company 4 '
-    photo: 849f9f65ab8d6b2daac4bd8bac06b93e.jpg
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
-    Manager: sfGuardUser_3
-    has_modified_form: false
-    has_plane: false
-    has_pilot: false
-    has_skipped_pilot: false
-    has_flight: false
-    created_at: '2013-05-28 16:47:29'
-    updated_at: '2013-05-28 16:47:29'
-Plane:
-  Plane_1:
-    tail_number: '677'
-    created_at: '2013-06-03 15:38:23'
-    updated_at: '2013-06-03 15:38:23'
-UserAccount:
-  UserAccount_1_1:
-    Account: Account_1
-    User: sfGuardUser_1
-    is_manager: true
-    position: null
-    created_at: '2013-05-27 16:27:37'
-    updated_at: '2013-05-27 16:27:37'
-  UserAccount_1_2:
-    Account: Account_1
-    User: sfGuardUser_2
-    is_manager: true
-    position: null
-    created_at: '2013-05-27 17:00:00'
-    updated_at: '2013-05-27 17:00:00'
-  UserAccount_2_2:
-    Account: Account_2
-    User: sfGuardUser_2
-    is_manager: true
-    position: null
-    created_at: '2013-05-27 16:27:53'
-    updated_at: '2013-05-27 16:27:53'
-  UserAccount_3_3:
-    Account: Account_3
-    User: sfGuardUser_3
-    is_manager: true
-    position: null
-    created_at: '2013-05-28 16:47:29'
-    updated_at: '2013-05-28 16:47:29'
-RiskFactorField:
-  RiskFactorField_1:
-    RiskBuilder: RiskBuilder_1
-    question: jkkjkjjkjk
-    help_message: ''
-    position: '2'
-    created_at: '2013-05-28 12:04:26'
-    updated_at: '2013-05-29 15:22:29'
-  RiskFactorField_2:
-    RiskBuilder: RiskBuilder_1
-    question: jjjjjjkjhhjjh
-    help_message: ''
-    position: '3'
-    created_at: '2013-05-28 12:05:24'
-    updated_at: '2013-05-29 15:22:29'
-  RiskFactorField_3:
-    RiskBuilder: RiskBuilder_1
-    question: hjjjhhjhjjh
-    help_message: ''
-    position: '1'
-    created_at: '2013-05-29 09:46:14'
-    updated_at: '2013-05-29 15:22:29'
+  RiskBuilder_2:
+    Account: Account_4
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-03 07:44:02'
+    updated_at: '2013-06-03 07:44:02'
+  RiskBuilder_3:
+    Account: Account_5
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-03 07:50:13'
+    updated_at: '2013-06-03 07:50:13'
+  RiskBuilder_4:
+    Account: Account_6
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-03 08:09:25'
+    updated_at: '2013-06-03 08:09:25'
