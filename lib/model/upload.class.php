@@ -347,7 +347,10 @@ class UploadHandler
             $file->size = $file_size;
         }
         if(in_array($file->type, $this->image_types) && !$file->error){
+            //list($file->base_name, $file->ext) = explode('.', $file->name);
             $this->resize_image($file);
+            /*$file->cropped_url = $this->options['upload_url'].$file->base_name.'_cropped.'.$file->ext;
+            $this->cropAvatar($file->url, $file->url_cropped);*/
         }
         return $file;
     }
@@ -356,8 +359,13 @@ class UploadHandler
         $new_image_size = sfConfig::get('app_photo_image_size');
         $path = preg_replace("/^\//", '', $file->url);
         $curr_image_size = getimagesize($path);
-        if($with_ratio){
-            $this->resizeToWidth($curr_image_size, $new_image_size);
+        if($with_ratio)
+        {
+            if($curr_image_size['width'] >= $curr_image_size['height']){
+                $this->resizeToWidth($curr_image_size, $new_image_size);
+            } else {
+                $this->resizeToHeight($curr_image_size, $new_image_size);
+            }
         }
         if($file->type == 'image/x-png'){
             $file->type = 'image/png';
@@ -368,6 +376,52 @@ class UploadHandler
         $img = new sfImage($path, $file->type);
         $img->resize($new_image_size['width'],$new_image_size['height']);
         $img->save();
+    }
+
+    public function cropAvatar($file_input, $file_output, $crop = 'square',$percent = false) {
+        list($w_i, $h_i, $type) = getimagesize($file_input);
+        if (!$w_i || !$h_i) {
+            //echo 'Невозможно получить длину и ширину изображения';
+            return null;
+        }
+        $types = array('','gif','jpeg','png');
+        $ext = $types[$type];
+        if ($ext) {
+            $func = 'imagecreatefrom'.$ext;
+            $img = $func($file_input);
+        } else {
+            //echo 'Некорректный формат файла';
+            return null;
+        }
+        if ($crop == 'square') {
+            $min = $w_i;
+            if ($w_i > $h_i) {
+                $min = $h_i;
+                $rest = $w_i - $h_i;
+                $x_o = ceil($rest / 2);
+            }
+            $w_o = $h_o = $min;
+        } else {
+            list($x_o, $y_o, $w_o, $h_o) = $crop;
+            if ($percent) {
+                $w_o *= $w_i / 100;
+                $h_o *= $h_i / 100;
+                $x_o *= $w_i / 100;
+                $y_o *= $h_i / 100;
+            }
+            if ($w_o < 0) $w_o += $w_i;
+            $w_o -= $x_o;
+            if ($h_o < 0) $h_o += $h_i;
+            $h_o -= $y_o;
+        }
+        $img_o = imagecreatetruecolor($w_o, $h_o);
+        imagecopy($img_o, $img, 0, 0, $x_o, $y_o, $w_o, $h_o);
+        if ($type == 2) {
+            return imagejpeg($img_o,$file_output,100);
+        } else {
+            $func = 'image'.$ext;
+            return $func($img_o,$file_output);
+        }
     }
 
     private function resizeToHeight($curr_size, &$size) {

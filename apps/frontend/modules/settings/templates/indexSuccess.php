@@ -193,10 +193,10 @@
             title.addClass('invalid-field');
         }
 
-        if(cpn.val() == ''){
+        /*if(cpn.val() == ''){
             valid = false;
             cpn.addClass('invalid-field');
-        }
+        }*/
         if(valid){
             jQuery('.invalid-field', this).removeClass('invalid-field');
             jQuery(this).ajaxSubmit(account_submit);
