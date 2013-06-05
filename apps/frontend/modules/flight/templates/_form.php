@@ -24,19 +24,16 @@
         </li>
     <?php endforeach ?>
     <?php for($i = 0; $i<count($data['risk_analysis']); $i++): ?>
-        <li><?php include_partial("flight/field", array(
+        <li>
+            <?php include_partial("flight/risk_field", array(
                 'field' => $form["flight_risk_factor_{$i}"],
                 'label' => true,
-                'class' => 'risk-factor'
+                'class' => 'risk-factor',
+                'help' => $data['risk_analysis'][$i]['help_message'],
+                'risk' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['value'],
+                'note' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['note']
             ));
             ?>
-            <?php $risk = $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['value'] ?>
-            <span class="risk">
-                <?php echo $risk > 0 ? $risk : '' ?>
-            </span>
-            <span class="note">
-                <?php echo $risk > 0 ? $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['note'] : ''?>
-            </span>
         </li>
     <?php endfor ?>
 </ul>
@@ -89,10 +86,22 @@
         });
     }
 
+    function showHelp(event){
+        event.preventDefault();
+        var root_el = jQuery(this).closest('div.risk-factor-question-wrapper');
+        var help = jQuery("p.help-message", root_el);
+        if(help.hasClass('hidden')){
+            help.removeClass('hidden');
+        } else {
+            help.addClass('hidden');
+        }
+    }
+
 
     jQuery(document).ready(function(){
         jQuery("select.risk-factor").bind('change', getRisk);
         jQuery("select.pilot").bind('change', getPilot);
+        jQuery("a.show-help-link").bind('click', showHelp);
         jQuery("input.date").prop('readonly', true).datepicker({
             dateFormat: 'yy-mm-dd'
         });
