@@ -24,6 +24,7 @@ abstract class BaseFlightFormFilter extends BaseFormFilterDoctrine
       'risk_factor_sum' => new sfWidgetFormFilterInput(),
       'mitigation_sum'  => new sfWidgetFormFilterInput(),
       'info'            => new sfWidgetFormFilterInput(),
+      'completed'       => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -38,6 +39,7 @@ abstract class BaseFlightFormFilter extends BaseFormFilterDoctrine
       'risk_factor_sum' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'mitigation_sum'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'info'            => new sfValidatorPass(array('required' => false)),
+      'completed'       => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('flight_filters[%s]');
@@ -69,6 +71,7 @@ abstract class BaseFlightFormFilter extends BaseFormFilterDoctrine
       'risk_factor_sum' => 'Number',
       'mitigation_sum'  => 'Number',
       'info'            => 'Text',
+      'completed'       => 'Boolean',
     );
   }
 }

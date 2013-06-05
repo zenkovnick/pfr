@@ -19,13 +19,42 @@ class builderActions extends sfActions
         $this->form = new RiskBuilderForm($this->risk_builder);
         $this->flight_information = FlightInformationFieldTable::getAllFields($this->risk_builder->getId());
         $this->risk_factors = RiskFactorFieldTable::getAllRiskFactors($this->risk_builder->getId());
+
+        $this->flight = new Flight();
+        $this->data_fields = $this->flight->generateFromDB($this->account);
+        $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
+
+
         if($request->isMethod('post')){
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){
                 $this->form->save();
-                $this->redirect("@form");
+                $this->redirect("@settings?account_id={$this->account->getId()}");
             }
         }
+    }
+
+    public function executePreviewSubmit(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $this->form_id = $request->getParameter('id');
+        $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
+        $this->account = $this->risk_builder->getAccount();
+        $this->form = new RiskBuilderForm($this->risk_builder);
+
+
+
+        if($request->isMethod('post')){
+            $this->form->bind($request->getPostParameter($this->form->getName()));
+            if($this->form->isValid()){
+                $this->flight = new Flight();
+                $this->data_fields = json_decode($this->flight->generateFromDBAndForm($this->account, $this->form), true);
+                $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
+                $form_data = $this->getPartial('flight/form', array('form' => $this->preview_form, 'data' => $this->data_fields));
+                echo json_encode(array('result' => 'OK', 'form_data' => $form_data));
+            }
+        }
+        return sfView::NONE;
     }
 
     public function executeSaveRiskFactor(sfWebRequest $request) {
@@ -160,7 +189,7 @@ class builderActions extends sfActions
         $risk_builder->setMitigationMediumMax($request->getParameter('medium_max'));
         $risk_builder->setMitigationHighMin($request->getParameter('medium_max') + 1);
         $account = $risk_builder->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -203,7 +232,7 @@ class builderActions extends sfActions
         }
         $risk_builder->save();
         $account = $risk_builder->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -220,7 +249,7 @@ class builderActions extends sfActions
         $flight_information_field->setIsHide($field_hidding);
         $flight_information_field->save();
         $account = $flight_information_field->getRiskBuilder()->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -244,7 +273,7 @@ class builderActions extends sfActions
         }
         $risk_builder = Doctrine_Core::getTable("RiskBuilder")->find($request->getParameter('form_id'));
         $account = $risk_builder->getAccount();
-        if(!$account->getHasModifiedForm){
+        if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
             $account->save();
         }
@@ -262,7 +291,7 @@ class builderActions extends sfActions
             $flight_information_field->setIsHide(!$flight_information_field->getIsHide());
             $flight_information_field->save();
             $account = $flight_information_field->getRiskBuilder()->getAccount();
-            if(!$account->getHasModifiedForm){
+            if(!$account->getHasModifiedForm()){
                 $account->setHasModifiedForm(true);
                 $account->save();
             }

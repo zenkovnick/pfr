@@ -12,16 +12,17 @@
  */
 class Flight extends BaseFlight
 {
-    public function generateFromDB($account_obj){
-        $this->setAccount($account_obj);
+    public static function generateFromDB($account_obj){
+        //$this->setAccount($account_obj);
 
-        $risk_builder = $this->getAccount()->getRiskBuilders()->getFirst(); /* Change if there are more than one risk builder in account */
+        //$risk_builder = $this->getAccount()->getRiskBuilders()->getFirst(); /* Change if there are more than one risk builder in account */
+        $risk_builder = $account_obj->getRiskBuilders()->getFirst();
 
         $result = array();
         $result['form_name']  = $risk_builder->getFormName();
         $result['form_instructions'] = $risk_builder->getFormInstructions();
-        $result['from_airport'] = null;
-        $result['to_airport'] = null;
+        $result['airport_from'] = null;
+        $result['airport_to'] = null;
         $result['departure_date'] = null;
         $result['departure_time'] = null;
         foreach($risk_builder->getOrderedFlightInformationFields() as $field){
@@ -44,12 +45,63 @@ class Flight extends BaseFlight
                 $response['text'] = $option->getResponseText();
                 $response['value'] = $option->getResponseValue();
                 $response['note'] = $option->getNote();
-                $risk_factor['response_options'][] = $response;
+                $risk_factor['response_options'][$option->getId()] = $response;
             }
             $result['risk_analysis'][] = $risk_factor;
         }
-        $this->setInfo(json_encode($result));
-        $this->save();
-        return $result;
+        /*$this->setInfo(json_encode($result));
+        $this->save();*/
+        return json_encode($result);
+    }
+
+    public function generateFromDBAndForm($account_obj, $risk_form){
+        $risk_builder = $account_obj->getRiskBuilders()->getFirst();
+        $values = $risk_form->getTaintedValues();
+        $result = array();
+        $result['form_name']  = $values['form_name'];
+        $result['form_instructions'] = $values['form_instructions'];
+        $result['airport_from'] = null;
+        $result['airport_to'] = null;
+        $result['departure_date'] = null;
+        $result['departure_time'] = null;
+        foreach($risk_builder->getOrderedFlightInformationFields() as $field){
+            if(!$field->getIsHide()){
+                $flight_information['name'] = $field->getInformationName();
+                $flight_information['value'] = null;
+                $result['flight_information'][] = $flight_information;
+            }
+        }
+        $result['risk_analysis'] = array();
+        foreach($risk_builder->getOrderedRiskFactors() as $field){
+            $risk_factor = array();
+            $risk_factor['question'] = $field->getQuestion();
+            $risk_factor['help_message'] = $field->getHelpMessage();
+            $risk_factor['mitigation'] = null;
+            $risk_factor['selected_response'] = null;
+            $risk_factor['response_options'] = array();
+            foreach($field->getResponseOptions() as $option){
+                $response = array();
+                $response['text'] = $option->getResponseText();
+                $response['value'] = $option->getResponseValue();
+                $response['note'] = $option->getNote();
+                $risk_factor['response_options'][$option->getId()] = $response;
+            }
+            $result['risk_analysis'][] = $risk_factor;
+        }
+        /*$this->setInfo(json_encode($result));
+        $this->save();*/
+        return json_encode($result);
+    }
+
+    public static function generateKeyByTitle($title){
+        return strtolower(preg_replace('/\([a-zA-Z_]*\)/i','',str_replace(':', '', str_replace(' ', '_', $title))));
+    }
+
+    public function getResponseOptionTitles($risk_factor){
+        $response_option_titles = array();
+        foreach($risk_factor['response_options'] as $id => $response_option){
+            $response_option_titles[$id] = $response_option['text'];
+        }
+        return $response_option_titles;
     }
 }

@@ -27,6 +27,7 @@ abstract class BaseFlightForm extends BaseFormDoctrine
       'risk_factor_sum' => new sfWidgetFormInputText(),
       'mitigation_sum'  => new sfWidgetFormInputText(),
       'info'            => new sfWidgetFormInputText(),
+      'completed'       => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -42,6 +43,7 @@ abstract class BaseFlightForm extends BaseFormDoctrine
       'risk_factor_sum' => new sfValidatorInteger(array('required' => false)),
       'mitigation_sum'  => new sfValidatorInteger(array('required' => false)),
       'info'            => new sfValidatorPass(array('required' => false)),
+      'completed'       => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('flight[%s]');

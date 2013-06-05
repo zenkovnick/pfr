@@ -16,6 +16,7 @@
  * @property integer $risk_factor_sum
  * @property integer $mitigation_sum
  * @property text $info
+ * @property boolean $completed
  * @property Account $Account
  * @property Plane $Plane
  * @property sfGuardUser $PIC
@@ -32,6 +33,7 @@
  * @method integer     getRiskFactorSum()   Returns the current record's "risk_factor_sum" value
  * @method integer     getMitigationSum()   Returns the current record's "mitigation_sum" value
  * @method text        getInfo()            Returns the current record's "info" value
+ * @method boolean     getCompleted()       Returns the current record's "completed" value
  * @method Account     getAccount()         Returns the current record's "Account" value
  * @method Plane       getPlane()           Returns the current record's "Plane" value
  * @method sfGuardUser getPIC()             Returns the current record's "PIC" value
@@ -47,6 +49,7 @@
  * @method Flight      setRiskFactorSum()   Sets the current record's "risk_factor_sum" value
  * @method Flight      setMitigationSum()   Sets the current record's "mitigation_sum" value
  * @method Flight      setInfo()            Sets the current record's "info" value
+ * @method Flight      setCompleted()       Sets the current record's "completed" value
  * @method Flight      setAccount()         Sets the current record's "Account" value
  * @method Flight      setPlane()           Sets the current record's "Plane" value
  * @method Flight      setPIC()             Sets the current record's "PIC" value
@@ -97,6 +100,10 @@ abstract class BaseFlight extends sfDoctrineRecord
              ));
         $this->hasColumn('info', 'text', null, array(
              'type' => 'text',
+             ));
+        $this->hasColumn('completed', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
     }
 

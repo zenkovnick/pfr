@@ -3,8 +3,8 @@
 <?php end_slot() ?>
 
 <div class="flight">
-    <form action="<?php echo url_for("@create_flight?account_id={$account->getId()}") ?>" id="flight_form" method="POST">
-        <?php include_partial('flight/form', array('form' => $form, 'data' => $data_fields)); ?>
+    <form action="<?php echo url_for("@complete_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>" id="flight_form" method="POST">
+        <?php include_partial('form', array('form' => $form, 'data' => $data_fields)); ?>
         <button type="submit">Calculate Risk</button>
         <button class="finish-later">Finish Later</button>
     </form>
@@ -13,7 +13,7 @@
     function submitFinishLater(event) {
         event.preventDefault();
         var form = jQuery("form");
-        form.prop('action', form.prop('action') + "?drafted=true").submit();
+        form.prop('action', form.prop('action') + "&drafted=true").submit();
     }
     jQuery(document).ready(function(){
 

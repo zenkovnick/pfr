@@ -79,4 +79,14 @@ class sfGuardUserTable extends PluginsfGuardUserTable
         $max_position = $query->getMaxPosition();
         return $max_position ? $max_position : 0;
     }
+
+    public static function getUsers($parameters){
+        $account = $parameters['account'];
+        $query = Doctrine_Query::create()
+            ->from('sfGuardUser u')
+            ->leftJoin('u.UserAccount ua')
+            ->where('ua.account_id = ?', $account->getId())
+            ->execute();
+        return $query;
+    }
 }
