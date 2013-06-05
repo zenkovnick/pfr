@@ -45,7 +45,7 @@ class registrationActions extends sfActions
                 if($request->getParameter('token')){
                     $user->setIsActive(true);
                     $this->getUser()->signIn($user);
-                    $this->redirect("dashboard?account_id=".AccountTable::getAllUserAccounts($user->getId())->getFirst());
+                    $this->redirect("@dashboard?account_id=".AccountTable::getAllUserAccounts($user->getId())->getFirst());
                 } else {
                     $this->getUser()->signIn($user);
                     $this->redirect('@create_account');
