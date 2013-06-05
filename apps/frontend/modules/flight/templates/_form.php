@@ -1,10 +1,15 @@
 <?php echo $form->renderGlobalErrors();?>
 <?php echo $form->renderHiddenFields();?>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/js/jquery.ui.timepicker.js"></script>
 <ul class="flight-field-list">
     <li><?php include_partial("flight/field", array('field' => $form['airport_from'], 'label' => true)); ?></li>
     <li><?php include_partial("flight/field", array('field' => $form['airport_to'], 'label' => true)); ?></li>
-    <li><?php include_partial("flight/field", array('field' => $form['departure_date'], 'label' => true)); ?></li>
-    <li><?php include_partial("flight/field", array('field' => $form['departure_time'], 'label' => true)); ?></li>
+    <li><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'label' => true)); ?></li>
+    <li><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'label' => true)); ?></li>
     <?php foreach($data['flight_information'] as $fi): ?>
         <li>
             <?php $key = Flight::generateKeyByTitle($fi['name']); ?>
@@ -88,6 +93,14 @@
     jQuery(document).ready(function(){
         jQuery("select.risk-factor").bind('change', getRisk);
         jQuery("select.pilot").bind('change', getPilot);
+        jQuery("input.date").prop('readonly', true).datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        jQuery("input.time").prop('readonly', true).timepicker({
+            hourGrid: 4,
+            minuteGrid: 10,
+            timeFormat: 'HH:mm'
+        });
         //jQuery("select.risk-factor").trigger('change');
     });
 </script>
