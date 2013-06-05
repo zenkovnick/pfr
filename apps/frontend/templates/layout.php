@@ -18,7 +18,8 @@
             $("<link/>", {
                 rel: "stylesheet",
                 type: "text/css",
-                href: "/css/style_mobile.css"
+//                href: "/css/style_mobile.css"
+                href: "/css/style.css"
             }).appendTo("head");
         } else {
             $("<link/>", {
