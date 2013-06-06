@@ -182,7 +182,8 @@ Flight:
       risk_factor_sum: {type: integer }
       mitigation_sum:  {type: integer }
       info:            {type: text }
-      completed:       {type: boolean, default: false}
+      drafted:         {type: boolean, default: false}
+      status:          {type: enum(), values: ['new', 'assess', 'complete'], default: 'new'}
     relations:
       Account: {class: Account, local: account_id, foreign: id, type: one, onDelete: CASCADE}
       Plane:   {class: Plane, local: plane_id, foreign: id, type: one, onDelete: CASCADE}

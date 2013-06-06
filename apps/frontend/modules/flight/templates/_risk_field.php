@@ -29,10 +29,10 @@ if(isset($help)){
     </div>
     <div class="risk-note-wrapper">
         <span class="risk">
-                <?php echo (isset($risk) && $risk > 0) ? $risk : '' ?>
+                <?php echo $risk ?>
         </span>
         <span class="note">
-                <?php echo (isset($risk) && $risk > 0) ? $note : ''?>
+                <?php echo $note ?>
         </span>
     </div>
 </div>

@@ -16,8 +16,8 @@ class FlightForm extends BaseFormDoctrine
       $this->setValidator('id', new sfValidatorInteger(array('required' => false)));
       $this->setWidget('risk_factor_sum', new sfWidgetFormInputHidden());
       $this->setValidator('risk_factor_sum', new sfValidatorInteger(array('required' => false)));
-      $this->setWidget('risk_factor_mitigation', new sfWidgetFormInputHidden());
-      $this->setValidator('risk_factor_mitigation', new sfValidatorInteger(array('required' => false)));
+      $this->setWidget('mitigation_sum', new sfWidgetFormInputHidden());
+      $this->setValidator('mitigation_sum', new sfValidatorInteger(array('required' => false)));
       $this->setWidget('plane_id', new sfWidgetFormInputHidden());
       $this->setValidator('plane_id', new sfValidatorInteger(array('required' => false)));
       $this->setWidget('pic_id', new sfWidgetFormInputHidden());
@@ -31,9 +31,9 @@ class FlightForm extends BaseFormDoctrine
       }
 
       foreach($data_fields as $key => $data_field){
-          if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions"){
+          if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions" && !$this->startsWith($key, 'mitigation')){
               $this->setWidget($key, new sfWidgetFormInput());
-              $this->setValidator($key, new sfValidatorString());
+              $this->setValidator($key, new sfValidatorString(array("required" => true)));
               if(!$this->isNew()){
                   if($key == "departure_date"){
                       $this->setDefault($key, date('Y-m-d', strtotime($this->getObject()->getDepartureDate())));
@@ -53,14 +53,14 @@ class FlightForm extends BaseFormDoctrine
                   $key = $this->getObject()->generateKeyByTitle($fi['name']);
                   if($key == "trip_number"){
                       $this->setWidget($key, new sfWidgetFormInput());
-                      $this->setValidator($key, new sfValidatorString());
+                      $this->setValidator($key, new sfValidatorString(array("required" => true)));
                   } else if($key == "plane"){
                       $this->setWidget($key, new sfWidgetFormDoctrineChoice(array(
                           'model' => 'Plane',
                           /*'table_method' => 'getPlanes'*/
                           ))
                       );
-                      $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'Plane')));
+                      $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'Plane',"required" => true)));
                   } else if($key == 'pilot_in_command'){
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
                           'model' => 'sfGuardUser',
@@ -69,7 +69,7 @@ class FlightForm extends BaseFormDoctrine
                           'method' => 'getUserTitle',
                           'method_parameters' => array('curr_user' => $this->getOption('user'))
                       )));
-                      $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser')));
+                      $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
                       $this->setDefault($key, $this->getOption('user')->getId());
                   } else {
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
@@ -79,7 +79,7 @@ class FlightForm extends BaseFormDoctrine
                           'method' => 'getUserTitle',
                           'method_parameters' => array('curr_user' => $this->getOption('user'))
                       )));
-                      $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser')));
+                      $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
                   }
               }
           } else if($key == 'risk_analysis'){
@@ -123,8 +123,8 @@ class FlightForm extends BaseFormDoctrine
             $data_fields = json_decode($this->getObject()->getInfo(), true);
         }
         $total_score = 0;
-        if($this->getObject()->getCompleted()){
-            $mitigation_score = 0;
+        if($this->getObject()->getStatus() == 'assess'){
+            $mitigation_sum = is_null($this->getObject()->getMitigationSum()) ? 0 : $this->getObject()->getMitigationSum();
         }
         $taintedValues['departure_date'] = date('Y-m-d H:i', strtotime($taintedValues['departure_time']));
         $data_fields['departure_date']= date('Y-m-d', strtotime($taintedValues['departure_time']));
@@ -132,8 +132,10 @@ class FlightForm extends BaseFormDoctrine
         foreach($data_fields as $key => $data_field){
             if($key == "risk_analysis"){
                 for($i = 0; $i < count($data_field); $i++){
-                    if($this->getObject()->getCompleted()){
-                        $mitigation_score += $data_field[$i]['response_options'][$data_fields['risk_analysis'][$i]['selected_response']]['value'] - $data_field[$i]['response_options'][$taintedValues["flight_risk_factor_{$i}"]]['value'];;
+                    if($this->getObject()->getStatus() == 'assess'){
+                        $mitigation_score = $data_field[$i]['response_options'][$data_fields['risk_analysis'][$i]['selected_response']]['value'] - $data_field[$i]['response_options'][$taintedValues["flight_risk_factor_{$i}"]]['value'];;
+                        $data_fields['risk_analysis'][$i]['mitigation'] = $data_fields['risk_analysis'][$i]['mitigation'] + $mitigation_score;
+                        $mitigation_sum +=  $mitigation_score;
                     }
                     $data_fields['risk_analysis'][$i]['selected_response'] =  $taintedValues["flight_risk_factor_{$i}"];
                     $total_score += $data_field[$i]['response_options'][$taintedValues["flight_risk_factor_{$i}"]]['value'];
@@ -145,8 +147,8 @@ class FlightForm extends BaseFormDoctrine
         if(isset($taintedValues['second_in_command'])){
             $taintedValues['sic_id'] = $taintedValues['second_in_command'];
         }
-        if($this->getObject()->getCompleted()){
-            $taintedValues['risk_factor_mitigation'] = $mitigation_score;
+        if($this->getObject()->getStatus() == 'assess'){
+            $taintedValues['mitigation_sum'] = $mitigation_sum;
         }
         $taintedValues['risk_factor_sum'] = $total_score;
         $this->getObject()->setInfo(json_encode($data_fields));
@@ -158,5 +160,10 @@ class FlightForm extends BaseFormDoctrine
         }
 
         parent::bind($taintedValues, $taintedFiles);
+    }
+
+    private function startsWith($haystack, $needle)
+    {
+        return !strncmp($haystack, $needle, strlen($needle));
     }
 }
