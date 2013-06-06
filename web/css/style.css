@@ -211,20 +211,12 @@ ul.header-link-block li a {
     cursor: pointer;
 }
 
-/*.btn-violet {*/
-    /*background: #8F3FC5;*/
-    /*background: -webkit-gradient(linear, left top, left bottom, from(#9E58CD), to(#8227BE));*/
-    /*background: -webkit-linear-gradient(top, #9E58CD, #8227BE);*/
-    /*background: -moz-linear-gradient(top, #9E58CD, #8227BE);*/
-    /*background: -ms-linear-gradient(top, #9E58CD, #8227BE);*/
-    /*background: -o-linear-gradient(top, #9E58CD, #8227BE);*/
-    /*background-image: -ms-linear-gradient(top, #9E58CD 0%, #8227BE 100%);*/
-    /*border-color: #DCDCDC;*/
-    /*color: #FFF;*/
-    /*cursor: pointer;*/
-    /*padding: 5px 15px;*/
-    /*text-shadow: 1px 1px 1px #282828;*/
-/*}*/
+.btn-blue {
+    background: #00AEEF;
+    border-color: #0F76BB;
+    color: #FFF;
+    cursor: pointer;
+}
 /*.btn-violet:hover {*/
     /*background: #B74CFF;*/
     /*background: -webkit-gradient(linear, left top, left bottom, from(#CA6CFF), to(#A42AF4));*/
@@ -298,10 +290,10 @@ ul.header-link-block li a {
 /*---------------------------------------------------> Sign In <------------------------------------------------------*/
 /*---------------------------------------------------> Sign Up <------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-.sign-in .wrapper, .sign-up .wrapper, .choose-account .wrapper {
+.sign-in .wrapper, .sign-up .wrapper, .choose-account .wrapper, .create-account .wrapper {
     max-width: 300px;
 }
-.sign-in h1, .sign-up h1, .choose-account h1 {
+.sign-in h1, .sign-up h1, .choose-account h1, .create-account h1 {
     color: #414042;
     font-size: 16px;
     font-weight: bold;
@@ -313,7 +305,7 @@ ul.header-link-block li a {
     overflow: hidden;
     width: 100%;
 }
-.sign-in-form input, .sign-up input {
+.sign-in-form input, .sign-up input, .create-account input {
     background: #FFF;
     border: 1px solid #CCC;
     border-radius: 0;
@@ -327,30 +319,34 @@ ul.header-link-block li a {
     text-align: center;
     width: 100%;
 }
-.sign-in-form input.placeholder, .sign-up input.placeholder {
+.sign-in-form input.placeholder, .sign-up input.placeholder, .create-account input.placeholder {
     color: #CCC;
 }
-.sign-in-form input::-webkit-input-placeholder, .sign-up input::-webkit-input-placeholder { /* WebKit browsers */
+.sign-in-form input::-webkit-input-placeholder, .sign-up input::-webkit-input-placeholder, .create-account input::-webkit-input-placeholder { /* WebKit browsers */
     color: #CCC !important;
 }
-.sign-in-form input:-moz-placeholder, .sign-up input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+.sign-in-form input:-moz-placeholder, .sign-up input:-moz-placeholder, .create-account input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #CCC !important;
 }
-.sign-in-form input::-moz-placeholder, .sign-up input::-moz-placeholder { /* Mozilla Firefox 19+ */
+.sign-in-form input::-moz-placeholder, .sign-up input::-moz-placeholder, .create-account input::-moz-placeholder { /* Mozilla Firefox 19+ */
     color: #CCC;
 }
-.sign-in-form input:-ms-input-placeholder, .sign-up input:-ms-input-placeholder { /* Internet Explorer 10+ */
+.sign-in-form input:-ms-input-placeholder, .sign-up input:-ms-input-placeholder, .create-account input:-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #CCC;
 }
-.sign-in .btn-grey, .sign-up .btn-grey {
+.sign-in .btn-grey, .sign-up .btn-grey, .create-account .btn-grey, .create-account .btn-blue {
     margin-bottom: 9px;
     width: 100%;
 }
-.sign-in-form span, .sign-up span {
+.sign-in-form span, .sign-up span, .create-account p {
     color: #999;
     display: block;
     font-size: 0.85em;
     text-align: center;
+}
+.create-account p {
+    line-height: 150%;
+    margin-bottom: 15px;
 }
 .sign-in-form span a, .sign-up span a {
     color: #3E8CD7;
@@ -391,7 +387,7 @@ a.sign-out {
     margin: 5px 0;
     text-decoration: none;
 }
-.choose-account .wrapper ul li span {
+.choose-account .wrapper ul li span, .create-account span {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #999;
     display: block;
