@@ -22,6 +22,9 @@
     <li class="header-settings header-link">
         <a href="<?php echo isset($account) ? url_for("@settings?account_id={$account->getId()}") : "#" ?>">Settings</a>
     </li>
+    <li class="header-settings header-link">
+        <a href="<?php echo url_for("@select_account")?>">Change Account</a>
+    </li>
 </ul>
 <div class="header-user-information-wrapper">
     <span class="header-user-avatar">
