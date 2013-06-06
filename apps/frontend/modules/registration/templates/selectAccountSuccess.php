@@ -23,6 +23,11 @@
         </li>
     <?php endforeach; ?>
     <li>
+        <img src="#" alt=""/>
         <a href="<?php echo url_for('@create_account') ?>">Create Account</a>
+        <span>Set it up now</span>
     </li>
 </ul>
+<script type="text/javascript">
+    jQuery('body').addClass('choose-account');
+</script>
