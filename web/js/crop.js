@@ -23,8 +23,9 @@ function clearCoords()
     },500);
 };
 
-function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_type, form_field_id, container_id, uploaded_field_id)
+function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upload_type, form_field_id, container_id, uploaded_field_id)
 {
+
 //    jQuery('#remove_image').click(function(){
 //        jQuery('#photo').attr('src', default_image );
 //        jQuery('#'+form_field_id).val('');
@@ -35,12 +36,14 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
 //    jQuery('#fancyboxcrop_show').fancybox({
 //        autoDimensions: true
 //    });
+
     jQuery('#'+form_field_id).fileupload({
         url: upload_url,
         forceIframeTransport: true,
         done: function (e, data) {
             var response = jQuery(data.result).find('html body').html();
             //alert(response);
+
             var object = eval('(' + response + ')');
             /*response = "<HTML>"+response+"</HTML>";
             var response_html = null;
@@ -73,6 +76,7 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
 
             var file_name = null;
             var file_url = null;
+            var widget = null;
             for(var obj in object){
                 if(object.hasOwnProperty(obj)){
                     for(var prop in object[obj]){
@@ -82,6 +86,7 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
                             }else if(prop == 'url'){
                                 file_url = object[obj][prop];
                             }
+                            //alert(prop+" "+object[obj][prop]);
                         }
                     }
                 }
@@ -92,8 +97,17 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
                 //console.log(file);
 //                image_name = file.name;
 //                jQuery('.jcrop-holder').remove();
-            jQuery('#'+container_id).html('<img id="temp_image" src="'+file_url+'">').removeClass("default-avatar");
-            jQuery('#'+uploaded_field_id).val(file_name);
+            jQuery.ajax({
+                url: get_widget_url,
+                data: {url: file_url},
+                dataType: 'html',
+                async: true,
+                success: function(data){
+                    widget = data;
+                    jQuery('#'+container_id).html(widget).removeClass("default-avatar");
+                    jQuery('#'+uploaded_field_id).val(file_name);
+                }
+            });
 
 //                jQuery('<img id="temp_image" src="'+file.url+'">').html(jQuery('#avatar-container'));
 //                //jQuery('#crop-form').html('<img id="temp_image" src="'+file.url+'">');
@@ -107,6 +121,7 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
 //                    minSize: crop_min_size
 //                });
            // });
+            return false;
         }
     });
 
@@ -140,4 +155,5 @@ function init_crop(upload_url, crop_url, default_image, crop_min_size, upload_ty
 //        });
 //        return false;
 //    });
+
 }

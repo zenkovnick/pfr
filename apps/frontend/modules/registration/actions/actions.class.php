@@ -111,13 +111,17 @@ class registrationActions extends sfActions
         ));
         if ($request->isMethod('post'))
         {
-            $upload_handler->post();
+            $response = json_decode($upload_handler->post(), true);
+            echo json_encode($response);
+
         }
         return sfView::NONE;
     }
 
-    public function executeCropImage(sfWebRequest $request)
+    public function executeGetWidget(sfWebRequest $request)
     {
+        $this->setLayout(false);
+        $this->renderPartial('registration/uploaded_avatar', array('file_path' => str_replace('/uploads/', '', $request->getParameter('url'))));
         return sfView::NONE;
     }
 

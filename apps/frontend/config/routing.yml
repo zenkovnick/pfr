@@ -1,3 +1,13 @@
+settings_get_widget:
+  url: /settings/get-widget
+  param: { module: settings, action: getWidget }
+
+
+create_account_get_widget:
+  url: /registration/get-widget
+  param: { module: registration, action: getWidget }
+
+
 get_risk:
   url: /flight/get-risk
   param: { module: flight, action: getRisk }

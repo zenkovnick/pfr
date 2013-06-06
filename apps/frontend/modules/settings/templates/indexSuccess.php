@@ -12,9 +12,9 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        init_crop('<?php echo url_for('@my_information_upload_avatar'); ?>', '<?php echo url_for('@my_information_crop_image'); ?>',
+        init_crop('<?php echo url_for('@my_information_upload_avatar'); ?>', '<?php echo url_for('@settings_get_widget'); ?>',
             '/images/no_avatar.png', [32, 32], 'photo', 'sf_guard_user_photo', 'user_avatar_container', 'sf_guard_user_uploaded_photo');
-        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_crop_image'); ?>',
+        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_get_widget'); ?>',
             '/images/no_avatar.png', [32, 32], 'photo', 'account_photo', 'account_avatar_container', 'account_uploaded_photo');
     });
 </script>
@@ -152,11 +152,14 @@
     var account_id = null;
 
     function informationSubmitted(data){
-        jQuery('span.header-user-avatar img').attr('src', jQuery('li.my-information img#temp_image').attr('src'));
+        if(data.result == "OK"){
+            //alert(data.widget);
+            jQuery('span.header-user-avatar').html(data.widget);
+        }
     }
 
     function accountSubmitted(data){
-        jQuery('span.header-account-avatar img').attr('src', jQuery('li.account-information img#temp_image').attr('src'));
+        jQuery('span.header-account-avatar').html(data.widget);
     }
     function validateAndSubmitInformationForm(event) {
         event.preventDefault();
@@ -193,10 +196,10 @@
             title.addClass('invalid-field');
         }
 
-        if(cpn.val() == ''){
+        /*if(cpn.val() == ''){
             valid = false;
             cpn.addClass('invalid-field');
-        }
+        }*/
         if(valid){
             jQuery('.invalid-field', this).removeClass('invalid-field');
             jQuery(this).ajaxSubmit(account_submit);
