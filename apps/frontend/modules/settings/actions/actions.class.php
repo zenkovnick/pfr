@@ -26,8 +26,14 @@ class settingsActions extends sfActions {
         if($request->isMethod('POST')){
             $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
             if($this->form->isValid()){
-                $this->form->save();
-                echo json_encode(array('result' => 'OK'));
+                $user = $this->form->save();
+                $widget = null;
+                $response_array = array();
+                $response_array['result'] = "OK";
+                if($user->getPhoto()){
+                    $response_array['widget'] = $this->getPartial('settings/uploaded_avatar', array('file_path' => "avatar/{$user->getPhoto()}"));
+                }
+                echo json_encode($response_array);
             } else {
                 echo json_encode(array('result' => 'Not Valid'));
             }
@@ -43,8 +49,14 @@ class settingsActions extends sfActions {
         if($request->isMethod('POST')){
             $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
             if($this->form->isValid()){
-                $this->form->save();
-                echo json_encode(array('result' => 'OK'));
+                $account = $this->form->save();
+                $widget = null;
+                $response_array = array();
+                $response_array['result'] = "OK";
+                if($account->getPhoto()){
+                    $response_array['widget'] = $this->getPartial('settings/uploaded_avatar', array('file_path' => "avatar/{$account->getPhoto()}", 'size' => 60));
+                }
+                echo json_encode($response_array);
             } else {
                 echo json_encode(array('result' => 'Not Valid'));
             }
@@ -373,8 +385,17 @@ class settingsActions extends sfActions {
         ));
         if ($request->isMethod('post'))
         {
-            $upload_handler->post();
+            $response = json_decode($upload_handler->post(), true);
+            echo json_encode($response);
+
         }
+        return sfView::NONE;
+    }
+
+    public function executeGetWidget(sfWebRequest $request)
+    {
+        $this->setLayout(false);
+        $this->renderPartial('settings/uploaded_avatar', array('file_path' => str_replace('/uploads/', '', $request->getParameter('url'))));
         return sfView::NONE;
     }
 

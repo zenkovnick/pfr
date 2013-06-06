@@ -348,9 +348,15 @@ class UploadHandler
         }
         if(in_array($file->type, $this->image_types) && !$file->error){
             list($file->base_name, $file->ext) = explode('.', $file->name);
+            $explode_url = explode('/', $file->url);
+            $folders = array_slice($explode_url, 1, count($explode_url) - 2);
             $this->resize_image($file);
-            $file->cropped_url_in = sfConfig::get('sf_upload_dir').'/avatar/'.$file->name;
-            $file->cropped_url_out = sfConfig::get('sf_upload_dir').'/avatar/'.$file->base_name.'_cropped.'.$file->ext;
+            $file->path = sfConfig::get('sf_upload_dir')."/../";
+            foreach($folders as $folder){
+                $file->path .= $folder."/";
+            }
+            $file->cropped_url_in = $file->path.$file->name;
+            $file->cropped_url_out = $file->path.$file->base_name.'_cropped.'.$file->ext;
             $this->cropAvatar($file->cropped_url_in, $file->cropped_url_out);
             unlink($file->cropped_url_in);
             rename($file->cropped_url_out, $file->cropped_url_in);
@@ -513,8 +519,8 @@ class UploadHandler
         } else {
             header('Content-type: text/plain');
         }*/
-        header('Content-type: text/plain');
-        echo $json;
+        //header('Content-type: text/plain');
+        return $json;
     }
 
     public function delete() {
