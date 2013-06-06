@@ -13,9 +13,9 @@
 <script type="text/javascript">
     jQuery(document).ready(function(){
         init_crop('<?php echo url_for('@my_information_upload_avatar'); ?>', '<?php echo url_for('@settings_get_widget'); ?>',
-            '/images/no_avatar.png', [32, 32], 'photo', 'sf_guard_user_photo', 'user_avatar_container', 'sf_guard_user_uploaded_photo');
+            '/images/no_avatar.png', [32, 32], 'photo', 'sf_guard_user_photo_widget', 'user_avatar_container', 'sf_guard_user_uploaded_photo');
         init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_get_widget'); ?>',
-            '/images/no_avatar.png', [32, 32], 'photo', 'account_photo', 'account_avatar_container', 'account_uploaded_photo');
+            '/images/no_avatar.png', [32, 32], 'photo', 'account_photo_widget', 'account_avatar_container', 'account_uploaded_photo');
     });
 </script>
 
@@ -27,7 +27,7 @@
             <?php echo($user_form->renderHiddenFields()) ?>
             <?php echo($user_form->renderGlobalErrors()) ?>
             <ul>
-                <li class="photo-block"><?php include_partial('settings/user_avatar_field', array('field' => $user_form['photo'], 'user' => $user)) ?></li>
+                <li class="photo-block"><?php include_partial('settings/user_avatar_field', array('field' => $user_form['photo_widget'], 'user' => $user)) ?></li>
                 <li class="input-block"><?php include_partial('settings/field',
                         array('field' => $user_form['first_name'], 'placeholder' => 'Name')) ?>
                 </li>
@@ -52,7 +52,7 @@
                 <?php echo($account_form->renderHiddenFields()) ?>
                 <?php echo($account_form->renderGlobalErrors()) ?>
                 <ul>
-                    <li class="photo-block"><?php include_partial('settings/account_avatar_field', array('field' => $account_form['photo'], 'account' => $account)) ?></li>
+                    <li class="photo-block"><?php include_partial('settings/account_avatar_field', array('field' => $account_form['photo_widget'], 'account' => $account)) ?></li>
                     <li class="input-block"><?php include_partial('settings/field',
                             array('field' => $account_form['title'], 'class' => 'account_title', 'placeholder' => 'Title')) ?>
                     </li>
