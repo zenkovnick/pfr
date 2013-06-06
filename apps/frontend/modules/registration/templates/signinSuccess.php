@@ -1,3 +1,6 @@
+<?php slot('header') ?>
+    <?php include_partial('menu/header_logo')?>
+<?php end_slot() ?>
 <h1>Sign in</h1>
 <form class="sign-in-form" action="<?php echo url_for('@signin_process') ?>" method="post">
     <fieldset class="blog-login">
@@ -25,17 +28,17 @@
 
 <script type="text/javascript">
     jQuery('body').addClass('sign-in');
-    jQuery('[placeholder]').focus(function() {
-        var input = jQuery(this);
-        if (input.val() == input.attr('placeholder')) {
-            input.val('');
-            input.removeClass('placeholder');
-        }
-    }).blur(function() {
-            var input = jQuery(this);
-            if (input.val() == '' || input.val() == input.attr('placeholder')) {
-                input.addClass('placeholder');
-                input.val(input.attr('placeholder'));
-            }
-        }).blur();
+//    jQuery('[placeholder]').focus(function() {
+//        var input = jQuery(this);
+//        if (input.val() == input.attr('placeholder')) {
+//            input.val('');
+//            input.removeClass('placeholder');
+//        }
+//    }).blur(function() {
+//            var input = jQuery(this);
+//            if (input.val() == '' || input.val() == input.attr('placeholder')) {
+//                input.addClass('placeholder');
+//                input.val(input.attr('placeholder'));
+//            }
+//        }).blur();
 </script>
