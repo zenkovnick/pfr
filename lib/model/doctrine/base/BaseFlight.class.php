@@ -106,7 +106,7 @@ abstract class BaseFlight extends sfDoctrineRecord
              ));
         $this->hasColumn('drafted', 'boolean', null, array(
              'type' => 'boolean',
-             'default' => false,
+             'default' => true,
              ));
         $this->hasColumn('status', 'enum', null, array(
              'type' => 'enum',

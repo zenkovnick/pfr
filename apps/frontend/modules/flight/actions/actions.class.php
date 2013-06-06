@@ -25,7 +25,6 @@ class flightActions extends sfActions {
                 $flight->setAccount($this->account);
                 if(!$request->getParameter('drafted')){
                     $flight->setStatus('assess');
-                    $flight->setDrafted(false);
                     $flight->save();
                     $this->redirect("@risk_assessment?account_id={$this->account->getId()}&id={$flight->getId()}");
                 } else {
@@ -49,7 +48,6 @@ class flightActions extends sfActions {
                 $flight = $this->form->save();
                 if(!$request->getParameter('drafted')){
                     $flight->setStatus('assess');
-                    $flight->setDrafted(false);
                     $flight->save();
                     $this->redirect("@risk_assessment?account_id={$this->account->getId()}&id={$flight->getId()}");
                 } else {
@@ -119,6 +117,8 @@ class flightActions extends sfActions {
         $this->mitigation_info = $this->flight->getMitigationInfo();
         if($this->flight->getStatus() == 'assess' && $this->mitigation_info['type'] != 'high'){
             $this->flight->setStatus('complete');
+            $this->flight->setDrafted(false);
+            $this->flight->save();
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
         } else {
             $this->redirect("@edit_flight?account_id={$this->account->getId()}&id={$this->flight->getId()}");

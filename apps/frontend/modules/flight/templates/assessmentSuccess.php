@@ -34,7 +34,7 @@
         <?php endif ?>
 
 
-        <?php if($mitigation_info['type'] != 'low'): ?>
+        <?php if($mitigation_info['type'] == 'high' && $mitigation_info['prevent_flight']): ?>
             <a href="" class="submit prevent-click">Submit Assessment and Fly</a>
         <?php else: ?>
             <a href="<?php echo url_for("@submit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>" class="submit">Submit Assessment and Fly</a>
