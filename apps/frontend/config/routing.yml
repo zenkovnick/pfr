@@ -1,3 +1,11 @@
+submit_flight:
+  url: /:account_id/complete/flight
+  param: { module: flight, action: complete }
+
+risk_assessment:
+  url: /:account_id/assessment/flight
+  param: { module: flight, action: assessment }
+
 settings_get_widget:
   url: /settings/get-widget
   param: { module: settings, action: getWidget }
@@ -16,15 +24,9 @@ get_pilot:
   url: /flight/get-user
   param: { module: flight, action: getUser }
 
-complete_flight:
-  url: /:account_id/complete/flight
-  param: { module: flight, action: complete }
-  requirements:
-    account_id: \d+
-
-mitigate_flight:
+edit_flight:
   url: /:account_id/edit/flight
-  param: { module: flight, action: mitigate }
+  param: { module: flight, action: edit }
   requirements:
     account_id: \d+
 

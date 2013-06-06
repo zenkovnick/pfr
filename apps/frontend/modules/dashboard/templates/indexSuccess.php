@@ -8,10 +8,10 @@
 <ul>
     <?php foreach($flights as $flight): ?>
         <li>
-            <?php if(!$flight->getCompleted()): ?>
+            <?php if($flight->getDrafted() && $flight->getStatus() != "complete"): ?>
                 <span>Drafted</span>
                 <span><?php echo $flight->getId() ?></span>
-                <a href="<?php echo url_for("@complete_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
+                <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
             <?php else: ?>
                 <span><?php echo $flight->getId()." ".$flight->getTripNumber() ?></span>
             <?php endif ?>

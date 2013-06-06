@@ -21,33 +21,41 @@ class flightActions extends sfActions {
         if($request->isMethod('POST')){
             $this->form->bind($request->getParameter($this->form->getName()));
             if($this->form->isValid()){
-                $this->form->save();
-                $this->form->getObject()->setAccount($this->account);
+                $flight = $this->form->save();
+                $flight->setAccount($this->account);
                 if(!$request->getParameter('drafted')){
-                    $this->form->getObject()->setCompleted(true);
+                    $flight->setStatus('assess');
+                    $flight->setDrafted(false);
+                    $flight->save();
+                    $this->redirect("@risk_assessment?account_id={$this->account->getId()}&id={$flight->getId()}");
+                } else {
+                    $flight->setDrafted(true);
+                    $flight->save();
+                    $this->redirect("@dashboard?account_id={$this->account->getId()}");
                 }
-                $this->form->getObject()->save();
-                $this->redirect("@dashboard?account_id={$this->account->getId()}");
             }
         }
     }
 
-    public function executeComplete(sfWebRequest $request){
+    public function executeEdit(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
         $this->data_fields = json_decode($this->flight->generateFromDB($this->account), true);
         $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
-        $this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account, 'drafted' => !$this->flight->getCompleted()));
+        $this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account, 'drafted' => $this->flight->getDrafted()));
         if($request->isMethod('POST')){
             $this->form->bind($request->getParameter($this->form->getName()));
             if($this->form->isValid()){
-                $this->form->save();
-                $this->form->getObject()->setAccount($this->account);
+                $flight = $this->form->save();
                 if(!$request->getParameter('drafted')){
-                    $this->form->getObject()->setCompleted(true);
+                    $flight->setStatus('assess');
+                    $flight->setDrafted(false);
+                    $flight->save();
+                    $this->redirect("@risk_assessment?account_id={$this->account->getId()}&id={$flight->getId()}");
+                } else {
+                    $flight->setDrafted(true);
+                    $this->redirect("@dashboard?account_id={$this->account->getId()}");
                 }
-                $this->form->getObject()->save();
-                $this->redirect("@dashboard?account_id={$this->account->getId()}");
             }
         }
     }
@@ -67,8 +75,54 @@ class flightActions extends sfActions {
 
     }
 
-    public function executeMitigate(sfWebRequest $request){
+    public function executeAssessment(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
+        if($this->flight->getStatus() == 'assess'){
+            $flight_data = json_decode($this->flight->getInfo(), true);
+            $this->high_risk_factors = array();
+            foreach($flight_data['risk_analysis'] as $key => $risk_factor){
+                $selected_response = $risk_factor['response_options'][$risk_factor['selected_response']];
+                if($selected_response['value'] > 0){
+                    $this->high_risk_factors[$key]['question'] = $risk_factor['question'];
+                    $this->high_risk_factors[$key]['answer'] = $selected_response['text'];
+                    $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
+                }
+            }
+            $this->mitigation_info = $this->flight->getMitigationInfo();
 
+        } else {
+            $this->redirect("@dashboard?account_id={$this->account->getId()}");
+        }
+    }
+
+
+    /*public function executeMitigate(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
+        $this->data_fields = json_decode($this->flight->generateFromDB($this->account), true);
+        $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
+        $this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account, 'drafted' => !$this->flight->getCompleted()));
+        if($request->isMethod('POST')){
+            $this->form->bind($request->getParameter($this->form->getName()));
+            if($this->form->isValid()){
+                $flight = $this->form->save();
+                $flight->save();
+                $this->redirect("@risk_assessment?account_id={$this->account->getId()}&id={$flight->getId()}");
+            }
+        }
+    }*/
+
+    public function executeComplete(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
+        $this->mitigation_info = $this->flight->getMitigationInfo();
+        if($this->flight->getStatus() == 'assess' && $this->mitigation_info['type'] != 'high'){
+            $this->flight->setStatus('complete');
+            $this->redirect("@dashboard?account_id={$this->account->getId()}");
+        } else {
+            $this->redirect("@edit_flight?account_id={$this->account->getId()}&id={$this->flight->getId()}");
+        }
     }
 
     public function executeGetRisk(sfWebRequest $request){
@@ -77,8 +131,8 @@ class flightActions extends sfActions {
         $response_option = Doctrine_Core::getTable('ResponseOptionField')->find($request->getParameter('id'));
         echo json_encode(array(
             'result'=>'OK',
-            'risk' => $response_option->getResponseValue() > 0 ? $response_option->getResponseValue() : null,
-            'note' => $response_option->getResponseValue() > 0 ? $response_option->getNote() : null
+            'risk' => $response_option->getResponseValue(),
+            'note' => $response_option->getNote()
         ));
         return sfView::NONE;
     }

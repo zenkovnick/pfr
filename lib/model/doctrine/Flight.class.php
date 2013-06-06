@@ -19,6 +19,18 @@ class Flight extends BaseFlight
         $risk_builder = $account_obj->getRiskBuilders()->getFirst();
 
         $result = array();
+        $types = array('low', 'medium', 'high');
+        foreach($types as $type){
+            $result["mitigation_{$type}_message"] = $risk_builder->{"getMitigation".ucfirst($type)."Message"}();
+            $result["mitigation_{$type}_instructions"] = $risk_builder->{"getMitigation".ucfirst($type)."Instructions"}();
+            $result["mitigation_{$type}_min"] = $risk_builder->{"getMitigation".ucfirst($type)."Min"}();
+            $result["mitigation_{$type}_max"] = $risk_builder->{"getMitigation".ucfirst($type)."Max"}();
+            $result["mitigation_{$type}_notify"] = $risk_builder->{"getMitigation".ucfirst($type)."Notify"}();
+
+        }
+        $result['mitigation_medium_require_details'] = $risk_builder->getMitigationMediumRequireDetails();
+        $result['mitigation_high_prevent_flight'] = $risk_builder->getMitigationHighPreventFlight();
+
         $result['form_name']  = $risk_builder->getFormName();
         $result['form_instructions'] = $risk_builder->getFormInstructions();
         $result['airport_from'] = null;
@@ -58,6 +70,18 @@ class Flight extends BaseFlight
         $risk_builder = $account_obj->getRiskBuilders()->getFirst();
         $values = $risk_form->getTaintedValues();
         $result = array();
+        $types = array('low', 'medium', 'high');
+        foreach($types as $type){
+            $result["mitigation_{$type}_message"] = $risk_builder->{"getMitigation".ucfirst($type)."Message"}();
+            $result["mitigation_{$type}_instructions"] = $risk_builder->{"getMitigation".ucfirst($type)."Instructions"}();
+            $result["mitigation_{$type}_min"] = $risk_builder->{"getMitigation".ucfirst($type)."Min"}();
+            $result["mitigation_{$type}_max"] = $risk_builder->{"getMitigation".ucfirst($type)."Max"}();
+            $result["mitigation_{$type}_notify"] = $risk_builder->{"getMitigation".ucfirst($type)."Notify"}();
+
+        }
+        $result['mitigation_medium_require_details'] = $risk_builder->getMitigationMediumRequireDetails();
+        $result['mitigation_high_prevent_flight'] = $risk_builder->getMitigationHighPreventFlight();
+
         $result['form_name']  = $values['form_name'];
         $result['form_instructions'] = $values['form_instructions'];
         $result['airport_from'] = null;
@@ -103,5 +127,29 @@ class Flight extends BaseFlight
             $response_option_titles[$id] = $response_option['text'];
         }
         return $response_option_titles;
+    }
+
+    public function getMitigationInfo(){
+        $flight_data = json_decode($this->getInfo(), true);
+        $mitigation_info = array();
+        $risk = $this->getRiskFactorSum();
+        if($risk <= $flight_data["mitigation_low_max"]){
+            $mitigation_info['type'] = 'low';
+        } else if($risk >= $flight_data["mitigation_medium_min"] && $risk <= $flight_data["mitigation_medium_max"]) {
+            $mitigation_info['type'] = 'medium';
+        } else {
+            $mitigation_info['type'] = 'high';
+        }
+        $mitigation_info['message'] = $flight_data["mitigation_{$mitigation_info['type']}_message"];
+        $mitigation_info['instructions'] = $flight_data["mitigation_{$mitigation_info['type']}_instructions"];
+        if($mitigation_info['type'] == 'medium'){
+            $mitigation_info['require_details'] = $flight_data["mitigation_{$mitigation_info['type']}_require_details"];
+        }
+
+        if($mitigation_info['type'] == 'high'){
+            $mitigation_info['prevent_flight'] = $flight_data["mitigation_{$mitigation_info['type']}_prevent_flight"];
+        }
+
+        return $mitigation_info;
     }
 }

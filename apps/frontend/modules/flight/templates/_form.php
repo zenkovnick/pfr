@@ -6,8 +6,8 @@
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <script src="/js/jquery.ui.timepicker.js"></script>
 <ul class="flight-field-list">
-    <li><?php include_partial("flight/field", array('field' => $form['airport_from'], 'label' => true)); ?></li>
-    <li><?php include_partial("flight/field", array('field' => $form['airport_to'], 'label' => true)); ?></li>
+    <li><?php include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'label' => true)); ?></li>
+    <li><?php include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'label' => true)); ?></li>
     <li><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'label' => true)); ?></li>
     <li><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'label' => true)); ?></li>
     <?php foreach($data['flight_information'] as $fi): ?>
@@ -18,6 +18,8 @@
                 <span class="dashboard-avatar">
                     <?php include_partial('flight/avatar', array('user' => $users[$form[$key]->getValue()])); ?>
                 </span>
+            <?php elseif($key == 'trip_number'): ?>
+                <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'trip-number', 'label' => true)); ?>
             <?php else: ?>
                 <?php include_partial("flight/field", array('field' => $form[$key], 'label' => true)); ?>
             <?php endif ?>

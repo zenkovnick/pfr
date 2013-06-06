@@ -1,3 +1,26 @@
+RiskFactorField:
+  RiskFactorField_1:
+    RiskBuilder: RiskBuilder_1
+    question: 'Second Question'
+    help_message: ''
+    position: '2'
+    created_at: '2013-05-28 12:04:26'
+    updated_at: '2013-06-05 06:34:09'
+  RiskFactorField_2:
+    RiskBuilder: RiskBuilder_1
+    question: 'How much did You sleep tonight?'
+    help_message: ''
+    position: '3'
+    created_at: '2013-05-28 12:05:24'
+    updated_at: '2013-06-05 06:36:01'
+  RiskFactorField_3:
+    RiskBuilder: RiskBuilder_1
+    question: 'First Question'
+    help_message: 'First Question Help'
+    position: '1'
+    created_at: '2013-05-29 09:46:14'
+    updated_at: '2013-06-05 09:42:19'
+
 FlightInformationField:
   FlightInformationField_1:
     RiskBuilder: RiskBuilder_1
@@ -36,51 +59,58 @@ ResponseOptionField:
     RiskFactorField: RiskFactorField_1
     response_text: No
     response_value: '0'
-    note: ''
+    note: 'It''s nice'
     created_at: '2013-05-28 12:04:26'
-    updated_at: '2013-05-28 12:04:26'
+    updated_at: '2013-06-05 06:34:09'
   ResponseOptionField_2:
     RiskFactorField: RiskFactorField_1
     response_text: Yes
-    response_value: '3'
-    note: ''
+    response_value: '5'
+    note: ':('
     created_at: '2013-05-28 12:04:26'
-    updated_at: '2013-05-28 12:04:26'
+    updated_at: '2013-06-05 06:34:09'
   ResponseOptionField_3:
     RiskFactorField: RiskFactorField_1
-    response_text: jhjhjhhjjh
-    response_value: '2'
-    note: ''
+    response_text: 'May be'
+    response_value: '3'
+    note: Ha-ha
     created_at: '2013-05-28 12:04:26'
-    updated_at: '2013-05-28 12:04:26'
+    updated_at: '2013-06-05 06:34:09'
   ResponseOptionField_4:
     RiskFactorField: RiskFactorField_2
-    response_text: No
-    response_value: '0'
-    note: ''
+    response_text: 'Less than 4 hours'
+    response_value: '5'
+    note: 'It is very bad'
     created_at: '2013-05-28 12:05:24'
-    updated_at: '2013-05-28 12:05:24'
+    updated_at: '2013-06-05 06:37:57'
   ResponseOptionField_5:
     RiskFactorField: RiskFactorField_2
-    response_text: Yes
+    response_text: '4-6 hours'
     response_value: '3'
-    note: ''
+    note: So-so
     created_at: '2013-05-28 12:05:24'
-    updated_at: '2013-05-28 12:05:24'
+    updated_at: '2013-06-05 06:36:01'
   ResponseOptionField_6:
     RiskFactorField: RiskFactorField_3
     response_text: No
     response_value: '0'
-    note: ''
+    note: 'Not, it''s wrong'
     created_at: '2013-05-29 09:46:14'
-    updated_at: '2013-05-29 09:46:14'
+    updated_at: '2013-06-05 06:33:12'
   ResponseOptionField_7:
     RiskFactorField: RiskFactorField_3
     response_text: Yes
     response_value: '3'
-    note: ''
+    note: 'It''s alright'
     created_at: '2013-05-29 09:46:14'
-    updated_at: '2013-05-29 09:46:14'
+    updated_at: '2013-06-05 06:33:12'
+  ResponseOptionField_8:
+    RiskFactorField: RiskFactorField_2
+    response_text: 'More than 6 hours'
+    response_value: '0'
+    note: 'It''s great'
+    created_at: '2013-06-05 06:36:01'
+    updated_at: '2013-06-05 06:37:13'
 sfGuardUser:
   sfGuardUser_1:
     first_name: Nick
@@ -232,25 +262,3 @@ UserAccount:
     position: null
     created_at: '2013-05-28 16:47:29'
     updated_at: '2013-05-28 16:47:29'
-RiskFactorField:
-  RiskFactorField_1:
-    RiskBuilder: RiskBuilder_1
-    question: jkkjkjjkjk
-    help_message: ''
-    position: '2'
-    created_at: '2013-05-28 12:04:26'
-    updated_at: '2013-05-29 15:22:29'
-  RiskFactorField_2:
-    RiskBuilder: RiskBuilder_1
-    question: jjjjjjkjhhjjh
-    help_message: ''
-    position: '3'
-    created_at: '2013-05-28 12:05:24'
-    updated_at: '2013-05-29 15:22:29'
-  RiskFactorField_3:
-    RiskBuilder: RiskBuilder_1
-    question: hjjjhhjhjjh
-    help_message: ''
-    position: '1'
-    created_at: '2013-05-29 09:46:14'
-    updated_at: '2013-05-29 15:22:29'

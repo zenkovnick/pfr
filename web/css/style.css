@@ -250,9 +250,9 @@ ul.header-link-block li a {
   /*color: #F00;*/
 /*}*/
 
-/*.invalid-field {*/
-    /*border: 1px solid red !important;*/
-/*}*/
+.invalid-field {
+    border: 1px solid red !important;
+}
 
 /*----------------------------------------------------------------------------------*/
 /*--------------------------------> Error Pages <-----------------------------------*/
