@@ -1,3 +1,6 @@
+<?php slot('header') ?>
+    <?php include_partial('menu/header_logo')?>
+<?php end_slot() ?>
 <h1>Sign up</h1>
 <div class="sign-up">
     <form id="sign_up_form" method="POST">

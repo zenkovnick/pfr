@@ -1,3 +1,6 @@
+<?php slot('header') ?>
+    <?php include_partial('menu/header_logo')?>
+<?php end_slot() ?>
 <h1>Sign in</h1>
 <form class="sign-in-form" action="<?php echo url_for('@signin_process') ?>" method="post">
     <fieldset class="blog-login">

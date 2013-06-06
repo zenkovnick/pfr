@@ -88,7 +88,7 @@ a                              { cursor: pointer; }
 }
 a.logo {
     background: url(../images/logo.png) no-repeat left top;
-    display: none;
+    display: block;
     height: 60px;
     margin: 0 auto;
     overflow: hidden;
@@ -295,14 +295,12 @@ ul.header-link-block li a {
 /*}*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------> Sign In <------------------------------------------------------*/
+/*---------------------------------------------------> Sign Up <------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-.sign-in .header a.logo, .sign-up .header a.logo {
-    display: block;
-}
-.sign-in .wrapper, .sign-up .wrapper {
+.sign-in .wrapper, .sign-up .wrapper, .choose-account .wrapper {
     max-width: 300px;
 }
-.sign-in h1, .sign-up h1 {
+.sign-in h1, .sign-up h1, .choose-account h1 {
     color: #414042;
     font-size: 16px;
     font-weight: bold;
@@ -360,6 +358,45 @@ ul.header-link-block li a {
 }
 .sign-in-form span a:hover, .sign-up span a:hover {
     text-decoration: underline;
+}
+a.sign-out {
+    left: 30px;
+    position: absolute;
+    top: 20px;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------> Choose Account <-------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+.choose-account .wrapper ul {
+    overflow: hidden;
+}
+.choose-account .wrapper ul li {
+    margin: 0 0 9px;
+    overflow: hidden;
+}
+.choose-account .wrapper ul li img {
+    background: #333;
+    border: 1px solid #000;
+    display: block;
+    float: left;
+    height: 39px;
+    margin: 0 9px 0 0;
+    width: 39px;
+}
+.choose-account .wrapper ul li a {
+    color: #0F76BB;
+    display: block;
+    font-weight: bold;
+    margin: 5px 0;
+    text-decoration: none;
+}
+.choose-account .wrapper ul li span {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    color: #999;
+    display: block;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 0 0 5px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Form Builder <---------------------------------------------------*/
