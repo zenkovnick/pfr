@@ -22,10 +22,15 @@ all:
 
 
   email_notification:
-    from_name: 'PreFlightRisk'
+    from_name: 'Pre Flight Risk'
     from_email: 'support@preflightrisk.com'
     title: 'Invite to PreFlightRisk'
     message: "You have ben registered in Blueprint project.\n\rYour password is %password%\n\rPlease use this link to activate your accout - %activation_link%\n\r"
+
+  email_assessment:
+    from_name: 'Pre Flight Risk'
+    from_email: 'themitigators@preflightrisk.com'
+
 
   mailchimp:
     api_key: '2689d6347e49faced7add6121db8a86b-us5'

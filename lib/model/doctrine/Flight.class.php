@@ -142,6 +142,7 @@ class Flight extends BaseFlight
         }
         $mitigation_info['message'] = $flight_data["mitigation_{$mitigation_info['type']}_message"];
         $mitigation_info['instructions'] = $flight_data["mitigation_{$mitigation_info['type']}_instructions"];
+        $mitigation_info['notify'] = $flight_data["mitigation_{$mitigation_info['type']}_notify"];
         if($mitigation_info['type'] == 'medium'){
             $mitigation_info['require_details'] = $flight_data["mitigation_{$mitigation_info['type']}_require_details"];
         }
