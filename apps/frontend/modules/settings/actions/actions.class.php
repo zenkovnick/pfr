@@ -249,7 +249,7 @@ class settingsActions extends sfActions {
                         )
                     );
                     $url = $this->generateUrl('signup_invite', array('token' => $user_account->getInviteToken()), true);
-                    EmailNotification::sendInvitesSMTP($this->getUser()->getGuardUser(), $pilot, $url, $account);
+                    EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url, $account);
                 } else {
                     if($user_account = UserAccountTable::getUserAccount($pilot->getId(), $account->getId())){
                         if($user_account->getInviteToken() && !$user_account->getIsActive()){
@@ -293,7 +293,7 @@ class settingsActions extends sfActions {
                         $user_account->setIsManager(isset($values['can_manage']));
                         $user_account->save();
                         $url = $this->generateUrl('approve_account', array('token' => $user_account->getInviteToken()), true);
-                        EmailNotification::sendAccountApproveSMTP($this->getUser()->getGuardUser(), $pilot, $url, $account);
+                        EmailNotification::sendAccountApprove($this->getUser()->getGuardUser(), $pilot, $url, $account);
                     }
                 }
 
