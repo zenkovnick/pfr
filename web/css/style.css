@@ -198,7 +198,7 @@ ul.header-link-block li a {
 .btn:hover {
     text-decoration: none;
 }
-.btn-green, .btn-grey:hover {
+.btn-green {
     background: #66CC00;
     border-color: #669900;
     color: #FFF;
@@ -211,7 +211,7 @@ ul.header-link-block li a {
     cursor: pointer;
 }
 
-.btn-blue {
+.btn-blue, .btn-grey:hover {
     background: #00AEEF;
     border-color: #0F76BB;
     color: #FFF;
