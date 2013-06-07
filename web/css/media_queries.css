@@ -1,25 +1,26 @@
-@media screen and (max-width: 500px) {
+@media only screen and (max-device-width : 320px)  {
     .container {
-        max-width: 500px;
+        background-color: #ffc0cb;
+        /*max-width: 500px;*/
     }
     .wrapper {
         width: 100%;
     }
     .header {
-        max-width: 500px;
+        /*max-width: 500px;*/
     }
 
 }
-@media screen and (max-width: 400px) {
-    .container {
-        background: #ffc0cb;
-        width: 300px;
-    }
-    .wrapper {
-        width: 100%;
-    }
-    .header {
-        max-width: 300px;
-    }
+/*@media screen and (max-width: 400px) {*/
+    /*.container {*/
+        /*background: #ffc0cb;*/
+        /*width: 300px;*/
+    /*}*/
+    /*.wrapper {*/
+        /*width: 100%;*/
+    /*}*/
+    /*.header {*/
+        /*max-width: 300px;*/
+    /*}*/
 
-}
+/*}*/
