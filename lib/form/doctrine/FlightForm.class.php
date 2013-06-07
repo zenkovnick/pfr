@@ -55,11 +55,11 @@ class FlightForm extends BaseFormDoctrine
                       $this->setWidget($key, new sfWidgetFormInput());
                       $this->setValidator($key, new sfValidatorString(array("required" => true)));
                   } else if($key == "plane"){
-                      $this->setWidget($key, new sfWidgetFormDoctrineChoice(array(
+                      $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
                           'model' => 'Plane',
-                          /*'table_method' => 'getPlanes'*/
-                          ))
-                      );
+                          'table_method' => 'getPlanes',
+                          'table_method_parameters' => array('account' => $this->getOption('account'))
+                      )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'Plane',"required" => true)));
                   } else if($key == 'pilot_in_command'){
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(

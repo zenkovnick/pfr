@@ -26,6 +26,16 @@ class PlaneTable extends Doctrine_Table
             ->execute();
     }
 
+    public static function getPlanes($parameters){
+        $account = $parameters['account'];
+        return Doctrine_Query::create()
+            ->from("Plane p")
+            ->leftJoin('p.AccountPlane ap')
+            ->where('ap.account_id = ?', $account->getId())
+            ->orderBy('ap.position')
+            ->execute();
+    }
+
     public static function getMaxPosition($account_id){
         $query = Doctrine_Query::create()
             ->select('MAX(p.position) as max_position')
