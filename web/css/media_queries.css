@@ -13,7 +13,7 @@
 @media screen and (max-width: 300px) {
     .container {
         background: #ffc0cb;
-        max-width: 300px;
+        width: 300px;
     }
     .wrapper {
         width: 100%;
