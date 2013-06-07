@@ -83,8 +83,8 @@ a                              { cursor: pointer; }
 /*--------------------------------------------------------------------------------------------------------------------*/
 .wrapper {
     margin: 0 auto;
-    max-width: 100%;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
 }
 a.logo {
     background: url(../images/logo.png) no-repeat left top;
@@ -105,7 +105,7 @@ a.logo {
     margin: 0 0 42px;
     overflow: hidden;
     position: relative;
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .header a {

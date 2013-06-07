@@ -2,9 +2,9 @@
     /*max-width: 500px;*/
 /*}*/
 
-body.sign-in-form, body.sign-up, body.create-account {
+.sign-in-form .header, .sign-up, .create-account {
     /*max-width: 100%;*/
-    /*width: 400px;*/
+    max-width: 400px;
 }
 
 
