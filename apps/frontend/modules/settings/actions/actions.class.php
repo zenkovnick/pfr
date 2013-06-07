@@ -230,7 +230,7 @@ class settingsActions extends sfActions {
             if($form->isValid()){
                 $values = $form->getTaintedValues();
                 $account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
-                if(!$pilot = Doctrine_Core::getTable('sfGuardUser')->findBy('username', $values['username'])){
+                if(!$pilot = Doctrine_Core::getTable('sfGuardUser')->findOneBy('username', $values['username'])){
                     $pilot = $form->save();
                     $user_account = new UserAccount();
                     $user_account->setAccount($account);
@@ -251,22 +251,27 @@ class settingsActions extends sfActions {
                     $url = $this->generateUrl('signup_invite', array('token' => $user_account->getInviteToken()), true);
                     EmailNotification::sendInvitesSMTP($this->getUser()->getGuardUser(), $pilot, $url, $account);
                 } else {
-                    if($user_account = UserAccountTable::findByUserAndAccount($pilot, $account)){
+                    if($user_account = UserAccountTable::getUserAccount($pilot->getId(), $account->getId())){
                         if($user_account->getInviteToken() && !$user_account->getIsActive()){
+                            $error_fields[] = "username";
                             echo json_encode(
                                 array(
                                     'result' => 'Failed',
                                     'type' => 'user_already_invited',
                                     'new_form_num' => $request->getParameter('new_form_num'),
+                                    'error_fields' => $error_fields
+
                                 )
                             );
 
                         } else {
+                            $error_fields[] = "username";
                             echo json_encode(
                                 array(
                                     'result' => 'Failed',
                                     'type' => 'user_exists_in_account',
                                     'new_form_num' => $request->getParameter('new_form_num'),
+                                    'error_fields' => $error_fields
                                 )
                             );
 
@@ -288,7 +293,7 @@ class settingsActions extends sfActions {
                         $user_account->setIsManager(isset($values['can_manage']));
                         $user_account->save();
                         $url = $this->generateUrl('approve_account', array('token' => $user_account->getInviteToken()), true);
-                        EmailNotification::sendInvitesSMTP($this->getUser()->getGuardUser(), $pilot, $url, $account);
+                        EmailNotification::sendAccountApproveSMTP($this->getUser()->getGuardUser(), $pilot, $url, $account);
                     }
                 }
 

@@ -89,7 +89,7 @@
                         <input type="hidden" value="<?php echo $pilot->getId() ?>" />
                         <div class="pilot-header">
                             <span class="name"><?php echo $pilot->getFirstName() ?></span>
-                            <?php if($pilot->getIsActive()): ?>
+                            <?php if($pilot->getIsActiveAccount()): ?>
                                 <a href="" class="edit-pilot-link hidden">Edit</a>
                                 <a href="" class="cancel-pilot-link hidden">Cancel</a>
                             <?php else: ?>
@@ -460,7 +460,7 @@
 
             jQuery("span.name", root_li).text(data.name);
 
-            jQuery("div.pilot-header", root_li).removeClass('hidden');
+            jQuery("div.pilot-header", root_li).append("<span class='invited'>(Invited)</span>").removeClass('hidden');
             //jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.pilot_id);
             jQuery("a.edit-pilot-link", root_li).bind('click', editPilot);

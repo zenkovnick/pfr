@@ -63,6 +63,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
 
     public static function getPilotsByAccount($account_id){
         return Doctrine_Query::create()
+            ->select("u.*, ua.is_active as is_active_account")
             ->from("sfGuardUser u")
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account_id)

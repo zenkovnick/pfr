@@ -93,6 +93,7 @@ class registrationActions extends sfActions
             $this->forward404Unless($this->user_account = Doctrine_Core::getTable('UserAccount')->findOneBy('invite_token', $request->getParameter('token')));
             if($request->getParameter('status') == 'approve') {
                 $this->user_account->setIsActive(true);
+                $this->user_account->setInviteToken(null);
                 $this->user_account->save();
                 $this->redirect("@dashboard?account_id=".$this->user_account->getAccount()->getId());
             } else {
