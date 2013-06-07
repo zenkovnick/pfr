@@ -1,8 +1,8 @@
-.header {
-    max-width: 500px;
-}
+/*.header {*/
+    /*max-width: 500px;*/
+/*}*/
 
-.sign-in-form .header, .sign-up .header, .create-account .header {
+.sign-in-form, .sign-up, .create-account {
     max-width: 300px;
 }
 
