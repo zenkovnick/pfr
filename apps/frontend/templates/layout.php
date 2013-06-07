@@ -14,20 +14,26 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <script type="text/javascript">
+        $("<link/>", {
+            rel: "stylesheet",
+            type: "text/css",
+            href: "/css/style.css"
+        }).appendTo("head");
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
             $("<link/>", {
                 rel: "stylesheet",
                 type: "text/css",
-//                href: "/css/style_mobile.css"
-                href: "/css/style.css"
-            }).appendTo("head");
-        } else {
-            $("<link/>", {
-                rel: "stylesheet",
-                type: "text/css",
-                href: "/css/style.css"
+                href: "/css/style_mobile.css"
+//                href: "/css/style.css"
             }).appendTo("head");
         }
+//        else {
+//            $("<link/>", {
+//                rel: "stylesheet",
+//                type: "text/css",
+//                href: "/css/style.css"
+//            }).appendTo("head");
+//        }
     </script>
 </head>
 <body>

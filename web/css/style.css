@@ -105,7 +105,7 @@ a.logo {
     margin: 0 0 42px;
     overflow: hidden;
     position: relative;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .header a {
@@ -198,7 +198,7 @@ ul.header-link-block li a {
 .btn:hover {
     text-decoration: none;
 }
-.btn-green, .btn-grey:hover {
+.btn-green {
     background: #66CC00;
     border-color: #669900;
     color: #FFF;
@@ -211,7 +211,7 @@ ul.header-link-block li a {
     cursor: pointer;
 }
 
-.btn-blue {
+.btn-blue, .btn-grey:hover {
     background: #00AEEF;
     border-color: #0F76BB;
     color: #FFF;
