@@ -133,6 +133,7 @@ class flightActions extends sfActions {
             $this->flight->save();
             if(!$this->account->getHasFlight()){
                 $this->account->setHasFlight(true);
+                $this->account->save();
             }
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
         } else {
