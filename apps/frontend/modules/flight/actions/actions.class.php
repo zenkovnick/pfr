@@ -56,6 +56,10 @@ class flightActions extends sfActions {
                     $this->redirect("@risk_assessment?account_id={$this->account->getId()}&id={$flight->getId()}");
                 } else {
                     $flight->setDrafted(true);
+                    if(!$this->account->getHasFlight()){
+                        $this->account->setHasFlight(true);
+                        $this->account->save();
+                    }
                     $this->redirect("@dashboard?account_id={$this->account->getId()}");
                 }
             }
