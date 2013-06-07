@@ -118,7 +118,7 @@ class Flight extends BaseFlight
     }
 
     public static function generateKeyByTitle($title){
-        return strtolower(preg_replace('/\([a-zA-Z_]*\)/i','',str_replace(':', '', str_replace(' ', '_', $title))));
+        return strtolower(str_replace(' ', '_', trim(str_replace(':', '', preg_replace('/\([a-zA-Z_ ]*\)/i','',$title)))));
     }
 
     public function getResponseOptionTitles($risk_factor){
