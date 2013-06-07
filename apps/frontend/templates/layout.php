@@ -19,7 +19,7 @@
             type: "text/css",
             href: "/css/style.css"
         }).appendTo("head");
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+        if( /Chromium|Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
             $("<link/>", {
                 rel: "stylesheet",
                 type: "text/css",
