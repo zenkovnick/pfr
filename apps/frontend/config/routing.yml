@@ -212,6 +212,13 @@ select_account:
   url: /select
   param: { module: registration, action: selectAccount }
 
+approve_account:
+  url: /account/approve/:token
+  param: { module: registration, action: approveAccount }
+
+approve_account_process:
+  url: /account/approve/:token/process/:status
+  param: { module: registration, action: approveAccountProcess }
 
 create_account:
   url: /new/account

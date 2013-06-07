@@ -23,6 +23,7 @@ class AccountTable extends Doctrine_Table
             ->leftJoin('a.UserAccount ua')
             ->leftJoin('a.Manager m')
             ->where('ua.user_id = ?', $user->getId())
+            ->andWhere('ua.is_active = ?', true)
             ->execute();
 
         /*$result = array();

@@ -1,9 +1,9 @@
 <?php
 
 class EmailNotification {
-    public static function sendInvites($initiator, $guest, $url){
+    public static function sendInvites($initiator, $guest, $url, $account){
         $text = '';
-        $text .= "You have been invited by ";
+        $text .= "You have been invited to {$account->getTitle()} account by ";
         if($initiator->getFirstName()){
             $text .= "{$initiator->getFirstName()}({$initiator->getUsername()})";
         } else {
@@ -28,5 +28,71 @@ class EmailNotification {
         MCSendMail::getInstance()->setMessageSubject($subject);
         MCSendMail::getInstance()->setMessageAddTo(array('email'=>$mail_to->getUsername(), 'name' => $mail_to->getFirstName() ? $mail_to->getFirstName() : null));
         return MCSendMail::getInstance()->sendMail(true);
+    }
+
+    public static function sendInvitesSMTP($initiator, $guest, $url, $account){
+        sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
+
+        $text = '';
+        $text .= "You have been invited to {$account->getTitle()} account by ";
+        if($initiator->getFirstName()){
+            $text .= "{$initiator->getFirstName()}({$initiator->getUsername()})";
+        } else {
+            $text .= $initiator->getUsername();
+        }
+        $text .= "\n\r";
+        $text .= "Please, visit this link to signup in PreFlightRisk: {$url}";
+
+        /** @var Swift_Mailer $mailer  */
+        $mailer = sfContext::getInstance()->getMailer();
+
+        /** @var Swift_Message $email  */
+        $email = $mailer->compose(
+            sfConfig::get('app_email_notification_from_email', 'support@preflightrisk.com'),
+            $guest->getUsername(),
+            sfConfig::get('app_email_notification_title', 'Invite to PreFlightRisk'),
+            $text
+        );
+        if ($mailer->send($email))
+        {
+
+        }
+        else
+        {
+            sfContext::getInstance()->getLogger()->err("User registered email not sended");
+        }
+    }
+
+    public static function sendAccountApproveSMTP($initiator, $guest, $url, $account){
+        sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
+
+        $text = '';
+        $text .= "You have been invited to {$account->getTitle()} account by ";
+        if($initiator->getFirstName()){
+            $text .= "{$initiator->getFirstName()}({$initiator->getUsername()})";
+        } else {
+            $text .= $initiator->getUsername();
+        }
+        $text .= "\n\r";
+        $text .= "Please, visit this link to approve your membership in this account: {$url}";
+
+        /** @var Swift_Mailer $mailer  */
+        $mailer = sfContext::getInstance()->getMailer();
+
+        /** @var Swift_Message $email  */
+        $email = $mailer->compose(
+            sfConfig::get('app_email_notification_from_email', 'support@preflightrisk.com'),
+            $guest->getUsername(),
+            sfConfig::get('app_email_notification_title', 'Invite to PreFlightRisk'),
+            $text
+        );
+        if ($mailer->send($email))
+        {
+
+        }
+        else
+        {
+            sfContext::getInstance()->getLogger()->err("User registered email not sended");
+        }
     }
 }

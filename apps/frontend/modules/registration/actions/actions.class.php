@@ -30,8 +30,12 @@ class registrationActions extends sfActions
 
 
     public function executeSignup(sfWebRequest $request) {
+        if($this->getUser()->isAuthenticated()){
+            $this->redirect("@select_account");
+        }
         if($request->getParameter('token')){
-            $invited_user = Doctrine_Core::getTable('sfGuardUser')->findOneBy('invite_token', $request->getParameter('token'));
+            $this->forward404Unless($user_account = Doctrine_Core::getTable('UserAccount')->findOneBy('invite_token', $request->getParameter('token')));
+            $invited_user = $user_account->getUser();
             if($invited_user){
                 $this->form = new RegistrationForm($invited_user);
             }
@@ -43,10 +47,11 @@ class registrationActions extends sfActions
             if($this->form->isValid()){
                 $user = $this->form->save();
                 if($request->getParameter('token')){
-                    $user->setIsActive(true);
-                    $user->save();
+                    $this->forward404Unless($user_account = Doctrine_Core::getTable('UserAccount')->findOneBy('invite_token', $request->getParameter('token')));
+                    $user_account->setIsActive(true);
+                    $user_account->save();
                     $this->getUser()->signIn($user);
-                    $this->redirect("@dashboard?account_id=".AccountTable::getAllUserAccounts($user)->getFirst()->getId());
+                    $this->redirect("@dashboard?account_id=".$user_account->getAccount()->getId());
                 } else {
                     $this->getUser()->signIn($user);
                     $this->redirect('@create_account');
@@ -69,6 +74,38 @@ class registrationActions extends sfActions
         }
     }
 
+    public function executeApproveAccount(sfWebRequest $request) {
+        $this->user = $this->getUser()->getGuardUser();
+        if($request->getParameter('token')){
+            $this->forward404Unless($this->user_account = Doctrine_Core::getTable('UserAccount')->findOneBy('invite_token', $request->getParameter('token')));
+            if($this->user_account->getUserId() != $this->user->getId()){
+                $this->redirect("@select_account");
+            } else {
+                $this->account = $this->user_account->getAccount();
+            }
+        } else {
+            $this->redirect("@select_account");
+        }
+    }
+
+    public function executeApproveAccountProcess(sfWebRequest $request) {
+        if($request->getParameter('token')){
+            $this->forward404Unless($this->user_account = Doctrine_Core::getTable('UserAccount')->findOneBy('invite_token', $request->getParameter('token')));
+            if($request->getParameter('status') == 'approve') {
+                $this->user_account->setIsActive(true);
+                $this->user_account->save();
+                $this->redirect("@dashboard?account_id=".$this->user_account->getAccount()->getId());
+            } else {
+                $this->user_account->delete();
+                $this->redirect("@select_account");
+            }
+        } else {
+            $this->redirect("@select_account");
+        }
+    }
+
+
+
     public function executeSelectAccount(sfWebRequest $request) {
         $this->accounts = AccountTable::getAllUserAccounts($this->getUser()->getGuardUser());
         if($this->accounts->count() == 0){
@@ -89,6 +126,7 @@ class registrationActions extends sfActions
                     $user_account->setAccount($account);
                     $user_account->setUser($this->user);
                     $user_account->setIsManager(true);
+                    $user_account->setIsActive(true);
                     $user_account->save();
 
                     $risk_builder = new RiskBuilder();
