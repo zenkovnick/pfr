@@ -9,6 +9,7 @@
         <?php endif ?>
     </title>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/media_queries.css" />
 
     <?php include_http_metas() ?>
     <?php include_metas() ?>
