@@ -25,6 +25,7 @@
     </script>
 </head>
 <body>
+<div class="container">
     <div class="header">
         <?php if(!include_slot('header')): ?>
         <?php endif ?>
@@ -34,7 +35,7 @@
             <?php echo $sf_content ?>
         </div>
     </div>
-
+</div>
 </body>
 </html>
 
