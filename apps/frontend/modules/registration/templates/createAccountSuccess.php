@@ -8,7 +8,7 @@
     jQuery('body').addClass('create-account');
     jQuery(document).ready(function(){
         init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_get_widget'); ?>',
-            '/images/no_avatar.png', [32, 32], 'photo', 'account_photo', 'avatar_container', 'account_uploaded_photo');
+            '/images/no_avatar.png', [32, 32], 'photo', 'account_photo_widget', 'avatar_container', 'account_uploaded_photo');
     });
 </script>
 
