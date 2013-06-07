@@ -17,6 +17,8 @@ class dashboardActions extends sfActions {
             $this->setTemplate('firstTime');
         } else {
             $this->flights = Doctrine_Core::getTable('Flight')->findBy('account_id', $account_id);
+            $this->flights_count = $this->flights->count();
+            //$this->avarage_risk = FlightTable::getAvarage
         }
     }
 

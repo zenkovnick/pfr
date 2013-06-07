@@ -131,6 +131,9 @@ class flightActions extends sfActions {
             $this->flight->setStatus('complete');
             $this->flight->setDrafted(false);
             $this->flight->save();
+            if(!$this->account->getHasFlight()){
+                $this->account->setHasFlight(true);
+            }
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
         } else {
             $this->redirect("@edit_flight?account_id={$this->account->getId()}&id={$this->flight->getId()}");
