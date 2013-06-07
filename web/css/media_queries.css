@@ -1,0 +1,25 @@
+@media screen and (max-width: 500px) {
+    .container {
+        max-width: 500px;
+    }
+    .wrapper {
+        width: 100%;
+    }
+    .header {
+        max-width: 500px;
+    }
+
+}
+@media screen and (max-width: 300px) {
+    .container {
+        background: #ffc0cb;
+        max-width: 300px;
+    }
+    .wrapper {
+        width: 100%;
+    }
+    .header {
+        max-width: 300px;
+    }
+
+}

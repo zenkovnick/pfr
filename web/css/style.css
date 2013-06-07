@@ -10,7 +10,7 @@ body {
     color:#000;
     height: 100%;
     overflow-x: hidden;
-    width: 100%;
+    /*width: 100%;*/
 }
 div,p,a,span,em,strong,img,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,td,tr,form,fieldset,label,select,checkbox,input,textarea {
     padding:0;
@@ -81,10 +81,15 @@ a                              { cursor: pointer; }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------> Main Structure <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
+.container {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
+}
 .wrapper {
     margin: 0 auto;
-    max-width: 100%;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
 }
 a.logo {
     background: url(../images/logo.png) no-repeat left top;
@@ -105,7 +110,7 @@ a.logo {
     margin: 0 0 42px;
     overflow: hidden;
     position: relative;
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .header a {

@@ -15,7 +15,7 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <script type="text/javascript">
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+        if( /Chromium|Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
             $("<link/>", {
                 rel: "stylesheet",
                 type: "text/css",
@@ -25,6 +25,7 @@
     </script>
 </head>
 <body>
+<div class="container">
     <div class="header">
         <?php if(!include_slot('header')): ?>
         <?php endif ?>
@@ -34,7 +35,7 @@
             <?php echo $sf_content ?>
         </div>
     </div>
-
+</div>
 </body>
 </html>
 
