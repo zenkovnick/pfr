@@ -80,6 +80,7 @@ class FlightForm extends BaseFormDoctrine
                           'method_parameters' => array('curr_user' => $this->getOption('user'))
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
+                      $this->setDefault($key, sfGuardUserTable::getDefaultUserIdByAccount($this->getOption('account'), $this->getOption('user')));
                   }
               }
           } else if($key == 'risk_analysis'){

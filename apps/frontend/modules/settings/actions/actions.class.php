@@ -229,14 +229,13 @@ class settingsActions extends sfActions {
             $form->bind($request->getParameter($form->getName()));
             if($form->isValid()){
                 $values = $form->getTaintedValues();
-                if(sfGuardUserTable::checkUserByUsername($values['username'])){
+                $account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+                if(!$pilot = Doctrine_Core::getTable('sfGuardUser')->findBy('username', $values['username'])){
                     $pilot = $form->save();
-                    $pilot->setInviteToken($pilot->generateToken());
-                    $pilot->setIsActive(false);
-                    $pilot->save();
                     $user_account = new UserAccount();
-                    $user_account->setAccount(Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
+                    $user_account->setAccount($account);
                     $user_account->setUser($pilot);
+                    $user_account->setInviteToken($pilot->generateToken());
                     $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
                     $user_account->setIsManager(isset($values['can_manage']));
                     $user_account->save();
@@ -249,16 +248,48 @@ class settingsActions extends sfActions {
                             'name' => $pilot->getFirstName()
                         )
                     );
-                    $url = $this->generateUrl('signup_invite', array('token' => $pilot->getInviteToken()), true);
-                    EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url);
+                    $url = $this->generateUrl('signup_invite', array('token' => $user_account->getInviteToken()), true);
+                    EmailNotification::sendInvitesSMTP($this->getUser()->getGuardUser(), $pilot, $url, $account);
                 } else {
-                    echo json_encode(
-                        array(
-                            'result' => 'Failed',
-                            'type' => 'username_exists',
-                            'new_form_num' => $request->getParameter('new_form_num'),
-                        )
-                    );
+                    if($user_account = UserAccountTable::findByUserAndAccount($pilot, $account)){
+                        if($user_account->getInviteToken() && !$user_account->getIsActive()){
+                            echo json_encode(
+                                array(
+                                    'result' => 'Failed',
+                                    'type' => 'user_already_invited',
+                                    'new_form_num' => $request->getParameter('new_form_num'),
+                                )
+                            );
+
+                        } else {
+                            echo json_encode(
+                                array(
+                                    'result' => 'Failed',
+                                    'type' => 'user_exists_in_account',
+                                    'new_form_num' => $request->getParameter('new_form_num'),
+                                )
+                            );
+
+                        }
+                    } else {
+                        echo json_encode(
+                            array(
+                                'result' => 'OK',
+                                'pilot_id' => $pilot->getId(),
+                                'new_form_num' => $request->getParameter('new_form_num'),
+                                'name' => $pilot->getFirstName()
+                            )
+                        );
+                        $user_account = new UserAccount();
+                        $user_account->setAccount($account);
+                        $user_account->setUser($pilot);
+                        $user_account->setInviteToken($pilot->generateToken());
+                        $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
+                        $user_account->setIsManager(isset($values['can_manage']));
+                        $user_account->save();
+                        $url = $this->generateUrl('approve_account', array('token' => $user_account->getInviteToken()), true);
+                        EmailNotification::sendInvitesSMTP($this->getUser()->getGuardUser(), $pilot, $url, $account);
+                    }
                 }
 
             } else {

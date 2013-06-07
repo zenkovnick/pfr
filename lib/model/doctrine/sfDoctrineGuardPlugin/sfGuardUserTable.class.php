@@ -34,6 +34,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->leftJoin("u.UserAccount ua")
             ->where("ua.account_id = ?", $account_id)
             ->andWhere('ua.user_id = ?', $user_id)
+            ->andWhere("ua.is_active = ?", true)
             ->execute();
         return $user->count() > 0;
     }
@@ -97,5 +98,16 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->where('ua.account_id = ?', $account->getId())
             ->execute();
         return $query;
+    }
+
+    public static function getDefaultUserIdByAccount($account, $curr_user){
+        $query = Doctrine_Query::create()
+            ->from('sfGuardUser u')
+            ->leftJoin('u.UserAccount ua')
+            ->where('ua.account_id = ?', $account->getId())
+            ->andWhere('u.id != ?', $curr_user->getId())
+            ->execute();
+
+        return $query->count() > 0 ? $query->getFirst()->getId() : $curr_user->getId();
     }
 }

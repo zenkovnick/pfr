@@ -164,6 +164,8 @@ UserAccount:
       user_id:         { type: integer, notnull: true, primary: true }
       is_manager:      { type: boolean, default: false }
       position:        { type: integer }
+      invite_token:    { type: string(255) }
+      is_active:       { type: boolean, default: false }
     relations:
       Account:         { class: Account, foreign: id, local: account_id, onDelete: CASCADE, foreignAlias: UserAccount }
       User:            { class: sfGuardUser, foreign: id, local: user_id, onDelete: CASCADE, foreignAlias: UserAccount }
