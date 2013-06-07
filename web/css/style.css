@@ -10,7 +10,7 @@ body {
     color:#000;
     height: 100%;
     overflow-x: hidden;
-    width: 100%;
+    /*width: 100%;*/
 }
 div,p,a,span,em,strong,img,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,td,tr,form,fieldset,label,select,checkbox,input,textarea {
     padding:0;
