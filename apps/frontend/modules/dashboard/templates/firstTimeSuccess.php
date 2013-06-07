@@ -33,7 +33,7 @@
             <?php if($account->getHasFlight()): ?>
                 <span>Measure your first flight's risk</span>
             <?php else: ?>
-                <a href="#">Measure your first flight's risk</a>
+                <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}") ?>#">Measure your first flight's risk</a>
             <?php endif ?>
         </li>
     </ul>
