@@ -10,7 +10,7 @@
     }
 
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
     .container {
         background: #ffc0cb;
         width: 300px;
