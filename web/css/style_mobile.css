@@ -3,6 +3,7 @@
 /*}*/
 
 .sign-in-form, .sign-up, .create-account {
+    width: 100%;
     max-width: 300px;
 }
 
