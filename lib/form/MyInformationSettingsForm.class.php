@@ -31,24 +31,15 @@ class MyInformationSettingsForm extends sfGuardUserForm {
             $this->getObject()->setPassword($this->getValue('new_password'));
         }
 
-        if($this->getValue('uploaded_photo') != '')
-        {
-            $reset_avatar = true;
-        }
         parent::doSave($con);
 
-        if($reset_avatar)
-        {
+        if($this->getValue('uploaded_photo') != ''){
             if($this->getObject()->getPhoto()){
                 unlink(sfConfig::get('sf_upload_dir')."/avatar/{$this->getObject()->getPhoto()}");
             }
             $this->getObject()->setPhoto($this->getValue('uploaded_photo'));
             $this->getObject()->save();
-        }
-        else
-        {
-            $this->getObject()->setPhoto(null);
-            $this->getObject()->save();
+
         }
     }
 }
