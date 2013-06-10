@@ -58,6 +58,9 @@ all:
   news:
     comment_count: 10
 
+  dashboard:
+    limit: 5
+
   tiny_mce:
     my_settings_content:
       relative_urls: true,

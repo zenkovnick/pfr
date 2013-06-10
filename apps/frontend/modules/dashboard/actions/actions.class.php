@@ -32,7 +32,18 @@ class dashboardActions extends sfActions {
         $top_controls['page'] = $old_filter['page'];
         $this->getUser()->setAttribute('flight_filter', $top_controls);
         $this->setFlightData($request, $this);
-        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array('pager' => $this->pager))));
+        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array('account' => $this->account, 'pager' => $this->pager))));
+        return sfView::NONE;
+
+    }
+
+    public function executeGetPageContent(sfWebRequest $request){
+
+        $this->setLayout(false);
+        $account_id = $request->getParameter('account_id');
+        $this->account = Doctrine_Core::getTable('Account')->find($account_id);
+        $this->setFlightData($request, $this);
+        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array('account' => $this->account, 'pager' => $this->pager))));
         return sfView::NONE;
 
     }
@@ -50,7 +61,7 @@ class dashboardActions extends sfActions {
 
         $obj->filter = new FlightFormFilter($flight_filter, array('account' => $obj->account));
 
-        $obj->pager = new sfDoctrinePager("Flight", 50);
+        $obj->pager = new sfDoctrinePager("Flight", sfConfig::get('app_dashboard_limit'));
         $obj->pager->setQuery($obj->filter->getQuery());
         $obj->pager->setPage($obj->page);
         $obj->pager->init();

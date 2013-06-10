@@ -16,3 +16,6 @@
         </li>
     <?php endforeach ?>
 </ul>
+<div class="pager">
+    <?php include_partial('dashboard/pager', array('pager' => $pager, 'account' => $account)); ?>
+</div>
