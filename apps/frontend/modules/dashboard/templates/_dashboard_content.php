@@ -2,8 +2,12 @@
     <?php foreach($pager->getResults() as $flight): ?>
         <li>
             <?php if($flight->getDrafted() && $flight->getStatus() == "new"): ?>
-                <span>Drafted</span>
-                <span><?php echo $flight->getId() ?></span>
+                <?php if($flight->getTripNumber()): ?>
+                    <span><?php echo $flight->getTripNumber() ?>(Drafted)</span>
+                <?php else: ?>
+                    <span>Drafted</span>
+                    <span><?php echo $flight->getId() ?></span>
+                <?php endif ?>
                 <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
             <?php elseif($flight->getDrafted() && $flight->getStatus() == "assess"): ?>
                 <span><?php echo $flight->getTripNumber() ?>(Drafted)</span>
