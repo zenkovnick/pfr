@@ -145,10 +145,16 @@
 
 </div>
 <div class="preview-mode hidden">
-    <h1>Preview Mode</h1>
-    <button class="save-and-exit">Save and Exit</button>
-    <a href="" class="back-to-form">Back to the form builder</a>
+    <div class="preview-header">
+        <div class="wrapper">
+            <button class="save-and-exit btn btn-green">Save and Exit</button>
+            <h1>You are in preview mode</h1>
+            <a href="" class="back-to-form">Back to the form builder</a>
+        </div>
+    </div>
+
     <div class="flight">
+        <h2>Preflight Risk Record</h2>
         <form id="preview_form" method="POST">
         </form>
     </div>
