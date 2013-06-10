@@ -9,12 +9,21 @@ class settingsActions extends sfActions {
         }
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
         $this->account_form = new AccountForm($this->account);
-        $this->user_form = new MyInformationSettingsForm($this->user);
         $this->planes = PlaneTable::getPlanesByAccount($account_id);
         $this->pilots = sfGuardUserTable::getPilotsByAccount($account_id);
         $user_account = UserAccountTable::getUserAccount($this->getUser()->getGuardUser()->getId(), $account_id);
         $this->assessment_form = Doctrine_Core::getTable('RiskBuilder')->findOneBy('account_id', $account_id);
         $this->can_manage = $user_account->getIsManager();
+    }
+
+    public function executeMyInformationData(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $this->user = Doctrine_Core::getTable('sfGuardUser')->find($this->getUser()->getGuardUser()->getId());
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->form = new MyInformationSettingsForm($this->user);
+        $this->renderPartial('settings/my_information', array('form' => $this->form, 'account' => $this->account, 'user' => $this->user));
+        return sfView::NONE;
     }
 
     public function executeProcessMyInformationData(sfWebRequest $request){
@@ -40,6 +49,25 @@ class settingsActions extends sfActions {
         return sfView::NONE;
     }
 
+    public function executeDeleteUser(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->user = $this->getUser()->getGuardUser();
+        if($this->account->getManager()->getId() == $this->user->getId()){
+            $this->account->delete();
+        } else {
+            $this->forward404Unless($user_account = UserAccountTable::getUserAccount($this->user->getId(), $this->account->getId()));
+            $user_account->delete();
+        }
+        $this->redirect('@select_account');
+    }
+    public function executeAccountInformationData(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->form = new AccountForm($this->account);
+        $this->renderPartial('settings/account_information', array('form' => $this->form, 'account' => $this->account));
+        return sfView::NONE;
+    }
     public function executeProcessAccountData(sfWebRequest $request){
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
@@ -63,7 +91,15 @@ class settingsActions extends sfActions {
         return sfView::NONE;
     }
 
-
+    public function executeDeleteAccount(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->user = $this->getUser()->getGuardUser();
+        $this->forward404Unless($user_account = UserAccountTable::getUserAccount($this->user->getId(), $this->account->getId()));
+        if($user_account->getIsManager()){
+            $this->account->delete();
+            $this->redirect('@select_account');
+        }
+    }
     /* PLANE */
 
     public function executeSavePlane(sfWebRequest $request) {

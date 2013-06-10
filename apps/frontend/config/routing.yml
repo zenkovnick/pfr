@@ -106,15 +106,40 @@ save_plane_position:
   param: { module: settings, action: savePlanePosition }
 
 
+delete_account:
+  url: /:account_id/settings/delete-account
+  param: { module: settings, action: deleteAccount}
+  requirements:
+    account_id: \d+
+
+
+delete_user:
+  url: /:account_id/settings/delete-user
+  param: { module: settings, action: deleteUser }
+  requirements:
+    account_id: \d+
+
 process_account_information_data:
   url: /:account_id/settings/process-account-data
   param: { module: settings, action: processAccountData }
   requirements:
     account_id: \d+
 
+account_information_data:
+  url: /:account_id/settings/account-information-data
+  param: { module: settings, action: accountInformationData }
+  requirements:
+    account_id: \d+
+
 process_my_information_data:
-  url: /:account_id/settings/process-my-information-data
+  url: /settings/process-my-information-data
   param: { module: settings, action: processMyInformationData }
+  requirements:
+    account_id: \d+
+
+my_information_data:
+  url: /:account_id/settings/my-information-data
+  param: { module: settings, action: myInformationData }
   requirements:
     account_id: \d+
 

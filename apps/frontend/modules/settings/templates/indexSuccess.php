@@ -12,10 +12,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        init_crop('<?php echo url_for('@my_information_upload_avatar'); ?>', '<?php echo url_for('@settings_get_widget'); ?>',
-            '/images/no_avatar.png', [32, 32], 'photo', 'sf_guard_user_photo_widget', 'user_avatar_container', 'sf_guard_user_uploaded_photo');
-        init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_get_widget'); ?>',
-            '/images/no_avatar.png', [32, 32], 'photo', 'account_photo_widget', 'account_avatar_container', 'account_uploaded_photo');
     });
 </script>
 
@@ -23,48 +19,17 @@
 <input type="hidden" value="<?php echo $account->getId() ?>" class="account-id">
 <ul class="settings-list">
     <li class="my-information">
-        <form id="my_information_settings_form" action="<?php echo url_for("@process_my_information_data?account_id={$account->getId()}") ?>" enctype="multipart/form-data" method="post">
-            <?php echo($user_form->renderHiddenFields()) ?>
-            <?php echo($user_form->renderGlobalErrors()) ?>
-            <ul>
-                <li class="photo-block"><?php include_partial('settings/user_avatar_field', array('field' => $user_form['photo_widget'], 'user' => $user)) ?></li>
-                <li class="input-block"><?php include_partial('settings/field',
-                        array('field' => $user_form['first_name'], 'placeholder' => 'Name')) ?>
-                </li>
-                <li class="input-block"><?php include_partial('settings/field',
-                        array('field' => $user_form['username'], 'class' => 'username', 'placeholder' => 'Email')) ?>
-                </li>
-                <li class="input-block"><?php include_partial('settings/field',
-                        array('field' => $user_form['new_password'], 'class' => 'new-password', 'placeholder' => 'New Password')) ?>
-                </li>
-                <li class="input-block"><?php include_partial('settings/field',
-                        array('field' => $user_form['new_password_confirm'], 'class' => 'new-password-confirm', 'placeholder' => 'New Password Confirm')) ?>
-                </li>
-                <li><button type="submit">Save</button></li>
-            </ul>
-
-        </form>
-
+        <span>My Information</span>
+        <a href="" class="edit-mi-link hidden">Edit</a>
+        <a href="" class="cancel-mi-link hidden">Cancel</a>
     </li>
     <?php if($can_manage): ?>
         <li class="account-information">
-            <form id="account_information_settings_form" action="<?php echo url_for("@process_account_information_data?account_id={$account->getId()}") ?>" enctype="multipart/form-data" method="post">
-                <?php echo($account_form->renderHiddenFields()) ?>
-                <?php echo($account_form->renderGlobalErrors()) ?>
-                <ul>
-                    <li class="photo-block"><?php include_partial('settings/account_avatar_field', array('field' => $account_form['photo_widget'], 'account' => $account)) ?></li>
-                    <li class="input-block"><?php include_partial('settings/field',
-                            array('field' => $account_form['title'], 'class' => 'account_title', 'placeholder' => 'Title')) ?>
-                    </li>
-                    <li class="input-block"><?php include_partial('settings/field',
-                            array('field' => $account_form['chief_pilot_name'], 'class' => 'cpn', 'placeholder' => 'Chief Pilot Name')) ?>
-                    </li>
-                    <li><button type="submit">Save</button></li>
-                </ul>
-
-            </form>
-
+            <span>Account Information</span>
+            <a href="" class="edit-ai-link hidden">Edit</a>
+            <a href="" class="cancel-ai-link hidden">Cancel</a>
         </li>
+
         <li class="planes" id="planes">
             <ul class="plane-list" id="plane_container">
                 <?php foreach($planes as $plane): ?>
@@ -151,16 +116,6 @@
     var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
     var account_id = null;
 
-    function informationSubmitted(data){
-        if(data.result == "OK"){
-            //alert(data.widget);
-            jQuery('span.header-user-avatar').html(data.widget);
-        }
-    }
-
-    function accountSubmitted(data){
-        jQuery('span.header-account-avatar').html(data.widget);
-    }
     function validateAndSubmitInformationForm(event) {
         event.preventDefault();
         var valid = true;
@@ -185,6 +140,71 @@
 
     }
 
+    function informationSubmitted(data){
+        if(data.result == "OK"){
+            //alert(data.widget);
+            jQuery('span.header-user-avatar').html(data.widget);
+            var root_li = jQuery('li.my-information');
+            jQuery("a.cancel-mi-link", root_li).addClass('hidden');
+            jQuery("div.my-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+            root_li.removeClass('editing');
+        }
+    }
+
+    function showMIEditLink(){
+        if(jQuery(this).find('a.cancel-mi-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-mi-link').removeClass('hidden');
+            jQuery(this).find('.handler').removeClass('hidden');
+        }
+    }
+
+    function hideMIEditLink(){
+        if(jQuery(this).find('a.cancel-mi-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-mi-link').addClass('hidden');
+            jQuery(this).find('.handler').addClass('hidden');
+        }
+    }
+
+
+    function editMI(event){
+        event.preventDefault();
+        var root_el = jQuery(this).closest('li.my-information');
+        root_el.addClass('editing');
+        jQuery(this).addClass('hidden');
+        root_el.find('a.cancel-mi-link').removeClass('hidden');
+
+        var form_el = jQuery(jQuery.ajax({
+            type: 'GET',
+            url: '<?php echo url_for("@my_information_data?account_id={$account->getId()}"); ?>',
+            async: false
+        }).responseText);
+        jQuery('a.delete-my-information', form_el).bind('click', deleteMI);
+
+        root_el.append(form_el);
+        form_el.show(show_delay);
+
+    }
+
+    function cancelMIEdit(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li.my-information');
+        jQuery(this).addClass('hidden');
+        root_li.find("div.my-information-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
+        root_li.removeClass('editing');
+    }
+
+    function deleteMI(event) {
+        event.preventDefault();
+        if(confirm("Confirm deleting from current account")){
+            if(confirm("Are You Sure?")){
+                window.location.href=jQuery(this).prop('href');
+            }
+        }
+        return false;
+    }
+
+    /* ACCOUNT */
+
     function validateAndSubmitAccountForm(event) {
         event.preventDefault();
         var valid = true;
@@ -197,15 +217,78 @@
         }
 
         /*if(cpn.val() == ''){
-            valid = false;
-            cpn.addClass('invalid-field');
-        }*/
+         valid = false;
+         cpn.addClass('invalid-field');
+         }*/
         if(valid){
             jQuery('.invalid-field', this).removeClass('invalid-field');
             jQuery(this).ajaxSubmit(account_submit);
         }
 
     }
+
+    function accountSubmitted(data){
+        jQuery('span.header-account-avatar').html(data.widget);
+        var root_li = jQuery('li.account-information');
+        jQuery("a.cancel-ai-link", root_li).addClass('hidden');
+        jQuery("div.account-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+        root_li.removeClass('editing');
+    }
+
+    function showAIEditLink(){
+        if(jQuery(this).find('a.cancel-ai-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-ai-link').removeClass('hidden');
+            jQuery(this).find('.handler').removeClass('hidden');
+        }
+    }
+
+    function hideAIEditLink(){
+        if(jQuery(this).find('a.cancel-ai-link').hasClass('hidden')){
+            jQuery(this).find('a.edit-ai-link').addClass('hidden');
+            jQuery(this).find('.handler').addClass('hidden');
+        }
+    }
+
+
+    function editAI(event){
+        event.preventDefault();
+        var root_el = jQuery(this).closest('li.account-information');
+        root_el.addClass('editing');
+        jQuery(this).addClass('hidden');
+        root_el.find('a.cancel-ai-link').removeClass('hidden');
+
+        var form_el = jQuery(jQuery.ajax({
+            type: 'GET',
+            url: '<?php echo url_for("@account_information_data?account_id={$account->getId()}"); ?>',
+            async: false
+        }).responseText);
+        jQuery('a.delete-account-information', form_el).bind('click', deleteAI);
+
+        root_el.append(form_el);
+        form_el.show(show_delay);
+
+    }
+
+    function cancelAIEdit(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li.account-information');
+        jQuery(this).addClass('hidden');
+        root_li.find("div.account-information-wrapper").hide(hide_delay, function(){jQuery(this).remove()});
+        root_li.removeClass('editing');
+    }
+
+    function deleteAI(event) {
+        event.preventDefault();
+        if(confirm("Confirm deleting current account(all pilots of this account will be deattached)")){
+            if(confirm("Are You Sure?")){
+                window.location.href=jQuery(this).prop('href');
+            }
+        }
+        return false;
+    }
+
+    
+    
 
     /* PLANE */
     function showPlaneEditLink(){
@@ -597,8 +680,14 @@
 
         account_id = jQuery("input[type='hidden'].account-id").val();
 
-        jQuery("#my_information_settings_form").bind('submit', validateAndSubmitInformationForm);
-        jQuery("#account_information_settings_form").bind('submit', validateAndSubmitAccountForm);
+        jQuery("li.my-information").bind('mouseover', showMIEditLink).bind('mouseout', hideMIEditLink);
+        jQuery("a.edit-mi-link").bind('click', editMI);
+        jQuery("a.cancel-mi-link").bind('click', cancelMIEdit);
+
+        jQuery("li.account-information").bind('mouseover', showAIEditLink).bind('mouseout', hideAIEditLink);
+        jQuery("a.edit-ai-link").bind('click', editAI);
+        jQuery("a.cancel-ai-link").bind('click', cancelAIEdit);
+
 
         jQuery("li.plane-entity").bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
         jQuery("a.edit-plane-link").bind('click', editPlane);
