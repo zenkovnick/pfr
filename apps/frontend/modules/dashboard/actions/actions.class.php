@@ -49,22 +49,6 @@ class dashboardActions extends sfActions {
         }
 
         $obj->filter = new FlightFormFilter($flight_filter, array('account' => $obj->account));
-        if (isset($flight_filter['sort']))
-        {
-            $obj->sort = $flight_filter['sort'];
-        }
-        else
-        {
-            $obj->sort = array('column' => '', 'order' => '');
-        }
-        $obj->columns = array(
-            'company' => 'Company',
-            'title' => 'Position',
-            'salary' => 'Salary',
-            'city' => 'Location',
-            'created_at' => 'Posted',
-            'industry' => 'Industry'
-        );
 
         $obj->pager = new sfDoctrinePager("Flight", 50);
         $obj->pager->setQuery($obj->filter->getQuery());

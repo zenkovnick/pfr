@@ -11,6 +11,7 @@
             <?php else: ?>
                 <span><?php echo $flight->getTripNumber() ?></span>
                 <span><?php echo $flight->getRiskFactorSum() ?></span>
+                <span><?php echo date('Y-m-d', strtotime($flight->getCreatedAt())) ?></span>
             <?php endif ?>
         </li>
     <?php endforeach ?>
