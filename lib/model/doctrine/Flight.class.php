@@ -153,4 +153,20 @@ class Flight extends BaseFlight
 
         return $mitigation_info;
     }
+
+    public static function getAverageRisk($flights){
+        $sum = 0;
+        foreach($flights as $flight){
+            $sum += $flight->getRiskFactorSum();
+        }
+        return $flights->count() > 0 ? $sum/$flights->count() : 0;
+    }
+
+    public static function getAverageMitigation($flights){
+        $sum = 0;
+        foreach($flights as $flight){
+            $sum += $flight->getMitigationSum();
+        }
+        return $flights->count() > 0 ? $sum/$flights->count() : 0;
+    }
 }

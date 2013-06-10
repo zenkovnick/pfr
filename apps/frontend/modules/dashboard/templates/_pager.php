@@ -62,16 +62,16 @@
         });
 
         function sendAjax(page_num){
-            alert(page_num);
             jQuery.ajax({
                 url: '<?php echo url_for("@get_page_content?account_id={$account->getId()}") ?>',
                 data: {page: page_num},
+                dataType: 'json',
                 type: "GET",
                 cache: false,
                 success: function(data) {
+                    //alert(data.dashboard_data);
                     //alert("Success: "+page+" "+prev_page+" "+next_page);
-                    jQuery(".post-wrap").empty();
-                    jQuery(".post-wrap").html(data);
+                    jQuery(".dashboard-content").html(data.dashboard_data);
                 }
             });
         }

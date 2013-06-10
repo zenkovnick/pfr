@@ -18,7 +18,7 @@
 
 
 <div class="dashboard-content">
-    <?php include_partial('dashboard/dashboard_content', array('account' => $account, 'pager' => $pager)) ?>
+    <?php include_partial('dashboard/dashboard_content', array('account' => $account, 'pager' => $pager, 'additional_info' => $additional_info)) ?>
 </div>
 
 <script type="text/javascript">

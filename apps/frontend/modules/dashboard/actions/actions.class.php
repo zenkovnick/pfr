@@ -20,7 +20,6 @@ class dashboardActions extends sfActions {
             $this->setTemplate('firstTime');
         } else {
             $this->setFlightData($request, $this);
-            //$this->avarage_risk = FlightTable::getAvarage
         }
     }
 
@@ -32,7 +31,11 @@ class dashboardActions extends sfActions {
         $top_controls['page'] = $old_filter['page'];
         $this->getUser()->setAttribute('flight_filter', $top_controls);
         $this->setFlightData($request, $this);
-        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array('account' => $this->account, 'pager' => $this->pager))));
+        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array(
+            'account' => $this->account,
+            'pager' => $this->pager,
+            'additional_info' => $this->additional_info
+        ))));
         return sfView::NONE;
 
     }
@@ -43,7 +46,11 @@ class dashboardActions extends sfActions {
         $account_id = $request->getParameter('account_id');
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
         $this->setFlightData($request, $this);
-        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array('account' => $this->account, 'pager' => $this->pager))));
+        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array(
+            'account' => $this->account,
+            'pager' => $this->pager,
+            'additional_info' => $this->additional_info
+        ))));
         return sfView::NONE;
 
     }
@@ -80,7 +87,13 @@ class dashboardActions extends sfActions {
         $flight_filter['page'] = $obj->page;
         $obj->getUser()->setAttribute('flight_filter', $flight_filter);
 
-        $obj->flights_count = Doctrine_Core::getTable('Flight')->findBy('account_id', $account_id)->count();
+        $flights = $obj->filter->getQuery()->execute();
+        $additional_info = array();
+        $additional_info['flights_count'] = $flights->count();
+        $additional_info['average_risk'] = Flight::getAverageRisk($flights);
+        $additional_info['average_mitigation'] = Flight::getAverageMitigation($flights);
+        $obj->additional_info = $additional_info;
+
     }
 
     private function checkConditions($account) {
