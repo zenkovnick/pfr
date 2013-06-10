@@ -958,6 +958,10 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 .flight-field-list {
     overflow: hidden;
 }
+.flight-field-list .bottom-border {
+    margin: 9px 0 20px;
+    width: 100%;
+}
 .flight-field-list li.small-field {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -988,3 +992,83 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 .flight-field-list li.small-field input.time {
     background: url(../images/time_icon.png) no-repeat right center #FFF;
 }
+.flight-field-list li.flight-information {
+    border-bottom: 1px dashed #E4E4E4;
+    overflow: hidden;
+    padding: 9px 0;
+}
+.flight-field-list li.flight-information:first-of-type {
+    border-bottom: none;
+}
+.flight-field-list li.flight-information span.dashboard-avatar {
+    background: #333;
+    border: 1px solid #000;
+    display: block;
+    float: right;
+    height: 40px;
+    width: 40px;
+}
+.flight-field-list li.flight-information label, .risk-factor-wrapper .risk-factor-question label {
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+.flight-field-list li.flight-information select, .response-option-list select {
+    background: none;
+    border: none;
+    color: #0F76BB;
+    cursor: pointer;
+}
+.risk-factor-wrapper {
+    border-bottom: 1px dashed #CCC;
+    margin: 0 0 15px;
+    overflow: hidden;
+    padding: 0 0 9px;
+    position: relative;
+}
+.response-option-list {
+    clear: both;
+    overflow: hidden;
+}
+.risk-note-wrapper .risk {
+    background: #FF3333;
+    color: #FFF;
+    display: block;
+    padding: 14px 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 40px;
+}
+.risk-note-wrapper .note {
+    background: url(../images/note_icon.png) no-repeat 10px center #FFFF66;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #000;
+    display: block;
+    margin: 15px 0 0;
+    padding: 10px 10px 10px 36px;
+    position: relative;
+    width: 100%;
+}
+.risk-note-wrapper .note span {
+    background: url(../images/note_span.png) no-repeat left top;
+    display: block;
+    height: 10px;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    width: 19px;
+
+}
+a.show-help-link {
+    color: #999;
+    padding-left: 5px;
+    text-transform: lowercase;
+}
+
+
+
+

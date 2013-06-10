@@ -13,13 +13,13 @@
     <li><span class="bottom-border"></span></li>
     <li><h2>Flight Information</h2></li>
     <?php foreach($data['flight_information'] as $fi): ?>
-        <li>
+        <li class="flight-information">
             <?php $key = Flight::generateKeyByTitle($fi['name']); ?>
             <?php if($key == 'pilot_in_command' || $key == 'second_in_command'): ?>
-                <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
                 <span class="dashboard-avatar">
                     <?php include_partial('flight/avatar', array('user' => $users[$form[$key]->getValue()])); ?>
                 </span>
+                <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
             <?php elseif($key == 'trip_number'): ?>
                 <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'trip-number', 'label' => true)); ?>
             <?php else: ?>
@@ -27,6 +27,8 @@
             <?php endif ?>
         </li>
     <?php endforeach ?>
+    <li><span class="bottom-border"></span></li>
+    <li><h2>Risk Analysis</h2></li>
     <?php for($i = 0; $i<count($data['risk_analysis']); $i++): ?>
         <li>
             <?php include_partial("flight/risk_field", array(
