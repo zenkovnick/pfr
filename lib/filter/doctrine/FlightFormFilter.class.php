@@ -11,6 +11,7 @@
 class FlightFormFilter extends BaseFlightFormFilter
 {
     private $date_choice = array('' => 'all time', 'today' => 'today', 'yesterday' => 'yesterday', 'week' => 'last week', 'month' => 'last month', 'half_year' => 'last 6 month', 'year' => 'year');
+    private $sort_choice = array('date' => 'date', 'risk' => 'risk');
 
     public function configure()
     {
@@ -30,6 +31,7 @@ class FlightFormFilter extends BaseFlightFormFilter
             'add_empty' => 'all pilots'
         ));
         $this->widgetSchema['date'] = new sfWidgetFormChoice(array('choices' => $this->date_choice));
+        $this->widgetSchema['sort'] = new sfWidgetFormChoice(array('choices' => $this->sort_choice));
 
 
         $this->validatorSchema['plane'] = new sfValidatorPass();
@@ -85,14 +87,16 @@ class FlightFormFilter extends BaseFlightFormFilter
 
         if (isset($this->defaults['sort']))
         {
-            if($this->defaults['sort']['column'] == 'company')
-                $query->orderBy("c.title ".$this->defaults['sort']['order']);
-            elseif($this->defaults['sort']['column'] == 'city')
-                $query->orderBy("ct.name ".$this->defaults['sort']['order']);
-            elseif($this->defaults['sort']['column'] == 'industry')
-                $query->orderBy("industries ".$this->defaults['sort']['order']);
-            else
-                $query->orderBy($this->defaults['sort']['column']." ".$this->defaults['sort']['order']);
+            switch($this->defaults['sort']){
+                case 'date':
+                    $query->orderBy("f.created_at DESC");
+                    break;
+                case 'risk':
+                    $query->orderBy("f.risk_factor_sum DESC");
+                    break;
+                default:
+                    $query->orderBy("f.created_at DESC");
+            }
         }
 
         return $query;

@@ -1,3 +1,835 @@
+UserAccount:
+  UserAccount_1_1:
+    Account: Account_1
+    User: sfGuardUser_1
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-05-27 17:00:00'
+    updated_at: '2013-05-27 17:00:00'
+  UserAccount_1_2:
+    Account: Account_1
+    User: sfGuardUser_2
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-05-27 16:27:37'
+    updated_at: '2013-05-27 16:27:37'
+  UserAccount_1_7:
+    Account: Account_1
+    User: sfGuardUser_7
+    is_manager: true
+    position: '1'
+    invite_token: csgabpzzwxwgccw48sgog0gccoggscg
+    is_active: false
+    created_at: '2013-06-07 09:56:15'
+    updated_at: '2013-06-07 09:56:15'
+  UserAccount_2_1:
+    Account: Account_2
+    User: sfGuardUser_1
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-05-27 16:27:53'
+    updated_at: '2013-05-27 16:27:53'
+  UserAccount_3_3:
+    Account: Account_3
+    User: sfGuardUser_3
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-05-28 16:47:29'
+    updated_at: '2013-05-28 16:47:29'
+  UserAccount_5_4:
+    Account: Account_5
+    User: sfGuardUser_4
+    is_manager: true
+    position: '1'
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-07 03:42:41'
+    updated_at: '2013-06-07 04:05:09'
+  UserAccount_5_6:
+    Account: Account_5
+    User: sfGuardUser_6
+    is_manager: true
+    position: '2'
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-07 03:50:23'
+    updated_at: '2013-06-07 04:05:09'
+  UserAccount_6_5:
+    Account: Account_6
+    User: sfGuardUser_5
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-07 03:55:09'
+    updated_at: '2013-06-07 03:55:09'
+  UserAccount_7_5:
+    Account: Account_7
+    User: sfGuardUser_5
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-07 05:39:18'
+    updated_at: '2013-06-07 05:39:18'
+  UserAccount_8_4:
+    Account: Account_8
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-07 08:08:36'
+    updated_at: '2013-06-07 08:08:36'
+  UserAccount_9_4:
+    Account: Account_9
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-07 08:12:16'
+    updated_at: '2013-06-07 08:12:16'
+  UserAccount_9_8:
+    Account: Account_9
+    User: sfGuardUser_8
+    is_manager: true
+    position: '1'
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 04:30:46'
+    updated_at: '2013-06-10 04:40:17'
+  UserAccount_10_6:
+    Account: Account_10
+    User: sfGuardUser_6
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 03:22:08'
+    updated_at: '2013-06-10 03:22:08'
+  UserAccount_11_5:
+    Account: Account_11
+    User: sfGuardUser_5
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 05:16:40'
+    updated_at: '2013-06-10 05:16:40'
+  UserAccount_12_4:
+    Account: Account_12
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 07:29:00'
+    updated_at: '2013-06-10 07:29:00'
+  UserAccount_13_4:
+    Account: Account_13
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 07:31:20'
+    updated_at: '2013-06-10 07:31:20'
+  UserAccount_14_4:
+    Account: Account_14
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 07:48:24'
+    updated_at: '2013-06-10 07:48:24'
+  UserAccount_15_4:
+    Account: Account_15
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 07:52:41'
+    updated_at: '2013-06-10 07:52:41'
+  UserAccount_16_4:
+    Account: Account_16
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 08:29:56'
+    updated_at: '2013-06-10 08:29:56'
+  UserAccount_17_4:
+    Account: Account_17
+    User: sfGuardUser_4
+    is_manager: true
+    position: null
+    invite_token: null
+    is_active: true
+    created_at: '2013-06-10 08:34:08'
+    updated_at: '2013-06-10 08:34:08'
+AccountPlane:
+  AccountPlane_1_1:
+    Account: Account_1
+    Plane: Plane_1
+    position: '1'
+  AccountPlane_5_2:
+    Account: Account_5
+    Plane: Plane_2
+    position: '1'
+  AccountPlane_5_3:
+    Account: Account_5
+    Plane: Plane_3
+    position: '2'
+  AccountPlane_6_4:
+    Account: Account_6
+    Plane: Plane_4
+    position: '1'
+  AccountPlane_9_5:
+    Account: Account_9
+    Plane: Plane_5
+    position: '1'
+Flight:
+  Flight_1:
+    Account: Account_5
+    Plane: Plane_2
+    PIC: sfGuardUser_6
+    SIC: sfGuardUser_4
+    trip_number: 'number 1'
+    airport_from: from
+    airport_to: to
+    departure_date: '2013-06-07 04:58:00'
+    risk_factor_sum: '9'
+    mitigation_sum: '0'
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"04:58","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":0,"selected_response":"98","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":0,"selected_response":"96","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":0,"selected_response":"94","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
+    drafted: true
+    status: assess
+  Flight_2:
+    Account: Account_5
+    Plane: Plane_1
+    trip_number: ''
+    airport_from: ''
+    airport_to: ''
+    departure_date: '2013-06-07 05:03:00'
+    risk_factor_sum: '0'
+    mitigation_sum: null
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:03","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"97","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"95","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
+    drafted: true
+    status: new
+  Flight_3:
+    Account: Account_5
+    Plane: Plane_1
+    trip_number: '33333'
+    airport_from: cvz
+    airport_to: vzcvzbc
+    departure_date: '2013-06-07 05:04:00'
+    risk_factor_sum: '0'
+    mitigation_sum: null
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:04","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"97","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"95","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
+    drafted: true
+    status: new
+  Flight_4:
+    Account: Account_5
+    Plane: Plane_1
+    trip_number: '4444'
+    airport_from: vdsg
+    airport_to: fhsfdft
+    departure_date: '2013-06-07 05:05:00'
+    risk_factor_sum: '6'
+    mitigation_sum: null
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:05","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"98","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"96","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
+    drafted: false
+    status: complete
+  Flight_9:
+    Account: Account_6
+    trip_number: ''
+    airport_from: ''
+    airport_to: ''
+    departure_date: '2013-06-07 05:52:00'
+    risk_factor_sum: '0'
+    mitigation_sum: null
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:52","flight_information":[{"name":"Plane(tail number):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null}],"risk_analysis":[]}'
+    drafted: true
+    status: new
+  Flight_10:
+    Account: Account_9
+    Plane: Plane_5
+    PIC: sfGuardUser_4
+    SIC: sfGuardUser_8
+    trip_number: eeeeeee
+    airport_from: qqqqqqqqqq
+    airport_to: wwwwwwwwww
+    departure_date: '2013-06-10 03:49:00'
+    risk_factor_sum: '3'
+    mitigation_sum: null
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"03:49","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"fdgasdfhs","help_message":"","mitigation":null,"selected_response":"106","response_options":{"105":{"text":"No","value":"0","note":""},"106":{"text":"Yes","value":"3","note":""}}}]}'
+    drafted: false
+    status: complete
+  Flight_11:
+    Account: Account_9
+    Plane: Plane_5
+    PIC: sfGuardUser_8
+    SIC: sfGuardUser_4
+    trip_number: number
+    airport_from: from
+    airport_to: to
+    departure_date: '2013-06-10 03:53:00'
+    risk_factor_sum: '3'
+    mitigation_sum: null
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"03:53","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"fdgasdfhs","help_message":"","mitigation":null,"selected_response":"106","response_options":{"105":{"text":"No","value":"0","note":""},"106":{"text":"Yes","value":"3","note":""}}}]}'
+    drafted: true
+    status: assess
+  Flight_12:
+    Account: Account_9
+    Plane: Plane_5
+    PIC: sfGuardUser_8
+    SIC: sfGuardUser_4
+    trip_number: ''
+    airport_from: ''
+    airport_to: ''
+    departure_date: '2013-06-10 03:57:00'
+    risk_factor_sum: '0'
+    mitigation_sum: null
+    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"03:57","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"fdgasdfhs","help_message":"","mitigation":null,"selected_response":"105","response_options":{"105":{"text":"No","value":"0","note":""},"106":{"text":"Yes","value":"3","note":""}}}]}'
+    drafted: true
+    status: new
+RiskFactorField:
+  RiskFactorField_1:
+    RiskBuilder: RiskBuilder_1
+    question: 'Second Question'
+    help_message: ''
+    position: '2'
+    created_at: '2013-05-28 12:04:26'
+    updated_at: '2013-06-05 06:34:09'
+  RiskFactorField_2:
+    RiskBuilder: RiskBuilder_1
+    question: 'How much did You sleep tonight?'
+    help_message: ''
+    position: '3'
+    created_at: '2013-05-28 12:05:24'
+    updated_at: '2013-06-05 06:36:01'
+  RiskFactorField_3:
+    RiskBuilder: RiskBuilder_1
+    question: 'First Question'
+    help_message: 'First Question Help'
+    position: '1'
+    created_at: '2013-05-29 09:46:14'
+    updated_at: '2013-06-05 09:42:19'
+  RiskFactorField_4:
+    question: Cat
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:06:49'
+    updated_at: '2013-06-07 04:06:49'
+  RiskFactorField_5:
+    question: Cat
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:06:56'
+    updated_at: '2013-06-07 04:06:56'
+  RiskFactorField_6:
+    question: Cat
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:06:57'
+    updated_at: '2013-06-07 04:06:57'
+  RiskFactorField_7:
+    question: Cat
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:06:57'
+    updated_at: '2013-06-07 04:06:57'
+  RiskFactorField_8:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:07:18'
+    updated_at: '2013-06-07 04:07:18'
+  RiskFactorField_9:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:07:20'
+    updated_at: '2013-06-07 04:07:20'
+  RiskFactorField_10:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:07:21'
+    updated_at: '2013-06-07 04:07:21'
+  RiskFactorField_11:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:07:22'
+    updated_at: '2013-06-07 04:07:22'
+  RiskFactorField_12:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:07:23'
+    updated_at: '2013-06-07 04:07:23'
+  RiskFactorField_13:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:07:59'
+    updated_at: '2013-06-07 04:07:59'
+  RiskFactorField_14:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:08:00'
+    updated_at: '2013-06-07 04:08:00'
+  RiskFactorField_15:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:08:00'
+    updated_at: '2013-06-07 04:08:00'
+  RiskFactorField_16:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:08:03'
+    updated_at: '2013-06-07 04:08:03'
+  RiskFactorField_17:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:08:17'
+    updated_at: '2013-06-07 04:08:17'
+  RiskFactorField_18:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:08:17'
+    updated_at: '2013-06-07 04:08:17'
+  RiskFactorField_19:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:08:17'
+    updated_at: '2013-06-07 04:08:17'
+  RiskFactorField_20:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:09:54'
+    updated_at: '2013-06-07 04:09:54'
+  RiskFactorField_21:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:09:54'
+    updated_at: '2013-06-07 04:09:54'
+  RiskFactorField_22:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:09:55'
+    updated_at: '2013-06-07 04:09:55'
+  RiskFactorField_23:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:09:56'
+    updated_at: '2013-06-07 04:09:56'
+  RiskFactorField_24:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:09:56'
+    updated_at: '2013-06-07 04:09:56'
+  RiskFactorField_25:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:09:59'
+    updated_at: '2013-06-07 04:09:59'
+  RiskFactorField_26:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:10:17'
+    updated_at: '2013-06-07 04:10:17'
+  RiskFactorField_27:
+    question: Dog
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:10:17'
+    updated_at: '2013-06-07 04:10:17'
+  RiskFactorField_28:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:10:18'
+    updated_at: '2013-06-07 04:10:18'
+  RiskFactorField_29:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:10:47'
+    updated_at: '2013-06-07 04:10:47'
+  RiskFactorField_30:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:10:47'
+    updated_at: '2013-06-07 04:10:47'
+  RiskFactorField_31:
+    question: Cat
+    help_message: ':)'
+    position: null
+    created_at: '2013-06-07 04:10:49'
+    updated_at: '2013-06-07 04:10:49'
+  RiskFactorField_32:
+    question: asdgqegt
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:11'
+    updated_at: '2013-06-07 04:11:11'
+  RiskFactorField_33:
+    question: asdgqegt
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:12'
+    updated_at: '2013-06-07 04:11:12'
+  RiskFactorField_34:
+    question: asdgqegt
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:12'
+    updated_at: '2013-06-07 04:11:12'
+  RiskFactorField_35:
+    question: asdgqegt
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:13'
+    updated_at: '2013-06-07 04:11:13'
+  RiskFactorField_36:
+    question: asdgqegt
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:14'
+    updated_at: '2013-06-07 04:11:14'
+  RiskFactorField_37:
+    question: asdgqegt
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:14'
+    updated_at: '2013-06-07 04:11:14'
+  RiskFactorField_38:
+    question: asdgqegt
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:15'
+    updated_at: '2013-06-07 04:11:15'
+  RiskFactorField_39:
+    question: '111'
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:28'
+    updated_at: '2013-06-07 04:11:28'
+  RiskFactorField_40:
+    question: '111'
+    help_message: ''
+    position: null
+    created_at: '2013-06-07 04:11:28'
+    updated_at: '2013-06-07 04:11:28'
+  RiskFactorField_41:
+    question: '111'
+    help_message: '11'
+    position: null
+    created_at: '2013-06-07 04:11:31'
+    updated_at: '2013-06-07 04:11:31'
+  RiskFactorField_42:
+    question: '111'
+    help_message: '11'
+    position: null
+    created_at: '2013-06-07 04:11:31'
+    updated_at: '2013-06-07 04:11:31'
+  RiskFactorField_43:
+    question: '111'
+    help_message: '11'
+    position: null
+    created_at: '2013-06-07 04:11:31'
+    updated_at: '2013-06-07 04:11:31'
+  RiskFactorField_44:
+    question: '111'
+    help_message: '11'
+    position: null
+    created_at: '2013-06-07 04:11:31'
+    updated_at: '2013-06-07 04:11:31'
+  RiskFactorField_45:
+    RiskBuilder: RiskBuilder_3
+    question: Cat
+    help_message: ''
+    position: '3'
+    created_at: '2013-06-07 04:15:07'
+    updated_at: '2013-06-07 04:18:40'
+  RiskFactorField_46:
+    RiskBuilder: RiskBuilder_3
+    question: Dog
+    help_message: ''
+    position: '2'
+    created_at: '2013-06-07 04:15:17'
+    updated_at: '2013-06-07 04:18:40'
+  RiskFactorField_47:
+    RiskBuilder: RiskBuilder_3
+    question: Mouse
+    help_message: ''
+    position: '1'
+    created_at: '2013-06-07 04:16:53'
+    updated_at: '2013-06-07 04:18:40'
+  RiskFactorField_48:
+    RiskBuilder: RiskBuilder_4
+    question: Test3
+    help_message: ''
+    position: '4'
+    created_at: '2013-06-07 07:38:59'
+    updated_at: '2013-06-07 07:38:59'
+  RiskFactorField_49:
+    RiskBuilder: RiskBuilder_4
+    question: Test3
+    help_message: ''
+    position: '5'
+    created_at: '2013-06-07 07:44:28'
+    updated_at: '2013-06-07 07:44:28'
+  RiskFactorField_50:
+    RiskBuilder: RiskBuilder_4
+    question: Test3
+    help_message: ''
+    position: '6'
+    created_at: '2013-06-07 07:48:01'
+    updated_at: '2013-06-07 07:48:01'
+  RiskFactorField_51:
+    RiskBuilder: RiskBuilder_7
+    question: fdgasdfhs
+    help_message: ''
+    position: '7'
+    created_at: '2013-06-10 03:48:13'
+    updated_at: '2013-06-10 03:48:13'
+Account:
+  Account_1:
+    title: Company
+    photo: ada668dbf57f4cc7204aa943473cb580.png
+    chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
+    Manager: sfGuardUser_1
+    has_modified_form: true
+    has_plane: true
+    has_pilot: true
+    has_skipped_pilot: false
+    has_flight: true
+    created_at: '2013-05-27 16:27:37'
+    updated_at: '2013-06-03 15:38:29'
+  Account_2:
+    title: 'Company 2'
+    photo: 2042036d41523e2c17bfbccda75d4258.jpg
+    chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
+    Manager: sfGuardUser_2
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-05-27 16:27:53'
+    updated_at: '2013-05-27 16:27:53'
+  Account_3:
+    title: 'Company 4 '
+    photo: 849f9f65ab8d6b2daac4bd8bac06b93e.jpg
+    chief_pilot_email: zenkovnick@gmail.com
+    chief_pilot_name: null
+    Manager: sfGuardUser_3
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-05-28 16:47:29'
+    updated_at: '2013-05-28 16:47:29'
+  Account_5:
+    title: 'Super company :)'
+    photo: a483a71dd4b68e3fe5ced1ef161f74b1.jpg
+    chief_pilot_email: null
+    chief_pilot_name: 'Nata Test3'
+    Manager: sfGuardUser_4
+    has_modified_form: true
+    has_plane: true
+    has_pilot: true
+    has_skipped_pilot: false
+    has_flight: true
+    created_at: '2013-06-07 03:42:41'
+    updated_at: '2013-06-07 08:57:40'
+  Account_6:
+    title: 'Test 3'
+    photo: a3a2e61b298f697dcc2df9e9dd4d7272.JPG
+    chief_pilot_email: null
+    chief_pilot_name: ''
+    Manager: sfGuardUser_5
+    has_modified_form: true
+    has_plane: true
+    has_pilot: false
+    has_skipped_pilot: true
+    has_flight: true
+    created_at: '2013-06-07 03:55:09'
+    updated_at: '2013-06-07 05:53:05'
+  Account_7:
+    title: Tango
+    photo: 052b34b4bd10d9c0624082c036289aee.jpg
+    chief_pilot_email: null
+    chief_pilot_name: ''
+    Manager: sfGuardUser_5
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-07 05:39:18'
+    updated_at: '2013-06-07 05:42:08'
+  Account_8:
+    title: '07 06 2013'
+    photo: null
+    chief_pilot_email: nata3@asdasd.ru
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-07 08:08:36'
+    updated_at: '2013-06-07 08:08:36'
+  Account_9:
+    title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    photo: a076dbf8d658950e4e486855316e17fb.jpg
+    chief_pilot_email: null
+    chief_pilot_name: nata@asdasd.ru
+    Manager: sfGuardUser_4
+    has_modified_form: true
+    has_plane: true
+    has_pilot: true
+    has_skipped_pilot: false
+    has_flight: true
+    created_at: '2013-06-07 08:12:16'
+    updated_at: '2013-06-10 04:32:16'
+  Account_10:
+    title: 'Company (Nata 2)'
+    photo: a3527e2b1044b466636b55d770123406.JPG
+    chief_pilot_email: nata2@asdasd.ru
+    chief_pilot_name: null
+    Manager: sfGuardUser_6
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 03:22:08'
+    updated_at: '2013-06-10 03:22:08'
+  Account_11:
+    title: 'My Company'
+    photo: ''
+    chief_pilot_email: nata@asdasd.ru
+    chief_pilot_name: null
+    Manager: sfGuardUser_5
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 05:16:40'
+    updated_at: '2013-06-10 05:16:40'
+  Account_12:
+    title: ''
+    photo: ''
+    chief_pilot_email: ''
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 07:29:00'
+    updated_at: '2013-06-10 07:29:00'
+  Account_13:
+    title: ''
+    photo: ''
+    chief_pilot_email: ''
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 07:31:20'
+    updated_at: '2013-06-10 07:31:20'
+  Account_14:
+    title: Company
+    photo: ''
+    chief_pilot_email: nata@asdasd.ru
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 07:48:24'
+    updated_at: '2013-06-10 07:48:24'
+  Account_15:
+    title: Сompany
+    photo: 18a8c1e112ef8f76826a1e1dc4a61f4c.png
+    chief_pilot_email: nata@asdasd.ru
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 07:52:41'
+    updated_at: '2013-06-10 07:52:41'
+  Account_16:
+    title: Company
+    photo: 4ee49f778bf47a49dd0e3b0e5ad9be5d.jpg
+    chief_pilot_email: nata@asdasd.ru
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 08:29:56'
+    updated_at: '2013-06-10 08:29:56'
+  Account_17:
+    title: ''
+    photo: ''
+    chief_pilot_email: ''
+    chief_pilot_name: null
+    Manager: sfGuardUser_4
+    has_modified_form: false
+    has_plane: false
+    has_pilot: false
+    has_skipped_pilot: false
+    has_flight: false
+    created_at: '2013-06-10 08:34:08'
+    updated_at: '2013-06-10 08:34:08'
 FlightInformationField:
   FlightInformationField_1:
     RiskBuilder: RiskBuilder_1
@@ -31,38 +863,6 @@ FlightInformationField:
     is_hide: false
     created_at: '2013-05-24 14:19:53'
     updated_at: '2013-05-29 15:22:25'
-  FlightInformationField_5:
-    RiskBuilder: RiskBuilder_2
-    information_name: 'Plane(tail number):'
-    position: '3'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-06-07 03:18:17'
-    updated_at: '2013-06-07 05:17:59'
-  FlightInformationField_6:
-    RiskBuilder: RiskBuilder_2
-    information_name: 'Pilot in command (PIC):'
-    position: '1'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-06-07 03:18:17'
-    updated_at: '2013-06-07 05:17:59'
-  FlightInformationField_7:
-    RiskBuilder: RiskBuilder_2
-    information_name: 'Second in command (SIC):'
-    position: '2'
-    hiddable: true
-    is_hide: false
-    created_at: '2013-06-07 03:18:17'
-    updated_at: '2013-06-07 05:17:59'
-  FlightInformationField_8:
-    RiskBuilder: RiskBuilder_2
-    information_name: 'Trip number'
-    position: '4'
-    hiddable: false
-    is_hide: false
-    created_at: '2013-06-07 03:18:17'
-    updated_at: '2013-06-07 05:17:59'
   FlightInformationField_9:
     RiskBuilder: RiskBuilder_3
     information_name: 'Plane(tail number):'
@@ -194,35 +994,433 @@ FlightInformationField:
   FlightInformationField_25:
     RiskBuilder: RiskBuilder_7
     information_name: 'Plane(tail number):'
+    position: '4'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-07 08:12:16'
+    updated_at: '2013-06-10 03:48:08'
+  FlightInformationField_26:
+    RiskBuilder: RiskBuilder_7
+    information_name: 'Pilot in command (PIC):'
     position: '1'
     hiddable: false
     is_hide: false
     created_at: '2013-06-07 08:12:16'
-    updated_at: '2013-06-07 08:12:16'
-  FlightInformationField_26:
+    updated_at: '2013-06-10 03:48:08'
+  FlightInformationField_27:
     RiskBuilder: RiskBuilder_7
+    information_name: 'Second in command (SIC):'
+    position: '2'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-07 08:12:16'
+    updated_at: '2013-06-10 03:48:08'
+  FlightInformationField_28:
+    RiskBuilder: RiskBuilder_7
+    information_name: 'Trip number'
+    position: '3'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-07 08:12:16'
+    updated_at: '2013-06-10 03:48:08'
+  FlightInformationField_29:
+    RiskBuilder: RiskBuilder_8
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 03:22:08'
+    updated_at: '2013-06-10 03:22:08'
+  FlightInformationField_30:
+    RiskBuilder: RiskBuilder_8
     information_name: 'Pilot in command (PIC):'
     position: '2'
     hiddable: false
     is_hide: false
-    created_at: '2013-06-07 08:12:16'
-    updated_at: '2013-06-07 08:12:16'
-  FlightInformationField_27:
-    RiskBuilder: RiskBuilder_7
+    created_at: '2013-06-10 03:22:08'
+    updated_at: '2013-06-10 03:22:08'
+  FlightInformationField_31:
+    RiskBuilder: RiskBuilder_8
     information_name: 'Second in command (SIC):'
     position: '3'
     hiddable: true
     is_hide: false
-    created_at: '2013-06-07 08:12:16'
-    updated_at: '2013-06-07 08:12:16'
-  FlightInformationField_28:
-    RiskBuilder: RiskBuilder_7
+    created_at: '2013-06-10 03:22:08'
+    updated_at: '2013-06-10 03:22:08'
+  FlightInformationField_32:
+    RiskBuilder: RiskBuilder_8
     information_name: 'Trip number'
     position: '8'
     hiddable: false
     is_hide: false
-    created_at: '2013-06-07 08:12:16'
-    updated_at: '2013-06-07 08:12:16'
+    created_at: '2013-06-10 03:22:08'
+    updated_at: '2013-06-10 03:22:08'
+  FlightInformationField_33:
+    RiskBuilder: RiskBuilder_9
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 05:16:40'
+    updated_at: '2013-06-10 05:16:40'
+  FlightInformationField_34:
+    RiskBuilder: RiskBuilder_9
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 05:16:40'
+    updated_at: '2013-06-10 05:16:40'
+  FlightInformationField_35:
+    RiskBuilder: RiskBuilder_9
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-10 05:16:40'
+    updated_at: '2013-06-10 05:16:40'
+  FlightInformationField_36:
+    RiskBuilder: RiskBuilder_9
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 05:16:40'
+    updated_at: '2013-06-10 05:16:40'
+  FlightInformationField_37:
+    RiskBuilder: RiskBuilder_10
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:29:00'
+    updated_at: '2013-06-10 07:29:00'
+  FlightInformationField_38:
+    RiskBuilder: RiskBuilder_10
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:29:00'
+    updated_at: '2013-06-10 07:29:00'
+  FlightInformationField_39:
+    RiskBuilder: RiskBuilder_10
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-10 07:29:00'
+    updated_at: '2013-06-10 07:29:00'
+  FlightInformationField_40:
+    RiskBuilder: RiskBuilder_10
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:29:00'
+    updated_at: '2013-06-10 07:29:00'
+  FlightInformationField_41:
+    RiskBuilder: RiskBuilder_11
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:31:20'
+    updated_at: '2013-06-10 07:31:20'
+  FlightInformationField_42:
+    RiskBuilder: RiskBuilder_11
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:31:20'
+    updated_at: '2013-06-10 07:31:20'
+  FlightInformationField_43:
+    RiskBuilder: RiskBuilder_11
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-10 07:31:20'
+    updated_at: '2013-06-10 07:31:20'
+  FlightInformationField_44:
+    RiskBuilder: RiskBuilder_11
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:31:20'
+    updated_at: '2013-06-10 07:31:20'
+  FlightInformationField_45:
+    RiskBuilder: RiskBuilder_12
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:48:24'
+    updated_at: '2013-06-10 07:48:24'
+  FlightInformationField_46:
+    RiskBuilder: RiskBuilder_12
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:48:24'
+    updated_at: '2013-06-10 07:48:24'
+  FlightInformationField_47:
+    RiskBuilder: RiskBuilder_12
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-10 07:48:24'
+    updated_at: '2013-06-10 07:48:24'
+  FlightInformationField_48:
+    RiskBuilder: RiskBuilder_12
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:48:24'
+    updated_at: '2013-06-10 07:48:24'
+  FlightInformationField_49:
+    RiskBuilder: RiskBuilder_13
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:52:41'
+    updated_at: '2013-06-10 07:52:41'
+  FlightInformationField_50:
+    RiskBuilder: RiskBuilder_13
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:52:41'
+    updated_at: '2013-06-10 07:52:41'
+  FlightInformationField_51:
+    RiskBuilder: RiskBuilder_13
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-10 07:52:41'
+    updated_at: '2013-06-10 07:52:41'
+  FlightInformationField_52:
+    RiskBuilder: RiskBuilder_13
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 07:52:41'
+    updated_at: '2013-06-10 07:52:41'
+  FlightInformationField_53:
+    RiskBuilder: RiskBuilder_14
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 08:29:56'
+    updated_at: '2013-06-10 08:29:56'
+  FlightInformationField_54:
+    RiskBuilder: RiskBuilder_14
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 08:29:56'
+    updated_at: '2013-06-10 08:29:56'
+  FlightInformationField_55:
+    RiskBuilder: RiskBuilder_14
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-10 08:29:56'
+    updated_at: '2013-06-10 08:29:56'
+  FlightInformationField_56:
+    RiskBuilder: RiskBuilder_14
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 08:29:56'
+    updated_at: '2013-06-10 08:29:56'
+  FlightInformationField_57:
+    RiskBuilder: RiskBuilder_15
+    information_name: 'Plane(tail number):'
+    position: '1'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 08:34:08'
+    updated_at: '2013-06-10 08:34:08'
+  FlightInformationField_58:
+    RiskBuilder: RiskBuilder_15
+    information_name: 'Pilot in command (PIC):'
+    position: '2'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 08:34:08'
+    updated_at: '2013-06-10 08:34:08'
+  FlightInformationField_59:
+    RiskBuilder: RiskBuilder_15
+    information_name: 'Second in command (SIC):'
+    position: '3'
+    hiddable: true
+    is_hide: false
+    created_at: '2013-06-10 08:34:08'
+    updated_at: '2013-06-10 08:34:08'
+  FlightInformationField_60:
+    RiskBuilder: RiskBuilder_15
+    information_name: 'Trip number'
+    position: '8'
+    hiddable: false
+    is_hide: false
+    created_at: '2013-06-10 08:34:08'
+    updated_at: '2013-06-10 08:34:08'
+sfGuardUser:
+  sfGuardUser_1:
+    first_name: Katrin
+    last_name: null
+    name: Katrin
+    username: sokolkatrin@gmail.com
+    algorithm: sha1
+    salt: 66abc227b68c3a829776887800d7a8a9
+    email_address: null
+    password: 6828f216b6a625dac44865bfe246b48a35c1ee3d
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-05-27 16:27:46'
+    photo: null
+    created_at: '2013-05-27 16:27:46'
+    updated_at: '2013-05-27 16:27:46'
+  sfGuardUser_2:
+    first_name: Nick
+    last_name: null
+    name: Nick
+    username: zenkovnick@gmail.com
+    algorithm: sha1
+    salt: d2d1e0ddf514a7a33aef0bc5fc6c1e4a
+    email_address: null
+    password: c2d4d2d76dcf70c2c4da300100991c99ff336eed
+    is_active: true
+    is_super_admin: true
+    last_login: '2013-06-07 09:55:58'
+    photo: null
+    created_at: '2013-05-24 14:22:26'
+    updated_at: '2013-06-07 09:55:58'
+  sfGuardUser_3:
+    first_name: Nick
+    last_name: null
+    name: Nick
+    username: zennick@mail.ru
+    algorithm: sha1
+    salt: 2cf9504483d29ded71b2636250231192
+    email_address: null
+    password: 1a5f4389a9f58bc88d428dbcac5b55407fd567e5
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-05-28 16:46:54'
+    photo: dd0e899a189d38a0b8917925ab12cac8.png
+    created_at: '2013-05-28 16:46:54'
+    updated_at: '2013-06-06 11:01:29'
+  sfGuardUser_4:
+    first_name: 'Nata Test'
+    last_name: null
+    name: 'Nata Test'
+    username: nata@asdasd.ru
+    algorithm: sha1
+    salt: b7dc995a0be282ed1eb6b503a9c1f693
+    email_address: null
+    password: 6eedbbdbd062efde5d8c0fc5299e488a5b35feea
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-06-10 08:30:30'
+    photo: 5d67315e9215e219ed67b666466b8983.jpg
+    created_at: '2013-06-07 03:13:10'
+    updated_at: '2013-06-10 08:30:30'
+  sfGuardUser_5:
+    first_name: 'Nata Test 3'
+    last_name: null
+    name: 'Nata Test 3'
+    username: nata3@asdasd.ru
+    algorithm: sha1
+    salt: 83af47d594586766e29a67fbe277f4b5
+    email_address: null
+    password: 62bdeb74d3229f0822e405d939ce8f38c91c337f
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-06-10 05:15:05'
+    photo: 024a930f930f3753d6133977d66b478f.png
+    created_at: '2013-06-07 03:54:44'
+    updated_at: '2013-06-10 05:15:05'
+  sfGuardUser_6:
+    first_name: 'Nata Test 2'
+    last_name: null
+    name: 'Nata Test 2'
+    username: nata2@asdasd.ru
+    algorithm: sha1
+    salt: 5bd8916c47713f638371792a44dda415
+    email_address: null
+    password: 78f2a3db89813f12b91ec926cc219a97dcedde57
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-06-10 04:09:34'
+    photo: null
+    created_at: '2013-06-07 03:50:23'
+    updated_at: '2013-06-10 04:09:34'
+  sfGuardUser_7:
+    first_name: Dima
+    last_name: null
+    name: Dima
+    username: info@dimiloxa.com
+    algorithm: sha1
+    salt: null
+    email_address: null
+    password: null
+    is_active: true
+    is_super_admin: false
+    last_login: null
+    photo: null
+    created_at: '2013-06-07 09:56:15'
+    updated_at: '2013-06-07 09:56:15'
+  sfGuardUser_8:
+    first_name: 'Nata Test 4'
+    last_name: null
+    name: 'Nata Test 4'
+    username: nata4@asdasd.ru
+    algorithm: sha1
+    salt: b4f7199484097af58cc97bc506bc6959
+    email_address: null
+    password: 2603b0666a6d03f4d4f7ca5984477ea91589d1b6
+    is_active: true
+    is_super_admin: false
+    last_login: '2013-06-10 03:44:45'
+    photo: ''
+    created_at: '2013-06-10 03:42:52'
+    updated_at: '2013-06-10 04:37:22'
+Plane:
+  Plane_1:
+    tail_number: '677'
+    created_at: '2013-06-03 15:38:23'
+    updated_at: '2013-06-03 15:38:23'
+  Plane_2:
+    tail_number: '1'
+    created_at: '2013-06-07 04:55:54'
+    updated_at: '2013-06-07 04:55:54'
+  Plane_3:
+    tail_number: '2'
+    created_at: '2013-06-07 04:56:33'
+    updated_at: '2013-06-07 04:56:33'
+  Plane_4:
+    tail_number: '98'
+    created_at: '2013-06-07 05:53:00'
+    updated_at: '2013-06-07 05:53:00'
+  Plane_5:
+    tail_number: '747'
+    created_at: '2013-06-10 03:26:40'
+    updated_at: '2013-06-10 03:26:40'
 ResponseOptionField:
   ResponseOptionField_1:
     RiskFactorField: RiskFactorField_1
@@ -952,97 +2150,20 @@ ResponseOptionField:
     note: ''
     created_at: '2013-06-07 07:48:01'
     updated_at: '2013-06-07 07:48:01'
-sfGuardUser:
-  sfGuardUser_1:
-    first_name: Katrin
-    last_name: null
-    name: Katrin
-    username: sokolkatrin@gmail.com
-    algorithm: sha1
-    salt: 66abc227b68c3a829776887800d7a8a9
-    email_address: null
-    password: 6828f216b6a625dac44865bfe246b48a35c1ee3d
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-05-27 16:27:46'
-    photo: null
-    created_at: '2013-05-27 16:27:46'
-    updated_at: '2013-05-27 16:27:46'
-  sfGuardUser_2:
-    first_name: Nick
-    last_name: null
-    name: Nick
-    username: zenkovnick@gmail.com
-    algorithm: sha1
-    salt: d2d1e0ddf514a7a33aef0bc5fc6c1e4a
-    email_address: null
-    password: c2d4d2d76dcf70c2c4da300100991c99ff336eed
-    is_active: true
-    is_super_admin: true
-    last_login: '2013-06-07 08:23:14'
-    photo: null
-    created_at: '2013-05-24 14:22:26'
-    updated_at: '2013-06-07 08:23:14'
-  sfGuardUser_3:
-    first_name: Nick
-    last_name: null
-    name: Nick
-    username: zennick@mail.ru
-    algorithm: sha1
-    salt: 2cf9504483d29ded71b2636250231192
-    email_address: null
-    password: 1a5f4389a9f58bc88d428dbcac5b55407fd567e5
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-05-28 16:46:54'
-    photo: dd0e899a189d38a0b8917925ab12cac8.png
-    created_at: '2013-05-28 16:46:54'
-    updated_at: '2013-06-06 11:01:29'
-  sfGuardUser_4:
-    first_name: 'Nata Test'
-    last_name: null
-    name: 'Nata Test'
-    username: nata@asdasd.ru
-    algorithm: sha1
-    salt: b7dc995a0be282ed1eb6b503a9c1f693
-    email_address: null
-    password: 6eedbbdbd062efde5d8c0fc5299e488a5b35feea
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-06-07 07:52:30'
-    photo: 5d67315e9215e219ed67b666466b8983.jpg
-    created_at: '2013-06-07 03:13:10'
-    updated_at: '2013-06-07 07:52:30'
-  sfGuardUser_5:
-    first_name: 'Nata Test 3'
-    last_name: null
-    name: 'Nata Test 3'
-    username: nata3@asdasd.ru
-    algorithm: sha1
-    salt: 83af47d594586766e29a67fbe277f4b5
-    email_address: null
-    password: 62bdeb74d3229f0822e405d939ce8f38c91c337f
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-06-07 08:22:32'
-    photo: 024a930f930f3753d6133977d66b478f.png
-    created_at: '2013-06-07 03:54:44'
-    updated_at: '2013-06-07 08:22:32'
-  sfGuardUser_6:
-    first_name: 'Nata Test 2'
-    last_name: null
-    name: 'Nata Test 2'
-    username: nata2@asdasd.ru
-    algorithm: sha1
-    salt: 5bd8916c47713f638371792a44dda415
-    email_address: null
-    password: 78f2a3db89813f12b91ec926cc219a97dcedde57
-    is_active: true
-    is_super_admin: false
-    last_login: '2013-06-07 07:51:41'
-    photo: null
-    created_at: '2013-06-07 03:50:23'
-    updated_at: '2013-06-07 07:51:41'
+  ResponseOptionField_105:
+    RiskFactorField: RiskFactorField_51
+    response_text: No
+    response_value: '0'
+    note: ''
+    created_at: '2013-06-10 03:48:13'
+    updated_at: '2013-06-10 03:48:13'
+  ResponseOptionField_106:
+    RiskFactorField: RiskFactorField_51
+    response_text: Yes
+    response_value: '3'
+    note: ''
+    created_at: '2013-06-10 03:48:13'
+    updated_at: '2013-06-10 03:48:13'
 RiskBuilder:
   RiskBuilder_1:
     Account: Account_1
@@ -1051,45 +2172,22 @@ RiskBuilder:
     mitigation_low_message: 'Ready to fly!'
     mitigation_low_instructions: ''
     mitigation_low_min: '0'
-    mitigation_low_max: '6'
+    mitigation_low_max: '15'
     mitigation_low_notify: true
     mitigation_medium_message: 'Looks a bit risky'
     mitigation_medium_instructions: ''
-    mitigation_medium_min: '7'
-    mitigation_medium_max: '10'
+    mitigation_medium_min: '16'
+    mitigation_medium_max: '30'
     mitigation_medium_notify: true
     mitigation_medium_require_details: true
     mitigation_high_message: Danger
     mitigation_high_instructions: ''
-    mitigation_high_min: '11'
+    mitigation_high_min: '31'
     mitigation_high_max: '50'
     mitigation_high_notify: true
     mitigation_high_prevent_flight: true
     created_at: '2013-05-24 14:19:52'
-    updated_at: '2013-06-10 11:44:17'
-  RiskBuilder_2:
-    Account: Account_4
-    form_name: 'Default Form Name'
-    form_instructions: 'Default Form Instruction'
-    mitigation_low_message: 'Ready to fly!'
-    mitigation_low_instructions: ''
-    mitigation_low_min: '0'
-    mitigation_low_max: '14'
-    mitigation_low_notify: true
-    mitigation_medium_message: 'Looks a bit risky'
-    mitigation_medium_instructions: ''
-    mitigation_medium_min: '15'
-    mitigation_medium_max: '29'
-    mitigation_medium_notify: true
-    mitigation_medium_require_details: true
-    mitigation_high_message: Danger
-    mitigation_high_instructions: ''
-    mitigation_high_min: '30'
-    mitigation_high_max: '50'
-    mitigation_high_notify: true
-    mitigation_high_prevent_flight: true
-    created_at: '2013-06-07 03:18:17'
-    updated_at: '2013-06-07 03:18:17'
+    updated_at: '2013-05-28 17:39:33'
   RiskBuilder_3:
     Account: Account_5
     form_name: 'Default Form Name'
@@ -1205,758 +2303,187 @@ RiskBuilder:
     mitigation_high_prevent_flight: true
     created_at: '2013-06-07 08:12:16'
     updated_at: '2013-06-07 08:12:16'
-AccountPlane:
-  AccountPlane_1_1:
-    Account: Account_1
-    Plane: Plane_1
-    position: '1'
-  AccountPlane_1_5:
-    Account: Account_1
-    Plane: Plane_5
-    position: '2'
-  AccountPlane_1_6:
-    Account: Account_1
-    Plane: Plane_6
-    position: '3'
-  AccountPlane_4_2:
-    Account: Account_4
-    Plane: Plane_2
-    position: '1'
-  AccountPlane_5_2:
-    Account: Account_5
-    Plane: Plane_2
-    position: '1'
-  AccountPlane_5_3:
-    Account: Account_5
-    Plane: Plane_3
-    position: '2'
-  AccountPlane_6_4:
-    Account: Account_6
-    Plane: Plane_4
-    position: '1'
-Flight:
-  Flight_1:
-    Account: Account_5
-    Plane: Plane_1
-    trip_number: 'number 1'
-    airport_from: from
-    airport_to: to
-    departure_date: '2013-06-07 04:58:00'
-    risk_factor_sum: '9'
-    risk_factor_type: null
-    mitigation_sum: '0'
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"04:58","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":0,"selected_response":"98","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":0,"selected_response":"96","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":0,"selected_response":"94","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: assess
-  Flight_2:
-    Account: Account_5
-    Plane: Plane_1
-    trip_number: ''
-    airport_from: ''
-    airport_to: ''
-    departure_date: '2013-06-07 05:03:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:03","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"97","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"95","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: new
-  Flight_3:
-    Account: Account_5
-    Plane: Plane_1
-    trip_number: '33333'
-    airport_from: cvz
-    airport_to: vzcvzbc
-    departure_date: '2013-06-07 05:04:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:04","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"97","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"95","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: new
-  Flight_4:
-    Account: Account_5
-    Plane: Plane_1
-    trip_number: '4444'
-    airport_from: vdsg
-    airport_to: fhsfdft
-    departure_date: '2013-06-07 05:05:00'
-    risk_factor_sum: '6'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:05","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"98","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"96","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: false
-    status: complete
-  Flight_5:
-    Account: Account_4
-    Plane: Plane_2
-    trip_number: '11'
-    airport_from: ghfh
-    airport_to: fgjj
-    departure_date: '2013-06-07 05:18:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:18","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number","value":null}],"risk_analysis":[]}'
-    drafted: true
-    status: new
-  Flight_6:
-    Account: Account_4
-    Plane: Plane_2
-    trip_number: ''
-    airport_from: ''
-    airport_to: ''
-    departure_date: '2013-06-07 05:28:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:28","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number","value":null}],"risk_analysis":[]}'
-    drafted: true
-    status: new
-  Flight_7:
-    Account: Account_4
-    Plane: Plane_2
-    trip_number: ''
-    airport_from: tre
-    airport_to: tueru
-    departure_date: '2013-06-07 05:34:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:34","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number","value":null}],"risk_analysis":[]}'
-    drafted: true
-    status: new
-  Flight_8:
-    Account: Account_4
-    Plane: Plane_2
-    trip_number: eeeeeee
-    airport_from: eee
-    airport_to: e
-    departure_date: '2013-06-07 05:43:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:43","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number","value":null}],"risk_analysis":[]}'
-    drafted: false
-    status: complete
-  Flight_9:
-    Account: Account_6
-    trip_number: ''
-    airport_from: ''
-    airport_to: ''
-    departure_date: '2013-06-07 05:52:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:52","flight_information":[{"name":"Plane(tail number):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null}],"risk_analysis":[]}'
-    drafted: true
-    status: new
-  Flight_10:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '111115'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 11:43:00'
-    risk_factor_sum: '8'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"11:43","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"7","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-  Flight_11:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '111115'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 11:44:00'
-    risk_factor_sum: '8'
-    risk_factor_type: medium
-    mitigation_sum: '0'
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"6","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"7","mitigation_medium_max":"10","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"11","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"11:44","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":0,"selected_response":"7","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":0,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":0,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-  Flight_12:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '11111'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 11:47:00'
-    risk_factor_sum: '8'
-    risk_factor_type: medium
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"6","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"7","mitigation_medium_max":"10","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"11","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"11:47","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"7","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-  Flight_13:
-    Account: Account_1
-    Plane: Plane_6
-    PIC: sfGuardUser_1
-    trip_number: '1111166'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 11:47:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"6","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"7","mitigation_medium_max":"10","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"11","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"11:47","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-Account:
-  Account_1:
-    title: Company
-    photo: ada668dbf57f4cc7204aa943473cb580.png
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
-    Manager: sfGuardUser_1
-    has_modified_form: true
-    has_plane: true
-    has_pilot: true
-    has_skipped_pilot: false
-    has_flight: true
-    created_at: '2013-05-27 16:27:37'
-    updated_at: '2013-06-03 15:38:29'
-  Account_2:
-    title: 'Company 2'
-    photo: 2042036d41523e2c17bfbccda75d4258.jpg
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
-    Manager: sfGuardUser_2
-    has_modified_form: false
-    has_plane: false
-    has_pilot: false
-    has_skipped_pilot: false
-    has_flight: false
-    created_at: '2013-05-27 16:27:53'
-    updated_at: '2013-05-27 16:27:53'
-  Account_3:
-    title: 'Company 4 '
-    photo: 849f9f65ab8d6b2daac4bd8bac06b93e.jpg
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
-    Manager: sfGuardUser_3
-    has_modified_form: false
-    has_plane: false
-    has_pilot: false
-    has_skipped_pilot: false
-    has_flight: false
-    created_at: '2013-05-28 16:47:29'
-    updated_at: '2013-05-28 16:47:29'
-  Account_4:
-    title: 'My company'
-    photo: 504ce33e514f53d472326e024b6a4f99.jpg
-    chief_pilot_email: null
-    chief_pilot_name: ''
-    Manager: sfGuardUser_4
-    has_modified_form: true
-    has_plane: true
-    has_pilot: false
-    has_skipped_pilot: true
-    has_flight: true
-    created_at: '2013-06-07 03:18:17'
-    updated_at: '2013-06-07 05:34:35'
-  Account_5:
-    title: 'Super company :)'
-    photo: 145f469f12683f5c1e2a680e88c1b041.png
-    chief_pilot_email: null
-    chief_pilot_name: ''
-    Manager: sfGuardUser_4
-    has_modified_form: true
-    has_plane: true
-    has_pilot: true
-    has_skipped_pilot: false
-    has_flight: true
-    created_at: '2013-06-07 03:42:41'
-    updated_at: '2013-06-07 08:02:15'
-  Account_6:
-    title: 'Test 3'
-    photo: a3a2e61b298f697dcc2df9e9dd4d7272.JPG
-    chief_pilot_email: null
-    chief_pilot_name: ''
-    Manager: sfGuardUser_5
-    has_modified_form: true
-    has_plane: true
-    has_pilot: false
-    has_skipped_pilot: true
-    has_flight: true
-    created_at: '2013-06-07 03:55:09'
-    updated_at: '2013-06-07 05:53:05'
-  Account_7:
-    title: Tango
-    photo: 052b34b4bd10d9c0624082c036289aee.jpg
-    chief_pilot_email: null
-    chief_pilot_name: ''
-    Manager: sfGuardUser_5
-    has_modified_form: false
-    has_plane: false
-    has_pilot: false
-    has_skipped_pilot: false
-    has_flight: false
-    created_at: '2013-06-07 05:39:18'
-    updated_at: '2013-06-07 05:42:08'
-  Account_8:
-    title: '07 06 2013'
-    photo: null
-    chief_pilot_email: nata3@asdasd.ru
-    chief_pilot_name: null
-    Manager: sfGuardUser_4
-    has_modified_form: false
-    has_plane: false
-    has_pilot: false
-    has_skipped_pilot: false
-    has_flight: false
-    created_at: '2013-06-07 08:08:36'
-    updated_at: '2013-06-07 08:08:36'
-  Account_9:
-    title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    photo: null
-    chief_pilot_email: null
-    chief_pilot_name: ''
-    Manager: sfGuardUser_4
-    has_modified_form: false
-    has_plane: false
-    has_pilot: false
-    has_skipped_pilot: false
-    has_flight: false
-    created_at: '2013-06-07 08:12:16'
-    updated_at: '2013-06-07 08:15:23'
-Plane:
-  Plane_1:
-    tail_number: '677'
-    created_at: '2013-06-03 15:38:23'
-    updated_at: '2013-06-03 15:38:23'
-  Plane_2:
-    tail_number: '1'
-    created_at: '2013-06-07 04:55:54'
-    updated_at: '2013-06-07 04:55:54'
-  Plane_3:
-    tail_number: '2'
-    created_at: '2013-06-07 04:56:33'
-    updated_at: '2013-06-07 04:56:33'
-  Plane_4:
-    tail_number: '98'
-    created_at: '2013-06-07 05:53:00'
-    updated_at: '2013-06-07 05:53:00'
-  Plane_5:
-    tail_number: '899'
-    created_at: '2013-06-10 11:43:00'
-    updated_at: '2013-06-10 11:43:00'
-  Plane_6:
-    tail_number: '7766'
-    created_at: '2013-06-10 11:43:04'
-    updated_at: '2013-06-10 11:43:04'
-UserAccount:
-  UserAccount_1_1:
-    Account: Account_1
-    User: sfGuardUser_1
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-05-27 17:00:00'
-    updated_at: '2013-05-27 17:00:00'
-  UserAccount_1_2:
-    Account: Account_1
-    User: sfGuardUser_2
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-05-27 16:27:37'
-    updated_at: '2013-05-27 16:27:37'
-  UserAccount_2_1:
-    Account: Account_2
-    User: sfGuardUser_1
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-05-27 16:27:53'
-    updated_at: '2013-05-27 16:27:53'
-  UserAccount_3_3:
-    Account: Account_3
-    User: sfGuardUser_3
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-05-28 16:47:29'
-    updated_at: '2013-05-28 16:47:29'
-  UserAccount_4_4:
-    Account: Account_4
-    User: sfGuardUser_4
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-06-07 03:18:17'
-    updated_at: '2013-06-07 03:18:17'
-  UserAccount_5_4:
-    Account: Account_5
-    User: sfGuardUser_4
-    is_manager: true
-    position: '1'
-    invite_token: null
-    is_active: true
-    created_at: '2013-06-07 03:42:41'
-    updated_at: '2013-06-07 04:05:09'
-  UserAccount_5_6:
-    Account: Account_5
-    User: sfGuardUser_6
-    is_manager: true
-    position: '2'
-    invite_token: null
-    is_active: true
-    created_at: '2013-06-07 03:50:23'
-    updated_at: '2013-06-07 04:05:09'
-  UserAccount_6_5:
-    Account: Account_6
-    User: sfGuardUser_5
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-06-07 03:55:09'
-    updated_at: '2013-06-07 03:55:09'
-  UserAccount_7_5:
-    Account: Account_7
-    User: sfGuardUser_5
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-06-07 05:39:18'
-    updated_at: '2013-06-07 05:39:18'
-  UserAccount_8_4:
-    Account: Account_8
-    User: sfGuardUser_4
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-06-07 08:08:36'
-    updated_at: '2013-06-07 08:08:36'
-  UserAccount_9_4:
-    Account: Account_9
-    User: sfGuardUser_4
-    is_manager: true
-    position: null
-    invite_token: null
-    is_active: true
-    created_at: '2013-06-07 08:12:16'
-    updated_at: '2013-06-07 08:12:16'
-RiskFactorField:
-  RiskFactorField_1:
-    RiskBuilder: RiskBuilder_1
-    question: 'Second Question'
-    help_message: ''
-    position: '2'
-    created_at: '2013-05-28 12:04:26'
-    updated_at: '2013-06-05 06:34:09'
-  RiskFactorField_2:
-    RiskBuilder: RiskBuilder_1
-    question: 'How much did You sleep tonight?'
-    help_message: ''
-    position: '3'
-    created_at: '2013-05-28 12:05:24'
-    updated_at: '2013-06-05 06:36:01'
-  RiskFactorField_3:
-    RiskBuilder: RiskBuilder_1
-    question: 'First Question'
-    help_message: 'First Question Help'
-    position: '1'
-    created_at: '2013-05-29 09:46:14'
-    updated_at: '2013-06-05 09:42:19'
-  RiskFactorField_4:
-    question: Cat
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:06:49'
-    updated_at: '2013-06-07 04:06:49'
-  RiskFactorField_5:
-    question: Cat
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:06:56'
-    updated_at: '2013-06-07 04:06:56'
-  RiskFactorField_6:
-    question: Cat
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:06:57'
-    updated_at: '2013-06-07 04:06:57'
-  RiskFactorField_7:
-    question: Cat
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:06:57'
-    updated_at: '2013-06-07 04:06:57'
-  RiskFactorField_8:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:07:18'
-    updated_at: '2013-06-07 04:07:18'
-  RiskFactorField_9:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:07:20'
-    updated_at: '2013-06-07 04:07:20'
-  RiskFactorField_10:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:07:21'
-    updated_at: '2013-06-07 04:07:21'
-  RiskFactorField_11:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:07:22'
-    updated_at: '2013-06-07 04:07:22'
-  RiskFactorField_12:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:07:23'
-    updated_at: '2013-06-07 04:07:23'
-  RiskFactorField_13:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:07:59'
-    updated_at: '2013-06-07 04:07:59'
-  RiskFactorField_14:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:08:00'
-    updated_at: '2013-06-07 04:08:00'
-  RiskFactorField_15:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:08:00'
-    updated_at: '2013-06-07 04:08:00'
-  RiskFactorField_16:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:08:03'
-    updated_at: '2013-06-07 04:08:03'
-  RiskFactorField_17:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:08:17'
-    updated_at: '2013-06-07 04:08:17'
-  RiskFactorField_18:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:08:17'
-    updated_at: '2013-06-07 04:08:17'
-  RiskFactorField_19:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:08:17'
-    updated_at: '2013-06-07 04:08:17'
-  RiskFactorField_20:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:09:54'
-    updated_at: '2013-06-07 04:09:54'
-  RiskFactorField_21:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:09:54'
-    updated_at: '2013-06-07 04:09:54'
-  RiskFactorField_22:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:09:55'
-    updated_at: '2013-06-07 04:09:55'
-  RiskFactorField_23:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:09:56'
-    updated_at: '2013-06-07 04:09:56'
-  RiskFactorField_24:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:09:56'
-    updated_at: '2013-06-07 04:09:56'
-  RiskFactorField_25:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:09:59'
-    updated_at: '2013-06-07 04:09:59'
-  RiskFactorField_26:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:10:17'
-    updated_at: '2013-06-07 04:10:17'
-  RiskFactorField_27:
-    question: Dog
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:10:17'
-    updated_at: '2013-06-07 04:10:17'
-  RiskFactorField_28:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:10:18'
-    updated_at: '2013-06-07 04:10:18'
-  RiskFactorField_29:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:10:47'
-    updated_at: '2013-06-07 04:10:47'
-  RiskFactorField_30:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:10:47'
-    updated_at: '2013-06-07 04:10:47'
-  RiskFactorField_31:
-    question: Cat
-    help_message: ':)'
-    position: null
-    created_at: '2013-06-07 04:10:49'
-    updated_at: '2013-06-07 04:10:49'
-  RiskFactorField_32:
-    question: asdgqegt
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:11'
-    updated_at: '2013-06-07 04:11:11'
-  RiskFactorField_33:
-    question: asdgqegt
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:12'
-    updated_at: '2013-06-07 04:11:12'
-  RiskFactorField_34:
-    question: asdgqegt
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:12'
-    updated_at: '2013-06-07 04:11:12'
-  RiskFactorField_35:
-    question: asdgqegt
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:13'
-    updated_at: '2013-06-07 04:11:13'
-  RiskFactorField_36:
-    question: asdgqegt
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:14'
-    updated_at: '2013-06-07 04:11:14'
-  RiskFactorField_37:
-    question: asdgqegt
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:14'
-    updated_at: '2013-06-07 04:11:14'
-  RiskFactorField_38:
-    question: asdgqegt
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:15'
-    updated_at: '2013-06-07 04:11:15'
-  RiskFactorField_39:
-    question: '111'
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:28'
-    updated_at: '2013-06-07 04:11:28'
-  RiskFactorField_40:
-    question: '111'
-    help_message: ''
-    position: null
-    created_at: '2013-06-07 04:11:28'
-    updated_at: '2013-06-07 04:11:28'
-  RiskFactorField_41:
-    question: '111'
-    help_message: '11'
-    position: null
-    created_at: '2013-06-07 04:11:31'
-    updated_at: '2013-06-07 04:11:31'
-  RiskFactorField_42:
-    question: '111'
-    help_message: '11'
-    position: null
-    created_at: '2013-06-07 04:11:31'
-    updated_at: '2013-06-07 04:11:31'
-  RiskFactorField_43:
-    question: '111'
-    help_message: '11'
-    position: null
-    created_at: '2013-06-07 04:11:31'
-    updated_at: '2013-06-07 04:11:31'
-  RiskFactorField_44:
-    question: '111'
-    help_message: '11'
-    position: null
-    created_at: '2013-06-07 04:11:31'
-    updated_at: '2013-06-07 04:11:31'
-  RiskFactorField_45:
-    RiskBuilder: RiskBuilder_3
-    question: Cat
-    help_message: ''
-    position: '3'
-    created_at: '2013-06-07 04:15:07'
-    updated_at: '2013-06-07 04:18:40'
-  RiskFactorField_46:
-    RiskBuilder: RiskBuilder_3
-    question: Dog
-    help_message: ''
-    position: '2'
-    created_at: '2013-06-07 04:15:17'
-    updated_at: '2013-06-07 04:18:40'
-  RiskFactorField_47:
-    RiskBuilder: RiskBuilder_3
-    question: Mouse
-    help_message: ''
-    position: '1'
-    created_at: '2013-06-07 04:16:53'
-    updated_at: '2013-06-07 04:18:40'
-  RiskFactorField_48:
-    RiskBuilder: RiskBuilder_4
-    question: Test3
-    help_message: ''
-    position: '4'
-    created_at: '2013-06-07 07:38:59'
-    updated_at: '2013-06-07 07:38:59'
-  RiskFactorField_49:
-    RiskBuilder: RiskBuilder_4
-    question: Test3
-    help_message: ''
-    position: '5'
-    created_at: '2013-06-07 07:44:28'
-    updated_at: '2013-06-07 07:44:28'
-  RiskFactorField_50:
-    RiskBuilder: RiskBuilder_4
-    question: Test3
-    help_message: ''
-    position: '6'
-    created_at: '2013-06-07 07:48:01'
-    updated_at: '2013-06-07 07:48:01'
+  RiskBuilder_8:
+    Account: Account_10
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 03:22:08'
+    updated_at: '2013-06-10 03:22:08'
+  RiskBuilder_9:
+    Account: Account_11
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 05:16:40'
+    updated_at: '2013-06-10 05:16:40'
+  RiskBuilder_10:
+    Account: Account_12
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 07:29:00'
+    updated_at: '2013-06-10 07:29:00'
+  RiskBuilder_11:
+    Account: Account_13
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 07:31:20'
+    updated_at: '2013-06-10 07:31:20'
+  RiskBuilder_12:
+    Account: Account_14
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 07:48:24'
+    updated_at: '2013-06-10 07:48:24'
+  RiskBuilder_13:
+    Account: Account_15
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 07:52:41'
+    updated_at: '2013-06-10 07:52:41'
+  RiskBuilder_14:
+    Account: Account_16
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 08:29:56'
+    updated_at: '2013-06-10 08:29:56'
+  RiskBuilder_15:
+    Account: Account_17
+    form_name: 'Default Form Name'
+    form_instructions: 'Default Form Instruction'
+    mitigation_low_message: 'Ready to fly!'
+    mitigation_low_instructions: ''
+    mitigation_low_min: '0'
+    mitigation_low_max: '14'
+    mitigation_low_notify: true
+    mitigation_medium_message: 'Looks a bit risky'
+    mitigation_medium_instructions: ''
+    mitigation_medium_min: '15'
+    mitigation_medium_max: '29'
+    mitigation_medium_notify: true
+    mitigation_medium_require_details: true
+    mitigation_high_message: Danger
+    mitigation_high_instructions: ''
+    mitigation_high_min: '30'
+    mitigation_high_max: '50'
+    mitigation_high_notify: true
+    mitigation_high_prevent_flight: true
+    created_at: '2013-06-10 08:34:08'
+    updated_at: '2013-06-10 08:34:08'
