@@ -37,7 +37,7 @@
                 </li>
             <?php endforeach; ?>
         </ul>
-
+        <span class="bottom-border"></span>
     </div>
     <div class="risk-factor-global-wrapper">
         <h2>Risk Analysis</h2>
