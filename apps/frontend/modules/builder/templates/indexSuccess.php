@@ -138,7 +138,7 @@
                     </div>
                 </li>
             </ul>
-            <button class="preview-mode-link" type="submit">Preview Form</button>
+            <button class="preview-mode-link btn btn-blue" type="submit">Preview Form</button>
             <button class="btn btn-green" type="submit">Save and Exit</button>
         </form>
     </div>

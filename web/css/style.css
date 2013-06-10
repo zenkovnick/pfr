@@ -414,6 +414,11 @@ h1 {
     float: right;
     margin-right: 20px;
 }
+.main-form > .btn.btn-blue {
+    margin-left: 20px;
+    padding: 9px 100px;
+
+}
 ul.scale {
     margin: 0 -22px 10px 54px;
     overflow: hidden;
@@ -545,12 +550,11 @@ ul.form-fields {
     top: 0;
     width: 18px;
 }
-.flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden {
+.flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden, .risk-factor-list > li.editing span.handler {
     background: none;
     border: 1px solid transparent;
     display: block !important;
 }
-
 
 
 /*.flight-information-list li.ui-sortable-helper span.handler {*/
@@ -573,6 +577,7 @@ ul.form-fields {
     padding: 11px 9px;
 }
 
+
 /*.risk-factor-list > li .entry-header span{*/
     /*width: 90%;*/
 /*}*/
@@ -580,9 +585,11 @@ ul.form-fields {
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
     border: 1px solid #CCC;
+    border-top: none;
     margin: 0 0 0 20px;
     overflow: hidden;
     padding: 9px;
+    position: relative;
     width: 440px;
 }
 .risk-factor-list > li .risk-factor-wrapper fieldset {
@@ -603,6 +610,10 @@ ul.form-fields {
 }
 .risk-factor-list > li .risk-factor-wrapper .btn-green {
     margin-top: 9px;
+}
+.risk-factor-list > li.new .risk-factor-wrapper {
+    border-top: 1px solid #CCC;
+    position: relative;
 }
 /*.risk-factor-list > li.editing, .risk-factor-list > li.new {*/
     /*height: auto;*/
@@ -703,9 +714,13 @@ a.cancel-risk-factor-add {
     top: 15px;
 }
 
+
 a.cancel-risk-factor-add:hover {
     text-decoration: underline;
-
+}
+.risk-factor-list > li.new a.cancel-risk-factor-add {
+    right: 40px;
+    z-index: 2;
 }
 a.add-note, a.remove-note {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
@@ -880,7 +895,9 @@ a.mitigation-edit, a.mitigation-cancel {
 a.mitigation-edit:hover, a.mitigation-cancel:hover {
     text-decoration: underline;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------> Preview Mode <---------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 
 
 
