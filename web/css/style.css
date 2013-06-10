@@ -408,14 +408,34 @@ h1 {
 }
 .form-builder-wrapper {
     margin-bottom: 150px;
-    padding-top: 175px;
+    /*padding-top: 175px;*/
+}
+span.bottom-border {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    clear: both;
+    display: block;
+    height: 2px;
+    margin: 20px 20px 30px;
+    width: 92%;
+
+}
+.form-builder-wrapper h1 {
+    margin-bottom: 190px !important;
 }
 .main-form > .btn.btn-green {
     float: right;
     margin-right: 20px;
 }
+.main-form > .btn.btn-blue {
+    margin-left: 20px;
+    padding: 9px 100px;
+
+}
 ul.scale {
-    margin: 0 -22px 10px 54px;
+    margin: 20px -22px 10px 54px;
     overflow: hidden;
 }
 ul.scale li {
@@ -468,20 +488,27 @@ ul.scale li#li-50 {
 .form-builder-wrapper h1, .form-builder-wrapper h2 {
     color: #000;
     font-size: 1.14em;
-    margin: 0 0 20px 20px;
+    margin: 0 0 00px 20px;
     text-transform: capitalize;
 }
 ul.form-fields {
-    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     left: 50%;
     margin-left: -250px;
     max-width: 500px;
     overflow: hidden;
-    padding: 0 0 20px;
+    padding: 0 20px 20px;
     position: absolute;
     top: 155px;
     width: 100%;
 }
+ul.form-fields li:nth-child(2) {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    padding-bottom: 20px;
+}
+
 .form-builder-wrapper input[type="text"] {
     background: #FFF;
     border: 1px solid #CCC;
@@ -495,20 +522,26 @@ ul.form-fields {
     padding: 10px;
     width: 92%;
 }
+ul.form-fields li input[type="text"] {
+    margin: 0 0 10px;
+    width: 100%;
+}
 .form-builder-wrapper input.form-title {
     font-size: 1.43em;
     font-weight: bold;
 }
-
+.flight-information-wrapper {
+    overflow: hidden;
+}
 .flight-information-list {
     overflow: hidden;
-    padding: 20px 0;
 }
 .flight-information-list li {
     margin: 9px 0;
     overflow: hidden;
     position: relative;
 }
+
 .flight-information-list li .element-wrapper {
     background: #F2F2F2;
     border: 1px solid #CCC;
@@ -545,12 +578,11 @@ ul.form-fields {
     top: 0;
     width: 18px;
 }
-.flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden {
+.flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden, .risk-factor-list > li.editing span.handler {
     background: none;
     border: 1px solid transparent;
     display: block !important;
 }
-
 
 
 /*.flight-information-list li.ui-sortable-helper span.handler {*/
@@ -573,6 +605,7 @@ ul.form-fields {
     padding: 11px 9px;
 }
 
+
 /*.risk-factor-list > li .entry-header span{*/
     /*width: 90%;*/
 /*}*/
@@ -580,9 +613,11 @@ ul.form-fields {
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
     border: 1px solid #CCC;
+    border-top: none;
     margin: 0 0 0 20px;
     overflow: hidden;
     padding: 9px;
+    position: relative;
     width: 440px;
 }
 .risk-factor-list > li .risk-factor-wrapper fieldset {
@@ -603,6 +638,18 @@ ul.form-fields {
 }
 .risk-factor-list > li .risk-factor-wrapper .btn-green {
     margin-top: 9px;
+}
+.risk-factor-list > li.new .risk-factor-wrapper {
+    border-top: 1px solid #CCC;
+    position: relative;
+}
+.risk-factor-list > li.new h2 {
+    background: #F2F2F2;
+    border-bottom: 1px solid #CCC;
+    font-size: 1em;
+    font-weight: normal;
+    margin: -9px -9px 9px;
+    padding: 11px 9px;
 }
 /*.risk-factor-list > li.editing, .risk-factor-list > li.new {*/
     /*height: auto;*/
@@ -651,7 +698,7 @@ a#add-risk-factor-link {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #1076CE;
     display: block;
-    margin: 0 0 0 20px;
+    margin: 0 20px;
     padding: 25px 10px;
     text-decoration: none;
 }
@@ -703,9 +750,14 @@ a.cancel-risk-factor-add {
     top: 15px;
 }
 
+
 a.cancel-risk-factor-add:hover {
     text-decoration: underline;
-
+}
+.risk-factor-list > li.new a.cancel-risk-factor-add {
+    right: 40px;
+    top: 12px;
+    z-index: 2;
 }
 a.add-note, a.remove-note {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
@@ -880,7 +932,9 @@ a.mitigation-edit, a.mitigation-cancel {
 a.mitigation-edit:hover, a.mitigation-cancel:hover {
     text-decoration: underline;
 }
-
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------> Preview Mode <---------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
 
 
 

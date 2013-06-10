@@ -37,7 +37,7 @@
                 </li>
             <?php endforeach; ?>
         </ul>
-
+        <span class="bottom-border"></span>
     </div>
     <div class="risk-factor-global-wrapper">
         <h2>Risk Analysis</h2>
@@ -138,7 +138,7 @@
                     </div>
                 </li>
             </ul>
-            <button class="preview-mode-link" type="submit">Preview Form</button>
+            <button class="preview-mode-link btn btn-blue" type="submit">Preview Form</button>
             <button class="btn btn-green" type="submit">Save and Exit</button>
         </form>
     </div>
