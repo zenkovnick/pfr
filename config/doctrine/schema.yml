@@ -182,6 +182,7 @@ Flight:
       airport_to:      {type: varchar(255)}
       departure_date:  {type: datetime}
       risk_factor_sum: {type: integer }
+      risk_factor_type: {type: enum(), values: ['low', 'medium', 'high']}
       mitigation_sum:  {type: integer }
       info:            {type: text }
       drafted:         {type: boolean, default: true}
@@ -191,3 +192,4 @@ Flight:
       Plane:   {class: Plane, local: plane_id, foreign: id, type: one, onDelete: CASCADE}
       PIC:     {class: sfGuardUser, local: pic_id, foreign: id, type: one, onDelete: CASCADE}
       SIC:     {class: sfGuardUser, local: sic_id, foreign: id, type: one, onDelete: CASCADE}
+    actAs: [Timestampable]

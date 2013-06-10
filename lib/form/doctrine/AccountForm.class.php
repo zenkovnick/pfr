@@ -25,6 +25,7 @@ class AccountForm extends BaseAccountForm
       $this->widgetSchema['uploaded_photo'] = new sfWidgetFormInputHidden();
       $this->validatorSchema['uploaded_photo'] = new sfValidatorPass();
 
+      $this->validatorSchema['title'] = new sfValidatorString(array('required' => true));
 
   }
 

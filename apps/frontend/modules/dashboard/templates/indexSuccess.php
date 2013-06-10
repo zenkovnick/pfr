@@ -5,21 +5,45 @@
 <h1>Dashboard</h1>
 
 <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>">New Flight</a>
-<ul>
-    <?php foreach($flights as $flight): ?>
-        <li>
-            <?php if($flight->getDrafted() && $flight->getStatus() == "new"): ?>
-                <span>Drafted</span>
-                <span><?php echo $flight->getId() ?></span>
-                <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
-            <?php elseif($flight->getDrafted() && $flight->getStatus() == "assess"): ?>
-                <span><?php echo $flight->getTripNumber() ?>(Drafted)</span>
-                <span><?php echo $flight->getRiskFactorSum() ?></span>
-                <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
-            <?php else: ?>
-                <span><?php echo $flight->getTripNumber() ?></span>
-                <span><?php echo $flight->getRiskFactorSum() ?></span>
-            <?php endif ?>
-        </li>
-    <?php endforeach ?>
-</ul>
+<div class="dashboard-filters">
+    <form id="flight_filter" action="<?php echo url_for("@flight_filter?account_id={$account->getId()}") ?>" method="post">
+        <ul class="flight-filter-links">
+            <li><?php echo $filter['plane']->render(array('class' => 'plane-filter')) ?></li>
+            <li><?php echo $filter['pilot']->render(array('class' => 'pilot-filter')) ?></li>
+            <li><?php echo $filter['date']->render(array('class' => 'date-filter')) ?></li>
+        </ul>
+    </form>
+</div>
+
+
+<div class="dashboard-content">
+    <?php include_partial('dashboard/dashboard_content', array('pager' => $pager)) ?>
+</div>
+
+<script type="text/javascript">
+
+    var filter_options = {
+        dataType:  'json',
+        clearForm: false,
+        success: filterSubmitted
+    };
+
+    function applyFilter(){
+        jQuery("#flight_filter").submit();
+    }
+
+    function submitFilter(event) {
+        event.preventDefault();
+        jQuery(this).ajaxSubmit(filter_options);
+    }
+
+    function filterSubmitted(data){
+        jQuery("div.dashboard-content").html(data.dashboard_data);
+    }
+
+    jQuery(document).ready(function(){
+        jQuery("#flight_filter").bind('submit', submitFilter);
+        jQuery(".plane-filter, .pilot-filter, .date-filter").bind('change', applyFilter);
+
+    });
+</script>
