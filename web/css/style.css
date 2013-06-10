@@ -327,16 +327,16 @@ ul.header-link-block li a {
 .sign-in-form input.placeholder, .sign-up input.placeholder, .create-account input.placeholder {
     color: #CCC;
 }
-.sign-in-form input::-webkit-input-placeholder, .sign-up input::-webkit-input-placeholder, .create-account input::-webkit-input-placeholder { /* WebKit browsers */
+.sign-in-form input::-webkit-input-placeholder, .sign-up input::-webkit-input-placeholder, .create-account input::-webkit-input-placeholder, .flight-field-list li.small-field input::-webkit-input-placeholder { /* WebKit browsers */
     color: #CCC !important;
 }
-.sign-in-form input:-moz-placeholder, .sign-up input:-moz-placeholder, .create-account input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+.sign-in-form input:-moz-placeholder, .sign-up input:-moz-placeholder, .create-account input:-moz-placeholder, .flight-field-list li.small-field input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #CCC !important;
 }
-.sign-in-form input::-moz-placeholder, .sign-up input::-moz-placeholder, .create-account input::-moz-placeholder { /* Mozilla Firefox 19+ */
+.sign-in-form input::-moz-placeholder, .sign-up input::-moz-placeholder, .create-account input::-moz-placeholder, .flight-field-list li.small-field input::-moz-placeholder { /* Mozilla Firefox 19+ */
     color: #CCC;
 }
-.sign-in-form input:-ms-input-placeholder, .sign-up input:-ms-input-placeholder, .create-account input:-ms-input-placeholder { /* Internet Explorer 10+ */
+.sign-in-form input:-ms-input-placeholder, .sign-up input:-ms-input-placeholder, .create-account input:-ms-input-placeholder, .flight-field-list li.small-field input:-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #CCC;
 }
 .sign-in .btn-grey, .sign-up .btn-grey, .create-account .btn-grey, .create-account .btn-blue {
@@ -485,7 +485,7 @@ ul.scale li#li-50 {
     width: 25px;
 }
 
-.form-builder-wrapper h1, .form-builder-wrapper h2 {
+.form-builder-wrapper h1, .form-builder-wrapper h2, .flight h2 {
     color: #000;
     font-size: 1.14em;
     margin: 0 0 00px 20px;
@@ -775,17 +775,6 @@ a.add-note:hover, a.remove-note:hover{
     text-decoration: underline;
 }
 
-/*.risk-factor-wrapper label {*/
-    /*display: none;*/
-/*}*/
-/*.risk-factor-global-wrapper {*/
-    /*margin: 0 20px 0 0;*/
-/*}*/
-/*.risk-factor-global-wrapper input[type="text"] {*/
-    /*margin: 0 0 9px;*/
-    /*width: 440px;*/
-/*}*/
-
 .risk-factor-global-wrapper input[type="text"].response-text {
     margin: 0;
     float: left;
@@ -935,11 +924,67 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Preview Mode <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
+.preview-header {
+    background: #FFFFCC;
+    border-bottom: 1px solid #FFCC00;
+    /*box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*-webkit-box-sizing: border-box;*/
+    height: 35px;
+    left: 0;
+    overflow: hidden;
+    padding: 12px 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.preview-header .btn-green {
+    float: right;
+}
+.preview-header h1 {
+    float: left;
+    font-size: 1em;
+    margin: 0 150px 0 0;
+}
+.preview-header a.back-to-form {
+    color: #0F76BB;
+    display: block;
+    font-size: 0.875em;
+    text-decoration: none;
+}
+.flight h2 {
+    margin: 0 0 30px;
+}
+.flight-field-list {
+    overflow: hidden;
+}
+.flight-field-list li.small-field {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+    padding: 0 4px 9px 0;
+    width: 50%;
+}
+.flight-field-list li.small-field.right {
+    float: right;
+    padding: 0 0 9px 4px;
+}
+.flight-field-list li.small-field input[type="text"] {
+    background: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+}
+.flight-field-list li.small-field input.date {
+    background: url(../images/date_icon.png) no-repeat right center #FFF;
+}
+.flight-field-list li.small-field input.time {
+    background: url(../images/time_icon.png) no-repeat right center #FFF;
+}

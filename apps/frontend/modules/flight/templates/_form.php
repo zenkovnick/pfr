@@ -6,10 +6,12 @@
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <script src="/js/jquery.ui.timepicker.js"></script>
 <ul class="flight-field-list">
-    <li><?php include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'label' => true)); ?></li>
-    <li><?php include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'label' => true)); ?></li>
-    <li><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'label' => true)); ?></li>
-    <li><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'label' => true)); ?></li>
+    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
+    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
+    <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
+    <li class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
+    <li><span class="bottom-border"></span></li>
+    <li><h2>Flight Information</h2></li>
     <?php foreach($data['flight_information'] as $fi): ?>
         <li>
             <?php $key = Flight::generateKeyByTitle($fi['name']); ?>

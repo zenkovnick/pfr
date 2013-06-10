@@ -12,11 +12,12 @@ if(isset($disabled) && $disabled){
 
 ?>
 
-
 <?php
     if(!($field->getWidget() instanceof sfWidgetFormInputHidden)){
         if(isset($label)){
-            echo $field->renderLabel();
+            if($label !== false) {
+                echo $field->renderLabel();
+            }
         }
         echo $field->render($options);
         echo $field->renderError() ;
