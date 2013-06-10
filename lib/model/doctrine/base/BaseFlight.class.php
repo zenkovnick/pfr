@@ -14,6 +14,7 @@
  * @property varchar $airport_to
  * @property datetime $departure_date
  * @property integer $risk_factor_sum
+ * @property enum $risk_factor_type
  * @property integer $mitigation_sum
  * @property text $info
  * @property boolean $drafted
@@ -23,40 +24,42 @@
  * @property sfGuardUser $PIC
  * @property sfGuardUser $SIC
  * 
- * @method integer     getAccountId()       Returns the current record's "account_id" value
- * @method integer     getPlaneId()         Returns the current record's "plane_id" value
- * @method integer     getPicId()           Returns the current record's "pic_id" value
- * @method integer     getSicId()           Returns the current record's "sic_id" value
- * @method varchar     getTripNumber()      Returns the current record's "trip_number" value
- * @method varchar     getAirportFrom()     Returns the current record's "airport_from" value
- * @method varchar     getAirportTo()       Returns the current record's "airport_to" value
- * @method datetime    getDepartureDate()   Returns the current record's "departure_date" value
- * @method integer     getRiskFactorSum()   Returns the current record's "risk_factor_sum" value
- * @method integer     getMitigationSum()   Returns the current record's "mitigation_sum" value
- * @method text        getInfo()            Returns the current record's "info" value
- * @method boolean     getDrafted()         Returns the current record's "drafted" value
- * @method enum        getStatus()          Returns the current record's "status" value
- * @method Account     getAccount()         Returns the current record's "Account" value
- * @method Plane       getPlane()           Returns the current record's "Plane" value
- * @method sfGuardUser getPIC()             Returns the current record's "PIC" value
- * @method sfGuardUser getSIC()             Returns the current record's "SIC" value
- * @method Flight      setAccountId()       Sets the current record's "account_id" value
- * @method Flight      setPlaneId()         Sets the current record's "plane_id" value
- * @method Flight      setPicId()           Sets the current record's "pic_id" value
- * @method Flight      setSicId()           Sets the current record's "sic_id" value
- * @method Flight      setTripNumber()      Sets the current record's "trip_number" value
- * @method Flight      setAirportFrom()     Sets the current record's "airport_from" value
- * @method Flight      setAirportTo()       Sets the current record's "airport_to" value
- * @method Flight      setDepartureDate()   Sets the current record's "departure_date" value
- * @method Flight      setRiskFactorSum()   Sets the current record's "risk_factor_sum" value
- * @method Flight      setMitigationSum()   Sets the current record's "mitigation_sum" value
- * @method Flight      setInfo()            Sets the current record's "info" value
- * @method Flight      setDrafted()         Sets the current record's "drafted" value
- * @method Flight      setStatus()          Sets the current record's "status" value
- * @method Flight      setAccount()         Sets the current record's "Account" value
- * @method Flight      setPlane()           Sets the current record's "Plane" value
- * @method Flight      setPIC()             Sets the current record's "PIC" value
- * @method Flight      setSIC()             Sets the current record's "SIC" value
+ * @method integer     getAccountId()        Returns the current record's "account_id" value
+ * @method integer     getPlaneId()          Returns the current record's "plane_id" value
+ * @method integer     getPicId()            Returns the current record's "pic_id" value
+ * @method integer     getSicId()            Returns the current record's "sic_id" value
+ * @method varchar     getTripNumber()       Returns the current record's "trip_number" value
+ * @method varchar     getAirportFrom()      Returns the current record's "airport_from" value
+ * @method varchar     getAirportTo()        Returns the current record's "airport_to" value
+ * @method datetime    getDepartureDate()    Returns the current record's "departure_date" value
+ * @method integer     getRiskFactorSum()    Returns the current record's "risk_factor_sum" value
+ * @method enum        getRiskFactorType()   Returns the current record's "risk_factor_type" value
+ * @method integer     getMitigationSum()    Returns the current record's "mitigation_sum" value
+ * @method text        getInfo()             Returns the current record's "info" value
+ * @method boolean     getDrafted()          Returns the current record's "drafted" value
+ * @method enum        getStatus()           Returns the current record's "status" value
+ * @method Account     getAccount()          Returns the current record's "Account" value
+ * @method Plane       getPlane()            Returns the current record's "Plane" value
+ * @method sfGuardUser getPIC()              Returns the current record's "PIC" value
+ * @method sfGuardUser getSIC()              Returns the current record's "SIC" value
+ * @method Flight      setAccountId()        Sets the current record's "account_id" value
+ * @method Flight      setPlaneId()          Sets the current record's "plane_id" value
+ * @method Flight      setPicId()            Sets the current record's "pic_id" value
+ * @method Flight      setSicId()            Sets the current record's "sic_id" value
+ * @method Flight      setTripNumber()       Sets the current record's "trip_number" value
+ * @method Flight      setAirportFrom()      Sets the current record's "airport_from" value
+ * @method Flight      setAirportTo()        Sets the current record's "airport_to" value
+ * @method Flight      setDepartureDate()    Sets the current record's "departure_date" value
+ * @method Flight      setRiskFactorSum()    Sets the current record's "risk_factor_sum" value
+ * @method Flight      setRiskFactorType()   Sets the current record's "risk_factor_type" value
+ * @method Flight      setMitigationSum()    Sets the current record's "mitigation_sum" value
+ * @method Flight      setInfo()             Sets the current record's "info" value
+ * @method Flight      setDrafted()          Sets the current record's "drafted" value
+ * @method Flight      setStatus()           Sets the current record's "status" value
+ * @method Flight      setAccount()          Sets the current record's "Account" value
+ * @method Flight      setPlane()            Sets the current record's "Plane" value
+ * @method Flight      setPIC()              Sets the current record's "PIC" value
+ * @method Flight      setSIC()              Sets the current record's "SIC" value
  * 
  * @package    blueprint
  * @subpackage model
@@ -97,6 +100,16 @@ abstract class BaseFlight extends sfDoctrineRecord
              ));
         $this->hasColumn('risk_factor_sum', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('risk_factor_type', 'enum', null, array(
+             'type' => 'enum',
+             'values' => 
+             array(
+              0 => 'low',
+              1 => 'medium',
+              2 => 'high',
+             ),
+             'length' => '',
              ));
         $this->hasColumn('mitigation_sum', 'integer', null, array(
              'type' => 'integer',
@@ -143,5 +156,9 @@ abstract class BaseFlight extends sfDoctrineRecord
              'local' => 'sic_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
+        $this->actAs($timestampable0);
     }
 }

@@ -31,11 +31,30 @@
 
 
     <ul>
-        <li class="input-block"><?php include_partial('registration/field', array('field' => $form['title'], 'placeholder' => 'Company, Organization or Name', 'label' => false)) ?></li>
-        <li class="input-block"><?php include_partial('registration/field', array('field' => $form['chief_pilot_email'], 'placeholder' => 'Chief Pilot\'s Email (if any)', 'label' => false)) ?></li>
+        <li class="input-block"><?php include_partial('registration/field', array('field' => $form['title'], 'class' => 'company-title', 'placeholder' => 'Company, Organization or Name', 'label' => false)) ?></li>
+        <li class="input-block"><?php include_partial('registration/field', array('field' => $form['chief_pilot_email'], 'class' => 'chief-pilot-email', 'placeholder' => 'Chief Pilot\'s Email (if any)', 'label' => false)) ?></li>
         <li class="photo-block"><?php include_partial('registration/avatar_field', array('field' => $form['photo_widget'])) ?></li>
         <li><button class="btn btn-blue" type="submit">Create Account</button></li>
     </ul>
 
 </form>
+
+<script type="text/javascript">
+    function validateAndSubmitCreation(event){
+        var valid = true;
+        if(jQuery(".company-title").val() == ''){
+            valid = false;
+            jQuery(".company-title").addClass('invalid-field');
+        }
+        if(valid){
+            return true;
+        } else {
+            event.preventDefault();
+        }
+    }
+
+    jQuery(document).ready(function(){
+        jQuery("#create_account_form").bind('submit', validateAndSubmitCreation);
+    });
+</script>
 

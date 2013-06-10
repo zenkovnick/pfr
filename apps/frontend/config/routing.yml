@@ -49,6 +49,12 @@ skip_pilot_condition:
   requirements:
     account_id: \d+
 
+flight_filter:
+  url: /:account_id/dashboard/filter
+  param: { module: dashboard, action: setFilter }
+  requirements:
+    account_id: \d+
+
 dashboard:
   url: /:account_id/dashboard
   param: { module: dashboard, action: index }
