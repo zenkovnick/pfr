@@ -48,6 +48,28 @@ class RiskBuilder extends BaseRiskBuilder
             $this->setMitigationHighNotify($data_array['mitigation_high_notify']);
             $this->setMitigationHighPreventFlight($data_array['mitigation_high_prevent_flight']);
             $this->setAccount($account);
+
+            $risk_factor_collection = new Doctrine_Collection('RiskFactorField');
+            foreach($data_array['risk_factors'] as $risk_factor_data){
+                $rf = new RiskFactorField();
+                $rf->setQuestion($risk_factor_data['question']);
+                $rf->setHelpMessage($risk_factor_data['instructions']);
+                $rf->setPosition($risk_factor_data['position']);
+                $response_option_collection = new Doctrine_Collection('ResponseOptionField');
+                foreach($risk_factor_data['response_options'] as $response_option_data){
+                    $ro = new ResponseOptionField();
+                    $ro->setResponseText($response_option_data["response_text"]);
+                    $ro->setResponseValue($response_option_data["response_value"]);
+                    $ro->setNote($response_option_data["note"]);
+                    $ro->setRiskFactorField($rf);
+                    $response_option_collection->add($ro);
+                }
+                $rf->setResponseOptions($response_option_collection);
+                $rf->setRiskBuilder($this);
+                $risk_factor_collection->add($rf);
+            }
+            $this->setRiskFactorFields($risk_factor_collection);
+
             $this->save();
 
         }
