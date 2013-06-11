@@ -1053,8 +1053,9 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     position: relative;
     width: 100%;
 }
-.risk-note-wrapper .note span {
+.risk-note-wrapper .note:before {
     background: url(../images/note_span.png) no-repeat left top;
+    content: '';
     display: block;
     height: 10px;
     position: absolute;
