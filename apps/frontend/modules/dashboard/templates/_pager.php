@@ -71,7 +71,7 @@
                 success: function(data) {
                     //alert(data.dashboard_data);
                     //alert("Success: "+page+" "+prev_page+" "+next_page);
-                    jQuery(".dashboard-content").html(data.dashboard_data);
+                    jQuery(".flight-list-wrapper").html(data.dashboard_data);
                 }
             });
         }

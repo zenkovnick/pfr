@@ -60,6 +60,14 @@ all:
 
   dashboard:
     limit: 5
+    chart:
+      risk:
+        metric: "Risk"
+        color:  "#00AEEF"
+      mitigation:
+        metric: "Mitigation"
+        color:  "#16CB3F"
+
 
   tiny_mce:
     my_settings_content:

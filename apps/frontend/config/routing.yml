@@ -49,6 +49,12 @@ skip_pilot_condition:
   requirements:
     account_id: \d+
 
+chart_init:
+  url: /:account_id/dashboard/chart-init
+  param: { module: dashboard, action: chartInit }
+  requirements:
+    account_id: \d+
+
 get_page_content:
   url: /:account_id/dashboard/get-page-content
   param: { module: dashboard, action: getPageContent }

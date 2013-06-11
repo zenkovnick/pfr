@@ -31,11 +31,15 @@ class dashboardActions extends sfActions {
         $top_controls['page'] = $old_filter['page'];
         $this->getUser()->setAttribute('flight_filter', $top_controls);
         $this->setFlightData($request, $this);
+        $chart = new FlightChart($this->flights_for_chart);
+        $this->chart_markup = $chart->getChartMarkup();
         echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array(
             'account' => $this->account,
             'pager' => $this->pager,
             'additional_info' => $this->additional_info
-        ))));
+        )),
+            'flight_chart' => $this->chart_markup
+        ));
         return sfView::NONE;
 
     }
@@ -46,10 +50,9 @@ class dashboardActions extends sfActions {
         $account_id = $request->getParameter('account_id');
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
         $this->setFlightData($request, $this);
-        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array(
+        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/flight_list', array(
             'account' => $this->account,
             'pager' => $this->pager,
-            'additional_info' => $this->additional_info
         ))));
         return sfView::NONE;
 
@@ -92,7 +95,18 @@ class dashboardActions extends sfActions {
         $additional_info['flights_count'] = $flights->count();
         $additional_info['average_risk'] = Flight::getAverageRisk($flights);
         $additional_info['average_mitigation'] = Flight::getAverageMitigation($flights);
+        $obj->flights_for_chart = FlightTable::getFlightsForChart($obj->filter->getQuery());
         $obj->additional_info = $additional_info;
+
+    }
+
+    public function executeChartInit(sfWebRequest $request){
+        $this->setLayout(false);
+        $this->setFlightData($request, $this);
+        $chart = new FlightChart($this->flights_for_chart);
+        $this->chart_markup = $chart->getChartMarkup();
+        echo json_encode(array('flight_chart' => $this->chart_markup));
+        return sfView::NONE;
 
     }
 
