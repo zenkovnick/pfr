@@ -70,7 +70,8 @@ class FlightForm extends BaseFormDoctrine
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
                           'model' => 'Plane',
                           'table_method' => 'getPlanes',
-                          'table_method_parameters' => array('account' => $this->getOption('account'))
+                          'table_method_parameters' => array('account' => $this->getOption('account')),
+                          'renderer_class' => 'sfWidgetFormList'
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'Plane',"required" => true)));
                   } else if($key == 'pilot_in_command'){
@@ -79,7 +80,8 @@ class FlightForm extends BaseFormDoctrine
                           'table_method' => 'getUsers',
                           'table_method_parameters' => array('account' => $this->getOption('account')),
                           'method' => 'getUserTitle',
-                          'method_parameters' => array('curr_user' => $this->getOption('user'))
+                          'method_parameters' => array('curr_user' => $this->getOption('user')),
+                          'renderer_class' => 'sfWidgetFormList'
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
                       $this->setDefault($key, $this->getOption('user')->getId());
@@ -89,7 +91,8 @@ class FlightForm extends BaseFormDoctrine
                           'table_method' => 'getUsers',
                           'table_method_parameters' => array('account' => $this->getOption('account')),
                           'method' => 'getUserTitle',
-                          'method_parameters' => array('curr_user' => $this->getOption('user'))
+                          'method_parameters' => array('curr_user' => $this->getOption('user')),
+                          'renderer_class' => 'sfWidgetFormList'
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
                       $this->setDefault($key, sfGuardUserTable::getDefaultUserIdByAccount($this->getOption('account'), $this->getOption('user')));

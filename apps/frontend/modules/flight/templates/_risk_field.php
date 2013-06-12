@@ -24,7 +24,7 @@ if(isset($help)){
             <p class="help-message hidden"><?php echo $help ?></p>
         <?php endif ?>
     </div>
-    <div class="list-select">
+    <div class="list-select risk-select">
         <?php echo $field->render($options); ?>
     </div>
     <div class="risk-note-wrapper">

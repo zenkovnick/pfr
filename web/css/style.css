@@ -1014,6 +1014,10 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     float: left;
     overflow: hidden;
 }
+.flight-field-list li.flight-information label {
+    float: none;
+}
+
 .flight-field-list li.flight-information select, .response-option-list select {
     background: none;
     border: none;
@@ -1103,7 +1107,7 @@ p.help-message {
 .list-select {
     position: relative;
 }
-.list-select .result {
+.list-select .result,  .list-select .pilot, .list-select .plane{
     color: #0F76BB;
     cursor: pointer;
 }

@@ -21,11 +21,11 @@
                 <span class="dashboard-avatar">
                     <?php include_partial('flight/avatar', array('user' => $users[$form[$key]->getValue()])); ?>
                 </span>
-                <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
+                <?php include_partial("flight/pilot_field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
             <?php elseif($key == 'trip_number'): ?>
                 <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'trip-number', 'label' => true)); ?>
-            <?php else: ?>
-                <?php include_partial("flight/field", array('field' => $form[$key], 'label' => true)); ?>
+            <?php elseif($key == 'plane'): ?>
+                <?php include_partial("flight/plane_field", array('field' => $form[$key], 'label' => true, 'class' => 'plane')); ?>
             <?php endif ?>
         </li>
     <?php endforeach ?>
@@ -80,11 +80,11 @@
         });
     }
 
-    function getPilot(){
-        var root_li = jQuery(this).closest('li');
+    function getPilot(el){
+        var root_li = el.closest('li.flight-information');
         jQuery.ajax({
             url: '<?php echo url_for("@get_pilot") ?>',
-            data: {id: jQuery(this).val()},
+            data: {id: el.prop('id')},
             dataType: 'json',
             type: 'GET',
             success: function(data){
@@ -110,8 +110,8 @@
 
 
     jQuery(document).ready(function(){
-        jQuery("select.risk-factor").bind('change', getRisk);
-        jQuery("select.pilot").bind('change', getPilot);
+        /*jQuery("select.risk-factor").bind('change', getRisk);
+        jQuery("select.pilot").bind('change', getPilot);*/
         jQuery("a.show-help-link").bind('click', showHelp);
         jQuery("input.date").prop('readonly', true).datepicker({
             dateFormat: 'yy-mm-dd'
@@ -125,19 +125,36 @@
     });
 
 
-    jQuery('.list-select .result').bind('click', function(){
+    jQuery('.list-select .result, .list-select .pilot, .list-select .plane').bind('click', function(){
         jQuery(this).parent().find('ul').show();
     });
-    jQuery('.list-select ul li').click(function(){
+    jQuery('.risk-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
         jQuery('.result', root_el).html(jQuery(this).text());
         jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
         jQuery(this).parent().hide()/*.hide()*/;
         getRisk(jQuery(this));
     });
+    jQuery('.pilot-select ul li').click(function(){
+        var root_el = jQuery(this).closest(".list-select");
+        jQuery('.pilot', root_el).html(jQuery(this).text());
+        jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
+        jQuery(this).parent().hide()/*.hide()*/;
+        getPilot(jQuery(this));
+    });
+
+    jQuery('.plane-select ul li').click(function(){
+        var root_el = jQuery(this).closest(".list-select");
+        jQuery('.plane', root_el).html(jQuery(this).text());
+        jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
+        jQuery(this).parent().hide()/*.hide()*/;
+    });
+
     jQuery('.list-select ul').mouseleave(function() {
         jQuery(this).hide();
     });
+
+
 
 
 </script>
