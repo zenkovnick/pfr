@@ -1663,310 +1663,7 @@ AccountPlane:
     Account: Account_8
     Plane: Plane_5
     position: '1'
-Flight:
-  Flight_1:
-    Account: Account_4
-    Plane: Plane_2
-    PIC: sfGuardUser_6
-    SIC: sfGuardUser_4
-    trip_number: 'number 1'
-    airport_from: from
-    airport_to: to
-    departure_date: '2013-06-07 04:58:00'
-    risk_factor_sum: '9'
-    risk_factor_type: null
-    mitigation_sum: '0'
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"04:58","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":0,"selected_response":"98","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":0,"selected_response":"96","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":0,"selected_response":"94","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: assess
-    created_at: '2013-05-10 15:41:34'
-    updated_at: '2013-05-10 15:41:34'
-  Flight_2:
-    Account: Account_4
-    Plane: Plane_1
-    trip_number: ''
-    airport_from: ''
-    airport_to: ''
-    departure_date: '2013-06-07 05:03:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:03","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"97","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"95","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: new
-    created_at: '2013-05-10 15:41:34'
-    updated_at: '2013-05-10 15:41:34'
-  Flight_3:
-    Account: Account_4
-    Plane: Plane_1
-    trip_number: '33333'
-    airport_from: cvz
-    airport_to: vzcvzbc
-    departure_date: '2013-06-07 05:04:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:04","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"97","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"95","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: new
-    created_at: '2013-05-12 15:41:34'
-    updated_at: '2013-06-12 15:41:34'
-  Flight_4:
-    Account: Account_4
-    Plane: Plane_1
-    trip_number: '4444'
-    airport_from: vdsg
-    airport_to: fhsfdft
-    departure_date: '2013-06-07 05:05:00'
-    risk_factor_sum: '6'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"2","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"3","mitigation_medium_max":"6","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"7","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:05","flight_information":[{"name":"Trip number","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"Mouse","help_message":"","mitigation":null,"selected_response":"98","response_options":{"97":{"text":"No","value":"0","note":""},"98":{"text":"Yes","value":"3","note":""}}},{"question":"Dog","help_message":"","mitigation":null,"selected_response":"96","response_options":{"95":{"text":"No","value":"0","note":""},"96":{"text":"Yes","value":"3","note":""}}},{"question":"Cat","help_message":"","mitigation":null,"selected_response":"93","response_options":{"93":{"text":"No","value":"0","note":""},"94":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-13 15:41:34'
-    updated_at: '2013-06-10 15:41:34'
-  Flight_5:
-    Account: Account_5
-    trip_number: ''
-    airport_from: ''
-    airport_to: ''
-    departure_date: '2013-06-07 05:52:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-07","departure_time":"05:52","flight_information":[{"name":"Plane(tail number):","value":null},{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null}],"risk_analysis":[]}'
-    drafted: true
-    status: new
-    created_at: '2013-05-14 15:41:35'
-    updated_at: '2013-06-10 15:41:35'
-  Flight_6:
-    Account: Account_8
-    Plane: Plane_5
-    PIC: sfGuardUser_4
-    SIC: sfGuardUser_8
-    trip_number: eeeeeee
-    airport_from: qqqqqqqqqq
-    airport_to: wwwwwwwwww
-    departure_date: '2013-06-10 03:49:00'
-    risk_factor_sum: '3'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"03:49","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"fdgasdfhs","help_message":"","mitigation":null,"selected_response":"106","response_options":{"105":{"text":"No","value":"0","note":""},"106":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-15 15:41:35'
-    updated_at: '2013-06-10 15:41:35'
-  Flight_7:
-    Account: Account_8
-    Plane: Plane_5
-    PIC: sfGuardUser_8
-    SIC: sfGuardUser_4
-    trip_number: number
-    airport_from: from
-    airport_to: to
-    departure_date: '2013-06-10 03:53:00'
-    risk_factor_sum: '3'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"03:53","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"fdgasdfhs","help_message":"","mitigation":null,"selected_response":"106","response_options":{"105":{"text":"No","value":"0","note":""},"106":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: assess
-    created_at: '2013-05-15 15:41:35'
-    updated_at: '2013-06-10 15:41:35'
-  Flight_8:
-    Account: Account_8
-    Plane: Plane_5
-    PIC: sfGuardUser_8
-    SIC: sfGuardUser_4
-    trip_number: ''
-    airport_from: ''
-    airport_to: ''
-    departure_date: '2013-06-10 03:57:00'
-    risk_factor_sum: '0'
-    risk_factor_type: null
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"14","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"15","mitigation_medium_max":"29","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"30","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Default Form Name","form_instructions":"Default Form Instruction","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"03:57","flight_information":[{"name":"Pilot in command (PIC):","value":null},{"name":"Second in command (SIC):","value":null},{"name":"Trip number","value":null},{"name":"Plane(tail number):","value":null}],"risk_analysis":[{"question":"fdgasdfhs","help_message":"","mitigation":null,"selected_response":"105","response_options":{"105":{"text":"No","value":"0","note":""},"106":{"text":"Yes","value":"3","note":""}}}]}'
-    drafted: true
-    status: new
-    created_at: '2013-05-15 15:41:35'
-    updated_at: '2013-06-10 15:41:35'
-  Flight_9:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '111115'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 16:28:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"16:28","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-15 16:28:37'
-    updated_at: '2013-06-10 16:28:40'
-  Flight_10:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '1111166'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 16:28:00'
-    risk_factor_sum: '11'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"16:28","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"7","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"3","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-16 16:28:57'
-    updated_at: '2013-06-10 16:29:00'
-  Flight_11:
-    Account: Account_1
-    Plane: Plane_6
-    PIC: sfGuardUser_2
-    trip_number: '11111'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 16:29:00'
-    risk_factor_sum: '6'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"16:29","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"7","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"3","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"8","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-16 16:29:33'
-    updated_at: '2013-06-10 16:29:35'
-  Flight_12:
-    Account: Account_1
-    Plane: Plane_7
-    PIC: sfGuardUser_2
-    trip_number: '24343'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 16:29:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"16:29","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-17 16:29:59'
-    updated_at: '2013-06-10 16:30:01'
-  Flight_13:
-    Account: Account_1
-    Plane: Plane_6
-    PIC: sfGuardUser_2
-    trip_number: '99999'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 16:30:00'
-    risk_factor_sum: '8'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"16:30","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"7","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-17 16:30:16'
-    updated_at: '2013-06-10 16:30:18'
-  Flight_14:
-    Account: Account_1
-    Plane: Plane_6
-    PIC: sfGuardUser_2
-    trip_number: '65565'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 16:30:00'
-    risk_factor_sum: '13'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"16:30","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"7","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"2","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-18 16:30:34'
-    updated_at: '2013-06-10 16:30:37'
-  Flight_15:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '11111666'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 17:12:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"17:12","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-19 17:13:06'
-    updated_at: '2013-06-10 17:13:10'
-  Flight_16:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '22222'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 17:13:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"17:13","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-20 17:13:22'
-    updated_at: '2013-06-10 17:13:25'
-  Flight_17:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '333333'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 17:13:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"17:13","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-20 17:13:22'
-    updated_at: '2013-06-10 17:13:51'
-  Flight_18:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '4444'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 17:14:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"17:14","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-20 17:13:22'
-    updated_at: '2013-06-10 17:14:09'
-  Flight_19:
-    Account: Account_1
-    Plane: Plane_1
-    PIC: sfGuardUser_2
-    trip_number: '55555'
-    airport_from: 'Airport 1'
-    airport_to: 'Airport 2'
-    departure_date: '2013-06-10 17:14:00'
-    risk_factor_sum: '5'
-    risk_factor_type: low
-    mitigation_sum: null
-    info: '{"mitigation_low_message":"Ready to fly!","mitigation_low_instructions":"","mitigation_low_min":"0","mitigation_low_max":"15","mitigation_low_notify":true,"mitigation_medium_message":"Looks a bit risky","mitigation_medium_instructions":"","mitigation_medium_min":"16","mitigation_medium_max":"30","mitigation_medium_notify":true,"mitigation_high_message":"Danger","mitigation_high_instructions":"","mitigation_high_min":"31","mitigation_high_max":"50","mitigation_high_notify":true,"mitigation_medium_require_details":true,"mitigation_high_prevent_flight":true,"form_name":"Test Builder","form_instructions":"Test instructions","airport_from":null,"airport_to":null,"departure_date":"2013-06-10","departure_time":"17:14","flight_information":[{"name":"Pilot in command(PIC):","value":null},{"name":"Plane(tail number):","value":null},{"name":"Trip number:","value":null}],"risk_analysis":[{"question":"First Question","help_message":"First Question Help","mitigation":null,"selected_response":"6","response_options":{"6":{"text":"No","value":"0","note":"Not, it''s wrong"},"7":{"text":"Yes","value":"3","note":"It''s alright"}}},{"question":"Second Question","help_message":"","mitigation":null,"selected_response":"1","response_options":{"1":{"text":"No","value":"0","note":"It''s nice"},"2":{"text":"Yes","value":"5","note":":("},"3":{"text":"May be","value":"3","note":"Ha-ha"}}},{"question":"How much did You sleep tonight?","help_message":"","mitigation":null,"selected_response":"4","response_options":{"4":{"text":"Less than 4 hours","value":"5","note":"It is very bad"},"5":{"text":"4-6 hours","value":"3","note":"So-so"},"8":{"text":"More than 6 hours","value":"0","note":"It''s great"}}}]}'
-    drafted: false
-    status: complete
-    created_at: '2013-05-20 17:13:22'
-    updated_at: '2013-06-10 17:14:21'
+
 Account:
   Account_1:
     title: Company
@@ -2703,3 +2400,31 @@ RiskFactorField:
     position: '7'
     created_at: '2013-06-10 03:48:13'
     updated_at: '2013-06-10 03:48:13'
+
+Airport:
+  a1:
+    airport_title: 'A01'
+  a2:
+    airport_title: 'A08'
+  a3:
+    airport_title: 'A36'
+  a4:
+    airport_title: 'B11'
+  a5:
+    airport_title: 'N145'
+  a6:
+    airport_title: 'G543'
+  a7:
+    airport_title: 'N3213'
+  a8:
+    airport_title: 'C456'
+  a9:
+    airport_title: 'V432'
+  a10:
+    airport_title: 'L4332'
+  a11:
+    airport_title: 'C843'
+  a12:
+    airport_title: 'C3221'
+  a13:
+    airport_title: 'K3422'

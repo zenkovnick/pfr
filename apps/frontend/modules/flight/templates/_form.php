@@ -6,8 +6,8 @@
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <script src="/js/jquery.ui.timepicker.js"></script>
 <ul class="flight-field-list">
-    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
-    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
+    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from_id'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
+    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to_id'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
     <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
     <li class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
     <li><span class="bottom-border"></span></li>

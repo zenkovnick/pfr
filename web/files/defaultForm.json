@@ -1,6 +1,6 @@
 {
-    "form_name" : "Default Form Name",
-    "form_instructions" : "Default Form Instruction",
+    "form_name" : "Flight Risk Assessment Form",
+    "form_instructions" : "",
     "mitigation_low_message" : "Ready to fly!",
     "mitigation_low_instructions" : "",
     "mitigation_low_min" : 0,

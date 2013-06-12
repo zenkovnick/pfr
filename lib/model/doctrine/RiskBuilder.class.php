@@ -19,6 +19,7 @@ class RiskBuilder extends BaseRiskBuilder
             $data_array = json_decode($json_data, true);
             $this->setFormName($data_array['form_name']);
             $this->setFormInstructions($data_array['form_instructions']);
+
             $flight_information_collection = new Doctrine_Collection('FlightInformationField');
             foreach($data_array['flight_informations'] as $flight_information_data){
                 $flight_information = new FlightInformationField();

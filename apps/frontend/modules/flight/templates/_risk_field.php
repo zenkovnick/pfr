@@ -31,7 +31,7 @@ if(isset($help)){
         <span class="risk">
                 <?php echo $risk ?>
         </span>
-        <span class="note hidden">
+        <span class="note">
                 <?php echo $note ?>
         </span>
     </div>

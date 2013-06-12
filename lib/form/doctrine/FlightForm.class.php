@@ -32,19 +32,31 @@ class FlightForm extends BaseFormDoctrine
 
       foreach($data_fields as $key => $data_field){
           if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions" && !$this->startsWith($key, 'mitigation')){
-              $this->setWidget($key, new sfWidgetFormInput());
-              $this->setValidator($key, new sfValidatorString(array("required" => true)));
-              if(!$this->isNew()){
-                  if($key == "departure_date"){
-                      $this->setDefault($key, date('Y-m-d', strtotime($this->getObject()->getDepartureDate())));
-                  } else if($key == "departure_time"){
-                      $this->setDefault($key, date('H:i', strtotime($this->getObject()->getDepartureDate())));
-                  }
+              if($key == "airport_to" || $key == "airport_from") {
+                  $this->setWidget("{$key}_id", new sfWidgetFormDoctrineJQueryAutocompleter(array(
+                      'url' => '/autocomplete/airport',
+                      'model' => 'Airport',
+                      'method' => 'getAirportID',
+                      'method_for_query' => 'getTitleById',
+                  )));
+                  $this->setWidget("{$key}_title", new sfWidgetFormInputHidden());
+                  $this->setValidator("{$key}_title", new sfValidatorString(array('required' => true)));
+                  $this->setValidator("{$key}_id", new sfValidatorPass());
               } else {
-                  if($key == "departure_date"){
-                      $this->setDefault($key, date('Y-m-d', time()));
-                  } else if($key == "departure_time"){
-                      $this->setDefault($key, date('H:i', time()));
+                  $this->setWidget($key, new sfWidgetFormInput());
+                  $this->setValidator($key, new sfValidatorString(array("required" => true)));
+                  if(!$this->isNew()){
+                      if($key == "departure_date"){
+                          $this->setDefault($key, date('Y-m-d', strtotime($this->getObject()->getDepartureDate())));
+                      } else if($key == "departure_time"){
+                          $this->setDefault($key, date('H:i', strtotime($this->getObject()->getDepartureDate())));
+                      }
+                  } else {
+                      if($key == "departure_date"){
+                          $this->setDefault($key, date('Y-m-d', time()));
+                      } else if($key == "departure_time"){
+                          $this->setDefault($key, date('H:i', time()));
+                      }
                   }
               }
 

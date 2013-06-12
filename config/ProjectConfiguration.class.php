@@ -16,6 +16,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('csDoctrineActAsSortablePlugin');
     $this->enablePlugins('sfThumbnailPlugin');
     $this->enablePlugins('vjBrowserDetectionPlugin');
+    $this->enablePlugins('sfFormExtraPlugin');
     //$this->enablePlugins('sfGearmanPlugin');
 
     //./symfony gearman:worker --config=example1 --verbose --timeout=-1
