@@ -25,7 +25,6 @@ function clearCoords()
 
 function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upload_type, form_field_id, container_id, uploaded_field_id)
 {
-
 //    jQuery('#remove_image').click(function(){
 //        jQuery('#photo').attr('src', default_image );
 //        jQuery('#'+form_field_id).val('');
@@ -42,7 +41,6 @@ function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upl
         forceIframeTransport: true,
         done: function (e, data) {
             var response = jQuery(data.result).find('html body').html();
-            alert(response);
             //alert(response);
 
             var object = eval('(' + response + ')');
@@ -92,7 +90,7 @@ function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upl
                     }
                 }
             }
-            alert('a');
+
                     //jQuery.each(data.result, function (index, file) {
                 //console.log(index);
                 //console.log(file);

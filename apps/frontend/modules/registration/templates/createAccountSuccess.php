@@ -54,7 +54,8 @@
     }
     function triggerUpload() {
         var wrapper = jQuery(this).closest(".upload-wrapper");
-        jQuery("input[type='file']", wrapper).trigger("click");
+        alert('b');
+        jQuery("input[type='file']", wrapper).click();
     }
 
     jQuery(document).ready(function(){
