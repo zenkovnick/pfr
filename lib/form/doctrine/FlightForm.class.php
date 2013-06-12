@@ -103,7 +103,7 @@ class FlightForm extends BaseFormDoctrine
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
                       if(!$this->isNew()){
-                          $this->setDefault($key, $this->getObject()->getPIC()->getId());
+                          $this->setDefault($key, $this->getObject()->getSIC()->getId());
                       } else {
                           $this->setDefault($key, sfGuardUserTable::getDefaultUserIdByAccount($this->getOption('account'), $this->getOption('user')));
                       }
@@ -153,7 +153,8 @@ class FlightForm extends BaseFormDoctrine
         if($this->getObject()->getStatus() == 'assess'){
             $mitigation_sum = is_null($this->getObject()->getMitigationSum()) ? 0 : $this->getObject()->getMitigationSum();
         }
-        $taintedValues['departure_date'] = date('Y-m-d H:i', strtotime($taintedValues['departure_time']));
+        $taintedValues['departure_date'] = date('Y-m-d H:i', strtotime($taintedValues['departure_date']) +
+            (strtotime($taintedValues['departure_time']) - strtotime(date('Y-m-d', time()))));
         $data_fields['departure_date']= date('Y-m-d', strtotime($taintedValues['departure_time']));
         $data_fields['departure_time']= date('H:i', strtotime($taintedValues['departure_time']));
         foreach($data_fields as $key => $data_field){
