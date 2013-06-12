@@ -6,8 +6,10 @@
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <script src="/js/jquery.ui.timepicker.js"></script>
 <ul class="flight-field-list">
-    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from_id'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
-    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to_id'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
+<!--    <li class="small-field">--><?php //include_partial("flight/field", array('field' => $form['airport_from_id'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?><!--</li>-->
+<!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to_id'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
+    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
+    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
     <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
     <li class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
     <li><span class="bottom-border"></span></li>
@@ -30,36 +32,27 @@
     <li><span class="bottom-border"></span></li>
     <li><h2>Risk Analysis</h2></li>
     <?php for($i = 0; $i<count($data['risk_analysis']); $i++): ?>
-        <li>
+        <li class="risk-factor-li">
             <?php include_partial("flight/risk_field", array(
                 'field' => $form["flight_risk_factor_{$i}"],
                 'label' => true,
-                'class' => 'risk-factor',
+                'class' => 'risk-factor result',
                 'help' => $data['risk_analysis'][$i]['help_message'],
                 'risk' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['value'],
                 'note' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['note']
             ));
             ?>
-            <div class="list-select">
-                <div class="result">Select value</div>
-                <ul>
-                    <li>Value 1</li>
-                    <li>Value 2</li>
-                    <li>Value 3</li>
-                    <li>Value 4</li>
-                </ul>
-            </div>
         </li>
     <?php endfor ?>
 </ul>
 
 <script type="text/javascript">
     jQuery('.bottom-border').parent().prev().addClass('last');
-    function getRisk(){
-        var root_li = jQuery(this).closest('li');
+    function getRisk(el){
+        var root_li = el.closest('li.risk-factor-li');
         jQuery.ajax({
             url: '<?php echo url_for("@get_risk") ?>',
-            data: {id: jQuery(this).val()},
+            data: {id: el.prop('id')},
             dataType: 'json',
             type: 'GET',
             success: function(data){
@@ -80,7 +73,7 @@
                     }
                     if(data.risk == 0) {
                         risk_el.addClass('hidden');
-                    };
+                    }
                 }
 
             }
@@ -136,8 +129,11 @@
         jQuery(this).parent().find('ul').show();
     });
     jQuery('.list-select ul li').click(function(){
-        jQuery(this).parent().parent().find('.result').html(jQuery(this).text());
-        jQuery(this).parent().hide().hide();
+        var root_el = jQuery(this).closest(".list-select");
+        jQuery('.result', root_el).html(jQuery(this).text());
+        jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
+        jQuery(this).parent().hide()/*.hide()*/;
+        getRisk(jQuery(this));
     });
     jQuery('.list-select ul').mouseleave(function() {
         jQuery(this).hide();

@@ -32,7 +32,7 @@ class FlightForm extends BaseFormDoctrine
 
       foreach($data_fields as $key => $data_field){
           if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions" && !$this->startsWith($key, 'mitigation')){
-              if($key == "airport_to" || $key == "airport_from") {
+              /*if($key == "airport_to" || $key == "airport_from") {
                   $this->setWidget("{$key}_id", new sfWidgetFormDoctrineJQueryAutocompleter(array(
                       'url' => '/autocomplete/airport',
                       'model' => 'Airport',
@@ -42,7 +42,7 @@ class FlightForm extends BaseFormDoctrine
                   $this->setWidget("{$key}_title", new sfWidgetFormInputHidden());
                   $this->setValidator("{$key}_title", new sfValidatorString(array('required' => true)));
                   $this->setValidator("{$key}_id", new sfValidatorPass());
-              } else {
+              } else {*/
                   $this->setWidget($key, new sfWidgetFormInput());
                   $this->setValidator($key, new sfValidatorString(array("required" => true)));
                   if(!$this->isNew()){
@@ -58,7 +58,7 @@ class FlightForm extends BaseFormDoctrine
                           $this->setDefault($key, date('H:i', time()));
                       }
                   }
-              }
+              /*}*/
 
           } else if($key == "flight_information") {
               foreach($data_field as $fi){
@@ -99,7 +99,7 @@ class FlightForm extends BaseFormDoctrine
               $index = 0;
               foreach($data_field as $risk_factor){
                   $options = $this->getObject()->getResponseOptionTitles($risk_factor);
-                  $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $options)));
+                  $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $options, 'renderer_class' => 'sfWidgetFormList')));
                   $this->setValidator("flight_risk_factor_{$index}", new sfValidatorChoice(array('choices' => array_keys($options))));
                   if(!is_null($risk_factor['selected_response'])){
                       $this->setDefault("flight_risk_factor_{$index}", $risk_factor['selected_response']);
