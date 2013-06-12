@@ -104,7 +104,7 @@ function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upl
                 async: true,
                 success: function(data){
                     widget = data;
-                    jQuery('#'+container_id).html(widget).removeClass("default-avatar");
+                    jQuery('#'+container_id).html(widget).removeClass("default-avatar").removeClass('with-dash-border');
                     jQuery('#'+uploaded_field_id).val(file_name);
                 }
             });

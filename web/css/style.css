@@ -320,7 +320,7 @@ ul.header-link-block li a {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     margin: 0 0 9px;
-    padding: 10px;
+    padding: 12px;
     text-align: center;
     width: 100%;
 }
@@ -353,6 +353,31 @@ ul.header-link-block li a {
     line-height: 150%;
     margin-bottom: 15px;
 }
+
+.create-account .photo-holder{
+    border-left: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    width: 40px;
+    height: 40px;
+    float: left;
+    display: inline-block;
+    padding: 0;
+    background: url('../images/photo_bg.png') center center no-repeat;
+}
+
+.create-account .with-dash-border {
+    border-left: 1px dashed #CCC;
+    border-top: 1px dashed #CCC;
+    border-bottom: 1px dashed #CCC;
+}
+
+
+.create-account .company-title{
+    width: 258px;
+    float: left;
+}
+
 .sign-in-form span a, .sign-up span a {
     color: #3E8CD7;
     cursor: pointer;
