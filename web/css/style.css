@@ -1033,6 +1033,10 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     padding: 0 0 9px;
     position: relative;
 }
+
+.risk-factor-question-wrapper {
+    overflow: hidden;
+}
 .response-option-list {
     clear: both;
     overflow: hidden;
