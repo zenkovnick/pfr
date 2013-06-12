@@ -3,29 +3,33 @@
 <?php end_slot() ?>
 <div class="assessment-wrapper">
     <div class="risk-assessment">
-        <h1><?php echo $mitigation_info['message'] ?></h1>
-        <p>
+        <h2><?php echo $mitigation_info['message'] ?></h2>
+        <p class="summary">
             Flight #<?php echo $flight->getTripNumber() ?> from <?php echo $flight->getAirportFrom() ?> to <?php echo $flight->getAirportTo() ?>
             in <?php echo $flight->getPlane()->getTailNumber() ?> has a <?php echo $mitigation_info['type'] ?> risk factor with <?php echo $flight->getRiskFactorSum() ?> of 50
         </p>
 
         <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
+        <?php if($mitigation_info['type'] == 'high' && $mitigation_info['prevent_flight']): ?>
+            <span class="note">You must mitigate risk before proceeding with this flight</span>
+        <?php endif ?>
     </div>
+    <span class="top-border border"></span>
     <div class="critical-risks">
+        <h2>Risk Factors</h2>
         <ul>
             <?php foreach($high_risk_factors as $high_risk_factor): ?>
-                <li>
+                <li class="assessment-risk-wrapper <?php echo $high_risk_factor === $high_risk_factors[count($high_risk_factors)] ? "last" : ""?>">
                     <div>
                         <p class="question"><?php echo $high_risk_factor['question'] ?></p>
                         <span class="answer"><?php echo $high_risk_factor['answer'] ?></span>
                     </div>
-                    <div class="risk">
-                        <span><?php echo $high_risk_factor['risk'] ?></span>
-                    </div>
+                    <span class="risk"><?php echo $high_risk_factor['risk'] ?></span>
                 </li>
             <?php endforeach; ?>
         </ul>
     </div>
+    <span class="bottom-border border"></span>
     <div class="mitigation-buttons">
         <?php if($mitigation_info['type'] != 'low'): ?>
             <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>" class="re-assess">Re-assess Risk Before Flying</a>

@@ -985,7 +985,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     margin: 0 0 30px;
 }
 .flight-field-list {
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .flight-field-list .bottom-border {
     margin: 0px 0 20px;
@@ -1188,4 +1188,117 @@ p.help-message {
 }
 .list-select ul li:hover {
     background: #000;
+    cursor: pointer;
+}
+
+
+/* ASSESSMENT */
+.assessment-wrapper {
+
+}
+
+.assessment-wrapper .risk-assessment h2 {
+    margin: 0 0 15px;
+    text-align: center;
+    font-size: 1.14em;
+}
+
+.assessment-wrapper .border {
+    background: url(../images/form_builder_border.png) repeat-x left bottom;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    clear: both;
+    display: block;
+    height: 2px;
+    width: 100%;
+}
+
+.assessment-wrapper .top-border {
+    margin: 20px 0;
+}
+
+.assessment-wrapper .bottom-border {
+    margin: 0 0 20px;
+}
+
+.assessment-wrapper .critical-risks {
+}
+
+.assessment-wrapper .critical-risks h2 {
+    margin: 0 0 15px;
+    text-align: left;
+    font-size: 1.14em;
+}
+
+
+.assessment-wrapper p.summary {
+    text-align: center;
+    font-size: 1.0em;
+    color: #999;
+    padding: 0 4px;
+}
+
+.assessment-wrapper .note {
+    background: url(../images/note_icon.png) no-repeat 10px center #FFFF66;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 0.9em;
+    color: #000;
+    display: block;
+    margin: 15px 0 0;
+    padding: 10px 10px 10px 36px;
+    position: relative;
+    width: 100%;
+}
+
+.assessment-wrapper ul .last {
+    border-bottom: 0;
+}
+
+.assessment-risk-wrapper {
+    position: relative;
+    height: 30px;
+    padding: 15px 0;
+    border-bottom: 1px dashed #CCC;
+}
+
+.assessment-risk-wrapper .question {
+}
+
+.assessment-risk-wrapper .answer {
+    margin: 3px 0 0 0;
+    color: #999;
+    display: inline-block;
+}
+
+.assessment-risk-wrapper .risk {
+    background: #FF3333;
+    color: #FFF;
+    display: block;
+    padding: 14px 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 10px;
+    width: 40px;
+}
+.assessment-risk-wrapper .risk.hidden {
+    background: none;
+    color: #CCC;
+    display: block !important;
+
+}
+.assessment-risk-wrapper .note {
+    background: url(../images/note_icon.png) no-repeat 10px center #FFFF66;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #000;
+    display: block;
+    margin: 15px 0 0;
+    padding: 10px 10px 10px 36px;
+    position: relative;
+    width: 100%;
 }
