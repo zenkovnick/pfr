@@ -992,6 +992,29 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 .flight-field-list li.small-field input.time {
     background: url(../images/time_icon.png) no-repeat right center #FFF;
 }
+
+.flight-field-list li.trip-number-field label {
+    display: inline-block;
+    width: 47%;
+    float: left !important;
+    line-height: 40px;
+}
+
+.flight-field-list li.trip-number-field input {
+    width: 50%;
+    float: right;
+    background: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 10px;
+}
+
+
 .flight-field-list li.flight-information {
     border-bottom: 1px dashed #E4E4E4;
     height: 42px;

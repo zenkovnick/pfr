@@ -15,8 +15,8 @@
     <li><span class="bottom-border"></span></li>
     <li><h2>Flight Information</h2></li>
     <?php foreach($data['flight_information'] as $fi): ?>
-        <li class="flight-information">
-            <?php $key = Flight::generateKeyByTitle($fi['name']); ?>
+        <?php $key = Flight::generateKeyByTitle($fi['name']); ?>
+        <li class="flight-information <?php echo $key == 'trip_number' ? 'trip-number-field' : '' ?>">
             <?php if($key == 'pilot_in_command' || $key == 'second_in_command'): ?>
                 <span class="dashboard-avatar">
                     <?php include_partial('flight/avatar', array('user' => $users[$form[$key]->getValue()])); ?>
