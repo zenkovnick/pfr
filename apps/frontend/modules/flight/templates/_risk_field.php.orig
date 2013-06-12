@@ -31,7 +31,11 @@ if(isset($help)){
         <span class="risk <?php if($risk == 0) echo('hidden'); ?>">
                 <?php echo $risk ?>
         </span>
+<<<<<<< HEAD
+        <span class="note">
+=======
         <span class="note <?php if($note == '') echo('hidden'); ?>">
+>>>>>>> 430e6366d2428912796ddd41dc5e5fa2e60565a1
                 <?php echo $note ?>
         </span>
     </div>

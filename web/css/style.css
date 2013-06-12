@@ -959,7 +959,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     overflow: hidden;
 }
 .flight-field-list .bottom-border {
-    margin: 9px 0 20px;
+    margin: 0px 0 20px;
     width: 100%;
 }
 .flight-field-list li.small-field {
@@ -994,10 +994,11 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 }
 .flight-field-list li.flight-information {
     border-bottom: 1px dashed #E4E4E4;
-    overflow: hidden;
+    height: 42px;
+    /*overflow: hidden;*/
     padding: 9px 0;
 }
-.flight-field-list li.flight-information:first-of-type {
+.flight-field-list li.flight-information.last {
     border-bottom: none;
 }
 .flight-field-list li.flight-information span.dashboard-avatar {
@@ -1019,9 +1020,15 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     color: #0F76BB;
     cursor: pointer;
 }
+.flight-field-list li.flight-information input[type="text"] {
+    background: #FFF;
+    border: 1px solid #CCC;
+    margin-left: 10px;
+}
 .risk-factor-wrapper {
     border-bottom: 1px dashed #CCC;
     margin: 0 0 15px;
+    min-height: 49px;
     overflow: hidden;
     padding: 0 0 9px;
     position: relative;
@@ -1040,6 +1047,12 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     text-align: center;
     top: 0;
     width: 40px;
+}
+.risk-note-wrapper .risk.hidden {
+    background: none;
+    color: #CCC;
+    display: block !important;
+
 }
 .risk-note-wrapper .note {
     background: url(../images/note_icon.png) no-repeat 10px center #FFFF66;
@@ -1069,7 +1082,50 @@ a.show-help-link {
     padding-left: 5px;
     text-transform: lowercase;
 }
+p.help-message {
+    color: #999;
+    font-size: 0.75em;
+    padding: 10px 0;
 
+}
+.flight .btn-grey {
+    float: right;
+}
+.flight .btn-green {
+    margin-right: 20px;
+    padding: 9px 115px;
+}
 
-
-
+.list-select {
+    position: relative;
+}
+.list-select .result {
+    color: #0F76BB;
+    cursor: pointer;
+}
+.list-select ul {
+    background: #333;
+    display: none;
+    min-width: 150px;
+    position: absolute;
+    top: 24px;
+    z-index: 1;
+}
+.list-select ul:before {
+    background: url(../images/select_corner.png) no-repeat left top;
+    content: '';
+    display: block;
+    height: 10px;
+    left: 10px;
+    position: absolute;
+    top: -9px;
+    width: 20px;
+}
+.list-select ul li {
+    border-bottom: 1px solid #000;
+    color: #FFF;
+    padding: 10px;
+}
+.list-select ul li:hover {
+    background: #000;
+}

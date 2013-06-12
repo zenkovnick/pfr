@@ -40,12 +40,21 @@
                 'note' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['note']
             ));
             ?>
+            <div class="list-select">
+                <div class="result">Select value</div>
+                <ul>
+                    <li>Value 1</li>
+                    <li>Value 2</li>
+                    <li>Value 3</li>
+                    <li>Value 4</li>
+                </ul>
+            </div>
         </li>
     <?php endfor ?>
 </ul>
 
 <script type="text/javascript">
-
+    jQuery('.bottom-border').parent().prev().addClass('last');
     function getRisk(){
         var root_li = jQuery(this).closest('li');
         jQuery.ajax({
@@ -69,6 +78,9 @@
                     } else {
                         note_el.addClass('hidden');
                     }
+                    if(data.risk == 0) {
+                        risk_el.addClass('hidden');
+                    };
                 }
 
             }
@@ -118,4 +130,18 @@
         });
         //jQuery("select.risk-factor").trigger('change');
     });
+
+
+    jQuery('.list-select .result').bind('click', function(){
+        jQuery(this).parent().find('ul').show();
+    });
+    jQuery('.list-select ul li').click(function(){
+        jQuery(this).parent().parent().find('.result').html(jQuery(this).text());
+        jQuery(this).parent().hide().hide();
+    });
+    jQuery('.list-select ul').mouseleave(function() {
+        jQuery(this).hide();
+    });
+
+
 </script>
