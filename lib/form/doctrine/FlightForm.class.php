@@ -74,6 +74,9 @@ class FlightForm extends BaseFormDoctrine
                           'renderer_class' => 'sfWidgetFormList'
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'Plane',"required" => true)));
+                      if(!$this->isNew()){
+                          $this->setDefault($key, $this->getObject()->getPlane()->getId());
+                      }
                   } else if($key == 'pilot_in_command'){
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
                           'model' => 'sfGuardUser',
@@ -84,7 +87,11 @@ class FlightForm extends BaseFormDoctrine
                           'renderer_class' => 'sfWidgetFormList'
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
-                      $this->setDefault($key, $this->getOption('user')->getId());
+                      if(!$this->isNew()){
+                          $this->setDefault($key, $this->getObject()->getPIC()->getId());
+                      } else {
+                          $this->setDefault($key, $this->getOption('user')->getId());
+                      }
                   } else {
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
                           'model' => 'sfGuardUser',
@@ -95,7 +102,11 @@ class FlightForm extends BaseFormDoctrine
                           'renderer_class' => 'sfWidgetFormList'
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
-                      $this->setDefault($key, sfGuardUserTable::getDefaultUserIdByAccount($this->getOption('account'), $this->getOption('user')));
+                      if(!$this->isNew()){
+                          $this->setDefault($key, $this->getObject()->getPIC()->getId());
+                      } else {
+                          $this->setDefault($key, sfGuardUserTable::getDefaultUserIdByAccount($this->getOption('account'), $this->getOption('user')));
+                      }
                   }
               }
           } else if($key == 'risk_analysis'){

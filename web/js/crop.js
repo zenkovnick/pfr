@@ -42,6 +42,7 @@ function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upl
         forceIframeTransport: true,
         done: function (e, data) {
             var response = jQuery(data.result).find('html body').html();
+            alert(response);
             //alert(response);
 
             var object = eval('(' + response + ')');
@@ -91,7 +92,7 @@ function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upl
                     }
                 }
             }
-
+            alert('a');
                     //jQuery.each(data.result, function (index, file) {
                 //console.log(index);
                 //console.log(file);
