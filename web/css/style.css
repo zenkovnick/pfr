@@ -615,7 +615,7 @@ ul.form-fields li input[type="text"] {
     border: 1px solid #CCC;
     border-top: none;
     margin: 0 0 0 20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding: 9px;
     position: relative;
     width: 440px;
