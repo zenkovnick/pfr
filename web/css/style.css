@@ -265,6 +265,7 @@ ul.header-link-block li a {
     opacity: 0;
     width: 40px;
     height: 40px;
+    overflow:hidden;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 }
 
