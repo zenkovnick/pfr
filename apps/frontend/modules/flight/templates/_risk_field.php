@@ -28,10 +28,10 @@ if(isset($help)){
         <?php echo $field->render($options); ?>
     </div>
     <div class="risk-note-wrapper">
-        <span class="risk">
+        <span class="risk <?php if($risk == 0) echo('hidden'); ?>">
                 <?php echo $risk ?>
         </span>
-        <span class="note hidden">
+        <span class="note <?php if($note == '') echo('hidden'); ?>">
                 <?php echo $note ?>
         </span>
     </div>

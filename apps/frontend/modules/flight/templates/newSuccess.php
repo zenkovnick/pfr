@@ -5,8 +5,8 @@
 <div class="flight">
     <form action="<?php echo url_for("@create_flight?account_id={$account->getId()}") ?>" id="flight_form" method="POST">
         <?php include_partial('flight/form', array('form' => $form, 'data' => $data_fields, 'users' => $users)); ?>
-        <button type="submit">Calculate Risk</button>
-        <button class="finish-later">Finish Later</button>
+        <button type="submit" class="btn btn-green">Calculate Risk</button>
+        <button class="finish-later btn btn-grey">Finish Later</button>
     </form>
 </div>
 <script type="text/javascript">
