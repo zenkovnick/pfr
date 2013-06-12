@@ -366,6 +366,10 @@ ul.header-link-block li a {
     background: url('../images/photo_bg.png') center center no-repeat;
 }
 
+.create-account .photo-holder:hover{
+    cursor: pointer;
+}
+
 .create-account .with-dash-border {
     border-left: 1px dashed #CCC;
     border-top: 1px dashed #CCC;
