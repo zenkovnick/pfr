@@ -478,7 +478,7 @@ span.bottom-border {
 }
 .main-form > .btn.btn-blue {
     margin-left: 20px;
-    padding: 9px 100px;
+    padding: 9px 90px;
 
 }
 ul.scale {
@@ -719,6 +719,10 @@ ul.form-fields li input[type="text"] {
 /*.risk-factor-list > li a.edit-risk-factor-link:hover, .risk-factor-list > li a.cancel-risk-factor-link:hover{*/
     /*text-decoration: underline;*/
 /*}*/
+
+.risk-factor-list .save-risk{
+    float: none;
+}
 
 .risk-factor-list > li a.delete_risk_factor {
     bottom: 20px;
