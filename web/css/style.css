@@ -1029,7 +1029,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     border-bottom: 1px dashed #CCC;
     margin: 0 0 15px;
     min-height: 49px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding: 0 0 9px;
     position: relative;
 }
