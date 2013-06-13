@@ -1363,6 +1363,7 @@ p.help-message {
     background: #FFCC00;
 }
 .assessment-wrapper a.ui-slider-handle.ui-state-default.ui-corner-all {
+    behavior:url(border-radius.htc);
     border: none;
     border-radius: 25px;
     -moz-border-radius: 25px;
