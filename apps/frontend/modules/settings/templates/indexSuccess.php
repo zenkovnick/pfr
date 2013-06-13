@@ -431,6 +431,7 @@
             jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-plane-link", root_li).addClass('hidden');
             jQuery("span.tail-number", root_li).text(data.tail_number);
+            root_li.removeClass('editing');
         } else if(data.result == "Changed") {
             root_li = jQuery('li#plane_'+data.old_plane_id);
             root_li.attr('id', 'plane_'+data.new_plane_id);
