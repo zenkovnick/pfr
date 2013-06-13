@@ -1,20 +1,31 @@
-<div class="pilot-wrapper" style="display:none">
+<div class="pilot-wrapper info-block" style="display:none">
 <!--    <h1>--><?php //echo $risk_factor->getQuestion() ?><!--</h1>-->
     <?php echo $form->renderGlobalErrors();?>
     <?php echo $form->renderHiddenFields();?>
     <form id="edit_pilot_form_<?php echo $pilot->getId() ?>"
           action="<?php echo url_for("@update_pilot?pilot_id={$pilot->getId()}&account_id={$account->getId()}") ?>" method="post">
-        <fieldset>
-            <?php include_partial("settings/field", array('field' => $form['first_name'], 'class' => 'name', 'placeholder' => 'Name')); ?>
-            <?php include_partial("settings/field", array('field' => $form['username'], 'class' => 'username', 'placeholder' => 'Email')); ?>
+        <ul>
+            <li class="input-block">
+                <?php include_partial("settings/field", array('field' => $form['first_name'], 'class' => 'name', 'placeholder' => 'Name')); ?>
+            </li>
+            
+            <li class="input-block">
+                <?php include_partial("settings/field", array('field' => $form['username'], 'class' => 'username', 'placeholder' => 'Email')); ?>
+            </li>
+            
             <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
-                <?php include_partial("settings/field", array('field' => $form['can_manage'], 'class' => 'can-manage')); ?>
+                <li class="input-block">
+                    <?php include_partial("settings/field", array('field' => $form['can_manage'], 'class' => 'can-manage')); ?>
+                </li>
             <?php endif ?>
-        </fieldset>
-        <button class="btn btn-green" type="submit">Save</button>
-        <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
-            <a href="" class="delete-pilot">Delete</a>
-        <?php endif ?>
+            
+            <li class="buttons-block">
+                <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
+                    <a href="" class="delete-pilot remove-link">Delete</a>
+                <?php endif ?>
+                <button class="btn btn-green" type="submit">Save</button>
+            </li>
+        </ul>
     </form>
 </div>
 <script type="text/javascript">

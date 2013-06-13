@@ -11,52 +11,61 @@
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 
 <script type="text/javascript">
+    jQuery('body').addClass('settings-page');
     jQuery(document).ready(function(){
     });
 </script>
 
 <h1>Settings</h1>
 <input type="hidden" value="<?php echo $account->getId() ?>" class="account-id">
-<ul class="settings-list">
+<ul class="settings-list editable-list">
+    
     <li class="my-information">
-        <span>My Information</span>
-        <a href="" class="edit-mi-link hidden">Edit</a>
-        <a href="" class="cancel-mi-link hidden">Cancel</a>
+        <div class="caption-block">
+            <span class="caption">My Information</span>
+            <a href="" class="edit-mi-link link hidden">Edit</a>
+            <a href="" class="cancel-mi-link link hidden">Cancel</a>
+        </div>
     </li>
+    
     <?php if($can_manage): ?>
         <li class="account-information">
-            <span>Account Information</span>
-            <a href="" class="edit-ai-link hidden">Edit</a>
-            <a href="" class="cancel-ai-link hidden">Cancel</a>
+            <div class="caption-block">
+                <span>Account Information</span>
+                <a href="" class="edit-ai-link link hidden">Edit</a>
+                <a href="" class="cancel-ai-link link hidden">Cancel</a>
+            </div>
         </li>
 
         <li class="planes" id="planes">
+            <h2>Planes</h2>
             <ul class="plane-list" id="plane_container">
                 <?php foreach($planes as $plane): ?>
                     <li class="plane-entity" id="plane_<?php echo $plane->getId() ?>">
                         <span class="handler hidden">Handler</span>
                         <input type="hidden" value="<?php echo $plane->getId() ?>" />
-                        <div class="plane-header">
+                        <div class="plane-header caption-block">
                             <span class="tail-number"><?php echo $plane->getTailNumber() ?></span>
-                            <a href="" class="edit-plane-link hidden">Edit</a>
-                            <a href="" class="cancel-plane-link hidden">Cancel</a>
+                            <a href="" class="edit-plane-link link hidden">Edit</a>
+                            <a href="" class="cancel-plane-link link hidden">Cancel</a>
                         </div>
                     </li>
                 <?php endforeach ?>
             </ul>
-            <a href="" id="add-plane-link" class="add-new">+ New Plane</a>
+            <a href="" id="add-plane-link" class="add-new add-link">+ New Plane</a>
         </li>
         <li class="pilots" id="pilots">
+            <h2>Pilots</h2>
             <ul class="pilot-list" id="pilot_container">
                 <?php foreach($pilots as $pilot): ?>
                     <li class="pilot-entity <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
                         <span class="handler hidden">Handler</span>
                         <input type="hidden" value="<?php echo $pilot->getId() ?>" />
-                        <div class="pilot-header">
+                        <div class="pilot-header caption-block">
                             <span class="name"><?php echo $pilot->getFirstName() ?></span>
                             <?php if($pilot->getIsActiveAccount()): ?>
-                                <a href="" class="edit-pilot-link hidden">Edit</a>
-                                <a href="" class="cancel-pilot-link hidden">Cancel</a>
+                                <a href="" class="edit-pilot-link link hidden">Edit</a>
+                                <a href="" class="cancel-pilot-link link hidden">Cancel</a>
                             <?php else: ?>
                                 <span class="invited">(Invited)</span>
                             <?php endif ?>
@@ -64,10 +73,10 @@
                     </li>
                 <?php endforeach ?>
             </ul>
-            <a href="" id="add-pilot-link" class="add-new">+ New Pilot</a>
+            <a href="" id="add-pilot-link" class="add-new add-link">+ New Pilot</a>
         </li>
         <li>
-            <a href="<?php echo url_for("@form?id={$assessment_form->getId()}") ?>">Modify Risk Assessment Form</a>
+            <a href="<?php echo url_for("@form?id={$assessment_form->getId()}") ?>" class="add-link modify-link">Modify Risk Assessment Form</a>
         </li>
     <?php endif ?>
 </ul>
@@ -356,7 +365,7 @@
             jQuery("a.edit-plane-link", root_li).bind('click', editPlane);
             jQuery("a.cancel-plane-link", root_li).bind('click', cancelPlaneEdit);
             jQuery('a.delete_plane', root_li).bind('click', deletePlane);
-            jQuery('a.cancel-plane-add', root_li).remove();
+            jQuery('a.cancel-plane-add', root_li).closest('.caption-block').remove();
             root_li.bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
             root_li.attr('id', 'plane_'+data.plane_id);
             root_li.removeClass('new').addClass('plane-entity');
@@ -443,7 +452,7 @@
 
     function deletePlane() {
         if(confirm("Are You Sure?")){
-            var root_li = jQuery(this).closest('li');
+            var root_li = jQuery(this).closest('.editing');
             jQuery.ajax({
                 url: '<?php echo url_for('@delete_plane'); ?>',
                 data: {id: jQuery("input[type='hidden']", root_li).val()},
@@ -549,7 +558,7 @@
             jQuery("a.edit-pilot-link", root_li).bind('click', editPilot);
             jQuery("a.cancel-pilot-link", root_li).bind('click', cancelPilotEdit);
             jQuery('a.delete_pilot', root_li).bind('click', deletePilot);
-            jQuery('a.cancel-pilot-add', root_li).remove();
+            jQuery('a.cancel-pilot-add', root_li).closest('.caption-block').remove();
             root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
             root_li.attr('id', 'pilot_'+data.pilot_id);
             root_li.removeClass('new').addClass('pilot-entity');
@@ -642,7 +651,7 @@
 
     function deletePilot() {
         if(confirm("Are You Sure?")){
-            var root_li = jQuery(this).closest('li');
+            var root_li = jQuery(this).closest('.editing');
             jQuery.ajax({
                 url: '<?php echo url_for('@delete_pilot'); ?>',
                 data: {id: jQuery("input[type='hidden']", root_li).val()},

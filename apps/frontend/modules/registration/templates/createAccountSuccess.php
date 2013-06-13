@@ -53,9 +53,8 @@
         }
     }
     function triggerUpload() {
-        var wrapper = jQuery(this).closest(".upload-wrapper");
-        alert('b');
-        jQuery("input[type='file']", wrapper).click();
+        var wrapper = jQuery(this).closest(".photo-block");
+        jQuery("input[type='file']", wrapper).trigger("click");
     }
 
     jQuery(document).ready(function(){

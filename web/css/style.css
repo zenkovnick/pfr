@@ -1378,7 +1378,6 @@ p.help-message {
     font-size: 18px;
     text-decoration: none;
 }
-
 .assessment-wrapper .ui-widget-content {
     background: #CCCCCC !important;
     border: 0;
@@ -1394,4 +1393,174 @@ p.help-message {
 
 .assessment-wrapper .red-marker {
     background: #FF3333 !important;
+}
+
+
+
+
+/*----------------------------------------------------------------------------------*/
+/*---------------------------------> Settings page <--------------------------------*/
+/*----------------------------------------------------------------------------------*/
+.settings-page h1 {
+    margin: 0 0 22px;
+}
+.settings-page h2 + ul > li:first-child {
+    margin-top: 22px;
+}
+
+.settings-page h1,
+.settings-page h2 {
+    color: #414042;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+}
+.settings-page h1,
+.settings-page h2 {
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.settings-page h2 {
+    border-top: 1px solid #E4E4E4;
+    -webkit-box-shadow: 0 1px 0 #FFF inset;
+    -moz-box-shadow: 0 1px 0 #FFF inset;
+    box-shadow: 0 1px 0 #FFF inset;
+    
+    padding: 22px 0 0;
+}
+
+
+
+.editable-list {
+    overflow: hidden;
+    padding: 0 0 20px;
+}
+.editable-list li {
+    margin: 9px 0;
+    overflow: hidden;
+    position: relative;
+}
+.editable-list li:first-child {
+    margin-top: 0;
+}
+
+
+.editable-list .caption-block {
+    overflow: hidden;
+    background: #F2F2F2;    
+    padding: 11px 9px;
+}
+.editable-list .caption-block,
+.editable-list .info-block {
+    margin: 0 20px;
+    border: 1px solid #CCC;
+}
+.editable-list .caption-block .link {
+    color: #0F76BB;
+    float: right;
+    font-size: 13px;
+    text-decoration: none;
+}
+.editable-list .info-block {
+    background: #EBEBEB;
+    border-top: none;
+    padding: 9px;
+    position: relative;
+}
+
+
+.editable-list .photo-block {
+    float: left;
+}
+.editable-list .photo-holder {
+    display: block;
+    overflow: hidden;
+    width: 40px;
+    height: 39px;
+    padding: 0;
+    border: 1px solid #CCC;
+    border-right: 0;
+    background: url('../images/photo_bg.png') center center no-repeat;
+    cursor: pointer;
+}
+
+.editable-list .input-block input {
+    background: #FFF;
+    border: 1px solid #CCC;
+    
+    padding: 12px;
+    width: 100%;
+    
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.settings-list .input-block label {
+    display: none;
+}
+
+.editable-list .check-block {
+    padding: 4px 0;
+}
+.editable-list .check-block input {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.editable-list .handler {
+    display: block;
+    width: 18px;
+    height: 36px;
+    border: 1px solid #CCC;
+    
+    background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
+    cursor: pointer;
+    overflow: hidden;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    text-indent: -1000px;
+}
+.editable-list .handler.hidden,
+.editable-list .editing .handler {
+    background: none;
+    border: 1px solid transparent;
+    display: block !important;
+}
+
+
+.editable-list .buttons-block {
+    padding: 5px 0 0;
+}
+.editable-list .buttons-block .remove-link {
+    float: right;
+    color: #F33;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0 0;
+}
+.editable-list .buttons-block .remove-link:hover {
+    text-decoration: underline;
+}
+
+
+.editable-list .add-link {
+    color: #1076CE;
+    display: inline-block;
+    margin: 23px 0 20px 30px;
+    text-decoration: none;
+}
+.editable-list .add-link:hover {
+    text-decoration: underline;
+}
+.editable-list .modify-link {
+    margin-top: 0;
 }
