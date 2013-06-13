@@ -48,6 +48,8 @@
 
 <script type="text/javascript">
     jQuery('.bottom-border').parent().prev().addClass('last');
+    var height = 0;
+    var flight_list = jQuery("ul.flight-field-list");
     function getRisk(el){
         var root_li = el.closest('li.risk-factor-li');
         jQuery.ajax({
@@ -112,6 +114,8 @@
     jQuery(document).ready(function(){
         /*jQuery("select.risk-factor").bind('change', getRisk);
         jQuery("select.pilot").bind('change', getPilot);*/
+        height = flight_list.height();
+
         jQuery("a.show-help-link").bind('click', showHelp);
         jQuery("input.date").prop('readonly', true).datepicker({
             dateFormat: 'yy-mm-dd'
@@ -121,25 +125,36 @@
             minuteGrid: 10,
             timeFormat: 'HH:mm'
         });
+        jQuery("body").css({overflowY: "scroll"});
         //jQuery("select.risk-factor").trigger('change');
     });
 
+    jQuery("li.risk-factor-li:last .list-select .result").bind('click', function(){
+        var root_li = jQuery(this).closest("li.risk-factor-li");
+        var response_count = jQuery("li", root_li).length;
+        flight_list.css({height : height+(response_count*37)});
+    });
 
     jQuery('.list-select .result, .list-select .pilot, .list-select .plane').bind('click', function(){
-        jQuery(this).parent().find('ul').show();
+        jQuery("ul.expanded").hide().removeClass('expanded');
+        var ul = jQuery(this).parent().find('ul');
+        ul.show().addClass("expanded");
+
     });
     jQuery('.risk-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
         jQuery('.result', root_el).html(jQuery(this).text());
         jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
-        jQuery(this).parent().hide()/*.hide()*/;
+        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+        flight_list.css({height : height});
+
         getRisk(jQuery(this));
     });
     jQuery('.pilot-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
         jQuery('.pilot', root_el).html(jQuery(this).text());
         jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
-        jQuery(this).parent().hide()/*.hide()*/;
+        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
         getPilot(jQuery(this));
     });
 
@@ -147,11 +162,12 @@
         var root_el = jQuery(this).closest(".list-select");
         jQuery('.plane', root_el).html(jQuery(this).text());
         jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
-        jQuery(this).parent().hide()/*.hide()*/;
+        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
     });
 
     jQuery('.list-select ul').mouseleave(function() {
-        jQuery(this).hide();
+        flight_list.css({height : height});
+        jQuery(this).hide().removeClass("expanded");
     });
 
 
