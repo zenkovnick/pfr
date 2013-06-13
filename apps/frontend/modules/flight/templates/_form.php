@@ -140,7 +140,7 @@
         jQuery('.result', root_el).html(jQuery(this).text());
         jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
-        flight_list.css({height : height});
+        flight_list.css({height : ""});
 
         getRisk(jQuery(this));
     });
@@ -160,7 +160,7 @@
     });
 
     jQuery('.list-select ul').mouseleave(function() {
-        flight_list.css({height : height});
+        flight_list.css({height : ""});
         jQuery(this).hide().removeClass("expanded");
     });
 
