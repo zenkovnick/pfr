@@ -58,7 +58,7 @@
             <h2>Pilots</h2>
             <ul class="pilot-list" id="pilot_container">
                 <?php foreach($pilots as $pilot): ?>
-                    <li class="pilot-entity <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
+                    <li class="pilot-entity <?php echo $pilot->getIsActiveAccount() ? '': 'invited' ?> <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
                         <span class="handler hidden">Handler</span>
                         <input type="hidden" value="<?php echo $pilot->getId() ?>" />
                         <div class="pilot-header caption-block">

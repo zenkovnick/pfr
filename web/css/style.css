@@ -1448,13 +1448,18 @@ p.help-message {
 
 .editable-list .caption-block {
     overflow: hidden;
-    background: #F2F2F2;    
+    background: #E4E4E4;    
     padding: 11px 9px;
 }
 .editable-list .caption-block,
 .editable-list .info-block {
     margin: 0 20px;
     border: 1px solid #CCC;
+}
+.editable-list .invited .caption-block {
+    background: none;
+    border: 1px dashed #CCC;
+    color: #999;
 }
 .editable-list .caption-block .link {
     color: #0F76BB;
@@ -1469,6 +1474,15 @@ p.help-message {
     position: relative;
 }
 
+.editable-list .hint-block p {
+    color: #999;
+    font-size: 11px;
+    line-height: 1.4em;
+    padding: 0 10px 0 0;
+}
+.editable-list .hint-block p span {
+    font-weight: bold;
+}
 
 .editable-list .photo-block {
     float: left;
