@@ -559,7 +559,7 @@
             jQuery("a.cancel-pilot-link", root_li).bind('click', cancelPilotEdit);
             jQuery('a.delete_pilot', root_li).bind('click', deletePilot);
             jQuery('a.cancel-pilot-add', root_li).closest('.caption-block').remove();
-            root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
+            //root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
             root_li.attr('id', 'pilot_'+data.pilot_id);
             root_li.removeClass('new').addClass('pilot-entity').addClass('invited');
 
