@@ -82,7 +82,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
 
     public static function getMaxPosition($account_id){
         $query = Doctrine_Query::create()
-            ->select('MAX(u.position) as max_position')
+            ->select('MAX(ua.position) as max_position')
             ->from('sfGuardUser u')
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account_id)
@@ -97,6 +97,8 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->from('sfGuardUser u')
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account->getId())
+            ->andWhere('ua.is_active = true')
+            ->orderBy('ua.position ASC')
             ->execute();
         return $query;
     }
@@ -107,6 +109,8 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account->getId())
             ->andWhere('u.id != ?', $curr_user->getId())
+            ->andWhere('ua.is_active = true')
+            ->orderBy('ua.position ASC')
             ->execute();
 
         return $query->count() > 0 ? $query->getFirst()->getId() : $curr_user->getId();

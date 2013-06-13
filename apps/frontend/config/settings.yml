@@ -30,7 +30,7 @@ all:
     csrf_secret:            0ef5c9ad624daeb8729f2fe03d5d63f2f0d87050
 
     # Output escaping settings
-    escaping_strategy:      true
+    escaping_strategy:    false
     escaping_method:        ESC_SPECIALCHARS
 
     # Enable the database manager

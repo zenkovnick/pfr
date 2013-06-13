@@ -58,7 +58,7 @@ class FlightFormFilter extends BaseFlightFormFilter
         }
         if (isset($this->defaults['pilot']) && $this->defaults['pilot'] != '')
         {
-            $query->andWhere("f.pic_id = ? OR f.pic_id = ?", array($this->defaults['pilot'], $this->defaults['pilot']));
+            $query->andWhere("f.pic_id = ? OR f.sic_id = ?", array($this->defaults['pilot'], $this->defaults['pilot']));
         }
         if (isset($this->defaults['date']) && $this->defaults['date'] != '')
         {

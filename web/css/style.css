@@ -1367,6 +1367,7 @@ p.help-message {
     border-radius: 25px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
+    behavior:url(PIE.htc);
     height: 50px;
     width: 50px;
     top: -20px;
@@ -1577,3 +1578,79 @@ p.help-message {
 .editable-list .modify-link {
     margin-top: 0;
 }
+
+/* DASHBOARD(FIRST TIME) */
+.first-time-dashboard {
+
+}
+.first-time-dashboard .first-time-header {
+    overflow: hidden;
+}
+
+.first-time-dashboard h1 {
+    width: 70%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-size: 1.14em;
+    line-height: 30px;
+}
+
+.first-time-dashboard .new-flight-wrapper {
+    width: 30%;
+    float: right;
+}
+.first-time-dashboard .new-flight {
+    float: right;
+}
+
+.first-time-dashboard .btn {
+    padding: 7px 25px;
+}
+
+.first-time-dashboard .btn-grey:hover {
+    background: #CCC;
+    border-color: #999;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.first-time-dashboard .first-time-wrapper {
+    margin: 10px 0 0 0;
+}
+
+.first-time-wrapper h2 {
+    font-size: 0.9em;
+    color: #FFFFFF;
+    background-color: #66CC00;
+    border: 1px solid #669900;
+    padding: 13px;
+}
+
+.first-time-wrapper ul.conditions {
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+}
+
+.first-time-wrapper ul.conditions li{
+    border-bottom: 1px solid #CCCCCC;
+    font-size: 0.9em;
+    padding: 13px;
+}
+
+.first-time-wrapper ul.conditions li span{
+    color: #999999;
+    text-decoration: line-through;
+}
+
+.first-time-wrapper ul.conditions li a{
+    color: #0F76BB;
+    text-decoration: none;
+}
+
+.first-time-wrapper ul.conditions li a.skip-pilot{
+    float:right
+}
+
+
+
