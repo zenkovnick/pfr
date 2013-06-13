@@ -561,7 +561,7 @@
             jQuery('a.cancel-pilot-add', root_li).closest('.caption-block').remove();
             root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
             root_li.attr('id', 'pilot_'+data.pilot_id);
-            root_li.removeClass('new').addClass('pilot-entity');
+            root_li.removeClass('new').addClass('pilot-entity').addClass('invited');
 
             jQuery( "#pilot_container").sortable({
                 containment: "parent",
