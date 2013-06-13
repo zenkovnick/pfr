@@ -12,6 +12,9 @@ class PilotForm extends sfGuardUserForm {
         $this->setWidget('can_manage', new sfWidgetFormInputCheckbox());
         $this->setValidator('can_manage', new sfValidatorBoolean());
 
+        $this->widgetSchema->setLabels(array(
+            'can_manage' => 'Allow pilot to manage account settings'
+        ));
         $this->disableCSRFProtection();
     }
 }
