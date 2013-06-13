@@ -427,7 +427,7 @@
     function editPlaneSubmitted(data){
         var root_li = null;
         if(data.result == "OK"){
-            jQuery('li#plane_'+data.plane_id);
+            root_li = jQuery('li#plane_'+data.plane_id);
             jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-plane-link", root_li).addClass('hidden');
             jQuery("span.tail-number", root_li).text(data.tail_number);
@@ -559,9 +559,9 @@
             jQuery("a.cancel-pilot-link", root_li).bind('click', cancelPilotEdit);
             jQuery('a.delete_pilot', root_li).bind('click', deletePilot);
             jQuery('a.cancel-pilot-add', root_li).closest('.caption-block').remove();
-            root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
+            //root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
             root_li.attr('id', 'pilot_'+data.pilot_id);
-            root_li.removeClass('new').addClass('pilot-entity');
+            root_li.removeClass('new').addClass('pilot-entity').addClass('invited');
 
             jQuery( "#pilot_container").sortable({
                 containment: "parent",

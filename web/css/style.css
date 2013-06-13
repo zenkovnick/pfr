@@ -1662,5 +1662,37 @@ p.help-message {
     float:right
 }
 
+/* APPROVE ACCOUNT */
+.approve-account {
+
+}
 
 
+.approve-account h2 {
+    margin: 0 0 15px;
+    text-align: center;
+    font-size: 1.14em;
+    text-align: center;
+}
+
+.approve-account p {
+    text-align: center;
+    font-size: 1.0em;
+    color: #999;
+    padding: 0 4px;
+}
+.approve-account .buttons {
+    margin: 20px 0 0 0;
+}
+
+.approve-account .btn {
+    padding: 7px 93px;
+}
+
+.approve-account .btn-green {
+    float: left;
+}
+
+.approve-account .btn-red {
+    float: right;
+}
