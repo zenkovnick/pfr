@@ -1444,7 +1444,9 @@ p.help-message {
     overflow: hidden;
     position: relative;
 }
-
+.editable-list ul {
+    overflow: hidden;
+}
 
 .editable-list .caption-block {
     overflow: hidden;
