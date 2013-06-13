@@ -248,6 +248,6 @@ class registrationActions extends sfActions
 
         $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
 
-        $this->redirect($signoutUrl);
+        $this->redirect("@signin");
     }
 }
