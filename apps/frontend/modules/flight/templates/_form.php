@@ -114,8 +114,6 @@
     jQuery(document).ready(function(){
         /*jQuery("select.risk-factor").bind('change', getRisk);
         jQuery("select.pilot").bind('change', getPilot);*/
-        height = flight_list.height();
-
         jQuery("a.show-help-link").bind('click', showHelp);
         jQuery("input.date").prop('readonly', true).datepicker({
             dateFormat: 'yy-mm-dd'
@@ -129,13 +127,9 @@
         //jQuery("select.risk-factor").trigger('change');
     });
 
-    jQuery("li.risk-factor-li:last .list-select .result").bind('click', function(){
-        var root_li = jQuery(this).closest("li.risk-factor-li");
-        var response_count = jQuery("li", root_li).length;
-        flight_list.css({height : height+(response_count*37)});
-    });
-
     jQuery('.list-select .result, .list-select .pilot, .list-select .plane').bind('click', function(){
+        jQuery("ul.expanded").trigger("mouseleave");
+        height = flight_list.height();
         jQuery("ul.expanded").hide().removeClass('expanded');
         var ul = jQuery(this).parent().find('ul');
         ul.show().addClass("expanded");
@@ -170,7 +164,11 @@
         jQuery(this).hide().removeClass("expanded");
     });
 
-
+    jQuery("li.risk-factor-li:last .list-select .result").bind('click', function(){
+        var root_li = jQuery(this).closest("li.risk-factor-li");
+        var response_count = jQuery("li", root_li).length;
+        flight_list.css({height : height+(response_count*37)});
+    });
 
 
 </script>
