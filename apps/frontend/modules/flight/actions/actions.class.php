@@ -43,7 +43,7 @@ class flightActions extends sfActions {
     public function executeEdit(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
-        $this->data_fields = json_decode($this->flight->generateFromDB($this->account), true);
+        $this->data_fields = json_decode($this->flight->getInfo(), true);
         $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
         $this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account, 'drafted' => $this->flight->getDrafted()));
         if($request->isMethod('POST')){

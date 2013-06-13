@@ -216,6 +216,21 @@ ul.header-link-block li a {
     cursor: pointer;
 }
 
+.btn-grey {
+    background: #CCC;
+    border-color: #999;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.btn-red {
+    background: #FF3333;
+    border-color: #AA3333;
+    color: #FFF;
+    cursor: pointer;
+}
+
+
 .btn-blue, .btn-grey:hover {
     background: #00AEEF;
     border-color: #0F76BB;
@@ -1323,4 +1338,18 @@ p.help-message {
     padding: 10px 10px 10px 36px;
     position: relative;
     width: 100%;
+}
+
+.assessment-wrapper .btn {
+    padding: 9px 33px;
+}
+.assessment-wrapper a.submit {
+    float: right;
+}
+
+.assessment-wrapper a.prevent-click:hover {
+    background: #CCC;
+    border-color: #999;
+    color: #FFF;
+    cursor: pointer;
 }
