@@ -37,7 +37,7 @@
             <?php endforeach ?>
         </ul>
         <a href="" class="add-new-response-link">+ Add Response Option</a>
-        <button class="btn btn-green" type="submit">Save</button>
+        <button class="btn btn-green save-risk" type="submit">Save</button>
         <a href="" class="delete_risk_factor">Delete</a>
     </form>
 </div>

@@ -25,7 +25,6 @@ function clearCoords()
 
 function init_crop(upload_url, get_widget_url, default_image, crop_min_size, upload_type, form_field_id, container_id, uploaded_field_id)
 {
-
 //    jQuery('#remove_image').click(function(){
 //        jQuery('#photo').attr('src', default_image );
 //        jQuery('#'+form_field_id).val('');

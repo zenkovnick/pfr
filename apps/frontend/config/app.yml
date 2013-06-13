@@ -59,7 +59,7 @@ all:
     comment_count: 10
 
   dashboard:
-    limit: 5
+    limit: 10
     chart:
       risk:
         metric: "Risk"

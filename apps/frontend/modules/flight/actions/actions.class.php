@@ -43,7 +43,7 @@ class flightActions extends sfActions {
     public function executeEdit(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
-        $this->data_fields = json_decode($this->flight->generateFromDB($this->account), true);
+        $this->data_fields = json_decode($this->flight->getInfo(), true);
         $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
         $this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account, 'drafted' => $this->flight->getDrafted()));
         if($request->isMethod('POST')){
@@ -97,7 +97,7 @@ class flightActions extends sfActions {
             }
             $this->mitigation_info = $this->flight->getMitigationInfo();
             if($this->mitigation_info['notify']){
-                $email_subject = "New Flight: {$this->flight->getAirportFrom()} to {$this->flight->getAirportTo()} in ".
+                /*$email_subject = "New Flight: {$this->flight->getAirportFrom()} to {$this->flight->getAirportTo()} in ".
                 "{$this->flight->getPlane()->getTailNumber()} (".ucfirst($this->mitigation_info['type'])." risk)";
                 $result = EmailNotification::sendAssessment(
                     $this->getUser()->getGuardUser(),
@@ -107,7 +107,7 @@ class flightActions extends sfActions {
                         'mitigation_info' => $this->mitigation_info
                     )),
                     $email_subject
-                );
+                );*/
             }
         } else {
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
