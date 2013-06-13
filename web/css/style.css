@@ -79,9 +79,11 @@ a                              { cursor: pointer; }
 }
 
 
+/*
 .ui-sortable {
     padding: 1px 0;
 }
+*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------> Main Structure <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -1441,8 +1443,6 @@ p.help-message {
 }
 .editable-list li {
     margin: 9px 0;
-    overflow: hidden;
-    position: relative;
 }
 .editable-list ul {
     overflow: hidden;
@@ -1549,19 +1549,16 @@ p.help-message {
     display: block;
     width: 18px;
     height: 36px;
+    margin: 0 -1px 0 1px;
     border: 1px solid #CCC;
+    float: left;
     
     background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
     cursor: pointer;
     overflow: hidden;
     
-    position: absolute;
-    top: 0;
-    left: 0;
-    
     text-indent: -1000px;
 }
-
 
 .editable-list .buttons-block {
     padding: 5px 0 0;
@@ -1591,7 +1588,9 @@ p.help-message {
     margin-top: 0;
 }
 
-/* DASHBOARD(FIRST TIME) */
+/*----------------------------------------------------------------------------------*/
+/*-----------------------------> DASHBOARD(FIRST TIME) <----------------------------*/
+/*----------------------------------------------------------------------------------*/
 .first-time-dashboard {
 
 }

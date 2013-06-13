@@ -454,7 +454,7 @@
         if(confirm("Are You Sure?")){
             var root_li = jQuery(this).closest('.editing');
             jQuery.ajax({
-                url: '<?php echo url_for('@delete_plane'); ?>',
+                url: '<?php echo url_for("@delete_plane"); ?>',
                 data: {id: jQuery("input[type='hidden']", root_li).val()},
                 type: 'POST',
                 dataType: 'json',
@@ -653,7 +653,7 @@
         if(confirm("Are You Sure?")){
             var root_li = jQuery(this).closest('.editing');
             jQuery.ajax({
-                url: '<?php echo url_for('@delete_pilot'); ?>',
+                url: '<?php echo url_for("@delete_pilot"); ?>',
                 data: {id: jQuery("input[type='hidden']", root_li).val()},
                 type: 'POST',
                 dataType: 'json',
