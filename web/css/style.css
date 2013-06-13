@@ -76,6 +76,7 @@ a                              { cursor: pointer; }
     overflow: hidden;
     -moz-binding: url(ellipsis.xml#ellipsis);
     white-space: nowrap !important;
+    width: 92%;
 }
 
 
@@ -1435,7 +1436,18 @@ p.help-message {
     padding: 22px 0 0;
 }
 
+.settings-page span.hint {
+    color: #999;
+    font-size: 11px;
+    line-height: 1.4em;
+    padding: 0 10px 0 0;
+}
 
+.settings-page a.change-billing-link {
+    color: #0F76BB;
+    font-size: 11px;
+    text-decoration: none;
+}
 
 .editable-list {
     overflow: hidden;
