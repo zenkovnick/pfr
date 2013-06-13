@@ -78,6 +78,10 @@ a                              { cursor: pointer; }
     white-space: nowrap !important;
 }
 
+
+.ui-sortable {
+    padding: 1px 0;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------> Main Structure <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -136,8 +140,14 @@ a.logo {
     display: inline-block;
     font-size: 1.14em;
     font-weight: 600;
-    margin: 22px 0;
+    margin: 20px 0 0;
     padding: 0 15px;
+    line-height: normal;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 400px;
 }
 
 ul.header-link-block {
@@ -925,7 +935,10 @@ a.show-hide-field:hover {
     overflow: hidden;
     padding: 14px 9px;
 }
-.mitigation-fields li.risk-value-edit .mitigation-header:hover {
+.mitigation-fields li.risk-value-edit .mitigation-header:hover,
+.flight-information-list > li .element-wrapper:hover,
+.risk-factor-list > .editing .entry-header,
+.risk-factor-list > li .entry-header:hover {
     background: #E4E4E4;
 }
 .mitigation-fields li.risk-value-edit .mitigation-header span.risk-value {
@@ -1401,26 +1414,15 @@ p.help-message {
 /*----------------------------------------------------------------------------------*/
 /*---------------------------------> Settings page <--------------------------------*/
 /*----------------------------------------------------------------------------------*/
-.settings-page h1 {
-    margin: 0 0 22px;
-}
-.settings-page h2 + ul > li:first-child {
-    margin-top: 22px;
-}
-
 .settings-page h1,
 .settings-page h2 {
     color: #414042;
     font-size: 16px;
     font-weight: bold;
-    text-align: center;
+    
     text-transform: capitalize;
-}
-.settings-page h1,
-.settings-page h2 {
     text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0 20px 13px;
 }
 .settings-page h2 {
     border-top: 1px solid #E4E4E4;
@@ -1442,23 +1444,29 @@ p.help-message {
     overflow: hidden;
     position: relative;
 }
-.editable-list li:first-child {
-    margin-top: 0;
-}
 
 
 .editable-list .caption-block {
     overflow: hidden;
-    background: #E4E4E4;    
     padding: 11px 9px;
 }
+
+.editable-list .caption-block:hover,
+.editable-list .editing .caption-block,
+.editable-list .new .caption-block {
+    background: #E4E4E4;    
+}
+.editable-list .caption-block,
+.editable-list .invited .caption-block {
+    background: #F2F2F2;    
+}
+
 .editable-list .caption-block,
 .editable-list .info-block {
     margin: 0 20px;
     border: 1px solid #CCC;
 }
 .editable-list .invited .caption-block {
-    background: none;
     border: 1px dashed #CCC;
     color: #999;
 }
@@ -1527,7 +1535,15 @@ p.help-message {
     margin: 0 10px 0 0;
 }
 
-.editable-list .handler {
+
+.editable-list .handler.hidden,
+.editable-list .editing .handler {
+    background: none;
+    border: 1px solid transparent;
+    display: block !important;
+}
+.editable-list .handler,
+.editable-list .ui-sortable-helper .handler {
     display: block;
     width: 18px;
     height: 36px;
@@ -1542,12 +1558,6 @@ p.help-message {
     left: 0;
     
     text-indent: -1000px;
-}
-.editable-list .handler.hidden,
-.editable-list .editing .handler {
-    background: none;
-    border: 1px solid transparent;
-    display: block !important;
 }
 
 

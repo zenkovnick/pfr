@@ -14,7 +14,7 @@
             </li>
             
             <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
-                <li class="input-block">
+                <li class="check-block">
                     <?php include_partial("settings/field", array('field' => $form['can_manage'], 'class' => 'can-manage')); ?>
                 </li>
             <?php endif ?>
