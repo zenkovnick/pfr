@@ -793,10 +793,10 @@ a.add-new-response-link:hover {
     height: 9px;
     margin: 0 10px 29px;
 }
-.ui-slider-range.ui-widget-header {
+.form-builder-wrapper .ui-slider-range.ui-widget-header {
     background: #FFCC00;
 }
-a.ui-slider-handle.ui-state-default.ui-corner-all {
+.form-builder-wrapper a.ui-slider-handle.ui-state-default.ui-corner-all {
     background: #AFAFAF;
     border: none;
     border-radius: 10px;
@@ -1352,4 +1352,44 @@ p.help-message {
     border-color: #999;
     color: #FFF;
     cursor: pointer;
+}
+
+.assessment-wrapper .risk-sum-wrapper {
+    margin: 35px 0;
+}
+
+.assessment-wrapper .ui-slider-range.ui-widget-header {
+    background: #FFCC00;
+}
+.assessment-wrapper a.ui-slider-handle.ui-state-default.ui-corner-all {
+    border: none;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    top: -20px;
+    left: -20px;
+    line-height: 50px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.assessment-wrapper .ui-widget-content {
+    background: #CCCCCC !important;
+    border: 0;
+}
+
+.assessment-wrapper .green-marker {
+    background: #66CC00 !important;
+}
+
+.assessment-wrapper .yellow-marker {
+    background: #FFCC00 !important;
+}
+
+.assessment-wrapper .red-marker {
+    background: #FF3333 !important;
 }

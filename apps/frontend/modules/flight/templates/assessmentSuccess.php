@@ -1,6 +1,10 @@
 <?php slot('header') ?>
     <?php include_partial('menu/header_menu', array('account' => $account)); ?>
 <?php end_slot() ?>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/js/jquery.ui.touch-punch.min.js"></script>
 <div class="assessment-wrapper">
     <div class="risk-assessment">
         <h2><?php echo $mitigation_info['message'] ?></h2>
@@ -8,8 +12,9 @@
             Flight #<?php echo $flight->getTripNumber() ?> from <?php echo $flight->getAirportFrom() ?> to <?php echo $flight->getAirportTo() ?>
             in <?php echo $flight->getPlane()->getTailNumber() ?> has a <?php echo $mitigation_info['type'] ?> risk factor with <?php echo $flight->getRiskFactorSum() ?> of 50
         </p>
-
-        <span class="risk-sum"></span>
+        <div class="risk-sum-wrapper">
+            <div id="risk_sum"></div>
+        </div>
         <?php if($mitigation_info['type'] == 'high' && $mitigation_info['prevent_flight']): ?>
             <span class="note">You must mitigate risk before proceeding with this flight</span>
         <?php endif ?>
@@ -48,20 +53,38 @@
 </div>
 
 <script type="text/javascript">
+    var risk_factor_sum = <?php echo $flight->getRiskFactorSum() ?>;
+    var risk_factor_type = '<?php echo $mitigation_info['type'] ?>';
     function preventClick(event){
         event.preventDefault();
     }
 
     jQuery(document).ready(function(){
         jQuery("a.prevent-click").bind('click', preventClick);
-        /*var x = jQuery('.risk-sum').offset().left;
-        var y = jQuery('.risk-sum').offset().top;
-        var risk_factor_sum = <?php echo $flight->getRiskFactorSum() ?>;
-        var offset = 10 * risk_factor_sum;
-        var paper = Raphael(x+offset, y, 50, 50);
-        var circle = paper.circle(25, 25, 25);
-        circle.attr("fill", "#FF3333");
-        circle.attr("stroke", "#AA3333");
-        paper.text(25, 25, risk_factor_sum).attr({fill: '#ffffff', "font-size": 16, "font-family": "Arial, Helvetica, sans-serif"});*/
-    })
+        jQuery( "#risk_sum" ).slider({
+            min: 0,
+            max: 49,
+            value: risk_factor_sum,
+            create: function(){
+                var marker = jQuery("a.ui-slider-handle.ui-state-default.ui-corner-all");
+                marker.text(risk_factor_sum);
+                switch(risk_factor_type){
+                    case 'low':
+                      marker.addClass('green-marker');
+                      break;
+                    case 'medium':
+                        marker.addClass('yellow-marker');
+                        break;
+                    case 'high':
+                        marker.addClass('red-marker');
+                        break;
+                }
+            },
+            slide: function( event, ui ) {
+                return false;
+            }
+        });
+
+
+    });
 </script>
