@@ -14,11 +14,13 @@
             </li>
             
             <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
-                <li class="input-block">
+                <li class="check-block">
                     <?php include_partial("settings/field", array('field' => $form['can_manage'], 'class' => 'can-manage')); ?>
                 </li>
             <?php endif ?>
-            
+            <li class="hint-block">
+                <p>Adding this pilot will give you the ability to measure their flights' risk over time, but be aware that by adding them, you will be adding <span>$3 every month</span> to your bill.</p>
+            </li>
             <li class="buttons-block">
                 <?php if($pilot->getId() != $account->getManagedById() && $pilot->getId() != $sf_user->getGuardUser()->getId()): ?>
                     <a href="" class="delete-pilot remove-link">Delete</a>

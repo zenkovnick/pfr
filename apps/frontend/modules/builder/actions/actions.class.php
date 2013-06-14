@@ -28,7 +28,13 @@ class builderActions extends sfActions
         if($request->isMethod('post')){
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){
-                $this->form->save();
+                $risk_builder = $this->form->save();
+                $account = $risk_builder->getAccount();
+                if(!$account->getHasModifiedForm()){
+                    $account->setHasModifiedForm(true);
+                    $account->save();
+                }
+
                 $this->redirect("@settings?account_id={$this->account->getId()}");
             }
         }

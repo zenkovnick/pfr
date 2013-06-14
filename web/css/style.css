@@ -76,8 +76,15 @@ a                              { cursor: pointer; }
     overflow: hidden;
     -moz-binding: url(ellipsis.xml#ellipsis);
     white-space: nowrap !important;
+    width: 92%;
 }
 
+
+/*
+.ui-sortable {
+    padding: 1px 0;
+}
+*/
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------> Main Structure <---------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -136,8 +143,14 @@ a.logo {
     display: inline-block;
     font-size: 1.14em;
     font-weight: 600;
-    margin: 22px 0;
+    margin: 20px 0 0;
     padding: 0 15px;
+    line-height: normal;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 400px;
 }
 
 ul.header-link-block {
@@ -387,7 +400,7 @@ ul.header-link-block li a {
     margin-bottom: 15px;
 }
 
-.create-account .photo-holder{
+.photo-holder{
     border-left: 1px solid #CCC;
     border-top: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
@@ -399,11 +412,11 @@ ul.header-link-block li a {
     background: url('../images/photo_bg.png') center center no-repeat;
 }
 
-.create-account .photo-holder:hover{
+.photo-holder:hover{
     cursor: pointer;
 }
 
-.create-account .with-dash-border {
+.with-dash-border {
     border-left: 1px dashed #CCC;
     border-top: 1px dashed #CCC;
     border-bottom: 1px dashed #CCC;
@@ -925,7 +938,10 @@ a.show-hide-field:hover {
     overflow: hidden;
     padding: 14px 9px;
 }
-.mitigation-fields li.risk-value-edit .mitigation-header:hover {
+.mitigation-fields li.risk-value-edit .mitigation-header:hover,
+.flight-information-list > li .element-wrapper:hover,
+.risk-factor-list > .editing .entry-header,
+.risk-factor-list > li .entry-header:hover {
     background: #E4E4E4;
 }
 .mitigation-fields li.risk-value-edit .mitigation-header span.risk-value {
@@ -1401,26 +1417,15 @@ p.help-message {
 /*----------------------------------------------------------------------------------*/
 /*---------------------------------> Settings page <--------------------------------*/
 /*----------------------------------------------------------------------------------*/
-.settings-page h1 {
-    margin: 0 0 22px;
-}
-.settings-page h2 + ul > li:first-child {
-    margin-top: 22px;
-}
-
 .settings-page h1,
 .settings-page h2 {
     color: #414042;
     font-size: 16px;
     font-weight: bold;
-    text-align: center;
+    
     text-transform: capitalize;
-}
-.settings-page h1,
-.settings-page h2 {
     text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0 20px 13px;
 }
 .settings-page h2 {
     border-top: 1px solid #E4E4E4;
@@ -1431,7 +1436,18 @@ p.help-message {
     padding: 22px 0 0;
 }
 
+.settings-page span.hint {
+    color: #999;
+    font-size: 11px;
+    line-height: 1.4em;
+    padding: 0 10px 0 0;
+}
 
+.settings-page a.change-billing-link {
+    color: #0F76BB;
+    font-size: 11px;
+    text-decoration: none;
+}
 
 .editable-list {
     overflow: hidden;
@@ -1439,23 +1455,34 @@ p.help-message {
 }
 .editable-list li {
     margin: 9px 0;
+}
+.editable-list ul {
     overflow: hidden;
-    position: relative;
 }
-.editable-list li:first-child {
-    margin-top: 0;
-}
-
 
 .editable-list .caption-block {
     overflow: hidden;
-    background: #F2F2F2;    
     padding: 11px 9px;
 }
+
+.editable-list .caption-block:hover,
+.editable-list .editing .caption-block,
+.editable-list .new .caption-block {
+    background: #E4E4E4;    
+}
+.editable-list .caption-block,
+.editable-list .invited .caption-block {
+    background: #F2F2F2;    
+}
+
 .editable-list .caption-block,
 .editable-list .info-block {
     margin: 0 20px;
     border: 1px solid #CCC;
+}
+.editable-list .invited .caption-block {
+    border: 1px dashed #CCC;
+    color: #999;
 }
 .editable-list .caption-block .link {
     color: #0F76BB;
@@ -1470,11 +1497,20 @@ p.help-message {
     position: relative;
 }
 
+.editable-list .hint-block p {
+    color: #999;
+    font-size: 11px;
+    line-height: 1.4em;
+    padding: 0 10px 0 0;
+}
+.editable-list .hint-block p span {
+    font-weight: bold;
+}
 
 .editable-list .photo-block {
     float: left;
 }
-.editable-list .photo-holder {
+/*.editable-list .photo-holder {
     display: block;
     overflow: hidden;
     width: 40px;
@@ -1484,7 +1520,7 @@ p.help-message {
     border-right: 0;
     background: url('../images/photo_bg.png') center center no-repeat;
     cursor: pointer;
-}
+}*/
 
 .editable-list .input-block input {
     background: #FFF;
@@ -1513,29 +1549,28 @@ p.help-message {
     margin: 0 10px 0 0;
 }
 
-.editable-list .handler {
-    display: block;
-    width: 18px;
-    height: 36px;
-    border: 1px solid #CCC;
-    
-    background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
-    cursor: pointer;
-    overflow: hidden;
-    
-    position: absolute;
-    top: 0;
-    left: 0;
-    
-    text-indent: -1000px;
-}
+
 .editable-list .handler.hidden,
 .editable-list .editing .handler {
     background: none;
     border: 1px solid transparent;
     display: block !important;
 }
-
+.editable-list .handler,
+.editable-list .ui-sortable-helper .handler {
+    display: block;
+    width: 18px;
+    height: 36px;
+    margin: 0 -1px 0 1px;
+    border: 1px solid #CCC;
+    float: left;
+    
+    background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
+    cursor: pointer;
+    overflow: hidden;
+    
+    text-indent: -1000px;
+}
 
 .editable-list .buttons-block {
     padding: 5px 0 0;
@@ -1565,7 +1600,16 @@ p.help-message {
     margin-top: 0;
 }
 
-/* DASHBOARD(FIRST TIME) */
+.editable-list .user-name,  .editable-list .account-title{
+    width: 398px !important;
+    float: left;
+}
+
+
+
+/*----------------------------------------------------------------------------------*/
+/*-----------------------------> DASHBOARD(FIRST TIME) <----------------------------*/
+/*----------------------------------------------------------------------------------*/
 .first-time-dashboard {
 
 }
@@ -1638,5 +1682,37 @@ p.help-message {
     float:right
 }
 
+/* APPROVE ACCOUNT */
+.approve-account {
+
+}
 
 
+.approve-account h2 {
+    margin: 0 0 15px;
+    text-align: center;
+    font-size: 1.14em;
+    text-align: center;
+}
+
+.approve-account p {
+    text-align: center;
+    font-size: 1.0em;
+    color: #999;
+    padding: 0 4px;
+}
+.approve-account .buttons {
+    margin: 20px 0 0 0;
+}
+
+.approve-account .btn {
+    padding: 7px 93px;
+}
+
+.approve-account .btn-green {
+    float: left;
+}
+
+.approve-account .btn-red {
+    float: right;
+}

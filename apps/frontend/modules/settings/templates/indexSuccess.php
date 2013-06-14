@@ -58,7 +58,7 @@
             <h2>Pilots</h2>
             <ul class="pilot-list" id="pilot_container">
                 <?php foreach($pilots as $pilot): ?>
-                    <li class="pilot-entity <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
+                    <li class="pilot-entity <?php echo $pilot->getIsActiveAccount() ? '': 'invited' ?> <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
                         <span class="handler hidden">Handler</span>
                         <input type="hidden" value="<?php echo $pilot->getId() ?>" />
                         <div class="pilot-header caption-block">
@@ -427,10 +427,11 @@
     function editPlaneSubmitted(data){
         var root_li = null;
         if(data.result == "OK"){
-            jQuery('li#plane_'+data.plane_id);
+            root_li = jQuery('li#plane_'+data.plane_id);
             jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-plane-link", root_li).addClass('hidden');
             jQuery("span.tail-number", root_li).text(data.tail_number);
+            root_li.removeClass('editing');
         } else if(data.result == "Changed") {
             root_li = jQuery('li#plane_'+data.old_plane_id);
             root_li.attr('id', 'plane_'+data.new_plane_id);
@@ -454,7 +455,7 @@
         if(confirm("Are You Sure?")){
             var root_li = jQuery(this).closest('.editing');
             jQuery.ajax({
-                url: '<?php echo url_for('@delete_plane'); ?>',
+                url: '<?php echo url_for("@delete_plane"); ?>',
                 data: {id: jQuery("input[type='hidden']", root_li).val()},
                 type: 'POST',
                 dataType: 'json',
@@ -559,9 +560,9 @@
             jQuery("a.cancel-pilot-link", root_li).bind('click', cancelPilotEdit);
             jQuery('a.delete_pilot', root_li).bind('click', deletePilot);
             jQuery('a.cancel-pilot-add', root_li).closest('.caption-block').remove();
-            root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
+            //root_li.bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
             root_li.attr('id', 'pilot_'+data.pilot_id);
-            root_li.removeClass('new').addClass('pilot-entity');
+            root_li.removeClass('new').addClass('pilot-entity').addClass('invited');
 
             jQuery( "#pilot_container").sortable({
                 containment: "parent",
@@ -653,7 +654,7 @@
         if(confirm("Are You Sure?")){
             var root_li = jQuery(this).closest('.editing');
             jQuery.ajax({
-                url: '<?php echo url_for('@delete_pilot'); ?>',
+                url: '<?php echo url_for("@delete_pilot"); ?>',
                 data: {id: jQuery("input[type='hidden']", root_li).val()},
                 type: 'POST',
                 dataType: 'json',
@@ -682,7 +683,10 @@
             }
         })
     }
-
+    function triggerUpload() {
+        var wrapper = jQuery(this).closest(".photo-block");
+        jQuery("input[type='file']", wrapper).trigger("click");
+    }
 
 
     jQuery(document).ready(function(){
@@ -707,6 +711,9 @@
         jQuery("a.edit-pilot-link").bind('click', editPilot);
         jQuery("a.cancel-pilot-link").bind('click', cancelPilotEdit);
         jQuery('#add-pilot-link').bind('click', addPilot);
+
+        jQuery(".photo-holder").bind("click", triggerUpload);
+
 
         if(window.location.hash){
             var el = jQuery(window.location.hash);
