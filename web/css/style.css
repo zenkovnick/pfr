@@ -1245,6 +1245,15 @@ p.help-message {
     cursor: pointer;
 }
 
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+html .ui-autocomplete {
+    height: 300px;
+}
 
 /* ASSESSMENT */
 .assessment-wrapper {
