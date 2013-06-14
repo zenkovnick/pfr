@@ -683,7 +683,10 @@
             }
         })
     }
-
+    function triggerUpload() {
+        var wrapper = jQuery(this).closest(".photo-block");
+        jQuery("input[type='file']", wrapper).trigger("click");
+    }
 
 
     jQuery(document).ready(function(){
@@ -708,6 +711,9 @@
         jQuery("a.edit-pilot-link").bind('click', editPilot);
         jQuery("a.cancel-pilot-link").bind('click', cancelPilotEdit);
         jQuery('#add-pilot-link').bind('click', addPilot);
+
+        jQuery(".photo-holder").bind("click", triggerUpload);
+
 
         if(window.location.hash){
             var el = jQuery(window.location.hash);

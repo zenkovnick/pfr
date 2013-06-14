@@ -8,7 +8,7 @@
             </li>
             
             <li class="input-block first-name">
-                <?php include_partial('settings/field', array('field' => $form['first_name'], 'placeholder' => 'Name')) ?>
+                <?php include_partial('settings/field', array('class' => 'user-name', 'field' => $form['first_name'], 'placeholder' => 'Name')) ?>
             </li>
             
             <li class="input-block">
