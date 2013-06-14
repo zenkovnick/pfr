@@ -169,4 +169,25 @@ class Flight extends BaseFlight
         }
         return $flights->count() > 0 ? $sum/$flights->count() : 0;
     }
+
+    public static function csvToArray($filename='', $delimiter=',', $header = null)
+    {
+        /*if(!file_exists($filename) || !is_readable($filename))
+            return FALSE;*/
+
+        $data = array();
+        if (($handle = fopen($filename, 'r')) !== FALSE)
+        {
+            while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE)
+            {
+                if(!$header)
+                    $header = $row;
+                else
+                    $data[] = array_combine($header, $row);
+            }
+            fclose($handle);
+        }
+        return $data;
+    }
+
 }

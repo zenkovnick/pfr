@@ -203,7 +203,7 @@ Airport:
     name: {type: string(255) }
     city: {type: string(255) }
     country: {type: string(255) }
-    IATA_FAA: {type: string(3) }
+    IATAFAA: {type: string(3) }
     ICAO: {type: string(4) }
     latitude: {type: float }
     longitude: {type: float }

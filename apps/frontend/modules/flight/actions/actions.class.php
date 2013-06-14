@@ -164,10 +164,18 @@ class flightActions extends sfActions {
         $array = array();
         foreach($result as $airport){
             $record['id'] = $airport->getId();
-            $record['value'] = $airport->getName();
+            $record['value'] = $airport->getICAO();
             $array[] = $record;
         }
            // ->toKeyValueArray('id','name');
         return $this->renderText(json_encode($array));
+    }
+
+    public function executeGetAirports(sfWebRequest $request){
+        $this->setLayout(false);
+        $header = array('id','name', 'city', 'country', 'IATA_FAA', 'ICAO', 'latitude', 'longitude', 'altitude', 'timezone', 'DST');
+        $airports = Flight::csvToArray(sfConfig::get('app_airports_url'), ',', $header);
+        echo AirportTable::getInstance()->pushAirports($airports) ? "Success" : "Failed";
+        return sfView::NONE;
     }
 }

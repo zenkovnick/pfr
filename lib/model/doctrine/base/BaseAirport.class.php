@@ -8,7 +8,7 @@
  * @property string $name
  * @property string $city
  * @property string $country
- * @property string $IATA_FAA
+ * @property string $IATAFAA
  * @property string $ICAO
  * @property float $latitude
  * @property float $longitude
@@ -20,7 +20,7 @@
  * @method string              getName()      Returns the current record's "name" value
  * @method string              getCity()      Returns the current record's "city" value
  * @method string              getCountry()   Returns the current record's "country" value
- * @method string              getIATAFAA()   Returns the current record's "IATA_FAA" value
+ * @method string              getIATAFAA()   Returns the current record's "IATAFAA" value
  * @method string              getICAO()      Returns the current record's "ICAO" value
  * @method float               getLatitude()  Returns the current record's "latitude" value
  * @method float               getLongitude() Returns the current record's "longitude" value
@@ -31,7 +31,7 @@
  * @method Airport             setName()      Sets the current record's "name" value
  * @method Airport             setCity()      Sets the current record's "city" value
  * @method Airport             setCountry()   Sets the current record's "country" value
- * @method Airport             setIATAFAA()   Sets the current record's "IATA_FAA" value
+ * @method Airport             setIATAFAA()   Sets the current record's "IATAFAA" value
  * @method Airport             setICAO()      Sets the current record's "ICAO" value
  * @method Airport             setLatitude()  Sets the current record's "latitude" value
  * @method Airport             setLongitude() Sets the current record's "longitude" value
@@ -62,7 +62,7 @@ abstract class BaseAirport extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('IATA_FAA', 'string', 3, array(
+        $this->hasColumn('IATAFAA', 'string', 3, array(
              'type' => 'string',
              'length' => 3,
              ));

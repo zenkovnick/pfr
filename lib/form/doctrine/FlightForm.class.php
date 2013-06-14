@@ -220,7 +220,7 @@ class FlightForm extends BaseFormDoctrine
             if (!$airport)
             {
                 $airport = new Airport();
-                $airport->setName($values['airport_from_name']);
+                $airport->setICAO($values['airport_from_name']);
                 $airport->save();
                 //Notifications::NewNotValidCompanyCreated($company);
             }
@@ -233,7 +233,7 @@ class FlightForm extends BaseFormDoctrine
             if (!$airport)
             {
                 $airport = new Airport();
-                $airport->setName($values['airport_to_name']);
+                $airport->setICAO($values['airport_to_name']);
                 $airport->save();
                 //Notifications::NewNotValidCompanyCreated($company);
             }
