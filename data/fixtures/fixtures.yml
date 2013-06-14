@@ -2403,28 +2403,28 @@ RiskFactorField:
 
 Airport:
   a1:
-    name: 'A01'
+    name: 'SA01'
   a2:
-    name: 'A08'
+    name: 'FA08'
   a3:
-    name: 'A36'
+    name: 'GA36'
   a4:
-    name: 'B11'
+    name: 'BB11'
   a5:
     name: 'N145'
   a6:
     name: 'G543'
   a7:
-    name: 'N3213'
+    name: 'N313'
   a8:
     name: 'C456'
   a9:
     name: 'V432'
   a10:
-    name: 'L4332'
+    name: 'L433'
   a11:
     name: 'C843'
   a12:
-    name: 'C3221'
+    name: 'C321'
   a13:
     name: 'K3422'

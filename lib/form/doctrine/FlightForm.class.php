@@ -32,17 +32,34 @@ class FlightForm extends BaseFormDoctrine
 
       foreach($data_fields as $key => $data_field){
           if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions" && !$this->startsWith($key, 'mitigation')){
-              /*if($key == "airport_to" || $key == "airport_from") {
-                  $this->setWidget("{$key}_id", new sfWidgetFormDoctrineJQueryAutocompleter(array(
-                      'url' => '/autocomplete/airport',
+              if($key == "airport_to") {
+                  /*$this->setWidget("{$key}_id", new sfWidgetFormDoctrineJQueryAutocompleter(array(
+                      'url' => "http://preflight/flight/autocomplete/airport",
                       'model' => 'Airport',
-                      'method' => 'getAirportID',
-                      'method_for_query' => 'getTitleById',
+
                   )));
                   $this->setWidget("{$key}_title", new sfWidgetFormInputHidden());
                   $this->setValidator("{$key}_title", new sfValidatorString(array('required' => true)));
+                  $this->setValidator("{$key}_id", new sfValidatorPass());*/
+                  $this->setWidget("{$key}_id", new sfWidgetFormInputHidden());
                   $this->setValidator("{$key}_id", new sfValidatorPass());
-              } else {*/
+                  $this->setWidget("{$key}_name", new sfWidgetFormInput());
+                  $this->setValidator("{$key}_name", new sfValidatorString(array("required" => true)));
+                  if($this->getObject()->getAirportToId()){
+                      $this->setDefault("{$key}_name", $this->getObject()->getAirportTo()->getName());
+                  }
+
+              } else if($key == "airport_from"){
+                  $this->setWidget("{$key}_id", new sfWidgetFormInputHidden());
+                  $this->setValidator("{$key}_id", new sfValidatorPass());
+                  $this->setWidget("{$key}_name", new sfWidgetFormInput());
+                  $this->setValidator("{$key}_name", new sfValidatorString(array("required" => true)));
+                  if($this->getObject()->getAirportFromId()){
+                      $this->setDefault("{$key}_name", $this->getObject()->getAirportFrom()->getName());
+                  }
+
+              } else {
+
                   $this->setWidget($key, new sfWidgetFormInput());
                   $this->setValidator($key, new sfValidatorString(array("required" => true)));
                   if(!$this->isNew()){
@@ -58,7 +75,7 @@ class FlightForm extends BaseFormDoctrine
                           $this->setDefault($key, date('H:i', time()));
                       }
                   }
-              /*}*/
+              }
 
           } else if($key == "flight_information") {
               foreach($data_field as $fi){
@@ -193,5 +210,36 @@ class FlightForm extends BaseFormDoctrine
     private function startsWith($haystack, $needle)
     {
         return !strncmp($haystack, $needle, strlen($needle));
+    }
+
+    public function processValues($values = null)
+    {
+        if (isset($values['airport_from_name']) && $values['airport_from_name'] != '')
+        {
+            $airport = Doctrine_Core::getTable("Airport")->findOneBy('name', $values['airport_from_name']);
+            if (!$airport)
+            {
+                $airport = new Airport();
+                $airport->setName($values['airport_from_name']);
+                $airport->save();
+                //Notifications::NewNotValidCompanyCreated($company);
+            }
+            $values['airport_from_id'] = $airport->getId();
+        }
+
+        if (isset($values['airport_to_name']) && $values['airport_to_name'] != '')
+        {
+            $airport = Doctrine_Core::getTable("Airport")->findOneBy('name', $values['airport_to_name']);
+            if (!$airport)
+            {
+                $airport = new Airport();
+                $airport->setName($values['airport_to_name']);
+                $airport->save();
+                //Notifications::NewNotValidCompanyCreated($company);
+            }
+            $values['airport_to_id'] = $airport->getId();
+        }
+
+        return $values;
     }
 }

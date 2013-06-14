@@ -15,13 +15,31 @@ abstract class BaseAirportForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'            => new sfWidgetFormInputHidden(),
-      'airport_title' => new sfWidgetFormInputText(),
+      'id'        => new sfWidgetFormInputHidden(),
+      'name'      => new sfWidgetFormInputText(),
+      'city'      => new sfWidgetFormInputText(),
+      'country'   => new sfWidgetFormInputText(),
+      'IATA_FAA'  => new sfWidgetFormInputText(),
+      'ICAO'      => new sfWidgetFormInputText(),
+      'latitude'  => new sfWidgetFormInputText(),
+      'longitude' => new sfWidgetFormInputText(),
+      'altitude'  => new sfWidgetFormInputText(),
+      'timezone'  => new sfWidgetFormInputText(),
+      'DST'       => new sfWidgetFormChoice(array('choices' => array('E' => 'E', 'A' => 'A', 'S' => 'S', 'O' => 'O', 'Z' => 'Z', 'N' => 'N', 'U' => 'U'))),
     ));
 
     $this->setValidators(array(
-      'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'airport_title' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'id'        => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'city'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'country'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'IATA_FAA'  => new sfValidatorString(array('max_length' => 3, 'required' => false)),
+      'ICAO'      => new sfValidatorString(array('max_length' => 4, 'required' => false)),
+      'latitude'  => new sfValidatorNumber(array('required' => false)),
+      'longitude' => new sfValidatorNumber(array('required' => false)),
+      'altitude'  => new sfValidatorInteger(array('required' => false)),
+      'timezone'  => new sfValidatorInteger(array('required' => false)),
+      'DST'       => new sfValidatorChoice(array('choices' => array(0 => 'E', 1 => 'A', 2 => 'S', 3 => 'O', 4 => 'Z', 5 => 'N', 6 => 'U'), 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('airport[%s]');

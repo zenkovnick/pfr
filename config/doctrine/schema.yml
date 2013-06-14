@@ -194,7 +194,7 @@ Flight:
       Plane:   {class: Plane, local: plane_id, foreign: id, type: one, onDelete: CASCADE}
       PIC:     {class: sfGuardUser, local: pic_id, foreign: id, type: one, onDelete: CASCADE}
       SIC:     {class: sfGuardUser, local: sic_id, foreign: id, type: one, onDelete: CASCADE}
-      AirportForm: {class: Airport, local: airport_from_id, foreign: id, type: one, onDelete: CASCADE}
+      AirportFrom: {class: Airport, local: airport_from_id, foreign: id, type: one, onDelete: CASCADE}
       AirportTo:   {class: Airport, local: airport_to_id, foreign: id, type: one, onDelete: CASCADE}
     actAs: [Timestampable]
 

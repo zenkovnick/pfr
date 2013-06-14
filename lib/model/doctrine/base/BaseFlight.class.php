@@ -10,8 +10,8 @@
  * @property integer $pic_id
  * @property integer $sic_id
  * @property varchar $trip_number
- * @property varchar $airport_from
- * @property varchar $airport_to
+ * @property integer $airport_from_id
+ * @property integer $airport_to_id
  * @property datetime $departure_date
  * @property integer $risk_factor_sum
  * @property enum $risk_factor_type
@@ -23,14 +23,16 @@
  * @property Plane $Plane
  * @property sfGuardUser $PIC
  * @property sfGuardUser $SIC
+ * @property Airport $AirportFrom
+ * @property Airport $AirportTo
  * 
  * @method integer     getAccountId()        Returns the current record's "account_id" value
  * @method integer     getPlaneId()          Returns the current record's "plane_id" value
  * @method integer     getPicId()            Returns the current record's "pic_id" value
  * @method integer     getSicId()            Returns the current record's "sic_id" value
  * @method varchar     getTripNumber()       Returns the current record's "trip_number" value
- * @method varchar     getAirportFrom()      Returns the current record's "airport_from" value
- * @method varchar     getAirportTo()        Returns the current record's "airport_to" value
+ * @method integer     getAirportFromId()    Returns the current record's "airport_from_id" value
+ * @method integer     getAirportToId()      Returns the current record's "airport_to_id" value
  * @method datetime    getDepartureDate()    Returns the current record's "departure_date" value
  * @method integer     getRiskFactorSum()    Returns the current record's "risk_factor_sum" value
  * @method enum        getRiskFactorType()   Returns the current record's "risk_factor_type" value
@@ -42,13 +44,15 @@
  * @method Plane       getPlane()            Returns the current record's "Plane" value
  * @method sfGuardUser getPIC()              Returns the current record's "PIC" value
  * @method sfGuardUser getSIC()              Returns the current record's "SIC" value
+ * @method Airport     getAirportFrom()      Returns the current record's "AirportFrom" value
+ * @method Airport     getAirportTo()        Returns the current record's "AirportTo" value
  * @method Flight      setAccountId()        Sets the current record's "account_id" value
  * @method Flight      setPlaneId()          Sets the current record's "plane_id" value
  * @method Flight      setPicId()            Sets the current record's "pic_id" value
  * @method Flight      setSicId()            Sets the current record's "sic_id" value
  * @method Flight      setTripNumber()       Sets the current record's "trip_number" value
- * @method Flight      setAirportFrom()      Sets the current record's "airport_from" value
- * @method Flight      setAirportTo()        Sets the current record's "airport_to" value
+ * @method Flight      setAirportFromId()    Sets the current record's "airport_from_id" value
+ * @method Flight      setAirportToId()      Sets the current record's "airport_to_id" value
  * @method Flight      setDepartureDate()    Sets the current record's "departure_date" value
  * @method Flight      setRiskFactorSum()    Sets the current record's "risk_factor_sum" value
  * @method Flight      setRiskFactorType()   Sets the current record's "risk_factor_type" value
@@ -60,6 +64,8 @@
  * @method Flight      setPlane()            Sets the current record's "Plane" value
  * @method Flight      setPIC()              Sets the current record's "PIC" value
  * @method Flight      setSIC()              Sets the current record's "SIC" value
+ * @method Flight      setAirportFrom()      Sets the current record's "AirportFrom" value
+ * @method Flight      setAirportTo()        Sets the current record's "AirportTo" value
  * 
  * @package    blueprint
  * @subpackage model
@@ -87,13 +93,11 @@ abstract class BaseFlight extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 255,
              ));
-        $this->hasColumn('airport_from', 'varchar', 255, array(
-             'type' => 'varchar',
-             'length' => 255,
+        $this->hasColumn('airport_from_id', 'integer', null, array(
+             'type' => 'integer',
              ));
-        $this->hasColumn('airport_to', 'varchar', 255, array(
-             'type' => 'varchar',
-             'length' => 255,
+        $this->hasColumn('airport_to_id', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('departure_date', 'datetime', null, array(
              'type' => 'datetime',
@@ -154,6 +158,16 @@ abstract class BaseFlight extends sfDoctrineRecord
 
         $this->hasOne('sfGuardUser as SIC', array(
              'local' => 'sic_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Airport as AirportFrom', array(
+             'local' => 'airport_from_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Airport as AirportTo', array(
+             'local' => 'airport_to_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

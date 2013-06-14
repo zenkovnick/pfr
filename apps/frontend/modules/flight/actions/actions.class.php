@@ -97,7 +97,7 @@ class flightActions extends sfActions {
             }
             $this->mitigation_info = $this->flight->getMitigationInfo();
             if($this->mitigation_info['notify']){
-                /*$email_subject = "New Flight: {$this->flight->getAirportFrom()} to {$this->flight->getAirportTo()} in ".
+                /*$email_subject = "New Flight: {$this->flight->getAirportFrom()->getName()} to {$this->flight->getAirportTo()->getName()} in ".
                 "{$this->flight->getPlane()->getTailNumber()} (".ucfirst($this->mitigation_info['type'])." risk)";
                 $result = EmailNotification::sendAssessment(
                     $this->getUser()->getGuardUser(),
@@ -155,5 +155,19 @@ class flightActions extends sfActions {
             'user_data' => $user_data
         ));
         return sfView::NONE;
+    }
+
+    public function executeAutocompleteAirport(sfWebRequest $request) {
+        $this->setLayout(false);
+        $result = AirportTable::getInstance()
+            ->getAirportsByName($request['term']);
+        $array = array();
+        foreach($result as $airport){
+            $record['id'] = $airport->getId();
+            $record['value'] = $airport->getName();
+            $array[] = $record;
+        }
+           // ->toKeyValueArray('id','name');
+        return $this->renderText(json_encode($array));
     }
 }

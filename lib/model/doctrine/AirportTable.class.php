@@ -16,4 +16,19 @@ class AirportTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Airport');
     }
+
+    public static function getNameById($value)
+    {
+        $airport = Doctrine_Core::getTable('Airport')->find($value);
+        return $airport;
+    }
+
+    public function getAirportsByName($name){
+
+        return Doctrine_Query::create()
+            ->from("Airport a")
+            ->where("a.name LIKE '{$name}%'")
+            ->execute();
+
+    }
 }

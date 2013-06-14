@@ -12,8 +12,8 @@
  */
 class Airport extends BaseAirport
 {
-    public function getAirportID(){
-        return $this->getAirportTitle();
+    public function getAirportName(){
+        return $this->getName();
     }
 
 }
