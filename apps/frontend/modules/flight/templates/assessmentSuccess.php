@@ -9,7 +9,7 @@
     <div class="risk-assessment">
         <h2><?php echo $mitigation_info['message'] ?></h2>
         <p class="summary">
-            Flight #<?php echo $flight->getTripNumber() ?> from <?php echo $flight->getAirportFrom() ?> to <?php echo $flight->getAirportTo() ?>
+            Flight #<?php echo $flight->getTripNumber() ?> from <?php echo $flight->getAirportFrom()->getName() ?> to <?php echo $flight->getAirportTo()->getName() ?>
             in <?php echo $flight->getPlane()->getTailNumber() ?> has a <?php echo $mitigation_info['type'] ?> risk factor with <?php echo $flight->getRiskFactorSum() ?> of 50
         </p>
         <div class="risk-sum-wrapper">

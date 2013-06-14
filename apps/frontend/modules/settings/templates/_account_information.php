@@ -8,7 +8,7 @@
             </li>
             
             <li class="input-block">
-                <?php include_partial('settings/field', array('field' => $form['title'], 'class' => 'account_title', 'placeholder' => 'Title')) ?>
+                <?php include_partial('settings/field', array('field' => $form['title'], 'class' => 'account-title', 'placeholder' => 'Title')) ?>
             </li>
             
             <li class="input-block">

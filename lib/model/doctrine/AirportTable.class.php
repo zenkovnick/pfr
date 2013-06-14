@@ -16,4 +16,39 @@ class AirportTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Airport');
     }
+
+    public static function getNameById($value)
+    {
+        $airport = Doctrine_Core::getTable('Airport')->find($value);
+        return $airport;
+    }
+
+    public function getAirportsByName($name){
+
+        return Doctrine_Query::create()
+            ->from("Airport a")
+            ->where("a.icao LIKE '{$name}%'")
+            ->execute();
+
+    }
+
+    public function pushAirports($airports){
+        $conn = $this->getConnection();
+        $conn->beginTransaction();
+        foreach($airports as $airport){
+            $airport_entity = new Airport();
+            $airport_entity->setName($airport['name']);
+            $airport_entity->setCity($airport['city']);
+            $airport_entity->setCountry($airport['country']);
+            $airport_entity->setIATAFAA($airport['IATA_FAA']);
+            $airport_entity->setICAO($airport['ICAO']);
+            $airport_entity->setLatitude($airport['latitude']);
+            $airport_entity->setLongitude($airport['longitude']);
+            $airport_entity->setAltitude($airport['altitude']);
+            $airport_entity->setTimezone($airport['timezone']);
+            $airport_entity->setDST($airport['DST']);
+            $airport_entity->save($conn);
+        }
+        return $conn->commit();
+    }
 }

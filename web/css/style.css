@@ -400,7 +400,7 @@ ul.header-link-block li a {
     margin-bottom: 15px;
 }
 
-.create-account .photo-holder{
+.photo-holder{
     border-left: 1px solid #CCC;
     border-top: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
@@ -412,11 +412,11 @@ ul.header-link-block li a {
     background: url('../images/photo_bg.png') center center no-repeat;
 }
 
-.create-account .photo-holder:hover{
+.photo-holder:hover{
     cursor: pointer;
 }
 
-.create-account .with-dash-border {
+.with-dash-border {
     border-left: 1px dashed #CCC;
     border-top: 1px dashed #CCC;
     border-bottom: 1px dashed #CCC;
@@ -1245,6 +1245,15 @@ p.help-message {
     cursor: pointer;
 }
 
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+html .ui-autocomplete {
+    height: 300px;
+}
 
 /* ASSESSMENT */
 .assessment-wrapper {
@@ -1510,7 +1519,7 @@ p.help-message {
 .editable-list .photo-block {
     float: left;
 }
-.editable-list .photo-holder {
+/*.editable-list .photo-holder {
     display: block;
     overflow: hidden;
     width: 40px;
@@ -1520,7 +1529,7 @@ p.help-message {
     border-right: 0;
     background: url('../images/photo_bg.png') center center no-repeat;
     cursor: pointer;
-}
+}*/
 
 .editable-list .input-block input {
     background: #FFF;
@@ -1599,6 +1608,13 @@ p.help-message {
 .editable-list .modify-link {
     margin-top: 0;
 }
+
+.editable-list .user-name,  .editable-list .account-title{
+    width: 398px !important;
+    float: left;
+}
+
+
 
 /*----------------------------------------------------------------------------------*/
 /*-----------------------------> DASHBOARD(FIRST TIME) <----------------------------*/

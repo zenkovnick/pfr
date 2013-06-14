@@ -1,2 +1,3 @@
 all:
-  javascripts: [raphael.min.js]
+  javascripts:    [jquery.autocomplete.js]
+  stylesheets:    [jquery.autocompleter.css]

@@ -58,6 +58,9 @@ all:
   news:
     comment_count: 10
 
+  airports:
+    url: 'http://openflights.svn.sourceforge.net/viewvc/openflights/openflights/data/airports.dat'
+
   dashboard:
     limit: 10
     chart:

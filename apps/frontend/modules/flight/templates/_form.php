@@ -1,15 +1,16 @@
-<?php echo $form->renderGlobalErrors();?>
-<?php echo $form->renderHiddenFields();?>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <script src="/js/jquery.ui.timepicker.js"></script>
+
+<?php echo $form->renderGlobalErrors();?>
+<?php echo $form->renderHiddenFields();?>
 <ul class="flight-field-list">
-<!--    <li class="small-field">--><?php //include_partial("flight/field", array('field' => $form['airport_from_id'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?><!--</li>-->
-<!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to_id'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
-    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
-    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
+    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from_name'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
+    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to_name'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
+<!--    <li class="small-field">--><?php //include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?><!--</li>-->
+<!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
     <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
     <li class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
     <li><span class="bottom-border"></span></li>
@@ -125,6 +126,26 @@
         });
         jQuery("body").css({overflowY: "scroll"});
         //jQuery("select.risk-factor").trigger('change');
+
+        jQuery( "#flight_airport_from_name" ).autocomplete({
+            source: "/flight/autocomplete/airport",
+            minLength: 2,
+            select: function( event, ui ) {
+                if(ui.item){
+                    jQuery("#flight_airport_from_id").val(ui.item.id);
+                }
+            }
+        });
+
+        jQuery( "#flight_airport_to_name" ).autocomplete({
+            source: "/flight/autocomplete/airport",
+            minLength: 2,
+            select: function( event, ui ) {
+                if(ui.item){
+                    jQuery("#flight_airport_to_id").val(ui.item.id);
+                }
+            }
+        });
     });
 
     jQuery('.list-select .result, .list-select .pilot, .list-select .plane').bind('click', function(){

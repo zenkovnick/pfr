@@ -1,3 +1,11 @@
+get_airports:
+  url: /flight/get-airports
+  param: { module: flight, action: getAirports }
+
+autocomplete_airport:
+  url: /flight/autocomplete/airport
+  param: { module: flight, action: autocompleteAirport }
+
 submit_flight:
   url: /:account_id/complete/flight
   param: { module: flight, action: complete }

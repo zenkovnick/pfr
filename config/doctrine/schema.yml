@@ -178,10 +178,10 @@ Flight:
       pic_id:          {type: integer }
       sic_id:          {type: integer }
       trip_number:     {type: varchar(255)}
-      #airport_from_id: {type: integer }
-      #airport_to_id:   {type: integer }
-      airport_from: {type: varchar(255) }
-      airport_to:   {type: varchar(255) }
+      airport_from_id: {type: integer }
+      airport_to_id:   {type: integer }
+      #airport_from: {type: varchar(255) }
+      #airport_to:   {type: varchar(255) }
       departure_date:  {type: datetime}
       risk_factor_sum: {type: integer }
       risk_factor_type: {type: enum(), values: ['low', 'medium', 'high']}
@@ -194,10 +194,19 @@ Flight:
       Plane:   {class: Plane, local: plane_id, foreign: id, type: one, onDelete: CASCADE}
       PIC:     {class: sfGuardUser, local: pic_id, foreign: id, type: one, onDelete: CASCADE}
       SIC:     {class: sfGuardUser, local: sic_id, foreign: id, type: one, onDelete: CASCADE}
-      #AirportForm: {class: Airport, local: airport_from_id, foreign: id, type: one, onDelete: CASCADE}
-      #AirportTo:   {class: Airport, local: airport_to_id, foreign: id, type: one, onDelete: CASCADE}
+      AirportFrom: {class: Airport, local: airport_from_id, foreign: id, type: one, onDelete: CASCADE}
+      AirportTo:   {class: Airport, local: airport_to_id, foreign: id, type: one, onDelete: CASCADE}
     actAs: [Timestampable]
 
 Airport:
   columns:
-    airport_title: {type: string(255)}
+    name: {type: string(255) }
+    city: {type: string(255) }
+    country: {type: string(255) }
+    IATAFAA: {type: string(3) }
+    ICAO: {type: string(4) }
+    latitude: {type: float }
+    longitude: {type: float }
+    altitude: {type: integer }
+    timezone: {type: integer }
+    DST: {type: enum(), values: ['E', 'A', 'S', 'O', 'Z', 'N', 'U']}
