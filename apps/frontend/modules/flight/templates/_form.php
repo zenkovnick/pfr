@@ -131,6 +131,11 @@
         }
     }
 
+    function hideExpandList(){
+        flight_list.css({height : ""});
+        jQuery(this).hide().removeClass("expanded");
+    }
+
 
     jQuery(document).ready(function(){
         /*jQuery("select.risk-factor").bind('change', getRisk);
@@ -196,7 +201,10 @@
             jQuery("#flight_second_in_command_custom").removeClass('hidden');
             jQuery("span.dashboard-avatar", root_li).addClass("hidden");
         } else {
-            jQuery("#flight_second_in_command_custom").addClass('hidden').val();
+            jQuery("#flight_second_in_command_custom").addClass('hidden');
+            if(!jQuery("form").hasClass("edit-form")){
+                jQuery("#flight_second_in_command_custom").val("");
+            }
             jQuery("span.dashboard-avatar", root_li).removeClass("hidden");
             getPilot(jQuery(this));
         }
@@ -210,10 +218,7 @@
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
     });
 
-    jQuery('.list-select ul').mouseleave(function() {
-        flight_list.css({height : ""});
-        jQuery(this).hide().removeClass("expanded");
-    });
+    jQuery('.list-select ul').bind('mouselive', hideExpandList);
 
     jQuery("li.risk-factor-li:last .list-select .result").bind('click', function(){
         var root_li = jQuery(this).closest("li.risk-factor-li");
@@ -221,16 +226,5 @@
         flight_list.css({height : height+(response_count*37)});
     });
 
-    //jQuery('li.sic-field ul').append("<li id='' class='more'>More</li>");
-    jQuery("li.more").bind('click', function(){
-        var root_el = jQuery(this).closest(".list-select");
-        var root_li = jQuery(this).closest("li.flight-information");
-        jQuery('.pilot', root_el).html(jQuery(this).text());
-        var id = jQuery(this).prop('id');
-        jQuery("#flight_second_in_command_custom").removeClass('hidden');
-        jQuery('input[type="hidden"]', root_el).val(id);
-        jQuery("span.dashboard-avatar", root_li).addClass("hidden");
-        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
-    });
 
 </script>

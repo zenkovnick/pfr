@@ -3,7 +3,7 @@
 <?php end_slot() ?>
 
 <div class="flight">
-    <form action="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>" id="flight_form" method="POST">
+    <form action="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>" id="flight_form" method="POST" class="edit-form">
         <?php include_partial('form', array('form' => $form, 'data' => $data_fields, 'users' => $users)); ?>
         <button type="submit" class="btn btn-green">Calculate Risk</button>
         <button class="finish-later btn btn-grey">Finish Later</button>
