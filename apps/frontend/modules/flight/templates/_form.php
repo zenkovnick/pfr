@@ -177,9 +177,11 @@
     });
     jQuery('.pilot-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
+        var root_li = jQuery(this).closest("li.flight-information");
         jQuery('.pilot', root_el).html(jQuery(this).text());
         var id = jQuery(this).prop('id');
-        jQuery("#second_in_command_custom").addClass('hidden').val();
+        jQuery("#flight_second_in_command_custom").addClass('hidden').val();
+        jQuery("span.dashboard-avatar", root_li).removeClass("hidden");
         jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
         getPilot(jQuery(this));
@@ -207,10 +209,12 @@
     jQuery('li.sic-field ul').append("<li id='more'>More</li>");
     jQuery("li#more").bind('click', function(){
         var root_el = jQuery(this).closest(".list-select");
+        var root_li = jQuery(this).closest("li.flight-information");
         jQuery('.pilot', root_el).html(jQuery(this).text());
         var id = jQuery(this).prop('id');
-        jQuery("#second_in_command_custom").addClass('hidden');
+        jQuery("#flight_second_in_command_custom").removeClass('hidden');
         jQuery('input[type="hidden"]', root_el).val(id);
+        jQuery("span.dashboard-avatar", root_li).addClass("hidden");
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
     });
 
