@@ -105,6 +105,9 @@ class sfGuardUserTable extends PluginsfGuardUserTable
 
     public static function getUsersWithMore($parameters){
         $main_collection = self::getUsers($parameters);
+        if($main_collection->count() == 1){
+            $main_collection = new Doctrine_Collection('sfGuardUser');
+        }
         $more_user = new sfGuardUser();
         $more_user->setId(0);
         $more_user->setFirstName('More');
@@ -122,6 +125,6 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->orderBy('ua.position ASC')
             ->execute();
 
-        return $query->count() > 0 ? $query->getFirst()->getId() : $curr_user->getId();
+        return $query->count() > 0 ? $query->getFirst()->getId() : 0;
     }
 }

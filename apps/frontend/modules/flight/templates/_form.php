@@ -171,7 +171,17 @@
                 }
             }
         });
+
+        //hideSelectedPilot(jQuery(".sic-field"), jQuery("#flight_pilot_in_command").val());
     });
+
+    function hideSelectedPilot(where, id){
+        jQuery("ul li", where).removeClass('hidden');
+        jQuery("ul li#"+id, where).addClass('hidden');
+        if(jQuery("ul li", where).not(".hidden").length ==  1){
+            jQuery("ul li#0", where).trigger('click');
+        }
+    }
 
     jQuery('.list-select .result, .list-select .pilot, .list-select .plane').bind('click', function(){
         jQuery("ul.expanded").trigger("mouseleave");
@@ -197,17 +207,26 @@
         var id = jQuery(this).prop('id');
         jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
-        if(id == 0) {
-            jQuery("#flight_second_in_command_custom").removeClass('hidden');
-            jQuery("span.dashboard-avatar", root_li).addClass("hidden");
-        } else {
-            jQuery("#flight_second_in_command_custom").addClass('hidden');
-            if(!jQuery("form").hasClass("edit-form")){
-                jQuery("#flight_second_in_command_custom").val("");
+        /*if(root_li.hasClass('pic-field')){
+            hideSelectedPilot(jQuery('.sic-field'), jQuery("#flight_pilot_in_command").val());
+        } else if(root_li.hasClass('sic-field')) {
+            hideSelectedPilot(jQuery('.pic-field'), jQuery("#flight_second_in_command").val());
+        }*/
+        if(root_li.hasClass("sic-field")){
+            if(id == 0) {
+                jQuery("#flight_second_in_command_custom").removeClass('hidden');
+                jQuery("span.dashboard-avatar", root_li).addClass("hidden");
+            } else {
+                jQuery("#flight_second_in_command_custom").addClass('hidden');
+                if(!jQuery("form").hasClass("edit-form")){
+                    jQuery("#flight_second_in_command_custom").val("");
+                }
+                jQuery("span.dashboard-avatar", root_li).removeClass("hidden");
+                getPilot(jQuery(this));
             }
-            jQuery("span.dashboard-avatar", root_li).removeClass("hidden");
-            getPilot(jQuery(this));
+
         }
+
     });
 
     jQuery('.plane-select ul li').click(function(){
@@ -225,6 +244,7 @@
         var response_count = jQuery("li", root_li).length;
         flight_list.css({height : height+(response_count*37)});
     });
+
 
 
 </script>
