@@ -31,7 +31,7 @@
             </span>
             <?php include_partial("flight/pilot_field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
         <?php elseif($key == 'second_in_command'): ?>
-            <?php if($form[$key]->getValue()): ?>
+            <?php if($form[$key]->getValue() != 0): ?>
                 <span class="dashboard-avatar">
                     <?php include_partial('flight/avatar', array('user' => $users[$form[$key]->getValue()])); ?>
                 </span>
@@ -39,9 +39,8 @@
                 <?php include_partial("flight/field", array('field' => $form["{$key}_custom"], 'class' => 'sic-input hidden', 'label' => false)); ?>
             <?php else: ?>
                 <span class="dashboard-avatar hidden">
-                    <?php include_partial('flight/avatar', array('user' => $users[$form[$key]->getValue()])); ?>
                 </span>
-                <?php include_partial("flight/pilot_field", array('field' => $form[$key], 'class' => 'pilot hidden', 'label' => true)); ?>
+                <?php include_partial("flight/pilot_field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
                 <?php include_partial("flight/field", array('field' => $form["{$key}_custom"], 'class' => 'sic-input', 'label' => false)); ?>
             <?php endif ?>
         <?php elseif($key == 'trip_number'): ?>

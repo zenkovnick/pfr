@@ -120,7 +120,7 @@ class FlightForm extends BaseFormDoctrine
                               $this->setDefault($key, $this->getObject()->getSIC()->getId());
                           } elseif($this->getObject()->getSicCustom()) {
                               $this->setDefault($key, 0);
-                              $this->setDefault($key, $this->getObject()->getSicCustom());
+                              $this->setDefault("{$key}_custom", $this->getObject()->getSicCustom());
                           }
                       } else {
                           $this->setDefault($key, sfGuardUserTable::getDefaultUserIdByAccount($this->getOption('account'), $this->getOption('user')));
@@ -191,7 +191,12 @@ class FlightForm extends BaseFormDoctrine
         $taintedValues['plane_id'] = $taintedValues['plane'];
         $taintedValues['pic_id'] = $taintedValues['pilot_in_command'];
         if(isset($taintedValues['second_in_command'])){
-            $taintedValues['sic_id'] = $taintedValues['second_in_command'];
+            if(intval($taintedValues['second_in_command']) === 0){
+                $taintedValues['sic_id'] = null;
+                $taintedValues['second_in_command'] = null;
+            } else {
+                $taintedValues['sic_id'] = $taintedValues['second_in_command'];
+            }
         }
         if($this->getObject()->getStatus() == 'assess'){
             $taintedValues['mitigation_sum'] = $mitigation_sum;
@@ -253,9 +258,8 @@ class FlightForm extends BaseFormDoctrine
             $values['airport_to_id'] = null;
         }
 
-        if($values['sic_id'] === 0 && $values['second_in_command_custom'] != ""){
+        if(!$values['sic_id'] && $values['second_in_command_custom'] != ""){
             $values['sic_custom'] = $values['second_in_command_custom'];
-            $values['sic_id'] = null;
         } else {
             $values['sic_custom'] = null;
         }

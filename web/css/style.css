@@ -1118,7 +1118,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     border-bottom: none;
 }
 .flight-field-list li.flight-information span.dashboard-avatar {
-    background: #333;
+    background: #000;
     border: 1px solid #000;
     display: block;
     float: right;
