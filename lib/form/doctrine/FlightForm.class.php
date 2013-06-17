@@ -106,7 +106,7 @@ class FlightForm extends BaseFormDoctrine
                   } else {
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
                           'model' => 'sfGuardUser',
-                          'table_method' => 'getUsers',
+                          'table_method' => 'getUsersWithMore',
                           'table_method_parameters' => array('account' => $this->getOption('account')),
                           'method' => 'getUserTitle',
                           'method_parameters' => array('curr_user' => $this->getOption('user')),
@@ -114,9 +114,14 @@ class FlightForm extends BaseFormDoctrine
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
                       $this->setWidget("{$key}_custom", new sfWidgetFormInput());
-                      $this->setValidator($key, new sfValidatorString(array('required' => false)));
+                      $this->setValidator("{$key}_custom", new sfValidatorPass());
                       if(!$this->isNew()){
-                          $this->setDefault($key, $this->getObject()->getSIC()->getId());
+                          if($this->getObject()->getSicId()){
+                              $this->setDefault($key, $this->getObject()->getSIC()->getId());
+                          } elseif($this->getObject()->getSicCustom()) {
+                              $this->setDefault($key, 0);
+                              $this->setDefault($key, $this->getObject()->getSicCustom());
+                          }
                       } else {
                           $this->setDefault($key, sfGuardUserTable::getDefaultUserIdByAccount($this->getOption('account'), $this->getOption('user')));
                       }
@@ -248,6 +253,12 @@ class FlightForm extends BaseFormDoctrine
             $values['airport_to_id'] = null;
         }
 
+        if($values['sic_id'] === 0 && $values['second_in_command_custom'] != ""){
+            $values['sic_custom'] = $values['second_in_command_custom'];
+            $values['sic_id'] = null;
+        } else {
+            $values['sic_custom'] = null;
+        }
         return $values;
     }
 }

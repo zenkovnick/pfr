@@ -177,6 +177,7 @@ Flight:
       plane_id:        {type: integer }
       pic_id:          {type: integer }
       sic_id:          {type: integer }
+      sic_custom:      {type: varchar(255), default: null }
       trip_number:     {type: varchar(255)}
       airport_from_id: {type: integer }
       airport_to_id:   {type: integer }

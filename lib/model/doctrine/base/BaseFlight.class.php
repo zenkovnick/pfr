@@ -9,6 +9,7 @@
  * @property integer $plane_id
  * @property integer $pic_id
  * @property integer $sic_id
+ * @property varchar $sic_custom
  * @property varchar $trip_number
  * @property integer $airport_from_id
  * @property integer $airport_to_id
@@ -30,6 +31,7 @@
  * @method integer     getPlaneId()          Returns the current record's "plane_id" value
  * @method integer     getPicId()            Returns the current record's "pic_id" value
  * @method integer     getSicId()            Returns the current record's "sic_id" value
+ * @method varchar     getSicCustom()        Returns the current record's "sic_custom" value
  * @method varchar     getTripNumber()       Returns the current record's "trip_number" value
  * @method integer     getAirportFromId()    Returns the current record's "airport_from_id" value
  * @method integer     getAirportToId()      Returns the current record's "airport_to_id" value
@@ -50,6 +52,7 @@
  * @method Flight      setPlaneId()          Sets the current record's "plane_id" value
  * @method Flight      setPicId()            Sets the current record's "pic_id" value
  * @method Flight      setSicId()            Sets the current record's "sic_id" value
+ * @method Flight      setSicCustom()        Sets the current record's "sic_custom" value
  * @method Flight      setTripNumber()       Sets the current record's "trip_number" value
  * @method Flight      setAirportFromId()    Sets the current record's "airport_from_id" value
  * @method Flight      setAirportToId()      Sets the current record's "airport_to_id" value
@@ -88,6 +91,10 @@ abstract class BaseFlight extends sfDoctrineRecord
              ));
         $this->hasColumn('sic_id', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('sic_custom', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
              ));
         $this->hasColumn('trip_number', 'varchar', 255, array(
              'type' => 'varchar',

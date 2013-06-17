@@ -1087,7 +1087,8 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     line-height: 40px;
 }
 
-.flight-field-list li.trip-number-field input {
+.flight-field-list li.trip-number-field input,
+.flight-field-list .sic-input {
     width: 50%;
     float: right;
     background: #FFF;
@@ -1101,6 +1102,11 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     padding: 10px;
 }
 
+.flight-field-list .sic-input {
+    margin: -25px 0 0 0;
+    z-index: 100;
+    position: relative;
+}
 
 .flight-field-list li.flight-information {
     border-bottom: 1px dashed #E4E4E4;
@@ -1221,6 +1227,7 @@ p.help-message {
 .list-select .result,  .list-select .pilot, .list-select .plane{
     color: #0F76BB;
     cursor: pointer;
+    width: 40%;
 }
 .list-select ul {
     background: #333;

@@ -103,6 +103,15 @@ class sfGuardUserTable extends PluginsfGuardUserTable
         return $query;
     }
 
+    public static function getUsersWithMore($parameters){
+        $main_collection = self::getUsers($parameters);
+        $more_user = new sfGuardUser();
+        $more_user->setId(0);
+        $more_user->setFirstName('More');
+        $main_collection->add($more_user);
+        return $main_collection;
+    }
+
     public static function getDefaultUserIdByAccount($account, $curr_user){
         $query = Doctrine_Query::create()
             ->from('sfGuardUser u')
