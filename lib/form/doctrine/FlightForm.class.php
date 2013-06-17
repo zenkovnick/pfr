@@ -33,29 +33,23 @@ class FlightForm extends BaseFormDoctrine
       foreach($data_fields as $key => $data_field){
           if(!is_array($data_field) && $key != "form_name" && $key != "form_instructions" && !$this->startsWith($key, 'mitigation')){
               if($key == "airport_to") {
-                  /*$this->setWidget("{$key}_id", new sfWidgetFormDoctrineJQueryAutocompleter(array(
-                      'url' => "http://preflight/flight/autocomplete/airport",
-                      'model' => 'Airport',
-
-                  )));
-                  $this->setWidget("{$key}_title", new sfWidgetFormInputHidden());
-                  $this->setValidator("{$key}_title", new sfValidatorString(array('required' => true)));
-                  $this->setValidator("{$key}_id", new sfValidatorPass());*/
                   $this->setWidget("{$key}_id", new sfWidgetFormInputHidden());
                   $this->setValidator("{$key}_id", new sfValidatorPass());
                   $this->setWidget("{$key}_name", new sfWidgetFormInput());
-                  $this->setValidator("{$key}_name", new sfValidatorString(array("required" => true)));
+                  $this->setValidator("{$key}_name", new sfValidatorString(array("required" => true, 'min_length' => 4, 'max_length' => 4)));
                   if($this->getObject()->getAirportToId()){
-                      $this->setDefault("{$key}_name", $this->getObject()->getAirportTo()->getName());
+                      $this->setDefault("{$key}_id", $this->getObject()->getAirportTo()->getId());
+                      $this->setDefault("{$key}_name", $this->getObject()->getAirportTo()->getICAO());
                   }
 
               } else if($key == "airport_from"){
                   $this->setWidget("{$key}_id", new sfWidgetFormInputHidden());
                   $this->setValidator("{$key}_id", new sfValidatorPass());
                   $this->setWidget("{$key}_name", new sfWidgetFormInput());
-                  $this->setValidator("{$key}_name", new sfValidatorString(array("required" => true)));
+                  $this->setValidator("{$key}_name", new sfValidatorString(array("required" => true, 'min_length' => 4, 'max_length' => 4)));
                   if($this->getObject()->getAirportFromId()){
-                      $this->setDefault("{$key}_name", $this->getObject()->getAirportFrom()->getName());
+                      $this->setDefault("{$key}_id", $this->getObject()->getAirportFrom()->getId());
+                      $this->setDefault("{$key}_name", $this->getObject()->getAirportFrom()->getICAO());
                   }
 
               } else {
@@ -119,6 +113,8 @@ class FlightForm extends BaseFormDoctrine
                           'renderer_class' => 'sfWidgetFormList'
                       )));
                       $this->setValidator($key, new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser',"required" => true)));
+                      $this->setWidget("{$key}_custom", new sfWidgetFormInput());
+                      $this->setValidator($key, new sfValidatorString(array('required' => false)));
                       if(!$this->isNew()){
                           $this->setDefault($key, $this->getObject()->getSIC()->getId());
                       } else {
@@ -201,6 +197,14 @@ class FlightForm extends BaseFormDoctrine
             $schema = $this->getValidatorSchema();
             foreach($schema->getFields() as $validator){
                 $validator->setOption('required', false);
+                if($validator instanceof sfValidatorInteger) {
+                    $validator->setOption('min', 0);
+                    $validator->setOption('max', 9999999);
+                } else if($validator instanceof sfValidatorString) {
+                    $validator->setOption('min_length', 0);
+                    $validator->setOption('max_length', 255);
+                }
+
             }
         }
 
@@ -216,28 +220,32 @@ class FlightForm extends BaseFormDoctrine
     {
         if (isset($values['airport_from_name']) && $values['airport_from_name'] != '')
         {
-            $airport = Doctrine_Core::getTable("Airport")->findOneBy('name', $values['airport_from_name']);
+            $airport = Doctrine_Core::getTable("Airport")->findOneBy('ICAO', $values['airport_from_name']);
             if (!$airport)
             {
                 $airport = new Airport();
-                $airport->setICAO($values['airport_from_name']);
+                $airport->setICAO(strtoupper($values['airport_from_name']));
                 $airport->save();
                 //Notifications::NewNotValidCompanyCreated($company);
             }
             $values['airport_from_id'] = $airport->getId();
+        } else {
+            $values['airport_from_id'] = null;
         }
 
         if (isset($values['airport_to_name']) && $values['airport_to_name'] != '')
         {
-            $airport = Doctrine_Core::getTable("Airport")->findOneBy('name', $values['airport_to_name']);
+            $airport = Doctrine_Core::getTable("Airport")->findOneBy('ICAO', $values['airport_to_name']);
             if (!$airport)
             {
                 $airport = new Airport();
-                $airport->setICAO($values['airport_to_name']);
+                $airport->setICAO(strtoupper($values['airport_to_name']));
                 $airport->save();
                 //Notifications::NewNotValidCompanyCreated($company);
             }
             $values['airport_to_id'] = $airport->getId();
+        } else {
+            $values['airport_to_id'] = null;
         }
 
         return $values;

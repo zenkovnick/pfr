@@ -1075,6 +1075,11 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     background: url(../images/time_icon.png) no-repeat right center #FFF;
 }
 
+.flight-field-list li.small-field input[type="text"].airport-to,
+.flight-field-list li.small-field input[type="text"].airport-from{
+    text-transform: uppercase;
+}
+
 .flight-field-list li.trip-number-field label {
     display: inline-block;
     width: 47%;

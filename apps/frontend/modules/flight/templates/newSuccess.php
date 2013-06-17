@@ -25,14 +25,14 @@
             var airport_to = jQuery('input.airport-to', this);
             var trip_number = jQuery('input.trip-number', this);
 
-            if(airport_from.val() == '') {
+            if(airport_from.val() == '' || airport_from.val().length > 4 || airport_from.val().length < 4){
                 valid = false;
                 airport_from.addClass('invalid-field');
             } else {
                 airport_from.removeClass('invalid-field');
             }
 
-            if(airport_to.val() == ''){
+            if(airport_to.val() == '' || airport_to.val().length > 4 || airport_to.val().length < 4){
                 valid = false;
                 airport_to.addClass('invalid-field');
             } else {

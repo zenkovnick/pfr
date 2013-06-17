@@ -9,25 +9,35 @@
 <ul class="flight-field-list">
     <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from_name'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
     <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to_name'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
-<!--    <li class="small-field">--><?php //include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?><!--</li>-->
-<!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
+    <!--    <li class="small-field">--><?php //include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?><!--</li>-->
+    <!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
     <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
     <li class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
     <li><span class="bottom-border"></span></li>
     <li><h2>Flight Information</h2></li>
     <?php foreach($data['flight_information'] as $fi): ?>
         <?php $key = Flight::generateKeyByTitle($fi['name']); ?>
-        <li class="flight-information <?php echo $key == 'trip_number' ? 'trip-number-field' : '' ?>">
-            <?php if($key == 'pilot_in_command' || $key == 'second_in_command'): ?>
-                <span class="dashboard-avatar">
+        <?php if($key == 'trip_number'): ?>
+            <li class="flight-information trip-number-field">
+        <?php elseif($key == 'pilot_in_command'): ?>
+            <li class="flight-information pic-field">
+        <?php elseif($key == 'second_in_command'): ?>
+            <li class="flight-information sic-field">
+        <?php endif ?>
+
+        <?php if($key == 'pilot_in_command' || $key == 'second_in_command'): ?>
+            <span class="dashboard-avatar">
                     <?php include_partial('flight/avatar', array('user' => $users[$form[$key]->getValue()])); ?>
                 </span>
-                <?php include_partial("flight/pilot_field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
-            <?php elseif($key == 'trip_number'): ?>
-                <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'trip-number', 'label' => true)); ?>
-            <?php elseif($key == 'plane'): ?>
-                <?php include_partial("flight/plane_field", array('field' => $form[$key], 'label' => true, 'class' => 'plane')); ?>
+            <?php include_partial("flight/pilot_field", array('field' => $form[$key], 'class' => 'pilot', 'label' => true)); ?>
+            <?php if($key == 'second_in_command'): ?>
+                <?php include_partial("flight/field", array('field' => $form["{$key}_custom"], 'class' => 'trip-number hidden', 'label' => false)); ?>
             <?php endif ?>
+        <?php elseif($key == 'trip_number'): ?>
+            <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'trip-number', 'label' => true)); ?>
+        <?php elseif($key == 'plane'): ?>
+            <?php include_partial("flight/plane_field", array('field' => $form[$key], 'label' => true, 'class' => 'plane')); ?>
+        <?php endif ?>
         </li>
     <?php endforeach ?>
     <li><span class="bottom-border"></span></li>
@@ -114,7 +124,7 @@
 
     jQuery(document).ready(function(){
         /*jQuery("select.risk-factor").bind('change', getRisk);
-        jQuery("select.pilot").bind('change', getPilot);*/
+         jQuery("select.pilot").bind('change', getPilot);*/
         jQuery("a.show-help-link").bind('click', showHelp);
         jQuery("input.date").prop('readonly', true).datepicker({
             dateFormat: 'yy-mm-dd'
@@ -168,7 +178,9 @@
     jQuery('.pilot-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
         jQuery('.pilot', root_el).html(jQuery(this).text());
-        jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
+        var id = jQuery(this).prop('id');
+        jQuery("#second_in_command_custom").addClass('hidden').val();
+        jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
         getPilot(jQuery(this));
     });
@@ -176,7 +188,8 @@
     jQuery('.plane-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
         jQuery('.plane', root_el).html(jQuery(this).text());
-        jQuery('input[type="hidden"]', root_el).val(jQuery(this).prop('id'));
+        var id = jQuery(this).prop('id');
+        jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
     });
 
@@ -191,5 +204,14 @@
         flight_list.css({height : height+(response_count*37)});
     });
 
+    jQuery('li.sic-field ul').append("<li id='more'>More</li>");
+    jQuery("li#more").bind('click', function(){
+        var root_el = jQuery(this).closest(".list-select");
+        jQuery('.pilot', root_el).html(jQuery(this).text());
+        var id = jQuery(this).prop('id');
+        jQuery("#second_in_command_custom").addClass('hidden');
+        jQuery('input[type="hidden"]', root_el).val(id);
+        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+    });
 
 </script>
