@@ -161,5 +161,26 @@ class dashboardActions extends sfActions {
         echo json_encode(array('result'=>'OK'));
         return sfView::NONE;
     }
+
+    public function executeViewFlight(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
+        if($this->flight->getStatus() == 'complete'){
+            $flight_data = json_decode($this->flight->getInfo(), true);
+            $this->high_risk_factors = array();
+            foreach($flight_data['risk_analysis'] as $key => $risk_factor){
+                $selected_response = $risk_factor['response_options'][$risk_factor['selected_response']];
+                if($selected_response['value'] > 0){
+                    $this->high_risk_factors[$key]['question'] = $risk_factor['question'];
+                    $this->high_risk_factors[$key]['answer'] = $selected_response['text'];
+                    $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
+                }
+            }
+            $this->mitigation_info = $this->flight->getMitigationInfo();
+
+        } else {
+            $this->redirect("@dashboard?account_id={$this->account_id}");
+        }
+    }
 }
 

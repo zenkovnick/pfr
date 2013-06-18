@@ -57,6 +57,12 @@ skip_pilot_condition:
   requirements:
     account_id: \d+
 
+view_flight:
+  url: /:account_id/dashboard/flight
+  param: { module: dashboard, action: viewFlight }
+  requirements:
+    account_id: \d+
+
 chart_init:
   url: /:account_id/dashboard/chart-init
   param: { module: dashboard, action: chartInit }

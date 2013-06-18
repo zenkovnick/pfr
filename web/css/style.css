@@ -1259,8 +1259,8 @@ p.help-message {
 
 .ui-autocomplete {
     max-height: 300px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
 
 html .ui-autocomplete {
