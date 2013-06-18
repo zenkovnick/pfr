@@ -1626,7 +1626,7 @@ html .ui-autocomplete {
     margin-top: 0;
 }
 
-.editable-list .name,  .editable-list .account-title{
+.editable-list .my-information .name,  .editable-list .account-title{
     width: 398px !important;
     float: left;
 }

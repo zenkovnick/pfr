@@ -8,31 +8,28 @@
  * @property integer $account_id
  * @property integer $user_id
  * @property boolean $is_manager
- * @property boolean $is_chief_pilot
  * @property integer $position
  * @property string $invite_token
  * @property boolean $is_active
  * @property Account $Account
  * @property sfGuardUser $User
  * 
- * @method integer     getAccountId()      Returns the current record's "account_id" value
- * @method integer     getUserId()         Returns the current record's "user_id" value
- * @method boolean     getIsManager()      Returns the current record's "is_manager" value
- * @method boolean     getIsChiefPilot()   Returns the current record's "is_chief_pilot" value
- * @method integer     getPosition()       Returns the current record's "position" value
- * @method string      getInviteToken()    Returns the current record's "invite_token" value
- * @method boolean     getIsActive()       Returns the current record's "is_active" value
- * @method Account     getAccount()        Returns the current record's "Account" value
- * @method sfGuardUser getUser()           Returns the current record's "User" value
- * @method UserAccount setAccountId()      Sets the current record's "account_id" value
- * @method UserAccount setUserId()         Sets the current record's "user_id" value
- * @method UserAccount setIsManager()      Sets the current record's "is_manager" value
- * @method UserAccount setIsChiefPilot()   Sets the current record's "is_chief_pilot" value
- * @method UserAccount setPosition()       Sets the current record's "position" value
- * @method UserAccount setInviteToken()    Sets the current record's "invite_token" value
- * @method UserAccount setIsActive()       Sets the current record's "is_active" value
- * @method UserAccount setAccount()        Sets the current record's "Account" value
- * @method UserAccount setUser()           Sets the current record's "User" value
+ * @method integer     getAccountId()    Returns the current record's "account_id" value
+ * @method integer     getUserId()       Returns the current record's "user_id" value
+ * @method boolean     getIsManager()    Returns the current record's "is_manager" value
+ * @method integer     getPosition()     Returns the current record's "position" value
+ * @method string      getInviteToken()  Returns the current record's "invite_token" value
+ * @method boolean     getIsActive()     Returns the current record's "is_active" value
+ * @method Account     getAccount()      Returns the current record's "Account" value
+ * @method sfGuardUser getUser()         Returns the current record's "User" value
+ * @method UserAccount setAccountId()    Sets the current record's "account_id" value
+ * @method UserAccount setUserId()       Sets the current record's "user_id" value
+ * @method UserAccount setIsManager()    Sets the current record's "is_manager" value
+ * @method UserAccount setPosition()     Sets the current record's "position" value
+ * @method UserAccount setInviteToken()  Sets the current record's "invite_token" value
+ * @method UserAccount setIsActive()     Sets the current record's "is_active" value
+ * @method UserAccount setAccount()      Sets the current record's "Account" value
+ * @method UserAccount setUser()         Sets the current record's "User" value
  * 
  * @package    blueprint
  * @subpackage model
@@ -53,10 +50,6 @@ abstract class BaseUserAccount extends sfDoctrineRecord
              'primary' => true,
              ));
         $this->hasColumn('is_manager', 'boolean', null, array(
-             'type' => 'boolean',
-             'default' => false,
-             ));
-        $this->hasColumn('is_chief_pilot', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
              ));

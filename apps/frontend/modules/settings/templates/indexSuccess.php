@@ -62,7 +62,7 @@
                         <span class="handler hidden">Handler</span>
                         <input type="hidden" value="<?php echo $pilot->getId() ?>" />
                         <div class="pilot-header caption-block">
-                            <span class="name"><?php echo $pilot->getFirstName() ?></span>
+                            <span class="name"><?php echo $pilot->getFirstName() ? $pilot->getFirstName() : $pilot->getUsername()?></span>
                             <?php if($pilot->getIsActiveAccount()): ?>
                                 <a href="" class="edit-pilot-link link hidden">Edit</a>
                                 <a href="" class="cancel-pilot-link link hidden">Cancel</a>

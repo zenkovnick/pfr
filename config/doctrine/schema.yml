@@ -120,6 +120,7 @@ Account:
     title:             {type: varchar(255), notnull: true }
     photo:             {type: varchar(255)}
     managed_by_id:     {type: integer}
+    chief_pilot_id:    {type: integer, notnull: false}
     has_modified_form: {type: boolean, default: false}
     has_plane:         {type: boolean, default: false}
     has_pilot:         {type: boolean, default: false}
@@ -128,6 +129,12 @@ Account:
   relations:
     Planes:            { class: Plane, refClass: AccountPlane, local: plane_id, foreign: account_id }
     Users:             { class: sfGuardUser, refClass: UserAccount, local: user_id, foreign: account_id }
+    ChiefPilot:
+      class: sfGuardUser
+      local: chief_pilot_id
+      foreign: id
+      type: one
+      onDelete: CASCADE
     Manager:
       class: sfGuardUser
       local: managed_by_id
@@ -161,7 +168,6 @@ UserAccount:
       account_id:      { type: integer, notnull: true, primary: true }
       user_id:         { type: integer, notnull: true, primary: true }
       is_manager:      { type: boolean, default: false }
-      is_chief_pilot:  { type: boolean, default: false }
       position:        { type: integer }
       invite_token:    { type: string(255) }
       is_active:       { type: boolean, default: false }

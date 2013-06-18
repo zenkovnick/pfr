@@ -33,7 +33,7 @@
     <ul>
         <li class="photo-block"><?php include_partial('registration/avatar_field', array('field' => $form['photo_widget'])) ?></li>
         <li class="input-block"><?php include_partial('registration/field', array('field' => $form['title'], 'class' => 'company-title', 'placeholder' => 'Company, Organization or Name', 'label' => false)) ?></li>
-        <li class="input-block"><?php include_partial('registration/field', array('field' => $form['chief_pilot_email'], 'class' => 'chief-pilot-email', 'placeholder' => 'Chief Pilot\'s Email (if any)', 'label' => false)) ?></li>
+        <li class="input-block"><?php include_partial('registration/field', array('field' => $form['chief_pilot_name'], 'class' => 'chief-pilot-email', 'placeholder' => 'Chief Pilot\'s Email (if any)', 'label' => false)) ?></li>
         <li><button class="btn btn-blue" type="submit">Create Account</button></li>
     </ul>
 
@@ -59,7 +59,16 @@
 
     jQuery(document).ready(function(){
         jQuery("#create_account_form").bind('submit', validateAndSubmitCreation);
-        jQuery(".photo-holder").bind("click", triggerUpload)
+        jQuery(".photo-holder").bind("click", triggerUpload);
+        jQuery( "#account_chief_pilot_name" ).autocomplete({
+            source: "/registration/autocomplete/pilot",
+            minLength: 2,
+            select: function( event, ui ) {
+                if(ui.item){
+                    jQuery("#account_chief_pilot_id").val(ui.item.id);
+                }
+            }
+        });
     });
 </script>
 

@@ -20,7 +20,7 @@ abstract class BasePlaneFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'tail_number'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'tail_number'   => new sfValidatorPass(array('required' => false)),
       'created_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'accounts_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Account', 'required' => false)),
@@ -62,7 +62,7 @@ abstract class BasePlaneFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'            => 'Number',
-      'tail_number'   => 'Number',
+      'tail_number'   => 'Text',
       'created_at'    => 'Date',
       'updated_at'    => 'Date',
       'accounts_list' => 'ManyKey',

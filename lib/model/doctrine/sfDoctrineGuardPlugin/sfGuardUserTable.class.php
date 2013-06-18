@@ -127,4 +127,12 @@ class sfGuardUserTable extends PluginsfGuardUserTable
 
         return $query->count() > 0 ? $query->getFirst()->getId() : 0;
     }
+
+    public static function getUsersByUsername($username){
+        $users = Doctrine_Query::create()
+            ->from("sfGuardUser u")
+            ->where("u.username LIKE '{$username}%'")
+            ->execute();
+        return $users;
+    }
 }

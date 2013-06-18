@@ -121,6 +121,8 @@ class registrationActions extends sfActions
                 $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
                 $this->user = $this->getUser()->getGuardUser();
                 if($this->form->isValid()){
+                    $values = $this->form->getTaintedValues();
+                    $chief_exists = $values['chief_pilot_id'] ? true : false;
                     $account = $this->form->save();
                     $account->setManager($this->user);
                     $user_account = new UserAccount();
@@ -132,6 +134,19 @@ class registrationActions extends sfActions
 
                     $risk_builder = new RiskBuilder();
                     $risk_builder->createDefaultForm($account);
+
+                    $chief_pilot = $account->getChiefPilot();
+                    $chief_user_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $account->getId());
+
+                    if($chief_exists){
+                        $url = $this->generateUrl('approve_account', array('token' => $chief_user_account->getInviteToken()), true);
+                        EmailNotification::sendChiefAccountApprove($this->getUser()->getGuardUser(), $chief_pilot, $url, $account);
+
+                    } else {
+                        $url = $this->generateUrl('signup_invite', array('token' => $chief_user_account->getInviteToken()), true);
+                        EmailNotification::sendChiefInvite($this->getUser()->getGuardUser(), $chief_pilot, $url, $account);
+
+                    }
 
                     $this->redirect("@dashboard?account_id={$account->getId()}");
                 }
@@ -249,5 +264,19 @@ class registrationActions extends sfActions
         $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
 
         $this->redirect("@signin");
+    }
+
+    public function executeAutocompletePilots(sfWebRequest $request) {
+        $this->setLayout(false);
+        $result = sfGuardUserTable::getInstance()
+            ->getUsersByUsername($request['term']);
+        $array = array();
+        foreach($result as $pilot){
+            $record['id'] = $pilot->getId();
+            $record['username'] = $pilot->getUsername();
+            $record['value'] = $pilot->getFirstName();
+            $array[] = $record;
+        }
+        return $this->renderText(json_encode($array));
     }
 }

@@ -139,8 +139,7 @@
 
 
     jQuery(document).ready(function(){
-        /*jQuery("select.risk-factor").bind('change', getRisk);
-         jQuery("select.pilot").bind('change', getPilot);*/
+
         jQuery("a.show-help-link").bind('click', showHelp);
         jQuery("input.date").prop('readonly', true).datepicker({
             dateFormat: 'yy-mm-dd'
@@ -151,7 +150,6 @@
             timeFormat: 'HH:mm'
         });
         jQuery("body").css({overflowY: "scroll"});
-        //jQuery("select.risk-factor").trigger('change');
 
         jQuery( "#flight_airport_from_name" ).autocomplete({
             source: "/flight/autocomplete/airport",
@@ -160,10 +158,7 @@
                 if(ui.item){
                     jQuery("#flight_airport_from_id").val(ui.item.id);
                 }
-            }/*,
-            open: function(event, ui){
-                var myScroll1 = new iScroll('ui-id-1');
-            }*/
+            }
         });
 
         jQuery( "#flight_airport_to_name" ).autocomplete({
@@ -173,22 +168,11 @@
                 if(ui.item){
                     jQuery("#flight_airport_to_id").val(ui.item.id);
                 }
-            }/*,
-            open: function(event, ui){
-                var myScroll1 = new iScroll('ui-id-2');
-            }*/
+            }
         });
 
-        //hideSelectedPilot(jQuery(".sic-field"), jQuery("#flight_pilot_in_command").val());
     });
 
-    /*function hideSelectedPilot(where, id){
-        jQuery("ul li", where).removeClass('hidden');
-        jQuery("ul li#"+id, where).addClass('hidden');
-        if(jQuery("ul li", where).not(".hidden").length ==  1){
-            jQuery("ul li#0", where).trigger('click');
-        }
-    }*/
 
     jQuery('.list-select .result, .list-select .pilot, .list-select .plane').bind('click', function(){
         jQuery("ul.expanded").trigger("mouseleave");
@@ -214,11 +198,6 @@
         var id = jQuery(this).prop('id');
         jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
-        /*if(root_li.hasClass('pic-field')){
-            hideSelectedPilot(jQuery('.sic-field'), jQuery("#flight_pilot_in_command").val());
-        } else if(root_li.hasClass('sic-field')) {
-            hideSelectedPilot(jQuery('.pic-field'), jQuery("#flight_second_in_command").val());
-        }*/
         if(root_li.hasClass("sic-field")){
             if(id == 0) {
                 jQuery("#flight_second_in_command_custom").removeClass('hidden');

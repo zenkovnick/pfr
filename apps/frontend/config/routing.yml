@@ -256,6 +256,10 @@ form:
   url: /form
   param: { module: builder, action: index }
 
+autocomplete_pilot:
+  url: /registration/autocomplete/pilot
+  param: { module: registration, action: autocompletePilots }
+
 
 create_account_upload_avatar:
   url: /new/account/upload-avatar

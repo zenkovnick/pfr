@@ -8,7 +8,7 @@ class settingsActions extends sfActions {
             $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
         }
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
-        $this->account_form = new AccountForm($this->account);
+        $this->account_form = new AccountForm($this->account, array('user' => $this->user, 'account' => $this->account));
         $this->planes = PlaneTable::getPlanesByAccount($account_id);
         $this->pilots = sfGuardUserTable::getPilotsByAccount($account_id);
         $user_account = UserAccountTable::getUserAccount($this->getUser()->getGuardUser()->getId(), $account_id);
@@ -64,8 +64,15 @@ class settingsActions extends sfActions {
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
-        $this->form = new AccountForm($this->account);
-        $this->renderPartial('settings/account_information', array('form' => $this->form, 'account' => $this->account));
+        $this->form = new AccountForm($this->account, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
+        $chief_pilot =$this->account->getChiefPilot();
+        $chief_pilot_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $this->account->getId());
+        $this->renderPartial('settings/account_information', array(
+            'form' => $this->form,
+            'account' => $this->account,
+            'chief_pilot' => $chief_pilot,
+            'chief_is_active' => $chief_pilot_account->getIsActive()
+        ));
         return sfView::NONE;
     }
     public function executeProcessAccountData(sfWebRequest $request){
