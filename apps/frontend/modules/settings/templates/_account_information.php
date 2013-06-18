@@ -42,17 +42,6 @@
 </div>
 
 <script type="text/javascript">
-    function cancelInvitation(event){
-        event.preventDefault();
-        jQuery.ajax({
-            url: '<?php echo url_for("@cancel_chief_invitation?account_id={$account->getId()}") ?>',
-            dataType: 'json',
-            type: 'post',
-            success: function(data){
-
-            }
-        })
-    }
     jQuery("#account_information_settings_form").bind('submit', validateAndSubmitAccountForm);
     init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_get_widget'); ?>',
         '/images/no_avatar.png', [32, 32], 'photo', 'account_photo_widget', 'account_avatar_container', 'account_uploaded_photo');

@@ -491,7 +491,9 @@ class settingsActions extends sfActions {
         $chief_pilot = $account->getChiefPilot();
         $chief_pilot_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $account->getId());
         if($chief_pilot_account->delete()){
-            echo json_encode(array('result' => 'OK'));
+            $account->setChiefPilot(null);
+            $account->save();
+            echo json_encode(array('result' => 'OK', 'pilot_id' => $chief_pilot->getId()));
             EmailNotification::cancelChiefInvite($chief_pilot, $account);
         } else {
             echo json_encode(array('result' => 'Failed'));

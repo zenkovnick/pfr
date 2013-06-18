@@ -228,6 +228,24 @@
 
     /* ACCOUNT */
 
+    function cancelInvitation(event){
+        event.preventDefault();
+        var el = jQuery(this);
+        jQuery.ajax({
+            url: '<?php echo url_for("@cancel_chief_invitation?account_id={$account->getId()}") ?>',
+            dataType: 'json',
+            type: 'post',
+            success: function(data){
+                if(data.result == "OK"){
+                    jQuery("li#pilot_"+data.pilot_id).remove();
+                    var root_li = el.closest("li.input-block");
+                    jQuery(".invited-chief", root_li).remove();
+                    el.remove();
+                    jQuery(".chief-pilot", root_li).removeClass("hidden");
+                }
+            }
+        })
+    }
     function validateAndSubmitAccountForm(event) {
         event.preventDefault();
         var valid = true;
@@ -727,6 +745,7 @@
         jQuery('#add-pilot-link').bind('click', addPilot);
 
         jQuery(".photo-holder").bind("click", triggerUpload);
+
 
 
         if(window.location.hash){
