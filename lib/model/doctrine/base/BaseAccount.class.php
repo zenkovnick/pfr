@@ -7,8 +7,6 @@
  * 
  * @property varchar $title
  * @property varchar $photo
- * @property varchar $chief_pilot_email
- * @property varchar $chief_pilot_name
  * @property integer $managed_by_id
  * @property boolean $has_modified_form
  * @property boolean $has_plane
@@ -25,8 +23,6 @@
  * 
  * @method varchar             getTitle()             Returns the current record's "title" value
  * @method varchar             getPhoto()             Returns the current record's "photo" value
- * @method varchar             getChiefPilotEmail()   Returns the current record's "chief_pilot_email" value
- * @method varchar             getChiefPilotName()    Returns the current record's "chief_pilot_name" value
  * @method integer             getManagedById()       Returns the current record's "managed_by_id" value
  * @method boolean             getHasModifiedForm()   Returns the current record's "has_modified_form" value
  * @method boolean             getHasPlane()          Returns the current record's "has_plane" value
@@ -42,8 +38,6 @@
  * @method Doctrine_Collection getFlight()            Returns the current record's "Flight" collection
  * @method Account             setTitle()             Sets the current record's "title" value
  * @method Account             setPhoto()             Sets the current record's "photo" value
- * @method Account             setChiefPilotEmail()   Sets the current record's "chief_pilot_email" value
- * @method Account             setChiefPilotName()    Sets the current record's "chief_pilot_name" value
  * @method Account             setManagedById()       Sets the current record's "managed_by_id" value
  * @method Account             setHasModifiedForm()   Sets the current record's "has_modified_form" value
  * @method Account             setHasPlane()          Sets the current record's "has_plane" value
@@ -74,14 +68,6 @@ abstract class BaseAccount extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('photo', 'varchar', 255, array(
-             'type' => 'varchar',
-             'length' => 255,
-             ));
-        $this->hasColumn('chief_pilot_email', 'varchar', 255, array(
-             'type' => 'varchar',
-             'length' => 255,
-             ));
-        $this->hasColumn('chief_pilot_name', 'varchar', 255, array(
              'type' => 'varchar',
              'length' => 255,
              ));

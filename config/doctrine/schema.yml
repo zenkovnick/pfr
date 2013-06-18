@@ -119,8 +119,6 @@ Account:
   columns:
     title:             {type: varchar(255), notnull: true }
     photo:             {type: varchar(255)}
-    chief_pilot_email: {type: varchar(255)}
-    chief_pilot_name:  {type: varchar(255)}
     managed_by_id:     {type: integer}
     has_modified_form: {type: boolean, default: false}
     has_plane:         {type: boolean, default: false}
@@ -145,7 +143,7 @@ Account:
 Plane:
   actAs: [Timestampable]
   columns:
-    tail_number:       {type: integer }
+    tail_number:       { type: varchar(40) }
   relations:
     Accounts:          { class: Account, refClass: AccountPlane, local: account_id, foreign: plane_id }
 
@@ -163,6 +161,7 @@ UserAccount:
       account_id:      { type: integer, notnull: true, primary: true }
       user_id:         { type: integer, notnull: true, primary: true }
       is_manager:      { type: boolean, default: false }
+      is_chief_pilot:  { type: boolean, default: false }
       position:        { type: integer }
       invite_token:    { type: string(255) }
       is_active:       { type: boolean, default: false }

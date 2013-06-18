@@ -128,19 +128,33 @@
     function validateAndSubmitInformationForm(event) {
         event.preventDefault();
         var valid = true;
+        var name = jQuery('input.name', this);
         var username = jQuery('input.username', this);
         var new_pass = jQuery('input.new-password', this);
         var new_pass_confirm = jQuery('input.new-password-confirm', this);
 
+        if(name.val() == '') {
+            valid = false;
+            name.addClass('invalid-field');
+        } else {
+            name.removeClass('invalid-field');
+        }
+
+
         if(username.val() == '' || !username.val().match(email_pattern)) {
             valid = false;
             username.addClass('invalid-field');
+        } else {
+            username.removeClass('invalid-field');
         }
 
         if(new_pass.val() != new_pass_confirm.val()){
             valid = false;
             new_pass.addClass('invalid-field');
             new_pass_confirm.addClass('invalid-field');
+        } else {
+            new_pass.removeClass('invalid-field');
+            new_pass_confirm.removeClass('invalid-field');
         }
         if(valid){
             jQuery('.invalid-field', this).removeClass('invalid-field');

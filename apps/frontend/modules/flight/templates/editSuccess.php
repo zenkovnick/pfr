@@ -28,6 +28,8 @@
             var sic_input = jQuery('.sic-field input[type="hidden"]');
             var pic_label = jQuery('.pic-field .pilot');
             var sic_label = jQuery('.sic-field .pilot');
+            var airport_from_id = jQuery('#flight_airport_from_id');
+            var airport_to_id = jQuery('#flight_airport_to_id');
 
             if(airport_from.val() == '' || airport_from.val().length > 4 || airport_from.val().length < 4){
                 valid = false;
@@ -41,6 +43,17 @@
                 airport_to.addClass('invalid-field');
             } else {
                 airport_to.removeClass('invalid-field');
+            }
+
+            if( airport_from.val() ==  airport_to.val()){
+                valid = false;
+                airport_from.addClass('invalid-field');
+                airport_to.addClass('invalid-field');
+            } else {
+                if(valid){
+                    airport_from.removeClass('invalid-field');
+                    airport_to.removeClass('invalid-field');
+                }
             }
 
             if(pic_input.val() == sic_input.val()){

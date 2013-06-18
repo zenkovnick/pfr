@@ -11,9 +11,6 @@
                 <?php include_partial('settings/field', array('field' => $form['title'], 'class' => 'account-title', 'placeholder' => 'Title')) ?>
             </li>
             
-            <li class="input-block">
-                <?php include_partial('settings/field', array('field' => $form['chief_pilot_name'], 'class' => 'cpn', 'placeholder' => 'Chief Pilot Name')) ?>
-            </li>
             <li>
                 <span class="hint">You are currently paying 5$ per month</span>
                 <a class="change-billing-link" href="">Change your billing.</a>

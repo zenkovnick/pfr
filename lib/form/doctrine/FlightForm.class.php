@@ -154,6 +154,8 @@ class FlightForm extends BaseFormDoctrine
       $this->setupInheritance();
       $this->mergePostValidator(new sfValidatorSchemaCompare(
           'pilot_in_command', sfValidatorSchemaCompare::NOT_EQUAL, 'second_in_command', array(), array('invalid' => 'PIC and SIC cannot be the same person')));
+      $this->mergePostValidator(new sfValidatorSchemaCompareCustom(
+          'airport_from_id', sfValidatorSchemaCompareCustom::NOT_EQUAL, 'airport_to_id', array(), array('invalid' => 'Airport From ID and Airport To ID cannot be the same airport')));
 
       parent::setup();
   }
@@ -173,6 +175,7 @@ class FlightForm extends BaseFormDoctrine
         if($this->getObject()->getStatus() == 'assess'){
             $mitigation_sum = is_null($this->getObject()->getMitigationSum()) ? 0 : $this->getObject()->getMitigationSum();
         }
+
         $taintedValues['departure_date'] = date('Y-m-d H:i', strtotime($taintedValues['departure_date']) +
             (strtotime($taintedValues['departure_time']) - strtotime(date('Y-m-d', time()))));
         $data_fields['departure_date']= date('Y-m-d', strtotime($taintedValues['departure_time']));
@@ -193,13 +196,19 @@ class FlightForm extends BaseFormDoctrine
         $taintedValues['plane_id'] = $taintedValues['plane'];
         $taintedValues['pic_id'] = $taintedValues['pilot_in_command'];
         if(isset($taintedValues['second_in_command'])){
+            $schema = $this->getValidatorSchema();
+            $fields = $schema->getFields();
+            $fields['second_in_command']->setOption('required', false);
             if(intval($taintedValues['second_in_command']) === 0){
                 $taintedValues['sic_id'] = null;
                 $taintedValues['second_in_command'] = null;
+
             } else {
                 $taintedValues['sic_id'] = $taintedValues['second_in_command'];
             }
         }
+
+
         if($this->getObject()->getStatus() == 'assess'){
             $taintedValues['mitigation_sum'] = $mitigation_sum;
         }

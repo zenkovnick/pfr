@@ -12,6 +12,9 @@ class MyInformationSettingsForm extends sfGuardUserForm {
         $this->widgetSchema['photo_widget'] = new sfWidgetFormInputFile();
         $this->validatorSchema['photo_widget'] = new sfValidatorString(array('required' => false));
 
+
+        $this->validatorSchema['first_name'] = new sfValidatorString(array('required' => true));
+
         $this->widgetSchema['uploaded_photo'] = new sfWidgetFormInputHidden();
         $this->validatorSchema['uploaded_photo'] = new sfValidatorPass();
 

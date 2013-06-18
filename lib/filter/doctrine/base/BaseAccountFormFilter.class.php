@@ -15,8 +15,6 @@ abstract class BaseAccountFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'title'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'photo'             => new sfWidgetFormFilterInput(),
-      'chief_pilot_email' => new sfWidgetFormFilterInput(),
-      'chief_pilot_name'  => new sfWidgetFormFilterInput(),
       'managed_by_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Manager'), 'add_empty' => true)),
       'has_modified_form' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'has_plane'         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
@@ -32,8 +30,6 @@ abstract class BaseAccountFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'title'             => new sfValidatorPass(array('required' => false)),
       'photo'             => new sfValidatorPass(array('required' => false)),
-      'chief_pilot_email' => new sfValidatorPass(array('required' => false)),
-      'chief_pilot_name'  => new sfValidatorPass(array('required' => false)),
       'managed_by_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Manager'), 'column' => 'id')),
       'has_modified_form' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'has_plane'         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
@@ -102,8 +98,6 @@ abstract class BaseAccountFormFilter extends BaseFormFilterDoctrine
       'id'                => 'Number',
       'title'             => 'Text',
       'photo'             => 'Text',
-      'chief_pilot_email' => 'Text',
-      'chief_pilot_name'  => 'Text',
       'managed_by_id'     => 'ForeignKey',
       'has_modified_form' => 'Boolean',
       'has_plane'         => 'Boolean',

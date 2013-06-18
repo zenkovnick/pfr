@@ -1668,8 +1668,6 @@ Account:
   Account_1:
     title: Company
     photo: ada668dbf57f4cc7204aa943473cb580.png
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
     Manager: sfGuardUser_1
     has_modified_form: true
     has_plane: true
@@ -1681,8 +1679,6 @@ Account:
   Account_2:
     title: 'Company 2'
     photo: 2042036d41523e2c17bfbccda75d4258.jpg
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
     Manager: sfGuardUser_2
     has_modified_form: false
     has_plane: false
@@ -1694,8 +1690,6 @@ Account:
   Account_3:
     title: 'Company 4 '
     photo: 849f9f65ab8d6b2daac4bd8bac06b93e.jpg
-    chief_pilot_email: zenkovnick@gmail.com
-    chief_pilot_name: null
     Manager: sfGuardUser_3
     has_modified_form: false
     has_plane: false
@@ -1707,8 +1701,6 @@ Account:
   Account_4:
     title: 'Super company :)'
     photo: a483a71dd4b68e3fe5ced1ef161f74b1.jpg
-    chief_pilot_email: null
-    chief_pilot_name: 'Nata Test3'
     Manager: sfGuardUser_4
     has_modified_form: true
     has_plane: true
@@ -1720,8 +1712,6 @@ Account:
   Account_5:
     title: 'Test 3'
     photo: a3a2e61b298f697dcc2df9e9dd4d7272.JPG
-    chief_pilot_email: null
-    chief_pilot_name: ''
     Manager: sfGuardUser_5
     has_modified_form: true
     has_plane: true
@@ -1733,8 +1723,6 @@ Account:
   Account_6:
     title: Tango
     photo: 052b34b4bd10d9c0624082c036289aee.jpg
-    chief_pilot_email: null
-    chief_pilot_name: ''
     Manager: sfGuardUser_5
     has_modified_form: false
     has_plane: false
@@ -1746,8 +1734,6 @@ Account:
   Account_7:
     title: '07 06 2013'
     photo: null
-    chief_pilot_email: nata3@asdasd.ru
-    chief_pilot_name: null
     Manager: sfGuardUser_4
     has_modified_form: false
     has_plane: false
@@ -1759,8 +1745,6 @@ Account:
   Account_8:
     title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     photo: a076dbf8d658950e4e486855316e17fb.jpg
-    chief_pilot_email: null
-    chief_pilot_name: nata@asdasd.ru
     Manager: sfGuardUser_4
     has_modified_form: true
     has_plane: true
@@ -1772,8 +1756,6 @@ Account:
   Account_9:
     title: 'Company (Nata 2)'
     photo: a3527e2b1044b466636b55d770123406.JPG
-    chief_pilot_email: nata2@asdasd.ru
-    chief_pilot_name: null
     Manager: sfGuardUser_6
     has_modified_form: false
     has_plane: false
@@ -1785,8 +1767,6 @@ Account:
   Account_10:
     title: 'My Company'
     photo: ''
-    chief_pilot_email: nata@asdasd.ru
-    chief_pilot_name: null
     Manager: sfGuardUser_5
     has_modified_form: false
     has_plane: false
@@ -1798,8 +1778,6 @@ Account:
   Account_11:
     title: ''
     photo: ''
-    chief_pilot_email: ''
-    chief_pilot_name: null
     Manager: sfGuardUser_4
     has_modified_form: false
     has_plane: false
@@ -1811,8 +1789,6 @@ Account:
   Account_12:
     title: ''
     photo: ''
-    chief_pilot_email: ''
-    chief_pilot_name: null
     Manager: sfGuardUser_4
     has_modified_form: false
     has_plane: false
@@ -1824,8 +1800,6 @@ Account:
   Account_13:
     title: Company
     photo: ''
-    chief_pilot_email: nata@asdasd.ru
-    chief_pilot_name: null
     Manager: sfGuardUser_4
     has_modified_form: false
     has_plane: false
@@ -1837,8 +1811,6 @@ Account:
   Account_14:
     title: Сompany
     photo: 18a8c1e112ef8f76826a1e1dc4a61f4c.png
-    chief_pilot_email: nata@asdasd.ru
-    chief_pilot_name: null
     Manager: sfGuardUser_4
     has_modified_form: false
     has_plane: false
@@ -1850,8 +1822,6 @@ Account:
   Account_15:
     title: Company
     photo: 4ee49f778bf47a49dd0e3b0e5ad9be5d.jpg
-    chief_pilot_email: nata@asdasd.ru
-    chief_pilot_name: null
     Manager: sfGuardUser_4
     has_modified_form: false
     has_plane: false
@@ -1863,8 +1833,6 @@ Account:
   Account_16:
     title: ''
     photo: ''
-    chief_pilot_email: ''
-    chief_pilot_name: null
     Manager: sfGuardUser_4
     has_modified_form: false
     has_plane: false

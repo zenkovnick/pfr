@@ -232,6 +232,9 @@
                 getPilot(jQuery(this));
             }
 
+        } else {
+            getPilot(jQuery(this));
+
         }
 
     });

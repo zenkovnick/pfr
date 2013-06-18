@@ -23,6 +23,8 @@
             var valid = true;
             var airport_from = jQuery('input.airport-from', this);
             var airport_to = jQuery('input.airport-to', this);
+            var airport_from_id = jQuery('#flight_airport_from_id');
+            var airport_to_id = jQuery('#flight_airport_to_id');
             var trip_number = jQuery('input.trip-number', this);
             var pic_input = jQuery('.pic-field input[type="hidden"]');
             var sic_input = jQuery('.sic-field input[type="hidden"]');
@@ -36,12 +38,25 @@
                 airport_from.removeClass('invalid-field');
             }
 
+
             if(airport_to.val() == '' || airport_to.val().length > 4 || airport_to.val().length < 4){
                 valid = false;
                 airport_to.addClass('invalid-field');
             } else {
                 airport_to.removeClass('invalid-field');
             }
+
+            if( airport_from.val() ==  airport_to.val()){
+                valid = false;
+                airport_from.addClass('invalid-field');
+                airport_to.addClass('invalid-field');
+            } else {
+                if(valid){
+                    airport_from.removeClass('invalid-field');
+                    airport_to.removeClass('invalid-field');
+                }
+            }
+
             if(pic_input.val() == sic_input.val()){
                 valid = false;
                 pic_label.addClass('invalid-select');
