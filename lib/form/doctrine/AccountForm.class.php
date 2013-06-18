@@ -49,6 +49,8 @@ class AccountForm extends BaseAccountForm
             $pilot->setUsername($values['chief_pilot_name']);
             $pilot->save();
             $values['chief_pilot_id'] = $pilot->getId();
+        } elseif($values['chief_pilot_id'] == "" && $values['chief_pilot_name'] == "") {
+            $values['chief_pilot_id'] = null;
         }
         return $values;
 
@@ -70,13 +72,15 @@ class AccountForm extends BaseAccountForm
             $this->getObject()->save();
 
         }
-        $user_account = new UserAccount();
-        $user_account->setAccount($this->getObject());
         $user = $this->getObject()->getChiefPilot();
-        $user_account->setUser($user);
-        $user_account->setInviteToken($user->generateToken());
-        $user_account->setPosition(UserAccountTable::getMaxPosition($this->getObject()) + 1);
-        $user_account->setIsManager(true);
-        $user_account->save();
+        if($user){
+            $user_account = new UserAccount();
+            $user_account->setAccount($this->getObject());
+            $user_account->setUser($user);
+            $user_account->setInviteToken($user->generateToken());
+            $user_account->setPosition(UserAccountTable::getMaxPosition($this->getObject()) + 1);
+            $user_account->setIsManager(true);
+            $user_account->save();
+        }
     }
 }

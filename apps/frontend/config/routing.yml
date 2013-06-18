@@ -88,6 +88,10 @@ dashboard:
     account_id: \d+
     
 
+cancel_chief_invitation:
+  url: /settings/cancel-chief-invitation
+  param: { module: settings, action: cancelChiefInvitation}
+
 update_pilot:
   url: /settings/update-pilot
   param: { module: settings, action: updatePilot}

@@ -58,6 +58,18 @@ class EmailNotification {
         return MCSendMail::getInstance()->sendMail(true);
     }
 
+    public static function cancelChiefInvite($guest, $account){
+        $text = '';
+        $text .= "Sorry, but Your invitation to {$account->getTitle()} account as chief pilot was canceled.";
+
+        MCSendMail::getInstance()->setMessageText($text);
+        MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_notification_from_email', 'support@preflightrisk.com'));
+        MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_notification_from_name', 'PreFlightRisk'));
+        MCSendMail::getInstance()->setMessageSubject(sfConfig::get('app_email_notification_cancel_title', 'Cancel invitation to PreFlightRisk'));
+        MCSendMail::getInstance()->setMessageAddTo(array('email'=>$guest->getUsername(), 'name' => $guest->getFirstName() ? $guest->getFirstName() : null));
+        return MCSendMail::getInstance()->sendMail(true);
+    }
+
     public static function sendChiefAccountApprove($initiator, $guest, $url, $account){
         $text = '';
         $text .= "You have been invited to {$account->getTitle()} account as chief pilot by ";

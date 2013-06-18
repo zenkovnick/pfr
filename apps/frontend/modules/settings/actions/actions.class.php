@@ -482,4 +482,19 @@ class settingsActions extends sfActions {
         return sfView::NONE;
     }
 
+    public function executeCancelChiefInvitation(sfWebRequest $request) {
+        $this->setLayout(false);
+        $this->forward404unless($request->isXmlHttpRequest());
+        $account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $chief_pilot = $account->getChiefPilot();
+        $chief_pilot_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $account->getId());
+        if($chief_pilot_account->delete()){
+            echo json_encode(array('result' => 'OK'));
+            EmailNotification::cancelChiefInvite($chief_pilot, $account);
+        } else {
+            echo json_encode(array('result' => 'Failed'));
+        }
+        return sfView::NONE;
+    }
+
 }
