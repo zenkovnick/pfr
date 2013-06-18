@@ -92,7 +92,6 @@ a                              { cursor: pointer; }
     margin: 0 auto;
     overflow: hidden;
     width: 100%;
-    -webkit-overflow-scrolling: touch;
 }
 .wrapper {
     margin: 0 auto;
@@ -1262,6 +1261,8 @@ p.help-message {
     max-height: 300px;
     overflow-y: auto !important;
     overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+
 }
 
 html .ui-autocomplete {
