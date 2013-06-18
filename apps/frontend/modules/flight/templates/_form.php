@@ -3,7 +3,8 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
 <script src="/js/jquery.ui.timepicker.js"></script>
-<script src="/js/iscroll.js"></script>
+<link rel="stylesheet" href="http://jscrollpane.kelvinluck.com/style/jquery.jscrollpane.css" />
+<script type="text/javascript" src="http://jscrollpane.kelvinluck.com/script/jquery.jscrollpane.min.js"></script>
 
 <?php echo $form->renderGlobalErrors();?>
 <?php echo $form->renderHiddenFields();?>
@@ -160,10 +161,22 @@
                 if(ui.item){
                     jQuery("#flight_airport_from_id").val(ui.item.id);
                 }
-            }/*,
-            open: function(event, ui){
-                var myScroll1 = new iScroll('ui-id-1');
-            }*/
+            },
+            open: function(event, ui) {
+                $('.ui-autocomplete')
+                    .addClass('scroll-pane')
+                    .jScrollPane();
+
+                $('.jScrollPaneContainer').css({
+                    'position': 'absolute',
+                    'top': ($(this).offset().top +
+                        $(this).height() + 5) + 'px',
+                    'left': $(this).offset().left + 'px'
+                });
+            },
+            close: function(event, ui) {
+                $('.scroll-pane').jScrollPaneRemove();
+            }
         });
 
         jQuery( "#flight_airport_to_name" ).autocomplete({
@@ -173,10 +186,22 @@
                 if(ui.item){
                     jQuery("#flight_airport_to_id").val(ui.item.id);
                 }
-            }/*,
-            open: function(event, ui){
-                var myScroll1 = new iScroll('ui-id-2');
-            }*/
+            },
+            open: function(event, ui) {
+                $('.ui-autocomplete')
+                    .addClass('scroll-pane')
+                    .jScrollPane();
+
+                $('.jScrollPaneContainer').css({
+                    'position': 'absolute',
+                    'top': ($(this).offset().top +
+                        $(this).height() + 5) + 'px',
+                    'left': $(this).offset().left + 'px'
+                });
+            },
+            close: function(event, ui) {
+                $('.scroll-pane').jScrollPaneRemove();
+            }
         });
 
         //hideSelectedPilot(jQuery(".sic-field"), jQuery("#flight_pilot_in_command").val());
