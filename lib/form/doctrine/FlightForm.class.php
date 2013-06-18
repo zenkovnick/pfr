@@ -152,6 +152,8 @@ class FlightForm extends BaseFormDoctrine
       $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
       $this->setupInheritance();
+      $this->mergePostValidator(new sfValidatorSchemaCompare(
+          'pilot_in_command', sfValidatorSchemaCompare::NOT_EQUAL, 'second_in_command', array(), array('invalid' => 'PIC and SIC cannot be the same person')));
 
       parent::setup();
   }

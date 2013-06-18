@@ -280,6 +280,10 @@ ul.header-link-block li a {
     border: 1px solid red !important;
 }
 
+.invalid-select {
+    color: red !important;
+}
+
 .upload-wrapper {
 
     position: relative;

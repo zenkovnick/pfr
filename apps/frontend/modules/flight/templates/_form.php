@@ -182,13 +182,13 @@
         //hideSelectedPilot(jQuery(".sic-field"), jQuery("#flight_pilot_in_command").val());
     });
 
-    function hideSelectedPilot(where, id){
+    /*function hideSelectedPilot(where, id){
         jQuery("ul li", where).removeClass('hidden');
         jQuery("ul li#"+id, where).addClass('hidden');
         if(jQuery("ul li", where).not(".hidden").length ==  1){
             jQuery("ul li#0", where).trigger('click');
         }
-    }
+    }*/
 
     jQuery('.list-select .result, .list-select .pilot, .list-select .plane').bind('click', function(){
         jQuery("ul.expanded").trigger("mouseleave");
