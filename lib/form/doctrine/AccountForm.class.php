@@ -13,7 +13,7 @@ class AccountForm extends BaseAccountForm
   public function configure()
   {
       $this->useFields(array(
-          'title', 'photo'
+          'title', 'photo', 'chief_pilot_id'
       ));
 
       $this->widgetSchema['photo'] = new sfWidgetFormInputHidden();
@@ -28,29 +28,35 @@ class AccountForm extends BaseAccountForm
       $this->validatorSchema['title'] = new sfValidatorString(array('required' => true));
 
       if($this->getObject()->isNew()){
-          $this->setWidget("chief_pilot_id", new sfWidgetFormInputHidden());
-          $this->setValidator("chief_pilot_id", new sfValidatorPass());
-          $this->setWidget("chief_pilot_name", new sfWidgetFormInput());
-          $this->setValidator("chief_pilot_name", new sfValidatorString(array("required" => false)));
+          $this->widgetSchema["chief_pilot_id"] = new sfWidgetFormInputHidden();
+          $this->validatorSchema["chief_pilot_id"] = new sfValidatorPass();
+          $this->widgetSchema["chief_pilot_name"] = new sfWidgetFormInput();
+          $this->validatorSchema["chief_pilot_name"] = new sfValidatorString(array("required" => false));
       } else {
-          $this->setWidget("chief_pilot_id", new sfWidgetFormDoctrineChoiceCustom(array(
+          $this->widgetSchema["chief_pilot_id"] = new sfWidgetFormDoctrineChoiceCustom(array(
               'model' => 'sfGuardUser',
               'table_method' => 'getUsers',
               'table_method_parameters' => array('account' => $this->getOption('account')),
               'method' => 'getUserTitle',
-              'method_parameters' => array('curr_user' => $this->getOption('user'))
-          )));
+              'method_parameters' => array('curr_user' => $this->getOption('user')),
+              'add_empty' => "Choose Chief Pilot..."
+          ));
       }
   }
+    public function bind(array $taintedValues = null, array $taintedFiles = null){
+
+        if(!$taintedValues["chief_pilot_id"]){
+            $taintedValues["chief_pilot_id"] = null;
+        }
+        parent::bind($taintedValues, $taintedFiles);
+    }
 
     public function processValues($values = null){
-        if(isset($values['chief_pilot_name']) && $values['chief_pilot_id'] == "" && $values['chief_pilot_name'] != ""){
+        if(isset($values['chief_pilot_name']) && is_null($values['chief_pilot_id']) && $values['chief_pilot_name'] != ""){
             $pilot = new sfGuardUser();
             $pilot->setUsername($values['chief_pilot_name']);
             $pilot->save();
             $values['chief_pilot_id'] = $pilot->getId();
-        } elseif($values['chief_pilot_id'] == "" && $values['chief_pilot_name'] == "") {
-            $values['chief_pilot_id'] = null;
         }
         return $values;
 
@@ -59,7 +65,7 @@ class AccountForm extends BaseAccountForm
     protected function doSave($con = null)
     {
 
-
+        $is_new = $this->getObject()->isNew();
         parent::doSave($con);
 
         //EmailNotification::sendInvites($this->getUser()->getGuardUser(), $pilot, $url, $account);
@@ -72,15 +78,19 @@ class AccountForm extends BaseAccountForm
             $this->getObject()->save();
 
         }
-        $user = $this->getObject()->getChiefPilot();
-        if($user){
-            $user_account = new UserAccount();
-            $user_account->setAccount($this->getObject());
-            $user_account->setUser($user);
-            $user_account->setInviteToken($user->generateToken());
-            $user_account->setPosition(UserAccountTable::getMaxPosition($this->getObject()) + 1);
-            $user_account->setIsManager(true);
-            $user_account->save();
+        if($is_new){
+            if(Doctrine_Core::getTable('sfGuardUser')->find($this->getObject()->getChiefPilot()->getId())){
+                $user_account = new UserAccount();
+                $user_account->setAccount($this->getObject());
+                $user_account->setUser($this->getObject()->getChiefPilot());
+                $user_account->setInviteToken($this->getObject()->getChiefPilot()->generateToken());
+                $user_account->setPosition(UserAccountTable::getMaxPosition($this->getObject()) + 1);
+                $user_account->setIsManager(true);
+                $user_account->save();
+            } else {
+                $this->getObject()->setChiefPilot(null);
+                $this->getObject()->save();
+            }
         }
     }
 }

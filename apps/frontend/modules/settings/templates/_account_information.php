@@ -11,18 +11,23 @@
                 <?php include_partial('settings/field', array('field' => $form['title'], 'class' => 'account-title', 'placeholder' => 'Title')) ?>
             </li>
 
-            <?php if($chief_is_active): ?>
+            <?php if($chief_pilot): ?>
+                <?php if($chief_is_active): ?>
+                    <li class="input-block">
+                        <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot', 'placeholder' => 'Title')) ?>
+                    </li>
+                <?php else: ?>
+                    <li class="input-block">
+                        <span class="invited-chief">Chief Pilot was invited(<?php echo $chief_pilot->getUsername() ?>)</span>
+                        <a class="cancel-invitation" href="">Cancel invitation</a>
+                        <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot hidden', 'placeholder' => 'Title')) ?>
+                    </li>
+                <?php endif ?>
+            <?php else: ?>
                 <li class="input-block">
                     <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot', 'placeholder' => 'Title')) ?>
                 </li>
-            <?php else: ?>
-                <li class="input-block">
-                    <span class="invited-chief">Chief Pilot was invited(<?php echo $chief_pilot->getUsername() ?>)</span>
-                    <a class="cancel-invitation" href="">Cancel invitation</a>
-                    <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot hidden', 'placeholder' => 'Title')) ?>
-                </li>
             <?php endif ?>
-
             <li>
                 <span class="hint">You are currently paying 5$ per month</span>
                 <a class="change-billing-link" href="">Change your billing.</a>

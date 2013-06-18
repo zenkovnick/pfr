@@ -66,20 +66,22 @@ class settingsActions extends sfActions {
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $this->form = new AccountForm($this->account, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
         $chief_pilot =$this->account->getChiefPilot();
-        $chief_pilot_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $this->account->getId());
+        if($chief_pilot->getId()){
+            $chief_pilot_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $this->account->getId());
+        }
         $this->renderPartial('settings/account_information', array(
             'form' => $this->form,
             'account' => $this->account,
-            'chief_pilot' => $chief_pilot,
-            'chief_is_active' => $chief_pilot_account->getIsActive()
+            'chief_pilot' => $chief_pilot->getId() ? $chief_pilot : null,
+            'chief_is_active' => $chief_pilot->getId() ? $chief_pilot_account->getIsActive() : null
         ));
         return sfView::NONE;
     }
     public function executeProcessAccountData(sfWebRequest $request){
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
-        $this->user = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
-        $this->form = new AccountForm($this->user);
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->form = new AccountForm($this->account);
         if($request->isMethod('POST')){
             $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
             if($this->form->isValid()){

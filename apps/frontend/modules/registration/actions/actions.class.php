@@ -136,17 +136,20 @@ class registrationActions extends sfActions
                     $risk_builder->createDefaultForm($account);
 
                     $chief_pilot = $account->getChiefPilot();
-                    $chief_user_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $account->getId());
+                    if($chief_pilot && $chief_pilot->getId()){
+                        $chief_user_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $account->getId());
 
-                    if($chief_exists){
-                        $url = $this->generateUrl('approve_account', array('token' => $chief_user_account->getInviteToken()), true);
-                        EmailNotification::sendChiefAccountApprove($this->getUser()->getGuardUser(), $chief_pilot, $url, $account);
+                        if($chief_exists){
+                            $url = $this->generateUrl('approve_account', array('token' => $chief_user_account->getInviteToken()), true);
+                            EmailNotification::sendChiefAccountApprove($this->getUser()->getGuardUser(), $chief_pilot, $url, $account);
 
-                    } else {
-                        $url = $this->generateUrl('signup_invite', array('token' => $chief_user_account->getInviteToken()), true);
-                        EmailNotification::sendChiefInvite($this->getUser()->getGuardUser(), $chief_pilot, $url, $account);
+                        } else {
+                            $url = $this->generateUrl('signup_invite', array('token' => $chief_user_account->getInviteToken()), true);
+                            EmailNotification::sendChiefInvite($this->getUser()->getGuardUser(), $chief_pilot, $url, $account);
 
+                        }
                     }
+
 
                     $this->redirect("@dashboard?account_id={$account->getId()}");
                 }

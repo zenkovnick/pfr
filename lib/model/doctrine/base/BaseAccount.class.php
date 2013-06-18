@@ -82,7 +82,6 @@ abstract class BaseAccount extends sfDoctrineRecord
              ));
         $this->hasColumn('chief_pilot_id', 'integer', null, array(
              'type' => 'integer',
-             'notnull' => false,
              ));
         $this->hasColumn('has_modified_form', 'boolean', null, array(
              'type' => 'boolean',

@@ -120,7 +120,7 @@ Account:
     title:             {type: varchar(255), notnull: true }
     photo:             {type: varchar(255)}
     managed_by_id:     {type: integer}
-    chief_pilot_id:    {type: integer, notnull: false}
+    chief_pilot_id:    {type: integer}
     has_modified_form: {type: boolean, default: false}
     has_plane:         {type: boolean, default: false}
     has_pilot:         {type: boolean, default: false}
@@ -133,7 +133,6 @@ Account:
       class: sfGuardUser
       local: chief_pilot_id
       foreign: id
-      type: one
       onDelete: CASCADE
     Manager:
       class: sfGuardUser
