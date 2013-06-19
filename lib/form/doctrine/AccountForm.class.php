@@ -79,14 +79,21 @@ class AccountForm extends BaseAccountForm
 
         }
         if($is_new){
-            if(Doctrine_Core::getTable('sfGuardUser')->find($this->getObject()->getChiefPilot()->getId())){
-                $user_account = new UserAccount();
-                $user_account->setAccount($this->getObject());
-                $user_account->setUser($this->getObject()->getChiefPilot());
-                $user_account->setInviteToken($this->getObject()->getChiefPilot()->generateToken());
-                $user_account->setPosition(UserAccountTable::getMaxPosition($this->getObject()) + 1);
-                $user_account->setIsManager(true);
-                $user_account->save();
+            $chief_pilot = $this->getObject()->getChiefPilot();
+            $curr_user = $this->getOption('curr_user');
+            if(Doctrine_Core::getTable('sfGuardUser')->find($chief_pilot->getId())){
+                $user_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $this->getObject()->getId());
+                if(!$user_account){
+                    $user_account = new UserAccount();
+                    $user_account->setAccount($this->getObject());
+                    $user_account->setUser($chief_pilot);
+                    $user_account->setInviteToken($chief_pilot->generateToken());
+                    $user_account->setPosition(UserAccountTable::getMaxPosition($this->getObject()) + 1);
+                    $user_account->setIsActive($curr_user->getId() == $chief_pilot->getId());
+                    $user_account->setIsManager(true);
+                    $user_account->save();
+
+                }
             } else {
                 $this->getObject()->setChiefPilot(null);
                 $this->getObject()->save();

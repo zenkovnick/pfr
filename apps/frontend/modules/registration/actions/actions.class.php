@@ -116,27 +116,30 @@ class registrationActions extends sfActions
 
     public function executeCreateAccount(sfWebRequest $request) {
         if($this->getUser()->isAuthenticated()){
-            $this->form = new AccountForm();
+            $this->user = $this->getUser()->getGuardUser();
+            $this->form = new AccountForm(null, array('curr_user' => $this->user));
             if($request->isMethod('POST')){
                 $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
-                $this->user = $this->getUser()->getGuardUser();
                 if($this->form->isValid()){
                     $values = $this->form->getTaintedValues();
                     $chief_exists = $values['chief_pilot_id'] ? true : false;
                     $account = $this->form->save();
                     $account->setManager($this->user);
-                    $user_account = new UserAccount();
-                    $user_account->setAccount($account);
-                    $user_account->setUser($this->user);
-                    $user_account->setIsManager(true);
-                    $user_account->setIsActive(true);
-                    $user_account->save();
+                    $user_account = UserAccountTable::getUserAccount($this->user->getId(), $account->getId());
+                    if(!$user_account){
+                        $user_account = new UserAccount();
+                        $user_account->setAccount($account);
+                        $user_account->setUser($this->user);
+                        $user_account->setIsManager(true);
+                        $user_account->setIsActive(true);
+                        $user_account->save();
+                    }
 
                     $risk_builder = new RiskBuilder();
                     $risk_builder->createDefaultForm($account);
 
                     $chief_pilot = $account->getChiefPilot();
-                    if($chief_pilot && $chief_pilot->getId()){
+                    if($chief_pilot && $chief_pilot->getId() && $chief_pilot->getId() != $this->user->getId()){
                         $chief_user_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $account->getId());
 
                         if($chief_exists){
