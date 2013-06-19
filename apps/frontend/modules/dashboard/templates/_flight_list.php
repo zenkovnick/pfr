@@ -4,7 +4,7 @@
             <?php if($flight->getDrafted()): ?>
 
                 <div class="flight-title">
-                    <a href="<?php echo url_for("@eidt_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
+                    <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
                         <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?> (Drafted)
                     </a>
                 </div>
