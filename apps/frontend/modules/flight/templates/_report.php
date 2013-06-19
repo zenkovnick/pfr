@@ -18,17 +18,22 @@
     <span class="top-border border"></span>
     <div class="critical-risks">
         <h2>Risk Factors</h2>
-        <ul>
-            <?php foreach($high_risk_factors as $high_risk_factor): ?>
-                <li class="assessment-risk-wrapper <?php echo $high_risk_factor === end(array_values($high_risk_factors)) ? "last" : ""?>">
-                    <div>
-                        <p class="question"><?php echo $high_risk_factor['question'] ?></p>
-                        <span class="answer"><?php echo $high_risk_factor['answer'] ?></span>
-                    </div>
-                    <span class="risk"><?php echo $high_risk_factor['risk'] ?></span>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?php if(count($high_risk_factors) > 0): ?>
+            <ul>
+                <?php foreach($high_risk_factors as $high_risk_factor): ?>
+                    <?php $array = array_values($high_risk_factors); ?>
+                    <li class="assessment-risk-wrapper <?php echo $high_risk_factor == end($array) ? "last" : ""?>">
+                        <div>
+                            <p class="question"><?php echo $high_risk_factor['question'] ?></p>
+                            <span class="answer"><?php echo $high_risk_factor['answer'] ?></span>
+                        </div>
+                        <span class="risk"><?php echo $high_risk_factor['risk'] ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <span class="no-high-risk-factors">You have no risk factors over 0</span>
+        <?php endif ?>
     </div>
     <span class="bottom-border border"></span>
 </div>

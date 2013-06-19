@@ -1277,6 +1277,8 @@ html .ui-autocomplete {
 
 }
 
+
+
 .assessment-wrapper .risk-assessment h2 {
     margin: 0 0 15px;
     text-align: center;
@@ -1318,6 +1320,12 @@ html .ui-autocomplete {
     color: #999;
     padding: 0 4px;
 }
+.assessment-wrapper span.no-high-risk-factors {
+    color: #999999;
+    margin: 0 0 10px 0;
+    display: inline-block;
+}
+
 
 .assessment-wrapper .note {
     background: url(../images/note_icon.png) no-repeat 10px center #FFFF66;
