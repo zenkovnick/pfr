@@ -1,19 +1,27 @@
 <ul>
     <?php foreach($pager->getResults() as $flight): ?>
         <li>
-            <?php if($flight->getDrafted() && $flight->getStatus() == "new"): ?>
-                <?php if($flight->getTripNumber()): ?>
-                    <span><?php echo $flight->getTripNumber() ?>(Drafted)</span>
-                <?php else: ?>
-                    <span>Drafted</span>
-                    <span><?php echo $flight->getId() ?></span>
-                <?php endif ?>
-                <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
-            <?php elseif($flight->getDrafted() && $flight->getStatus() == "assess"): ?>
-                <span><?php echo $flight->getTripNumber() ?>(Drafted)</span>
-                <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">Edit</a>
+            <?php if($flight->getDrafted()): ?>
+
+                <div class="flight-title">
+                    <a href="<?php echo url_for("@eidt_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
+                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?> (Drafted)
+                    </a>
+                </div>
             <?php else: ?>
-                <a href="<?php echo url_for("@view_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>"><?php echo $flight->getTripNumber() ?></a>
+                <div class="flight-title">
+                    <a href="<?php echo url_for("@view_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
+                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?>
+                    </a>
+                </div>
+            <?php endif ?>
+            <div class="flight-info">
+                <span>
+                    @<?php echo date('H:i \o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
+                    <?php echo $flight->getTripNumber() ? " via Type {$flight->getTripNumber()}" : "" ?>
+                </span>
+            </div>
+            <?php if($flight->getRiskFactorSum()): ?>
                 <span><?php echo $flight->getRiskFactorSum() ?></span>
             <?php endif ?>
         </li>
