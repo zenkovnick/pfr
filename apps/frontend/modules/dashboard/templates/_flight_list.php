@@ -5,13 +5,13 @@
 
                 <div class="flight-title">
                     <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
-                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?> (Drafted)
+                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?> (Drafted)
                     </a>
                 </div>
             <?php else: ?>
                 <div class="flight-title">
                     <a href="<?php echo url_for("@view_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
-                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?>
+                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?>
                     </a>
                 </div>
             <?php endif ?>
