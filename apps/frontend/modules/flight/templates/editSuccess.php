@@ -30,6 +30,8 @@
             var sic_label = jQuery('.sic-field .pilot');
             var airport_from_id = jQuery('#flight_airport_from_id');
             var airport_to_id = jQuery('#flight_airport_to_id');
+            var plane = jQuery('#flight_plane', this);
+            var plane_label = jQuery('.plane-select .plane', this);
 
             if(airport_from.val() == '' || airport_from.val().length > 4 || airport_from.val().length < 4){
                 valid = false;
@@ -63,6 +65,13 @@
             } else {
                 pic_label.removeClass('invalid-select');
                 sic_label.removeClass('invalid-select');
+            }
+
+            if(plane.val() == ""){
+                valid = false;
+                plane_label.addClass('invalid-select');
+            } else {
+                plane_label.removeClass('invalid-select');
             }
 
             if(trip_number.val() == ''){
