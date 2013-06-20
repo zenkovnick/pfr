@@ -220,7 +220,7 @@
 
     jQuery('.plane-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
-        jQuery('.plane', root_el).html(jQuery(this).text());
+        jQuery('.plane', root_el).html(jQuery(this).text()).removeClass("invalid-select");
         var id = jQuery(this).prop('id');
         jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
