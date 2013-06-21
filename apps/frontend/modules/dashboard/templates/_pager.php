@@ -61,7 +61,7 @@
             jQuery(".paginator-link-first").click(function(event){
                 event.preventDefault();
                 pageRecalculation(parseInt(jQuery("li.active em").attr('id')));
-                if(prev_page > 1){
+                if(prev_page >= 1){
                     pageRecalculation(1);
                     sendAjax(1);
 
