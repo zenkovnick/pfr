@@ -27,6 +27,24 @@
     </ul>
 <?php endif ?>
 
+<ul class="flights-list">
+    <li>
+        <span class="risk">5</span>
+        <a href="#" class="name">TEST name</a>
+        <span class="info">lsd;ljas;ljkfeal;wjf;lsjdf</span>
+    </li>
+    <li class="grey">
+        <span class="risk">0</span>
+        <a href="#" class="name">TEST name</a>
+        <span class="info">lsd;ljas;ljkfeal;wjf;lsjdf</span>
+    </li>
+    <li class="yellow">
+        <span class="risk">5</span>
+        <a href="#" class="name">TEST name</a>
+        <span class="info">lsd;ljas;ljkfeal;wjf;lsjdf</span>
+    </li>
+</ul>
+
 <div class="pager">
     <?php include_partial('dashboard/pager', array('pager' => $pager, 'account' => $account)); ?>
 </div>

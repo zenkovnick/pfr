@@ -1860,6 +1860,12 @@ html .ui-autocomplete {
     background: #FC0;
     border: 1px solid #F90;
 }
+.dashboard-page .flights-list .grey .risk {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #CCC;
+}
+
 .dashboard-page .flights-list .name {
     color: #333;
     text-decoration: none;
