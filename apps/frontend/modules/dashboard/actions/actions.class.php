@@ -104,8 +104,17 @@ class dashboardActions extends sfActions {
         $this->setLayout(false);
         $this->setFlightData($request, $this);
         $chart = new FlightChart($this->flights_for_chart);
-        $this->chart_markup = $chart->getChartMarkup();
-        echo json_encode(array('flight_chart' => $this->chart_markup));
+        if($this->flights_for_chart->count() > 1) {
+            $this->chart_markup = $chart->getChartMarkup();
+            echo json_encode(array('result' => "OK", 'flight_chart' => $this->chart_markup));
+        } else if ($this->flights_for_chart->count() == 1){
+            $flight = $this->flights_for_chart->getFirst();
+            $markup = $this->getPartial('dashboard/one_entity_placeholder');
+            echo json_encode(array('result' => "one_checkin", 'markup' => $markup));
+        } else {
+            $markup = $this->getPartial('dashboard/no_data_placeholder');
+            echo json_encode(array('result' => "no_data", 'markup' => $markup));
+        }
         return sfView::NONE;
 
     }

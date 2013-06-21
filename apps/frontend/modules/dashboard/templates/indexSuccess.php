@@ -68,45 +68,51 @@
             dataType: 'json',
             type: 'GET',
             success: function(data){
-                drawChart(data.flight_chart);
+                drawChart(data);
             }
         })
     }
 
-    function drawChart(chart_info) {
+    function drawChart(data) {
         var output_element = document.getElementById('chart');
-        if(chart_info.chart_data.rows){
-            var dataTable = new google.visualization.DataTable(chart_info.chart_data);
-            var colors = chart_info.chart_color;
-            var colors_arr = new Array();
-            var vAxis_title = "";
-            for(var key_color in colors){
-                if(colors.hasOwnProperty(key_color)){
-                    colors_arr.push(colors[key_color]);
+        if(data.result == "OK"){
+            var chart_info = data.flight_chart;
+            if(chart_info.chart_data.rows){
+                var dataTable = new google.visualization.DataTable(chart_info.chart_data);
+                var colors = chart_info.chart_color;
+                var colors_arr = new Array();
+                var vAxis_title = "";
+                for(var key_color in colors){
+                    if(colors.hasOwnProperty(key_color)){
+                        colors_arr.push(colors[key_color]);
+                    }
                 }
-            }
-            //colors_arr.reverse();
-            var options = {
-                fontSize: 5,
-                fontName: 'Times New Roman',
-                enableInteractivity: false,
-                width: 890, height: 400,
-                chartArea: {width: 750, height: 300},
-                legend: {alignment: 'center', position: 'top', textStyle: {color: 'black', fontSize: 18, fontName: 'Helvetica'}},
-                pointSize: 0,
-                interpolateNulls: true,
-                colors: colors_arr,
-                hAxis: {textStyle: {fontName: 'Helvetica', fontSize: 14 }},
-                vAxis: {textStyle: {fontName: 'Helvetica'}, minValue: 0, title: vAxis_title}
-            };
-            var chart = new google.visualization.LineChart(output_element);
-            //google.visualization.events.addListener(chart, "ready", tweakChart);
-            chart.draw(dataTable, options);
+                //colors_arr.reverse();
+                var options = {
+                    fontSize: 5,
+                    fontName: 'Times New Roman',
+                    enableInteractivity: false,
+                    width: 890, height: 400,
+                    chartArea: {width: 750, height: 300},
+                    legend: {alignment: 'center', position: 'top', textStyle: {color: 'black', fontSize: 18, fontName: 'Helvetica'}},
+                    pointSize: 0,
+                    interpolateNulls: true,
+                    colors: colors_arr,
+                    hAxis: {textStyle: {fontName: 'Helvetica', fontSize: 14 }},
+                    vAxis: {textStyle: {fontName: 'Helvetica'}, minValue: 0, title: vAxis_title}
+                };
+                var chart = new google.visualization.LineChart(output_element);
+                //google.visualization.events.addListener(chart, "ready", tweakChart);
+                chart.draw(dataTable, options);
 
+            } else {
+                output_element.innerHTML = "";
+            }
         } else {
-            output_element.innerHTML = "";
+            output_element.innerHTML = data.markup;
         }
     }
+
 
     jQuery(document).ready(function(){
         jQuery("#flight_filter").bind('submit', submitFilter);
