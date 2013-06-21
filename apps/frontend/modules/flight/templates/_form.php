@@ -19,11 +19,13 @@
     <?php foreach($data['flight_information'] as $fi): ?>
         <?php $key = Flight::generateKeyByTitle($fi['name']); ?>
         <?php if($key == 'trip_number'): ?>
-            <li class="flight-information trip-number-field">
+            <li class="flight-information trip-number-field" id="trip_number_field">
         <?php elseif($key == 'pilot_in_command'): ?>
-            <li class="flight-information pic-field">
+            <li class="flight-information pic-field" id="pic_field">
         <?php elseif($key == 'second_in_command'): ?>
-            <li class="flight-information sic-field">
+            <li class="flight-information sic-field" id="sic_field">
+        <?php elseif($key == 'plane'): ?>
+            <li class="flight-information plane" id="plane_field">
         <?php else: ?>
             <li class="flight-information">
         <?php endif ?>
@@ -136,6 +138,11 @@
 
     function hideExpandList(){
         flight_list.css({height : ""});
+        jQuery("ul",this).hide().removeClass("expanded");
+    }
+
+    function hideExpandListUl(){
+        flight_list.css({height : ""});
         jQuery(this).hide().removeClass("expanded");
     }
 
@@ -196,18 +203,20 @@
     jQuery('.pilot-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
         var root_li = jQuery(this).closest("li.flight-information");
-        jQuery('.pilot', root_el).html(jQuery(this).text());
+        var pilot_el = jQuery('.pilot', root_el)
+        pilot_el.html(jQuery(this).text());
         var id = jQuery(this).prop('id');
         jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
         if(root_li.hasClass("sic-field")){
             if(id == 0) {
+                pilot_el.removeClass('invalid-select');
                 jQuery("#flight_second_in_command_custom").removeClass('hidden');
                 jQuery("span.dashboard-avatar", root_li).addClass("hidden");
             } else {
                 jQuery("#flight_second_in_command_custom").addClass('hidden');
                 if(!jQuery("form").hasClass("edit-form")){
-                    jQuery("#flight_second_in_command_custom").val("");
+                    jQuery("#flight_second_in_command_custom").val("").removeClass('invalid-field');
                 }
                 jQuery("span.dashboard-avatar", root_li).removeClass("hidden");
                 getPilot(jQuery(this));
@@ -228,7 +237,8 @@
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
     });
 
-    jQuery('.list-select ul').bind('mouselive', hideExpandList);
+    jQuery('.list-select').bind('mouseleave', hideExpandList);
+    jQuery('.list-select ul').bind('mouseleave', hideExpandListUl);
 
     jQuery("li.risk-factor-li:last .list-select .result").bind('click', function(){
         var root_li = jQuery(this).closest("li.risk-factor-li");

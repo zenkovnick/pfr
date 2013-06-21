@@ -28,14 +28,22 @@
             var trip_number = jQuery('input.trip-number', this);
             var pic_input = jQuery('.pic-field input[type="hidden"]');
             var sic_input = jQuery('.sic-field input[type="hidden"]');
+            var sic_input_custom = jQuery('#flight_second_in_command_custom');
             var pic_label = jQuery('.pic-field .pilot');
             var sic_label = jQuery('.sic-field .pilot');
             var plane = jQuery('#flight_plane', this);
             var plane_label = jQuery('.plane-select .plane', this);
+            var pic_wrapper = jQuery("#pic_field");
+            var sic_wrapper = jQuery("#sic_field");
+            var plane_wrapper = jQuery("#plane_field");
+            var anchor = null;
 
             if(airport_from.val() == '' || airport_from.val().length > 4 || airport_from.val().length < 4){
                 valid = false;
                 airport_from.addClass('invalid-field');
+                if(!anchor){
+                    anchor = airport_from.prop('id');
+                }
             } else {
                 airport_from.removeClass('invalid-field');
             }
@@ -44,6 +52,9 @@
             if(airport_to.val() == '' || airport_to.val().length > 4 || airport_to.val().length < 4){
                 valid = false;
                 airport_to.addClass('invalid-field');
+                if(!anchor){
+                    anchor = airport_to.prop('id');
+                }
             } else {
                 airport_to.removeClass('invalid-field');
             }
@@ -52,6 +63,10 @@
                 valid = false;
                 airport_from.addClass('invalid-field');
                 airport_to.addClass('invalid-field');
+                if(!anchor){
+                    anchor = airport_from.prop('id');
+                }
+
             } else {
                 if(valid){
                     airport_from.removeClass('invalid-field');
@@ -63,14 +78,31 @@
                 valid = false;
                 pic_label.addClass('invalid-select');
                 sic_label.addClass('invalid-select');
+                if(!anchor){
+                    anchor = pic_wrapper.prop('id');
+                }
+
             } else {
                 pic_label.removeClass('invalid-select');
                 sic_label.removeClass('invalid-select');
             }
 
+            if(sic_input.val() == 0 && sic_input_custom.val() == ''){
+                valid = false;
+                sic_input_custom.addClass('invalid-field');
+                if(!anchor){
+                    anchor = sic_input_custom.prop('id');
+                }
+            } else {
+                sic_input_custom.removeClass('invalid-field');
+            }
+
             if(plane.val() == ""){
                 valid = false;
                 plane_label.addClass('invalid-select');
+                if(!anchor){
+                    anchor = plane_wrapper.prop('id');
+                }
             } else {
                 plane_label.removeClass('invalid-select');
             }
@@ -78,6 +110,9 @@
             if(trip_number.val() == ''){
                 valid = false;
                 trip_number.addClass('invalid-field');
+                if(!anchor){
+                    anchor = trip_number.prop('id');
+                }
             } else {
                 trip_number.removeClass('invalid-field');
             }
@@ -86,6 +121,7 @@
                 jQuery('.invalid-select', this).removeClass('invalid-select');
                 return true;
             } else {
+                window.location.href = "#"+anchor;
                 event.preventDefault();
             }
         }
