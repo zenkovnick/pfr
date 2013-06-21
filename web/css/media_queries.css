@@ -1,16 +1,41 @@
-@media only screen and (max-width : 320px)  {
+@media only screen and (max-width : 800px)  {
     .container {
-        background-color: #ffc0cb;
+        /*background-color: #ffc0cb;*/
         /*max-width: 500px;*/
     }
     .wrapper {
         width: 100%;
     }
     .header {
-        /*max-width: 500px;*/
+        height: auto;
+    }
+    .header-link-block {
+        clear: both;
+    }
+    .header-link-block li {
+        float: none;
+    }
+    .header div.header-account-information {
+        border: none;
+    }
+    .header-user-avatar {
+        position: relative;
+    }
+    .header-user-avatar:before {
+        border-color: transparent transparent #000000;
+        border-style: none solid solid;
+        border-width: 0 10px 10px;
+        content: " ";
+        display: block;
+        height: 0;
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        width: 0;
     }
 
-}
+
+    }
 /*@media screen and (max-width: 400px) {*/
     /*.container {*/
         /*background: #ffc0cb;*/

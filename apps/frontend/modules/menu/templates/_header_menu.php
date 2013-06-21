@@ -15,17 +15,7 @@
         <?php endif ?>
     </span>
 </div>
-<ul class="header-link-block">
-    <li class="header-dashboard header-link">
-        <a href="<?php echo isset($account) ? url_for("@dashboard?account_id={$account->getId()}") : "#" ?>">Dashboard</a>
-    </li>
-    <li class="header-settings header-link">
-        <a href="<?php echo isset($account) ? url_for("@settings?account_id={$account->getId()}") : "#" ?>">Settings</a>
-    </li>
-    <li class="header-settings header-link">
-        <a href="<?php echo url_for("@select_account")?>">Change Account</a>
-    </li>
-</ul>
+
 <div class="header-user-information-wrapper">
     <span class="header-user-avatar">
         <?php if($sf_user->getGuardUser()->getPhoto()): ?>
@@ -44,4 +34,15 @@
         </span>
     </div>
 </div>
+<ul class="header-link-block">
+    <li class="header-dashboard header-link">
+        <a href="<?php echo isset($account) ? url_for("@dashboard?account_id={$account->getId()}") : "#" ?>">Dashboard</a>
+    </li>
+    <li class="header-settings header-link">
+        <a href="<?php echo isset($account) ? url_for("@settings?account_id={$account->getId()}") : "#" ?>">Settings</a>
+    </li>
+    <li class="header-settings header-link">
+        <a href="<?php echo url_for("@select_account")?>">Change Account</a>
+    </li>
+</ul>
 
