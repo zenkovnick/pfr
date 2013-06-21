@@ -60,7 +60,7 @@
 
     function filterSubmitted(data){
         jQuery("div.dashboard-content").html(data.dashboard_data);
-        drawChart(data.flight_chart);
+        drawChart(data);
     }
 
     function chartInit(){

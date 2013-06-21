@@ -73,6 +73,9 @@ class sfWidgetFormList extends sfWidgetFormChoiceBase
         $key = key(array_flip($tmp_value));
         //$input = "<input type='hidden' value='".$key."'>";
         $input = $this->renderTag('input', array('name' => $name, 'value' => $key, 'type' => 'hidden'));
+        /*if($attributes['class']){
+            $attributes['id'] = $attributes['class']."_wrapper";
+        }*/
         $div = $this->renderContentTag('div', isset($choices[$key]) ? $choices[$key] : "Select Response", $attributes);
         $ul = $this->renderContentTag('ul', "\n".implode("\n", $this->getOptionsForSelect($value, $choices))."\n", array());
         return $input."\n".$div."\n".$ul;
