@@ -1800,6 +1800,7 @@ html .ui-autocomplete {
 .dashboard-page .filter-block > span {
     display: block;
     float: left;
+    line-height: normal;
     margin: 0 4px 0 0;
     line-height: normal;
 }
