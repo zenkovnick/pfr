@@ -755,7 +755,7 @@
 
 
         jQuery( "#plane_container").sortable({
-            containment: "parent",
+            containment: ".planes",
             axis: "y",
             handle: "span.handler",
             scroll: false,
@@ -763,7 +763,7 @@
         });
 
         jQuery( "#pilot_container").sortable({
-            containment: "parent",
+            containment: ".pilots",
             axis: "y",
             handle: "span.handler",
             scroll: false,

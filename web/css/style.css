@@ -502,7 +502,7 @@ span.bottom-border {
 
 }
 .form-builder-wrapper h1 {
-    margin-bottom: 190px !important;
+    margin-bottom: 170px !important;
 }
 .main-form > .btn.btn-green {
     float: right;
@@ -611,6 +611,7 @@ ul.form-fields li input[type="text"] {
 }
 .flight-information-wrapper {
     overflow: hidden;
+    padding: 20px 0 0;
 }
 .flight-information-list {
     overflow: hidden;
