@@ -5,7 +5,7 @@
                 <li class="yellow">
             <?php elseif($flight->getRiskFactorType() == 'high'): ?>
                 <li class="red">
-            <?php elseif($flight->getRiskFactorType() == 'low'): ?>
+            <?php else: ?>
                 <?php if($flight->getRiskFactorSum() == 0): ?>
                     <li class="grey">
                 <?php else: ?>
