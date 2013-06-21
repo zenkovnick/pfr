@@ -1,32 +1,32 @@
-<ul>
-    <?php foreach($pager->getResults() as $flight): ?>
-        <li>
-            <?php if($flight->getDrafted()): ?>
-
-                <div class="flight-title">
-                    <a href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
-                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?> (Drafted)
+<?php if($pager->getResults()->count() > 0): ?>
+    <ul class="flights-list">
+        <?php foreach($pager->getResults() as $flight): ?>
+            <li>
+                <?php if($flight->getRiskFactorSum()): ?>
+                    <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
+                <?php endif ?>
+                
+                <?php if($flight->getDrafted()): ?>
+                    <a class="name" href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
+                        <?php echo sprintf('%03d', $flight->getId());?>
+                        <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?> (Drafted)
                     </a>
-                </div>
-            <?php else: ?>
-                <div class="flight-title">
-                    <a href="<?php echo url_for("@view_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
-                        <?php echo sprintf('%03d', $flight->getId());?> <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?>
+                <?php else: ?>
+                    <a class="name" href="<?php echo url_for("@view_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
+                        <?php echo sprintf('%03d', $flight->getId());?>
+                        <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?>
                     </a>
-                </div>
-            <?php endif ?>
-            <div class="flight-info">
-                <span>
+                <?php endif ?>
+                
+                <span class="info">
                     @<?php echo date('H:i \o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
                     <?php echo $flight->getTripNumber() ? " via Type {$flight->getTripNumber()}" : "" ?>
                 </span>
-            </div>
-            <?php if($flight->getRiskFactorSum()): ?>
-                <span><?php echo $flight->getRiskFactorSum() ?></span>
-            <?php endif ?>
-        </li>
-    <?php endforeach ?>
-</ul>
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php endif ?>
+
 <div class="pager">
     <?php include_partial('dashboard/pager', array('pager' => $pager, 'account' => $account)); ?>
 </div>

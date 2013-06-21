@@ -24,6 +24,8 @@
             <li class="flight-information pic-field">
         <?php elseif($key == 'second_in_command'): ?>
             <li class="flight-information sic-field">
+        <?php else: ?>
+            <li class="flight-information">
         <?php endif ?>
 
         <?php if($key == 'pilot_in_command'): ?>

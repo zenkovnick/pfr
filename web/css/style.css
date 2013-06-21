@@ -617,8 +617,6 @@ ul.form-fields li input[type="text"] {
 }
 .flight-information-list li {
     margin: 9px 0;
-    overflow: hidden;
-    position: relative;
 }
 
 .flight-information-list li .element-wrapper {
@@ -642,25 +640,26 @@ ul.form-fields li input[type="text"] {
 .flight-information-list li.hidden-field.solid .element-wrapper {
     border-style: solid;
 }
-.flight-information-list li span.handler, .risk-factor-list > li span.handler {
+.flight-information-list .handler.hidden,
+.risk-factor-list .handler.hidden,
+.risk-factor-list .editing .handler {
+    background: none;
+    border: 1px solid transparent;
+    display: block !important;
+}
+.flight-information-list .handler,
+.flight-information-list .ui-sortable-helper .handler,
+.risk-factor-list .handler,
+.risk-factor-list .ui-sortable-helper .handler {
     background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
     border: 1px solid #CCC;
-    bottom: 0;
     cursor: pointer;
     display: block;
     float: left;
     height: 38px;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
     text-indent: -1000px;
-    top: 0;
     width: 18px;
-}
-.flight-information-list li span.handler.hidden, .risk-factor-list > li span.handler.hidden, .risk-factor-list > li.editing span.handler {
-    background: none;
-    border: 1px solid transparent;
-    display: block !important;
+    margin: 0 -1px 0 1px;
 }
 
 
@@ -673,15 +672,14 @@ ul.form-fields li input[type="text"] {
 }
 .risk-factor-list > li {
     margin: 9px 0;
-    overflow: hidden;
-    position: relative;
 }
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
     border: 1px solid #CCCCCC;
     margin: 0 20px;
     overflow: hidden;
-    padding: 11px 9px;
+    line-height: 38px;
+    padding: 0 10px;
 }
 
 
@@ -1750,3 +1748,121 @@ html .ui-autocomplete {
 .approve-account .btn-red {
     float: right;
 }
+
+
+/*----------------------------------------------------------------------------------*/
+/*--------------------------------> Dashboard page <--------------------------------*/
+/*----------------------------------------------------------------------------------*/
+.dashboard-page {
+    width: 460px;
+    margin: -8px auto 0;
+}
+.dashboard-page h1 {
+    font-size: 1.14em;
+    font-weight: 600;
+    line-height: normal;
+    padding: 6px 0 0;
+    margin: 0;
+}
+.dashboard-page .caption-block {
+    overflow: hidden;
+}
+.dashboard-page .caption-block .btn {
+    float: right;
+    width: 100px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+.dashboard-page .filter-block {
+    padding: 19px 0 17px;
+    margin: 0 0 16px;
+}
+.dashboard-page .filter-block,
+.dashboard-page .additional-info {
+    color: #999;
+    border-bottom: 1px solid #E4E4E4;
+    -webkit-box-shadow: 0 1px 0 #FFF;
+    -moz-box-shadow: 0 1px 0 #FFF;
+    box-shadow: 0 1px 0 #FFF;
+}
+.dashboard-page .filter-block a,
+.dashboard-page .filter-block .caption {
+    color: #3E76CE;
+}
+.dashboard-page .filter-block .caption {
+    font-weight: bold;
+}
+
+
+.dashboard-page .additional-info {
+    overflow: hidden;
+    line-height: normal;
+    font-size: 0;
+    padding: 0 0 15px;
+    margin: 0 0 1px;
+}
+.dashboard-page .additional-info ul,
+.dashboard-page .additional-info li {
+    background: url(../images/dashboard_divider.png) left top repeat-y;
+}
+.dashboard-page .additional-info li {
+    display: inline-block;
+    width: 153px;
+    padding: 24px 0 20px;
+    text-align: center;
+    background-position: right top;
+}
+.dashboard-page .additional-info li:first-child .number {
+    color: #6C0;
+}
+.dashboard-page .additional-info .number {
+    display: block;
+    color: #333;
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 0.8em;
+    padding: 0 0 7px;
+}
+.dashboard-page .additional-info .caption {
+    font-size: 11px;
+}
+
+
+.dashboard-page .flights-list li {
+    background: url(../images/dashboard_divider_horizontal.png) left bottom repeat-x;
+    height: 51px;
+    overflow: hidden;
+    padding: 9px 0 0;
+}
+.dashboard-page .flights-list .risk {
+    float: right;
+    display: block;
+    width: 39px;
+    height: 27px;
+    padding: 12px 0 0;
+    text-align: center;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: bold;
+    background: #6C0;
+    border: 1px solid #690;
+}
+.dashboard-page .flights-list .yellow .risk {
+    background: #FC0;
+    border: 1px solid #F90;
+}
+.dashboard-page .flights-list .name {
+    color: #333;
+    text-decoration: none;
+    display: inline-block;
+    margin: 6px 0 2px;
+}
+.dashboard-page .flights-list .info {
+    color: #999;
+    display: block;
+    font-size: 11px;
+}
+/*----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/

@@ -2,23 +2,34 @@
     <?php include_partial('menu/header_menu', array('account' => $account)); ?>
 <?php end_slot() ?>
 
-<h1>Dashboard</h1>
-
-<a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>">New Flight</a>
-<div class="dashboard-filters">
-    <form id="flight_filter" action="<?php echo url_for("@flight_filter?account_id={$account->getId()}") ?>" method="post">
-        <ul class="flight-filter-links">
-            <li><?php echo $filter['plane']->render(array('class' => 'plane-filter')) ?></li>
-            <li><?php echo $filter['pilot']->render(array('class' => 'pilot-filter')) ?></li>
-            <li><?php echo $filter['date']->render(array('class' => 'date-filter')) ?></li>
-            <li><?php echo $filter['sort']->render(array('class' => 'sort-filter')) ?></li>
-        </ul>
-    </form>
-</div>
-
-
-<div class="dashboard-content">
-    <?php include_partial('dashboard/dashboard_content', array('account' => $account, 'pager' => $pager, 'additional_info' => $additional_info)) ?>
+<div class="dashboard-page">
+    
+    <div class="caption-block">
+        <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>" class="btn btn-blue">New Flight</a>
+        <h1>Dashboard</h1>
+    </div>
+    
+    <div class="dashboard-filters">
+        <form id="flight_filter" action="<?php echo url_for("@flight_filter?account_id={$account->getId()}") ?>" method="post">
+            <div class="filter-block">
+                <span class="caption">Risk summary</span>
+                for
+                <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select')) ?>
+                +
+                <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select')) ?>
+                +
+                <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select')) ?>
+                , sorted by 
+                <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select')) ?>
+            </div>
+        </form>
+    </div>
+    
+    
+    <div class="dashboard-content">
+        <?php include_partial('dashboard/dashboard_content', array('account' => $account, 'pager' => $pager, 'additional_info' => $additional_info)) ?>
+    </div>
+    
 </div>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
