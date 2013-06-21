@@ -1794,7 +1794,14 @@ html .ui-autocomplete {
 .dashboard-page .filter-block .caption {
     font-weight: bold;
 }
-
+.dashboard-page .filter-block .plus {
+    margin-top: 1px;
+}
+.dashboard-page .filter-block > span {
+    display: block;
+    float: left;
+    margin: 0 4px 0 0;
+}
 
 .dashboard-page .additional-info {
     overflow: hidden;
