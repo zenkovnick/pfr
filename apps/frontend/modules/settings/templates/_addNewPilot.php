@@ -41,10 +41,10 @@
             </ul>
         </form>
     </div>
+    <script type="text/javascript">
+
+        jQuery("#pilot_form_<?php echo $number ?>").bind('submit', validateAndSubmitAddPilot)
+
+
+    </script>
 </li>
-<script type="text/javascript">
-
-    jQuery("#pilot_form_<?php echo $number ?>").bind('submit', validateAndSubmitAddPilot)
-
-
-</script>
