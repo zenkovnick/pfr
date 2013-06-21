@@ -35,6 +35,8 @@
             </li>
         <?php endforeach ?>
     </ul>
+<?php else: ?>
+    <p>No Results</p>
 <?php endif ?>
 
 <div class="pager">
