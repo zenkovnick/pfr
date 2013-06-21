@@ -1867,6 +1867,10 @@ html .ui-autocomplete {
     border: 1px solid transparent;
     color: #CCC;
 }
+.dashboard-page .flights-list .red .risk {
+    background: #F33;
+    border: 1px solid #F00;
+}
 
 .dashboard-page .flights-list .name {
     color: #333;

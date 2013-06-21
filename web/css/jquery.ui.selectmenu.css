@@ -118,7 +118,7 @@
     width: 0;
     height: 0;
     border-style: none solid solid;
-    border-color: transparent transparent #000;
+    border-color: transparent transparent #333;
     border-width: 0 10px 10px;
 }
 
