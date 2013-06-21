@@ -12,27 +12,51 @@
     .header-link-block {
         clear: both;
     }
-    .header-link-block li {
+    ul.header-link-block li {
         float: none;
+    }
+    ul.header-link-block li a {
+        padding: 10px 25px;
     }
     .header div.header-account-information {
         border: none;
     }
     .header-user-avatar {
+        overflow: visible;
         position: relative;
     }
     .header-user-avatar:before {
-        border-color: transparent transparent #000000;
-        border-style: none solid solid;
-        border-width: 0 10px 10px;
+        border-color: #000 transparent transparent;
+        border-style: solid solid none;
+        border-width: 6px 6px 0;
         content: " ";
         display: block;
         height: 0;
         position: absolute;
-        right: 10px;
-        top: 0px;
+        right: -18px;
+        top: 50%;
         width: 0;
     }
+    .user-wrapper {
+        display: none;
+    }
+    .header-user-information-wrapper:hover {
+        overflow: visible;
+        /*position: relative;*/
+    }
+
+    .header-user-information-wrapper .user-wrapper {
+        clear: both;
+        overflow: hidden;
+        position: absolute;
+        right: 15px;
+        top: 44px;
+
+    }
+    .header-user-information-wrapper:hover .user-wrapper {
+        display: block;
+    }
+
 
 
     }
