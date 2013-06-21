@@ -13,14 +13,15 @@
         <form id="flight_filter" action="<?php echo url_for("@flight_filter?account_id={$account->getId()}") ?>" method="post">
             <div class="filter-block">
                 <span class="caption">Risk summary</span>
-                for
+                <span>for</span>
                 <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select')) ?>
-                +
+                <span class="plus">+</span>
                 <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select')) ?>
-                +
-                <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select')) ?>
-                , sorted by 
+                <span class="plus">+</span>
+                <span class="no-margin"><?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select')) ?></span>
+                <span>, sorted by</span>
                 <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select')) ?>
+                <div class="clear"></div>
             </div>
         </form>
     </div>

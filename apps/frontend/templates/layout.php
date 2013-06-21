@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>
         <?php if(!include_slot('title')): ?>
             PreFlight Risk
@@ -16,7 +17,7 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <script type="text/javascript">
-        //alert(jQuery(window).width());
+//        alert(jQuery(window).width());
         if( /Chromium|Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
             $("<link/>", {
                 rel: "stylesheet",
