@@ -34,10 +34,10 @@
             </ul>
         </form>
     </div>
+    <script type="text/javascript">
+
+        jQuery("#plane_form_<?php echo $number ?>").bind('submit', validateAndSubmitAddPlane)
+
+
+    </script>
 </li>
-<script type="text/javascript">
-
-    jQuery("#plane_form_<?php echo $number ?>").bind('submit', validateAndSubmitAddPlane)
-
-
-</script>
