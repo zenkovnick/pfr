@@ -167,7 +167,9 @@ ul.header-link-block li a {
     padding: 23px 10px;
     text-decoration: none;
 }
-
+ul.header-link-block li.mobile-logout {
+    display: none;
+}
 .header-user-information-wrapper {
     float:right;
     overflow: hidden;

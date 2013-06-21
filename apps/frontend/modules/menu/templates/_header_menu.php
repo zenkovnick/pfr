@@ -44,5 +44,8 @@
     <li class="header-settings header-link">
         <a href="<?php echo url_for("@select_account")?>">Change Account</a>
     </li>
+    <li class="mobile-logout">
+        <a href="<?php echo url_for('@signout') ?>">Sign Out</a>
+    </li>
 </ul>
 
