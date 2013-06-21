@@ -1188,7 +1188,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     -webkit-box-sizing: border-box;
     color: #000;
     display: block;
-    margin: 15px 0 0;
+    margin: 28px 0 0;
     padding: 10px 10px 10px 36px;
     position: relative;
     width: 100%;
@@ -1225,12 +1225,14 @@ p.help-message {
 }
 
 .list-select {
+    float: left;
+    padding-bottom: 10px;
     position: relative;
 }
-.list-select .result,  .list-select .pilot, .list-select .plane{
+.list-select .result,  .list-select .pilot, .list-select .plane {
     color: #0F76BB;
     cursor: pointer;
-    width: 40%;
+    /*width: 40%;*/
 }
 .list-select ul {
     background: #333;
@@ -1248,7 +1250,7 @@ p.help-message {
     left: 10px;
     position: absolute;
     top: -9px;
-    width: 20px;
+    width: 100%;
 }
 .list-select ul li {
     border-bottom: 1px solid #000;
