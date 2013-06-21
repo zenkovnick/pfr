@@ -586,7 +586,7 @@
     jQuery(document).ready(function() {
         var form_id = jQuery('form.main-form').attr('id');
         jQuery( "#flight-information-container").sortable({
-            containment: "parent",
+            containment: ".flight-information-wrapper",
             axis: "y",
             handle: "span.handler",
             scroll: false,
@@ -608,7 +608,7 @@
         });
 
         jQuery( "#risk-factor-container").sortable({
-            containment: "parent",
+            containment: ".risk-factor-global-wrapper",
             axis: "y",
             handle: "span.handler",
             scroll: false,
