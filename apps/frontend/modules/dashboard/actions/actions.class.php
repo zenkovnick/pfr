@@ -32,14 +32,22 @@ class dashboardActions extends sfActions {
         $this->getUser()->setAttribute('flight_filter', $top_controls);
         $this->setFlightData($request, $this);
         $chart = new FlightChart($this->flights_for_chart);
-        $this->chart_markup = $chart->getChartMarkup();
-        echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/dashboard_content', array(
+        $dashboard_content = $this->getPartial('dashboard/dashboard_content', array(
             'account' => $this->account,
             'pager' => $this->pager,
             'additional_info' => $this->additional_info
-        )),
-            'flight_chart' => $this->chart_markup
         ));
+        if($this->flights_for_chart->count() > 1) {
+            $this->chart_markup = $chart->getChartMarkup();
+            echo json_encode(array('result' => "OK", 'flight_chart' => $this->chart_markup, 'dashboard_data' => $dashboard_content));
+        } else if ($this->flights_for_chart->count() == 1){
+            $markup = $this->getPartial('dashboard/one_entity_placeholder');
+            echo json_encode(array('result' => "one_data", 'markup' => $markup, 'dashboard_data' => $dashboard_content));
+        } else {
+            $markup = $this->getPartial('dashboard/no_data_placeholder');
+            echo json_encode(array('result' => "no_data", 'markup' => $markup, 'dashboard_data' => $dashboard_content));
+        }
+
         return sfView::NONE;
 
     }
@@ -110,7 +118,7 @@ class dashboardActions extends sfActions {
         } else if ($this->flights_for_chart->count() == 1){
             $flight = $this->flights_for_chart->getFirst();
             $markup = $this->getPartial('dashboard/one_entity_placeholder');
-            echo json_encode(array('result' => "one_checkin", 'markup' => $markup));
+            echo json_encode(array('result' => "one_data", 'markup' => $markup));
         } else {
             $markup = $this->getPartial('dashboard/no_data_placeholder');
             echo json_encode(array('result' => "no_data", 'markup' => $markup));

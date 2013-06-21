@@ -30,7 +30,7 @@
                 
                 <span class="info">
                     @<?php echo date('H:i \o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
-                    <?php echo $flight->getTripNumber() ? " via Type {$flight->getTripNumber()}" : "" ?>
+                    <?php echo $flight->getTripNumber() ? " via Type {$flight->getPlane()->getTailNumber()}" : "" ?>
                 </span>
             </li>
         <?php endforeach ?>
