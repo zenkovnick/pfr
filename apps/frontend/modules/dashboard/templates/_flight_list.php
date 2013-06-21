@@ -1,8 +1,18 @@
 <?php if($pager->getResults()->count() > 0): ?>
     <ul class="flights-list">
         <?php foreach($pager->getResults() as $flight): ?>
-            <li>
-                <?php if($flight->getRiskFactorSum()): ?>
+            <?php if($flight->getRiskFactorType() == 'medium'): ?>
+                <li class="yellow">
+            <?php elseif($flight->getRiskFactorType() == 'high'): ?>
+                <li class="red">
+            <?php elseif($flight->getRiskFactorType() == 'low'): ?>
+                <?php if($flight->getRiskFactorSum() == 0): ?>
+                    <li class="grey">
+                <?php else: ?>
+                    <li>
+                <?php endif ?>
+            <?php endif ?>
+                <?php if(!is_null($flight->getRiskFactorSum())): ?>
                     <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
                 <?php endif ?>
                 
@@ -26,24 +36,6 @@
         <?php endforeach ?>
     </ul>
 <?php endif ?>
-
-<ul class="flights-list">
-    <li>
-        <span class="risk">5</span>
-        <a href="#" class="name">TEST name</a>
-        <span class="info">lsd;ljas;ljkfeal;wjf;lsjdf</span>
-    </li>
-    <li class="grey">
-        <span class="risk">0</span>
-        <a href="#" class="name">TEST name</a>
-        <span class="info">lsd;ljas;ljkfeal;wjf;lsjdf</span>
-    </li>
-    <li class="yellow">
-        <span class="risk">5</span>
-        <a href="#" class="name">TEST name</a>
-        <span class="info">lsd;ljas;ljkfeal;wjf;lsjdf</span>
-    </li>
-</ul>
 
 <div class="pager">
     <?php include_partial('dashboard/pager', array('pager' => $pager, 'account' => $account)); ?>
