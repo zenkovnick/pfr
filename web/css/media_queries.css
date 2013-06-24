@@ -93,6 +93,9 @@
     .form-builder-wrapper {
         position: relative;
     }
+    .risk-factor-list > li .entry-header {
+        width: 85%;
+    }
 
 
 
