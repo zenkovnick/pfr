@@ -4,7 +4,7 @@
         /*max-width: 500px;*/
     }
     .wrapper {
-        width: 95%;
+        width: 100%;
     }
     .header {
         height: auto;
@@ -69,6 +69,10 @@
     .dashboard-page .additional-info li {
         width: 33%;
     }
+    .flight {
+        margin: 0 auto;
+        width: 95%;
+    }
     .flight .btn {
         float: none;
         margin: 0 auto 10px;
@@ -77,6 +81,7 @@
         text-align: center;
         width: 95%;
     }
+
 
 
 }
