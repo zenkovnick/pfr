@@ -59,10 +59,17 @@
     ul.header-link-block li.mobile-logout {
         display: block;
     }
-
-
-
+    .upload-wrapper .photo-holder {
+        height: 40px;
     }
+    .dashboard-page {
+        max-width: 460px;
+        width: 100%;
+    }
+
+
+
+}
 /*@media screen and (max-width: 400px) {*/
     /*.container {*/
         /*background: #ffc0cb;*/
