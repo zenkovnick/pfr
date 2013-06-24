@@ -406,19 +406,19 @@ ul.header-link-block li.mobile-logout {
     margin-bottom: 15px;
 }
 
-.photo-holder{
-    border-left: 1px solid #CCC;
-    border-top: 1px solid #CCC;
-    border-bottom: 1px solid #CCC;
+.upload-wrapper .photo-holder{
+    border-left: 1px dashed #CCC;
+    border-top: 1px dashed #CCC;
+    border-bottom: 1px dashed #CCC;
     width: 40px;
-    height: 40px;
+    height: 39px;
     float: left;
     display: inline-block;
     padding: 0;
     background: url('../images/photo_bg.png') center center no-repeat;
 }
 
-.photo-holder:hover{
+upload-wrapper .photo-holder:hover{
     cursor: pointer;
 }
 
