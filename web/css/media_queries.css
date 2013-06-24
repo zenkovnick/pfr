@@ -73,13 +73,25 @@
         margin: 0 auto;
         width: 95%;
     }
-    .flight .btn {
+    .flight .btn, .main-form > .btn.btn-blue, .main-form > .btn.btn-green {
         float: none;
         margin: 0 auto 10px;
         padding-left: 15px;
         padding-right: 15px;
         text-align: center;
-        width: 95%;
+        width: 100%;
+    }
+    .main-form > .btn.btn-blue, .main-form > .btn.btn-green {
+        width: 92%;
+    }
+    ul.form-fields {
+        left: 0;
+        margin-left: 0;
+        right: 10px;
+        top: 50px;
+    }
+    .form-builder-wrapper {
+        position: relative;
     }
 
 
