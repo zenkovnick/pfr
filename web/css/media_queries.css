@@ -93,17 +93,17 @@
     .form-builder-wrapper {
         position: relative;
     }
-    .risk-factor-list > li .entry-header {
+    .risk-factor-list > li .entry-header, .risk-factor-list > li .risk-factor-wrapper {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         width: 92%;
     }
-    .risk-factor-list > li .risk-factor-wrapper {
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        width: 92%;
+    .risk-factor-global-wrapper input[type="text"].response-text {
+        width: 82%;
+    }
+    ul.scale li {
+        width: 9%;
     }
 
 
