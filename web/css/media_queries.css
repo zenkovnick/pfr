@@ -94,12 +94,22 @@
         position: relative;
     }
     .risk-factor-list > li .entry-header {
-        width: 85%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 92%;
+    }
+    .risk-factor-list > li .risk-factor-wrapper {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 92%;
     }
 
 
 
-}
+
+    }
 /*@media screen and (max-width: 400px) {*/
     /*.container {*/
         /*background: #ffc0cb;*/

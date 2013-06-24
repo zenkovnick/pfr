@@ -700,6 +700,7 @@ ul.form-fields li input[type="text"] {
     padding: 9px;
     position: relative;
     width: 440px;
+    /*width: 86%;*/
 }
 .risk-factor-list > li .risk-factor-wrapper fieldset {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
