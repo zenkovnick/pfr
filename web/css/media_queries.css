@@ -105,6 +105,10 @@
     ul.scale li {
         width: 9%;
     }
+    .mitigation-fields li.risk-value-edit .mitigation-header {
+        padding: 14px 26px 14px 9px;
+        width: 92%;
+    }
 
 
 
