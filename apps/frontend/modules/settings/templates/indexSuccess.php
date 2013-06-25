@@ -238,10 +238,10 @@
             success: function(data){
                 if(data.result == "OK"){
                     jQuery("li#pilot_"+data.pilot_id).remove();
-                    var root_li = el.closest("li.input-block");
-                    jQuery(".invited-chief", root_li).remove();
-                    el.remove();
-                    jQuery(".chief-pilot", root_li).removeClass("hidden");
+                    var root_li = el.closest("li");
+                    jQuery(".caption-block", root_li).remove();
+                    //el.remove();
+                    jQuery(".chief-pilot-wrap", root_li).removeClass("hidden");
                 }
             }
         })
