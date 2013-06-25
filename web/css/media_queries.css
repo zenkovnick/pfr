@@ -25,37 +25,91 @@
         overflow: visible;
         position: relative;
     }
-    .header-user-avatar:before {
-        border-color: #000 transparent transparent;
-        border-style: solid solid none;
-        border-width: 6px 6px 0;
-        content: " ";
-        display: block;
-        height: 0;
-        position: absolute;
-        right: -18px;
-        top: 50%;
-        width: 0;
-    }
+    /*.header-user-avatar:before {*/
+        /*border-color: #000 transparent transparent;*/
+        /*border-style: solid solid none;*/
+        /*border-width: 6px 6px 0;*/
+        /*content: " ";*/
+        /*display: block;*/
+        /*height: 0;*/
+        /*position: absolute;*/
+        /*right: -18px;*/
+        /*top: 50%;*/
+        /*width: 0;*/
+    /*}*/
     .user-wrapper {
         display: none;
     }
-    .header-user-information-wrapper:hover {
-        overflow: visible;
+    /*.header-user-information-wrapper:hover {*/
+        /*overflow: visible;*/
         /*position: relative;*/
-    }
+    /*}*/
 
-    .header-user-information-wrapper .user-wrapper {
-        clear: both;
-        overflow: hidden;
-        position: absolute;
-        right: 15px;
-        top: 44px;
+    /*.header-user-information-wrapper .user-wrapper {*/
+        /*clear: both;*/
+        /*overflow: hidden;*/
+        /*position: absolute;*/
+        /*right: 15px;*/
+        /*top: 44px;*/
 
-    }
-    .header-user-information-wrapper:hover .user-wrapper {
+    /*}*/
+    /*.header-user-information-wrapper:hover .user-wrapper {*/
+        /*display: block;*/
+    /*}*/
+    ul.header-link-block li.mobile-logout {
         display: block;
     }
+    .upload-wrapper .photo-holder {
+        height: 40px;
+    }
+    .dashboard-page {
+        max-width: 460px;
+        width: 95%;
+    }
+    .dashboard-page .additional-info li {
+        width: 33%;
+    }
+    .flight {
+        margin: 0 auto;
+        width: 95%;
+    }
+    .flight .btn, .main-form > .btn.btn-blue, .main-form > .btn.btn-green {
+        float: none;
+        margin: 0 auto 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+        width: 100%;
+    }
+    .main-form > .btn.btn-blue, .main-form > .btn.btn-green {
+        width: 92%;
+    }
+    ul.form-fields {
+        left: 0;
+        margin-left: 0;
+        right: 10px;
+        top: 50px;
+    }
+    .form-builder-wrapper {
+        position: relative;
+    }
+    .risk-factor-list > li .entry-header, .risk-factor-list > li .risk-factor-wrapper {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 92%;
+    }
+    .risk-factor-global-wrapper input[type="text"].response-text {
+        width: 82%;
+    }
+    ul.scale li {
+        width: 9%;
+    }
+    .mitigation-fields li.risk-value-edit .mitigation-header {
+        padding: 14px 26px 14px 9px;
+        width: 92%;
+    }
+
 
 
 
