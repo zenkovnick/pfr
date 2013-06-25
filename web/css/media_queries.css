@@ -100,7 +100,7 @@
         width: 92%;
     }
     .risk-factor-global-wrapper input[type="text"].response-text {
-        width: 82%;
+        width: 82% !important;
     }
     ul.scale li {
         width: 9%;
