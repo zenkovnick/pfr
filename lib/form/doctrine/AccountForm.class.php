@@ -53,9 +53,11 @@ class AccountForm extends BaseAccountForm
 
     public function processValues($values = null){
         if(isset($values['chief_pilot_name']) && is_null($values['chief_pilot_id']) && $values['chief_pilot_name'] != ""){
-            $pilot = new sfGuardUser();
-            $pilot->setUsername($values['chief_pilot_name']);
-            $pilot->save();
+            if(!$pilot = Doctrine_Core::getTable('sfGuardUser')->findOneBy('username', $values['chief_pilot_name'])){
+                $pilot = new sfGuardUser();
+                $pilot->setUsername($values['chief_pilot_name']);
+                $pilot->save();
+            }
             $values['chief_pilot_id'] = $pilot->getId();
         }
         return $values;
