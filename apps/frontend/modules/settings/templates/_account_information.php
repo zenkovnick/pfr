@@ -17,10 +17,14 @@
                         <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot select-pilot', 'placeholder' => 'Title')) ?>
                     </li>
                 <?php else: ?>
-                    <li class="input-block">
-                        <span class="invited-chief">Chief Pilot was invited(<?php echo $chief_pilot->getUsername() ?>)</span>
-                        <a class="cancel-invitation" href="">Cancel invitation</a>
-                        <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot select-pilot hidden', 'placeholder' => 'Title')) ?>
+                    <li class="select-block invited">
+                        <div class="caption-block">
+                            <a class="cancel-invitation link" href="">Cancel invitation</a>
+                            <span class="invited-chief">Chief Pilot was invited(<?php echo $chief_pilot->getUsername() ?>)</span>
+                        </div>
+                        <div class="chief-pilot-wrap hidden">
+                            <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot select-pilot', 'placeholder' => 'Title')) ?>
+                        </div>
                     </li>
                 <?php endif ?>
             <?php else: ?>
