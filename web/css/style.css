@@ -1908,10 +1908,13 @@ html .ui-autocomplete {
     font-size: 11px;
 }
 
+.dashboard-page .chart-block {
+    margin: 0 0 20px;
+}
+
 .dashboard-page .chart-message {
     height: 130px;
     padding: 100px 0 0;
-    margin: 0 0 20px;
     background: #CCC;
     color: #444;
     font-weight: bold;
