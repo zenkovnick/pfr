@@ -110,12 +110,15 @@
         width: 92%;
     }
     .risk-factor-list > li .risk-factor-wrapper span.ui-spinner {
-        min-width: 40px;
+        min-width: 50px;
 
     }
 
     .risk-factor-list > li .risk-factor-wrapper span.ui-spinner input[type="text"] {
         padding: 6px 16px 6px 10px;
+    }
+    .risk-factor-list > li .risk-factor-wrapper input[type="text"] {
+        width: 90%;
     }
 
 
