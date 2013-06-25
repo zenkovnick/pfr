@@ -109,7 +109,12 @@
         padding: 14px 26px 14px 9px;
         width: 92%;
     }
-    ..risk-factor-list > li .risk-factor-wrapper span.ui-spinner input[type="text"] {
+    .risk-factor-list > li .risk-factor-wrapper span.ui-spinner {
+        min-width: 40px;
+
+    }
+
+    .risk-factor-list > li .risk-factor-wrapper span.ui-spinner input[type="text"] {
         padding: 6px 16px 6px 10px;
     }
 
