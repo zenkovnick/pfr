@@ -839,6 +839,11 @@
         var slider_bg_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
         jQuery('#slider-range').css('background-position', slider_bg_position+'px top');
 
+        jQuery(window).orientationchange(function(){
+            var slider_bg_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
+            jQuery('#slider-range').css('background-position', slider_bg_position+'px top');
+        });
+
     });
 
 </script>
