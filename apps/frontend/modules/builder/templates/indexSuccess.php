@@ -820,7 +820,7 @@
                     }
                     jQuery( "li.high-risk span.risk-value" ).text((ui.values[ 1 ] + 1) + "+");
                 }
-                var left_position = ui.values[0]*10-500;
+                var left_position = ui.values[0]*jQuery('#slider-range').width()/50-500;
                 jQuery('#slider-range').css('background-position', left_position+'px top');
                 colorScale(ui.values[0], ui.values[1]);
 
