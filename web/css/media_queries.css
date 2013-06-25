@@ -97,7 +97,7 @@
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-        width: 92%;
+        /*width: 92%;*/
     }
     .risk-factor-global-wrapper input[type="text"].response-text {
         width: 82% !important;
@@ -119,6 +119,9 @@
     }
     .risk-factor-global-wrapper input.response-text[type="text"] {
         width: 75% !important;
+    }
+    a.add-note, a.remove-note {
+        clear: both;
     }
 
 
