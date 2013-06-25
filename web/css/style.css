@@ -944,10 +944,16 @@ a.show-hide-field:hover {
 .mitigation-fields li.risk-value-edit .checkbox-wrapper {
     margin: 0 0 9px;
     overflow: hidden;
-
 }
+.mitigation-fields li.risk-value-edit label {
+    display: inline-block;
+    font-size: 1em;
+    max-width: 85%;
+    overflow: hidden;
+}
+
 .mitigation-fields li.risk-value-edit input[type="checkbox"] {
-    clear: both;
+    /*clear: both;*/
     display: block;
     float: left;
     margin: 0 9px 9px 0;

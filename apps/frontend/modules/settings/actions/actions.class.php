@@ -366,6 +366,7 @@ class settingsActions extends sfActions {
         $this->forward404unless($request->isXmlHttpRequest());
         $form = new PilotForm(Doctrine_Core::getTable('sfGuardUser')->find($request->getParameter('pilot_id')));
         $user_account = UserAccountTable::getUserAccount($request->getParameter('pilot_id'), $request->getParameter('account_id'));
+        $account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
         $form->setDefault('can_manage',$user_account->getIsManager());
         if($request->isMethod('post')){
             $form->bind($request->getParameter($form->getName()));
@@ -373,8 +374,13 @@ class settingsActions extends sfActions {
                 $values = $form->getTaintedValues();
                 $form->getObject()->save();
                 $form->save();
-                $user_account->setIsManager(isset($values['can_manage']) ? true : false);
-                $user_account->save();
+                if($request->getParameter('pilot_id') != $this->getUser()->getGuardUser()->getId()
+                    && $request->getParameter('pilot_id') != $account->getManagedById()
+                ){
+                    $user_account->setIsManager(isset($values['can_manage']) ? true : false);
+                    $user_account->save();
+
+                }
 
                 echo json_encode(
                     array(

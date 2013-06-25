@@ -547,6 +547,8 @@
 
     function switchToPreview(event){
         event.preventDefault();
+        jQuery("div.form-builder-wrapper").addClass('hidden');
+        jQuery("div.preview-mode").removeClass('hidden');
 
     }
 

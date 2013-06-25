@@ -473,7 +473,7 @@
             jQuery("div.plane-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-plane-link", root_li).addClass('hidden');
             jQuery("span.tail-number", root_li).text(data.tail_number);
-
+            root_li.removeClass('editing');
         }
     }
 
@@ -665,6 +665,7 @@
             jQuery("div.pilot-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             jQuery("a.cancel-pilot-link", root_li).addClass('hidden');
             jQuery("span.name", root_li).text(data.name);
+            root_li.removeClass('editing');
         } else if(data.result == "Failed"){
 
             for(var i in data.error_fields){
