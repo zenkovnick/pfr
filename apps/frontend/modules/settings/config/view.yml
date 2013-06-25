@@ -1,2 +1,7 @@
 all:
-  javascripts: [jquery.form.js, jquery.validate.js, jquery-1.10.0.js, jquery.ui.widget.js, jquery.Jcrop.min.js, jquery.fileupload.js, crop.js, jquery.iframe-transport.js]
+  stylesheets: [jquery.ui.selectmenu.css]
+  javascripts: [jquery.form.js, jquery.validate.js, jquery-1.10.0.js, jquery.ui.core.js, jquery.ui.widget.js, jquery.ui.position.js, jquery.ui.selectmenu.js, enable_selectmenu.js, jquery.Jcrop.min.js, jquery.fileupload.js, crop.js, jquery.iframe-transport.js]
+  
+  
+  
+  

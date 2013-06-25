@@ -285,7 +285,6 @@ ul.header-link-block li a {
 }
 
 .upload-wrapper {
-
     position: relative;
 }
 
@@ -299,6 +298,9 @@ ul.header-link-block li a {
     height: 40px;
     overflow:hidden;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+.upload-wrapper > * {
+    cursor: pointer;
 }
 
 
@@ -404,7 +406,7 @@ ul.header-link-block li a {
     margin-bottom: 15px;
 }
 
-.photo-holder{
+.photo-holder {
     border-left: 1px solid #CCC;
     border-top: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
@@ -415,8 +417,10 @@ ul.header-link-block li a {
     padding: 0;
     background: url('../images/photo_bg.png') center center no-repeat;
 }
-
-.photo-holder:hover{
+.settings-page .photo-holder {
+    height: 39px;
+}
+.photo-holder:hover {
     cursor: pointer;
 }
 
@@ -1882,6 +1886,20 @@ html .ui-autocomplete {
     color: #999;
     display: block;
     font-size: 11px;
+}
+
+.dashboard-page .chart-message {
+    height: 130px;
+    padding: 100px 0 0;
+    margin: 0 0 20px;
+    background: #CCC;
+    color: #444;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dashboard-page .no-flights-found {
+    margin: 20px 0 0;
 }
 /*----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------*/

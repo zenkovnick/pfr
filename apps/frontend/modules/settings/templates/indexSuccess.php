@@ -307,6 +307,8 @@
 
         root_el.append(form_el);
         form_el.show(show_delay);
+        
+        jQuery('#account_chief_pilot_id').selectmenu();
 
     }
 
