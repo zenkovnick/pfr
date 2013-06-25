@@ -97,7 +97,8 @@
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-        /*width: 92%;*/
+        margin: 0 20px;
+        width: auto;
     }
     .risk-factor-global-wrapper input[type="text"].response-text {
         width: 82% !important;
