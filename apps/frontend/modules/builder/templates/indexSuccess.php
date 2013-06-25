@@ -820,7 +820,7 @@
                     }
                     jQuery( "li.high-risk span.risk-value" ).text((ui.values[ 1 ] + 1) + "+");
                 }
-                var left_position = ui.values[0]*10-500;
+                var left_position = ui.values[0]*jQuery('#slider-range').width()/50-500;
                 jQuery('#slider-range').css('background-position', left_position+'px top');
                 colorScale(ui.values[0], ui.values[1]);
 
@@ -838,6 +838,11 @@
 
         var slider_bg_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
         jQuery('#slider-range').css('background-position', slider_bg_position+'px top');
+
+        jQuery(window).on('orientationchange', function(){
+            var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
+            jQuery('#slider-range').css('background-position', left_position+'px top');
+        });
 
     });
 
