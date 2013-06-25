@@ -46,5 +46,5 @@
     init_crop('<?php echo url_for('@create_account_upload_avatar'); ?>', '<?php echo url_for('@create_account_get_widget'); ?>',
         '/images/no_avatar.png', [32, 32], 'photo', 'account_photo_widget', 'account_avatar_container', 'account_uploaded_photo');
     jQuery("a.cancel-invitation").bind('click', cancelInvitation);
-
+    jQuery('#account_chief_pilot_id').selectmenu();
 </script>
