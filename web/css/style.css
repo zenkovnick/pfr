@@ -678,6 +678,7 @@ ul.form-fields li input[type="text"] {
 }
 .risk-factor-list > li {
     margin: 9px 0;
+    /*position: relative;*/
 }
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
@@ -714,7 +715,7 @@ ul.form-fields li input[type="text"] {
 
 }
 .risk-factor-list > li .risk-factor-wrapper span.ui-spinner input[type="text"] {
-    padding: 6px 10px;
+    padding: 7px 10px;
 }
 .risk-factor-list > li .risk-factor-wrapper span.ui-spinner {
     float: right;
@@ -728,34 +729,25 @@ ul.form-fields li input[type="text"] {
     position: relative;
 }
 .risk-factor-list > li.new h2 {
-    background: #F2F2F2;
+    background: #E4E4E4;
     border-bottom: 1px solid #CCC;
     font-size: 1em;
     font-weight: normal;
     margin: -9px -9px 9px;
     padding: 11px 9px;
 }
-/*.risk-factor-list > li.editing, .risk-factor-list > li.new {*/
-    /*height: auto;*/
-    /*overflow: hidden;*/
-    /*position: relative;*/
-/*}*/
 
-
-/*.risk-factor-list > li.editing .entry-header {*/
-    /*background: #E4E4E4;*/
-
-/*}*/
-.risk-factor-list > li a.edit-risk-factor-link, .risk-factor-list > li a.cancel-risk-factor-link {
+.risk-factor-list > li a.edit-risk-factor-link, .risk-factor-list > li a.cancel-risk-factor-link, .risk-factor-list > li.new a.cancel-risk-factor-add {
     color: #0F76BB;
     float: right;
     font-size: 12px;
     text-decoration: none;
 }
-
-/*.risk-factor-list > li a.edit-risk-factor-link:hover, .risk-factor-list > li a.cancel-risk-factor-link:hover{*/
-    /*text-decoration: underline;*/
-/*}*/
+.risk-factor-list > li.new a.cancel-risk-factor-add {
+    margin: 12px 32px 0 0;
+    position: relative;
+    z-index: 2;
+}
 
 .risk-factor-list .save-risk{
     float: none;
@@ -774,14 +766,6 @@ ul.form-fields li input[type="text"] {
     text-decoration: underline;
 }
 
-/*.risk-factor-list h2 {*/
-    /*background: #E4E4E4;*/
-    /*border-bottom: 1px solid #CCC;*/
-    /*font-size: 13px;*/
-    /*font-weight: normal;*/
-    /*margin: -9px -9px 9px;*/
-    /*padding: 14px 9px;*/
-/*}*/
 a#add-risk-factor-link {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #1076CE;
@@ -827,26 +811,11 @@ a.add-new-response-link:hover {
     height: 21px;
     width: 21px;
 }
-a.cancel-risk-factor-add {
-    color: #3C76BB;
-    font-size: 12px;
-    font-weight: bold;
-    display: block;
-    position: absolute;
-    right: 15px;
-    text-decoration: none;
-    top: 15px;
-}
-
 
 a.cancel-risk-factor-add:hover {
     text-decoration: underline;
 }
-.risk-factor-list > li.new a.cancel-risk-factor-add {
-    right: 40px;
-    top: 12px;
-    z-index: 2;
-}
+
 a.add-note, a.remove-note {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #0F76BB;
@@ -973,10 +942,16 @@ a.show-hide-field:hover {
 .mitigation-fields li.risk-value-edit .checkbox-wrapper {
     margin: 0 0 9px;
     overflow: hidden;
-
 }
+.mitigation-fields li.risk-value-edit label {
+    display: inline-block;
+    font-size: 1em;
+    max-width: 85%;
+    overflow: hidden;
+}
+
 .mitigation-fields li.risk-value-edit input[type="checkbox"] {
-    clear: both;
+    /*clear: both;*/
     display: block;
     float: left;
     margin: 0 9px 9px 0;
@@ -1908,10 +1883,13 @@ html .ui-autocomplete {
     font-size: 11px;
 }
 
+.dashboard-page .chart-block {
+    margin: 0 0 20px;
+}
+
 .dashboard-page .chart-message {
     height: 130px;
     padding: 100px 0 0;
-    margin: 0 0 20px;
     background: #CCC;
     color: #444;
     font-weight: bold;
@@ -1920,6 +1898,27 @@ html .ui-autocomplete {
 
 .dashboard-page .no-flights-found {
     margin: 20px 0 0;
+}
+
+
+
+/*----------------------------------------------------------------------------------*/
+/*----------------------------------> Pagination <----------------------------------*/
+/*----------------------------------------------------------------------------------*/
+.pagination {
+    text-align: center;
+    padding: 20px 0 40px;
+}
+.pagination li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.pagination li > * {
+    color: #3E76CE;
+}
+.pagination li em {
+    color: #000;
+    font-style: normal;
 }
 /*----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------*/
