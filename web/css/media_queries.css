@@ -97,10 +97,11 @@
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
-        width: 92%;
+        margin: 0 20px;
+        width: auto;
     }
     .risk-factor-global-wrapper input[type="text"].response-text {
-        width: 82%;
+        width: 82% !important;
     }
     ul.scale li {
         width: 9%;
@@ -108,6 +109,20 @@
     .mitigation-fields li.risk-value-edit .mitigation-header {
         padding: 14px 26px 14px 9px;
         width: 92%;
+    }
+    .risk-factor-list > li .risk-factor-wrapper span.ui-spinner {
+        min-width: 50px;
+
+    }
+
+    .risk-factor-list > li .risk-factor-wrapper span.ui-spinner input[type="text"] {
+        padding: 6px 16px 6px 10px;
+    }
+    .risk-factor-global-wrapper input.response-text[type="text"] {
+        width: 75% !important;
+    }
+    a.add-note, a.remove-note {
+        clear: both;
     }
 
 
