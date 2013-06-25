@@ -1,4 +1,4 @@
-<div id="chart">
+<div id="chart" class="chart-block">
 
 </div>
 <div class="additional-info">
