@@ -1,3 +1,6 @@
+$(function() {
+    $('.dashboard-filters').css('display', 'none');
+});
 $(window).load(function() {
     
     $('#flight_filter_plane').selectmenu();
@@ -5,4 +8,5 @@ $(window).load(function() {
     $('#flight_filter_date').selectmenu();
     $('#flight_filter_sort').selectmenu();
     
+    $('.dashboard-filters').removeAttr('style');
 });
