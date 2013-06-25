@@ -142,3 +142,47 @@
     /*}*/
 
 /*}*/
+@media only screen and (max-width : 450px)  {
+    #slider-range {
+        margin: 0 auto;
+        width: 300px;
+    }
+    ul.scale {
+        margin: 10px 0 10px 2px;
+        width: 320px;
+    }
+    ul.scale li {
+        width: 15px;
+    }
+    ul.scale li#li-5 {
+        margin-left: 27px;
+    }
+    ul.scale li#li-10 {
+        padding-left: 10px;
+    }
+    ul.scale li#li-15 {
+        padding-left: 17px;
+    }
+    ul.scale li#li-20 {
+        padding-left: 16px;
+    }
+    ul.scale li#li-25 {
+        padding-left: 14px;
+    }
+    ul.scale li#li-30 {
+        padding-left: 15px;
+    }
+    ul.scale li#li-35 {
+        padding-left: 16px;
+    }
+    ul.scale li#li-40 {
+        padding-left: 16px;
+    }
+    ul.scale li#li-45 {
+        padding-left: 16px;
+        width: 15px;
+    }
+    ul.scale li#li-50 {
+        width: 31px;
+    }
+}
