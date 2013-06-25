@@ -99,7 +99,6 @@
                     pointSize: 0,
                     interpolateNulls: true,
                     colors: colors_arr,
-                    backgroundColor: 
                     hAxis: {textStyle: {fontName: 'Helvetica', fontSize: 8 }},
                     vAxis: {textStyle: {fontName: 'Helvetica', fontSize: 8 }, minValue: 0, title: vAxis_title}
                 };
