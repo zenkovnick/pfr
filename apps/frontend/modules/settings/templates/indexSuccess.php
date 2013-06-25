@@ -42,7 +42,7 @@
             <ul class="plane-list" id="plane_container">
                 <?php foreach($planes as $plane): ?>
                     <li class="plane-entity" id="plane_<?php echo $plane->getId() ?>">
-                        <span class="handler hidden">Handler</span>
+                        <span class="handler">Handler</span>
                         <input type="hidden" value="<?php echo $plane->getId() ?>" />
                         <div class="plane-header caption-block">
                             <span class="tail-number"><?php echo $plane->getTailNumber() ?></span>
@@ -59,7 +59,7 @@
             <ul class="pilot-list" id="pilot_container">
                 <?php foreach($pilots as $pilot): ?>
                     <li class="pilot-entity <?php echo $pilot->getIsActiveAccount() ? '': 'invited' ?> <?php echo $pilot->getIsActive() ? '' : 'not-active' ?>" id="pilot_<?php echo $pilot->getId() ?>">
-                        <span class="handler hidden">Handler</span>
+                        <span class="handler">Handler</span>
                         <input type="hidden" value="<?php echo $pilot->getId() ?>" />
                         <div class="pilot-header caption-block">
                             <span class="name"><?php echo $pilot->getFirstName() ? $pilot->getFirstName() : $pilot->getUsername()?></span>
@@ -177,14 +177,14 @@
     function showMIEditLink(){
         if(jQuery(this).find('a.cancel-mi-link').hasClass('hidden')){
             jQuery(this).find('a.edit-mi-link').removeClass('hidden');
-            jQuery(this).find('.handler').removeClass('hidden');
+            //jQuery(this).find('.handler').removeClass('hidden');
         }
     }
 
     function hideMIEditLink(){
         if(jQuery(this).find('a.cancel-mi-link').hasClass('hidden')){
             jQuery(this).find('a.edit-mi-link').addClass('hidden');
-            jQuery(this).find('.handler').addClass('hidden');
+            //jQuery(this).find('.handler').addClass('hidden');
         }
     }
 
@@ -337,14 +337,14 @@
     function showPlaneEditLink(){
         if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
             jQuery(this).find('a.edit-plane-link').removeClass('hidden');
-            jQuery(this).find('.handler').removeClass('hidden');
+            //jQuery(this).find('.handler').removeClass('hidden');
         }
     }
 
     function hidePlaneEditLink(){
         if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
             jQuery(this).find('a.edit-plane-link').addClass('hidden');
-            jQuery(this).find('.handler').addClass('hidden');
+            //jQuery(this).find('.handler').addClass('hidden');
         }
     }
 
@@ -522,14 +522,14 @@
     /* PILOT */
 
     function showPilotEditLink(){
-        jQuery(this).find('.handler').removeClass('hidden');
+        //jQuery(this).find('.handler').removeClass('hidden');
         if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
             jQuery(this).find('a.edit-pilot-link').removeClass('hidden');
         }
     }
 
     function hidePilotEditLink(){
-        jQuery(this).find('.handler').addClass('hidden');
+        //jQuery(this).find('.handler').addClass('hidden');
         if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
             jQuery(this).find('a.edit-pilot-link').addClass('hidden');
         }
