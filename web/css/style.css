@@ -946,7 +946,7 @@ a.show-hide-field:hover {
 .mitigation-fields li.risk-value-edit label {
     display: inline-block;
     font-size: 1em;
-    max-width: 90%;
+    max-width: 85%;
     overflow: hidden;
 }
 
