@@ -635,7 +635,7 @@ ul.form-fields li input[type="text"] {
     overflow: hidden;
     padding: 0px 10px;
     position: relative;
-    width: 92%;
+    /*width: 92%;*/
 }
 .flight-information-list li.hidden-field .element-wrapper {
     border-style: dashed;
