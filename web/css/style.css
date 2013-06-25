@@ -716,6 +716,7 @@ ul.form-fields li input[type="text"] {
     padding: 6px 10px;
 }
 .risk-factor-list > li .risk-factor-wrapper span.ui-spinner {
+    float: right;
     margin-top: 9px;
 }
 .risk-factor-list > li .risk-factor-wrapper .btn-green {
