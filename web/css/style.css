@@ -683,7 +683,7 @@ ul.form-fields li input[type="text"] {
     overflow: hidden;
     line-height: 38px;
     padding: 0 10px;
-    /*width: 88%;*/
+  
 }
 
 
@@ -700,7 +700,7 @@ ul.form-fields li input[type="text"] {
     padding: 9px;
     position: relative;
     width: 440px;
-    /*width: 86%;*/
+  
 }
 .risk-factor-list > li .risk-factor-wrapper fieldset {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
@@ -1236,7 +1236,7 @@ p.help-message {
 .list-select .result,  .list-select .pilot, .list-select .plane {
     color: #0F76BB;
     cursor: pointer;
-    /*width: 40%;*/
+    
 }
 .list-select ul {
     background: #333;

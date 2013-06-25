@@ -36,7 +36,7 @@
         <?php endforeach ?>
     </ul>
 <?php else: ?>
-    <p>No Results</p>
+    <p class="no-flights-found">No Results</p>
 <?php endif ?>
 
 <div class="pager">
