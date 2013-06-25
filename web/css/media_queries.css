@@ -117,8 +117,8 @@
     .risk-factor-list > li .risk-factor-wrapper span.ui-spinner input[type="text"] {
         padding: 6px 16px 6px 10px;
     }
-    .risk-factor-list > li .risk-factor-wrapper input[type="text"] {
-        width: 90%;
+    .risk-factor-global-wrapper input.response-text[type="text"] {
+        width: 80% !important;
     }
 
 
