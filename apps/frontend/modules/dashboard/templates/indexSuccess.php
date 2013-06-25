@@ -94,13 +94,14 @@
                     fontName: 'Times New Roman',
                     enableInteractivity: false,
                     width: 460, height: 230,
-                    chartArea: {width: 420, height: 210},
+                    chartArea: {width: 420, height: 180},
                     legend: {alignment: 'center', position: 'top', textStyle: {color: 'black', fontSize: 18, fontName: 'Helvetica'}},
                     pointSize: 0,
                     interpolateNulls: true,
                     colors: colors_arr,
-                    hAxis: {textStyle: {fontName: 'Helvetica', fontSize: 14 }},
-                    vAxis: {textStyle: {fontName: 'Helvetica'}, minValue: 0, title: vAxis_title}
+                    backgroundColor: 
+                    hAxis: {textStyle: {fontName: 'Helvetica', fontSize: 8 }},
+                    vAxis: {textStyle: {fontName: 'Helvetica', fontSize: 8 }, minValue: 0, title: vAxis_title}
                 };
                 var chart = new google.visualization.LineChart(output_element);
                 //google.visualization.events.addListener(chart, "ready", tweakChart);
