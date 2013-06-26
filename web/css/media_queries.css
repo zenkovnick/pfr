@@ -125,6 +125,17 @@
     .first-time-dashboard .new-flight-wrapper {
         width: auto;
     }
+    /*.preview-header {*/
+        /*height: auto;*/
+    /*}*/
+    .preview-header h1 {
+        float: none;
+        margin: 0;
+        overflow: hidden;
+    }
+    .header.preview {
+        height: 35px;
+    }
 
 
 
