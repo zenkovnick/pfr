@@ -2,6 +2,11 @@
     <?php include_partial('menu/header_menu', array('account' => $account)); ?>
 <?php end_slot() ?>
 
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/js/jquery.ui.timepicker.js"></script>
+<script src="/js/iscroll.js"></script>
+
 <div class="flight">
     <form action="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>" id="flight_form" method="POST" class="edit-form">
         <?php include_partial('form', array('form' => $form, 'data' => $data_fields, 'users' => $users)); ?>
