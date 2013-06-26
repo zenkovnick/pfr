@@ -102,7 +102,7 @@
         /*overflow: hidden;*/
         /*max-width: 84%;*/
         /*min-width: 77%;*/
-        /*width: auto !important;*/
+        width: 100% !important;
     }
     .header div.header-account-information {
         max-width: 75%;
