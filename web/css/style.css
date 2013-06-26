@@ -407,33 +407,28 @@ ul.header-link-block li.mobile-logout {
 }
 
 .photo-holder {
-    border-left: 1px solid #CCC;
-    border-top: 1px solid #CCC;
-    border-bottom: 1px solid #CCC;
-    width: 40px;
-    height: 40px;
+    border-style: solid;
+    border-color: #CCC;
+    border-width: 1px 0 1px 1px;
+    width: 39px;
+    height: 39px;
     float: left;
-    display: inline-block;
+    display: block;
+    overflow: hidden;
     padding: 0;
     background: url('../images/photo_bg.png') center center no-repeat;
-}
-.settings-page .photo-holder {
-    height: 39px;
-    width: 41px;
 }
 .photo-holder:hover {
     cursor: pointer;
 }
 
 .with-dash-border {
-    border-left: 1px dashed #CCC;
-    border-top: 1px dashed #CCC;
-    border-bottom: 1px dashed #CCC;
+    border-style: dashed;
 }
 
 
-.create-account .company-title{
-    width: 258px;
+.create-account .company-title {
+    width: 260px;
     float: left;
 }
 
@@ -476,7 +471,7 @@ a.sign-out {
     margin: 5px 0;
     text-decoration: none;
 }
-.choose-account .wrapper ul li span, .create-account span {
+.choose-account .wrapper ul li span {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #999;
     display: block;
@@ -1622,9 +1617,9 @@ html .ui-autocomplete {
     margin-top: 0;
 }
 
-.editable-list .my-information .name,  .editable-list .account-title{
-    width: 398px !important;
-    float: left;
+.editable-list .name-block .name {
+    width: 400px !important;
+    overflow: hidden;
 }
 
 
