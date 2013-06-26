@@ -19,10 +19,10 @@
     <h1>Form editor</h1>
     <div class="flight-information-wrapper">
         <h2>Flight information</h2>
-        <ul class="flight-information-list" id="flight-information-container">
+        <ul class="flight-information-list editable-list" id="flight-information-container">
             <?php foreach($flight_information as $flight_information_field):?>
                 <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "solid" ?>">
-                    <span class="handler hidden">Handler</span>
+                    <span class="handler">Handler</span>
                     <div class="element-wrapper">
                         <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
                         <span><?php echo $flight_information_field->getInformationName() ?></span>
@@ -41,10 +41,10 @@
     </div>
     <div class="risk-factor-global-wrapper">
         <h2>Risk Analysis</h2>
-        <ul class="risk-factor-list" id="risk-factor-container">
+        <ul class="risk-factor-list editable-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
                 <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
-                    <span class="handler hidden">Handler</span>
+                    <span class="handler">Handler</span>
                     <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
                     <div class="entry-header">
                         <span class="question truncate"><?php echo $risk_factor->getQuestion() ?></span>
@@ -170,7 +170,7 @@
 
     function flightInformationOver(){
         jQuery('span.uneditable, span.hiddable', this).removeClass('hidden');
-        jQuery('span.handler', this).removeClass('hidden');
+        //jQuery('span.handler', this).removeClass('hidden');
     }
     function colorScale(lower, higher) {
         var green = Math.floor(lower/5),
@@ -186,7 +186,7 @@
 
     function flightInformationOut(){
         jQuery('span.uneditable, span.hiddable', this).addClass('hidden');
-        jQuery('span.handler', this).addClass('hidden');
+        //jQuery('span.handler', this).addClass('hidden');
     }
 
 
@@ -327,14 +327,14 @@
     function showRiskFactorEditLink(){
         if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
             jQuery(this).find('a.edit-risk-factor-link').removeClass('hidden');
-            jQuery(this).find('.handler').removeClass('hidden');
+            //jQuery(this).find('.handler').removeClass('hidden');
         }
     }
 
     function hideRiskFactorEditLink(){
         if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
             jQuery(this).find('a.edit-risk-factor-link').addClass('hidden');
-            jQuery(this).find('.handler').addClass('hidden');
+            //jQuery(this).find('.handler').addClass('hidden');
         }
     }
 
@@ -547,6 +547,8 @@
 
     function switchToPreview(event){
         event.preventDefault();
+        jQuery("div.form-builder-wrapper").addClass('hidden');
+        jQuery("div.preview-mode").removeClass('hidden');
 
     }
 

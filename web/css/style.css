@@ -646,6 +646,8 @@ ul.form-fields li input[type="text"] {
 .flight-information-list li.hidden-field.solid .element-wrapper {
     border-style: solid;
 }
+
+/*
 .flight-information-list .handler.hidden,
 .risk-factor-list .handler.hidden,
 .risk-factor-list .editing .handler {
@@ -667,7 +669,7 @@ ul.form-fields li input[type="text"] {
     width: 18px;
     margin: 0 -1px 0 1px;
 }
-
+*/
 
 /*.flight-information-list li.ui-sortable-helper span.handler {*/
     /*display: block !important;*/
@@ -1478,7 +1480,7 @@ html .ui-autocomplete {
 
 .editable-list .caption-block {
     overflow: hidden;
-    padding: 11px 9px;
+    padding: 12px 9px;
 }
 
 .editable-list .caption-block:hover,
@@ -1566,17 +1568,11 @@ html .ui-autocomplete {
 }
 
 
-.editable-list .handler.hidden,
-.editable-list .editing .handler {
-    background: none;
-    border: 1px solid transparent;
-    display: block !important;
-}
-.editable-list .handler,
-.editable-list .ui-sortable-helper .handler {
+
+.editable-list .handler {
     display: block;
     width: 18px;
-    height: 36px;
+    height: 38px;
     margin: 0 -1px 0 1px;
     border: 1px solid #CCC;
     float: left;
@@ -1587,6 +1583,16 @@ html .ui-autocomplete {
     
     text-indent: -1000px;
 }
+.editable-list .handler.hidden,
+.editable-list .handler {
+    visibility: hidden;
+}
+.editable-list .editing > .handler,
+.editable-list li:hover > .handler,
+.editable-list .ui-sortable-helper > .handler {
+    visibility: visible;
+}
+
 
 .editable-list .buttons-block {
     padding: 5px 0 0;
@@ -1876,6 +1882,7 @@ html .ui-autocomplete {
     text-decoration: none;
     display: inline-block;
     margin: 6px 0 2px;
+    font-weight: bold;
 }
 .dashboard-page .flights-list .info {
     color: #999;

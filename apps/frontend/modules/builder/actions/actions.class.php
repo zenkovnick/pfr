@@ -46,7 +46,7 @@ class builderActions extends sfActions
         $this->form_id = $request->getParameter('id');
         $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
         $this->account = $this->risk_builder->getAccount();
-        $this->form = new RiskBuilderForm($this->risk_builder);
+        $this->form = new RiskBuilderForm($this->risk_builder, array('account' => $this->account));
         $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
 
 
