@@ -9,8 +9,8 @@ if(isset($placeholder))
 if(isset($disabled) && $disabled){
     $options['disabled'] = 'disabled';
 }
-if(isset($autocorrect) && $autocorrect){
-    $options['autocorrect'] = 'off';
+if(isset($autocorrect)){
+    $options['autocorrect'] = $autocorrect;
 }
 
 ?>
