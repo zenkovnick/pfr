@@ -24,7 +24,6 @@ class builderActions extends sfActions
         $this->data_fields = $this->flight->generateFromDB($this->account);
         $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
 
-
         if($request->isMethod('post')){
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){
@@ -34,9 +33,12 @@ class builderActions extends sfActions
                     $account->setHasModifiedForm(true);
                     $account->save();
                 }
-
-                $this->redirect("@settings?account_id={$this->account->getId()}");
+                $redirect_url = $this->getUser()->getAttribute('redirect_url');
+                $this->getUser()->getAttributeHolder()->remove('redirect_url');
+                $this->redirect($redirect_url);
             }
+        } else {
+            $this->getUser()->setAttribute('redirect_url', $request->getReferer());
         }
     }
 

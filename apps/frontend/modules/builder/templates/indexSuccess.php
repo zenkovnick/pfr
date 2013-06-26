@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/js/jquery.ui.timepicker.js"></script>
 
 <div class="form-builder-wrapper">
 
