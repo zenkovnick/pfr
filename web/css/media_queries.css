@@ -92,15 +92,24 @@
     a.add-note, a.remove-note {
         clear: both;
     }
+    .editable-list .caption-block, .editable-list .editing .caption-block, .editable-list .new .caption-block, .editable-list .info-block {
+        min-width: 300px;
+    }
     .editable-list .my-information .name, .editable-list .account-title {
         -webkit-box-sizing: content-box;
         /*float: none;*/
         /*margin-left: 41px;*/
         overflow: hidden;
-        width: 79% !important;
+        max-width: 84%;
+        min-width: 77%;
+        /*width: auto !important;*/
+    }
+    .header div.header-account-information {
+        max-width: 75%;
+        min-width: 100px;
     }
     .header div.header-account-information .header-account-title {
-        max-width: 80%;
+        max-width: 70%;
     }
 
 
