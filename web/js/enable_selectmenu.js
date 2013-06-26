@@ -1,5 +1,5 @@
 $(function() {
-    $('.dashboard-filters').css('display', 'none');
+    $('.dashboard-filters').css('visibility', 'hidden');
 });
 $(window).load(function() {
     

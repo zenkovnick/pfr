@@ -96,13 +96,13 @@
         /*min-width: 280px;*/
     }
     .editable-list .my-information .name, .editable-list .account-title {
-        -webkit-box-sizing: content-box;
+        /*-webkit-box-sizing: content-box;*/
         /*float: none;*/
         /*margin-left: 41px;*/
-        overflow: hidden;
-        max-width: 84%;
-        min-width: 77%;
-        /*width: auto !important;*/
+        /*overflow: hidden;*/
+        /*max-width: 84%;*/
+        /*min-width: 77%;*/
+        width: 100% !important;
     }
     .header div.header-account-information {
         max-width: 75%;
@@ -110,6 +110,27 @@
     }
     .header div.header-account-information .header-account-title {
         max-width: 60%;
+    }
+    .assessment-wrapper, .first-time-wrapper, .first-time-dashboard {
+        margin: 0 auto;
+        max-width: 500px;
+        width: 90%;
+    }
+    .assessment-wrapper .btn.btn-green, .assessment-wrapper .btn.btn-grey, .assessment-wrapper .btn.btn-red {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        float: none;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+    .first-time-dashboard .first-time-wrapper {
+        width: 100%;
+    }
+
+    .first-time-dashboard .new-flight-wrapper {
+        width: auto;
     }
 
 
