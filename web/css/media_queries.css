@@ -96,12 +96,12 @@
         /*min-width: 280px;*/
     }
     .editable-list .my-information .name, .editable-list .account-title {
-        -webkit-box-sizing: content-box;
+        /*-webkit-box-sizing: content-box;*/
         /*float: none;*/
         /*margin-left: 41px;*/
-        overflow: hidden;
-        max-width: 84%;
-        min-width: 77%;
+        /*overflow: hidden;*/
+        /*max-width: 84%;*/
+        /*min-width: 77%;*/
         /*width: auto !important;*/
     }
     .header div.header-account-information {
