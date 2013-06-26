@@ -7,7 +7,7 @@
                 <?php include_partial('settings/user_avatar_field', array('field' => $form['photo_widget'], 'user' => $user)) ?>
             </li>
             
-            <li class="input-block first-name">
+            <li class="input-block name-block first-name">
                 <?php include_partial('settings/field', array('class' => 'name', 'field' => $form['first_name'], 'placeholder' => 'Name')) ?>
             </li>
             
