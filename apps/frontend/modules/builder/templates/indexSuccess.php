@@ -543,6 +543,7 @@
             jQuery("#preview_form").html(data.form_data);
             jQuery("div.form-builder-wrapper").addClass('hidden');
             jQuery("div.preview-mode").removeClass('hidden');
+            window.scrollTo(0, 0);
         }
     }
 
