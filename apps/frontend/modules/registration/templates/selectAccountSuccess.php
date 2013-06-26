@@ -11,19 +11,17 @@
 <ul>
     <?php foreach($accounts as $account): ?>
         <li>
-            <?php if($account->getPhoto()): ?>
-                <?php if($account->getPhoto()): ?>
-                    <?php echo image_tag(getThumbnail('avatar/'.$account->getPhoto(), 40), array('alt' => '')) ?>
-                <?php else: ?>
-                    <?php echo image_tag(getThumbnail('../images/no_logo.jpg', 40), array('alt' => '')) ?>
-                <?php endif ?>
+            <?php if($account->getPhoto() && file_exists("uploads/avatar/{$account->getPhoto()}")): ?>
+                <?php echo image_tag(getThumbnail('avatar/'.$account->getPhoto(), 40), array('alt' => '')) ?>
+            <?php else: ?>
+                <?php echo image_tag(getThumbnail('../images/no_logo.jpg', 40), array('alt' => '')) ?>
             <?php endif ?>
             <a href="<?php echo url_for("@dashboard?account_id={$account->getId()}") ?>"><?php echo $account->getTitle() ?></a>
             <span><?php echo $account->getManager()->getUsername() ?></span>
         </li>
     <?php endforeach; ?>
     <li>
-        <img src="#" alt=""/>
+        <?php echo image_tag(getThumbnail('../images/no_logo.jpg', 40), array('alt' => '')) ?>
         <a href="<?php echo url_for('@create_account') ?>">Create Account</a>
         <span>Set it up now</span>
     </li>

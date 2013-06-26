@@ -28,10 +28,13 @@ class builderActions extends sfActions
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if($this->form->isValid()){
                 $risk_builder = $this->form->save();
-                $account = $risk_builder->getAccount();
-                if(!$account->getHasModifiedForm()){
-                    $account->setHasModifiedForm(true);
-                    $account->save();
+                $this->account = $risk_builder->getAccount();
+                if(!$this->account->getHasModifiedForm()){
+                    $this->account->setHasModifiedForm(true);
+                    if(!$this->account->getChiefPilot()->getId()){
+                        $this->account->setChiefPilot(null);
+                    }
+                    $this->account->save();
                 }
                 $redirect_url = $this->getUser()->getAttribute('redirect_url');
                 $this->getUser()->getAttributeHolder()->remove('redirect_url');
@@ -78,6 +81,9 @@ class builderActions extends sfActions
                 $account = $risk_builder->getAccount();
                 if(!$account->getHasModifiedForm()){
                     $account->setHasModifiedForm(true);
+                    if(!$account->getChiefPilot()->getId()){
+                        $account->setChiefPilot(null);
+                    }
                     $account->save();
                 }
                 $form->getObject()->setRiskBuilder($risk_builder);
@@ -200,6 +206,9 @@ class builderActions extends sfActions
         $account = $risk_builder->getAccount();
         if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
+            if(!$account->getChiefPilot()->getId()){
+                $account->setChiefPilot(null);
+            }
             $account->save();
         }
 
@@ -243,6 +252,9 @@ class builderActions extends sfActions
         $account = $risk_builder->getAccount();
         if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
+            if(!$account->getChiefPilot()->getId()){
+                $account->setChiefPilot(null);
+            }
             $account->save();
         }
 
@@ -260,6 +272,9 @@ class builderActions extends sfActions
         $account = $flight_information_field->getRiskBuilder()->getAccount();
         if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
+            if(!$account->getChiefPilot()->getId()){
+                $account->setChiefPilot(null);
+            }
             $account->save();
         }
 
@@ -284,6 +299,9 @@ class builderActions extends sfActions
         $account = $risk_builder->getAccount();
         if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
+            if(!$account->getChiefPilot()->getId()){
+                $account->setChiefPilot(null);
+            }
             $account->save();
         }
 
@@ -302,6 +320,9 @@ class builderActions extends sfActions
             $account = $flight_information_field->getRiskBuilder()->getAccount();
             if(!$account->getHasModifiedForm()){
                 $account->setHasModifiedForm(true);
+                if(!$account->getChiefPilot()->getId()){
+                    $account->setChiefPilot(null);
+                }
                 $account->save();
             }
 
@@ -333,6 +354,9 @@ class builderActions extends sfActions
         $account = $risk_builder->getAccount();
         if(!$account->getHasModifiedForm()){
             $account->setHasModifiedForm(true);
+            if(!$account->getChiefPilot()->getId()){
+                $account->setChiefPilot(null);
+            }
             $account->save();
         }
 
