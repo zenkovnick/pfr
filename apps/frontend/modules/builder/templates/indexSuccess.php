@@ -63,7 +63,7 @@
             <?php echo $form->renderHiddenFields();?>
             <ul class="form-fields">
                 <li><?php include_partial("builder/field", array('field' => $form['form_name'], 'class' => 'form-title', 'label' => false)); ?></li>
-                <li><?php include_partial("builder/field", array('field' => $form['form_instructions'], 'label' => false)); ?></li>
+                <li><?php include_partial("builder/field", array('field' => $form['form_instructions'], 'label' => false, 'placeholder' => 'Add form instructions (if any)')); ?></li>
             </ul>
             <ul class="mitigation-fields">
                 <li>
