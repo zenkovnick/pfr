@@ -10,7 +10,7 @@ if(isset($disabled) && $disabled){
     $options['disabled'] = 'disabled';
 }
 if(isset($autocorrect) && $autocorrect){
-    $options['autocorrect'] = 'autocorrect';
+    $options['autocorrect'] = 'off';
 }
 
 ?>
