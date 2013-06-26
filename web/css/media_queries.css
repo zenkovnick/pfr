@@ -116,7 +116,10 @@
         max-width: 500px;
         width: 90%;
     }
-    .assessment-wrapper .btn {
+    .assessment-wrapper .btn.btn-green, .assessment-wrapper .btn.btn-grey, .assessment-wrapper .btn.btn-red {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
         float: none;
         margin-bottom: 10px;
         text-align: center;
