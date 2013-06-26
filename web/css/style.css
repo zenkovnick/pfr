@@ -1480,6 +1480,9 @@ html .ui-autocomplete {
 .editable-list li {
     margin: 9px 0;
 }
+.editable-list li.first-name, .editable-list li.account-title {
+    overflow: hidden;
+}
 .editable-list ul {
     overflow: hidden;
 }
