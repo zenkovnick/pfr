@@ -111,7 +111,7 @@
     .header div.header-account-information .header-account-title {
         max-width: 60%;
     }
-    .assessment-wrapper, .first-time-wrapper {
+    .assessment-wrapper, .first-time-wrapper, .first-time-dashboard {
         margin: 0 auto;
         max-width: 500px;
         width: 90%;
@@ -125,6 +125,7 @@
         text-align: center;
         width: 100%;
     }
+    
     .first-time-dashboard .new-flight-wrapper {
         width: auto;
     }
