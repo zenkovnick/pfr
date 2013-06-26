@@ -111,6 +111,11 @@
     .header div.header-account-information .header-account-title {
         max-width: 60%;
     }
+    .assessment-wrapper {
+        margin: 0 auto;
+        max-width: 500px;
+        width: 90%;
+    }
     .assessment-wrapper .btn {
         margin-bottom: 10px;
         text-align: center;
