@@ -1126,6 +1126,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 .flight-field-list li.flight-information label, .risk-factor-wrapper .risk-factor-question label {
     display: block;
     float: left;
+    margin-right: 40px;
     overflow: hidden;
 }
 .flight-field-list li.flight-information label {
