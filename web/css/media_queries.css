@@ -117,6 +117,7 @@
         width: 90%;
     }
     .assessment-wrapper .btn {
+        float: none;
         margin-bottom: 10px;
         text-align: center;
         width: 100%;
