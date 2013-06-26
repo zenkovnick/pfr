@@ -8,8 +8,8 @@
 <?php echo $form->renderGlobalErrors();?>
 <?php echo $form->renderHiddenFields();?>
 <ul class="flight-field-list">
-    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from_name'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?></li>
-    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to_name'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?></li>
+    <li class="small-field"><?php include_partial("flight/field", array('field' => $form['airport_from_name'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false, 'autocorrect' => 'off')); ?></li>
+    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['airport_to_name'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false, 'autocorrect' => 'off')); ?></li>
     <!--    <li class="small-field">--><?php //include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?><!--</li>-->
     <!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
     <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
