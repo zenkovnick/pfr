@@ -407,33 +407,28 @@ ul.header-link-block li.mobile-logout {
 }
 
 .photo-holder {
-    border-left: 1px solid #CCC;
-    border-top: 1px solid #CCC;
-    border-bottom: 1px solid #CCC;
-    width: 40px;
-    height: 40px;
+    border-style: solid;
+    border-color: #CCC;
+    border-width: 1px 0 1px 1px;
+    width: 39px;
+    height: 39px;
     float: left;
-    display: inline-block;
+    display: block;
+    overflow: hidden;
     padding: 0;
     background: url('../images/photo_bg.png') center center no-repeat;
-}
-.settings-page .photo-holder {
-    height: 39px;
-    width: 41px;
 }
 .photo-holder:hover {
     cursor: pointer;
 }
 
 .with-dash-border {
-    border-left: 1px dashed #CCC;
-    border-top: 1px dashed #CCC;
-    border-bottom: 1px dashed #CCC;
+    border-style: dashed;
 }
 
 
-.create-account .company-title{
-    width: 258px;
+.create-account .company-title {
+    width: 260px;
     float: left;
 }
 
@@ -476,7 +471,7 @@ a.sign-out {
     margin: 5px 0;
     text-decoration: none;
 }
-.choose-account .wrapper ul li span, .create-account span {
+.choose-account .wrapper ul li span {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
     color: #999;
     display: block;
@@ -646,6 +641,8 @@ ul.form-fields li input[type="text"] {
 .flight-information-list li.hidden-field.solid .element-wrapper {
     border-style: solid;
 }
+
+/*
 .flight-information-list .handler.hidden,
 .risk-factor-list .handler.hidden,
 .risk-factor-list .editing .handler {
@@ -667,7 +664,7 @@ ul.form-fields li input[type="text"] {
     width: 18px;
     margin: 0 -1px 0 1px;
 }
-
+*/
 
 /*.flight-information-list li.ui-sortable-helper span.handler {*/
     /*display: block !important;*/
@@ -943,7 +940,7 @@ a.show-hide-field:hover {
     margin: 0 0 9px;
     overflow: hidden;
 }
-.mitigation-fields li.risk-value-edit label {
+.mitigation-fields li.risk-value-edit label, .check-block label {
     display: inline-block;
     font-size: 1em;
     max-width: 85%;
@@ -1478,7 +1475,7 @@ html .ui-autocomplete {
 
 .editable-list .caption-block {
     overflow: hidden;
-    padding: 11px 9px;
+    padding: 12px 9px;
 }
 
 .editable-list .caption-block:hover,
@@ -1566,17 +1563,11 @@ html .ui-autocomplete {
 }
 
 
-.editable-list .handler.hidden,
-.editable-list .editing .handler {
-    background: none;
-    border: 1px solid transparent;
-    display: block !important;
-}
-.editable-list .handler,
-.editable-list .ui-sortable-helper .handler {
+
+.editable-list .handler {
     display: block;
     width: 18px;
-    height: 36px;
+    height: 38px;
     margin: 0 -1px 0 1px;
     border: 1px solid #CCC;
     float: left;
@@ -1587,6 +1578,16 @@ html .ui-autocomplete {
     
     text-indent: -1000px;
 }
+.editable-list .handler.hidden,
+.editable-list .handler {
+    visibility: hidden;
+}
+.editable-list .editing > .handler,
+.editable-list li:hover > .handler,
+.editable-list .ui-sortable-helper > .handler {
+    visibility: visible;
+}
+
 
 .editable-list .buttons-block {
     padding: 5px 0 0;
@@ -1616,9 +1617,9 @@ html .ui-autocomplete {
     margin-top: 0;
 }
 
-.editable-list .my-information .name,  .editable-list .account-title{
-    width: 398px !important;
-    float: left;
+.editable-list .name-block .name {
+    width: 400px !important;
+    overflow: hidden;
 }
 
 
@@ -1876,6 +1877,7 @@ html .ui-autocomplete {
     text-decoration: none;
     display: inline-block;
     margin: 6px 0 2px;
+    font-weight: bold;
 }
 .dashboard-page .flights-list .info {
     color: #999;
