@@ -376,6 +376,9 @@ ul.header-link-block li.mobile-logout {
     text-align: center;
     width: 100%;
 }
+.create-account input {
+    text-align: left;
+}
 .sign-in-form input.placeholder, .sign-up input.placeholder, .create-account input.placeholder {
     color: #CCC;
 }
@@ -457,7 +460,7 @@ ul.header-link-block li.mobile-logout {
 a.sign-out {
     left: 30px;
     position: absolute;
-    top: 20px;
+    top: 30px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Choose Account <-------------------------------------------------*/
