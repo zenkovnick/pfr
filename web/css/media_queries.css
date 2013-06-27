@@ -208,6 +208,7 @@
 
     #chart.chart-block rect {
         height: auto !important;
+        margin: 0 auto;
         width: 230px !important;
     }
 }
