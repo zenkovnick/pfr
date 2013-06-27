@@ -1204,6 +1204,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 }
 a.show-help-link {
     color: #999;
+    margin-left: -40px;
     padding-left: 5px;
     text-transform: lowercase;
 }
