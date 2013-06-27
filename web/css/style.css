@@ -1101,7 +1101,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 }
 
 .flight-field-list .sic-input {
-    margin: -25px 0 0 0;
+    margin: -14px 0 0 0;
     z-index: 100;
     position: relative;
 }
@@ -1129,8 +1129,10 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     margin-right: 40px;
     overflow: hidden;
 }
+
 .flight-field-list li.flight-information label {
     float: none;
+    margin-right: 0;
 }
 
 .flight-field-list li.flight-information select, .response-option-list select {
