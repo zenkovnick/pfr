@@ -848,6 +848,7 @@
         jQuery(window).on('orientationchange', function(){
             var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
             jQuery('#slider-range').css('background-position', left_position+'px top');
+            jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
         });
 
         jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');

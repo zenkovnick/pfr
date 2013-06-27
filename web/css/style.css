@@ -76,7 +76,7 @@ a                              { cursor: pointer; }
     overflow: hidden;
     -moz-binding: url(ellipsis.xml#ellipsis);
     white-space: nowrap !important;
-    max-width: 89%;
+    max-width: 85%;
 }
 
 
