@@ -14,13 +14,24 @@
             <div class="filter-block">
                 <span class="caption">Risk summary</span>
                 <span>for</span>
-                <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select')) ?>
+                <div class="list-select plane-select">
+                    <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select result')) ?>
+                </div>
                 <span class="plus">+</span>
-                <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select')) ?>
+                <div class="list-select pilot-select">
+                    <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select result')) ?>
+                </div>
                 <span class="plus">+</span>
-                <span class="no-margin"><?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select')) ?></span>
+
+                <span class="no-margin">
+                    <div class="list-select date-select">
+                        <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select result')) ?>
+                    </div>
+                </span>
                 <span>, sorted by</span>
-                <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select')) ?>
+                <div class="list-select sort-select">
+                    <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select result')) ?>
+                </div>
                 <div class="clear"></div>
             </div>
         </form>
@@ -48,9 +59,9 @@
 
     function submitFilter(event) {
         event.preventDefault();
-        if(jQuery(".plane-filter").val() == 'new_plane'){
+        if(jQuery("#flight_filter_plane").val() == 'new_plane'){
             window.location.href="<?php echo url_for("@settings?account_id={$account->getId()}") ?>#planes";
-        } else if(jQuery(".pilot-filter").val() == 'new_pilot') {
+        } else if(jQuery("#flight_filter_pilot").val() == 'new_pilot') {
             window.location.href="<?php echo url_for("@settings?account_id={$account->getId()}") ?>#pilots";
         } else {
             jQuery(this).ajaxSubmit(filter_options);
@@ -117,9 +128,26 @@
 
     jQuery(document).ready(function(){
         jQuery("#flight_filter").bind('submit', submitFilter);
-        jQuery(".plane-filter, .pilot-filter, .date-filter, .sort-filter").bind('change', applyFilter);
-        jQuery(".plane-filter").append("<option value='new_plane'>New plane</option>");
-        jQuery(".pilot-filter").append("<option value='new_pilot'>New pilot</option>");
+        jQuery("#flight_filter_plane, #flight_filter_pilot, #flight_filter_date, #flight_filter_sort").bind('change', applyFilter);
+        jQuery(".plane-select ul").append("<li id='new_plane'>New plane</li>");
+        jQuery(".pilot-select ul").append("<li id='new_pilot'>New pilot</li>");
         google.load('visualization', '1', {'packages':['corechart'], 'callback': chartInit});
+
+        jQuery('.list-select .result').bind('click', function(){
+            jQuery("ul.expanded").trigger("mouseleave");
+            jQuery("ul.expanded").hide().removeClass('expanded');
+            var ul = jQuery(this).parent().find('ul');
+            ul.show().addClass("expanded");
+
+        });
+
+        jQuery('.list-select ul li').click(function(){
+            var root_el = jQuery(this).closest(".list-select");
+            jQuery('.result', root_el).html(jQuery(this).text());
+            var id = jQuery(this).prop('id');
+            jQuery('input[type="hidden"]', root_el).val(id);
+            jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+            applyFilter();
+        });
     });
 </script>

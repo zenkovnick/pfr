@@ -198,7 +198,7 @@
     jQuery('.pilot-select ul li').click(function(){
         var root_el = jQuery(this).closest(".list-select");
         var root_li = jQuery(this).closest("li.flight-information");
-        var pilot_el = jQuery('.pilot', root_el)
+        var pilot_el = jQuery('.pilot', root_el);
         pilot_el.html(jQuery(this).text());
         var id = jQuery(this).prop('id');
         jQuery('input[type="hidden"]', root_el).val(id);
