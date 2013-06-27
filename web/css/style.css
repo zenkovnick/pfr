@@ -694,6 +694,16 @@ ul.form-fields li input[type="text"] {
     margin: 9px 0;
     /*position: relative;*/
 }
+li.risk-factor-entity a.edit-risk-factor-link {
+    display: none !important;
+}
+li.risk-factor-entity:hover a.edit-risk-factor-link {
+    display: block !important;
+}
+li.risk-factor-entity.editing:hover a.edit-risk-factor-link {
+    display: none !important;
+}
+
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
     border: 1px solid #CCCCCC;
