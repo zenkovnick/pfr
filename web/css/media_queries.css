@@ -141,6 +141,9 @@
         height: auto !important;
         width: 100% !important;
     }
+    .dashboard-page .filter-block, .dashboard-page .additional-info {
+        padding-bottom: 30px;
+    }
 
 
 
