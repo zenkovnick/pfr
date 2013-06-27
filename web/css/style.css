@@ -629,6 +629,7 @@ ul.form-fields li input[type="text"] {
 .flight-information-wrapper {
     overflow: hidden;
     padding: 20px 0 0;
+    position: static;
 }
 .flight-information-list {
     overflow: hidden;
