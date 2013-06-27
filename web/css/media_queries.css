@@ -136,6 +136,9 @@
     .header.preview {
         height: 35px;
     }
+    .flight-field-list li.trip-number-field label {
+        width: auto;
+    }
 
 
 
