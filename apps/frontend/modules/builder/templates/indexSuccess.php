@@ -850,6 +850,8 @@
             jQuery('#slider-range').css('background-position', left_position+'px top');
         });
 
+        jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
+
     });
 
 </script>

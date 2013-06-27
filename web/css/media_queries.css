@@ -54,7 +54,7 @@
         width: 92%;
     }
     ul.form-fields {
-        left: 0;
+        left: 50%;
         margin-left: 0;
         right: 0px;
         top: 289px;
@@ -202,8 +202,7 @@
     ul.scale li#li-50 {
         width: 31px;
     }
-}
-@media only screen and (max-width : 230px)  {
+
     #chart.chart-block rect {
         height: auto !important;
         width: 230px !important;
