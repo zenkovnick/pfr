@@ -137,7 +137,7 @@
     .flight-field-list li.trip-number-field label {
         width: auto;
     }
-    #chart > div {
+    #chart.chart-block rect {
         height: auto !important;
         width: 100% !important;
     }
