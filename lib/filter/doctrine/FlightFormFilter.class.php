@@ -20,7 +20,8 @@ class FlightFormFilter extends BaseFlightFormFilter
             'model' => 'Plane',
             'table_method' => 'getPlanes',
             'table_method_parameters' => array('account' => $this->getOption('account')),
-            'add_empty' => 'all planes'
+            'add_empty' => 'all planes',
+            'renderer_class' => 'sfWidgetFormList'
         ));
         $this->widgetSchema['pilot'] = new sfWidgetFormDoctrineChoiceCustom(array(
             'model' => 'sfGuardUser',
@@ -28,10 +29,12 @@ class FlightFormFilter extends BaseFlightFormFilter
             'table_method_parameters' => array('account' => $this->getOption('account')),
             'method' => 'getUserTitle',
             'method_parameters' => array('curr_user' => $this->getOption('user')),
-            'add_empty' => 'all pilots'
+            'add_empty' => 'all pilots',
+            'renderer_class' => 'sfWidgetFormList'
         ));
-        $this->widgetSchema['date'] = new sfWidgetFormChoice(array('choices' => $this->date_choice));
-        $this->widgetSchema['sort'] = new sfWidgetFormChoice(array('choices' => $this->sort_choice));
+        $this->widgetSchema['date'] = new sfWidgetFormChoice(array('choices' => $this->date_choice, 'renderer_class' => 'sfWidgetFormList'));
+        $this->widgetSchema['sort'] = new sfWidgetFormChoice(array('choices' => $this->sort_choice, 'renderer_class' => 'sfWidgetFormList'));
+        $this->widgetSchema->setDefault('sort', 'date');
 
 
         $this->validatorSchema['plane'] = new sfValidatorPass();
