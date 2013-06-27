@@ -92,7 +92,7 @@
     a.add-note, a.remove-note {
         clear: both;
     }
-    .editable-list .my-information .name, .editable-list .account-title {
+    .editable-list .my-information .name, .editable-list .account-information .name {
         max-width: 100%;
         overflow: hidden;
         width: 100% !important;

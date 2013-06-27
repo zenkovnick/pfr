@@ -559,6 +559,7 @@
         event.preventDefault();
         jQuery("div.form-builder-wrapper").removeClass('hidden');
         jQuery("div.preview-mode").addClass('hidden');
+        jQuery('.header').removeClass('preview');
     }
 
     function saveAndExit(event){
