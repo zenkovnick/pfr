@@ -505,7 +505,6 @@ h1 {
 .form-builder-wrapper {
     margin-bottom: 150px;
     /*padding-top: 175px;*/
-    position: static;
 }
 span.bottom-border {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
@@ -630,7 +629,6 @@ ul.form-fields li input[type="text"] {
 .flight-information-wrapper {
     overflow: hidden;
     padding: 20px 0 0;
-    position: static;
 }
 .flight-information-list {
     overflow: hidden;

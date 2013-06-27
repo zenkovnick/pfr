@@ -1,10 +1,9 @@
 @media only screen and (max-width : 800px)  {
     .wrapper {
-        position: relative;
         width: 100%;
     }
     .header {
-        height: auto;
+        height: 203px;
     }
     .header-link-block {
         clear: both;
@@ -56,12 +55,8 @@
     ul.form-fields {
         left: 0;
         margin-left: 0;
-        right: 10px;
-        /*top: 297px;*/
-        top: 50px;
-    }
-    .form-builder-wrapper {
-        /*position: relative;*/
+        right: 0px;
+        top: 289px;
     }
     .risk-factor-list > li .entry-header, .risk-factor-list > li .risk-factor-wrapper {
         box-sizing: border-box;
