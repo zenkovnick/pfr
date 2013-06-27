@@ -1524,7 +1524,11 @@ html .ui-autocomplete {
     color: #0F76BB;
     float: right;
     font-size: 13px;
+    margin: -12px -9px;
+    padding: 12px 9px;
+    position: relative;
     text-decoration: none;
+    z-index: 2;
 }
 .editable-list .info-block {
     background: #EBEBEB;
