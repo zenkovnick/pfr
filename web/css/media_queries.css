@@ -146,12 +146,19 @@
         padding-bottom: 30px;
     }
 
-    /*.date-select .list-select ul*/
+    .date-select.list-select ul, .pilot-select.list-select ul {
+        right: 0;
+    }
+    .date-select.list-select ul:before, .pilot-select.list-select ul:before {
+        left: auto;
+        right: -117px;
+    }
 
 
 
 
-}
+
+    }
 /*@media screen and (max-width: 400px) {*/
     /*.container {*/
         /*background: #ffc0cb;*/
