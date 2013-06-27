@@ -139,7 +139,8 @@
     }
     #chart.chart-block rect {
         height: auto !important;
-        width: 100% !important;
+        margin: 0 auto;
+        width: 230px !important;
     }
     .dashboard-page .filter-block, .dashboard-page .additional-info {
         padding-bottom: 30px;
@@ -206,9 +207,5 @@
         width: 31px;
     }
 
-    #chart.chart-block rect {
-        height: auto !important;
-        margin: 0 auto;
-        width: 230px !important;
-    }
+
 }
