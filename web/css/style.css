@@ -505,6 +505,7 @@ h1 {
 .form-builder-wrapper {
     margin-bottom: 150px;
     /*padding-top: 175px;*/
+    position: static;
 }
 span.bottom-border {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
