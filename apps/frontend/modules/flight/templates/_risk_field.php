@@ -20,7 +20,7 @@ if(isset($help)){
     <div class="risk-factor-question-wrapper">
         <span class="risk-factor-question"><?php echo isset($label) ? $field->renderLabel(): ''?></span>
         <?php if(isset($help) && $help): ?>
-            <a href="" class="show-help-link">(Help?)</a>
+            <a href="" class="show-help-link">(Help)</a>
             <p class="help-message hidden"><?php echo $help ?></p>
         <?php endif ?>
     </div>
