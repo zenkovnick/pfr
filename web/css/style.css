@@ -1349,6 +1349,8 @@ html .ui-autocomplete {
 }
 
 .assessment-risk-wrapper .question {
+    margin-right: 40px;
+    overflow: hidden;
 }
 
 .assessment-risk-wrapper .answer {
