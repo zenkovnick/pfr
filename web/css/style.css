@@ -656,9 +656,10 @@ ul.form-fields li input[type="text"] {
     position: relative;
     /*width: 92%;*/
 }
-.android .flight-information-list li .entry-header {
+.android .flight-information-list li .entry-header, .android .flight-information-list li .element-wrapper {
     margin: 0 0 0 20px;
 }
+
 .flight-information-list li.hidden-field .element-wrapper {
     border-style: dashed;
 }
