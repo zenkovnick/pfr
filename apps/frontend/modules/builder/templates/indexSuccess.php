@@ -869,7 +869,7 @@
                     jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-40)/2-35+'px');
                 }
                 if (window.orientation == 90 || window.orientation == -90) {
-                    jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-40)/2-25+'px');
+                    jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-40)/2-23+'px');
                 }
 //                alert(window.orientation);
 
