@@ -860,6 +860,7 @@
         var supportsOrientationChange = "onorientationchange" in window,
             orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
         window.addEventListener(orientationEvent, function() {
+            alert('width: '+jQuery(window).width()+', height: '+jQuery(window).height());
             var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
 
             jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
