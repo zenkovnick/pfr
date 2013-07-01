@@ -100,6 +100,8 @@ class FlightFormFilter extends BaseFlightFormFilter
                 default:
                     $query->orderBy("f.created_at DESC");
             }
+        } else {
+            $query->orderBy("f.created_at DESC");
         }
 
         return $query;
