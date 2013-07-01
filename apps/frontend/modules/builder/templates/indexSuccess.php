@@ -869,7 +869,7 @@
             if(isAndroid) {
                 var coefficient = jQuery(window).height()/jQuery(window).width();
                 left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
-                jQuery('ul.form-fields').css('margin-left', -(jQuery('ul.form-fields').width()/2-20)*coefficient+'px');
+                jQuery('ul.form-fields').css('margin-left', -(jQuery('ul.form-fields').width()/2)*coefficient - 20+'px');
             }
             jQuery('#slider-range').css('background-position', left_position+'px top');
         }, false);
