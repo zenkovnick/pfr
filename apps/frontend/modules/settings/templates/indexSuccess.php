@@ -396,7 +396,7 @@
             jQuery("div.plane-header", root_li).removeClass('hidden');
             //jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.plane_id);
-            jQuery("a.edit-plane-link", root_li).bind('click', editPlane);
+            jQuery("a.edit-plane-link", root_li).bind('click touchend', editPlane);
             jQuery("a.cancel-plane-link", root_li).bind('click', cancelPlaneEdit);
             jQuery('a.delete_plane', root_li).bind('click', deletePlane);
             jQuery('a.cancel-plane-add', root_li).closest('.caption-block').remove();
@@ -590,7 +590,7 @@
             jQuery("div.pilot-header", root_li).append("<span class='invited'>(Invited)</span>").removeClass('hidden');
             //jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.pilot_id);
-            jQuery("a.edit-pilot-link", root_li).bind('click', editPilot);
+            jQuery("a.edit-pilot-link", root_li).bind('click touchend', editPilot);
             jQuery("a.cancel-pilot-link", root_li).bind('click', cancelPilotEdit);
             jQuery('a.delete_pilot', root_li).bind('click', deletePilot);
             jQuery('a.cancel-pilot-add', root_li).closest('.caption-block').remove();
@@ -738,12 +738,12 @@
 
 
         jQuery("li.plane-entity").bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
-        jQuery("a.edit-plane-link").bind('click', editPlane);
+        jQuery("a.edit-plane-link").bind('click touchend', editPlane);
         jQuery("a.cancel-plane-link").bind('click', cancelPlaneEdit);
         jQuery('#add-plane-link').bind('click', addPlane);
 
         jQuery("li.pilot-entity").bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
-        jQuery("a.edit-pilot-link").bind('click', editPilot);
+        jQuery("a.edit-pilot-link").bind('click touchend', editPilot);
         jQuery("a.cancel-pilot-link").bind('click', cancelPilotEdit);
         jQuery('#add-pilot-link').bind('click', addPilot);
 
