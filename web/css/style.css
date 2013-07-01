@@ -658,6 +658,13 @@ ul.form-fields li input[type="text"] {
 .flight-information-list li.hidden-field.solid .element-wrapper {
     border-style: solid;
 }
+.flight-information-list li .element-wrapper span.uneditable {
+    display: none;
+}
+.flight-information-list li:hover .element-wrapper span.uneditable, .flight-information-list li:hover .element-wrapper span.hiddable a.show-hide-field {
+    display: block;
+}
+
 
 /*
 .flight-information-list .handler.hidden,
@@ -765,9 +772,17 @@ ul.form-fields li input[type="text"] {
     color: #0F76BB;
     float: right;
     font-size: 12px;
+    margin: 0 -10px;
     text-decoration: none;
+    padding: 0 10px;
     position: relative;
-    z-index: 2;
+    z-index: 10;
+}
+.risk-factor-list .risk-factor-entity a.edit-risk-factor-link {
+    display: none;
+}
+.risk-factor-list .risk-factor-entity:hover a.edit-risk-factor-link {
+    display: block;
 }
 .risk-factor-list > li.new a.cancel-risk-factor-add {
     margin: 12px 32px 0 0;
@@ -917,9 +932,12 @@ span.uneditable {
 }
 a.show-hide-field {
     color: #0F76BB;
+    display: none;
     float: right;
     font-size: 12px;
+    position: relative;
     text-decoration: none;
+    z-index: 10;
 }
 a.show-hide-field:hover {
     text-decoration: underline;
