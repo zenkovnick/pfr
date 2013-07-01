@@ -952,7 +952,7 @@ a.show-hide-field:hover {
 .mitigation-fields li.risk-value-edit .mitigation-header span.risk-title {
     font-size: 1em;
     height: 17px;
-    line-height: 100%;
+    line-height: 17px;
 }
 .mitigation-fields li.risk-value-edit .field-wrapper {
     padding: 9px;
