@@ -149,5 +149,9 @@
             jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
             applyFilter();
         });
+
+        if ( ( jQuery('.date-select').position().left - 150 ) <= 0 ) {
+            jQuery('.filter-block .date-select.list-select ul').addClass('right-side');
+        }
     });
 </script>
