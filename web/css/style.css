@@ -944,13 +944,14 @@ a.show-hide-field:hover {
     font-size: 1em;
     line-height: 100%;
     margin: -14px 9px -14px -9px;
-    min-height: 16px;
+    min-height: 17px;
     padding: 14px 9px 14px;
     text-align: center;
     width: 59px;
 }
 .mitigation-fields li.risk-value-edit .mitigation-header span.risk-title {
     font-size: 1em;
+    height: 17px;
     line-height: 100%;
 }
 .mitigation-fields li.risk-value-edit .field-wrapper {
