@@ -865,9 +865,15 @@
 
             jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
             if(isAndroid) {
-                var coefficient = jQuery(window).height()/jQuery(window).width();
-                left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
-                jQuery('ul.form-fields').css('margin-left', -(jQuery('ul.form-fields').width()/2 + 20)*coefficient+'px');
+                if( jQuery(window).width() == 320 ) {
+                    jQuery('ul.form-fields').css('margin-left', '-160px');
+                }
+                if( jQuery(window).width() == 480 ) {
+                    jQuery('ul.form-fields').css('margin-left', '-240px');
+                }
+
+
+//                left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
             }
             jQuery('#slider-range').css('background-position', left_position+'px top');
         }, false);
