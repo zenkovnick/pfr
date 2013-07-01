@@ -64,6 +64,7 @@
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         margin: 0 20px;
+        /*min-width: 92%;*/
         width: auto;
     }
     .risk-factor-global-wrapper input[type="text"].response-text {

@@ -618,6 +618,10 @@ ul.form-fields li:nth-child(2) {
     padding: 10px;
     width: 92%;
 }
+ul.form-fields li {
+    /*margin-right: 10px;*/
+    overflow: hidden;
+}
 ul.form-fields li input[type="text"] {
     margin: 0 0 10px;
     width: 100%;
@@ -778,7 +782,7 @@ ul.form-fields li input[type="text"] {
     position: relative;
     z-index: 10;
 }
-.risk-factor-list .risk-factor-entity a.edit-risk-factor-link {
+.risk-factor-list .risk-factor-entity a.edit-risk-factor-link, .risk-factor-list .risk-factor-entity.editing a.edit-risk-factor-link, .risk-factor-list .risk-factor-entity.editing:hover a.edit-risk-factor-link {
     display: none;
 }
 .risk-factor-list .risk-factor-entity:hover a.edit-risk-factor-link {

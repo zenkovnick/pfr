@@ -250,7 +250,7 @@
         event.preventDefault();
         var root_el = jQuery(this).closest('li.risk-factor-entity');
         root_el.addClass('editing').removeClass('truncate');
-        jQuery(this).addClass('hidden');
+//        jQuery(this).addClass('hidden');
         root_el.find('a.cancel-risk-factor-link').removeClass('hidden');
         var risk_factor_id= root_el.find('input[type="hidden"]').val();
         var form_el = jQuery(jQuery.ajax({
@@ -334,7 +334,7 @@
 
     function hideRiskFactorEditLink(){
         if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
-            jQuery(this).find('a.edit-risk-factor-link').addClass('hidden');
+//            jQuery(this).find('a.edit-risk-factor-link').addClass('hidden');
             //jQuery(this).find('.handler').addClass('hidden');
         }
     }
@@ -869,7 +869,7 @@
             if(isAndroid) {
                 var coefficient = jQuery(window).height()/jQuery(window).width();
                 left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
-                jQuery('ul.form-fields').css('margin-left', -(jQuery('ul.form-fields').width()/2-20)*coefficient+'px');
+                jQuery('ul.form-fields').css('margin-left', -(jQuery('ul.form-fields').width()/2 + 20)*coefficient+'px');
             }
             jQuery('#slider-range').css('background-position', left_position+'px top');
         }, false);
