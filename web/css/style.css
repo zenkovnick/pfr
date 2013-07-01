@@ -618,6 +618,10 @@ ul.form-fields li:nth-child(2) {
     padding: 10px;
     width: 92%;
 }
+ul.form-fields li {
+    /*margin-right: 10px;*/
+    overflow: hidden;
+}
 ul.form-fields li input[type="text"] {
     margin: 0 0 10px;
     width: 100%;
