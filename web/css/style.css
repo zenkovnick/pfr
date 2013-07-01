@@ -772,9 +772,11 @@ ul.form-fields li input[type="text"] {
     color: #0F76BB;
     float: right;
     font-size: 12px;
+    margin: 0 -10px;
     text-decoration: none;
+    padding: 0 10px;
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 .risk-factor-list .risk-factor-entity a.edit-risk-factor-link {
     display: none;
@@ -933,7 +935,9 @@ a.show-hide-field {
     display: none;
     float: right;
     font-size: 12px;
+    position: relative;
     text-decoration: none;
+    z-index: 10;
 }
 a.show-hide-field:hover {
     text-decoration: underline;
