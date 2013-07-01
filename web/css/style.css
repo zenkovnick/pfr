@@ -729,7 +729,9 @@ ul.form-fields li input[type="text"] {
     line-height: 38px;
     padding: 0 10px;
 }
-
+.android .risk-factor-list > li .entry-header {
+    margin: 0 0 0 20px;
+}
 
 /*.risk-factor-list > li .entry-header span{*/
     /*width: 90%;*/
@@ -1553,6 +1555,9 @@ html .ui-autocomplete {
 
 .editable-list .caption-block, .editable-list .info-block {
     border: 1px solid #CCC;
+    margin: 0 20px;
+}
+.android .editable-list .my-information .caption-block, .android .editable-list .account-information .caption-block {
     margin: 0 20px;
 }
 .android .editable-list .caption-block {
