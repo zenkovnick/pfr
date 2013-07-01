@@ -738,12 +738,12 @@
 
 
         jQuery("li.plane-entity").bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
-        jQuery("a.edit-plane-link").bind('click', editPlane);
+        jQuery("a.edit-plane-link").bind('click touchend', editPlane);
         jQuery("a.cancel-plane-link").bind('click', cancelPlaneEdit);
         jQuery('#add-plane-link').bind('click', addPlane);
 
         jQuery("li.pilot-entity").bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
-        jQuery("a.edit-pilot-link").bind('click', editPilot);
+        jQuery("a.edit-pilot-link").bind('click touchend', editPilot);
         jQuery("a.cancel-pilot-link").bind('click', cancelPilotEdit);
         jQuery('#add-pilot-link').bind('click', addPilot);
 
