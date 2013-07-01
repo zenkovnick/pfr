@@ -627,10 +627,10 @@
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
         var flight_information_field = jQuery("ul.flight-information-list li");
-        /*flight_information_field.bind('mouseover', flightInformationOver).bind('mouseout', flightInformationOut);*/
+        flight_information_field.bind('mouseover', flightInformationOver).bind('mouseout', flightInformationOut);
         jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
-        /*jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);*/
-        jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
+        jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
+        jQuery("a.edit-risk-factor-link").bind('click touchend', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
         jQuery("form.main-form button[type='submit']").bind('click', validateAndSubmitMainForm);
         jQuery("button.save-and-exit").bind('click', saveAndExit);
