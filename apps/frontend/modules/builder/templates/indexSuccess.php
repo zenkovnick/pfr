@@ -862,10 +862,10 @@
 
         var supportsOrientationChange = "onorientationchange" in window,
             orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-            jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
         window.addEventListener(orientationEvent, function() {
             var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
 
+            jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
             if(isAndroid) {
                 var coefficient = jQuery(window).width()/jQuery(window).height();
                 left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
