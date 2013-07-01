@@ -28,11 +28,11 @@
                         <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
                         <span><?php echo $flight_information_field->getInformationName() ?></span>
                         <?php if($flight_information_field->getHiddable()): ?>
-                        <span class="hiddable hidden">
+                        <span class="hiddable">
                             <a href="" class="show-hide-field"><?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?></a>
                         </span>
                         <?php else: ?>
-                        <span class="uneditable hidden">Uneditable</span>
+                        <span class="uneditable">Uneditable</span>
                         <?php endif ?>
                     </div>
                 </li>
@@ -49,7 +49,7 @@
                     <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
                     <div class="entry-header">
                         <span class="question truncate"><?php echo $risk_factor->getQuestion() ?></span>
-                        <a href="" class="edit-risk-factor-link hidden">Edit</a>
+                        <a href="" class="edit-risk-factor-link">Edit</a>
                         <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
                     </div>
                 </li>
