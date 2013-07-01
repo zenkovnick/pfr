@@ -947,6 +947,9 @@ a.show-hide-field:hover {
     text-align: center;
     width: 59px;
 }
+.mitigation-fields li.risk-value-edit .mitigation-header span.risk-title {
+    line-height: 1.43em;
+}
 .mitigation-fields li.risk-value-edit .field-wrapper {
     padding: 9px;
 }
