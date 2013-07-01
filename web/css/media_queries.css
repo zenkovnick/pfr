@@ -76,10 +76,6 @@
         padding: 14px 26px 14px 9px;
         width: 92%;
     }
-    .mitigation-fields li.risk-value-edit .mitigation-header span.risk-value {
-        font-size: 1.5em;
-    }
-
     .risk-factor-list > li .risk-factor-wrapper span.ui-spinner {
         min-width: 50px;
 
