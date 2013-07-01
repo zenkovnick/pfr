@@ -782,7 +782,7 @@ ul.form-fields li input[type="text"] {
     position: relative;
     z-index: 10;
 }
-.risk-factor-list .risk-factor-entity a.edit-risk-factor-link {
+.risk-factor-list .risk-factor-entity a.edit-risk-factor-link, .risk-factor-list .risk-factor-entity.editing a.edit-risk-factor-link, .risk-factor-list .risk-factor-entity.editing:hover a.edit-risk-factor-link {
     display: none;
 }
 .risk-factor-list .risk-factor-entity:hover a.edit-risk-factor-link {

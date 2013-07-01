@@ -250,7 +250,7 @@
         event.preventDefault();
         var root_el = jQuery(this).closest('li.risk-factor-entity');
         root_el.addClass('editing').removeClass('truncate');
-        jQuery(this).addClass('hidden');
+//        jQuery(this).addClass('hidden');
         root_el.find('a.cancel-risk-factor-link').removeClass('hidden');
         var risk_factor_id= root_el.find('input[type="hidden"]').val();
         var form_el = jQuery(jQuery.ajax({
@@ -334,7 +334,7 @@
 
     function hideRiskFactorEditLink(){
         if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
-            jQuery(this).find('a.edit-risk-factor-link').addClass('hidden');
+//            jQuery(this).find('a.edit-risk-factor-link').addClass('hidden');
             //jQuery(this).find('.handler').addClass('hidden');
         }
     }
