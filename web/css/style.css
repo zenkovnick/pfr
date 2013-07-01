@@ -694,6 +694,16 @@ ul.form-fields li input[type="text"] {
     margin: 9px 0;
     /*position: relative;*/
 }
+/*li.risk-factor-entity a.edit-risk-factor-link {*/
+    /*display: none !important;*/
+/*}*/
+/*li.risk-factor-entity:hover a.edit-risk-factor-link {*/
+    /*display: block !important;*/
+/*}*/
+/*li.risk-factor-entity.editing:hover a.edit-risk-factor-link {*/
+    /*display: none !important;*/
+/*}*/
+
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
     border: 1px solid #CCCCCC;
@@ -756,6 +766,8 @@ ul.form-fields li input[type="text"] {
     float: right;
     font-size: 12px;
     text-decoration: none;
+    position: relative;
+    z-index: 2;
 }
 .risk-factor-list > li.new a.cancel-risk-factor-add {
     margin: 12px 32px 0 0;
@@ -1524,7 +1536,11 @@ html .ui-autocomplete {
     color: #0F76BB;
     float: right;
     font-size: 13px;
+    margin: -12px -9px;
+    padding: 12px 9px;
+    position: relative;
     text-decoration: none;
+    z-index: 2;
 }
 .editable-list .info-block {
     background: #EBEBEB;
@@ -1909,7 +1925,7 @@ html .ui-autocomplete {
 }
 
 .dashboard-page .chart-block {
-    margin: 0 0 20px;
+    margin: 0 auto 20px;
     height: 230px;
 }
 
@@ -1926,7 +1942,10 @@ html .ui-autocomplete {
     margin: 20px 0 0;
 }
 
-
+#chart.chart-block rect {
+    height: 230px;
+    width: 460px;
+}
 
 /*----------------------------------------------------------------------------------*/
 /*----------------------------------> Pagination <----------------------------------*/

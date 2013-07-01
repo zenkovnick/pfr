@@ -139,13 +139,26 @@
     }
     #chart.chart-block rect {
         height: auto !important;
-        width: 100% !important;
+        margin: 0 auto;
+        width: 230px !important;
+    }
+    .dashboard-page .filter-block, .dashboard-page .additional-info {
+        padding-bottom: 30px;
+    }
+
+    .date-select.list-select ul, .pilot-select.list-select ul {
+        right: 0;
+    }
+    .date-select.list-select ul:before, .pilot-select.list-select ul:before {
+        left: auto;
+        right: -117px;
     }
 
 
 
 
-}
+
+    }
 /*@media screen and (max-width: 400px) {*/
     /*.container {*/
         /*background: #ffc0cb;*/
@@ -203,8 +216,5 @@
         width: 31px;
     }
 
-    #chart.chart-block rect {
-        height: auto !important;
-        width: 230px !important;
-    }
+
 }

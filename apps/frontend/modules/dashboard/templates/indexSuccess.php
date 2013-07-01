@@ -104,7 +104,7 @@
                     fontSize: 5,
                     fontName: 'Times New Roman',
                     enableInteractivity: false,
-                    width: 460, height: 230,
+//                    width: 460, height: 230,
                     chartArea: {width: 420, height: 180},
                     legend: {alignment: 'center', position: 'top', textStyle: {color: 'black', fontSize: 18, fontName: 'Helvetica'}},
                     pointSize: 0,
