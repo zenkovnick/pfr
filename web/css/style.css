@@ -1545,10 +1545,12 @@ html .ui-autocomplete {
     background: #F2F2F2;    
 }
 
-.editable-list .caption-block,
-.editable-list .info-block {
-    margin: 0 20px;
+.editable-list .caption-block, .editable-list .info-block {
     border: 1px solid #CCC;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0 20px;
 }
 .editable-list .invited .caption-block {
     border: 1px dashed #CCC;
