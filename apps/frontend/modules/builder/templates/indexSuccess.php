@@ -865,12 +865,8 @@
 
             jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
             if(isAndroid) {
-                if( jQuery(window).width() == 320 ) {
-                    jQuery('ul.form-fields').css('margin-left', '-160px');
-                }
-                if( jQuery(window).width() == 480 ) {
-                    jQuery('ul.form-fields').css('margin-left', '-240px');
-                }
+                jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-40)/2-20+'px');
+
 
 
 //                left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
