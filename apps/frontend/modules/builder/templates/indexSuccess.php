@@ -865,7 +865,7 @@
 
             jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
             if(isAndroid) {
-                jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-30)/2-40+'px');
+                jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-20)/2-40+'px');
 
 
 
