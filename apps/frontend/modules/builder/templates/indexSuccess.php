@@ -301,7 +301,7 @@
             jQuery('a.add-note', root_li).bind('click', addRiskFactorNote);
             jQuery('a.remove-note', root_li).bind('click', removeRiskFactorNote);
 
-            root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
+            /*root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);*/
             root_li.attr('id', 'rf_'+data.risk_id);
             root_li.removeClass('new').addClass('risk-factor-entity');
 
@@ -627,9 +627,9 @@
         jQuery("#flight-information-container ul, #flight-information-container li" ).disableSelection();
 
         var flight_information_field = jQuery("ul.flight-information-list li");
-        flight_information_field.bind('mouseover', flightInformationOver).bind('mouseout', flightInformationOut);
+        /*flight_information_field.bind('mouseover', flightInformationOver).bind('mouseout', flightInformationOut);*/
         jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
-        jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
+        /*jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);*/
         jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
         jQuery("form.main-form button[type='submit']").bind('click', validateAndSubmitMainForm);
