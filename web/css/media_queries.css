@@ -146,13 +146,13 @@
         padding-bottom: 30px;
     }
 
-    .filter-block .date-select.list-select ul, .filter-block .pilot-select.list-select ul {
+    .filter-block .date-select.list-select ul, .filter-block .pilot-select.list-select ul, .filter-block .sort-select.list-select ul.left-side {
         right: 0;
     }
     .filter-block .date-select.list-select ul.right-side {
         right: auto;
     }
-    .filter-block .date-select.list-select ul:before, .filter-block .pilot-select.list-select ul:before {
+    .filter-block .date-select.list-select ul:before, .filter-block .pilot-select.list-select ul:before, .filter-block .sort-select.list-select ul.left-side:before {
         left: auto;
         right: -117px;
     }
