@@ -656,7 +656,7 @@ ul.form-fields li input[type="text"] {
     position: relative;
     /*width: 92%;*/
 }
-.android .flight-information-list li .element-wrapper {
+.android .flight-information-list li .entry-header {
     margin: 0 0 0 20px;
 }
 .flight-information-list li.hidden-field .element-wrapper {
@@ -1555,7 +1555,7 @@ html .ui-autocomplete {
     border: 1px solid #CCC;
     margin: 0 20px;
 }
-.android .editable-list .caption-block, .android .editable-list .info-block {
+.android .editable-list .caption-block {
     margin: 0 0 0 20px;
 }
 .editable-list .invited .caption-block {
