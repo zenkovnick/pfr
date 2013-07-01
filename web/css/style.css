@@ -1547,9 +1547,9 @@ html .ui-autocomplete {
 
 .editable-list .caption-block, .editable-list .info-block {
     border: 1px solid #CCC;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
     margin: 0 20px;
 }
 .editable-list .invited .caption-block {
