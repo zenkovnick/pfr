@@ -52,14 +52,14 @@
     }
 
     function submitForm(event) {
-        if(jQuery(this).hasClass('disabled') || !validateForm()){
+        if(!validateForm()){
             event.preventDefault();
         }
     }
 
     jQuery(document).ready(function(){
         var field_list = jQuery('ul.sign-up-field-list');
-        jQuery("li input", field_list).bind('keyup', changeFieldContent);
+        //jQuery("li input", field_list).bind('keyup', changeFieldContent);
         jQuery("button[type='submit']").bind('click', submitForm);
     });
 </script>
