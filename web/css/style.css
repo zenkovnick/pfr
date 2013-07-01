@@ -1110,7 +1110,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 
 .flight-field-list .sic-input {
     margin: -14px 0 0 0;
-    z-index: 100;
+    /*z-index: 100;*/
     position: relative;
 }
 
