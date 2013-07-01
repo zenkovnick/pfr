@@ -861,7 +861,7 @@
             orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
         window.addEventListener(orientationEvent, function() {
 //            alert('width: '+jQuery(window).width()+', height: '+jQuery(window).height());
-            var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
+            var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10);
 
             jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
             if(isAndroid) {
@@ -871,14 +871,20 @@
                 if (window.orientation == 90 || window.orientation == -90) {
                     jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-40)/2-21+'px');
                 }
-//                alert(window.orientation);
+                if (jQuery('#slider-range').width() == 300) {
+                    left_position *= 1.5;
+                }
+                if (jQuery('#slider-range').width() == 440) {
+                    left_position *= 2/3;
+                }
+
 
 
 
 
 //                left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
             }
-            jQuery('#slider-range').css('background-position', left_position+'px top');
+            jQuery('#slider-range').css('background-position', left_position-500+'px top');
         }, false);
 
         jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
