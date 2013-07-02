@@ -157,6 +157,17 @@
         if ( ( jQuery('.sort-select').position().left + 150 + 31 ) > jQuery(window).width() ) {
             jQuery('.filter-block .sort-select.list-select ul').addClass('left-side');
         }
-    });
+        window.addEventListener(orientationEvent, function() {
+            jQuery("ul.expanded").hide().removeClass('expanded');
+            if ( ( jQuery('.date-select').position().left - 150 ) <= 0 ) {
+                jQuery('.filter-block .date-select.list-select ul').addClass('right-side');
+            }
+
+            if ( ( jQuery('.sort-select').position().left + 150 + 31 ) > jQuery(window).width() ) {
+                jQuery('.filter-block .sort-select.list-select ul').addClass('left-side');
+            }
+        });
+
+        });
 
 </script>
