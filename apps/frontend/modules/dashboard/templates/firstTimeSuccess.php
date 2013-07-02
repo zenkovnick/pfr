@@ -45,7 +45,11 @@
                 <?php if($account->getHasFlight()): ?>
                     <span>5. Measure your first flight's risk</span>
                 <?php else: ?>
-                    <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}") ?>#">5. Measure your first flight's risk</a>
+                    <?php if($account->getHasPlane()): ?>
+                        <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}") ?>#">5. Measure your first flight's risk</a>
+                    <?php else: ?>
+                        <span class="disabled-link">5. Measure your first flight's risk</span>
+                    <?php endif ?>
                 <?php endif ?>
             </li>
         </ul>

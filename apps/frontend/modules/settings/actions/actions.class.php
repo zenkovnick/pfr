@@ -38,7 +38,9 @@ class settingsActions extends sfActions {
                 $widget = null;
                 $response_array = array();
                 $response_array['result'] = "OK";
+                $response_array['name'] = $user->getFirstName();
                 if($user->getPhoto()){
+
                     $response_array['widget'] = $this->getPartial('settings/uploaded_avatar', array('file_path' => "avatar/{$user->getPhoto()}"));
                 }
                 echo json_encode($response_array);

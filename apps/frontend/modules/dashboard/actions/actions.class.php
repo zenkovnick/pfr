@@ -98,11 +98,12 @@ class dashboardActions extends sfActions {
         $flight_filter['page'] = $obj->page;
         $obj->getUser()->setAttribute('flight_filter', $flight_filter);
 
+        $non_drafted_flights = $obj->filter->getQuery()->andWhere('f.drafted = 0')->execute();
         $flights = $obj->filter->getQuery()->execute();
         $additional_info = array();
         $additional_info['flights_count'] = $flights->count();
-        $additional_info['average_risk'] = Flight::getAverageRisk($flights);
-        $additional_info['average_mitigation'] = Flight::getAverageMitigation($flights);
+        $additional_info['average_risk'] = Flight::getAverageRisk($non_drafted_flights);
+        $additional_info['average_mitigation'] = Flight::getAverageMitigation($non_drafted_flights);
         $obj->flights_for_chart = FlightTable::getFlightsForChart($obj->filter->getQuery());
         $obj->additional_info = $additional_info;
 
