@@ -158,6 +158,8 @@
     }
     .flight-field-list li.flight-information label, .risk-factor-wrapper .risk-factor-question label {
         max-width: 85%;
+        padding-right: 3%;
+        word-wrap: break-word;
     }
 
 }
