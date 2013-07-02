@@ -14,13 +14,17 @@
             <div class="filter-block">
                 <span class="caption">Risk summary</span>
                 <span>for</span>
-                <div class="list-select plane-select">
-                    <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select result')) ?>
-                </div>
+                <span class="no-margin">
+                    <div class="list-select plane-select">
+                        <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select result')) ?>
+                    </div>
+                </span>
                 <span class="plus">+</span>
-                <div class="list-select pilot-select">
-                    <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select result')) ?>
-                </div>
+                <span class="no-margin">
+                    <div class="list-select pilot-select">
+                        <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select result')) ?>
+                    </div>
+                </span>
                 <span class="plus">+</span>
 
                 <span class="no-margin">
@@ -29,9 +33,11 @@
                     </div>
                 </span>
                 <span>, sorted by</span>
-                <div class="list-select sort-select">
-                    <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select result')) ?>
-                </div>
+                <span class="no-margin">
+                    <div class="list-select sort-select">
+                        <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select result')) ?>
+                    </div>
+                </span>
                 <div class="clear"></div>
             </div>
         </form>
