@@ -1754,6 +1754,11 @@ html .ui-autocomplete {
     float:right
 }
 
+.first-time-wrapper ul.conditions li span.disabled-link{
+    color: #999999;
+    text-decoration: none;
+}
+
 /* APPROVE ACCOUNT */
 .approve-account {
 

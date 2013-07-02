@@ -167,6 +167,7 @@
         if(data.result == "OK"){
             //alert(data.widget);
             jQuery('span.header-user-avatar').html(data.widget);
+            jQuery('span.header-user-name').text("Keep the blue side up, "+data.name);
             var root_li = jQuery('li.my-information');
             jQuery("a.cancel-mi-link", root_li).addClass('hidden');
             jQuery("div.my-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
