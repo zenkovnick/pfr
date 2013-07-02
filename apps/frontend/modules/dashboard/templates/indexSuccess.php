@@ -159,6 +159,8 @@
             jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
             applyFilter();
         });
+        var supportsOrientationChange = "onorientationchange" in window,
+            orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
         window.addEventListener(orientationEvent, function() {
             jQuery("ul.expanded").hide().removeClass('expanded');
         });
