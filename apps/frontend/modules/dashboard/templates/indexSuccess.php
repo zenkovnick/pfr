@@ -134,6 +134,16 @@
         google.load('visualization', '1', {'packages':['corechart'], 'callback': chartInit});
 
         jQuery('.list-select .result').bind('click', function(){
+            jQuery(this).parent().find('ul').removeClass('right-side').removeClass('left-side');
+            if ( ( jQuery(this).parent().position().left + 150 ) > jQuery(window).width() ) {
+                jQuery(this).parent().find('ul').addClass('right-side');
+            }
+//            alert(jQuery(this).parent().position().left);
+//            if ( ( jQuery(this).position().left + 150 + jQuery(this).width() ) > jQuery(window).width() ) {
+//                jQuery(this).parent().find('ul').addClass('left-side');
+//            }
+
+
             jQuery("ul.expanded").trigger("mouseleave");
             jQuery("ul.expanded").hide().removeClass('expanded');
             var ul = jQuery(this).parent().find('ul');
@@ -150,23 +160,23 @@
             applyFilter();
         });
 
-        if ( ( jQuery('.date-select').position().left - 150 ) <= 0 ) {
-            jQuery('.filter-block .date-select.list-select ul').addClass('right-side');
-        }
-
-        if ( ( jQuery('.sort-select').position().left + 150 + 31 ) > jQuery(window).width() ) {
-            jQuery('.filter-block .sort-select.list-select ul').addClass('left-side');
-        }
-        window.addEventListener(orientationEvent, function() {
-            jQuery("ul.expanded").hide().removeClass('expanded');
-            if ( ( jQuery('.date-select').position().left - 150 ) <= 0 ) {
-                jQuery('.filter-block .date-select.list-select ul').addClass('right-side');
-            }
-
-            if ( ( jQuery('.sort-select').position().left + 150 + 31 ) > jQuery(window).width() ) {
-                jQuery('.filter-block .sort-select.list-select ul').addClass('left-side');
-            }
-        });
+//        if ( ( jQuery('.date-select').position().left - 150 ) <= 0 ) {
+//            jQuery('.filter-block .date-select.list-select ul').addClass('right-side');
+//        }
+//
+//        if ( ( jQuery('.sort-select').position().left + 150 + 31 ) > jQuery(window).width() ) {
+//            jQuery('.filter-block .sort-select.list-select ul').addClass('left-side');
+//        }
+//        window.addEventListener(orientationEvent, function() {
+//            jQuery("ul.expanded").hide().removeClass('expanded');
+//            if ( ( jQuery('.date-select').position().left - 150 ) <= 0 ) {
+//                jQuery('.filter-block .date-select.list-select ul').addClass('right-side');
+//            }
+//
+//            if ( ( jQuery('.sort-select').position().left + 150 + 31 ) > jQuery(window).width() ) {
+//                jQuery('.filter-block .sort-select.list-select ul').addClass('left-side');
+//            }
+//        });
 
         });
 
