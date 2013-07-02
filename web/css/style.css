@@ -656,6 +656,10 @@ ul.form-fields li input[type="text"] {
     position: relative;
     /*width: 92%;*/
 }
+.android .flight-information-list li .entry-header, .android .flight-information-list li .element-wrapper {
+    margin: 0 0 0 20px;
+}
+
 .flight-information-list li.hidden-field .element-wrapper {
     border-style: dashed;
 }
@@ -669,65 +673,27 @@ ul.form-fields li input[type="text"] {
     display: block;
 }
 
-
-/*
-.flight-information-list .handler.hidden,
-.risk-factor-list .handler.hidden,
-.risk-factor-list .editing .handler {
-    background: none;
-    border: 1px solid transparent;
-    display: block !important;
-}
-.flight-information-list .handler,
-.flight-information-list .ui-sortable-helper .handler,
-.risk-factor-list .handler,
-.risk-factor-list .ui-sortable-helper .handler {
-    background: url(../images/hendler_bg.png) no-repeat center center #D7D7D7;
-    border: 1px solid #CCC;
-    cursor: pointer;
-    display: block;
-    float: left;
-    height: 38px;
-    text-indent: -1000px;
-    width: 18px;
-    margin: 0 -1px 0 1px;
-}
-*/
-
-/*.flight-information-list li.ui-sortable-helper span.handler {*/
-    /*display: block !important;*/
-/*}*/
 .risk-factor-list {
     overflow: hidden;
     padding: 20px 0;
 }
 .risk-factor-list > li {
     margin: 9px 0;
-    /*position: relative;*/
 }
-/*li.risk-factor-entity a.edit-risk-factor-link {*/
-    /*display: none !important;*/
-/*}*/
-/*li.risk-factor-entity:hover a.edit-risk-factor-link {*/
-    /*display: block !important;*/
-/*}*/
-/*li.risk-factor-entity.editing:hover a.edit-risk-factor-link {*/
-    /*display: none !important;*/
-/*}*/
-
 .risk-factor-list > li .entry-header {
     background: #F2F2F2;
     border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     margin: 0 20px;
     overflow: hidden;
     line-height: 38px;
     padding: 0 10px;
 }
-
-
-/*.risk-factor-list > li .entry-header span{*/
-    /*width: 90%;*/
-/*}*/
+.android .risk-factor-list > li .entry-header {
+    margin: 0 0 0 20px;
+}
 
 .risk-factor-list > li .risk-factor-wrapper {
     background: #EBEBEB;
@@ -975,10 +941,18 @@ a.show-hide-field:hover {
     color: #FFF;
     display: block;
     float: left;
+    font-size: 1em;
+    line-height: 100%;
     margin: -14px 9px -14px -9px;
-    padding: 14px 9px 13px;
+    min-height: 17px;
+    padding: 14px 9px 14px;
     text-align: center;
     width: 59px;
+}
+.mitigation-fields li.risk-value-edit .mitigation-header span.risk-title {
+    font-size: 1em;
+    height: 17px;
+    line-height: 17px;
 }
 .mitigation-fields li.risk-value-edit .field-wrapper {
     padding: 9px;
@@ -1136,7 +1110,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 
 .flight-field-list .sic-input {
     margin: -14px 0 0 0;
-    z-index: 100;
+    /*z-index: 100;*/
     position: relative;
 }
 
@@ -1547,10 +1521,13 @@ html .ui-autocomplete {
 
 .editable-list .caption-block, .editable-list .info-block {
     border: 1px solid #CCC;
-    box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
     margin: 0 20px;
+}
+.android .editable-list .my-information .caption-block, .android .editable-list .account-information .caption-block {
+    margin: 0 20px;
+}
+.android .editable-list .caption-block {
+    margin: 0 0 0 20px;
 }
 .editable-list .invited .caption-block {
     border: 1px dashed #CCC;

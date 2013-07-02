@@ -64,7 +64,6 @@
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         margin: 0 20px;
-        /*min-width: 92%;*/
         width: auto;
     }
     .risk-factor-global-wrapper input[type="text"].response-text {
@@ -147,32 +146,16 @@
         padding-bottom: 30px;
     }
 
-    .date-select.list-select ul, .pilot-select.list-select ul {
+    .list-select ul.right-side {
         right: 0;
     }
-    .date-select.list-select ul:before, .pilot-select.list-select ul:before {
+    .list-select ul.right-side:before {
         left: auto;
         right: -117px;
     }
 
+}
 
-
-
-
-    }
-/*@media screen and (max-width: 400px) {*/
-    /*.container {*/
-        /*background: #ffc0cb;*/
-        /*width: 300px;*/
-    /*}*/
-    /*.wrapper {*/
-        /*width: 100%;*/
-    /*}*/
-    /*.header {*/
-        /*max-width: 300px;*/
-    /*}*/
-
-/*}*/
 @media only screen and (max-width : 450px)  {
     #slider-range {
         margin: 0 auto;

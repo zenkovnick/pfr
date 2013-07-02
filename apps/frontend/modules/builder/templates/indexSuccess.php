@@ -845,33 +845,33 @@
         var slider_bg_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
         jQuery('#slider-range').css('background-position', slider_bg_position+'px top');
 
-//        jQuery(window).bind('orientationchange', function(){
-//            var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
-//            jQuery('#slider-range').css('background-position', left_position+'px top');
-//            jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
-//        });
-
         var ua = navigator.userAgent.toLowerCase();
         var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
         if(isAndroid) {
-            // Do something!
-            // Redirect to Android-site?
-//            window.location = 'http://android.davidwalsh.name';
-//            alert('Android');
+            jQuery('body').addClass('android');
         }
 
         var supportsOrientationChange = "onorientationchange" in window,
             orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
         window.addEventListener(orientationEvent, function() {
-            var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)-500;
+            var left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10);
 
             jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
             if(isAndroid) {
-                var coefficient = jQuery(window).height()/jQuery(window).width();
-                left_position = parseFloat(jQuery('a.ui-slider-handle').css('left'), 10)*coefficient-500;
-                jQuery('ul.form-fields').css('margin-left', -(jQuery('ul.form-fields').width()/2 + 20)*coefficient+'px');
+                if (window.orientation == 0) {
+                    jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-40)/2-35+'px');
+                }
+                if (window.orientation == 90 || window.orientation == -90) {
+                    jQuery('ul.form-fields').css('margin-left', -(jQuery(window).height()-40)/2-21+'px');
+                }
+                if (jQuery('#slider-range').width() == 300) {
+                    left_position *= 1.5;
+                }
+                if (jQuery('#slider-range').width() == 440) {
+                    left_position *= 2/3;
+                }
             }
-            jQuery('#slider-range').css('background-position', left_position+'px top');
+            jQuery('#slider-range').css('background-position', left_position-500+'px top');
         }, false);
 
         jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
