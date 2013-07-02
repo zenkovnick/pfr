@@ -271,6 +271,7 @@
 
     function accountSubmitted(data){
         jQuery('span.header-account-avatar').html(data.widget);
+        jQuery('span.header-account-title').html(data.title);
         var root_li = jQuery('li.account-information');
         jQuery("a.cancel-ai-link", root_li).addClass('hidden');
         jQuery("div.account-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
