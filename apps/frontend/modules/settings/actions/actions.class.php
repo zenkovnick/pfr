@@ -91,6 +91,7 @@ class settingsActions extends sfActions {
                 $widget = null;
                 $response_array = array();
                 $response_array['result'] = "OK";
+                $response_array['title'] = $account->getTitle();
                 if($account->getPhoto()){
                     $response_array['widget'] = $this->getPartial('settings/uploaded_avatar', array('file_path' => "avatar/{$account->getPhoto()}", 'size' => 60));
                 }
