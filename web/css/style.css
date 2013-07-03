@@ -1532,6 +1532,9 @@ html .ui-autocomplete {
 .android .editable-list .caption-block {
     margin: 0 0 0 20px;
 }
+.android .editable-list .pilot-header.caption-block {
+    /*margin-right: 20px;*/
+}
 .editable-list .invited .caption-block {
     border: 1px dashed #CCC;
     color: #999;
@@ -1843,7 +1846,7 @@ html .ui-autocomplete {
     font-weight: bold;
 }
 .dashboard-page .filter-block .plus {
-    //margin-top: 1px;
+    padding-bottom: 10px;
 }
 .dashboard-page .filter-block > span {
     display: block;
