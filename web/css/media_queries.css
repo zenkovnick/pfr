@@ -154,13 +154,16 @@
         right: -117px;
     }
     body .ui-selectmenu-menu .select-pilot {
-        min-width: 256px;
+        /*min-width: 256px;*/
         width: 100% !important;
     }
     .flight-field-list li.flight-information label, .risk-factor-wrapper .risk-factor-question label {
         max-width: 85%;
         padding-right: 3%;
         word-wrap: break-word;
+    }
+    .ui-selectmenu-menu {
+        right: 32px;
     }
 
 }
