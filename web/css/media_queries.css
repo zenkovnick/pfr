@@ -153,20 +153,26 @@
         left: auto;
         right: -117px;
     }
-    body .ui-selectmenu-menu .select-pilot {
-        /*min-width: 256px;*/
-        width: 100% !important;
-    }
+
     .flight-field-list li.flight-information label, .risk-factor-wrapper .risk-factor-question label {
         max-width: 85%;
         padding-right: 3%;
         word-wrap: break-word;
     }
-    .ui-selectmenu-menu {
-        right: 32px;
-    }
+
 
 }
+@media only screen and (max-width : 499px)  {
+    .ui-selectmenu-menu {
+        width: 87% !important;
+    }
+    body .ui-selectmenu-menu .select-pilot {
+        max-width: 420px;
+        min-width: 256px;
+        width: 100% !important;
+    }
+}
+
 
 @media only screen and (max-width : 450px)  {
     #slider-range {
@@ -211,6 +217,15 @@
     ul.scale li#li-50 {
         width: 31px;
     }
+    .ui-selectmenu-menu {
+        width: 80.5% !important;
+    }
+    body .ui-selectmenu-menu .select-pilot {
+        max-width: 420px;
+        min-width: 256px;
+        width: 100% !important;
+    }
 
 
 }
+
