@@ -1532,8 +1532,8 @@ html .ui-autocomplete {
 .android .editable-list .caption-block {
     margin: 0 0 0 20px;
 }
-.android .editable-list .pilot-header.caption-block {
-    /*margin-right: 20px;*/
+.android .editable-list .new .caption-block {
+    margin-right: 20px;
 }
 .editable-list .invited .caption-block {
     border: 1px dashed #CCC;
