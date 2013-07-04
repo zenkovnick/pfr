@@ -1542,7 +1542,7 @@ html .ui-autocomplete {
     margin: 0 20px;
 }
 .android .editable-list .caption-block {
-    margin: 0 0 0 20px;
+    /*margin: 0 0 0 20px;*/
 }
 .android .editable-list .new .caption-block {
     margin-right: 20px;
