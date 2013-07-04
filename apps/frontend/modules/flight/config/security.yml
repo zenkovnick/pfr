@@ -1,2 +1,8 @@
 all:
+  is_secure: false
+new:
+  is_secure: true
+edit:
+  is_secure: true
+assessment:
   is_secure: true

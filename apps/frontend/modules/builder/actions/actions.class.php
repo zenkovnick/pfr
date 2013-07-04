@@ -16,6 +16,9 @@ class builderActions extends sfActions
         $this->form_id = $request->getParameter('id');
         $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
         $this->account = $this->risk_builder->getAccount();
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
         $this->form = new RiskBuilderForm($this->risk_builder, array('account' => $this->account));
         $this->flight_information = FlightInformationFieldTable::getAllFields($this->risk_builder->getId());
         $this->risk_factors = RiskFactorFieldTable::getAllRiskFactors($this->risk_builder->getId());
@@ -48,23 +51,28 @@ class builderActions extends sfActions
     public function executePreviewSubmit(sfWebRequest $request) {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
-        $this->form_id = $request->getParameter('id');
-        $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
-        $this->account = $this->risk_builder->getAccount();
-        $this->form = new RiskBuilderForm($this->risk_builder, array('account' => $this->account));
-        $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
+        if($this->getUser()->isAuthenticated()){
+            $this->form_id = $request->getParameter('id');
+            $this->forward404Unless($this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($this->form_id));
+            $this->account = $this->risk_builder->getAccount();
+            $this->form = new RiskBuilderForm($this->risk_builder, array('account' => $this->account));
+            $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
 
 
 
-        if($request->isMethod('post')){
-            $this->form->bind($request->getPostParameter($this->form->getName()));
-            if($this->form->isValid()){
-                $this->flight = new Flight();
-                $this->data_fields = json_decode($this->flight->generateFromDBAndForm($this->account, $this->form), true);
-                $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
-                $form_data = $this->getPartial('flight/form', array('form' => $this->preview_form, 'data' => $this->data_fields, 'users' => $this->users));
-                echo json_encode(array('result' => 'OK', 'form_data' => $form_data));
+            if($request->isMethod('post')){
+                $this->form->bind($request->getPostParameter($this->form->getName()));
+                if($this->form->isValid()){
+                    $this->flight = new Flight();
+                    $this->data_fields = json_decode($this->flight->generateFromDBAndForm($this->account, $this->form), true);
+                    $this->preview_form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
+                    $form_data = $this->getPartial('flight/form', array('form' => $this->preview_form, 'data' => $this->data_fields, 'users' => $this->users));
+                    echo json_encode(array('result' => 'OK', 'form_data' => $form_data));
+                }
             }
+
+        } else {
+            echo json_encode(array('result' => 'login'));
         }
         return sfView::NONE;
     }
@@ -73,39 +81,43 @@ class builderActions extends sfActions
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
         $form = new RiskFactorOptionsForm();
-        if($request->isMethod('post')){
-            $form->bind($request->getParameter($form->getName()));
-            if($form->isValid()){
-                $form->save();
-                $risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id'));
-                $account = $risk_builder->getAccount();
-                if(!$account->getHasModifiedForm()){
-                    $account->setHasModifiedForm(true);
-                    if(!$account->getChiefPilot()->getId()){
-                        $account->setChiefPilot(null);
+        if($this->getUser()->isAuthenticated()){
+            if($request->isMethod('post')){
+                $form->bind($request->getParameter($form->getName()));
+                if($form->isValid()){
+                    $form->save();
+                    $risk_builder = Doctrine_Core::getTable('RiskBuilder')->find($request->getParameter('form_builder_id'));
+                    $account = $risk_builder->getAccount();
+                    if(!$account->getHasModifiedForm()){
+                        $account->setHasModifiedForm(true);
+                        if(!$account->getChiefPilot()->getId()){
+                            $account->setChiefPilot(null);
+                        }
+                        $account->save();
                     }
-                    $account->save();
+                    $form->getObject()->setRiskBuilder($risk_builder);
+                    $form->getObject()->setPosition(RiskFactorFieldTable::getMaxPosition() + 1);
+                    $form->getObject()->save();
+
+                    echo json_encode(
+                        array(
+                            'result' => 'OK',
+                            'risk_id' => $form->getObject()->getId(),
+                            'new_form_num' => $request->getParameter('new_form_num'),
+                            'question' => $form->getObject()->getQuestion()
+                        )
+                    );
+                } else {
+                    echo json_encode(
+                        array(
+                            'result' => 'Failed',
+                        )
+                    );
+
                 }
-                $form->getObject()->setRiskBuilder($risk_builder);
-                $form->getObject()->setPosition(RiskFactorFieldTable::getMaxPosition() + 1);
-                $form->getObject()->save();
-
-                echo json_encode(
-                    array(
-                        'result' => 'OK',
-                        'risk_id' => $form->getObject()->getId(),
-                        'new_form_num' => $request->getParameter('new_form_num'),
-                        'question' => $form->getObject()->getQuestion()
-                    )
-                );
-            } else {
-                echo json_encode(
-                    array(
-                        'result' => 'Failed',
-                    )
-                );
-
             }
+        } else {
+            echo json_encode(array('result' => 'login'));
         }
         return sfView::NONE;
     }
@@ -114,27 +126,31 @@ class builderActions extends sfActions
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
         $form = new RiskFactorOptionsForm(Doctrine_Core::getTable('RiskFactorField')->find($request->getParameter('risk_factor_id')));
-        if($request->isMethod('post')){
-            $form->bind($request->getParameter($form->getName()));
-            if($form->isValid()){
-                $form->getObject()->save();
-                $form->save();
-                echo json_encode(
-                    array(
-                        'result' => 'OK',
-                        'risk_id' => $form->getObject()->getId(),
-                        'question' => $form->getObject()->getQuestion()
-                    )
-                );
-            } else {
-                echo json_encode(
-                    array(
-                        'result' => 'Failed'
-                    )
-                );
+        if($this->getUser()->isAuthenticated()){
+            if($request->isMethod('post')){
+                $form->bind($request->getParameter($form->getName()));
+                if($form->isValid()){
+                    $form->getObject()->save();
+                    $form->save();
+                    echo json_encode(
+                        array(
+                            'result' => 'OK',
+                            'risk_id' => $form->getObject()->getId(),
+                            'question' => $form->getObject()->getQuestion()
+                        )
+                    );
+                } else {
+                    echo json_encode(
+                        array(
+                            'result' => 'Failed'
+                        )
+                    );
 
+                }
+                //$this->redirect('@form');
             }
-            //$this->redirect('@form');
+        } else {
+            echo json_encode(array('result' => 'login'));
         }
         return sfView::NONE;
     }
@@ -143,11 +159,16 @@ class builderActions extends sfActions
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
         $risk_factor = Doctrine_Core::getTable('RiskFactorField')->find($request->getParameter('id'));
-        if($risk_factor){
-            $risk_factor->delete();
-            echo json_encode(array('result' => 'OK'));
+        if($this->getUser()->isAuthenticated()){
+            if($risk_factor){
+                $risk_factor->delete();
+                echo json_encode(array('result' => 'OK'));
+            } else {
+                echo json_encode(array('result' => 'Failed'));
+            }
+
         } else {
-            echo json_encode(array('result' => 'Failed'));
+            echo json_encode(array('result' => 'login'));
         }
         return sfView::NONE;
     }
@@ -185,11 +206,15 @@ class builderActions extends sfActions
         $this->forward404unless($request->isXmlHttpRequest());
         $response_option = Doctrine_Core::getTable('ResponseOptionField')->find($request->getParameter('id'));
         $responses_in_risk_factor = ResponseOptionFieldTable::getResponsesCountByRiskFactor($response_option->getRiskFactorId());
-        if($response_option && $responses_in_risk_factor > 2){
-            $response_option->delete();
-            echo json_encode(array('result' => 'OK'));
+        if($this->getUser()->isAuthenticated()){
+            if($response_option && $responses_in_risk_factor > 2){
+                $response_option->delete();
+                echo json_encode(array('result' => 'OK'));
+            } else {
+                echo json_encode(array('result' => 'Failed'));
+            }
         } else {
-            echo json_encode(array('result' => 'Failed'));
+            echo json_encode(array('result' => 'login'));
         }
         return sfView::NONE;
     }
@@ -314,21 +339,25 @@ class builderActions extends sfActions
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
         $flight_information_field = Doctrine_Core::getTable('FlightInformationField')->find($request->getParameter('id'));
-        if($flight_information_field->getHiddable()){
-            $flight_information_field->setIsHide(!$flight_information_field->getIsHide());
-            $flight_information_field->save();
-            $account = $flight_information_field->getRiskBuilder()->getAccount();
-            if(!$account->getHasModifiedForm()){
-                $account->setHasModifiedForm(true);
-                if(!$account->getChiefPilot()->getId()){
-                    $account->setChiefPilot(null);
+        if($this->getUser()->isAuthenticated()){
+            if($flight_information_field->getHiddable()){
+                $flight_information_field->setIsHide(!$flight_information_field->getIsHide());
+                $flight_information_field->save();
+                $account = $flight_information_field->getRiskBuilder()->getAccount();
+                if(!$account->getHasModifiedForm()){
+                    $account->setHasModifiedForm(true);
+                    if(!$account->getChiefPilot()->getId()){
+                        $account->setChiefPilot(null);
+                    }
+                    $account->save();
                 }
-                $account->save();
-            }
 
-            echo json_encode(array('result' => 'OK', 'is_hide' => $flight_information_field->getIsHide()));
+                echo json_encode(array('result' => 'OK', 'is_hide' => $flight_information_field->getIsHide()));
+            } else {
+                echo json_encode(array('result' => 'Failed'));
+            }
         } else {
-            echo json_encode(array('result' => 'Failed'));
+            echo json_encode(array('result' => 'login'));
         }
         return sfView::NONE;
     }

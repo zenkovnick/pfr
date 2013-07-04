@@ -97,6 +97,8 @@
                     if(data.risk == 0) {
                         risk_el.addClass('hidden');
                     }
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
                 }
 
             }
@@ -114,6 +116,8 @@
                 if(data.result == "OK"){
                     var avatar_el = jQuery("span.dashboard-avatar", root_li);
                     avatar_el.html(data.user_data);
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
                 }
 
             }
