@@ -34,7 +34,7 @@
         <li class="photo-block"><?php include_partial('registration/avatar_field', array('field' => $form['photo_widget'])) ?></li>
         <li class="input-block"><?php include_partial('registration/field', array('field' => $form['title'], 'class' => 'company-title', 'placeholder' => 'Company, Organization or Name', 'label' => false)) ?></li>
         <li class="input-block"><?php include_partial('registration/field', array('field' => $form['chief_pilot_name'], 'class' => 'chief-pilot-email', 'placeholder' => 'Chief Pilot\'s Email (if any)', 'label' => false)) ?></li>
-        <li><button class="btn btn-blue" type="submit">Create Account</button></li>
+        <li><button class="btn btn-grey" type="submit">Create Account</button></li>
     </ul>
 
 </form>
@@ -69,6 +69,13 @@
                 }
             }
         });
+    });
+    jQuery('#account_title').bind('keyup', function(){
+        if ( jQuery(this).val() == '' ) {
+            jQuery('#create_account_form button[type="submit"]').addClass('btn-grey').removeClass('btn-blue');
+        } else {
+            jQuery('#create_account_form button[type="submit"]').addClass('btn-blue').removeClass('btn-grey');
+        }
     });
 </script>
 
