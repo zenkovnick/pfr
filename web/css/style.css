@@ -11,6 +11,7 @@ body {
     height: 100%;
     overflow-x: hidden;
     /*width: 100%;*/
+    -webkit-text-size-adjust: none; /* Prevent font scaling in landscape */
 }
 div,p,a,span,em,strong,img,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,td,tr,form,fieldset,label,select,checkbox,input,textarea {
     padding:0;
@@ -1134,7 +1135,8 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 .flight-field-list li.flight-information label, .risk-factor-wrapper .risk-factor-question label {
     display: block;
     float: left;
-    margin-right: 40px;
+    /*margin-right: 40px;*/
+    max-width: 92%;
     overflow: hidden;
 }
 
@@ -1212,7 +1214,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 }
 a.show-help-link {
     color: #999;
-    margin-left: -40px;
+    /*margin-left: -40px;*/
     padding-left: 5px;
     text-transform: lowercase;
 }
@@ -1239,7 +1241,9 @@ p.help-message {
 .list-select .result,  .list-select .pilot, .list-select .plane {
     color: #0F76BB;
     cursor: pointer;
-    
+}
+.list-select .result {
+    line-height: 16px;
 }
 .list-select ul {
     background: #333;
@@ -1528,6 +1532,9 @@ html .ui-autocomplete {
 }
 .android .editable-list .caption-block {
     margin: 0 0 0 20px;
+}
+.android .editable-list .new .caption-block {
+    margin-right: 20px;
 }
 .editable-list .invited .caption-block {
     border: 1px dashed #CCC;
@@ -1840,7 +1847,7 @@ html .ui-autocomplete {
     font-weight: bold;
 }
 .dashboard-page .filter-block .plus {
-    //margin-top: 1px;
+    padding-bottom: 10px;
 }
 .dashboard-page .filter-block > span {
     display: block;

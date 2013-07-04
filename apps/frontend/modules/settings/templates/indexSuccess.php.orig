@@ -281,17 +281,24 @@
     }
 
     function accountSubmitted(data){
+<<<<<<< HEAD
         if(data.result == "OK"){
             jQuery('span.header-account-avatar').html(data.widget);
-	        jQuery('span.header-account-title').html(data.title);
-            
-			var root_li = jQuery('li.account-information');
+            var root_li = jQuery('li.account-information');
             jQuery("a.cancel-ai-link", root_li).addClass('hidden');
             jQuery("div.account-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             root_li.removeClass('editing');
         } else if(data.result == "login") {
             window.location.href = "<?php echo url_for('@signin') ?>";
         }
+=======
+        jQuery('span.header-account-avatar').html(data.widget);
+        jQuery('span.header-account-title').html(data.title);
+        var root_li = jQuery('li.account-information');
+        jQuery("a.cancel-ai-link", root_li).addClass('hidden');
+        jQuery("div.account-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+        root_li.removeClass('editing');
+>>>>>>> 6e2dcf87699b19e8e9a80301d7b8d4fd6e09df39
     }
 
     function showAIEditLink(){
@@ -335,6 +342,15 @@
                 }
             }
         });
+
+<<<<<<< HEAD
+=======
+        root_el.append(form_el);
+        form_el.show(show_delay);
+
+
+        jQuery('#account_chief_pilot_id').selectmenu();
+>>>>>>> 6e2dcf87699b19e8e9a80301d7b8d4fd6e09df39
 
 
     }
@@ -791,7 +807,6 @@
 
 
     jQuery(document).ready(function(){
-
         account_id = jQuery("input[type='hidden'].account-id").val();
 
         jQuery("li.my-information").bind('mouseover', showMIEditLink).bind('mouseout', hideMIEditLink);

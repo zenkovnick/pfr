@@ -87,14 +87,14 @@ class settingsActions extends sfActions {
             $chief_pilot =$this->account->getChiefPilot();
             if($chief_pilot->getId()){
                 $chief_pilot_account = UserAccountTable::getUserAccount($chief_pilot->getId(), $this->account->getId());
+                $content = $this->getPartial('settings/account_information', array(
+                    'form' => $this->form,
+                    'account' => $this->account,
+                    'chief_pilot' => $chief_pilot->getId() ? $chief_pilot : null,
+                    'chief_is_active' => $chief_pilot->getId() ? $chief_pilot_account->getIsActive() : null
+                ));
+                echo json_encode(array('result' => 'OK', 'content' => $content));
             }
-            $content = $this->getPartial('settings/account_information', array(
-                'form' => $this->form,
-                'account' => $this->account,
-                'chief_pilot' => $chief_pilot->getId() ? $chief_pilot : null,
-                'chief_is_active' => $chief_pilot->getId() ? $chief_pilot_account->getIsActive() : null
-            ));
-            echo json_encode(array('result' => 'OK', 'content' => $content));
 
         } else {
             echo json_encode(array('result' => 'login'));
@@ -105,6 +105,7 @@ class settingsActions extends sfActions {
     public function executeProcessAccountData(sfWebRequest $request){
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
+<<<<<<< HEAD
         if($this->getUser()->isAuthenticated()){
             $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
             $this->form = new AccountForm($this->account);
@@ -115,14 +116,26 @@ class settingsActions extends sfActions {
                     $widget = null;
                     $response_array = array();
                     $response_array['result'] = "OK";
-	                $response_array['title'] = $account->getTitle();
-
                     if($account->getPhoto()){
                         $response_array['widget'] = $this->getPartial('settings/uploaded_avatar', array('file_path' => "avatar/{$account->getPhoto()}", 'size' => 60));
                     }
                     echo json_encode($response_array);
                 } else {
                     echo json_encode(array('result' => 'Not Valid'));
+=======
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->form = new AccountForm($this->account);
+        if($request->isMethod('POST')){
+            $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            if($this->form->isValid()){
+                $account = $this->form->save();
+                $widget = null;
+                $response_array = array();
+                $response_array['result'] = "OK";
+                $response_array['title'] = $account->getTitle();
+                if($account->getPhoto()){
+                    $response_array['widget'] = $this->getPartial('settings/uploaded_avatar', array('file_path' => "avatar/{$account->getPhoto()}", 'size' => 60));
+>>>>>>> 6e2dcf87699b19e8e9a80301d7b8d4fd6e09df39
                 }
             }
         } else {
