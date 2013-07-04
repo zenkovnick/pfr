@@ -13,6 +13,9 @@ class flightActions extends sfActions {
 
     public function executeNew(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
         $this->flight = new Flight();
         $this->data_fields = json_decode($this->flight->generateFromDB($this->account), true);
         //$this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
@@ -44,6 +47,9 @@ class flightActions extends sfActions {
 
     public function executeEdit(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
         $this->data_fields = json_decode($this->flight->getInfo(), true);
         $this->users = sfGuardUserTable::getPilotsByAccountArray($this->account->getId());
@@ -72,22 +78,11 @@ class flightActions extends sfActions {
     }
 
 
-    public function executeProcessSaveFlight(sfWebRequest $request){
-        $this->forward404Unless($this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id')));
-        //$this->forward404Unless($this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id')));
-        //$this->form = new FlightForm($this->flight, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
-        $this->form = new FlightForm(null, array('user' => $this->getUser()->getGuardUser(), 'account' => $this->account));
-        if($request->isMethod('POST')){
-            $this->form->bind($request->getParameter($this->form->getName()));
-            if($this->form->isValid()){
-
-            }
-        }
-
-    }
-
     public function executeAssessment(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
         if($this->flight->getStatus() == 'assess'){
             $flight_data = json_decode($this->flight->getInfo(), true);
@@ -121,6 +116,9 @@ class flightActions extends sfActions {
 
     public function executeComplete(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
         $this->mitigation_info = $this->flight->getMitigationInfo();
         if($this->flight->getStatus() == 'assess' && $this->mitigation_info['type'] != 'high'){
@@ -141,24 +139,33 @@ class flightActions extends sfActions {
     public function executeGetRisk(sfWebRequest $request){
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
-        $response_option = Doctrine_Core::getTable('ResponseOptionField')->find($request->getParameter('id'));
-        echo json_encode(array(
-            'result'=>'OK',
-            'risk' => $response_option->getResponseValue(),
-            'note' => $response_option->getNote()
-        ));
+        if($this->getUser()->isAuthenticated()){
+            $response_option = Doctrine_Core::getTable('ResponseOptionField')->find($request->getParameter('id'));
+            echo json_encode(array(
+                'result'=>'OK',
+                'risk' => $response_option->getResponseValue(),
+                'note' => $response_option->getNote()
+            ));
+
+        } else {
+            echo json_encode(array('result'=>'login'));
+        }
         return sfView::NONE;
     }
 
     public function executeGetUser(sfWebRequest $request){
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
-        $user = Doctrine_Core::getTable('sfGuardUser')->find($request->getParameter('id'));
-        $user_data = $this->getPartial('flight/avatar', array('user' => $user));
-        echo json_encode(array(
-            'result'=> 'OK',
-            'user_data' => $user_data
-        ));
+        if($this->getUser()->isAuthenticated()){
+            $user = Doctrine_Core::getTable('sfGuardUser')->find($request->getParameter('id'));
+            $user_data = $this->getPartial('flight/avatar', array('user' => $user));
+            echo json_encode(array(
+                'result'=> 'OK',
+                'user_data' => $user_data
+            ));
+        } else {
+            echo json_encode(array('result'=>'login'));
+        }
         return sfView::NONE;
     }
 

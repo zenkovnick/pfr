@@ -211,6 +211,8 @@
                         root_li.addClass('solid');
                         root_li.removeClass('hidden-field');
                     }
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
                 }
             }
         });
@@ -312,6 +314,8 @@
                 scroll: false,
                 stop: saveRiskFactorPosition
             });
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 
@@ -322,6 +326,8 @@
             jQuery("a.cancel-risk-factor-link", root_li).addClass('hidden');
             jQuery("span.question", root_li).text(data.question);
             root_li.removeClass("editing");
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 
@@ -366,6 +372,8 @@
                 success: function(data){
                     if(data.result == "OK"){
                         root_li.remove();
+                    } else if(data.result == "login") {
+                        window.location.href = "<?php echo url_for('@signin') ?>";
                     }
                 }
             });
@@ -433,6 +441,8 @@
                 success: function(data){
                     if(data.result == "OK"){
                         root_li.remove();
+                    } else if(data.result == "login") {
+                        window.location.href = "<?php echo url_for('@signin') ?>";
                     }
                 }
             })
@@ -545,6 +555,8 @@
             jQuery("div.preview-mode").removeClass('hidden');
             window.scrollTo(0, 0);
 			jQuery('.header').addClass('preview');
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 

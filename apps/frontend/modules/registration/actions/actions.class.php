@@ -216,7 +216,7 @@ class registrationActions extends sfActions
                     $this->redirect("@{$route}");
                 } else {
                     $refer_page =  $this->getUser()->getAttribute('refer_page', null);
-                    $this->getUser()->setAttribute('refer_page', null);
+                    $this->getUser()->getAttributeHolder()->remove('refer_page');
                     if(!is_null($refer_page)){
                         $signinUrl = $refer_page;
                     } else {

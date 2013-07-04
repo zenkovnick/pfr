@@ -172,6 +172,8 @@
             jQuery("a.cancel-mi-link", root_li).addClass('hidden');
             jQuery("div.my-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
             root_li.removeClass('editing');
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 
@@ -196,16 +198,23 @@
         root_el.addClass('editing');
         jQuery(this).addClass('hidden');
         root_el.find('a.cancel-mi-link').removeClass('hidden');
-
-        var form_el = jQuery(jQuery.ajax({
+        jQuery.ajax({
             type: 'GET',
             url: '<?php echo url_for("@my_information_data?account_id={$account->getId()}"); ?>',
-            async: false
-        }).responseText);
-        jQuery('a.delete-my-information', form_el).bind('click', deleteMI);
+            async: false,
+            dataType: 'json',
+            success: function(data){
+                if(data.result == "OK"){
+                    var form_el = jQuery(data.content);
+                    jQuery('a.delete-my-information', form_el).bind('click', deleteMI);
 
-        root_el.append(form_el);
-        form_el.show(show_delay);
+                    root_el.append(form_el);
+                    form_el.show(show_delay);
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
+                }
+            }
+        });
 
     }
 
@@ -243,6 +252,8 @@
                     jQuery(".caption-block", root_li).remove();
                     //el.remove();
                     jQuery(".chief-pilot-wrap", root_li).removeClass("hidden");
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
                 }
             }
         })
@@ -270,12 +281,17 @@
     }
 
     function accountSubmitted(data){
-        jQuery('span.header-account-avatar').html(data.widget);
-        jQuery('span.header-account-title').html(data.title);
-        var root_li = jQuery('li.account-information');
-        jQuery("a.cancel-ai-link", root_li).addClass('hidden');
-        jQuery("div.account-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
-        root_li.removeClass('editing');
+        if(data.result == "OK"){
+            jQuery('span.header-account-avatar').html(data.widget);
+	        jQuery('span.header-account-title').html(data.title);
+            
+			var root_li = jQuery('li.account-information');
+            jQuery("a.cancel-ai-link", root_li).addClass('hidden');
+            jQuery("div.account-information-wrapper", root_li).hide(hide_delay, function(){jQuery(this).remove()});
+            root_li.removeClass('editing');
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
+        }
     }
 
     function showAIEditLink(){
@@ -300,18 +316,25 @@
         jQuery(this).addClass('hidden');
         root_el.find('a.cancel-ai-link').removeClass('hidden');
 
-        var form_el = jQuery(jQuery.ajax({
+        jQuery.ajax({
             type: 'GET',
             url: '<?php echo url_for("@account_information_data?account_id={$account->getId()}"); ?>',
-            async: false
-        }).responseText);
-        jQuery('a.delete-account-information', form_el).bind('click', deleteAI);
+            async: false,
+            dataType: 'json',
+            success: function(data){
+                if(data.result == "OK"){
+                    var form_el = jQuery(data.content);
+                    jQuery('a.delete-account-information', form_el).bind('click', deleteAI);
 
-        root_el.append(form_el);
-        form_el.show(show_delay);
+                    root_el.append(form_el);
+                    form_el.show(show_delay);
 
-
-        jQuery('#account_chief_pilot_id').selectmenu();
+                    jQuery('#account_chief_pilot_id').selectmenu();
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
+                }
+            }
+        });
 
 
     }
@@ -353,21 +376,27 @@
     }
 
     function addNewPlaneField(num){
-        return jQuery.ajax({
-            type: 'POST',
-            data: {plane_num: num, account_id: account_id},
-            url: '<?php echo url_for("@add_new_plane_field"); ?>',
-            async: false
-        }).responseText;
     }
 
     function addPlane(event){
         event.preventDefault();
-        var el = jQuery(addNewPlaneField(new_plane_count));
-        jQuery('a.cancel-plane-add', el).bind('click', cancelPlaneAdd);
-        new_plane_count++;
-        jQuery('ul.plane-list').append(el);
-        el.show(show_delay);
+        jQuery.ajax({
+            type: 'POST',
+            data: {plane_num: new_plane_count, account_id: account_id},
+            url: '<?php echo url_for("@add_new_plane_field"); ?>',
+            dataType: 'json',
+            success: function(data){
+                if(data.result == "OK"){
+                    var el = jQuery(data.content);
+                    jQuery('a.cancel-plane-add', el).bind('click', cancelPlaneAdd);
+                    new_plane_count++;
+                    jQuery('ul.plane-list').append(el);
+                    el.show(show_delay);
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
+                }
+            }
+        });
     }
 
     function cancelPlaneAdd(event){
@@ -423,6 +452,8 @@
                 }
             }
 
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 
@@ -433,17 +464,24 @@
         jQuery(this).addClass('hidden');
         root_el.find('a.cancel-plane-link').removeClass('hidden');
         var plane_id= root_el.find('input[type="hidden"]').val();
-        var form_el = jQuery(jQuery.ajax({
-            type: 'GET',
+        jQuery.ajax({
+            type: 'POST',
             data: {plane_id: plane_id, account_id: account_id},
             url: '<?php echo url_for("@edit_plane"); ?>',
-            async: false
-        }).responseText);
-        jQuery('a.delete-plane', form_el).bind('click', deletePlane);
+            dataType: 'json',
+            success: function(data){
+                if(data.result == "OK"){
+                    var form_el = jQuery(data.content);
+                    jQuery('a.delete-plane', form_el).bind('click', deletePlane);
 
-        root_el.append(form_el);
-        form_el.show(show_delay);
-
+                    root_el.append(form_el);
+                    form_el.show(show_delay);
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
+                }
+                return 0;
+            }
+        });
     }
 
     function validateAndSubmitEditPlane(event) {
@@ -478,6 +516,8 @@
             jQuery("a.cancel-plane-link", root_li).addClass('hidden');
             jQuery("span.tail-number", root_li).text(data.tail_number);
             root_li.removeClass('editing');
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 
@@ -500,6 +540,8 @@
                 success: function(data){
                     if(data.result == "OK"){
                         root_li.remove();
+                    } else if(data.result == "login") {
+                        window.location.href = "<?php echo url_for('@signin') ?>";
                     }
                 }
             });
@@ -540,21 +582,27 @@
     }
 
     function addNewPilotField(num){
-        return jQuery.ajax({
-            type: 'POST',
-            data: {pilot_num: num, account_id: account_id},
-            url: '<?php echo url_for("@add_new_pilot_field"); ?>',
-            async: false
-        }).responseText;
     }
 
     function addPilot(event){
         event.preventDefault();
-        var el = jQuery(addNewPilotField(new_pilot_count));
-        jQuery('a.cancel-pilot-add', el).bind('click', cancelPilotAdd);
-        new_pilot_count++;
-        jQuery('ul.pilot-list').append(el);
-        el.show(show_delay);
+        jQuery.ajax({
+            type: 'POST',
+            data: {pilot_num: new_pilot_count, account_id: account_id},
+            url: '<?php echo url_for("@add_new_pilot_field"); ?>',
+            dataType: 'json',
+            success: function(data){
+                if(data.result == "OK"){
+                    var el = jQuery(data.content);
+                    jQuery('a.cancel-pilot-add', el).bind('click', cancelPilotAdd);
+                    new_pilot_count++;
+                    jQuery('ul.pilot-list').append(el);
+                    el.show(show_delay);
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
+                }
+            }
+        });
     }
 
     function cancelPilotAdd(event){
@@ -618,6 +666,8 @@
                 }
             }
 
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 
@@ -628,17 +678,25 @@
         jQuery(this).addClass('hidden');
         root_el.find('a.cancel-pilot-link').removeClass('hidden');
         var pilot_id= root_el.find('input[type="hidden"]').val();
-        var form_el = jQuery(jQuery.ajax({
-            type: 'GET',
+
+        jQuery.ajax({
+            type: 'POST',
             data: {pilot_id: pilot_id, account_id: account_id},
             url: '<?php echo url_for("@edit_pilot"); ?>',
-            async: false
-        }).responseText);
-        jQuery('a.delete-pilot', form_el).bind('click', deletePilot);
+            dataType: 'json',
+            success: function(data){
+                if(data.result == "OK"){
+                    var form_el = jQuery(data.content);
+                    jQuery('a.delete-pilot', form_el).bind('click', deletePilot);
 
-        root_el.append(form_el);
-        form_el.show(show_delay);
-
+                    root_el.append(form_el);
+                    form_el.show(show_delay);
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
+                }
+                return 0;
+            }
+        });
     }
 
     function validateAndSubmitEditPilot(event) {
@@ -678,6 +736,8 @@
                 }
             }
 
+        } else if(data.result == "login") {
+            window.location.href = "<?php echo url_for('@signin') ?>";
         }
     }
 
@@ -700,6 +760,8 @@
                 success: function(data){
                     if(data.result == "OK"){
                         root_li.remove();
+                    } else if(data.result == "login") {
+                        window.location.href = "<?php echo url_for('@signin') ?>";
                     }
                 }
             });
@@ -729,6 +791,7 @@
 
 
     jQuery(document).ready(function(){
+
         account_id = jQuery("input[type='hidden'].account-id").val();
 
         jQuery("li.my-information").bind('mouseover', showMIEditLink).bind('mouseout', hideMIEditLink);
