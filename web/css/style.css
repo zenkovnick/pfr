@@ -1047,6 +1047,12 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 .flight-field-list {
     /*overflow: hidden;*/
 }
+.flight-field-list .risk-factor-li span.bottom-dashed-border {
+    border-bottom: 1px dashed #CCC;
+    display: block;
+    margin-bottom: 10px;
+
+}
 .flight-field-list .bottom-border {
     margin: 0px 0 20px;
     width: 100%;
@@ -1138,6 +1144,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     /*margin-right: 40px;*/
     max-width: 92%;
     overflow: hidden;
+    padding-right: 10px;
 }
 
 .flight-field-list li.flight-information label {
@@ -1157,7 +1164,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     margin-left: 10px;
 }
 .risk-factor-wrapper {
-    border-bottom: 1px dashed #CCC;
+    /*border-bottom: 1px dashed #CCC;*/
     margin: 0 0 15px;
     min-height: 49px;
     /*overflow: hidden;*/
@@ -1166,6 +1173,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 }
 
 .risk-factor-question-wrapper {
+    margin-right: 40px;
     overflow: hidden;
 }
 .response-option-list {
@@ -1215,7 +1223,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 a.show-help-link {
     color: #999;
     /*margin-left: -40px;*/
-    padding-left: 5px;
+    /*padding-left: 5px;*/
     text-transform: lowercase;
 }
 p.help-message {

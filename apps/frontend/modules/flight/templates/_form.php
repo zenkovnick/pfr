@@ -63,6 +63,7 @@
                 'note' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['note']
             ));
             ?>
+            <span class="bottom-dashed-border"></span>
         </li>
     <?php endfor ?>
 </ul>
