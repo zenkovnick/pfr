@@ -1507,6 +1507,9 @@ html .ui-autocomplete {
     padding: 0 0 20px;
 }
 .editable-list li {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     margin: 9px 0;
 }
 .editable-list li.first-name, .editable-list li.name-block {
