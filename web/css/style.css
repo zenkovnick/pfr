@@ -1507,6 +1507,9 @@ html .ui-autocomplete {
     padding: 0 0 20px;
 }
 .editable-list li {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     margin: 9px 0;
 }
 .editable-list li.first-name, .editable-list li.name-block {
@@ -1517,6 +1520,9 @@ html .ui-autocomplete {
 }
 
 .editable-list .caption-block {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     overflow: hidden;
     padding: 12px 9px;
 }
@@ -1539,7 +1545,7 @@ html .ui-autocomplete {
     margin: 0 20px;
 }
 .android .editable-list .caption-block {
-    margin: 0 0 0 20px;
+    /*margin: 0 0 0 20px;*/
 }
 .android .editable-list .new .caption-block {
     margin-right: 20px;
