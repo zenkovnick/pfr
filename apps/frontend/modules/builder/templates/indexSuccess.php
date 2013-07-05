@@ -603,7 +603,8 @@
 
     jQuery(document).ready(function() {
         var isiOS = false;
-        if(agent.indexOf('iphone') &gt;= 0 || agent.indexOf('ipad') &gt;= 0){
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('iphone') >= 0 || agent.indexOf('ipad') >= 0){
             isiOS = true;
         }
         var form_id = jQuery('form.main-form').attr('id');
