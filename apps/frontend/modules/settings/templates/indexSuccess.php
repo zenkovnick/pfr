@@ -184,7 +184,7 @@
     }
 
     function showMIEditLink(){
-        if(jQuery(this).find('a.cancel-mi-link').hasClass('hidden')){
+        if(jQuery(this).find('a.cancel-mi-link').hasClass('hidden') && !jQuery(this).find('a.edit-mi-link').hasClass('opening')){
             jQuery(this).find('a.edit-mi-link').removeClass('hidden');
             //jQuery(this).find('.handler').removeClass('hidden');
         }
@@ -202,8 +202,8 @@
         event.preventDefault();
         var root_el = jQuery(this).closest('li.my-information');
         root_el.addClass('editing');
-        jQuery(this).addClass('hidden');
-        root_el.find('a.cancel-mi-link').removeClass('hidden');
+        var el = jQuery(this);
+        el.addClass('hidden').addClass('opening');
         jQuery.ajax({
             type: 'GET',
             url: '<?php echo url_for("@my_information_data?account_id={$account->getId()}"); ?>',
@@ -215,7 +215,10 @@
                     jQuery('a.delete-my-information', form_el).bind('click', deleteMI);
 
                     root_el.append(form_el);
-                    form_el.show(show_delay);
+                    form_el.show(show_delay, function(){
+                        root_el.find('a.cancel-mi-link').removeClass('hidden');
+                        el.removeClass('opening');
+                    });
                 } else if(data.result == "login") {
                     window.location.href = "<?php echo url_for('@signin') ?>";
                 }
@@ -301,7 +304,7 @@
     }
 
     function showAIEditLink(){
-        if(jQuery(this).find('a.cancel-ai-link').hasClass('hidden')){
+        if(jQuery(this).find('a.cancel-ai-link').hasClass('hidden') && !jQuery(this).find('a.edit-ai-link').hasClass('opening')){
             jQuery(this).find('a.edit-ai-link').removeClass('hidden');
             jQuery(this).find('.handler').removeClass('hidden');
         }
@@ -319,8 +322,8 @@
         event.preventDefault();
         var root_el = jQuery(this).closest('li.account-information');
         root_el.addClass('editing');
-        jQuery(this).addClass('hidden');
-        root_el.find('a.cancel-ai-link').removeClass('hidden');
+        var el = jQuery(this);
+        el.addClass('hidden').addClass('opening');
 
         jQuery.ajax({
             type: 'GET',
@@ -333,7 +336,10 @@
                     jQuery('a.delete-account-information', form_el).bind('click', deleteAI);
 
                     root_el.append(form_el);
-                    form_el.show(show_delay);
+                    form_el.show(show_delay, function(){
+                        root_el.find('a.cancel-ai-link').removeClass('hidden');
+                        el.removeClass('opening');
+                    });
 
                     jQuery('#account_chief_pilot_id').selectmenu();
                 } else if(data.result == "login") {
@@ -368,7 +374,7 @@
 
     /* PLANE */
     function showPlaneEditLink(){
-        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')){
+        if(jQuery(this).find('a.cancel-plane-link').hasClass('hidden')&& !jQuery(this).find('a.edit-plane-link').hasClass('opening')){
             jQuery(this).find('a.edit-plane-link').removeClass('hidden');
             //jQuery(this).find('.handler').removeClass('hidden');
         }
@@ -472,8 +478,8 @@
         event.preventDefault();
         var root_el = jQuery(this).closest('li.plane-entity');
         root_el.addClass('editing');
-        jQuery(this).addClass('hidden');
-        root_el.find('a.cancel-plane-link').removeClass('hidden');
+        var el = jQuery(this);
+        el.addClass('hidden').addClass('opening');
         var plane_id= root_el.find('input[type="hidden"]').val();
         jQuery.ajax({
             type: 'POST',
@@ -486,7 +492,10 @@
                     jQuery('a.delete-plane', form_el).bind('click', deletePlane);
 
                     root_el.append(form_el);
-                    form_el.show(show_delay);
+                    form_el.show(show_delay, function(){
+                        root_el.find('a.cancel-plane-link').removeClass('hidden');
+                        el.removeClass('opening');
+                    });
                 } else if(data.result == "login") {
                     window.location.href = "<?php echo url_for('@signin') ?>";
                 }
@@ -580,7 +589,7 @@
 
     function showPilotEditLink(){
         //jQuery(this).find('.handler').removeClass('hidden');
-        if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden')){
+        if(jQuery(this).find('a.cancel-pilot-link').hasClass('hidden') && !jQuery(this).find('a.edit-pilot-link').hasClass('opening')){
             jQuery(this).find('a.edit-pilot-link').removeClass('hidden');
         }
     }
@@ -691,8 +700,8 @@
         event.preventDefault();
         var root_el = jQuery(this).closest('li.pilot-entity');
         root_el.addClass('editing');
-        jQuery(this).addClass('hidden');
-        root_el.find('a.cancel-pilot-link').removeClass('hidden');
+        var el = jQuery(this);
+        el.addClass('hidden').addClass('opening');
         var pilot_id= root_el.find('input[type="hidden"]').val();
 
         jQuery.ajax({
@@ -706,7 +715,10 @@
                     jQuery('a.delete-pilot', form_el).bind('click', deletePilot);
 
                     root_el.append(form_el);
-                    form_el.show(show_delay);
+                    form_el.show(show_delay, function() {
+                        root_el.find('a.cancel-pilot-link').removeClass('hidden');
+                        el.removeClass('opening');
+                    });
                 } else if(data.result == "login") {
                     window.location.href = "<?php echo url_for('@signin') ?>";
                 }
