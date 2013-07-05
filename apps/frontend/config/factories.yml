@@ -62,3 +62,11 @@ all:
           encryption: ~
           username:   mykola.zenkov
           password:   Ld28F2e3D
+
+  user:
+    class: myUser
+    param:
+      timeout:         600000
+      logging:         %SF_LOGGING_ENABLED%
+      use_flash:       true
+      default_culture: %SF_DEFAULT_CULTURE%
