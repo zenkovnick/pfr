@@ -811,11 +811,19 @@
         account_id = jQuery("input[type='hidden'].account-id").val();
 
         jQuery("li.my-information").bind('mouseover', showMIEditLink).bind('mouseout', hideMIEditLink);
-        jQuery("a.edit-mi-link").bind('click', editMI);
+        if(isiOS){
+            jQuery("a.edit-mi-link").bind('click touchend', editMI);
+        } else {
+            jQuery("a.edit-mi-link").bind('click', editMI);
+        }
         jQuery("a.cancel-mi-link").bind('click', cancelMIEdit);
 
         jQuery("li.account-information").bind('mouseover', showAIEditLink).bind('mouseout', hideAIEditLink);
-        jQuery("a.edit-ai-link").bind('click', editAI);
+        if(isiOS){
+            jQuery("a.edit-ai-link").bind('click touchend', editAI);
+        } else {
+            jQuery("a.edit-ai-link").bind('click', editAI);
+        }
         jQuery("a.cancel-ai-link").bind('click', cancelAIEdit);
 
 
