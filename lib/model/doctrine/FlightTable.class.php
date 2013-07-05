@@ -18,7 +18,7 @@ class FlightTable extends Doctrine_Table
     }
 
     public static function getFlightsForChart($filter_query){
-        return $filter_query->select('f.created_at, AVG(f.risk_factor_sum ) AS r_sum, SUM(f.mitigation_sum) AS m_sum')
+        return $filter_query->select('f.created_at, AVG(f.risk_factor_sum ) AS r_sum, AVG(f.mitigation_sum) AS m_sum')
             ->andWhere('f.status = ?','complete')
             ->groupBy('DATE_FORMAT(f.created_at,"%Y-%m-%d")')
             ->execute();

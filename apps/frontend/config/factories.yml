@@ -30,7 +30,7 @@ all:
     class: sfSessionStorage
     param:
       session_name: symfony
-      session_cookie_lifetime: 600000 # number of seconds
+      session_cookie_lifetime: 65530 # number of seconds
 
   routing:
     class: sfPatternRouting
@@ -62,3 +62,11 @@ all:
           encryption: ~
           username:   mykola.zenkov
           password:   Ld28F2e3D
+
+  user:
+    class: myUser
+    param:
+      timeout:         65530
+      logging:         %SF_LOGGING_ENABLED%
+      use_flash:       true
+      default_culture: %SF_DEFAULT_CULTURE%

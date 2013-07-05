@@ -252,8 +252,8 @@
         event.preventDefault();
         var root_el = jQuery(this).closest('li.risk-factor-entity');
         root_el.addClass('editing').removeClass('truncate');
-//        jQuery(this).addClass('hidden');
-        root_el.find('a.cancel-risk-factor-link').removeClass('hidden');
+        var el = jQuery(this);
+        el.addClass('hidden').addClass('opening');
         var risk_factor_id= root_el.find('input[type="hidden"]').val();
         var form_el = jQuery(jQuery.ajax({
             type: 'GET',
@@ -269,7 +269,10 @@
         jQuery('a.remove-note', form_el).bind('click', removeRiskFactorNote);
 
         root_el.append(form_el);
-        form_el.show(show_delay);
+        form_el.show(show_delay, function(){
+            root_el.find('a.cancel-risk-factor-link').removeClass('hidden');
+            el.removeClass('opening');
+        });
 
     }
 
@@ -332,7 +335,7 @@
     }
 
     function showRiskFactorEditLink(){
-        if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden')){
+        if(jQuery(this).find('a.cancel-risk-factor-link').hasClass('hidden') && !jQuery(this).find('a.edit-risk-factor-link').hasClass('opening')){
             jQuery(this).find('a.edit-risk-factor-link').removeClass('hidden');
             //jQuery(this).find('.handler').removeClass('hidden');
         }
@@ -602,6 +605,11 @@
     /* DOCUMENT READY */
 
     jQuery(document).ready(function() {
+        var isiOS = false;
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('iphone') >= 0 || agent.indexOf('ipad') >= 0){
+            isiOS = true;
+        }
         var form_id = jQuery('form.main-form').attr('id');
         jQuery( "#flight-information-container").sortable({
             containment: ".flight-information-wrapper",
@@ -640,9 +648,18 @@
 
         var flight_information_field = jQuery("ul.flight-information-list li");
         flight_information_field.bind('mouseover', flightInformationOver).bind('mouseout', flightInformationOut);
-        jQuery("a.show-hide-field", flight_information_field).bind('click touchend', showHideField);
+        if(isiOS){
+            jQuery("a.show-hide-field", flight_information_field).bind('click touchend', showHideField);
+        } else {
+            jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
+        }
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
-        jQuery("a.edit-risk-factor-link").bind('click touchend', editRiskFactor);
+
+        if(isiOS){
+            jQuery("a.edit-risk-factor-link").bind('click touchend', editRiskFactor);
+        } else {
+            jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
+        }
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
         jQuery("form.main-form button[type='submit']").bind('click', validateAndSubmitMainForm);
         jQuery("button.save-and-exit").bind('click', saveAndExit);
@@ -677,7 +694,7 @@
 
 
         jQuery("div.mitigation-header").mouseover(function(){
-            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden')){
+            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden') && !jQuery(this).find('a.mitigation-edit').hasClass('opening')){
                jQuery(this).find('a.mitigation-edit').removeClass('hidden');
             }
         });
@@ -686,14 +703,21 @@
                 jQuery(this).find('a.mitigation-edit').addClass('hidden');
             }
         });
-
-        jQuery('a.mitigation-edit').click(function(event){
+        if(isiOS){
+            jQuery('a.mitigation-edit').bind('click touchend', mitigationEdit);
+        } else {
+            jQuery('a.mitigation-edit').bind('click', mitigationEdit);
+        }
+        function mitigationEdit(event){
             event.preventDefault();
-            jQuery(this).addClass('hidden');
+            var el = jQuery(this)
+            el.addClass('hidden').addClass('opening');
             var root_li = jQuery(this).closest('li');
-            root_li.find('a.mitigation-cancel').removeClass('hidden');
-            root_li.find('div.field-wrapper').show(show_delay);
-        });
+            root_li.find('div.field-wrapper').show(show_delay, function(){
+                root_li.find('a.mitigation-cancel').removeClass('hidden');
+                el.removeClass('opening');
+            });
+        }
 
         jQuery("a.mitigation-cancel").click(function(event){
             event.preventDefault();
