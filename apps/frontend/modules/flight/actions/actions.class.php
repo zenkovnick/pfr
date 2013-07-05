@@ -121,7 +121,7 @@ class flightActions extends sfActions {
         }
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
         $this->mitigation_info = $this->flight->getMitigationInfo();
-        if($this->flight->getStatus() == 'assess' && $this->mitigation_info['type'] != 'high'){
+        if($this->flight->getStatus() == 'assess' && !($this->mitigation_info['type'] == 'high' && $this->mitigation_info['prevent_flight'])){
             $this->flight->setRiskFactorType($this->mitigation_info['type']);
             $this->flight->setStatus('complete');
             $this->flight->setDrafted(false);

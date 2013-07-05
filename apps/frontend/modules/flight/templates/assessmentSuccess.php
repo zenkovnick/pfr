@@ -23,7 +23,7 @@
             <a href="" class="submit prevent-click btn-grey btn">Submit Assessment and Fly</a>
         <?php else: ?>
             <a href="<?php echo url_for("@submit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>"
-               class="submit <?php echo $mitigation_info['type'] == 'medium' ? "btn-red" : "btn-green" ?> btn">Submit Assessment and Fly</a>
+               class="submit <?php echo $mitigation_info['type'] == 'medium' || ($mitigation_info['type'] == 'high' && !$mitigation_info['prevent_flight']) ? "btn-red" : "btn-green" ?> btn">Submit Assessment and Fly</a>
         <?php endif ?>
     </div>
 </div>
