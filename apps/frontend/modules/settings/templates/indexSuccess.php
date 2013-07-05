@@ -124,6 +124,12 @@
     var hide_delay = 500;
     var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
     var account_id = null;
+    var isiOS = false;
+    var agent = navigator.userAgent.toLowerCase();
+    if(agent.indexOf('iphone') >= 0 || agent.indexOf('ipad') >= 0){
+        isiOS = true;
+    }
+
 
     function validateAndSubmitInformationForm(event) {
         event.preventDefault();
@@ -429,7 +435,12 @@
             jQuery("div.plane-header", root_li).removeClass('hidden');
             //jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.plane_id);
-            jQuery("a.edit-plane-link", root_li).bind('click touchend', editPlane);
+            if(isiOS){
+                jQuery("a.edit-plane-link", root_li).bind('click touchend', editPlane);
+            } else {
+                jQuery("a.edit-plane-link", root_li).bind('click', editPlane);
+
+            }
             jQuery("a.cancel-plane-link", root_li).bind('click', cancelPlaneEdit);
             jQuery('a.delete_plane', root_li).bind('click', deletePlane);
             jQuery('a.cancel-plane-add', root_li).closest('.caption-block').remove();
@@ -642,7 +653,12 @@
             jQuery("div.pilot-header", root_li).append("<span class='invited'>(Invited)</span>").removeClass('hidden');
             //jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.pilot_id);
-            jQuery("a.edit-pilot-link", root_li).bind('click touchend', editPilot);
+            if(isiOS){
+                jQuery("a.edit-pilot-link", root_li).bind('click touchend', editPilot);
+            } else {
+                jQuery("a.edit-pilot-link", root_li).bind('click', editPilot);
+
+            }
             jQuery("a.cancel-pilot-link", root_li).bind('click', cancelPilotEdit);
             jQuery('a.delete_pilot', root_li).bind('click', deletePilot);
             jQuery('a.cancel-pilot-add', root_li).closest('.caption-block').remove();
@@ -804,12 +820,20 @@
 
 
         jQuery("li.plane-entity").bind('mouseover', showPlaneEditLink).bind('mouseout', hidePlaneEditLink);
-        jQuery("a.edit-plane-link").bind('click touchend', editPlane);
+        if(isiOS){
+            jQuery("a.edit-plane-link").bind('click touchend', editPlane);
+        } else {
+            jQuery("a.edit-plane-link").bind('click', editPlane);
+        }
         jQuery("a.cancel-plane-link").bind('click', cancelPlaneEdit);
         jQuery('#add-plane-link').bind('click', addPlane);
 
         jQuery("li.pilot-entity").bind('mouseover', showPilotEditLink).bind('mouseout', hidePilotEditLink);
-        jQuery("a.edit-pilot-link").bind('click touchend', editPilot);
+        if(isiOS){
+            jQuery("a.edit-pilot-link").bind('click touchend', editPilot);
+        } else {
+            jQuery("a.edit-pilot-link").bind('click', editPilot);
+        }
         jQuery("a.cancel-pilot-link").bind('click', cancelPilotEdit);
         jQuery('#add-pilot-link').bind('click', addPilot);
 
