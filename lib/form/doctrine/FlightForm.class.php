@@ -210,7 +210,7 @@ class FlightForm extends BaseFormDoctrine
 
 
         if($this->getObject()->getStatus() == 'assess'){
-            $taintedValues['mitigation_sum'] = $mitigation_sum;
+            $taintedValues['mitigation_sum'] = $mitigation_sum >= 0 ? $mitigation_sum : 0;
         }
         $taintedValues['risk_factor_sum'] = $total_score;
         $this->getObject()->setInfo(json_encode($data_fields));

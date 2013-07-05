@@ -96,19 +96,19 @@ class flightActions extends sfActions {
                 }
             }
             $this->mitigation_info = $this->flight->getMitigationInfo();
-            if($this->mitigation_info['notify']){
-                $email_subject = "New Flight: {$this->flight->getAirportFrom()->getName()} to {$this->flight->getAirportTo()->getName()} in ".
+            $email_subject = "New Flight: {$this->flight->getAirportFrom()->getICAO()} to {$this->flight->getAirportTo()->getICAO()} in ".
                 "{$this->flight->getPlane()->getTailNumber()} (".ucfirst($this->mitigation_info['type'])." risk)";
-                $result = EmailNotification::sendAssessment(
-                    $this->getUser()->getGuardUser(),
-                    $this->getPartial('flight/assessment_email', array(
-                        'flight' => $this->flight,
-                        'high_risk_factors' => $this->high_risk_factors,
-                        'mitigation_info' => $this->mitigation_info
-                    )),
-                    $email_subject
-                );
-            }
+            $result = EmailNotification::sendAssessment(
+                $this->getUser()->getGuardUser(),
+                ($this->account->getChiefPilot()->getId() && $this->mitigation_info['notify'])? $this->account->getChiefPilot() : null,
+                $this->getPartial('flight/assessment_email', array(
+                    'flight' => $this->flight,
+                    'high_risk_factors' => $this->high_risk_factors,
+                    'mitigation_info' => $this->mitigation_info
+                )),
+                $email_subject
+            );
+
         } else {
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
         }

@@ -89,12 +89,15 @@ class EmailNotification {
         return MCSendMail::getInstance()->sendMail(true);
     }
 
-    public static function sendAssessment($mail_to, $html, $subject){
+    public static function sendAssessment($mail_to, $chief_pilot = null, $html, $subject){
 
         MCSendMail::getInstance()->setMessageHTML($html);
         MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_assessment_from_email', 'mitigators@preflightrisk.com'));
         MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_assessment_from_name', 'Pre Flight Risk'));
         MCSendMail::getInstance()->setMessageSubject($subject);
+        if(!is_null($chief_pilot)){
+            MCSendMail::getInstance()->setMessageAddTo(array('email'=>$chief_pilot->getUsername(), 'name' => $chief_pilot->getFirstName() ? $chief_pilot->getFirstName() : null));
+        }
         MCSendMail::getInstance()->setMessageAddTo(array('email'=>$mail_to->getUsername(), 'name' => $mail_to->getFirstName() ? $mail_to->getFirstName() : null));
         return MCSendMail::getInstance()->sendMail(true);
     }
