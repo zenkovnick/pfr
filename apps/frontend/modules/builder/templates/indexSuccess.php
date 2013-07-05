@@ -694,7 +694,7 @@
 
 
         jQuery("div.mitigation-header").mouseover(function(){
-            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden')){
+            if(jQuery(this).find('a.mitigation-cancel').hasClass('hidden') && !jQuery(this).find('a.mitigation-edit').hasClass('opening')){
                jQuery(this).find('a.mitigation-edit').removeClass('hidden');
             }
         });
@@ -703,15 +703,21 @@
                 jQuery(this).find('a.mitigation-edit').addClass('hidden');
             }
         });
-
-        jQuery('a.mitigation-edit').click(function(event){
+        if(isiOS){
+            jQuery('a.mitigation-edit').bind('click touchend', mitigationEdit);
+        } else {
+            jQuery('a.mitigation-edit').bind('click', mitigationEdit);
+        }
+        function mitigationEdit(event){
             event.preventDefault();
-            jQuery(this).addClass('hidden');
+            var el = jQuery(this)
+            el.addClass('hidden').addClass('opening');
             var root_li = jQuery(this).closest('li');
             root_li.find('div.field-wrapper').show(show_delay, function(){
                 root_li.find('a.mitigation-cancel').removeClass('hidden');
+                el.removeClass('opening');
             });
-        });
+        }
 
         jQuery("a.mitigation-cancel").click(function(event){
             event.preventDefault();
