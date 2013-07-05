@@ -968,7 +968,7 @@ a.show-hide-field:hover {
 }
 .mitigation-fields li.risk-value-edit label, .check-block label {
     display: inline-block;
-    font-size: 1em;
+    font-size: 0.9em;
     max-width: 85%;
     overflow: hidden;
 }
@@ -1161,7 +1161,7 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
 .flight-field-list li.flight-information input[type="text"] {
     background: #FFF;
     border: 1px solid #CCC;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 .risk-factor-wrapper {
     /*border-bottom: 1px dashed #CCC;*/
@@ -1545,7 +1545,7 @@ html .ui-autocomplete {
     margin: 0 20px;
 }
 .android .editable-list .caption-block {
-    /*margin: 0 0 0 20px;*/
+    margin: 0 0 0 20px;
 }
 .android .editable-list .new .caption-block {
     margin-right: 20px;
