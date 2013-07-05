@@ -602,6 +602,10 @@
     /* DOCUMENT READY */
 
     jQuery(document).ready(function() {
+        var isiOS = false;
+        if(agent.indexOf('iphone') &gt;= 0 || agent.indexOf('ipad') &gt;= 0){
+            isiOS = true;
+        }
         var form_id = jQuery('form.main-form').attr('id');
         jQuery( "#flight-information-container").sortable({
             containment: ".flight-information-wrapper",
@@ -640,9 +644,18 @@
 
         var flight_information_field = jQuery("ul.flight-information-list li");
         flight_information_field.bind('mouseover', flightInformationOver).bind('mouseout', flightInformationOut);
-        jQuery("a.show-hide-field", flight_information_field).bind('click touchend', showHideField);
+        if(isiOS){
+            jQuery("a.show-hide-field", flight_information_field).bind('click touchend', showHideField);
+        } else {
+            jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
+        }
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
-        jQuery("a.edit-risk-factor-link").bind('click touchend', editRiskFactor);
+
+        if(isiOS){
+            jQuery("a.edit-risk-factor-link").bind('click touchend', editRiskFactor);
+        } else {
+            jQuery("a.edit-risk-factor-link").bind('click', editRiskFactor);
+        }
         jQuery("a.cancel-risk-factor-link").bind('click', cancelRiskFactorEdit);
         jQuery("form.main-form button[type='submit']").bind('click', validateAndSubmitMainForm);
         jQuery("button.save-and-exit").bind('click', saveAndExit);
