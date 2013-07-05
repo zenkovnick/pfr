@@ -35,6 +35,7 @@ class RiskBuilderForm extends BaseRiskBuilderForm
           'mitigation_low_notify' => "Notify {$chief_pilot_name} about all risks (low to high)",
           'mitigation_medium_notify' => "Notify {$chief_pilot_name} about medium to high risk flights",
           'mitigation_high_notify' => "Notify {$chief_pilot_name} about high risk flights",
+          'mitigation_medium_require_details' => 'Require details about how risk is mitigated before proceeding'
       ));
   }
 
