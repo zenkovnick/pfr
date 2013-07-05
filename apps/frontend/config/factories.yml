@@ -66,7 +66,7 @@ all:
   user:
     class: myUser
     param:
-      timeout:         600000
+      timeout:         65530
       logging:         %SF_LOGGING_ENABLED%
       use_flash:       true
       default_culture: %SF_DEFAULT_CULTURE%
