@@ -67,7 +67,7 @@
                                 <p style="color: #000; margin: 0;" class="question"><?php echo $high_risk_factor['question'] ?></p>
                                 <span style="color: #CCC;" class="answer"><?php echo $high_risk_factor['answer'] ?></span>
                             </div>
-                            <div style="background: #F33; border: 1px solid #F00; float: right; padding: 14px 0; text-align: center; width: 40px;" class="risk">
+                            <div style="background: #F33; border: 1px solid #F00; float: right; padding: 10px 0; text-align: center; width: 40px;" class="risk">
                                 <span style="color: #FFF;"><?php echo $high_risk_factor['risk'] ?></span>
                             </div>
 
