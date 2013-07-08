@@ -32,7 +32,7 @@
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <span class="no-high-risk-factors">You have no risk factors over 0</span>
+            <span class="no-high-risk-factors">No risk factors over 0</span>
         <?php endif ?>
     </div>
     <span class="bottom-border border"></span>
