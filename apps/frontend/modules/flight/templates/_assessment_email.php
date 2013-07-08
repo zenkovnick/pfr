@@ -1,4 +1,4 @@
-<div class="assessment-wrapper" xmlns="http://www.w3.org/1999/html">
+<div class="assessment-wrapper" xmlns="http://www.w3.org/1999/html" style="overflow: hidden; width: 540px;">
     <table style="background-color: #F2F2F2; border-bottom: 1px solid #E4E4E4; width: 540px; overflow: hidden; padding: 40px 40px 0;" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
@@ -34,6 +34,9 @@
                         color: #FFF;
                         display: block;
                         float: left;
+                        height: 15px;
+                        line-height: 100%;
+                        max-height: 15px;
                         padding: 17px 0;
                         text-align: center;
                         width: 50px;">
@@ -77,5 +80,5 @@
                 <td style="padding-bottom: 30px"></td>
             </tr>
     </table>
-    <img style="display:block; height: 60px; margin: 10px auto; width: 114px;" src="<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
+    <img style="display:block; height: 60px; margin: 10px 0 10px 212px; width: 114px;" src="<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
 </div>
