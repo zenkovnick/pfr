@@ -75,11 +75,8 @@
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <span style="color: #999; display: inline-block; margin: 0 0 20px;">No risk factors over 0</span>
+                <span style="color: #999; display: inline-block; margin: 0 0 20px;">No risk factors over 0.</span>
             <?php endif ?>
-<!--            <tr>-->
-<!--                <td style="border-top: 1px solid #CCC; border-bottom: 1px solid #FFF; padding: 0;"></td>-->
-<!--            </tr>-->
             <tr>
                 <td style="padding-bottom: 30px"></td>
             </tr>
