@@ -84,9 +84,9 @@
                 <td style="padding-bottom: 30px"></td>
             </tr>
     </table>
-    <table style="background: #FFF; width: 100%">
+    <table style="background: #FFF; max-width: 100%">
         <tr>
-            <td style="height: 70px; text-align: center; vertical-align: middle;">
+            <td style="height: 70px; text-align: center; vertical-align: middle; width: 540px;">
                 <img style="display:inline-block; height: 60px; width: 114px;" src="<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
             </td>
         </tr>
