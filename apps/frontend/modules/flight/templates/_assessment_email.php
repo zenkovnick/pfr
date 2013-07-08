@@ -1,6 +1,6 @@
-<div class="assessment-wrapper" xmlns="http://www.w3.org/1999/html" style="overflow: hidden; width: 540px;">
+<div class="assessment-wrapper" xmlns="http://www.w3.org/1999/html" style="overflow: hidden; width: 100%;">
 <!--    <meta name="viewport" content="width=500" />-->
-    <table style="background-color: #F2F2F2; border-bottom: 1px solid #E4E4E4; width: 540px; overflow: hidden; padding: 40px 40px 0;" cellpadding="0" cellspacing="0">
+    <table style="background-color: #F2F2F2; border-bottom: 1px solid #E4E4E4; max-width: 100%; overflow: hidden; padding: 40px 40px 0;" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
                     <h1 style="color: #000; font-size: 16px; text-align: center;"><?php echo $mitigation_info['message'] ?></h1>
@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>
-                    <span style="background: #CCC; border-radius: 5px 0 0 5px; -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; display: block; float: left; height: 12px; margin: 21px 0; width: <?php echo (460*$flight->getRiskFactorSum()/50 -25) ?>px; "></span>
+                    <span style="background: #CCC; border-radius: 5px 0 0 5px; -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; display: block; float: left; height: 12px; margin: 21px 0; width: <?php echo (100*$flight->getRiskFactorSum()/50) ?>%; "></span>
 
                     <span class="risk" style="
                         <?php if ($mitigation_info['type'] == 'low'): ?>
@@ -63,7 +63,7 @@
                 <?php foreach($high_risk_factors as $high_risk_factor): ?>
                     <tr>
                         <td style="border-bottom: 1px dashed #CCC; padding: 10px 0;">
-                            <div style="float: left; width: 390px;">
+                            <div style="float: left; max-width: 75%;">
                                 <p style="color: #000; margin: 0;" class="question"><?php echo $high_risk_factor['question'] ?></p>
                                 <span style="color: #CCC;" class="answer"><?php echo $high_risk_factor['answer'] ?></span>
                             </div>
@@ -84,5 +84,11 @@
                 <td style="padding-bottom: 30px"></td>
             </tr>
     </table>
-    <img style="display:block; height: 60px; margin: 10px 0 10px 212px; width: 114px;" src="<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
+    <table style="background: #FFF; width: 100%">
+        <tr>
+            <td style="height: 70px; text-align: center; vertical-align: middle;">
+                <img style="display:inline-block; height: 60px; width: 114px;" src="<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
+            </td>
+        </tr>
+    </table>
 </div>
