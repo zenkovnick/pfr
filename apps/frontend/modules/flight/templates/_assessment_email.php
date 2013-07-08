@@ -35,9 +35,7 @@
                         display: block;
                         float: left;
                         padding: 17px 0;
-                        position: absolute;
                         text-align: center;
-                        top: -19px;
                         width: 50px;">
                         <?php echo $flight->getRiskFactorSum() ?>
                     </span>
