@@ -77,5 +77,5 @@
                 <td style="padding-bottom: 30px"></td>
             </tr>
     </table>
-    <img src="/images/logo.png" alt="Logo" />
+    <img src="<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
 </div>
