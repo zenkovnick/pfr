@@ -3,7 +3,7 @@
     <table style="background-color: #F2F2F2; border-bottom: 1px solid #E4E4E4; max-width: 100%; overflow: hidden; padding: 40px 40px 0;" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <h1 style="color: #000; font-size: 16px; text-align: center;"><?php echo $mitigation_info['message'] ?></h1>
+                    <h1 style="color: #000 !important; font-size: 16px; text-align: center;"><?php echo $mitigation_info['message'] ?></h1>
                 </td>
             </tr>
             <tr>
@@ -56,7 +56,7 @@
             </tr>
             <tr>
                 <td>
-                    <h2 style="color: #000; font-size: 16px;">Risk Factors</h2>
+                    <h2 style="color: #000 !important; font-size: 16px;">Risk Factors</h2>
                 </td>
             </tr>
             <?php if(count($high_risk_factors) > 0): ?>
@@ -64,7 +64,7 @@
                     <tr>
                         <td style="border-bottom: 1px dashed #CCC; padding: 10px 0;">
                             <div style="float: left; max-width: 75%;">
-                                <p style="color: #000; margin: 0;" class="question"><?php echo $high_risk_factor['question'] ?></p>
+                                <p style="color: #000 !important; margin: 0;" class="question"><?php echo $high_risk_factor['question'] ?></p>
                                 <span style="color: #CCC;" class="answer"><?php echo $high_risk_factor['answer'] ?></span>
                             </div>
                             <div style="background: #F33; border: 1px solid #F00; float: right; padding: 10px 0; text-align: center; width: 40px;" class="risk">
