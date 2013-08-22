@@ -1,5 +1,6 @@
 <?php slot('header') ?>
     <?php include_partial('menu/header_logo')?>
+    <a class="back-to-preflight" href="http://preflightrisk.com">Back to PreflightRisk.com</a>
 <?php end_slot() ?>
 <h1>Sign in</h1>
 <form class="sign-in-form" action="<?php echo url_for('@signin_process') ?>" method="post">
@@ -19,8 +20,8 @@
         <button class="btn btn-grey" type="submit">Sign In</button>
 
         <span>
-            If you are new here create account or
-            <a href="<?php echo url_for('@signup') ?>">Sign Up</a>
+            If you're new here, create an account or
+            <a href="<?php echo url_for('@signup') ?>">sign up.</a>
         </span>
 
     </fieldset>

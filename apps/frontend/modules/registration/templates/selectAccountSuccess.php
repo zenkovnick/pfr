@@ -7,7 +7,7 @@
 <?php end_slot() ?>
 
 
-<h1>Which Account</h1>
+<h1>Which Account?</h1>
 <ul>
     <?php foreach($accounts as $account): ?>
         <li>

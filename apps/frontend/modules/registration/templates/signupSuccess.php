@@ -1,5 +1,6 @@
 <?php slot('header') ?>
     <?php include_partial('menu/header_logo')?>
+    <a class="back-to-preflight" href="http://preflightrisk.com">Back to PreflightRisk.com</a>
 <?php end_slot() ?>
 <h1>Sign up</h1>
 <div class="sign-up">
@@ -15,7 +16,7 @@
     </form>
     <span>
         Already a user?
-        <a href="<?php echo url_for("@signin?redirect_to=select_account") ?>" class="sign-in-link">Sign In</a>
+        <a href="<?php echo url_for("@signin?redirect_to=select_account") ?>" class="sign-in-link">Sign in.</a>
     </span>
 </div>
 

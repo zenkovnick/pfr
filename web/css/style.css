@@ -458,10 +458,10 @@ ul.header-link-block li.mobile-logout {
 .sign-in-form span a:hover, .sign-up span a:hover {
     text-decoration: underline;
 }
-a.sign-out {
+a.sign-out, a.back-to-preflight {
     left: 30px;
     position: absolute;
-    top: 30px;
+    top: 23px;
 }
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------> Choose Account <-------------------------------------------------*/
