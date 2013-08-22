@@ -29,6 +29,13 @@
 
 <script type="text/javascript">
     jQuery('body').addClass('sign-in');
+    jQuery('#signin_username, #signin_password').keyup(function() {
+        if ( (jQuery('#signin_username').val() != '') && (jQuery('#signin_password').val() != '') ) {
+            jQuery('.btn.btn-grey').addClass('active')
+        } else {
+            jQuery('.btn.btn-grey').removeClass('active')
+        }
+    });
 //    jQuery('[placeholder]').focus(function() {
 //        var input = jQuery(this);
 //        if (input.val() == input.attr('placeholder')) {

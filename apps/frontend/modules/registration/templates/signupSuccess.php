@@ -62,5 +62,12 @@
         var field_list = jQuery('ul.sign-up-field-list');
         //jQuery("li input", field_list).bind('keyup', changeFieldContent);
         jQuery("button[type='submit']").bind('click', submitForm);
+        jQuery('#sf_guard_user_first_name, #sf_guard_user_username, #sf_guard_user_password').keyup(function() {
+            if ( (jQuery('#sf_guard_user_first_name').val() != '') && (jQuery('#sf_guard_user_username').val() != '') && (jQuery('#sf_guard_user_password').val() != '') ) {
+                jQuery('.btn.btn-grey').addClass('active')
+            } else {
+                jQuery('.btn.btn-grey').removeClass('active')
+            }
+        });
     });
 </script>
