@@ -192,6 +192,7 @@ ul.header-link-block li.mobile-logout {
     float: right;
     overflow: hidden;
     padding: 15px 0;
+    text-align: right;
 }
 .user-wrapper .header-user-name, .user-wrapper .header-user-email {
     display: block;
@@ -247,7 +248,7 @@ ul.header-link-block li.mobile-logout {
 }
 
 
-.btn-blue, .btn-grey:hover {
+.btn-blue, .btn-grey:hover, .btn-grey.active {
     background: #00AEEF;
     border-color: #0F76BB;
     color: #FFF;
