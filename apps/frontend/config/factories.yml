@@ -60,8 +60,8 @@ all:
           host:       masterofcode.com
           port:       587
           encryption: ~
-          username:   mykola.zenkov
-          password:   Ld28F2e3D
+          username:   nick
+          password:   nick
 
   user:
     class: myUser
