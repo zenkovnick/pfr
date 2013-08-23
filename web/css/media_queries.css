@@ -171,6 +171,11 @@
         min-width: 256px;
         width: 100% !important;
     }
+    a.back-to-preflight {
+        left: 10px;
+        top: 28px;
+    }
+
 }
 
 
@@ -225,7 +230,12 @@
         min-width: 256px;
         width: 100% !important;
     }
-
+    a.back-to-preflight {
+        font-size: 10px;
+        left: 10px;
+        text-align: center;
+        width: 80px;
+    }
 
 }
 
