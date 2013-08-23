@@ -782,7 +782,7 @@
             var root_li = jQuery(this).closest('.editing');
             jQuery.ajax({
                 url: '<?php echo url_for("@delete_pilot"); ?>',
-                data: {id: jQuery("input[type='hidden']", root_li).val()},
+                data: {id: jQuery("input[type='hidden']", root_li).val(), account_id: account_id},
                 type: 'POST',
                 dataType: 'json',
                 success: function(data){

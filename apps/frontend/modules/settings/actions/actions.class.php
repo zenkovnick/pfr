@@ -490,8 +490,8 @@ class settingsActions extends sfActions {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
         if($this->getUser()->isAuthenticated()){
-            $pilot = Doctrine_Core::getTable('sfGuardUser')->find($request->getParameter('id'));
-            if($pilot && $pilot->getId() != $this->getUser()->getGuardUser()->getId()){
+            $pilot = UserAccountTable::getUserAccount($request->getParameter('id'), $request->getParameter('account_id'));
+            if($pilot && $request->getParameter('id') != $this->getUser()->getGuardUser()->getId()){
                 $pilot->delete();
                 echo json_encode(array('result' => 'OK'));
             } else {

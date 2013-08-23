@@ -82,16 +82,22 @@ class registrationActions extends sfActions
     }
 
     public function executeApproveAccount(sfWebRequest $request) {
-        $this->user = $this->getUser()->getGuardUser();
-        if($request->getParameter('token')){
-            $this->forward404Unless($this->user_account = Doctrine_Core::getTable('UserAccount')->findOneBy('invite_token', $request->getParameter('token')));
-            if($this->user_account->getUserId() != $this->user->getId()){
-                $this->redirect("@select_account");
+        $this->getUser()->setAttribute('approve', $request->getUri());
+        if($this->getUser()->isAuthenticated()){
+            $this->user = $this->getUser()->getGuardUser();
+            if($request->getParameter('token')){
+                $this->forward404Unless($this->user_account = Doctrine_Core::getTable('UserAccount')->findOneBy('invite_token', $request->getParameter('token')));
+                if($this->user_account->getUserId() != $this->user->getId()){
+                    $this->redirect("@select_account");
+                } else {
+                    $this->account = $this->user_account->getAccount();
+                }
             } else {
-                $this->account = $this->user_account->getAccount();
+                $this->redirect("@select_account");
             }
+
         } else {
-            $this->redirect("@select_account");
+            $this->redirect("@signin");
         }
     }
 
@@ -102,6 +108,7 @@ class registrationActions extends sfActions
                 $this->user_account->setIsActive(true);
                 $this->user_account->setInviteToken(null);
                 $this->user_account->save();
+                $this->getUser()->getAttributeHolder()->remove('approve');
                 $this->redirect("@dashboard?account_id=".$this->user_account->getAccount()->getId());
             } else {
                 $this->user_account->delete();
@@ -160,8 +167,13 @@ class registrationActions extends sfActions
                         }
                     }
 
-
-                    $this->redirect("@dashboard?account_id={$account->getId()}");
+                    if($this->getUser()->getAttribute('approve')){
+                        $redirect = $this->getUser()->getAttribute('approve');
+                        $this->getUser()->getAttributeHolder()->remove('approve');
+                        $this->redirect($redirect);
+                    } else {
+                        $this->redirect("@dashboard?account_id={$account->getId()}");
+                    }
                 }
             }
         } else {
