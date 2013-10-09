@@ -35,10 +35,14 @@ class dashboardActions extends sfActions {
         $this->getUser()->setAttribute('flight_filter', $top_controls);
         $this->setFlightData($request, $this);
         $chart = new FlightChart($this->flights_for_chart);
+
+        $user_account = UserAccountTable::getUserAccount($this->getUser()->getGuardUser()->getId(), $this->account->getId());
+
         $dashboard_content = $this->getPartial('dashboard/dashboard_content', array(
             'account' => $this->account,
             'pager' => $this->pager,
-            'additional_info' => $this->additional_info
+            'additional_info' => $this->additional_info,
+            'can_manage' => $user_account->getIsManager()
         ));
         if($this->flights_for_chart->count() > 1) {
             $this->chart_markup = $chart->getChartMarkup();
