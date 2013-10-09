@@ -1253,7 +1253,27 @@ p.help-message {
     cursor: pointer;
 }
 .list-select .result {
+    float: left;
     line-height: 16px;
+    margin-right: 5px;
+}
+.from-to-date {
+    color: #0F76BB;
+}
+.from-date, .to-date {
+    color: #0F76BB;
+    position: relative;
+}
+.from-date input, .to-date input {
+    bottom: 0;
+    cursor: pointer;
+    display: block;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
 }
 .list-select ul {
     background: #333;
@@ -1844,16 +1864,20 @@ html .ui-autocomplete {
 }
 .dashboard-page .filter-block {
     padding: 19px 0 17px;
-    margin: 0 0 16px;
+    margin: 0 0 30px;
     height: 17px;
+}
+.filter-block .double-border {
+    border-top: 1px solid #E4E4E4;
+    border-bottom: 1px solid #FFF;
+    clear: both;
+    display: block;
+    width: 100%;
+
 }
 .dashboard-page .filter-block,
 .dashboard-page .additional-info {
     color: #999;
-    border-bottom: 1px solid #E4E4E4;
-    -webkit-box-shadow: 0 1px 0 #FFF;
-    -moz-box-shadow: 0 1px 0 #FFF;
-    box-shadow: 0 1px 0 #FFF;
 }
 .dashboard-page .filter-block a,
 .dashboard-page .filter-block .caption {
