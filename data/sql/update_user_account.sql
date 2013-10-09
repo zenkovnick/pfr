@@ -1,0 +1,1 @@
+UPDATE user_account SET is_sic = 1, is_pic = 1;

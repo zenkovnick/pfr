@@ -9,10 +9,13 @@ class dashboardActions extends sfActions {
     public function executeIndex(sfWebRequest $request){
 
         $account_id = $request->getParameter('account_id');
+        $user_id = $this->getUser()->getGuardUser()->getId();
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
-        if(!sfGuardUserTable::checkUserAccountAccess($account_id, $this->getUser()->getGuardUser()->getId())){
+        if(!sfGuardUserTable::checkUserAccountAccess($account_id, $user_id)){
             $this->redirect("@select_account");
         }
+        $user_account = UserAccountTable::getUserAccount($user_id, $account_id);
+        $this->can_manage = $user_account->getIsManager();
 
 
         if(!$this->checkConditions($this->account)){

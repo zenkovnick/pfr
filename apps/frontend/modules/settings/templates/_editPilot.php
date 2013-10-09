@@ -17,7 +17,15 @@
                 <li class="check-block">
                     <?php include_partial("settings/field", array('field' => $form['can_manage'], 'class' => 'can-manage')); ?>
                 </li>
+                <li class="check-block">
+                    <?php include_partial("settings/field", array('field' => $form['is_pic'], 'class' => 'pic')); ?>
+                </li>
+                <li class="check-block">
+                    <?php include_partial("settings/field", array('field' => $form['is_sic'], 'class' => 'sic')); ?>
+                </li>
+
             <?php endif ?>
+
             <li class="hint-block">
                 <p>Adding this pilot will give you the ability to measure their flights' risk over time, but be aware that by adding them, you will be adding <span>$3 every month</span> to your bill.</p>
             </li>

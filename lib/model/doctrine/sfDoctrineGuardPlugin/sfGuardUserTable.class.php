@@ -98,14 +98,24 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account->getId())
             ->andWhere('ua.is_active = true')
+            ->andWhere('ua.is_pic = true')
             ->orderBy('ua.position ASC')
             ->execute();
         return $query;
     }
 
     public static function getUsersWithMore($parameters){
-        $main_collection = self::getUsers($parameters);
-        if($main_collection->count() == 1){
+        $account = $parameters['account'];
+        $main_collection = Doctrine_Query::create()
+            ->from('sfGuardUser u')
+            ->leftJoin('u.UserAccount ua')
+            ->where('ua.account_id = ?', $account->getId())
+            ->andWhere('ua.is_active = true')
+            ->andWhere('ua.is_sic = true')
+            ->orderBy('ua.position ASC')
+            ->execute();
+
+        if($main_collection->count() == 0){
             $main_collection = new Doctrine_Collection('sfGuardUser');
         }
         $more_user = new sfGuardUser();

@@ -350,6 +350,8 @@ class settingsActions extends sfActions {
                         $user_account->setInviteToken($pilot->generateToken());
                         $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
                         $user_account->setIsManager(isset($values['can_manage']));
+                        $user_account->setIsPic(isset($values['is_pic']));
+                        $user_account->setIsSic(isset($values['is_sic']));
                         $user_account->save();
 
                         echo json_encode(
@@ -403,6 +405,8 @@ class settingsActions extends sfActions {
                             $user_account->setInviteToken($pilot->generateToken());
                             $user_account->setPosition(UserAccountTable::getMaxPosition($request->getParameter('account_id')) + 1);
                             $user_account->setIsManager(isset($values['can_manage']));
+                            $user_account->setIsPic(isset($values['is_pic']));
+                            $user_account->setIsSic(isset($values['is_sic']));
                             $user_account->save();
                             $url = $this->generateUrl('approve_account', array('token' => $user_account->getInviteToken()), true);
                             EmailNotification::sendAccountApprove($this->getUser()->getGuardUser(), $pilot, $url, $account);
@@ -440,6 +444,8 @@ class settingsActions extends sfActions {
             $user_account = UserAccountTable::getUserAccount($request->getParameter('pilot_id'), $request->getParameter('account_id'));
             $account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
             $form->setDefault('can_manage',$user_account->getIsManager());
+            $form->setDefault('is_pic',$user_account->getIsPic());
+            $form->setDefault('is_sic',$user_account->getIsSic());
             if($request->isMethod('post')){
                 $form->bind($request->getParameter($form->getName()));
                 if($form->isValid()){
@@ -450,6 +456,8 @@ class settingsActions extends sfActions {
                         && $request->getParameter('pilot_id') != $account->getManagedById()
                     ){
                         $user_account->setIsManager(isset($values['can_manage']) ? true : false);
+                        $user_account->setIsPic(isset($values['is_pic']) ? true : false);
+                        $user_account->setIsSic(isset($values['is_sic']) ? true : false);
                         $user_account->save();
 
                     }
@@ -515,6 +523,8 @@ class settingsActions extends sfActions {
             $user_account = UserAccountTable::getUserAccount($pilot_id, $account_id);
             $account = $user_account->getAccount();
             $this->form->setDefault('can_manage', $user_account->getIsManager());
+            $this->form->setDefault('is_pic', $user_account->getIsPic());
+            $this->form->setDefault('is_sic', $user_account->getIsSic());
             $content = $this->getPartial('editPilot',array('form' => $this->form, 'pilot' => $pilot, 'account' => $account));
             echo json_encode(array('result' => 'OK', 'content' => $content));
         } else {

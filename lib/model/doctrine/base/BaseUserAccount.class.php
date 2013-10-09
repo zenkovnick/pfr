@@ -8,6 +8,8 @@
  * @property integer $account_id
  * @property integer $user_id
  * @property boolean $is_manager
+ * @property boolean $is_pic
+ * @property boolean $is_sic
  * @property integer $position
  * @property string $invite_token
  * @property boolean $is_active
@@ -17,6 +19,8 @@
  * @method integer     getAccountId()    Returns the current record's "account_id" value
  * @method integer     getUserId()       Returns the current record's "user_id" value
  * @method boolean     getIsManager()    Returns the current record's "is_manager" value
+ * @method boolean     getIsPic()        Returns the current record's "is_pic" value
+ * @method boolean     getIsSic()        Returns the current record's "is_sic" value
  * @method integer     getPosition()     Returns the current record's "position" value
  * @method string      getInviteToken()  Returns the current record's "invite_token" value
  * @method boolean     getIsActive()     Returns the current record's "is_active" value
@@ -25,6 +29,8 @@
  * @method UserAccount setAccountId()    Sets the current record's "account_id" value
  * @method UserAccount setUserId()       Sets the current record's "user_id" value
  * @method UserAccount setIsManager()    Sets the current record's "is_manager" value
+ * @method UserAccount setIsPic()        Sets the current record's "is_pic" value
+ * @method UserAccount setIsSic()        Sets the current record's "is_sic" value
  * @method UserAccount setPosition()     Sets the current record's "position" value
  * @method UserAccount setInviteToken()  Sets the current record's "invite_token" value
  * @method UserAccount setIsActive()     Sets the current record's "is_active" value
@@ -50,6 +56,14 @@ abstract class BaseUserAccount extends sfDoctrineRecord
              'primary' => true,
              ));
         $this->hasColumn('is_manager', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('is_pic', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('is_sic', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
              ));

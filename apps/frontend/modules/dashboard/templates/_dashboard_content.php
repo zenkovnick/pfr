@@ -1,6 +1,8 @@
-<div id="chart" class="chart-block">
+<?php if($can_manage): ?>
+    <div id="chart" class="chart-block">
 
-</div>
+    </div>
+<?php endif ?>
 <div class="additional-info">
     <ul>
         <li>

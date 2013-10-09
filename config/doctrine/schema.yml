@@ -167,6 +167,8 @@ UserAccount:
       account_id:      { type: integer, notnull: true, primary: true }
       user_id:         { type: integer, notnull: true, primary: true }
       is_manager:      { type: boolean, default: false }
+      is_pic:          { type: boolean, default: false }
+      is_sic:          { type: boolean, default: false }
       position:        { type: integer }
       invite_token:    { type: string(255) }
       is_active:       { type: boolean, default: false }

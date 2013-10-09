@@ -8,44 +8,47 @@
         <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>" class="btn btn-blue">New Flight</a>
         <h1>Dashboard</h1>
     </div>
-    
-    <div class="dashboard-filters">
-        <form id="flight_filter" action="<?php echo url_for("@flight_filter?account_id={$account->getId()}") ?>" method="post">
-            <div class="filter-block">
-                <span class="caption">Risk summary</span>
-                <span>for</span>
-                <span class="no-margin">
-                    <div class="list-select plane-select">
-                        <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select result')) ?>
-                    </div>
-                </span>
-                <span class="plus">+</span>
-                <span class="no-margin">
-                    <div class="list-select pilot-select">
-                        <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select result')) ?>
-                    </div>
-                </span>
-                <span class="plus">+</span>
 
-                <span class="no-margin">
-                    <div class="list-select date-select">
-                        <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select result')) ?>
-                    </div>
-                </span>
-                <span>, sorted by</span>
-                <span class="no-margin">
-                    <div class="list-select sort-select">
-                        <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select result')) ?>
-                    </div>
-                </span>
-                <div class="clear"></div>
-            </div>
-        </form>
-    </div>
-    
+
+    <?php if($can_manage): ?>
+        <div class="dashboard-filters">
+            <form id="flight_filter" action="<?php echo url_for("@flight_filter?account_id={$account->getId()}") ?>" method="post">
+                <div class="filter-block">
+                    <span class="caption">Risk summary</span>
+                    <span>for</span>
+                    <span class="no-margin">
+                        <div class="list-select plane-select">
+                            <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select result')) ?>
+                        </div>
+                    </span>
+                    <span class="plus">+</span>
+                    <span class="no-margin">
+                        <div class="list-select pilot-select">
+                            <?php echo $filter['pilot']->render(array('class' => 'pilot-filter dashboard-select result')) ?>
+                        </div>
+                    </span>
+                    <span class="plus">+</span>
+
+                    <span class="no-margin">
+                        <div class="list-select date-select">
+                            <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select result')) ?>
+                        </div>
+                    </span>
+                    <span>, sorted by</span>
+                    <span class="no-margin">
+                        <div class="list-select sort-select">
+                            <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select result')) ?>
+                        </div>
+                    </span>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    <?php endif ?>
     
     <div class="dashboard-content">
-        <?php include_partial('dashboard/dashboard_content', array('account' => $account, 'pager' => $pager, 'additional_info' => $additional_info)) ?>
+        <?php include_partial('dashboard/dashboard_content',
+            array('account' => $account, 'pager' => $pager, 'additional_info' => $additional_info, 'can_manage' => $can_manage)) ?>
     </div>
     
 </div>
