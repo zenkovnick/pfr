@@ -17,13 +17,6 @@
 </div>
 
 <div class="header-user-information-wrapper">
-    <span class="header-user-avatar">
-        <?php if($sf_user->getGuardUser()->getPhoto()): ?>
-            <?php echo image_tag(getThumbnail('avatar/'.$sf_user->getGuardUser()->getPhoto(), 40), array('alt' => '')) ?>
-        <?php else: ?>
-            <?php echo image_tag(getThumbnail('../images/no_logo.jpg', 40), array('alt' => '')) ?>
-        <?php endif ?>
-    </span>
     <div class="user-wrapper">
 
         <span class="header-user-name">

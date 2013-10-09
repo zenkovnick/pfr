@@ -16,7 +16,7 @@ class registrationActions extends sfActions
     public function executeSignin(sfWebRequest $request) {
         if($this->getUser()->isAuthenticated()){
             $accounts = AccountTable::getAllUserAccounts($this->getUser()->getGuardUser());
-            if($accounts->count() == 1) {
+            if($accounts->count() >= 1) {
                 $this->redirect("@dashboard?account_id={$accounts->getFirst()->getId()}");
 
             } else {

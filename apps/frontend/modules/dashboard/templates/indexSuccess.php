@@ -37,10 +37,12 @@
                         <div class="list-select date-select">
                             <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select result')) ?>
                             <span class="from-to-date<?php echo $filter['date']->getValue() == 'date_range' ? '' : ' hidden'?>">
-                                <span class="from-date"><?php echo $filter['date_from']->getValue() ? $filter['date_from']->getValue() : 'From'?></span>/
-                                <span class="to-date"><?php echo $filter['date_to']->getValue() ? $filter['date_to']->getValue() : 'To'?></span>
-                                <?php echo $filter['date_from']->render(array('class' => 'from-date-input')) ?>
-                                <?php echo $filter['date_to']->render(array('class' => 'to-date-input')) ?>
+                                <span class="from-date"><?php echo $filter['date_from']->getValue() ? $filter['date_from']->getValue() : 'From'?>
+                                    <?php echo $filter['date_from']->render(array('class' => 'from-date-input')) ?>
+                                </span>/
+                                <span class="to-date"><?php echo $filter['date_to']->getValue() ? $filter['date_to']->getValue() : 'To'?>
+                                    <?php echo $filter['date_to']->render(array('class' => 'to-date-input')) ?>
+                                </span>
 <!--                                <input name=flight_filter[date_from] type='text' class="from-date-input" style="opacity: 0; position: absolute" />-->
 <!--                                <input name=flight_filter[date_to] type='text' class="to-date-input" style="opacity: 0; position: absolute" />-->
                             </span>
@@ -53,6 +55,7 @@
                         </div>
                     </span>
                     <div class="clear"></div>
+                    <span class="double-border"></span>
                 </div>
             </form>
         </div>
