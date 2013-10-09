@@ -2,6 +2,11 @@
     <?php include_partial('menu/header_menu', array('account' => $account)); ?>
 <?php end_slot() ?>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/js/jquery.ui.timepicker.js"></script>
+
+
 <div class="dashboard-page">
     
     <div class="caption-block">
@@ -28,10 +33,17 @@
                         </div>
                     </span>
                     <span class="plus">+</span>
-
                     <span class="no-margin">
                         <div class="list-select date-select">
                             <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select result')) ?>
+                            <span class="from-to-date<?php echo $filter['date']->getValue() == 'date_range' ? '' : ' hidden'?>">
+                                <span class="from-date"><?php echo $filter['date_from']->getValue() ? $filter['date_from']->getValue() : 'From'?></span>/
+                                <span class="to-date"><?php echo $filter['date_to']->getValue() ? $filter['date_to']->getValue() : 'To'?></span>
+                                <?php echo $filter['date_from']->render(array('class' => 'from-date-input')) ?>
+                                <?php echo $filter['date_to']->render(array('class' => 'to-date-input')) ?>
+<!--                                <input name=flight_filter[date_from] type='text' class="from-date-input" style="opacity: 0; position: absolute" />-->
+<!--                                <input name=flight_filter[date_to] type='text' class="to-date-input" style="opacity: 0; position: absolute" />-->
+                            </span>
                         </div>
                     </span>
                     <span>, sorted by</span>
@@ -137,6 +149,23 @@
 
     jQuery(document).ready(function(){
         jQuery("#flight_filter").bind('submit', submitFilter);
+        jQuery(".from-date-input").datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: function(date) {
+                jQuery('span.from-date').text(date);
+                applyFilter()
+            }
+        });
+
+        jQuery(".to-date-input").datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: function(date) {
+                jQuery('span.to-date').text(date);
+                applyFilter()
+            }
+        });
+
+
         jQuery("#flight_filter_plane, #flight_filter_pilot, #flight_filter_date, #flight_filter_sort").bind('change', applyFilter);
         jQuery(".plane-select ul").append("<li id='new_plane'>New plane</li>");
         jQuery(".pilot-select ul").append("<li id='new_pilot'>New pilot</li>");
@@ -166,6 +195,11 @@
             var id = jQuery(this).prop('id');
             jQuery('input[type="hidden"]', root_el).val(id);
             jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+            if(id == 'date_range'){
+                jQuery('span.from-to-date').removeClass('hidden');
+            } else {
+                jQuery('span.from-to-date').addClass('hidden');
+            }
             applyFilter();
         });
         var supportsOrientationChange = "onorientationchange" in window,
@@ -174,6 +208,13 @@
             jQuery("ul.expanded").hide().removeClass('expanded');
         });
 
+        jQuery('span.from-date').click(function(){
+            jQuery('.from-date-input').trigger('focus');
         });
+        jQuery('span.to-date').click(function(){
+            jQuery('.to-date-input').trigger('focus');
+        });
+
+    });
 
 </script>

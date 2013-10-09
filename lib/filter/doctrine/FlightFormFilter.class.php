@@ -10,7 +10,7 @@
  */
 class FlightFormFilter extends BaseFlightFormFilter
 {
-    private $date_choice = array('' => 'all time', 'today' => 'today', 'yesterday' => 'yesterday', 'week' => 'last week', 'month' => 'last month', 'half_year' => 'last 6 month', 'year' => 'year');
+    private $date_choice = array('' => 'all time', 'today' => 'today', 'yesterday' => 'yesterday', 'week' => 'last week', 'month' => 'last month', 'half_year' => 'last 6 month', 'year' => 'year', 'date_range' => 'date range');
     private $sort_choice = array('date' => 'date', 'risk' => 'risk');
 
     public function configure()
@@ -33,12 +33,16 @@ class FlightFormFilter extends BaseFlightFormFilter
             'renderer_class' => 'sfWidgetFormList'
         ));
         $this->widgetSchema['date'] = new sfWidgetFormChoice(array('choices' => $this->date_choice, 'renderer_class' => 'sfWidgetFormList'));
+        $this->widgetSchema['date_from'] = new sfWidgetFormInputText();
+        $this->widgetSchema['date_to'] = new sfWidgetFormInputText();
         $this->widgetSchema['sort'] = new sfWidgetFormChoice(array('choices' => $this->sort_choice, 'renderer_class' => 'sfWidgetFormList'));
         $this->widgetSchema->setDefault('sort', 'date');
 
 
         $this->validatorSchema['plane'] = new sfValidatorPass();
         $this->validatorSchema['pilot'] = new sfValidatorPass();
+        $this->validatorSchema['date_from'] = new sfValidatorPass();
+        $this->validatorSchema['date_to'] = new sfValidatorPass();
 
         $this->widgetSchema->setNameFormat("flight_filter[%s]");
     }
@@ -83,6 +87,15 @@ class FlightFormFilter extends BaseFlightFormFilter
                     break;
                 case 'year':
                     $query->andWhere("f.created_at >= date_sub(CURDATE(), interval 1 year)");
+                    break;
+                case 'date_range':
+                    if($this->defaults['date_from'] and $this->defaults['date_to']){
+                        $query->andWhere("f.created_at BETWEEN '{$this->defaults['date_from']}' AND '{$this->defaults['date_to']}'");
+                    } else if($this->defaults['date_from'] and !$this->defaults['date_to']){
+                        $query->andWhere("f.created_at >= '{$this->defaults['date_from']}'");
+                    } else if(!$this->defaults['date_from'] and $this->defaults['date_to']){
+                        $query->andWhere("f.created_at <= '{$this->defaults['date_to']}'");
+                    }
                     break;
             }
         }
