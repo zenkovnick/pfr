@@ -173,6 +173,7 @@ ul.header-link-block li.mobile-logout {
 }
 .header-user-information-wrapper {
     float:right;
+    margin-right: 20px;
     overflow: hidden;
 }
 .header-user-avatar {
