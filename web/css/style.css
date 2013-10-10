@@ -1888,7 +1888,7 @@ html .ui-autocomplete {
     font-weight: bold;
 }
 .dashboard-page .filter-block .plus {
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
 }
 .dashboard-page .filter-block > span {
     display: block;
