@@ -26,6 +26,7 @@ class RiskBuilder extends BaseRiskBuilder
                 $flight_information->setInformationName($flight_information_data['information_name']);
                 $flight_information->setPosition($flight_information_data['position']);
                 $flight_information->setHiddable($flight_information_data['hiddable']);
+                $flight_information->setIsRequired($flight_information_data['is_required']);
                 $flight_information->setRiskBuilder($this);
                 $flight_information_collection->add($flight_information);
             }
@@ -82,5 +83,21 @@ class RiskBuilder extends BaseRiskBuilder
 
     public function getOrderedRiskFactors() {
         return RiskFactorFieldTable::getAllRiskFactors($this->getId());
+    }
+
+    public function getFlightInformationFieldTripNumber()
+    {
+         $query = Doctrine_Query::create()
+            ->select("*")
+            ->from('FlightInformationField')
+            ->where("risk_builder_id = ?", $this->getId())
+            ->andWhere("information_name = 'Trip number'")
+             ->fetchOne();
+        
+         if($query->getRequired()){
+             return true;
+         }else{
+             return false;
+         }
     }
 }

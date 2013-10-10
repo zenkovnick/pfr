@@ -112,7 +112,7 @@
                 plane_label.removeClass('invalid-select');
             }
 
-            if(trip_number.val() == ''){
+            if(trip_number.val() == '' && trip_number.hasClass('required_trip_number')){
                 valid = false;
                 trip_number.addClass('invalid-field');
                 if(!anchor){

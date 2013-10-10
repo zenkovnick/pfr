@@ -672,7 +672,7 @@ ul.form-fields li input[type="text"] {
 .flight-information-list li .element-wrapper span.uneditable {
     display: none;
 }
-.flight-information-list li:hover .element-wrapper span.uneditable, .flight-information-list li:hover .element-wrapper span.hiddable a.show-hide-field {
+.flight-information-list li:hover .element-wrapper span.uneditable, .flight-information-list li:hover .element-wrapper span.hiddable a.show-hide-field, a.required-field {
     display: block;
 }
 
@@ -912,7 +912,20 @@ a.show-hide-field {
     text-decoration: none;
     z-index: 10;
 }
+a.required-field {
+    color: #0F76BB;
+    display: none;
+    float: right;
+    font-size: 12px;
+    position: relative;
+    text-decoration: none;
+    z-index: 10;
+}
 a.show-hide-field:hover {
+    text-decoration: underline;
+}
+
+a.required-field:hover {
     text-decoration: underline;
 }
 

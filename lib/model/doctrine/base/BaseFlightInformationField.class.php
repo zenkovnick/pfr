@@ -11,6 +11,7 @@
  * @property boolean $hiddable
  * @property boolean $is_hide
  * @property boolean $is_required
+ * @property boolean $required
  * @property RiskBuilder $RiskBuilder
  * 
  * @method integer                getRiskBuilderId()    Returns the current record's "risk_builder_id" value
@@ -19,6 +20,7 @@
  * @method boolean                getHiddable()         Returns the current record's "hiddable" value
  * @method boolean                getIsHide()           Returns the current record's "is_hide" value
  * @method boolean                getIsRequired()       Returns the current record's "is_required" value
+ * @method boolean                getRequired()         Returns the current record's "required" value
  * @method RiskBuilder            getRiskBuilder()      Returns the current record's "RiskBuilder" value
  * @method FlightInformationField setRiskBuilderId()    Sets the current record's "risk_builder_id" value
  * @method FlightInformationField setInformationName()  Sets the current record's "information_name" value
@@ -26,6 +28,7 @@
  * @method FlightInformationField setHiddable()         Sets the current record's "hiddable" value
  * @method FlightInformationField setIsHide()           Sets the current record's "is_hide" value
  * @method FlightInformationField setIsRequired()       Sets the current record's "is_required" value
+ * @method FlightInformationField setRequired()         Sets the current record's "required" value
  * @method FlightInformationField setRiskBuilder()      Sets the current record's "RiskBuilder" value
  * 
  * @package    blueprint
@@ -56,6 +59,10 @@ abstract class BaseFlightInformationField extends sfDoctrineRecord
              'default' => false,
              ));
         $this->hasColumn('is_required', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
+        $this->hasColumn('required', 'boolean', null, array(
              'type' => 'boolean',
              'default' => true,
              ));

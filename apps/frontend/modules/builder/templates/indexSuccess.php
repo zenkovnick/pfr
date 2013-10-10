@@ -28,12 +28,16 @@
                         <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
                         <span><?php echo $flight_information_field->getInformationName() ?></span>
                         <?php if($flight_information_field->getHiddable()): ?>
-                        <span class="hiddable">
-                            <a href="" class="show-hide-field"><?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?></a>
-                        </span>
+                            <span class="hiddable">
+                                <a href="" class="show-hide-field"><?php echo $flight_information_field->getIsHide() ? 'Enable Field' : "Disable field" ?></a>
+                            </span>
+                        <?php elseif($flight_information_field->getIsRequired()): ?>
+                            <span class="hiddable hidden">
+                                <a href="" class="required-field" style="display: block;"><?php echo !$flight_information_field->getRequired() ? 'Required field' : "Not required field" ?></a>
+                            </span>
                         <?php else: ?>
-                        <span class="uneditable">Uneditable</span>
-                        <?php endif ?>
+                            <span class="uneditable">Uneditable</span>
+                        <?php endif; ?>
                     </div>
                 </li>
             <?php endforeach; ?>
@@ -162,6 +166,7 @@
 </div>
 
 <script type="text/javascript">
+
     jQuery("div.field-wrapper").hide();
     var new_risk_factor_count = 0;
     var new_response_option_count = 0;
@@ -170,7 +175,7 @@
 
 
     function flightInformationOver(){
-        jQuery('span.uneditable, span.hiddable', this).removeClass('hidden');
+        jQuery('span.uneditable, span.hiddable, span.required', this).removeClass('hidden');
         //jQuery('span.handler', this).removeClass('hidden');
     }
     function colorScale(lower, higher) {
@@ -186,7 +191,7 @@
     }
 
     function flightInformationOut(){
-        jQuery('span.uneditable, span.hiddable', this).addClass('hidden');
+        jQuery('span.uneditable, span.hiddable, span.required', this).addClass('hidden');
         //jQuery('span.handler', this).addClass('hidden');
     }
 
@@ -216,6 +221,34 @@
                 }
             }
         });
+    }
+
+    function requiredField(event){
+        event.preventDefault();
+        var link = jQuery(this);
+        var root_li = link.closest('li');
+        var field_id = jQuery("input[type='hidden']", root_li).val();
+        jQuery.ajax({
+            url: '<?php echo url_for('@required_field'); ?>',
+            data: {id: field_id},
+            dataType: 'json',
+            type: 'POST',
+            success: function(data){
+                if(data.result == "OK"){
+                    link.text(data.is_required ? 'Required field' : "Not required field");
+                    if (data.is_required) {
+                        root_li.removeClass('solid');
+                        root_li.addClass('hidden-field');
+                    } else {
+                        root_li.addClass('solid');
+                        root_li.removeClass('hidden-field');
+                    }
+                } else if(data.result == "login") {
+                    window.location.href = "<?php echo url_for('@signin') ?>";
+                }
+            }
+        });
+
     }
 
     function addNewRiskFactorField(num){
@@ -652,6 +685,11 @@
             jQuery("a.show-hide-field", flight_information_field).bind('click touchend', showHideField);
         } else {
             jQuery("a.show-hide-field", flight_information_field).bind('click', showHideField);
+        }
+        if(isiOS){
+            jQuery("a.required-field", flight_information_field).bind('click touchend', requiredField);
+        } else {
+            jQuery("a.required-field", flight_information_field).bind('click', requiredField);
         }
         jQuery("li.risk-factor-entity").bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
 

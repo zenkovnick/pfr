@@ -22,22 +22,26 @@
         {
             "information_name": "Plane(tail number):",
             "position": 1,
-            "hiddable": false
+            "hiddable": false,
+            "is_required": false
         },
         {
             "information_name": "Pilot in command (PIC):",
             "position": 2,
-            "hiddable": false
+            "hiddable": false,
+            "is_required": false
         },
         {
             "information_name": "Second in command (SIC):",
             "position": 3,
-            "hiddable": true
+            "hiddable": true,
+            "is_required": false
         },
         {
             "information_name": "Trip number",
             "position": 8,
-            "hiddable": false
+            "hiddable": false,
+            "is_required": true
         }
     ],
     "risk_factors" : [

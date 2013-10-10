@@ -362,6 +362,34 @@ class builderActions extends sfActions
         return sfView::NONE;
     }
 
+    public function executeRequiredField(sfWebRequest $request)
+    {
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $flight_information_field = Doctrine_Core::getTable('FlightInformationField')->find($request->getParameter('id'));
+        if($this->getUser()->isAuthenticated()){
+            if($flight_information_field->getIsRequired()){
+                $flight_information_field->setRequired(!$flight_information_field->getRequired());
+                $flight_information_field->save();
+                $account = $flight_information_field->getRiskBuilder()->getAccount();
+                if(!$account->getHasModifiedForm()){
+                    $account->setHasModifiedForm(true);
+                    if(!$account->getChiefPilot()->getId()){
+                        $account->setChiefPilot(null);
+                    }
+                    $account->save();
+                }
+
+                echo json_encode(array('result' => 'OK', 'is_required' => !$flight_information_field->getRequired()));
+            } else {
+                echo json_encode(array('result' => 'Failed'));
+            }
+        } else {
+            echo json_encode(array('result' => 'login'));
+        }
+        return sfView::NONE;
+    }
+
 
 
     public function executeSaveFlightInfoPosition(sfWebRequest $request)

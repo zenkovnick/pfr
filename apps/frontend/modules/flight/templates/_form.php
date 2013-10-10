@@ -44,7 +44,7 @@
                 <?php include_partial("flight/field", array('field' => $form["{$key}_custom"], 'class' => 'sic-input', 'label' => false)); ?>
             <?php endif ?>
         <?php elseif($key == 'trip_number'): ?>
-            <?php include_partial("flight/field", array('field' => $form[$key], 'class' => 'trip-number', 'label' => true)); ?>
+            <?php include_partial("flight/field", array('field' => $form[$key], 'label' => true)); ?>
         <?php elseif($key == 'plane'): ?>
             <?php include_partial("flight/plane_field", array('field' => $form[$key], 'label' => true, 'class' => 'plane')); ?>
         <?php endif ?>
