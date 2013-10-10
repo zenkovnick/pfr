@@ -98,7 +98,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account->getId())
             ->andWhere('ua.is_active = true')
-            ->andWhere('ua.is_pic = true')
+            ->andWhere('ua.role = "pic" OR ua.role = "both"')
             ->orderBy('ua.position ASC')
             ->execute();
         return $query;
@@ -111,7 +111,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account->getId())
             ->andWhere('ua.is_active = true')
-            ->andWhere('ua.is_sic = true')
+            ->andWhere('ua.role = "sic" OR ua.role = "both"')
             ->orderBy('ua.position ASC')
             ->execute();
 
