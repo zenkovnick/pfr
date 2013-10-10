@@ -1245,7 +1245,7 @@ p.help-message {
 
 .list-select {
     float: left;
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     position: relative;
 }
 .list-select .result,  .list-select .pilot, .list-select .plane {
