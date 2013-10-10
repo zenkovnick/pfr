@@ -91,7 +91,7 @@
         var email_error = jQuery('p.email_error', root_el);
         if(emails_el.val()) {
             emails_el.removeClass('invalid-field');
-            email_error.text('');
+            email_error.text('Sending...');
             jQuery.ajax({
                 url: '<?php echo url_for("@dashboard_email?account_id={$account->getId()}") ?>',
                 dataType: 'json',
@@ -99,8 +99,9 @@
                 type: 'post',
                 success: function(data) {
                     if(data.result == "OK"){
-                        emails_el.val('');
                         root_el.addClass('hidden');
+                        emails_el.val('');
+                        email_error.text('');
                     } else {
                         email_error.text(data.result);
                     }
