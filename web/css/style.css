@@ -1953,7 +1953,7 @@ html .ui-autocomplete {
 
 .dashboard-page .flights-list li {
     background: url(../images/dashboard_divider_horizontal.png) left bottom repeat-x;
-    height: 51px;
+    min-height: 51px;
     overflow: hidden;
     padding: 9px 0 0;
 }
@@ -1988,15 +1988,34 @@ html .ui-autocomplete {
     color: #333;
     text-decoration: none;
     display: inline-block;
+    line-height: 16px;
     margin: 6px 0 2px;
     font-weight: bold;
+}
+
+.dashboard-page .flights-list a.send-flight-email-link {
+    background: url(../images/send-report_icon.png) no-repeat left 3px;
+    background-size: auto 13px;
+    display: inline-block;
+    height: 16px;
+    overflow: hidden;
+    text-indent: -1000px;
+    width: 21px;
 }
 .dashboard-page .flights-list .info {
     color: #999;
     display: block;
     font-size: 11px;
+    margin-bottom: 5px;
 }
-
+.email-form input.emails {
+    background: #FFF;
+    border: 1px solid #BBB;
+    float: left;
+    margin: 0 10px 10px 0;
+    padding: 9px;
+    width: 50%;
+}
 .dashboard-page .chart-block {
     margin: 0 auto 20px;
     height: 230px;
