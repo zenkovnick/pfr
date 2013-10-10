@@ -14,8 +14,7 @@ abstract class BaseUserAccountFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'is_manager'   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'is_pic'       => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'is_sic'       => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'role'         => new sfWidgetFormChoice(array('choices' => array('' => '', 'pic' => 'pic', 'sic' => 'sic', 'both' => 'both'))),
       'position'     => new sfWidgetFormFilterInput(),
       'invite_token' => new sfWidgetFormFilterInput(),
       'is_active'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
@@ -25,8 +24,7 @@ abstract class BaseUserAccountFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'is_manager'   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'is_pic'       => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'is_sic'       => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'role'         => new sfValidatorChoice(array('required' => false, 'choices' => array('pic' => 'pic', 'sic' => 'sic', 'both' => 'both'))),
       'position'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'invite_token' => new sfValidatorPass(array('required' => false)),
       'is_active'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
@@ -54,8 +52,7 @@ abstract class BaseUserAccountFormFilter extends BaseFormFilterDoctrine
       'account_id'   => 'Number',
       'user_id'      => 'Number',
       'is_manager'   => 'Boolean',
-      'is_pic'       => 'Boolean',
-      'is_sic'       => 'Boolean',
+      'role'         => 'Enum',
       'position'     => 'Number',
       'invite_token' => 'Text',
       'is_active'    => 'Boolean',
