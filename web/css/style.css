@@ -1258,12 +1258,18 @@ p.help-message {
     line-height: 16px;
     margin-right: 5px;
 }
+.date-filter.result {
+    margin-right: 0;
+}
 .from-to-date {
     color: #0F76BB;
 }
 .from-date, .to-date {
     color: #0F76BB;
     position: relative;
+}
+.from-date {
+    margin-left: 5px;
 }
 .from-date input, .to-date input {
     bottom: 0;
