@@ -75,8 +75,15 @@ class FlightForm extends BaseFormDoctrine
               foreach($data_field as $fi){
                   $key = $this->getObject()->generateKeyByTitle($fi['name']);
                   if($key == "trip_number"){
-                      $this->setWidget($key, new sfWidgetFormInput());
-                      $this->setValidator($key, new sfValidatorString(array("required" => true)));
+                      $is_required = $this->getOption('account')->getRiskBuilders()->getFirst()->getFlightInformationFieldTripNumber();
+                      if($is_required){
+                          $class = 'required_trip_number';
+                      }else{
+                          $class = null;
+                      }
+
+                      $this->setWidget($key, new sfWidgetFormInput(array(), array('class' => $class.' '.'trip-number')));
+                      $this->setValidator($key, new sfValidatorString(array("required" => $is_required)));
                   } else if($key == "plane"){
                       $this->setWidget($key, new sfWidgetFormDoctrineChoiceCustom(array(
                           'model' => 'Plane',

@@ -37,18 +37,20 @@
                         <div class="list-select date-select">
                             <?php echo $filter['date']->render(array('class' => 'date-filter dashboard-select result')) ?>
                             <span class="from-to-date<?php echo $filter['date']->getValue() == 'date_range' ? '' : ' hidden'?>">
-                                <span class="from-date"><?php echo $filter['date_from']->getValue() ? $filter['date_from']->getValue() : 'From'?>
+                                <span class="from-date">
+                                    <span class="text"><?php echo $filter['date_from']->getValue() ? $filter['date_from']->getValue() : 'from'?></span>
                                     <?php echo $filter['date_from']->render(array('class' => 'from-date-input')) ?>
                                 </span>/
-                                <span class="to-date"><?php echo $filter['date_to']->getValue() ? $filter['date_to']->getValue() : 'To'?>
+                                <span class="to-date">
+                                    <span class="text"><?php echo $filter['date_to']->getValue() ? $filter['date_to']->getValue() : 'to'?></span>
                                     <?php echo $filter['date_to']->render(array('class' => 'to-date-input')) ?>
                                 </span>
 <!--                                <input name=flight_filter[date_from] type='text' class="from-date-input" style="opacity: 0; position: absolute" />-->
 <!--                                <input name=flight_filter[date_to] type='text' class="to-date-input" style="opacity: 0; position: absolute" />-->
                             </span>
-                        </div>
+                        </div>,
                     </span>
-                    <span>, sorted by</span>
+                    <span>&nbsp;sorted by</span>
                     <span class="no-margin">
                         <div class="list-select sort-select">
                             <?php echo $filter['sort']->render(array('class' => 'sort-filter dashboard-select result')) ?>
@@ -155,7 +157,7 @@
         jQuery(".from-date-input").datepicker({
             dateFormat: 'yy-mm-dd',
             onSelect: function(date) {
-                jQuery('span.from-date').text(date);
+                jQuery('span.from-date span.text').text(date);
                 applyFilter()
             }
         });
@@ -163,7 +165,7 @@
         jQuery(".to-date-input").datepicker({
             dateFormat: 'yy-mm-dd',
             onSelect: function(date) {
-                jQuery('span.to-date').text(date);
+                jQuery('span.to-date span.text').text(date);
                 applyFilter()
             }
         });

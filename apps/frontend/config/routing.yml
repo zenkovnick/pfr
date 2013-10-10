@@ -243,6 +243,10 @@ show_hide_field:
   url: /form/show-hide-field
   param: { module: builder, action: showHideField }
 
+required_field:
+  url: /form/required-field
+  param: { module: builder, action: requiredField }
+
 save_flight_info_position:
   url: /form/save-flight-info-position
   param: { module: builder, action: saveFlightInfoPosition }

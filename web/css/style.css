@@ -173,6 +173,7 @@ ul.header-link-block li.mobile-logout {
 }
 .header-user-information-wrapper {
     float:right;
+    margin-right: 20px;
     overflow: hidden;
 }
 .header-user-avatar {
@@ -672,7 +673,7 @@ ul.form-fields li input[type="text"] {
 .flight-information-list li .element-wrapper span.uneditable {
     display: none;
 }
-.flight-information-list li:hover .element-wrapper span.uneditable, .flight-information-list li:hover .element-wrapper span.hiddable a.show-hide-field {
+.flight-information-list li:hover .element-wrapper span.uneditable, .flight-information-list li:hover .element-wrapper span.hiddable a.show-hide-field, a.required-field {
     display: block;
 }
 
@@ -912,7 +913,20 @@ a.show-hide-field {
     text-decoration: none;
     z-index: 10;
 }
+a.required-field {
+    color: #0F76BB;
+    display: none;
+    float: right;
+    font-size: 12px;
+    position: relative;
+    text-decoration: none;
+    z-index: 10;
+}
 a.show-hide-field:hover {
+    text-decoration: underline;
+}
+
+a.required-field:hover {
     text-decoration: underline;
 }
 
@@ -1245,7 +1259,7 @@ p.help-message {
 
 .list-select {
     float: left;
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     position: relative;
 }
 .list-select .result,  .list-select .pilot, .list-select .plane {
@@ -1257,12 +1271,18 @@ p.help-message {
     line-height: 16px;
     margin-right: 5px;
 }
+.date-filter.result {
+    margin-right: 0;
+}
 .from-to-date {
     color: #0F76BB;
 }
 .from-date, .to-date {
     color: #0F76BB;
     position: relative;
+}
+.from-date {
+    margin-left: 5px;
 }
 .from-date input, .to-date input {
     bottom: 0;
@@ -1887,7 +1907,7 @@ html .ui-autocomplete {
     font-weight: bold;
 }
 .dashboard-page .filter-block .plus {
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
 }
 .dashboard-page .filter-block > span {
     display: block;
