@@ -2,14 +2,14 @@
     <ul class="flights-list">
         <?php foreach($pager->getResults() as $flight): ?>
             <?php if($flight->getRiskFactorType() == 'medium'): ?>
-                <li class="yellow">
+                <li class="yellow" id="<?php echo $flight->getId() ?>">
             <?php elseif($flight->getRiskFactorType() == 'high'): ?>
-                <li class="red">
+                <li class="red" id="<?php echo $flight->getId() ?>">
             <?php else: ?>
                 <?php if($flight->getRiskFactorSum() == 0): ?>
-                    <li class="grey">
+                    <li class="grey" id="<?php echo $flight->getId() ?>">
                 <?php else: ?>
-                    <li>
+                    <li id="<?php echo $flight->getId() ?>">
                 <?php endif ?>
             <?php endif ?>
                 <?php if(!is_null($flight->getRiskFactorSum())): ?>
@@ -27,11 +27,20 @@
                         <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?>
                     </a>
                 <?php endif ?>
-                
+                <?php if($flight->getStatus() == 'complete'): ?>
+                    <a class="send-flight-email-link" href="#">Send</a>
+                <?php endif ?>
                 <span class="info">
                     @<?php echo date('H:i \o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
                     <?php echo $flight->getTripNumber() ? " via Type {$flight->getPlane()->getTailNumber()}" : "" ?>
                 </span>
+                <?php if($flight->getStatus() == 'complete'): ?>
+                    <div class="email-form hidden">
+                        <input type="text" class="emails" placeholder="List emails separated with commas" />
+                        <button class="send-email btn btn-green">Send</button>
+                        <p class="email-error"></p>
+                    </div>
+                <?php endif ?>
             </li>
         <?php endforeach ?>
     </ul>
@@ -58,7 +67,51 @@
         }else {
             jQuery(window).bind("hashchange", onHashChange );
         }*/
+
+        jQuery('a.send-flight-email-link').bind('click', showEmailForm);
+        jQuery('.send-email').bind('click', sendEmail);
     });
+
+    function showEmailForm(event) {
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        var form = jQuery('.email-form', root_li);
+        if(form.hasClass('hidden')){
+            form.removeClass('hidden');
+        } else {
+            form.addClass('hidden');
+        }
+    }
+
+    function sendEmail(event){
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        var root_el = jQuery(this).closest('.email-form');
+        var emails_el = jQuery('.emails', root_el);
+        var email_error = jQuery('p.email_error', root_el);
+        if(emails_el.val()) {
+            emails_el.removeClass('invalid-field');
+            email_error.text('');
+            jQuery.ajax({
+                url: '<?php echo url_for("@dashboard_email?account_id={$account->getId()}") ?>',
+                dataType: 'json',
+                data: {emails: emails_el.val(), flight_id: root_li.prop('id')},
+                type: 'post',
+                success: function(data) {
+                    if(data.result == "OK"){
+                        emails_el.val('');
+                        root_el.addClass('hidden');
+                    } else {
+                        email_error.text(data.result);
+                    }
+                }
+
+            });
+        } else {
+            emails_el.addClass('invalid-field');
+        }
+
+    }
 
     function getPage(page){
         var data = page != 1 ? 'page=' + page : '';

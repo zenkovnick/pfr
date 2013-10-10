@@ -81,6 +81,13 @@ flight_filter:
   requirements:
     account_id: \d+
 
+dashboard_email:
+  url: /:account_id/dashboard-email
+  param: { module: dashboard, action: sendEmail }
+  requirements:
+    account_id: \d+
+
+
 dashboard:
   url: /:account_id/dashboard
   param: { module: dashboard, action: index }

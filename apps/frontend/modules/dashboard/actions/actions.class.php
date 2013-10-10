@@ -207,5 +207,50 @@ class dashboardActions extends sfActions {
             $this->redirect("@dashboard?account_id={$this->account_id}");
         }
     }
+
+    public function executeSendEmail(sfWebRequest $request){
+        $this->setLayout(false);
+        $emails = $request->getParameter('emails');
+
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('flight_id'));
+        if($this->flight->getStatus() == 'complete'){
+            $flight_data = json_decode($this->flight->getInfo(), true);
+            $this->high_risk_factors = array();
+            foreach($flight_data['risk_analysis'] as $key => $risk_factor){
+                $selected_response = $risk_factor['response_options'][$risk_factor['selected_response']];
+                if($selected_response['value'] > 0){
+                    $this->high_risk_factors[$key]['question'] = $risk_factor['question'];
+                    $this->high_risk_factors[$key]['answer'] = $selected_response['text'];
+                    $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
+                }
+            }
+            $this->mitigation_info = $this->flight->getMitigationInfo();
+            $email_subject = "Flight: {$this->flight->getAirportFrom()->getICAO()} to {$this->flight->getAirportTo()->getICAO()} in ".
+                "{$this->flight->getPlane()->getTailNumber()} (".ucfirst($this->mitigation_info['type'])." risk)";
+            $content  =                $this->getPartial('flight/assessment_email', array(
+                'flight' => $this->flight,
+                'high_risk_factors' => $this->high_risk_factors,
+                'mitigation_info' => $this->mitigation_info
+            ));
+
+            $result = EmailNotification::sendFromDashboard(
+                $emails,
+                $content,
+                $email_subject
+            );
+            if($result){
+                echo json_encode(array('result' => "OK"));
+            } else {
+                echo json_encode(array('result' => "Can't send email"));
+            }
+        } else {
+            echo json_encode(array('result' => "Flight is not complete"));
+        }
+
+
+
+        return sfView::NONE;
+    }
 }
 
