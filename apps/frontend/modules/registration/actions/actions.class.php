@@ -123,6 +123,7 @@ class registrationActions extends sfActions
 
     public function executeSelectAccount(sfWebRequest $request) {
         $this->accounts = AccountTable::getAllUserAccounts($this->getUser()->getGuardUser());
+        $this->getUser()->getAttributeHolder()->remove('flight_filter');
         if($this->accounts->count() == 0){
             $this->redirect('@create_account');
         }
