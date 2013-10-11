@@ -76,10 +76,14 @@
         event.preventDefault();
         var root_li = jQuery(this).closest('li');
         var form = jQuery('.email-form', root_li);
+        var emails_el = jQuery('.emails', form);
+        var email_error = jQuery('p.email-error', form);
         if(form.hasClass('hidden')){
             form.removeClass('hidden');
         } else {
             form.addClass('hidden');
+            emails_el.val('');
+            email_error.text('');
         }
     }
 
@@ -91,6 +95,7 @@
         var email_error = jQuery('p.email-error', root_el);
         if(emails_el.val()) {
             emails_el.removeClass('invalid-field');
+            email_error.removeClass('fail');
             email_error.text('Sending...');
             jQuery.ajax({
                 url: '<?php echo url_for("@dashboard_email?account_id={$account->getId()}") ?>',
@@ -99,10 +104,14 @@
                 type: 'post',
                 success: function(data) {
                     if(data.result == "OK"){
-                        root_el.addClass('hidden');
-                        emails_el.val('');
-                        email_error.text('');
+                        email_error.text('Report was sent successfully');
+                        setTimeout(function(){
+                            root_el.addClass('hidden');
+                            emails_el.val('');
+                            email_error.text('');
+                        }, 2000)
                     } else {
+                        email_error.addClass('fail');
                         email_error.text(data.result);
                     }
                 }
