@@ -9,7 +9,7 @@
     <!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
     <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
     <li style="display: none;" class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
-    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['time_str'], 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
+    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['time_str'], 'placeholder' => 'HH:MM', 'class'=>'time', 'label' => false)); ?></li>
     <li><span class="bottom-border"></span></li>
     <li><h2>Flight Information</h2></li>
     <?php foreach($data['flight_information'] as $fi): ?>
@@ -154,11 +154,11 @@
         jQuery("input.date").prop('readonly', true).datepicker({
             dateFormat: 'yy-mm-dd'
         });
-        jQuery("input.time").prop('readonly', true).timepicker({
-            hourGrid: 4,
-            minuteGrid: 10,
-            timeFormat: 'HH:mm'
-        });
+//        jQuery("input.time").prop('readonly', true).timepicker({
+//            hourGrid: 4,
+//            minuteGrid: 10,
+//            timeFormat: 'HH:mm'
+//        });
         jQuery("body").css({overflowY: "scroll"});
 
         jQuery( "#flight_airport_from_name" ).autocomplete({
