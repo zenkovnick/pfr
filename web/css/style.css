@@ -1994,8 +1994,8 @@ html .ui-autocomplete {
 }
 
 .dashboard-page .flights-list a.send-flight-email-link {
-    background: url(../images/send-report_icon.png) no-repeat left 3px;
-    background-size: auto 13px;
+    background: url(../images/send-report_icon.png) no-repeat left bottom;
+    background-size: auto 12px;
     display: inline-block;
     height: 16px;
     overflow: hidden;
