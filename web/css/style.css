@@ -1995,12 +1995,11 @@ html .ui-autocomplete {
 
 .dashboard-page .flights-list a.send-flight-email-link {
     background: url(../images/send-report_icon.png) no-repeat left center;
-    background-size: auto 12px;
     display: inline-block;
-    height: 16px;
+    height: 12px;
     overflow: hidden;
     text-indent: -1000px;
-    width: 21px;
+    width: 16px;
 }
 .dashboard-page .flights-list .info {
     color: #999;
