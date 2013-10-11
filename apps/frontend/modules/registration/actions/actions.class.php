@@ -145,8 +145,7 @@ class registrationActions extends sfActions
                         $user_account->setAccount($account);
                         $user_account->setUser($this->user);
                         $user_account->setIsManager(true);
-                        $user_account->setIsPic(true);
-                        $user_account->setIsSic(true);
+                        $user_account->setRole('both');
                         $user_account->setIsActive(true);
                         $user_account->save();
                     }
@@ -286,8 +285,8 @@ class registrationActions extends sfActions
     public function executeSignout($request)
     {
         $this->getUser()->signOut();
-        $this->getUser()->setAttribute('refer_page', null);
-
+        $this->getUser()->getAttributeHolder()->remove('refer_page');
+        $this->getUser()->getAttributeHolder()->remove('flight_filter');
         $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
 
         $this->redirect("@signin");
