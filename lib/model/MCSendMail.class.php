@@ -21,6 +21,7 @@ class MCSendMail {
         sfConfig::set('sf_escaping_strategy', false);
         $data = array();
         $data['key'] = $this->mandrill_api_key;
+        $this->message['headers'] = array('X-MC-PreserveRecipients' => false);
         $data['message'] = $this->message;
         $data['async'] = $async;
         $json_data = json_encode($data);
@@ -95,6 +96,13 @@ class MCSendMail {
             $this->message['attachments'][] = $attachment;
         }
 
+    }
+
+    public function setBCC($emails){
+        $this->message['bcc_address'] = $emails;
+    }
+    public function getBCC(){
+        return $this->message['bcc_address'];
     }
 
 
