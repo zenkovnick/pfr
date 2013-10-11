@@ -7,7 +7,7 @@
 <script src="/js/jquery.ui.timepicker.js"></script>
 
 
-<div class="dashboard-page">
+<div class="dashboard-page" id="<?php echo $account->getId(); ?>">
     
     <div class="caption-block">
         <a href="<?php echo url_for("@create_flight?account_id={$account->getId()}")?>" class="btn btn-blue">New Flight</a>

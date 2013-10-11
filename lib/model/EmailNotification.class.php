@@ -167,4 +167,20 @@ class EmailNotification {
             sfContext::getInstance()->getLogger()->err("User registered email not sended");
         }
     }
+
+
+    public static function sendFromDashboard($emails, $html, $subject){
+
+        MCSendMail::getInstance()->setMessageHTML($html);
+        MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_assessment_from_email', 'mitigators@preflightrisk.com'));
+        MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_assessment_from_name', 'Pre Flight Risk'));
+        MCSendMail::getInstance()->setMessageSubject($subject);
+        $emails = explode(',', $emails);
+        foreach($emails as $email){
+            if(trim($email)){
+                MCSendMail::getInstance()->setMessageAddTo(array('email'=>trim($email), 'name' => null));
+            }
+        }
+        return MCSendMail::getInstance()->sendMail(true);
+    }
 }

@@ -89,12 +89,13 @@ class FlightFormFilter extends BaseFlightFormFilter
                     $query->andWhere("f.created_at >= date_sub(CURDATE(), interval 1 year)");
                     break;
                 case 'date_range':
+                    $date_to = date('Y-m-d H:i:s', strtotime($this->defaults['date_to'] . ' + 1 day'));
                     if($this->defaults['date_from'] and $this->defaults['date_to']){
-                        $query->andWhere("f.created_at BETWEEN '{$this->defaults['date_from']}' AND '{$this->defaults['date_to']}'");
+                        $query->andWhere("f.created_at BETWEEN '{$this->defaults['date_from']}' AND '{$date_to}'");
                     } else if($this->defaults['date_from'] and !$this->defaults['date_to']){
                         $query->andWhere("f.created_at >= '{$this->defaults['date_from']}'");
                     } else if(!$this->defaults['date_from'] and $this->defaults['date_to']){
-                        $query->andWhere("f.created_at <= '{$this->defaults['date_to']}'");
+                        $query->andWhere("f.created_at <= '{$date_to}'");
                     }
                     break;
             }
