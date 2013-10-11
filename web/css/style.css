@@ -2018,12 +2018,12 @@ html .ui-autocomplete {
 }
 .email-form p.email-error {
     clear: both;
-    color: #FF0000;
+    color: #66CC00;
     display: block;
     padding: 0 0 9px;
 }
-.email-form p.email-error.success {
-    color: #66CC00;
+.email-form p.email-error.fail {
+    color: #FF0000;
 }
 
 .dashboard-page .chart-block {
