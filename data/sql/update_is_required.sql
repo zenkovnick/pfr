@@ -1,1 +1,1 @@
-Update flight_information_field set is_required = 1 whre information_name='Trip number';
+Update flight_information_field set is_required = 1 where information_name='Trip number';

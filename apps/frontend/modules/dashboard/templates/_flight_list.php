@@ -31,11 +31,12 @@
                     <a class="send-flight-email-link" href="#">Send</a>
                 <?php endif ?>
                 <span class="info">
-                    @<?php echo date('H:i \o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
+                    @<?php echo $flight->getTimeStr(); ?>
+                    <?php echo date('\o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
                     <?php echo $flight->getTripNumber() ? " via Type {$flight->getPlane()->getTailNumber()}" : "" ?>
                 </span>
                 <?php if($flight->getStatus() == 'complete'): ?>
-                    <div class="email-form hidden">
+                    <div class="email-form" style="display:none;">
                         <input type="text" class="emails" placeholder="List emails separated with commas" />
                         <button class="send-email btn btn-green">Send</button>
                         <p class="email-error"></p>
@@ -57,6 +58,7 @@
      * @var previousHash String for "hashchange" event emulation in IE8-
      */
     var previousHash = location.hash;
+    var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
 
     jQuery(document).ready(function() {
 
@@ -76,10 +78,14 @@
         event.preventDefault();
         var root_li = jQuery(this).closest('li');
         var form = jQuery('.email-form', root_li);
-        if(form.hasClass('hidden')){
-            form.removeClass('hidden');
+        var emails_el = jQuery('.emails', form);
+        var email_error = jQuery('p.email-error', form);
+        if(form.hasClass('open')){
+            form.removeClass('open').hide(500);
+            emails_el.val('');
+            email_error.text('');
         } else {
-            form.addClass('hidden');
+            form.addClass('open').show(500);
         }
     }
 
@@ -90,24 +96,43 @@
         var emails_el = jQuery('.emails', root_el);
         var email_error = jQuery('p.email-error', root_el);
         if(emails_el.val()) {
-            emails_el.removeClass('invalid-field');
-            email_error.text('Sending...');
-            jQuery.ajax({
-                url: '<?php echo url_for("@dashboard_email?account_id={$account->getId()}") ?>',
-                dataType: 'json',
-                data: {emails: emails_el.val(), flight_id: root_li.prop('id')},
-                type: 'post',
-                success: function(data) {
-                    if(data.result == "OK"){
-                        root_el.addClass('hidden');
-                        emails_el.val('');
-                        email_error.text('');
-                    } else {
-                        email_error.text(data.result);
-                    }
-                }
 
-            });
+            var emails = emails_el.val().split(',');
+            var wrong_emails = [];
+            for(var idx=0; idx<emails.length; idx++) {
+                if(!jQuery.trim(emails[idx]).match(email_pattern)){
+                    wrong_emails.push(emails[idx]);
+                }
+            }
+            if(wrong_emails.length == 0){
+                emails_el.removeClass('invalid-field');
+                email_error.removeClass('fail');
+                email_error.text('Sending...');
+                jQuery.ajax({
+                    url: '<?php echo url_for("@dashboard_email?account_id={$account->getId()}") ?>',
+                    dataType: 'json',
+                    data: {emails: emails_el.val(), flight_id: root_li.prop('id')},
+                    type: 'post',
+                    success: function(data) {
+                        if(data.result == "OK"){
+                            email_error.text('Report was sent successfully');
+                            setTimeout(function(){
+                                root_el.removeClass('open').hide(500);
+                                emails_el.val('');
+                                email_error.text('');
+                            }, 2000)
+                        } else {
+                            email_error.addClass('fail');
+                            email_error.text(data.result);
+                        }
+                    }
+
+                });
+            } else {
+                var error_text = wrong_emails.join(', ') + " incorrect";
+                email_error.addClass('fail');
+                email_error.text(error_text);
+            }
         } else {
             emails_el.addClass('invalid-field');
         }
@@ -158,4 +183,5 @@
             onHashChange()
         }
     }
+
 </script>

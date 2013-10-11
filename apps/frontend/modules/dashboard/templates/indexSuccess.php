@@ -203,7 +203,13 @@
             if(id == 'date_range'){
                 jQuery('span.from-to-date').removeClass('hidden');
             } else {
-                jQuery('span.from-to-date').addClass('hidden');
+                if(root_el.hasClass('date-select')){
+                    jQuery('span.from-to-date').addClass('hidden');
+                    jQuery('.from-date .text').text('from');
+                    jQuery('.to-date .text').text('to');
+                    jQuery('.from-date-input').val('');
+                    jQuery('.to-date-input').val('');
+                }
             }
             applyFilter();
         });
