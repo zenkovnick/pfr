@@ -145,8 +145,7 @@ class registrationActions extends sfActions
                         $user_account->setAccount($account);
                         $user_account->setUser($this->user);
                         $user_account->setIsManager(true);
-                        $user_account->setIsPic(true);
-                        $user_account->setIsSic(true);
+                        $user_account->setRole('both');
                         $user_account->setIsActive(true);
                         $user_account->save();
                     }
