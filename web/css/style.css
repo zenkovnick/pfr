@@ -1994,7 +1994,7 @@ html .ui-autocomplete {
 }
 
 .dashboard-page .flights-list a.send-flight-email-link {
-    background: url(../images/send-report_icon.png) no-repeat left bottom;
+    background: url(../images/send-report_icon.png) no-repeat left center;
     background-size: auto 12px;
     display: inline-block;
     height: 16px;
@@ -2015,6 +2015,17 @@ html .ui-autocomplete {
     margin: 0 10px 10px 0;
     padding: 9px;
     width: 50%;
+}
+.email-form p.email-error {
+    clear: both;
+    display: block;
+    padding: 0 0 9px;
+}
+.email-form p.email-error.success {
+    color: #66CC00;
+}
+.email-form p.email-error.fail {
+    color: #FF0000;
 }
 .dashboard-page .chart-block {
     margin: 0 auto 20px;
