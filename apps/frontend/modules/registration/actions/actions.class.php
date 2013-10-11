@@ -285,8 +285,8 @@ class registrationActions extends sfActions
     public function executeSignout($request)
     {
         $this->getUser()->signOut();
-        $this->getUser()->setAttribute('refer_page', null);
-
+        $this->getUser()->getAttributeHolder()->remove('refer_page');
+        $this->getUser()->getAttributeHolder()->remove('flight_filter');
         $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
 
         $this->redirect("@signin");
