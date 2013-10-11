@@ -31,7 +31,8 @@
                     <a class="send-flight-email-link" href="#">Send</a>
                 <?php endif ?>
                 <span class="info">
-                    @<?php echo date('H:i \o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
+                    @<?php echo $flight->getTimeStr(); ?>
+                    <?php echo date('\o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
                     <?php echo $flight->getTripNumber() ? " via Type {$flight->getPlane()->getTailNumber()}" : "" ?>
                 </span>
                 <?php if($flight->getStatus() == 'complete'): ?>
