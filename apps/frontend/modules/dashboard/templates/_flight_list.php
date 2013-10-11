@@ -35,7 +35,7 @@
                     <?php echo $flight->getTripNumber() ? " via Type {$flight->getPlane()->getTailNumber()}" : "" ?>
                 </span>
                 <?php if($flight->getStatus() == 'complete'): ?>
-                    <div class="email-form hidden">
+                    <div class="email-form" style="display:none;">
                         <input type="text" class="emails" placeholder="List emails separated with commas" />
                         <button class="send-email btn btn-green">Send</button>
                         <p class="email-error"></p>
@@ -79,12 +79,12 @@
         var form = jQuery('.email-form', root_li);
         var emails_el = jQuery('.emails', form);
         var email_error = jQuery('p.email-error', form);
-        if(form.hasClass('hidden')){
-            form.removeClass('hidden');
-        } else {
-            form.addClass('hidden');
+        if(form.hasClass('open')){
+            form.removeClass('open').hide(500);
             emails_el.val('');
             email_error.text('');
+        } else {
+            form.addClass('open').show(500);
         }
     }
 
@@ -116,7 +116,7 @@
                         if(data.result == "OK"){
                             email_error.text('Report was sent successfully');
                             setTimeout(function(){
-                                root_el.addClass('hidden');
+                                root_el.removeClass('open').hide(500);
                                 emails_el.val('');
                                 email_error.text('');
                             }, 2000)
