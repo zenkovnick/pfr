@@ -88,7 +88,7 @@
         var root_li = jQuery(this).closest('li');
         var root_el = jQuery(this).closest('.email-form');
         var emails_el = jQuery('.emails', root_el);
-        var email_error = jQuery('p.email_error', root_el);
+        var email_error = jQuery('p.email-error', root_el);
         if(emails_el.val()) {
             emails_el.removeClass('invalid-field');
             email_error.text('Sending...');
