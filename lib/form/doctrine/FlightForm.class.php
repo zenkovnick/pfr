@@ -24,6 +24,8 @@ class FlightForm extends BaseFormDoctrine
       $this->setValidator('pic_id', new sfValidatorInteger(array('required' => false)));
       $this->setWidget('sic_id', new sfWidgetFormInputHidden());
       $this->setValidator('sic_id', new sfValidatorInteger(array('required' => false)));
+      $this->setWidget('time_str', new sfWidgetFormInput());
+      $this->setValidator('time_str', new sfValidatorString(array('required' => false)));
       if($this->isNew()){
           $data_fields = json_decode(Flight::generateFromDB($this->getOption('account')), true);
       } else {

@@ -8,7 +8,8 @@
     <!--    <li class="small-field">--><?php //include_partial("flight/field", array('field' => $form['airport_from'], 'class' => 'airport-from', 'placeholder' => 'From Airport ID', 'label' => false)); ?><!--</li>-->
     <!--    <li class="small-field right">--><?php //include_partial("flight/field", array('field' => $form['airport_to'], 'class' => 'airport-to', 'placeholder' => 'To Airport ID', 'label' => false)); ?><!--</li>-->
     <li class="small-field"><?php include_partial("flight/date_field", array('field' => $form['departure_date'], 'class' => 'date', 'placeholder' => 'Date', 'label' => false)); ?></li>
-    <li class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'class' => 'time', 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
+    <li style="display: none;" class="small-field right"><?php include_partial("flight/time_field", array('field' => $form['departure_time'], 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
+    <li class="small-field right"><?php include_partial("flight/field", array('field' => $form['time_str'], 'placeholder' => 'HH:MM', 'label' => false)); ?></li>
     <li><span class="bottom-border"></span></li>
     <li><h2>Flight Information</h2></li>
     <?php foreach($data['flight_information'] as $fi): ?>

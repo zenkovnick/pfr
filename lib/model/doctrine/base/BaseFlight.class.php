@@ -20,6 +20,7 @@
  * @property text $info
  * @property boolean $drafted
  * @property enum $status
+ * @property varchar $time_str
  * @property Account $Account
  * @property Plane $Plane
  * @property sfGuardUser $PIC
@@ -42,6 +43,7 @@
  * @method text        getInfo()             Returns the current record's "info" value
  * @method boolean     getDrafted()          Returns the current record's "drafted" value
  * @method enum        getStatus()           Returns the current record's "status" value
+ * @method varchar     getTimeStr()          Returns the current record's "time_str" value
  * @method Account     getAccount()          Returns the current record's "Account" value
  * @method Plane       getPlane()            Returns the current record's "Plane" value
  * @method sfGuardUser getPIC()              Returns the current record's "PIC" value
@@ -63,6 +65,7 @@
  * @method Flight      setInfo()             Sets the current record's "info" value
  * @method Flight      setDrafted()          Sets the current record's "drafted" value
  * @method Flight      setStatus()           Sets the current record's "status" value
+ * @method Flight      setTimeStr()          Sets the current record's "time_str" value
  * @method Flight      setAccount()          Sets the current record's "Account" value
  * @method Flight      setPlane()            Sets the current record's "Plane" value
  * @method Flight      setPIC()              Sets the current record's "PIC" value
@@ -142,6 +145,10 @@ abstract class BaseFlight extends sfDoctrineRecord
              ),
              'default' => 'new',
              'length' => '',
+             ));
+        $this->hasColumn('time_str', 'varchar', 20, array(
+             'type' => 'varchar',
+             'length' => 20,
              ));
     }
 
