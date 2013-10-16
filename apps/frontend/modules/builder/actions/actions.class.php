@@ -259,18 +259,21 @@ class builderActions extends sfActions
                 $risk_builder->setMitigationLowMessage($request->getPostParameter('message'));
                 $risk_builder->setMitigationLowInstructions($request->getPostParameter('instructions'));
                 $risk_builder->setMitigationLowNotify($request->getPostParameter('notify'));
+                $risk_builder->setMitigationLowEmail($request->getPostParameter('email'));
                 break;
             case 'medium':
                 $risk_builder->setMitigationMediumMessage($request->getPostParameter('message'));
                 $risk_builder->setMitigationMediumInstructions($request->getPostParameter('instructions'));
                 $risk_builder->setMitigationMediumNotify($request->getPostParameter('notify'));
                 $risk_builder->setMitigationMediumRequireDetails($request->getPostParameter('require'));
+                $risk_builder->setMitigationMediumEmail($request->getPostParameter('email'));
                 break;
             case 'high':
                 $risk_builder->setMitigationHighMessage($request->getPostParameter('message'));
                 $risk_builder->setMitigationHighInstructions($request->getPostParameter('instructions'));
                 $risk_builder->setMitigationHighNotify($request->getPostParameter('notify'));
                 $risk_builder->setMitigationHighPreventFlight($request->getPostParameter('prevent'));
+                $risk_builder->setMitigationHighEmail($request->getPostParameter('email'));
                 break;
         }
         $risk_builder->save();

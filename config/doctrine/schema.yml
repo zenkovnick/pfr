@@ -9,18 +9,21 @@ RiskBuilder:
     mitigation_low_min:            {type: integer, default: 0 }
     mitigation_low_max:            {type: integer, default: 14 }
     mitigation_low_notify:         {type: boolean, default: true}
+    mitigation_low_email:          {type: string(255)}
     mitigation_medium_message:     {type: string(255)}
     mitigation_medium_instructions: {type: string(255)}
     mitigation_medium_min:         {type: integer, default: 15 }
     mitigation_medium_max:         {type: integer, default: 24 }
     mitigation_medium_notify:      {type: boolean, default: true}
     mitigation_medium_require_details:      {type: boolean, default: true}
+    mitigation_medium_email:       {type: string(255)}
     mitigation_high_message:       {type: string(255)}
     mitigation_high_instructions:   {type: string(255)}
     mitigation_high_min:           {type: integer, default: 25 }
     mitigation_high_max:           {type: integer, default: 50 }
     mitigation_high_notify:        {type: boolean, default: true}
     mitigation_high_prevent_flight:        {type: boolean, default: true}
+    mitigation_high_email:          {type: string(255)}
 
   relations:
     RiskFactorFields:

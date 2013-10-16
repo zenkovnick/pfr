@@ -102,6 +102,24 @@ class EmailNotification {
         return MCSendMail::getInstance()->sendMail(true);
     }
 
+    public static function sendEmailsAssessment($mail_to, $chief_pilot = null, $html, $subject){
+
+        MCSendMail::getInstance()->setMessageHTML($html);
+        MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_assessment_from_email', 'mitigators@preflightrisk.com'));
+        MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_assessment_from_name', 'Pre Flight Risk'));
+        MCSendMail::getInstance()->setMessageSubject($subject);
+        if(!is_null($chief_pilot)){
+            MCSendMail::getInstance()->setMessageAddTo(array('email'=>$chief_pilot->getUsername(), 'name' => $chief_pilot->getFirstName() ? $chief_pilot->getFirstName() : null));
+        }
+        $emails = explode(',', $mail_to);
+        foreach($emails as $email){
+            if(trim($email)){
+                MCSendMail::getInstance()->setMessageAddTo(array('email'=>trim($email), 'name' => null));
+            }
+        }
+        return MCSendMail::getInstance()->sendMail(true);
+    }
+
     public static function sendInvitesSMTP($initiator, $guest, $url, $account){
         sfContext::getInstance()->getConfiguration()->loadHelpers('Partial');
 

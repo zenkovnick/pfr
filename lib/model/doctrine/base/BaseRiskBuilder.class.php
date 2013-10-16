@@ -13,18 +13,21 @@
  * @property integer $mitigation_low_min
  * @property integer $mitigation_low_max
  * @property boolean $mitigation_low_notify
+ * @property string $mitigation_low_email
  * @property string $mitigation_medium_message
  * @property string $mitigation_medium_instructions
  * @property integer $mitigation_medium_min
  * @property integer $mitigation_medium_max
  * @property boolean $mitigation_medium_notify
  * @property boolean $mitigation_medium_require_details
+ * @property string $mitigation_medium_email
  * @property string $mitigation_high_message
  * @property string $mitigation_high_instructions
  * @property integer $mitigation_high_min
  * @property integer $mitigation_high_max
  * @property boolean $mitigation_high_notify
  * @property boolean $mitigation_high_prevent_flight
+ * @property string $mitigation_high_email
  * @property Doctrine_Collection $RiskFactorFields
  * @property Doctrine_Collection $FlightInformationFields
  * @property Account $Account
@@ -38,18 +41,21 @@
  * @method integer             getMitigationLowMin()                  Returns the current record's "mitigation_low_min" value
  * @method integer             getMitigationLowMax()                  Returns the current record's "mitigation_low_max" value
  * @method boolean             getMitigationLowNotify()               Returns the current record's "mitigation_low_notify" value
+ * @method string              getMitigationLowEmail()                Returns the current record's "mitigation_low_email" value
  * @method string              getMitigationMediumMessage()           Returns the current record's "mitigation_medium_message" value
  * @method string              getMitigationMediumInstructions()      Returns the current record's "mitigation_medium_instructions" value
  * @method integer             getMitigationMediumMin()               Returns the current record's "mitigation_medium_min" value
  * @method integer             getMitigationMediumMax()               Returns the current record's "mitigation_medium_max" value
  * @method boolean             getMitigationMediumNotify()            Returns the current record's "mitigation_medium_notify" value
  * @method boolean             getMitigationMediumRequireDetails()    Returns the current record's "mitigation_medium_require_details" value
+ * @method string              getMitigationMediumEmail()             Returns the current record's "mitigation_medium_email" value
  * @method string              getMitigationHighMessage()             Returns the current record's "mitigation_high_message" value
  * @method string              getMitigationHighInstructions()        Returns the current record's "mitigation_high_instructions" value
  * @method integer             getMitigationHighMin()                 Returns the current record's "mitigation_high_min" value
  * @method integer             getMitigationHighMax()                 Returns the current record's "mitigation_high_max" value
  * @method boolean             getMitigationHighNotify()              Returns the current record's "mitigation_high_notify" value
  * @method boolean             getMitigationHighPreventFlight()       Returns the current record's "mitigation_high_prevent_flight" value
+ * @method string              getMitigationHighEmail()               Returns the current record's "mitigation_high_email" value
  * @method Doctrine_Collection getRiskFactorFields()                  Returns the current record's "RiskFactorFields" collection
  * @method Doctrine_Collection getFlightInformationFields()           Returns the current record's "FlightInformationFields" collection
  * @method Account             getAccount()                           Returns the current record's "Account" value
@@ -62,18 +68,21 @@
  * @method RiskBuilder         setMitigationLowMin()                  Sets the current record's "mitigation_low_min" value
  * @method RiskBuilder         setMitigationLowMax()                  Sets the current record's "mitigation_low_max" value
  * @method RiskBuilder         setMitigationLowNotify()               Sets the current record's "mitigation_low_notify" value
+ * @method RiskBuilder         setMitigationLowEmail()                Sets the current record's "mitigation_low_email" value
  * @method RiskBuilder         setMitigationMediumMessage()           Sets the current record's "mitigation_medium_message" value
  * @method RiskBuilder         setMitigationMediumInstructions()      Sets the current record's "mitigation_medium_instructions" value
  * @method RiskBuilder         setMitigationMediumMin()               Sets the current record's "mitigation_medium_min" value
  * @method RiskBuilder         setMitigationMediumMax()               Sets the current record's "mitigation_medium_max" value
  * @method RiskBuilder         setMitigationMediumNotify()            Sets the current record's "mitigation_medium_notify" value
  * @method RiskBuilder         setMitigationMediumRequireDetails()    Sets the current record's "mitigation_medium_require_details" value
+ * @method RiskBuilder         setMitigationMediumEmail()             Sets the current record's "mitigation_medium_email" value
  * @method RiskBuilder         setMitigationHighMessage()             Sets the current record's "mitigation_high_message" value
  * @method RiskBuilder         setMitigationHighInstructions()        Sets the current record's "mitigation_high_instructions" value
  * @method RiskBuilder         setMitigationHighMin()                 Sets the current record's "mitigation_high_min" value
  * @method RiskBuilder         setMitigationHighMax()                 Sets the current record's "mitigation_high_max" value
  * @method RiskBuilder         setMitigationHighNotify()              Sets the current record's "mitigation_high_notify" value
  * @method RiskBuilder         setMitigationHighPreventFlight()       Sets the current record's "mitigation_high_prevent_flight" value
+ * @method RiskBuilder         setMitigationHighEmail()               Sets the current record's "mitigation_high_email" value
  * @method RiskBuilder         setRiskFactorFields()                  Sets the current record's "RiskFactorFields" collection
  * @method RiskBuilder         setFlightInformationFields()           Sets the current record's "FlightInformationFields" collection
  * @method RiskBuilder         setAccount()                           Sets the current record's "Account" value
@@ -120,6 +129,10 @@ abstract class BaseRiskBuilder extends sfDoctrineRecord
              'type' => 'boolean',
              'default' => true,
              ));
+        $this->hasColumn('mitigation_low_email', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
         $this->hasColumn('mitigation_medium_message', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
@@ -144,6 +157,10 @@ abstract class BaseRiskBuilder extends sfDoctrineRecord
              'type' => 'boolean',
              'default' => true,
              ));
+        $this->hasColumn('mitigation_medium_email', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
         $this->hasColumn('mitigation_high_message', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
@@ -167,6 +184,10 @@ abstract class BaseRiskBuilder extends sfDoctrineRecord
         $this->hasColumn('mitigation_high_prevent_flight', 'boolean', null, array(
              'type' => 'boolean',
              'default' => true,
+             ));
+        $this->hasColumn('mitigation_high_email', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
              ));
     }
 

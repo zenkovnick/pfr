@@ -189,5 +189,4 @@ class Flight extends BaseFlight
         }
         return $data;
     }
-
 }

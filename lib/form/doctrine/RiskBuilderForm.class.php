@@ -16,7 +16,8 @@ class RiskBuilderForm extends BaseRiskBuilderForm
           'form_name', 'form_instructions',
           'mitigation_low_message', 'mitigation_low_instructions', 'mitigation_low_notify',
           'mitigation_medium_message', 'mitigation_medium_instructions', 'mitigation_medium_notify', 'mitigation_medium_require_details',
-          'mitigation_high_message', 'mitigation_high_instructions', 'mitigation_high_notify', 'mitigation_high_prevent_flight'
+          'mitigation_high_message', 'mitigation_high_instructions', 'mitigation_high_notify', 'mitigation_high_prevent_flight',
+          'mitigation_high_email', 'mitigation_low_email', 'mitigation_medium_email'
       ));
 
       $this->validatorSchema['form_name'] = new sfValidatorString(array('required' => true));

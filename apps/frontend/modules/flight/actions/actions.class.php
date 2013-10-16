@@ -109,6 +109,33 @@ class flightActions extends sfActions {
                 $email_subject
             );
 
+            $this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->findOneBy('account_id', $request->getParameter('account_id'));
+            $this->emails = null;
+            if($this->risk_builder->getMitigationLowNotify())
+            {
+                $this->emails = $this->risk_builder->getMitigationLowEmail();
+            }elseif($this->risk_builder->getMitigationMediumNotify())
+            {
+                $this->emails = $this->risk_builder->getMitigationMediumEmail();
+            }elseif($this->risk_builder->getMitigationHighNotify())
+            {
+                $this->emails = $this->risk_builder->getMitigationHighEmail();
+            }
+
+            if($this->emails){
+                EmailNotification::sendEmailsAssessment(
+                    $this->emails,
+                    null,
+                    $this->getPartial('flight/assessment_email', array(
+                        'flight' => $this->flight,
+                        'high_risk_factors' => $this->high_risk_factors,
+                        'mitigation_info' => $this->mitigation_info
+                    )),
+                    $email_subject
+                );
+            }
+
+
         } else {
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
         }
@@ -189,5 +216,56 @@ class flightActions extends sfActions {
         $airports = Flight::csvToArray(sfConfig::get('app_airports_url'), ',', $header);
         echo AirportTable::getInstance()->pushAirports($airports) ? "Success" : "Failed";
         return sfView::NONE;
+    }
+
+    public function executeAssessmentEmails(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
+
+        $this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->findOneBy('account_id', $request->getParameter('account_id'));
+        $this->emails = null;
+        if($this->risk_builder->getMitigationLowNotify())
+        {
+            $this->emails = $this->risk_builder->getMitigationLowEmail();
+        }elseif($this->risk_builder->getMitigationMediumNotify())
+        {
+            $this->emails = $this->risk_builder->getMitigationMediumEmail();
+        }elseif($this->risk_builder->getMitigationHighNotify())
+        {
+            $this->emails = $this->risk_builder->getMitigationHighEmail();
+        }
+        print_r($this->emails);
+        if($this->emails){
+            $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
+            if($this->flight->getStatus() == 'assess'){
+                $flight_data = json_decode($this->flight->getInfo(), true);
+                $this->high_risk_factors = array();
+                foreach($flight_data['risk_analysis'] as $key => $risk_factor){
+                    $selected_response = $risk_factor['response_options'][$risk_factor['selected_response']];
+                    if($selected_response['value'] > 0){
+                        $this->high_risk_factors[$key]['question'] = $risk_factor['question'];
+                        $this->high_risk_factors[$key]['answer'] = $selected_response['text'];
+                        $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
+                    }
+                }
+                $this->mitigation_info = $this->flight->getMitigationInfo();
+                $email_subject = "New Flight: {$this->flight->getAirportFrom()->getICAO()} to {$this->flight->getAirportTo()->getICAO()} in ".
+                    "{$this->flight->getPlane()->getTailNumber()} (".ucfirst($this->mitigation_info['type'])." risk)";
+                $result = EmailNotification::sendEmailsAssessment(
+                   $this->emails,
+                    null,
+                    $this->getPartial('flight/assessment_email', array(
+                        'flight' => $this->flight,
+                        'high_risk_factors' => $this->high_risk_factors,
+                        'mitigation_info' => $this->mitigation_info
+                    )),
+                    $email_subject
+                );
+            }
+            return sfView::NONE;
+        }
+
     }
 }

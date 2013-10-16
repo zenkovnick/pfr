@@ -100,6 +100,7 @@
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
                         <input name="risk_builder[low_mitigation_val]" id="low_mitigation_val" type="hidden" value="<?php echo $form['mitigation_low_notify']->getValue() ? 1:0; ?>" />
 
@@ -117,6 +118,7 @@
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
@@ -135,6 +137,7 @@
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
@@ -166,6 +169,60 @@
 </div>
 
 <script type="text/javascript">
+
+    jQuery(document).ready(function(){
+        jQuery("#risk_builder_mitigation_low_email, #risk_builder_mitigation_medium_email, #risk_builder_mitigation_high_email").hide();
+        if(jQuery('#risk_builder_mitigation_low_notify').is(":checked")){
+            jQuery("#risk_builder_mitigation_low_email").show();
+        }
+        else{
+            if(jQuery('#risk_builder_mitigation_medium_notify').is(":checked") &&
+                !jQuery('#risk_builder_mitigation_medium_notify').is(":disabled")){
+                jQuery("#risk_builder_mitigation_medium_email").show();
+            }
+            else
+            {
+                if(jQuery('#risk_builder_mitigation_high_notify').is(":checked") &&
+                    !jQuery('#risk_builder_mitigation_high_notify').is(":disabled")){
+                    jQuery("#risk_builder_mitigation_high_email").show();
+                }
+            }
+        }
+
+        jQuery("#risk_builder_mitigation_low_notify, #risk_builder_mitigation_medium_notify, #risk_builder_mitigation_high_notify").bind('click',function(){
+            jQuery("#risk_builder_mitigation_low_email, #risk_builder_mitigation_medium_email, #risk_builder_mitigation_high_email").hide();
+            if(jQuery('#risk_builder_mitigation_low_notify').is(":checked")){
+                jQuery("#risk_builder_mitigation_low_email").show();
+            }
+            else
+            {
+                jQuery("#risk_builder_mitigation_low_email").hide();
+                if(jQuery('#risk_builder_mitigation_medium_notify').is(":checked")){
+                    jQuery("#risk_builder_mitigation_medium_email").show();
+                }
+                else
+                {
+                    jQuery("#risk_builder_mitigation_medium_email").hide();
+                    if(jQuery('#risk_builder_mitigation_high_notify').is(":checked")){
+                        jQuery("#risk_builder_mitigation_high_email").show();
+                    }
+                    else
+                    {
+                        jQuery("#risk_builder_mitigation_high_email").hide();
+                    }
+                }
+            }
+        })
+
+//        jQuery("#risk_builder_mitigation_medium_notify").bind('click',function(){
+//
+//        })
+//
+//        jQuery("#risk_builder_mitigation_high_notify").bind('click',function(){
+//
+//        })
+
+    });
 
     jQuery("div.field-wrapper").hide();
     var new_risk_factor_count = 0;
@@ -635,6 +692,23 @@
     };
 
 
+    function IsEmail(emails) {
+        if(emails.length > 1)
+        {
+            var ems = emails.split(',');
+
+            for(var i in ems){
+                email = jQuery.trim(ems[i]);
+                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if(!regex.test(email)){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     /* DOCUMENT READY */
 
     jQuery(document).ready(function() {
@@ -763,6 +837,7 @@
             var root_li = jQuery(this).closest('li');
             root_li.find('div.field-wrapper').hide(hide_delay);
             var type = root_li.attr('id');
+
             jQuery.ajax({
                 url: '<?php echo url_for("@cancel_mitigation_section") ?>',
                 type: 'POST',
@@ -820,6 +895,20 @@
             var root_li = jQuery(this).closest('li');
             var type = root_li.attr('id');
             var data = null;
+
+            if(!IsEmail((root_li.find(".mitigation-email")).val()))
+            {
+                root_li.find(".mitigation-email").addClass('invalid-field');
+                return false;
+            }
+            else
+            {
+                root_li.find(".mitigation-email").removeClass('invalid-field');
+            }
+
+
+
+
             switch(type){
                 case 'low':
                     data = {
@@ -827,7 +916,9 @@
                         type: type,
                         message: jQuery("#risk_builder_mitigation_low_message").val(),
                         instructions: jQuery("#risk_builder_mitigation_low_instructions").val(),
-                        notify: jQuery("#risk_builder_mitigation_low_notify").is(':checked') ? 1 : 0
+                        notify: jQuery("#risk_builder_mitigation_low_notify").is(':checked') ? 1 : 0,
+                        email: (jQuery("#risk_builder_mitigation_low_notify").is(':checked')) ? jQuery("#risk_builder_mitigation_low_email").val() : null
+
                     };
                     break;
                 case 'medium':
@@ -837,7 +928,8 @@
                         message: jQuery("#risk_builder_mitigation_medium_message").val(),
                         instructions: jQuery("#risk_builder_mitigation_medium_instructions").val(),
                         notify: jQuery("#risk_builder_mitigation_medium_notify").is(':checked') ? 1 : 0,
-                        require: jQuery("#risk_builder_mitigation_medium_require_details").is(':checked') ? 1 : 0
+                        require: jQuery("#risk_builder_mitigation_medium_require_details").is(':checked') ? 1 : 0,
+                        email: (jQuery("#risk_builder_mitigation_medium_notify").is(':checked') && !jQuery("#risk_builder_mitigation_medium_notify").is(':disabled') ) ? jQuery("#risk_builder_mitigation_medium_email").val() : null
                     };
                     break;
                 case 'high':
@@ -847,7 +939,8 @@
                         message: jQuery("#risk_builder_mitigation_high_message").val(),
                         instructions: jQuery("#risk_builder_mitigation_high_instructions").val(),
                         notify: jQuery("#risk_builder_mitigation_high_notify").is(':checked') ? 1 : 0,
-                        prevent: jQuery("#risk_builder_mitigation_high_prevent_flight").is(':checked') ? 1 : 0
+                        prevent: jQuery("#risk_builder_mitigation_high_prevent_flight").is(':checked') ? 1 : 0,
+                        email: (jQuery("#risk_builder_mitigation_high_notify").is(':checked') && !jQuery("#risk_builder_mitigation_high_notify").is(':disabled')) ? jQuery("#risk_builder_mitigation_high_email").val() : null
                     };
                     break;
 
