@@ -95,6 +95,39 @@ class flightActions extends sfActions {
                     $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
                 }
             }
+            $this->mitigation_info = $this->flight->getMitigationInfo();            
+        } else {
+            $this->redirect("@dashboard?account_id={$this->account->getId()}");
+        }
+    }
+
+    public function executeComplete(sfWebRequest $request){
+        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
+        $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
+        $this->mitigation_info = $this->flight->getMitigationInfo();
+        if($this->flight->getStatus() == 'assess' && !($this->mitigation_info['type'] == 'high' && $this->mitigation_info['prevent_flight'])){
+            $this->flight->setRiskFactorType($this->mitigation_info['type']);
+            $this->flight->setStatus('complete');
+            $this->flight->setDrafted(false);
+            $this->flight->save();
+            if(!$this->account->getHasFlight()){
+                $this->account->setHasFlight(true);
+                $this->account->save();
+            }
+             //* send email to owner*//
+            $flight_data = json_decode($this->flight->getInfo(), true);
+            $this->high_risk_factors = array();
+            foreach($flight_data['risk_analysis'] as $key => $risk_factor){
+                $selected_response = $risk_factor['response_options'][$risk_factor['selected_response']];
+                if($selected_response['value'] > 0){
+                    $this->high_risk_factors[$key]['question'] = $risk_factor['question'];
+                    $this->high_risk_factors[$key]['answer'] = $selected_response['text'];
+                    $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
+                }
+            }
             $this->mitigation_info = $this->flight->getMitigationInfo();
             $email_subject = "New Flight: {$this->flight->getAirportFrom()->getICAO()} to {$this->flight->getAirportTo()->getICAO()} in ".
                 "{$this->flight->getPlane()->getTailNumber()} (".ucfirst($this->mitigation_info['type'])." risk)";
@@ -108,7 +141,7 @@ class flightActions extends sfActions {
                 )),
                 $email_subject
             );
-
+            //* Send emails to more peaple *//
             $this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->findOneBy('account_id', $request->getParameter('account_id'));
             $this->emails = null;
             if($this->risk_builder->getMitigationLowNotify())
@@ -136,27 +169,6 @@ class flightActions extends sfActions {
             }
 
 
-        } else {
-            $this->redirect("@dashboard?account_id={$this->account->getId()}");
-        }
-    }
-
-    public function executeComplete(sfWebRequest $request){
-        $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
-        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
-            $this->redirect("@select_account");
-        }
-        $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
-        $this->mitigation_info = $this->flight->getMitigationInfo();
-        if($this->flight->getStatus() == 'assess' && !($this->mitigation_info['type'] == 'high' && $this->mitigation_info['prevent_flight'])){
-            $this->flight->setRiskFactorType($this->mitigation_info['type']);
-            $this->flight->setStatus('complete');
-            $this->flight->setDrafted(false);
-            $this->flight->save();
-            if(!$this->account->getHasFlight()){
-                $this->account->setHasFlight(true);
-                $this->account->save();
-            }
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
         } else {
             $this->redirect("@edit_flight?account_id={$this->account->getId()}&id={$this->flight->getId()}");
@@ -236,7 +248,7 @@ class flightActions extends sfActions {
         {
             $this->emails = $this->risk_builder->getMitigationHighEmail();
         }
-        print_r($this->emails);
+
         if($this->emails){
             $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
             if($this->flight->getStatus() == 'assess'){
