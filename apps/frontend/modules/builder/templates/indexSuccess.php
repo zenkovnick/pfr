@@ -24,7 +24,7 @@
             <?php foreach($flight_information as $flight_information_field):?>
                 <li class="<?php echo $flight_information_field->getIsHide() ? 'hidden-field' : "solid" ?>">
                     <span class="handler">Handler</span>
-                    <div class="element-wrapper">
+                    <div class="element-wrapper" style="<?php if($flight_information_field->getIsRequired()){echo 'border: 1px solid #CCCCCC !important;';}?>">
                         <input type="hidden" value="<?php echo $flight_information_field->getId(); ?>" ?>
                         <span><?php echo $flight_information_field->getInformationName() ?></span>
                         <?php if($flight_information_field->getHiddable()): ?>
