@@ -37,6 +37,7 @@
             var airport_to_id = jQuery('#flight_airport_to_id');
             var plane = jQuery('#flight_plane', this);
             var plane_label = jQuery('.plane-select .plane', this);
+            var anchor = null;
 
             if(airport_from.val() == '' || airport_from.val().length > 4 || airport_from.val().length < 4){
                 valid = false;
@@ -93,6 +94,7 @@
                 jQuery('.invalid-select', this).removeClass('invalid-select');
                 return true;
             } else {
+                window.location.href = "#"+anchor;
                 event.preventDefault();
             }
         }

@@ -95,7 +95,7 @@ class flightActions extends sfActions {
                     $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
                 }
             }
-            $this->mitigation_info = $this->flight->getMitigationInfo();            
+            $this->mitigation_info = $this->flight->getMitigationInfo();
         } else {
             $this->redirect("@dashboard?account_id={$this->account->getId()}");
         }
