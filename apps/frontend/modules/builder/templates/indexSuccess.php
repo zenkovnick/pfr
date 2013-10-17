@@ -849,6 +849,7 @@
                             jQuery("#risk_builder_mitigation_low_message").val(data.mitigation_low_message);
                             jQuery("#risk_builder_mitigation_low_instructions").val(data.mitigation_low_instructions);
                             jQuery("#risk_builder_mitigation_low_notify").prop('checked', data.mitigation_low_notify);
+                            jQuery("#risk_builder_mitigation_low_email").val(data.mitigation_low_email);
                             disableLowNotifyCheckbox(jQuery("#risk_builder_mitigation_low_notify"));
                             break;
                         case 'medium':
@@ -856,6 +857,7 @@
                             jQuery("#risk_builder_mitigation_medium_instructions").val(data.mitigation_medium_instructions);
                             jQuery("#risk_builder_mitigation_medium_notify").prop('checked', data.mitigation_medium_notify);
                             jQuery("#risk_builder_mitigation_medium_require_details").prop('checked', data.mitigation_medium_require_details);
+                            jQuery("#risk_builder_mitigation_medium_email").val(data.mitigation_medium_email);
                             disableMediumNotifyCheckbox(jQuery("#risk_builder_mitigation_medium_notify"));
                             break;
                         case 'high':
@@ -863,6 +865,7 @@
                             jQuery("#risk_builder_mitigation_high_instructions").val(data.mitigation_high_message);
                             jQuery("#risk_builder_mitigation_high_notify").prop('checked', data.mitigation_high_notify);
                             jQuery("#risk_builder_mitigation_high_prevent_flight").prop('checked', data.mitigation_high_prevent_flight);
+                            jQuery("#risk_builder_mitigation_high_email").val(data.mitigation_high_email);
                             disableHighNotifyCheckbox(jQuery("#risk_builder_mitigation_high_notify"));
                             break;
 
