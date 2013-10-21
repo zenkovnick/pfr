@@ -100,10 +100,9 @@
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_low_notify'])); ?></div>
                         <input name="risk_builder[low_mitigation_val]" id="low_mitigation_val" type="hidden" value="<?php echo $form['mitigation_low_notify']->getValue() ? 1:0; ?>" />
-
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_low_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
@@ -118,11 +117,11 @@
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_medium_require_details'])); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_medium_notify'], 'disabled'=>$risk_builder->getMitigationLowNotify())); ?></div>
                         <input name="risk_builder[medium_mitigation_val]" id="medium_mitigation_val" type="hidden" value="<?php echo $form['mitigation_medium_notify']->getValue() ? 1:0; ?>" />
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_medium_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
@@ -137,11 +136,11 @@
                     <div class="field-wrapper">
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_message'], 'class' => 'mitigation-message', 'label' => false)); ?></div>
                         <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_instructions'], 'class' => 'mitigation-instructions', 'label' => false)); ?></div>
-                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field", array('field' => $form['mitigation_high_prevent_flight'])); ?></div>
                         <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['mitigation_high_notify'], 'disabled'=> ($risk_builder->getMitigationLowNotify() || $risk_builder->getMitigationMediumNotify()))); ?></div>
                         <input name="risk_builder[high_mitigation_val]" id="high_mitigation_val" type="hidden" value="<?php echo $form['mitigation_high_notify']->getValue() ? 1:0; ?>" />
+                        <div><?php include_partial("builder/field", array('field' => $form['mitigation_high_email'], 'class' => 'mitigation-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
