@@ -108,16 +108,17 @@ class EmailNotification {
         MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_assessment_from_email', 'mitigators@preflightrisk.com'));
         MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_assessment_from_name', 'Pre Flight Risk'));
         MCSendMail::getInstance()->setMessageSubject($subject);
-        if(!is_null($chief_pilot)){
-            MCSendMail::getInstance()->setMessageAddTo(array('email'=>$chief_pilot->getUsername(), 'name' => $chief_pilot->getFirstName() ? $chief_pilot->getFirstName() : null));
-        }
+        MCSendMail::getInstance()->clearMessageTo();
         $emails = explode(',', $mail_to);
         foreach($emails as $email){
             if(trim($email)){
                 MCSendMail::getInstance()->setMessageAddTo(array('email'=>trim($email), 'name' => null));
+                MCSendMail::getInstance()->sendMail(true);
+                MCSendMail::getInstance()->clearMessageTo();
             }
         }
-        return MCSendMail::getInstance()->sendMail(true);
+
+        return true;
     }
 
     public static function sendInvitesSMTP($initiator, $guest, $url, $account){

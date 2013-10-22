@@ -86,6 +86,10 @@ class MCSendMail {
     public function getMessageToList(){
         return $this->message['to'];
     }
+    public function clearMessageTo()
+    {
+        return $this->message['to'] = array();
+    }
     public function addAttachment($type, $name, $file){
         if(file_exists($file)){
             $attachment = array();
