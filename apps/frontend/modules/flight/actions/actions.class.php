@@ -147,25 +147,51 @@ class flightActions extends sfActions {
             if($this->risk_builder->getMitigationLowNotify())
             {
                 $this->emails = $this->risk_builder->getMitigationLowEmail();
-            }elseif($this->risk_builder->getMitigationMediumNotify())
+
+                if($this->emails){
+                    EmailNotification::sendEmailsAssessment(
+                        $this->emails,
+                        null,
+                        $this->getPartial('flight/assessment_email', array(
+                            'flight' => $this->flight,
+                            'high_risk_factors' => $this->high_risk_factors,
+                            'mitigation_info' => $this->mitigation_info
+                        )),
+                        $email_subject
+                    );
+                }
+            }elseif($this->risk_builder->getMitigationMediumNotify() &&  $this->flight->getRiskFactorSum() >= $this->risk_builder->getMitigationMediumMin())
             {
                 $this->emails = $this->risk_builder->getMitigationMediumEmail();
-            }elseif($this->risk_builder->getMitigationHighNotify())
+
+                if($this->emails){
+                    EmailNotification::sendEmailsAssessment(
+                        $this->emails,
+                        null,
+                        $this->getPartial('flight/assessment_email', array(
+                            'flight' => $this->flight,
+                            'high_risk_factors' => $this->high_risk_factors,
+                            'mitigation_info' => $this->mitigation_info
+                        )),
+                        $email_subject
+                    );
+                }
+            }elseif($this->risk_builder->getMitigationHighNotify()  && $this->flight->getRiskFactorSum() >= $this->risk_builder->getMitigationHighMin())
             {
                 $this->emails = $this->risk_builder->getMitigationHighEmail();
-            }
 
-            if($this->emails){
-                EmailNotification::sendEmailsAssessment(
-                    $this->emails,
-                    null,
-                    $this->getPartial('flight/assessment_email', array(
-                        'flight' => $this->flight,
-                        'high_risk_factors' => $this->high_risk_factors,
-                        'mitigation_info' => $this->mitigation_info
-                    )),
-                    $email_subject
-                );
+                if($this->emails){
+                    EmailNotification::sendEmailsAssessment(
+                        $this->emails,
+                        null,
+                        $this->getPartial('flight/assessment_email', array(
+                            'flight' => $this->flight,
+                            'high_risk_factors' => $this->high_risk_factors,
+                            'mitigation_info' => $this->mitigation_info
+                        )),
+                        $email_subject
+                    );
+                }
             }
 
 
