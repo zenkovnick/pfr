@@ -48,17 +48,29 @@
         <h2>Risk Analysis</h2>
         <ul class="risk-factor-list editable-list" id="risk-factor-container">
             <?php foreach($risk_factors as $risk_factor): ?>
-                <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
-                    <span class="handler">Handler</span>
-                    <input type="hidden" value="<?php echo $risk_factor->getId() ?>" />
-                    <div class="entry-header">
-                        <span class="question truncate"><?php echo $risk_factor->getQuestion() ?></span>
-                        <a href="" class="edit-risk-factor-link">Edit</a>
-                        <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
-                    </div>
-                </li>
+                <?php if($risk_factor->getSectionTitle()): ?>
+                    <li class="risk-factor-entity li_section_title" id="rf_<?php echo $risk_factor->getId() ?>">
+                        <input type="hidden" value="<?php echo $risk_factor->getId() ?>" class="question_id" />
+                        <div class="entry-header" style="background: #FFF !important;">
+                            <span class="question truncate"><?php echo $risk_factor->getQuestion() ?></span>
+                            <a href="" class="delete-section" style="display: none;">Delete</a>
+                        </div>
+                        <input style="display: none;" type="text" class="section_title_value" value="<?php echo $risk_factor->getQuestion(); ?>" />
+                    </li>
+                <?php else: ?>
+                    <li class="risk-factor-entity" id="rf_<?php echo $risk_factor->getId() ?>">
+                        <span class="handler">Handler</span>
+                        <input type="hidden" value="<?php echo $risk_factor->getId() ?>" class="question_id" />
+                        <div class="entry-header">
+                            <span class="question truncate"><?php echo $risk_factor->getQuestion() ?></span>
+                            <a href="" class="edit-risk-factor-link">Edit</a>
+                            <a href="" class="cancel-risk-factor-link hidden">Cancel</a>
+                        </div>
+                    </li>
+                <?php endif; ?>
             <?php endforeach; ?>
         </ul>
+        <a href="" id="add-section-factor-link">+ Add Section</a>
         <a href="" id="add-risk-factor-link">+ Add Risk Factor</a>
     </div>
     <div>
@@ -171,6 +183,13 @@
 <script type="text/javascript">
 
     jQuery(document).ready(function(){
+        /*when click on section title*/
+        SectionTitleClick();
+        SectionTitleFocusOut();
+        SectionTitleShowDelete();
+        SectionTitleOnClickDelete();
+
+
         jQuery("#risk_builder_mitigation_low_email, #risk_builder_mitigation_medium_email, #risk_builder_mitigation_high_email").hide();
         if(jQuery('#risk_builder_mitigation_low_notify').is(":checked")){
             jQuery("#risk_builder_mitigation_low_email").show();
@@ -308,6 +327,8 @@
 
     }
 
+
+
     function addNewRiskFactorField(num){
         return jQuery.ajax({
             type: 'POST',
@@ -388,6 +409,7 @@
             jQuery("div.entry-header", root_li).removeClass('hidden');
             jQuery("span.handler", root_li).removeClass('hidden');
             jQuery("input[type='hidden']", root_li).val(data.risk_id);
+            jQuery("input[type='hidden']", root_li).addClass('question_id');
             jQuery("a.edit-risk-factor-link", root_li).bind('click', editRiskFactor);
             jQuery("a.cancel-risk-factor-link", root_li).bind('click', cancelRiskFactorEdit);
             jQuery('a.delete_risk_factor', root_li).bind('click', deleteRiskFactor);
@@ -779,6 +801,10 @@
 
         jQuery('#add-risk-factor-link').click(function(event){
             event.preventDefault();
+            if(jQuery("#risk-factor-container li.li_section_title").length == 0)
+            {
+                jQuery("#add-section-factor-link").click();
+            }
             var el = jQuery(addNewRiskFactorField(new_risk_factor_count));
             jQuery('a.add-new-response-link', el).bind('click', addNewResponseOptionForm);
             jQuery('a.cancel-risk-factor-add', el).bind('click', cancelRiskFactorAdd);
@@ -802,6 +828,15 @@
             new_response_option_count++;
 
             el.show(show_delay);
+        });
+
+        jQuery("#add-section-factor-link").click(function(event){
+            var response_el = jQuery(addNewSectionTitle('Section Title'));
+
+            jQuery("#risk-factor-container").append(response_el);
+            //response_el.bind('click', SectionTitleClick).bind('focusout', SectionTitleFocusOut);
+
+            return false;
         });
 
 
@@ -1047,5 +1082,95 @@
         jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
 
     });
+
+    function addNewSectionTitle(title)
+    {
+        return jQuery.ajax({
+            type: 'POST',
+            data: {title: title, form_id: jQuery("form.main-form").attr("id") },
+            url: '<?php echo url_for("@add_new_section_title_field"); ?>',
+            async: false
+        }).responseText;
+    }
+
+
+    function SectionTitleClick()
+    {
+        jQuery("#risk-factor-container").on('click', '.li_section_title .entry-header', function(){
+            var obj = jQuery(this).parent("li");
+            obj.children("div").hide();
+            obj.children(".section_title_value").show();
+            obj.children(".section_title_value").focus();
+
+        });
+    }
+
+    function SectionTitleFocusOut()
+    {
+        jQuery("#risk-factor-container").on('focusout', '.section_title_value', function(){
+            var obj = jQuery(this).parent("li");
+            jQuery.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    title: obj.children(".section_title_value").val(),
+                    section_title_id: obj.children(".question_id").val()
+                },
+                url: '<?php echo url_for("@edit_section_title"); ?>',
+                success: function(data){
+                    if (data.result == 'OK')
+                    {
+                        obj.find('span.question').html(data.title);
+                    }
+                    obj.children(".section_title_value").hide();
+                    obj.children("div").show();
+                }
+            });
+            return false;
+        });
+    }
+
+    function SectionTitleShowDelete()
+    {
+        jQuery("#risk-factor-container")
+            .on('mouseenter', '.li_section_title .entry-header', function(){
+                jQuery(this).children(".delete-section").show();
+            })
+            .on('mouseleave', '.li_section_title .entry-header', function(){
+                jQuery(this).children(".delete-section").hide();
+            });
+    }
+
+    function SectionTitleOnClickDelete()
+    {
+        jQuery("#risk-factor-container").on('click', '.li_section_title .entry-header .delete-section', function(){
+            var obj_id = new Array();
+            var obj = jQuery(this).closest('li.li_section_title');
+            obj_id.push(obj.children("input.question_id").val());
+            var objs = obj.nextUntil("li.li_section_title");
+
+            jQuery.each(objs, function(index, value){
+                obj_id.push(jQuery(this).children("input.question_id").val());
+            });
+
+            var json_obj = JSON.stringify(obj_id);
+            jQuery.ajax({
+                url: '<?php echo url_for("@delete_section") ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {ids: json_obj},
+                success: function(data) {
+                    if (data.result == 'OK')
+                    {
+                        obj.remove();
+                        objs.remove();
+                    }
+                }
+            })
+            return false;
+        });
+    }
+
+
 
 </script>

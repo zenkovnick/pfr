@@ -46,9 +46,16 @@
     ],
     "risk_factors" : [
         {
-            "question" : "Captain with less than 200 hours in type",
+            "question" : "Pilot Qualifications and Experience",
             "instructions" : "",
             "position" : 1,
+            "section_title": true
+        },
+        {
+            "question" : "Captain with less than 200 hours in type",
+            "instructions" : "",
+            "position" : 2,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -65,7 +72,8 @@
         {
             "question" : "First Officer with less than 200 hours in type",
             "instructions" : "",
-            "position" : 2,
+            "position" : 3,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -82,7 +90,8 @@
         {
             "question" : "Single Pilot Flight",
             "instructions" : "",
-            "position" : 3,
+            "position" : 4,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -99,7 +108,8 @@
         {
             "question" : "Captain with less than 100 hours last 90 days",
             "instructions" : "",
-            "position" : 4,
+            "position" : 5,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -116,7 +126,8 @@
         {
             "question" : "First Officer with less than 100 hours last 90 days",
             "instructions" : "",
-            "position" : 5,
+            "position" : 6,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -133,7 +144,8 @@
         {
             "question" : "Duty day greater than 12 hours",
             "instructions" : "",
-            "position" : 6,
+            "position" : 7,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -150,7 +162,8 @@
         {
             "question" : "Flight time (Greater than 8 hours in the duty day)",
             "instructions" : "",
-            "position" : 7,
+            "position" : 8,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -167,7 +180,8 @@
         {
             "question" : "Crew Rest (Less than 10 hours prior to the duty day)",
             "instructions" : "",
-            "position" : 8,
+            "position" : 9,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -182,9 +196,16 @@
             ]
         },
         {
+            "question" : "Operating Environment",
+            "instructions" : "",
+            "position" : 10,
+            "section_title": true
+        },
+        {
             "question" : "VOR/GPS/LOC/ADF (Best approach available w/o vertical guidance)",
             "instructions" : "",
-            "position" : 9,
+            "position" : 11,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -201,7 +222,8 @@
         {
             "question" : "Circling approach (best available approach)",
             "instructions" : "",
-            "position" : 10,
+            "position" : 12,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -218,7 +240,8 @@
         {
             "question" : "No published approaches",
             "instructions" : "",
-            "position" : 11,
+            "position" : 13,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -235,7 +258,8 @@
         {
             "question" : "Mountainous airport",
             "instructions" : "",
-            "position" : 12,
+            "position" : 14,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -252,7 +276,8 @@
         {
             "question" : "Control tower not operational at ETA or ETD",
             "instructions" : "",
-            "position" : 13,
+            "position" : 15,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -269,7 +294,8 @@
         {
             "question" : "Uncontrolled airport",
             "instructions" : "",
-            "position" : 14,
+            "position" : 16,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -286,7 +312,8 @@
         {
             "question" : "Alternate airport not selected",
             "instructions" : "",
-            "position" : 15,
+            "position" : 17,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -303,7 +330,8 @@
         {
             "question" : "Elevation of primary airport greater than 5000 ft. MSL)",
             "instructions" : "",
-            "position" : 16,
+            "position" : 18,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -320,7 +348,8 @@
         {
             "question" : "Wet runway",
             "instructions" : "",
-            "position" : 17,
+            "position" : 19,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -337,7 +366,8 @@
         {
             "question" : "Contaminated runway",
             "instructions" : "",
-            "position" : 18,
+            "position" : 20,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -354,7 +384,8 @@
         {
             "question" : "Winter operation",
             "instructions" : "",
-            "position" : 19,
+            "position" : 21,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -371,7 +402,8 @@
         {
             "question" : "Twilight operation",
             "instructions" : "",
-            "position" : 20,
+            "position" : 22,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -388,7 +420,8 @@
         {
             "question" : "Night operation",
             "instructions" : "",
-            "position" : 21,
+            "position" : 23,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -405,7 +438,8 @@
         {
             "question" : "Stopping distance greater than 80% of available runway",
             "instructions" : "",
-            "position" : 22,
+            "position" : 24,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -422,7 +456,8 @@
         {
             "question" : "Repositioning flight (no passengers or cargo)",
             "instructions" : "",
-            "position" : 23,
+            "position" : 25,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -439,7 +474,8 @@
         {
             "question" : "Pop up trip (Less than 4 hours crew notice)",
             "instructions" : "",
-            "position" : 24,
+            "position" : 26,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -456,7 +492,8 @@
         {
             "question" : "International operation",
             "instructions" : "",
-            "position" : 25,
+            "position" : 27,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -473,7 +510,8 @@
         {
             "question" : "No weather reporting at destination",
             "instructions" : "",
-            "position" : 26,
+            "position" : 28,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -490,7 +528,8 @@
         {
             "question" : "Thunderstorms at departure and/or destination",
             "instructions" : "",
-            "position" : 27,
+            "position" : 29,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -507,7 +546,8 @@
         {
             "question" : "Severe turbulence",
             "instructions" : "",
-            "position" : 28,
+            "position" : 30,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -524,7 +564,8 @@
         {
             "question" : "Ceiling & visibility at destination less than 500 ft. / 2 sm",
             "instructions" : "",
-            "position" : 29,
+            "position" : 31,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -541,7 +582,8 @@
         {
             "question" : "Heavy rain at departure and/or destination",
             "instructions" : "",
-            "position" : 30,
+            "position" : 32,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -558,7 +600,8 @@
         {
             "question" : "Frozen precipitation at departure and/or destination",
             "instructions" : "",
-            "position" : 31,
+            "position" : 33,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -575,7 +618,8 @@
         {
             "question" : "Icing (moderate-severe)",
             "instructions" : "",
-            "position" : 32,
+            "position" : 34,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -592,7 +636,8 @@
         {
             "question" : "Surface winds greater than 30 knots",
             "instructions" : "",
-            "position" : 33,
+            "position" : 35,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -609,7 +654,8 @@
         {
             "question" : "Crosswinds greater than 15 knots",
             "instructions" : "",
-            "position" : 34,
+            "position" : 36,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -626,7 +672,8 @@
         {
             "question" : "Runway braking action less than good",
             "instructions" : "",
-            "position" : 35,
+            "position" : 37,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -641,9 +688,16 @@
             ]
         },
         {
+            "question" : "Equipment",
+            "instructions" : "",
+            "position" : 38,
+            "section_title" : true
+        },
+        {
             "question" : "Special Flight Permit Operation (ferry permit)",
             "instructions" : "",
-            "position" : 36,
+            "position" : 39,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -660,7 +714,8 @@
         {
             "question" : "MEL / CDL Items (items related to safety of flight)",
             "instructions" : "",
-            "position" : 37,
+            "position" : 40,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -677,7 +732,8 @@
         {
             "question" : "Special flight limitations based on AFM equipment limitations",
             "instructions" : "",
-            "position" : 38,
+            "position" : 41,
+            "section_title": false,
             "response_options" : [
                 {
                     "response_text": "No",

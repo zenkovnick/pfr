@@ -53,6 +53,7 @@ RiskFactorField:
     question:         {type: string(255)}
     help_message:    {type: string(255)}
     position:         {type: integer}
+    section_title:    {type: boolean, default: false}
   relations:
     RiskBuilder:
       class: RiskBuilder

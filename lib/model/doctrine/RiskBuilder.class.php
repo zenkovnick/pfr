@@ -57,6 +57,7 @@ class RiskBuilder extends BaseRiskBuilder
                 $rf->setQuestion($risk_factor_data['question']);
                 $rf->setHelpMessage($risk_factor_data['instructions']);
                 $rf->setPosition($risk_factor_data['position']);
+                $rf->setSectionTitle($risk_factor_data['section_title']);
                 $response_option_collection = new Doctrine_Collection('ResponseOptionField');
                 foreach($risk_factor_data['response_options'] as $response_option_data){
                     $ro = new ResponseOptionField();

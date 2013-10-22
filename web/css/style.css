@@ -742,7 +742,7 @@ ul.form-fields li input[type="text"] {
     padding: 11px 9px;
 }
 
-.risk-factor-list > li a.edit-risk-factor-link, .risk-factor-list > li a.cancel-risk-factor-link, .risk-factor-list > li.new a.cancel-risk-factor-add {
+.risk-factor-list > li a.edit-risk-factor-link, .risk-factor-list > li a.cancel-risk-factor-link, .risk-factor-list > li.new a.cancel-risk-factor-add, .risk-factor-entity a.delete-section  {
     color: #0F76BB;
     float: right;
     font-size: 12px;
@@ -789,6 +789,15 @@ a#add-risk-factor-link {
     padding: 25px 10px;
     text-decoration: none;
 }
+
+a#add-section-factor-link {
+    color: #1076CE;
+    display: block;
+    margin: 0 20px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
 a#add-risk-factor-link:hover{
     text-decoration: underline;
 }

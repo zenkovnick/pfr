@@ -33,4 +33,13 @@ class RiskFactorFieldTable extends Doctrine_Table
         $max_position = $query->getMaxPosition();
         return $max_position ? $max_position : 0;
     }
+
+    public static function deleteSection($arr)
+    {
+        $query = Doctrine_Query::create()
+            ->delete('RiskFactorField')
+            ->whereIn('id', $arr)
+            ->execute();
+        return $query;
+    }
 }
