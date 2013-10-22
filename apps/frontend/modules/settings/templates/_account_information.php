@@ -32,10 +32,10 @@
                     <?php include_partial('settings/field', array('field' => $form['chief_pilot_id'], 'class' => 'chief-pilot select-pilot', 'placeholder' => 'Title')) ?>
                 </li>
             <?php endif ?>
-            <li>
-                <span class="hint">You are currently paying 5$ per month</span>
-                <a class="change-billing-link" href="">Change your billing.</a>
-            </li>
+<!--            <li>-->
+<!--                <span class="hint">You are currently paying 5$ per month</span>-->
+<!--                <a class="change-billing-link" href="">Change your billing.</a>-->
+<!--            </li>-->
             <li class="buttons-block">
                 <a href="<?php echo url_for("@delete_account?account_id={$account->getId()}"); ?>" class="delete-account-information remove-link">Delete Account</a>
                 <button type="submit" class="btn btn-green">Save</button>
