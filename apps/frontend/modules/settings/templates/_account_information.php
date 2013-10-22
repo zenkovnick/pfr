@@ -3,9 +3,9 @@
         <?php echo($form->renderHiddenFields()) ?>
         <?php echo($form->renderGlobalErrors()) ?>
         <ul>
-            <li class="photo-block">
-                <?php include_partial('settings/account_avatar_field', array('field' => $form['photo_widget'], 'account' => $account)) ?>
-            </li>
+<!--            <li class="photo-block">-->
+<!--                --><?php //include_partial('settings/account_avatar_field', array('field' => $form['photo_widget'], 'account' => $account)) ?>
+<!--            </li>-->
             
             <li class="input-block name-block">
                 <?php include_partial('settings/field', array('field' => $form['title'], 'class' => 'name account-title', 'placeholder' => 'Title')) ?>

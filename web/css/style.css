@@ -1721,7 +1721,6 @@ html .ui-autocomplete {
 }
 
 .editable-list .name-block .name {
-    width: 400px !important;
     overflow: hidden;
 }
 
