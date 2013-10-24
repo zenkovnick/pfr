@@ -1108,6 +1108,17 @@
     {
         jQuery("#risk-factor-container").on('focusout', '.section_title_value', function(){
             var obj = jQuery(this).parent("li");
+            var rec = obj.children(".section_title_value").val();
+            if((jQuery.trim(rec)).length <= 0)
+            {
+                jQuery(this).addClass("invalid-field");
+                jQuery(this).focus();
+                return false;
+            }
+            else
+            {
+                jQuery(this).removeClass("invalid-field");
+            }
             jQuery.ajax({
                 type: 'POST',
                 dataType: 'json',
