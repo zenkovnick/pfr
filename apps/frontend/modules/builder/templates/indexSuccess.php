@@ -417,7 +417,7 @@
             jQuery('a.add-note', root_li).bind('click', addRiskFactorNote);
             jQuery('a.remove-note', root_li).bind('click', removeRiskFactorNote);
 
-            /*root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);*/
+            root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
             root_li.attr('id', 'rf_'+data.risk_id);
             root_li.removeClass('new').addClass('risk-factor-entity');
 
