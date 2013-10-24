@@ -752,6 +752,18 @@ ul.form-fields li input[type="text"] {
     position: relative;
     z-index: 10;
 }
+a.delete-section {
+    color: red !important;
+}
+
+.li_section_title span.question {
+    font-weight:bold !important;
+}
+input.section_title_value {
+    font-weight:bold !important;
+    height: 38px !important;
+}
+
 .risk-factor-list .risk-factor-entity a.edit-risk-factor-link, .risk-factor-list .risk-factor-entity.editing a.edit-risk-factor-link, .risk-factor-list .risk-factor-entity.editing:hover a.edit-risk-factor-link {
     display: none;
 }
