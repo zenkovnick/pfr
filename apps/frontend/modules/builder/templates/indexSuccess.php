@@ -179,6 +179,10 @@
     </div>
 </div>
 
+<div id="dialog" title="Confirmation Required">
+    Warning!  All the sub-questions will be removed completely as well.
+</div>
+
 <script type="text/javascript">
 
     jQuery(document).ready(function(){
@@ -1164,23 +1168,38 @@
             });
 
             var json_obj = JSON.stringify(obj_id);
-            jQuery.ajax({
-                url: '<?php echo url_for("@delete_section") ?>',
-                type: 'POST',
-                dataType: 'json',
-                data: {ids: json_obj},
-                success: function(data) {
-                    if (data.result == 'OK')
-                    {
-                        obj.remove();
-                        objs.remove();
+
+            jQuery("#dialog").dialog({
+                autoOpen: true,
+                modal: true,
+                buttons : {
+                    "Confirm" : function() {
+                        jQuery.ajax({
+                            url: '<?php echo url_for("@delete_section") ?>',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {ids: json_obj},
+                            success: function(data) {
+                                if (data.result == 'OK')
+                                {
+                                    obj.remove();
+                                    objs.remove();
+
+                                }
+                            }
+                        });
+                        jQuery("#dialog").dialog("close");
+                    },
+                    "Cancel" : function() {
+                        jQuery(this).dialog("close");
                     }
                 }
-            })
+            });
+
+
             return false;
         });
     }
-
 
 
 </script>
