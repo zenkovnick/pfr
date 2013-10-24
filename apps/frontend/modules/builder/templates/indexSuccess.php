@@ -186,6 +186,8 @@
 <script type="text/javascript">
 
     jQuery(document).ready(function(){
+
+        jQuery("#dialog").dialog({autoOpen:false});
         /*when click on section title*/
         SectionTitleClick();
         SectionTitleFocusOut();
@@ -1200,6 +1202,5 @@
             return false;
         });
     }
-
 
 </script>
