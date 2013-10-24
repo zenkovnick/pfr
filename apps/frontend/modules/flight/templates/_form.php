@@ -52,19 +52,26 @@
         </li>
     <?php endforeach ?>
     <li><span class="bottom-border"></span></li>
-    <li><h2>Risk Analysis</h2></li>
+<!--    <li><h2>Risk Analysis</h2></li>-->
+
     <?php for($i = 0; $i<count($data['risk_analysis']); $i++): ?>
         <li class="risk-factor-li">
-            <?php include_partial("flight/risk_field", array(
-                'field' => $form["flight_risk_factor_{$i}"],
-                'label' => true,
-                'class' => 'risk-factor result',
-                'help' => $data['risk_analysis'][$i]['help_message'],
-                'risk' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['value'],
-                'note' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['note']
-            ));
-            ?>
-            <span class="bottom-dashed-border"></span>
+            <?php if($data['risk_analysis'][$i]['section_title']): ?>
+                <h2>
+                    <?php echo $data['risk_analysis'][$i]['question']; ?>
+                </h2>
+            <?php else: ?>
+                <?php include_partial("flight/risk_field", array(
+                    'field' => $form["flight_risk_factor_{$i}"],
+                    'label' => true,
+                    'class' => 'risk-factor result',
+                    'help' => $data['risk_analysis'][$i]['help_message'],
+                    'risk' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['value'],
+                    'note' => $data['risk_analysis'][$i]['response_options'][$form["flight_risk_factor_{$i}"]->getValue()]['note']
+                ));
+                ?>
+                <span class="bottom-dashed-border"></span>
+            <?php endif; ?>
         </li>
     <?php endfor ?>
 </ul>

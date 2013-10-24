@@ -139,20 +139,24 @@ class FlightForm extends BaseFormDoctrine
           } else if($key == 'risk_analysis'){
               $index = 0;
               foreach($data_field as $risk_factor){
-                  $options = $this->getObject()->getResponseOptionTitles($risk_factor);
-                  $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $options, 'renderer_class' => 'sfWidgetFormList')));
-                  $this->setValidator("flight_risk_factor_{$index}", new sfValidatorChoice(array('choices' => array_keys($options))));
-                  if(!is_null($risk_factor['selected_response'])){
-                      $this->setDefault("flight_risk_factor_{$index}", $risk_factor['selected_response']);
-                  } else {
-                      reset($options);
-                      $this->setDefault("flight_risk_factor_{$index}", key($options));
+
+                      $options = $this->getObject()->getResponseOptionTitles($risk_factor);
+                      $this->setWidget("flight_risk_factor_{$index}", new sfWidgetFormChoice(array('choices' => $options, 'renderer_class' => 'sfWidgetFormList')));
+                  if($risk_factor['section_title'] == false)
+                  {
+                      $this->setValidator("flight_risk_factor_{$index}", new sfValidatorChoice(array('choices' => array_keys($options))));
                   }
-                  $this->widgetSchema->setLabel("flight_risk_factor_{$index}", $risk_factor['question']);
-                  $index++;
+                      if(!is_null($risk_factor['selected_response'])){
+                          $this->setDefault("flight_risk_factor_{$index}", $risk_factor['selected_response']);
+                      } else {
+                          reset($options);
+                          $this->setDefault("flight_risk_factor_{$index}", key($options));
+                      }
+                      $this->widgetSchema->setLabel("flight_risk_factor_{$index}", $risk_factor['question']);
+                      $index++;
+                  }
               }
           }
-      }
 
       $this->disableCSRFProtection();
 
@@ -192,13 +196,17 @@ class FlightForm extends BaseFormDoctrine
         foreach($data_fields as $key => $data_field){
             if($key == "risk_analysis"){
                 for($i = 0; $i < count($data_field); $i++){
-                    if($this->getObject()->getStatus() == 'assess'){
-                        $mitigation_score = $data_field[$i]['response_options'][$data_fields['risk_analysis'][$i]['selected_response']]['value'] - $data_field[$i]['response_options'][$taintedValues["flight_risk_factor_{$i}"]]['value'];;
-                        $data_fields['risk_analysis'][$i]['mitigation'] = $data_fields['risk_analysis'][$i]['mitigation'] + $mitigation_score;
-                        $mitigation_sum +=  $mitigation_score;
+                    if($data_fields['risk_analysis'][$i]['section_title'] == false)
+                    {
+                        if($this->getObject()->getStatus() == 'assess'){
+                            $mitigation_score = $data_field[$i]['response_options'][$data_fields['risk_analysis'][$i]['selected_response']]['value'] - $data_field[$i]['response_options'][$taintedValues["flight_risk_factor_{$i}"]]['value'];;
+                            $data_fields['risk_analysis'][$i]['mitigation'] = $data_fields['risk_analysis'][$i]['mitigation'] + $mitigation_score;
+                            $mitigation_sum +=  $mitigation_score;
+                        }
+                        $data_fields['risk_analysis'][$i]['selected_response'] =  $taintedValues["flight_risk_factor_{$i}"];
+                        $total_score += $data_field[$i]['response_options'][$taintedValues["flight_risk_factor_{$i}"]]['value'];
                     }
-                    $data_fields['risk_analysis'][$i]['selected_response'] =  $taintedValues["flight_risk_factor_{$i}"];
-                    $total_score += $data_field[$i]['response_options'][$taintedValues["flight_risk_factor_{$i}"]]['value'];
+
                 }
             }
         }
