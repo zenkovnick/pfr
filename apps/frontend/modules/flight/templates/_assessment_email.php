@@ -54,25 +54,30 @@
             <tr>
                 <td style="border-top: 1px solid #CCC; border-bottom: 1px solid #FFF; padding: 0;"></td>
             </tr>
-            <tr>
-                <td>
-                    <h2 style="color: #000 !important; font-size: 16px;">Risk Factors</h2>
-                </td>
-            </tr>
+
             <?php if(count($high_risk_factors) > 0): ?>
                 <?php foreach($high_risk_factors as $high_risk_factor): ?>
-                    <tr>
-                        <td style="border-bottom: 1px dashed #CCC; padding: 10px 0;">
-                            <div style="float: left; max-width: 75%;">
-                                <p style="color: #000 !important; margin: 0;" class="question"><?php echo $high_risk_factor['question'] ?></p>
-                                <span style="color: #CCC;" class="answer"><?php echo $high_risk_factor['answer'] ?></span>
-                            </div>
-                            <div style="background: #F33; border: 1px solid #F00; float: right; padding: 10px 0; text-align: center; width: 40px;" class="risk">
-                                <span style="color: #FFF;"><?php echo $high_risk_factor['risk'] ?></span>
-                            </div>
+                    <?php if(isset($high_risk_factor['question'])): ?>
+                        <tr>
+                            <td>
+                                <h2 style="color: #000 !important; font-size: 16px;"><?php echo $high_risk_factor['title'];?></h2>
+                            </td>
+                        </tr>
+                        <?php foreach($high_risk_factor['question'] as $key=>$risk_factor): ?>
+                            <tr>
+                                <td style="border-bottom: 1px dashed #CCC; padding: 10px 0;">
+                                    <div style="float: left; max-width: 75%;">
+                                        <p style="color: #000 !important; margin: 0;" class="question"><?php echo $risk_factor['question'] ?></p>
+                                        <span style="color: #CCC;" class="answer"><?php echo $risk_factor['answer'] ?></span>
+                                    </div>
+                                    <div style="background: #F33; border: 1px solid #F00; float: right; padding: 10px 0; text-align: center; width: 40px;" class="risk">
+                                        <span style="color: #FFF;"><?php echo $risk_factor['risk'] ?></span>
+                                    </div>
 
-                        </td>
-                    </tr>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php else: ?>
                 <span style="color: #999; display: inline-block; margin: 0 0 20px;">No risk factors over 0.</span>

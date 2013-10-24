@@ -16,4 +16,15 @@ class RiskBuilderTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('RiskBuilder');
     }
+
+    public static function getLatePosition($risk_builder_id)
+    {
+        $query = Doctrine_Query::create()
+            ->select("max(position)")
+            ->from('RiskFactorField')
+            ->where("risk_builder_id = ?", $risk_builder_id)
+            ->execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
+
+        return $query;
+    }
 }

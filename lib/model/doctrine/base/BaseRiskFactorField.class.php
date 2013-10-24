@@ -9,6 +9,7 @@
  * @property string $question
  * @property string $help_message
  * @property integer $position
+ * @property boolean $section_title
  * @property RiskBuilder $RiskBuilder
  * @property Doctrine_Collection $ResponseOptions
  * 
@@ -16,12 +17,14 @@
  * @method string              getQuestion()        Returns the current record's "question" value
  * @method string              getHelpMessage()     Returns the current record's "help_message" value
  * @method integer             getPosition()        Returns the current record's "position" value
+ * @method boolean             getSectionTitle()    Returns the current record's "section_title" value
  * @method RiskBuilder         getRiskBuilder()     Returns the current record's "RiskBuilder" value
  * @method Doctrine_Collection getResponseOptions() Returns the current record's "ResponseOptions" collection
  * @method RiskFactorField     setRiskBuilderId()   Sets the current record's "risk_builder_id" value
  * @method RiskFactorField     setQuestion()        Sets the current record's "question" value
  * @method RiskFactorField     setHelpMessage()     Sets the current record's "help_message" value
  * @method RiskFactorField     setPosition()        Sets the current record's "position" value
+ * @method RiskFactorField     setSectionTitle()    Sets the current record's "section_title" value
  * @method RiskFactorField     setRiskBuilder()     Sets the current record's "RiskBuilder" value
  * @method RiskFactorField     setResponseOptions() Sets the current record's "ResponseOptions" collection
  * 
@@ -48,6 +51,10 @@ abstract class BaseRiskFactorField extends sfDoctrineRecord
              ));
         $this->hasColumn('position', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('section_title', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
     }
 

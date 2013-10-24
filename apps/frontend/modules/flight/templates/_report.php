@@ -17,18 +17,30 @@
     </div>
     <span class="top-border border"></span>
     <div class="critical-risks">
-        <h2>Risk Factors</h2>
+
+
         <?php if(count($high_risk_factors) > 0): ?>
             <ul>
                 <?php foreach($high_risk_factors as $high_risk_factor): ?>
-                    <?php $array = array_values($high_risk_factors); ?>
-                    <li class="assessment-risk-wrapper <?php echo $high_risk_factor == end($array) ? "last" : ""?>">
-                        <div>
-                            <p class="question"><?php echo $high_risk_factor['question'] ?></p>
-                            <span class="answer"><?php echo $high_risk_factor['answer'] ?></span>
-                        </div>
-                        <span class="risk"><?php echo $high_risk_factor['risk'] ?></span>
-                    </li>
+                    <?php if(isset($high_risk_factor['question'])): ?>
+                        <li style="padding-top: 50px;">
+                            <h2>
+                                <?php echo $high_risk_factor['title'];?>
+                            </h2>
+                        </li>
+                        <?php foreach($high_risk_factor['question'] as $key=>$risk_factor): ?>
+                            <li class="assessment-risk-wrapper">
+                                <div>
+                                    <p class="question"><?php echo $risk_factor['question'] ?></p>
+                                    <span class="answer"><?php echo $risk_factor['answer'] ?></span>
+                                </div>
+                                <span class="risk"><?php echo $risk_factor['risk'] ?></span>
+                            </li>
+                        <?php endforeach; ?>
+
+
+                    <?php endif; ?>
+
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>

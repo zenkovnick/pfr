@@ -239,6 +239,18 @@ add_new_risk_factor_field:
   url: /form/add-new-risk-factor-field
   param: { module: builder, action: addNewRiskFactorField }
 
+add_new_section_title_field:
+  url: /form/add-new-section-title-field
+  param: { module: builder, action: addNewRiskSectionField }
+
+edit_section_title:
+  url: /form/edit-section-title
+  param: { module: builder, action: editSectionTitle }
+
+delete_section:
+  url: /delete_secction
+  param: { module: builder, action deleteSection }
+
 save_risk_factor_position:
   url: /form/save-risk-factor-position
   param: { module: builder, action: saveRiskFactorPosition }

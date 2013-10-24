@@ -20,6 +20,7 @@ abstract class BaseRiskFactorFieldForm extends BaseFormDoctrine
       'question'        => new sfWidgetFormInputText(),
       'help_message'    => new sfWidgetFormInputText(),
       'position'        => new sfWidgetFormInputText(),
+      'section_title'   => new sfWidgetFormInputCheckbox(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BaseRiskFactorFieldForm extends BaseFormDoctrine
       'question'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'help_message'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'position'        => new sfValidatorInteger(array('required' => false)),
+      'section_title'   => new sfValidatorBoolean(array('required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
     ));

@@ -190,6 +190,21 @@ class builderActions extends sfActions
         return $this->renderPartial('addNewRiskFactor',array('form' => $this->form, 'number' => $number, 'form_id' => $main_form_id));
     }
 
+    public function executeAddNewRiskSectionField(sfWebRequest $request){
+        $this->forward404unless($request->isXmlHttpRequest());
+        $title = $request->getPostParameter("title");
+        $main_form_id = intval($request->getPostParameter("form_id"));
+        $position = RiskBuilderTable::getLatePosition($main_form_id);
+        $risk_factor_field = new RiskFactorField();
+        $risk_factor_field->setQuestion($title);
+        $risk_factor_field->setSectionTitle(true);
+        $risk_factor_field->setRiskBuilderId($main_form_id);
+        $risk_factor_field->setPosition($position+1);
+        $risk_factor_field->save();
+
+        return $this->renderPartial('addSectionTitle',array('risk_factor' => $risk_factor_field));
+    }
+
     public function executeAddNewResponseOptionField(sfWebRequest $request){
         $this->forward404unless($request->isXmlHttpRequest());
         $number = intval($request->getPostParameter("num"));
@@ -420,6 +435,54 @@ class builderActions extends sfActions
             $account->save();
         }
 
+        return sfView::NONE;
+    }
+
+    public function executeEditSectionTitle(sfWebRequest $request)
+    {
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $id = $request->getParameter('section_title_id');
+        $title = $request->getParameter('title');
+        $flight_information_field = Doctrine_Core::getTable('RiskFactorField')->find($id);
+
+        if($this->getUser()->isAuthenticated()){
+            if($flight_information_field){
+                $flight_information_field->setQuestion($title);
+                $flight_information_field->save();
+
+                echo json_encode(array('result' => 'OK', 'title' => $flight_information_field->getQuestion()));
+            } else {
+                echo json_encode(array('result' => 'Failed'));
+            }
+        } else {
+            echo json_encode(array('result' => 'login'));
+        }
+        return sfView::NONE;
+    }
+
+    public function executeDeleteSection(sfWebRequest $request)
+    {
+        $this->setLayout(false);
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $ids_json = $request->getParameter('ids');
+
+        $ids = (json_decode($ids_json));
+
+
+
+        if($this->getUser()->isAuthenticated()){
+            $flight_information_field = RiskFactorFieldTable::deleteSection($ids);
+            if($flight_information_field){
+
+
+                echo json_encode(array('result' => 'OK'));
+            } else {
+                echo json_encode(array('result' => 'Failed'));
+            }
+        } else {
+            echo json_encode(array('result' => 'login'));
+        }
         return sfView::NONE;
     }
 
