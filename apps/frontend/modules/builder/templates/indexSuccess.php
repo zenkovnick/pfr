@@ -424,17 +424,20 @@
             jQuery('a.add-note', root_li).bind('click', addRiskFactorNote);
             jQuery('a.remove-note', root_li).bind('click', removeRiskFactorNote);
 
+
+
             root_li.bind('mouseover', showRiskFactorEditLink).bind('mouseout', hideRiskFactorEditLink);
             root_li.attr('id', 'rf_'+data.risk_id);
             root_li.removeClass('new').addClass('risk-factor-entity');
 
-            jQuery( "#risk-factor-container").sortable({
-                containment: "parent",
-                axis: "y",
-                handle: "span.handler",
-                scroll: false,
-                stop: saveRiskFactorPosition
-            });
+//            jQuery( "#risk-factor-container").sortable({
+//                containment: "parent",
+//                axis: "y",
+//                handle: "span.handler",
+//                scroll: false,
+//                stop: saveRiskFactorPosition
+//            });
+            sortablQuestion();
         } else if(data.result == "login") {
             window.location.href = "<?php echo url_for('@signin') ?>";
         }
@@ -740,6 +743,8 @@
     /* DOCUMENT READY */
 
     jQuery(document).ready(function() {
+        sortablQuestion();
+
         var isiOS = false;
         var agent = navigator.userAgent.toLowerCase();
         if(agent.indexOf('iphone') >= 0 || agent.indexOf('ipad') >= 0){
@@ -768,20 +773,7 @@
             }
         });
 
-        jQuery( "#risk-factor-container").sortable({
-            containment: ".risk-factor-global-wrapper",
-            axis: "y",
-            handle: "span.handler",
-            scroll: false,
-            stop: function(event, ui){
-                if(ui.item.index() == 0)
-                {
-                    return false;
-                }
 
-                saveRiskFactorPosition();
-            }
-        });
 
 
 
@@ -831,6 +823,7 @@
             response_el.bind('mouseover', showDeleteResponseOption).bind('mouseout', hideDeleteResponseOption);
             jQuery('a.add-note', response_el).bind('click', addRiskFactorNote);
             jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
+
             new_response_option_count++;
 
             var response_el = jQuery(addNewResponseOptionField(new_response_option_count, 'default_yes'));
@@ -840,6 +833,7 @@
             jQuery('a.remove-note', response_el).bind('click', removeRiskFactorNote);
             new_response_option_count++;
 
+            /**/
             el.show(show_delay);
         });
 
@@ -1207,5 +1201,26 @@
             return false;
         });
     }
+
+    function sortablQuestion()
+    {
+        jQuery( "#risk-factor-container").sortable({
+            containment: ".risk-factor-global-wrapper",
+            axis: "y",
+            handle: "span.handler",
+            scroll: false,
+            stop: function(event, ui){
+                console.log(ui.item.index());
+                if(ui.item.index() == 0)
+                {
+
+                    return false;
+                }
+
+                saveRiskFactorPosition();
+            }
+        });
+    }
+
 
 </script>
