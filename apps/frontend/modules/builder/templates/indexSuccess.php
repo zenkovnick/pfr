@@ -190,10 +190,11 @@
         jQuery("#dialog").dialog({autoOpen:false});
         /*when click on section title*/
         SectionTitleClick();
-        SectionTitleFocusOut();
+
         SectionTitleShowDelete();
         SectionTitleOnClickDelete();
 
+        jQuery("#risk-factor-container li.li_section_title input.section_title_value").bind('blur', SectionTitleFocusOut);
 
         jQuery("#risk_builder_mitigation_low_email, #risk_builder_mitigation_medium_email, #risk_builder_mitigation_high_email").hide();
         if(jQuery('#risk_builder_mitigation_low_notify').is(":checked")){
@@ -837,9 +838,8 @@
 
         jQuery("#add-section-factor-link").click(function(event){
             var response_el = jQuery(addNewSectionTitle('Section Title'));
-
+            jQuery(".section_title_value", response_el).bind('blur', SectionTitleFocusOut);
             jQuery("#risk-factor-container").append(response_el);
-            //response_el.bind('click', SectionTitleClick).bind('focusout', SectionTitleFocusOut);
 
             return false;
         });
@@ -1112,7 +1112,6 @@
 
     function SectionTitleFocusOut()
     {
-        jQuery("#risk-factor-container").on('focusout', '.section_title_value', function(){
             var obj = jQuery(this).parent("li");
             var rec = obj.children(".section_title_value").val();
             if(rec.length == 0)
@@ -1143,7 +1142,6 @@
                 }
             });
             return false;
-        });
     }
 
     function SectionTitleShowDelete()
