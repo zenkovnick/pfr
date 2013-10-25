@@ -805,15 +805,14 @@ a#add-risk-factor-link {
 }
 
 a#add-section-factor-link {
-    background: url("../images/form_builder_border.png") repeat-x scroll left bottom transparent;
     color: #1076CE;
     display: block;
     margin: 0 20px;
-    padding: 25px 10px;
+    padding: 0px 10px;
     text-decoration: none;
 }
 
-a#add-risk-factor-link:hover{
+a#add-risk-factor-link:hover, a#add-section-factor-link:hover{
     text-decoration: underline;
 }
 
