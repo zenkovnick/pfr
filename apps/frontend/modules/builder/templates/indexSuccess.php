@@ -773,7 +773,14 @@
             axis: "y",
             handle: "span.handler",
             scroll: false,
-            stop: saveRiskFactorPosition
+            stop: function(event, ui){
+                if(ui.item.index() == 0)
+                {
+                    return false;
+                }
+
+                saveRiskFactorPosition();
+            }
         });
 
 
