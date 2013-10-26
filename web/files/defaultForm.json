@@ -46,7 +46,7 @@
     ],
     "risk_factors" : [
         {
-            "question" : "Section Title",
+            "question" : "Pilot Qualifications",
             "instructions" : "",
             "position" : 1,
             "section_title" : true
@@ -188,9 +188,15 @@
             ]
         },
         {
-            "question" : "VOR/GPS/LOC/ADF (Best approach available w/o vertical guidance)",
+            "question" : "Operating Environment",
             "instructions" : "",
             "position" : 10,
+            "section_title" : true
+        },
+        {
+            "question" : "VOR/GPS/LOC/ADF (Best approach available w/o vertical guidance)",
+            "instructions" : "",
+            "position" : 11,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -203,12 +209,6 @@
                     "note": ""
                 }
             ]
-        },
-        {
-            "question" : "Section Title",
-            "instructions" : "",
-            "position" : 11,
-            "section_title" : true
         },
         {
             "question" : "Circling approach (best available approach)",
@@ -449,15 +449,9 @@
             ]
         },
         {
-            "question" : "Section Title",
-            "instructions" : "",
-            "position" : 26,
-            "section_title" : true
-        },
-        {
             "question" : "Pop up trip (Less than 4 hours crew notice)",
             "instructions" : "",
-            "position" : 27,
+            "position" : 26,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -474,7 +468,7 @@
         {
             "question" : "International operation",
             "instructions" : "",
-            "position" : 28,
+            "position" : 27,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -491,7 +485,7 @@
         {
             "question" : "No weather reporting at destination",
             "instructions" : "",
-            "position" : 29,
+            "position" : 28,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -508,7 +502,7 @@
         {
             "question" : "Thunderstorms at departure and/or destination",
             "instructions" : "",
-            "position" : 30,
+            "position" : 29,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -525,7 +519,7 @@
         {
             "question" : "Severe turbulence",
             "instructions" : "",
-            "position" : 31,
+            "position" : 30,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -542,7 +536,7 @@
         {
             "question" : "Ceiling & visibility at destination less than 500 ft. / 2 sm",
             "instructions" : "",
-            "position" : 32,
+            "position" : 31,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -559,7 +553,7 @@
         {
             "question" : "Heavy rain at departure and/or destination",
             "instructions" : "",
-            "position" : 33,
+            "position" : 32,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -576,7 +570,7 @@
         {
             "question" : "Frozen precipitation at departure and/or destination",
             "instructions" : "",
-            "position" : 34,
+            "position" : 33,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -593,7 +587,7 @@
         {
             "question" : "Icing (moderate-severe)",
             "instructions" : "",
-            "position" : 35,
+            "position" : 34,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -610,7 +604,7 @@
         {
             "question" : "Surface winds greater than 30 knots",
             "instructions" : "",
-            "position" : 36,
+            "position" : 35,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -627,7 +621,7 @@
         {
             "question" : "Crosswinds greater than 15 knots",
             "instructions" : "",
-            "position" : 37,
+            "position" : 36,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -644,7 +638,7 @@
         {
             "question" : "Runway braking action less than good",
             "instructions" : "",
-            "position" : 38,
+            "position" : 37,
             "response_options" : [
                 {
                     "response_text": "No",
@@ -657,6 +651,12 @@
                     "note": ""
                 }
             ]
+        },
+        {
+            "question" : "Equipment",
+            "instructions" : "",
+            "position" : 38,
+            "section_title" : true
         },
         {
             "question" : "Special Flight Permit Operation (ferry permit)",

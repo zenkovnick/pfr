@@ -1,0 +1,1 @@
+alter table account_plane drop foreign key account_plane_plane_id_account_id;
