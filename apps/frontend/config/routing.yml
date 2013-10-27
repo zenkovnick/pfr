@@ -329,6 +329,10 @@ signout:
   url: /signout
   param: { module: registration, action: signout }
 
+signup_check:
+  url: /signup/check
+  param: { module: registration, action: signupCheck }
+
 signup_invite:
   url: /signup/:token
   param: { module: registration, action: signup }

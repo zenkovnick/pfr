@@ -38,11 +38,13 @@
         }
     }
 
-    function validateForm(){
+    function validateForm(email_valid){
         var valid = true;
         var field_list = jQuery('ul.sign-up-field-list');
         jQuery('li input', field_list).each(function(){
-            if(jQuery(this).val() == '' || (jQuery(this).hasClass('email') && !jQuery(this).val().match(email_pattern))){
+            if(jQuery(this).val() == '' ||
+                (jQuery(this).hasClass('email') && !jQuery(this).val().match(email_pattern)) ||
+                (jQuery(this).hasClass('email') && !email_valid)){
                 jQuery(this).addClass('invalid-field');
                 valid = false;
             } else {
@@ -53,9 +55,24 @@
     }
 
     function submitForm(event) {
-        if(!validateForm()){
-            event.preventDefault();
-        }
+        var email_valid = true;
+        var form = jQuery(this).closest('form');
+        event.preventDefault();
+        jQuery.ajax({
+            url: '<?php echo url_for('@signup_check') ?>',
+            type: 'get',
+            dataType: 'json',
+            data: {email: jQuery('li input.email').val()},
+            success: function(data){
+                if(data.result != 'OK'){
+                    email_valid = false;
+                }
+                if(validateForm(email_valid)){
+                    form.submit();
+                }
+            }
+        });
+        return false;
     }
 
     jQuery(document).ready(function(){

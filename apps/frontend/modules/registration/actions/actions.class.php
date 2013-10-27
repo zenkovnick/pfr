@@ -63,7 +63,7 @@ class registrationActions extends sfActions
                     $this->getUser()->signIn($user);
                     $this->redirect('@create_account');
                 }
-            }/* else {
+            } else {
             $errors = $this->form->getErrorSchema()->getErrors();
             $error_fields = array();
             foreach($errors as $key => $error){
@@ -72,12 +72,11 @@ class registrationActions extends sfActions
             echo json_encode(
                 array(
                     'result' => 'Failed',
-                    'error_fields' => $error_fields,
-                    'new_form_num' => $request->getParameter('new_form_num'),
+                    'error_fields' => $error_fields
                 )
             );
 
-            }*/
+            }
         }
     }
 
@@ -97,6 +96,10 @@ class registrationActions extends sfActions
             }
 
         } else {
+            if($request->getParameter('token')){
+                $url = $this->generateUrl('approve_account', array('token' => $request->getParameter('token')), true);
+                $this->getUser()->setAttribute('refer_page', $url);
+            }
             $this->redirect("@signin");
         }
     }
@@ -111,10 +114,12 @@ class registrationActions extends sfActions
                 $this->getUser()->getAttributeHolder()->remove('approve');
                 $this->redirect("@dashboard?account_id=".$this->user_account->getAccount()->getId());
             } else {
+                $this->getUser()->getAttributeHolder()->remove('approve');
                 $this->user_account->delete();
                 $this->redirect("@select_account");
             }
         } else {
+            $this->getUser()->getAttributeHolder()->remove('approve');
             $this->redirect("@select_account");
         }
     }
@@ -291,6 +296,22 @@ class registrationActions extends sfActions
         $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
 
         $this->redirect("@signin");
+    }
+
+    public function executeSignupCheck($request)
+    {
+        $this->setLayout(false);
+        if($request->getParameter('email')){
+            if(sfGuardUserTable::checkUserByUsername($request->getParameter('email'))){
+                echo json_encode(array('result' => 'OK'));
+            } else {
+                echo json_encode(array('result' => 'Exists'));
+
+            }
+        } else {
+            echo json_encode(array('result' => 'Failed'));
+        }
+        return sfView::NONE;
     }
 
     public function executeAutocompletePilots(sfWebRequest $request) {
