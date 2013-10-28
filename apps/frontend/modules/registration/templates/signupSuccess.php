@@ -7,6 +7,8 @@
     <form id="sign_up_form" method="POST">
         <?php echo $form->renderGlobalErrors();?>
         <?php echo $form->renderHiddenFields();?>
+        <input type='hidden' id="is_new_user" value="<?php echo $form->isNew() ? 'new' : 'exists' ?>" />
+        <input type='hidden' id="invited_email" value="<?php echo $form->isNew() ? '' : $form->getObject()->getUsername() ?>" />
         <ul class="sign-up-field-list">
             <li><?php include_partial("registration/field", array('field' => $form['first_name'], 'label' => false, 'placeholder' => 'Your Name')); ?></li>
             <li><?php include_partial("registration/field", array('field' => $form['username'], 'class' => 'email', 'label' => false, 'placeholder' => 'Email' )); ?></li>
@@ -57,21 +59,30 @@
     function submitForm(event) {
         var email_valid = true;
         var form = jQuery(this).closest('form');
+        var email = jQuery('li input.email').val();
+        var invited_email = jQuery('#invited_email').val();
         event.preventDefault();
-        jQuery.ajax({
-            url: '<?php echo url_for('@signup_check') ?>',
-            type: 'get',
-            dataType: 'json',
-            data: {email: jQuery('li input.email').val()},
-            success: function(data){
-                if(data.result != 'OK'){
-                    email_valid = false;
+        if(invited_email && invited_email != email){
+            jQuery.ajax({
+                url: '<?php echo url_for('@signup_check') ?>',
+                type: 'get',
+                dataType: 'json',
+                data: {email: email},
+                success: function(data){
+                    if(data.result != 'OK'){
+                        email_valid = false;
+                    }
+                    if(validateForm(email_valid)){
+                        form.submit();
+                    }
                 }
-                if(validateForm(email_valid)){
-                    form.submit();
-                }
+            });
+
+        } else {
+            if(validateForm(true)){
+                form.submit();
             }
-        });
+        }
         return false;
     }
 

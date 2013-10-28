@@ -493,10 +493,16 @@ class settingsActions extends sfActions {
     public function executeDeletePilot(sfWebRequest $request) {
         $this->setLayout(false);
         $this->forward404unless($request->isXmlHttpRequest());
+        $account = AccountTable::getInstance()->find($request->getParameter('account_id'));
+        $pilot = sfGuardUserTable::getInstance()->find($request->getParameter('id'));
         if($this->getUser()->isAuthenticated()){
-            $pilot = UserAccountTable::getUserAccount($request->getParameter('id'), $request->getParameter('account_id'));
-            if($pilot && $request->getParameter('id') != $this->getUser()->getGuardUser()->getId()){
-                $pilot->delete();
+            $pilot_acc = UserAccountTable::getUserAccount($request->getParameter('id'), $request->getParameter('account_id'));
+            if($pilot_acc && $request->getParameter('id') != $this->getUser()->getGuardUser()->getId()){
+                if($account->getChiefPilot()->getId() == $pilot->getId()){
+                    $account->setChiefPilot($this->getUser()->getGuardUser());
+                    $account->save();
+                }
+                $pilot_acc->delete();
                 echo json_encode(array('result' => 'OK'));
             } else {
                 echo json_encode(array('result' => 'Failed'));

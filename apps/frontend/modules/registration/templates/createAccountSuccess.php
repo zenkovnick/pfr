@@ -60,15 +60,15 @@
     jQuery(document).ready(function(){
         jQuery("#create_account_form").bind('submit', validateAndSubmitCreation);
         jQuery(".photo-holder").bind("click", triggerUpload);
-        jQuery( "#account_chief_pilot_name" ).autocomplete({
-            source: "/registration/autocomplete/pilot",
-            minLength: 2,
-            select: function( event, ui ) {
-                if(ui.item){
-                    jQuery("#account_chief_pilot_id").val(ui.item.id);
-                }
-            }
-        });
+//        jQuery( "#account_chief_pilot_name" ).autocomplete({
+//            source: "/registration/autocomplete/pilot",
+//            minLength: 2,
+//            select: function( event, ui ) {
+//                if(ui.item){
+//                    jQuery("#account_chief_pilot_id").val(ui.item.id);
+//                }
+//            }
+//        });
     });
     jQuery('#account_title').bind('keyup', function(){
         if ( jQuery(this).val() == '' ) {

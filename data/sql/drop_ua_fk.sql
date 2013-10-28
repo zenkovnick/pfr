@@ -1,0 +1,1 @@
+alter table user_account drop foreign key user_account_user_id_account_id;

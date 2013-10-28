@@ -142,7 +142,7 @@ class registrationActions extends sfActions
                 $this->form->bind($request->getPostParameter($this->form->getName()),$request->getFiles($this->form->getName()));
                 if($this->form->isValid()){
                     $values = $this->form->getTaintedValues();
-                    $chief_exists = $values['chief_pilot_id'] ? true : false;
+                    $chief_exists = ($values['chief_pilot_name'] && !sfGuardUserTable::checkUserByUsername($values['chief_pilot_name'])) ? true : false;
                     $account = $this->form->save();
                     $account->setManager($this->user);
                     $user_account = UserAccountTable::getUserAccount($this->user->getId(), $account->getId());
@@ -323,6 +323,7 @@ class registrationActions extends sfActions
             $record['id'] = $pilot->getId();
             $record['username'] = $pilot->getUsername();
             $record['value'] = $pilot->getFirstName();
+            //$record['value'] = $pilot->getFirstName();
             $array[] = $record;
         }
         return $this->renderText(json_encode($array));

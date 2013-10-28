@@ -28,8 +28,8 @@ class AccountForm extends BaseAccountForm
       $this->validatorSchema['title'] = new sfValidatorString(array('required' => true));
 
       if($this->getObject()->isNew()){
-          $this->widgetSchema["chief_pilot_id"] = new sfWidgetFormInputHidden();
-          $this->validatorSchema["chief_pilot_id"] = new sfValidatorPass();
+//          $this->widgetSchema["chief_pilot_id"] = new sfWidgetFormInputHidden();
+//          $this->validatorSchema["chief_pilot_id"] = new sfValidatorPass();
           $this->widgetSchema["chief_pilot_name"] = new sfWidgetFormInput();
           $this->validatorSchema["chief_pilot_name"] = new sfValidatorString(array("required" => false));
       } else {
@@ -45,15 +45,16 @@ class AccountForm extends BaseAccountForm
   }
     public function bind(array $taintedValues = null, array $taintedFiles = null){
 
-        if(!$taintedValues["chief_pilot_id"]){
-            $taintedValues["chief_pilot_id"] = null;
-        }
+//        if(!$taintedValues["chief_pilot_id"]){
+//            $taintedValues["chief_pilot_id"] = null;
+//        }
         parent::bind($taintedValues, $taintedFiles);
     }
 
     public function processValues($values = null){
         if($this->getObject()->isNew()){
-            if(isset($values['chief_pilot_name']) && is_null($values['chief_pilot_id']) && $values['chief_pilot_name'] != ""){
+//            if(isset($values['chief_pilot_name']) && is_null($values['chief_pilot_id']) && $values['chief_pilot_name'] != ""){
+            if(isset($values['chief_pilot_name']) && $values['chief_pilot_name'] != ""){
                 if(!$pilot = Doctrine_Core::getTable('sfGuardUser')->findOneBy('username', $values['chief_pilot_name'])){
                     $pilot = new sfGuardUser();
                     $pilot->setUsername($values['chief_pilot_name']);
