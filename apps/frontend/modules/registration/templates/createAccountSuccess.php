@@ -40,11 +40,28 @@
 </form>
 
 <script type="text/javascript">
+    var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
+
     function validateAndSubmitCreation(event){
         var valid = true;
-        if(jQuery(".company-title").val() == ''){
+        var title = jQuery(".company-title");
+        var chief_email = jQuery(".chief-pilot-email");
+        if(title.val() == ''){
             valid = false;
-            jQuery(".company-title").addClass('invalid-field');
+            title.addClass('invalid-field');
+        } else {
+            title.removeClass('invalid-field');
+        }
+        if(chief_email.val()){
+            if(!chief_email.val().match(email_pattern)){
+                valid = false;
+                chief_email.addClass('invalid-field');
+            } else {
+                chief_email.removeClass('invalid-field');
+
+            }
+        } else {
+            chief_email.removeClass('invalid-field');
         }
         if(valid){
             return true;
