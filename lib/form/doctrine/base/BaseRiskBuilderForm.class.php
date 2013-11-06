@@ -39,6 +39,8 @@ abstract class BaseRiskBuilderForm extends BaseFormDoctrine
       'mitigation_high_notify'            => new sfWidgetFormInputCheckbox(),
       'mitigation_high_prevent_flight'    => new sfWidgetFormInputCheckbox(),
       'mitigation_high_email'             => new sfWidgetFormInputText(),
+      'high_risk_factor_notify'           => new sfWidgetFormInputCheckbox(),
+      'high_risk_factor_email'            => new sfWidgetFormInputText(),
       'created_at'                        => new sfWidgetFormDateTime(),
       'updated_at'                        => new sfWidgetFormDateTime(),
     ));
@@ -68,6 +70,8 @@ abstract class BaseRiskBuilderForm extends BaseFormDoctrine
       'mitigation_high_notify'            => new sfValidatorBoolean(array('required' => false)),
       'mitigation_high_prevent_flight'    => new sfValidatorBoolean(array('required' => false)),
       'mitigation_high_email'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'high_risk_factor_notify'           => new sfValidatorBoolean(array('required' => false)),
+      'high_risk_factor_email'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'                        => new sfValidatorDateTime(),
       'updated_at'                        => new sfValidatorDateTime(),
     ));

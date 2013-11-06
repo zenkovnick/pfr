@@ -17,7 +17,8 @@ class RiskBuilderForm extends BaseRiskBuilderForm
           'mitigation_low_message', 'mitigation_low_instructions', 'mitigation_low_notify',
           'mitigation_medium_message', 'mitigation_medium_instructions', 'mitigation_medium_notify', 'mitigation_medium_require_details',
           'mitigation_high_message', 'mitigation_high_instructions', 'mitigation_high_notify', 'mitigation_high_prevent_flight',
-          'mitigation_high_email', 'mitigation_low_email', 'mitigation_medium_email'
+          'mitigation_high_email', 'mitigation_low_email', 'mitigation_medium_email',
+          'high_risk_factor_notify', 'high_risk_factor_email'
       ));
 
       $this->validatorSchema['form_name'] = new sfValidatorString(array('required' => true));
@@ -36,6 +37,7 @@ class RiskBuilderForm extends BaseRiskBuilderForm
           'mitigation_low_notify' => "Notify {$chief_pilot_name} about all risks (low to high)",
           'mitigation_medium_notify' => "Notify {$chief_pilot_name} about medium to high risk flights",
           'mitigation_high_notify' => "Notify {$chief_pilot_name} about high risk flights",
+          'high_risk_factor_notify' => "Notify {$chief_pilot_name} if one of the risk item equals 4 or 5",
           'mitigation_medium_require_details' => 'Require details about how risk is mitigated before proceeding'
       ));
   }
@@ -66,6 +68,7 @@ class RiskBuilderForm extends BaseRiskBuilderForm
         unset($taintedValues['low_mitigation_val']);
         unset($taintedValues['medium_mitigation_val']);
         unset($taintedValues['high_mitigation_val']);
+        unset($taintedValues['high_risk_factor_val']);
         parent::bind($taintedValues, $taintedFiles);
     }
 }

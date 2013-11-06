@@ -156,6 +156,12 @@
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
+                <li>
+                    <div class="checkbox-wrapper"><?php include_partial("builder/field",
+                            array('field' => $form['high_risk_factor_notify'])); ?></div>
+                    <input name="risk_builder[high_risk_factor_val]" id="high_risk_factor_val" type="hidden" value="<?php echo $form['high_risk_factor_notify']->getValue() ? 1:0; ?>" />
+                    <div><?php include_partial("builder/field", array('field' => $form['high_risk_factor_email'], 'class' => 'high-risk-factor-email', 'placeholder'=>'Add more emails to notify (separate with comma)', 'label' => false)); ?></div>
+                </li>
             </ul>
             <button class="preview-mode-link btn btn-blue" type="submit">Preview Form</button>
             <button class="btn btn-green" type="submit">Save and Exit</button>
@@ -184,6 +190,7 @@
 </div>
 
 <script type="text/javascript">
+    var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
 
     jQuery(document).ready(function(){
 
@@ -196,7 +203,7 @@
 
         jQuery("#risk-factor-container li.li_section_title input.section_title_value").bind('blur', SectionTitleFocusOut);
 
-        jQuery("#risk_builder_mitigation_low_email, #risk_builder_mitigation_medium_email, #risk_builder_mitigation_high_email").hide();
+        jQuery("#risk_builder_mitigation_low_email, #risk_builder_mitigation_medium_email, #risk_builder_mitigation_high_email, #risk_builder_high_risk_factor_email").hide();
         if(jQuery('#risk_builder_mitigation_low_notify').is(":checked")){
             jQuery("#risk_builder_mitigation_low_email").show();
         }
@@ -237,7 +244,19 @@
                     }
                 }
             }
-        })
+        });
+
+        if(jQuery('#risk_builder_high_risk_factor_notify').is(":checked")){
+            jQuery("#risk_builder_high_risk_factor_email").show();
+        }
+
+        jQuery('#risk_builder_high_risk_factor_notify').bind('click', function(){
+            if(jQuery('#risk_builder_high_risk_factor_notify').is(":checked")){
+                jQuery("#risk_builder_high_risk_factor_email").show();
+            } else {
+                jQuery("#risk_builder_high_risk_factor_email").val('').hide();
+            }
+        });
 
 //        jQuery("#risk_builder_mitigation_medium_notify").bind('click',function(){
 //
@@ -651,11 +670,31 @@
     function validateAndSubmitMainForm(event) {
         event.preventDefault();
         var valid = true;
+        var anchor = null;
         var form = jQuery(this).closest('form.main-form');
         var form_title = jQuery('input.form-title', form);
+        var high_risk_factor_email = jQuery('input.high-risk-factor-email', form);
+
+        jQuery('.invalid-field').removeClass('invalid-field');
         if(form_title.val() == '') {
             valid = false;
             form_title.addClass('invalid-field');
+            if(!anchor){
+                anchor = form_title.prop('id');
+            }
+        }
+        if(high_risk_factor_email.val() != '') {
+            var emails = high_risk_factor_email.val().split(',');
+            for(var idx=0; idx<emails.length; idx++) {
+                if(!jQuery.trim(emails[idx]).match(email_pattern)){
+                    valid = false;
+                    high_risk_factor_email.addClass('invalid-field');
+                    if(!anchor){
+                        anchor = high_risk_factor_email.prop('id');
+                    }
+                }
+            }
+
         }
         //alert('a');
         if(valid){
@@ -666,6 +705,8 @@
             } else {
                 form.submit();
             }
+        } else {
+            window.location.href = "#"+anchor;
         }
         return false;
 

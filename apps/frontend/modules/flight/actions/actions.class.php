@@ -118,6 +118,7 @@ class flightActions extends sfActions {
         }
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
         $this->mitigation_info = $this->flight->getMitigationInfo();
+        $this->with_high_risk = false;
         if($this->flight->getStatus() == 'assess' && !($this->mitigation_info['type'] == 'high' && $this->mitigation_info['prevent_flight'])){
             $this->flight->setRiskFactorType($this->mitigation_info['type']);
             $this->flight->setStatus('complete');
@@ -146,6 +147,9 @@ class flightActions extends sfActions {
 
                     $ii++;
                     $this->high_risk_factors[$i]['question'][$ii] = $arr;
+                    if($risk_factor['response_options'][$risk_factor['selected_response']]['value'] >= sfConfig::get('app_email_notification_high_risk_factor_val')) {
+                        $this->with_high_risk = true;
+                    }
                 }
             }
             $this->mitigation_info = $this->flight->getMitigationInfo();
@@ -161,6 +165,7 @@ class flightActions extends sfActions {
                 )),
                 $email_subject
             );
+
             //* Send emails to more peaple *//
             $this->risk_builder = Doctrine_Core::getTable('RiskBuilder')->findOneBy('account_id', $request->getParameter('account_id'));
             $this->emails = null;
@@ -212,6 +217,17 @@ class flightActions extends sfActions {
                         $email_subject
                     );
                 }
+            }
+
+            /* Send emails if high risk factor notify */
+            if($this->risk_builder->getHighRiskFactorNotify() && $this->with_high_risk){
+                EmailNotification::sendHighRiskNotify(
+                    $this->risk_builder->getHighRiskFactorEmail(),
+                    $this->account->getChiefPilot()->getId() ? $this->account->getChiefPilot() : null,
+                    $this->getPartial('flight/high_risk_factor_email', array()),
+                    'High risk factor notification'
+                );
+
             }
 
 

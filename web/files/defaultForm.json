@@ -18,6 +18,7 @@
     "mitigation_high_max" : 50,
     "mitigation_high_notify" : true,
     "mitigation_high_prevent_flight" : true,
+    "high_risk_factor_notify" : true,
     "flight_informations" : [
         {
             "information_name": "Plane(tail number):",

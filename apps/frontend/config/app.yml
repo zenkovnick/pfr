@@ -27,6 +27,7 @@ all:
     title: 'Invite to PreFlightRisk'
     cancel_title: 'Cancel invitation to PreFlightRisk'
     message: "You have ben registered in Blueprint project.\n\rYour password is %password%\n\rPlease use this link to activate your accout - %activation_link%\n\r"
+    high_risk_factor_val: 4
 
   email_assessment:
     from_name: 'Pre Flight Risk'
