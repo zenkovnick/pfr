@@ -2005,7 +2005,21 @@ html .ui-autocomplete {
     background: #F33;
     border: 1px solid #F00;
 }
-
+.dashboard-page .flights-list .delete_risk_assessment {
+    background: url(../images/delete_flight_button.png) no-repeat center center transparent;
+    border: 1px solid #C3C3C3;
+    display: block;
+    float: right;
+    height: 40px;
+    margin-left: 12px;
+    overflow: hidden;
+    text-indent: -1000px;
+    width: 40px;
+}
+.dashboard-page .flights-list .delete_risk_assessment:hover {
+    background: url(../images/delete_flight_button_hover.png) no-repeat center center #D90000;
+    border-color: #AF0000;
+}
 .dashboard-page .flights-list .name {
     color: #333;
     text-decoration: none;
@@ -2089,5 +2103,37 @@ html .ui-autocomplete {
     font-style: normal;
 }
 /*----------------------------------------------------------------------------------*/
+/*----------------------------------> POPUP <---------------------------------------*/
 /*----------------------------------------------------------------------------------*/
-/*----------------------------------------------------------------------------------*/
+.popup-block {
+    background: #F2F2F2;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /*height: 200px;*/
+    overflow: hidden;
+    padding: 25px 18px;
+    width: 420px;
+}
+.popup-block h1 {
+    border-bottom: 1px solid #C2C2C2;
+    font-size: 16px;
+    font-weight: bold;
+    margin: -25px -18px 25px;
+    padding: 25px 18px;
+}
+.popup-block p, .popup-block span {
+    color: #444;
+    font-size: 14px;
+    line-height: 150%;
+}
+.popup-block .button-wrapper {
+    margin-top: 20px;
+    overflow: hidden;
+    text-align: center;
+}
+.popup-block .button-wrapper button {
+    display: inline-block;
+    float: none;
+    margin: 0 15px;
+}

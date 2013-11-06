@@ -1,4 +1,4 @@
-<div style="width:300px; height:300px">
+<div class="popup-block">
     <h1>Delete an item</h1>
     <p>You are trying to delete flight report: </p>
     <span class="name">
@@ -7,7 +7,6 @@
         <?php if($flight->getDrafted()): ?>
             <?php echo " (Drafted)" ?>
         <?php endif ?>
-
     </span>
     <span class="info">
                     <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
@@ -16,9 +15,12 @@
         <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
         <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
     </span>
+    <p>Are you sure?</p>
+    <div class="button-wrapper">
+        <button class='delete_confirm btn btn-red'>Delete</button>
+        <button class='delete_cancel btn btn-grey'>Cancel</button>
+    </div>
 
-    <button class='delete_confirm'>Delete</button>
-    <button class='delete_cancel'>Cancel</button>
 </div>
 
 <script type="text/javascript">
