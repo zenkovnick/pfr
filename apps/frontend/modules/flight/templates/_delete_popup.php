@@ -1,16 +1,15 @@
 <div class="popup-block">
     <h1>Delete an item</h1>
-    <p>You are trying to delete flight report: </p>
+    <p>You are trying to delete a flight report: </p>
     <span class="name">
         <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
         <?php echo $flight->getAirportTo()->getICAO() ? "- {$flight->getAirportTo()->getICAO()}" : "" ?>
-        <?php if($flight->getDrafted()): ?>
-            <?php echo " (Drafted)" ?>
-        <?php endif ?>
     </span>
     <span class="info">
         <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
-        ETD <?php echo $flight->getTimeStr(); ?>
+        <?php if($flight->getTimeStr()): ?>
+            ETD <?php echo $flight->getTimeStr(); ?>
+        <?php endif ?>
         <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>.<br />
         <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>.<br />
     </span>
