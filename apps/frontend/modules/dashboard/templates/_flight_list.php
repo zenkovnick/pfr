@@ -27,7 +27,7 @@
                     <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
 
                     <?php if($flight->getDrafted()): ?>
-                        <?php echo " - drafted" ?>
+                        <?php echo " - draft" ?>
                     <?php endif ?>
 
                 </a>
