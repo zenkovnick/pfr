@@ -12,10 +12,11 @@
                     <li id="<?php echo $flight->getId() ?>">
                 <?php endif ?>
             <?php endif ?>
-                <?php if(!is_null($flight->getRiskFactorSum())): ?>
+                <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">X</a>
+
+            <?php if(!is_null($flight->getRiskFactorSum())): ?>
                     <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
                 <?php endif ?>
-                
 
                 <a class="name" href="<?php echo url_for(($flight->getDrafted() ? "@edit_flight" : "@view_flight")."?account_id={$account->getId()}&id={$flight->getId()}") ?>">
                     <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
@@ -42,7 +43,7 @@
                         <p class="email-error"></p>
                     </div>
                 <?php endif ?>
-                <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">X</a>
+
             </li>
         <?php endforeach ?>
     </ul>
