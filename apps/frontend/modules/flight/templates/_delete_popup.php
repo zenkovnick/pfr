@@ -1,0 +1,50 @@
+<div style="width:300px; height:300px">
+    <h1>Delete an item</h1>
+    <p>You are trying to delete flight report: </p>
+    <span class="name">
+        <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
+        <?php echo $flight->getAirportTo()->getICAO() ? "- {$flight->getAirportTo()->getICAO()}" : "" ?>
+        <?php if($flight->getDrafted()): ?>
+            <?php echo " (Drafted)" ?>
+        <?php endif ?>
+
+    </span>
+    <span class="info">
+                    <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
+
+        ETD <?php echo $flight->getTimeStr(); ?>
+        <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
+        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
+    </span>
+
+    <button class='delete_confirm'>Delete</button>
+    <button class='delete_cancel'>Cancel</button>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+       jQuery('.delete_confirm').bind('click', confirmDelete);
+       jQuery('.delete_cancel').click(function(){
+           jQuery.fancybox.close();
+           return false;
+       })
+    });
+
+    function confirmDelete() {
+        jQuery.ajax({
+            url: '<?php echo url_for("@delete_risk_assessment?id={$flight->getId()}") ?>',
+            dataType: 'json',
+            type: "GET",
+            cache: false,
+            success: function(data) {
+                if(data.result == "OK"){
+                    jQuery('ul.flights-list li#<?php echo $flight->getId() ?>').remove();
+                } else {
+                    alert(data.error);
+                }
+                jQuery.fancybox.close();
+                return false;
+            }
+        });
+    }
+</script>

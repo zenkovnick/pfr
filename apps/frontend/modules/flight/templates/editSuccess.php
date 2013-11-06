@@ -15,6 +15,8 @@
     </form>
 </div>
 <script type="text/javascript">
+    var time_pattern = /^([01]\d|2[0-3])([0-5]\d)$/;
+
     function submitFinishLater(event) {
         event.preventDefault();
         var form = jQuery("form");
@@ -28,6 +30,7 @@
             var valid = true;
             var airport_from = jQuery('input.airport-from', this);
             var airport_to = jQuery('input.airport-to', this);
+            var time = jQuery('input#flight_time_str', this)
             var trip_number = jQuery('input.trip-number', this);
             var pic_input = jQuery('.pic-field input[type="hidden"]');
             var sic_input = jQuery('.sic-field input[type="hidden"]');
@@ -71,6 +74,16 @@
             } else {
                 pic_label.removeClass('invalid-select');
                 sic_label.removeClass('invalid-select');
+            }
+
+            if(time.val() == '' || !time.val().match(time_pattern)){
+                valid = false;
+                time.addClass('invalid-field');
+                if(!anchor){
+                    anchor = time.prop('id');
+                }
+            } else {
+                time.removeClass('invalid-field');
             }
 
             if(plane.val() == ""){

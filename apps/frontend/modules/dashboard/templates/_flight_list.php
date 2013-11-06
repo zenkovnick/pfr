@@ -16,24 +16,24 @@
                     <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
                 <?php endif ?>
                 
-                <?php if($flight->getDrafted()): ?>
-                    <a class="name" href="<?php echo url_for("@edit_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
-                        <?php echo sprintf('%03d', $flight->getId());?>
-                        <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?> (Drafted)
-                    </a>
-                <?php else: ?>
-                    <a class="name" href="<?php echo url_for("@view_flight?account_id={$account->getId()}&id={$flight->getId()}") ?>">
-                        <?php echo sprintf('%03d', $flight->getId());?>
-                        <?php echo $flight->getAirportTo()->getICAO() ? "to {$flight->getAirportTo()->getICAO()}" : "" ?>
-                    </a>
-                <?php endif ?>
+
+                <a class="name" href="<?php echo url_for(($flight->getDrafted() ? "@edit_flight" : "@view_flight")."?account_id={$account->getId()}&id={$flight->getId()}") ?>">
+                    <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
+                    <?php echo $flight->getAirportTo()->getICAO() ? "- {$flight->getAirportTo()->getICAO()}" : "" ?>
+                    <?php if($flight->getDrafted()): ?>
+                        <?php echo " (Drafted)" ?>
+                    <?php endif ?>
+
+                </a>
                 <?php if($flight->getStatus() == 'complete'): ?>
                     <a class="send-flight-email-link" href="#">Send</a>
                 <?php endif ?>
                 <span class="info">
-                    @<?php echo $flight->getTimeStr(); ?>
-                    <?php echo date('\o\n M\. d, Y', strtotime($flight->getCreatedAt()))?>
-                    <?php echo $flight->getTripNumber() ? " via Type {$flight->getPlane()->getTailNumber()}" : "" ?>
+                    <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
+
+                    ETD <?php echo $flight->getTimeStr(); ?>
+                    <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
+                    <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
                 </span>
                 <?php if($flight->getStatus() == 'complete'): ?>
                     <div class="email-form" style="display:none;">
@@ -42,6 +42,7 @@
                         <p class="email-error"></p>
                     </div>
                 <?php endif ?>
+                <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">X</a>
             </li>
         <?php endforeach ?>
     </ul>
@@ -60,6 +61,7 @@
     var previousHash = location.hash;
     var email_pattern = /^[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+(\.[-a-z0-9!#\$%&'*+\/=?\^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/i;
 
+
     jQuery(document).ready(function() {
 
         //if (getParamsFromHash(location.hash).tab === '') location.hash = '#newest';
@@ -72,6 +74,18 @@
 
         jQuery('a.send-flight-email-link').bind('click', showEmailForm);
         jQuery('.send-email').bind('click', sendEmail);
+        //jQuery('.delete_risk_assessment').bind('click', deleteRiskAssessment)
+
+        jQuery("a.fancy").fancybox({
+            'titlePosition'     : 'over',
+            'overlayOpacity'    : 0.4,
+            'centerOnScroll'    : true,
+            showCloseButton     : false,
+            'type'              : 'ajax',
+            hideOnOverlayClick  : true
+
+        });
+
     });
 
     function showEmailForm(event) {

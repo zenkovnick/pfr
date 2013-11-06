@@ -28,6 +28,15 @@ create_account_get_widget:
   param: { module: registration, action: getWidget }
 
 
+delete_risk_assessment_popup:
+  url: /flight/:id/delete_popup
+  param: { module: flight, action: getDeletePopup }
+
+delete_risk_assessment:
+  url: /flight/:id/delete
+  param: { module: flight, action: deleteRiskAssessment }
+
+
 get_risk:
   url: /flight/get-risk
   param: { module: flight, action: getRisk }

@@ -326,4 +326,26 @@ class flightActions extends sfActions {
         }
 
     }
+
+    public function executeGetDeletePopup(sfWebRequest $request){
+        $this->setLayout(false);
+        $flight = FlightTable::getInstance()->find($request->getParameter('id'));
+        $this->renderPartial('delete_popup', array('flight' => $flight));
+        return sfView::NONE;
+    }
+
+    public function executeDeleteRiskAssessment(sfWebRequest $request){
+        $this->setLayout(false);
+        $flight = FlightTable::getInstance()->find($request->getParameter('id'));
+        if($flight){
+            if($flight->delete()){
+                echo json_encode(array('result' => 'OK'));
+            } else {
+                echo json_encode(array('result' => 'Failed', 'error' => 'Can\'t delete flight'));
+            }
+        } else {
+            echo json_encode(array('result' => 'Failed', 'error' => 'Can\'t find flight'));
+        }
+        return sfView::NONE;
+    }
 }
