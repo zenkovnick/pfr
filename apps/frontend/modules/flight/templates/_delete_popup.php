@@ -9,11 +9,10 @@
         <?php endif ?>
     </span>
     <span class="info">
-                    <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
-
+        <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
         ETD <?php echo $flight->getTimeStr(); ?>
-        <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
-        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
+        <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>.<br />
+        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>.<br />
     </span>
     <p>Are you sure?</p>
     <div class="button-wrapper">
