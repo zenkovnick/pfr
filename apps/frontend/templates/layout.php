@@ -9,6 +9,7 @@
             PreFlight Risk
         <?php endif ?>
     </title>
+    <link rel="shortcut icon" type="image/jpg" href="../images/fav-icon.jpg"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/css/media_queries.css" />
 
