@@ -2110,10 +2110,10 @@ html .ui-autocomplete {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    max-width: 100%;
     overflow: hidden;
     padding: 25px 18px;
     width: 420px;
+    max-width: 100%;
 }
 .popup-block h1 {
     border-bottom: 1px solid #C2C2C2;
