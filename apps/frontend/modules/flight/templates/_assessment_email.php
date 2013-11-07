@@ -11,6 +11,9 @@
                     <p style="color: #999; display: block; text-align: center;">
                         Flight <span style="font-weight: bold;"> #<?php echo $flight->getTripNumber() ?></span> from <span style="font-weight: bold;"><?php echo $flight->getAirportFrom()->getICAO() ?></span> to <span style="font-weight: bold;"><?php echo $flight->getAirportTo()->getICAO() ?></span>
                         in <span style="font-weight: bold;"><?php echo $flight->getPlane()->getTailNumber() ?></span> has a <?php echo $mitigation_info['type'] ?> risk factor with <span style="font-weight: bold;"><?php echo $flight->getRiskFactorSum() ?></span> out of <span style="font-weight: bold;">50</span>
+                        <?php if(isset($high_risks) && $high_risks): ?>
+                            <b>and risks item with a score of 4 or higher.</b>
+                        <?php endif ?>
                     </p>
                 </td>
             </tr>

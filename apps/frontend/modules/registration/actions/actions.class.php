@@ -328,4 +328,33 @@ class registrationActions extends sfActions
         }
         return $this->renderText(json_encode($array));
     }
+
+    public function executeForgotPassword(sfWebRequest $request){
+        $this->form = new sfGuardRequestForgotPasswordForm();
+
+        if ($request->isMethod('post'))
+        {
+            $this->form->bind($request->getParameter($this->form->getName()));
+            if ($this->form->isValid())
+            {
+                $this->user = $this->form->user;
+                $this->_deleteOldUserForgotPasswordRecords();
+
+                $forgotPassword = new sfGuardForgotPassword();
+                $forgotPassword->user_id = $this->form->user->id;
+                $forgotPassword->unique_key = md5(rand() + time());
+                $forgotPassword->expires_at = new Doctrine_Expression('NOW()');
+                $forgotPassword->save();
+
+                EmailNotification::sendPasswordRecovery(
+                    $this->form->user->username,
+                    $this->getPartial('flight/high_risk_factor_email', array()),
+                    'Forgot Password Request for '.$this->form->user->username
+                );
+
+                $this->redirect('@signin');
+            } else {
+            }
+        }
+    }
 }

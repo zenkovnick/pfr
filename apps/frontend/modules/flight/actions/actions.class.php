@@ -220,12 +220,17 @@ class flightActions extends sfActions {
             }
 
             /* Send emails if high risk factor notify */
-            if($this->risk_builder->getHighRiskFactorNotify() && $this->with_high_risk){
-                EmailNotification::sendHighRiskNotify(
+            if($this->risk_builder->getHighRiskFactorNotify() && $this->with_high_risk && $this->risk_builder->getHighRiskFactorEmail()){
+                EmailNotification::sendEmailsAssessment(
                     $this->risk_builder->getHighRiskFactorEmail(),
                     $this->account->getChiefPilot()->getId() ? $this->account->getChiefPilot() : null,
-                    $this->getPartial('flight/high_risk_factor_email', array()),
-                    'High risk factor notification'
+                    $this->getPartial('flight/assessment_email', array(
+                        'flight' => $this->flight,
+                        'high_risk_factors' => $this->high_risk_factors,
+                        'mitigation_info' => $this->mitigation_info,
+                        'high_risks' => true
+                    )),
+                    $email_subject
                 );
 
             }

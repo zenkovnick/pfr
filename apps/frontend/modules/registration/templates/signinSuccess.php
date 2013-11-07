@@ -23,6 +23,10 @@
             If you're new here, create an account or
             <a href="<?php echo url_for('@signup') ?>">sign up.</a>
         </span>
+        <span>
+            Forgot password?
+            <a href="<?php echo url_for('@forgot_password') ?>">Click here</a>
+        </span>
 
     </fieldset>
 </form>

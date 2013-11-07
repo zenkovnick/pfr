@@ -296,6 +296,13 @@ form:
   url: /form
   param: { module: builder, action: index }
 
+
+
+forgot_password:
+  url: /forgot_password
+  param: { module: registration, action: forgotPassword }
+
+
 autocomplete_pilot:
   url: /registration/autocomplete/pilot
   param: { module: registration, action: autocompletePilots }
