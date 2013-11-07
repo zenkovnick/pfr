@@ -2110,7 +2110,7 @@ html .ui-autocomplete {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    /*height: 200px;*/
+    max-width: 100%;
     overflow: hidden;
     padding: 25px 18px;
     width: 420px;
@@ -2135,5 +2135,5 @@ html .ui-autocomplete {
 .popup-block .button-wrapper button {
     display: inline-block;
     float: none;
-    margin: 0 15px;
+    margin: 0 15px 10px;
 }
