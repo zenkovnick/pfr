@@ -39,6 +39,7 @@
             success: function(data) {
                 if(data.result == "OK"){
                     jQuery('ul.flights-list li#<?php echo $flight->getId() ?>').remove();
+                    chartInit();
                 } else {
                     alert(data.error);
                 }
