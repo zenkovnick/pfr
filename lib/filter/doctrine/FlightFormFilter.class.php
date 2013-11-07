@@ -16,6 +16,15 @@ class FlightFormFilter extends BaseFlightFormFilter
     public function configure()
     {
 
+        $this->widgetSchema['airport'] = new sfWidgetFormDoctrineChoiceCustom(array(
+            'model' => 'Airport',
+            'table_method' => 'getArrivalAirports',
+            'table_method_parameters' => array('account' => $this->getOption('account')),
+            'add_empty' => 'all airports',
+            'renderer_class' => 'sfWidgetFormList'
+        ));
+
+
         $this->widgetSchema['plane'] = new sfWidgetFormDoctrineChoiceCustom(array(
             'model' => 'Plane',
             'table_method' => 'getPlanes',
@@ -58,6 +67,10 @@ class FlightFormFilter extends BaseFlightFormFilter
             ->leftJoin('f.Plane p')
             ->where('f.account_id = ?', $this->getOption('account')->getId());
 
+        if (isset($this->defaults['airport']) && $this->defaults['airport'] != '')
+        {
+            $query->andWhere("f.airport_to_id = ?", $this->defaults['airport']);
+        }
 
         if (isset($this->defaults['plane']) && $this->defaults['plane'] != '')
         {

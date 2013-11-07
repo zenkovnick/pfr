@@ -21,5 +21,5 @@
 <?php endif ?>
 
 <div class="flight-list-wrapper">
-    <?php include_partial('dashboard/flight_list', array('pager' => $pager, 'account' => $account)) ?>
+    <?php include_partial('dashboard/flight_list', array('pager' => $pager, 'account' => $account, 'can_manage' => $can_manage)) ?>
 </div>

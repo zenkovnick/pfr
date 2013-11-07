@@ -16,4 +16,9 @@ class Airport extends BaseAirport
         return $this->getName();
     }
 
+    public function __toString()
+    {
+        return (string) $this->getICAO();
+    }
+
 }

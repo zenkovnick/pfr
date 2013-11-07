@@ -353,8 +353,14 @@ class flightActions extends sfActions {
     public function executeDeleteRiskAssessment(sfWebRequest $request){
         $this->setLayout(false);
         $flight = FlightTable::getInstance()->find($request->getParameter('id'));
+
         if($flight){
-            if($flight->delete()){
+            $account_id = $flight->getAccount()->getId();
+            $user_id = $this->getUser()->getGuardUser()->getId();
+            $user_account = UserAccountTable::getUserAccount($user_id, $account_id);
+            $can_manage = $user_account->getIsManager();
+
+            if($flight->delete() && $can_manage){
                 echo json_encode(array('result' => 'OK'));
             } else {
                 echo json_encode(array('result' => 'Failed', 'error' => 'Can\'t delete flight'));

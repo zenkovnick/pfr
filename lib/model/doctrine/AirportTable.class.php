@@ -51,4 +51,13 @@ class AirportTable extends Doctrine_Table
         }
         return $conn->commit();
     }
+
+    public static function getArrivalAirports($parameters){
+        $account = $parameters['account'];
+        return Doctrine_Query::create()
+            ->from("Airport a")
+            ->where('a.id IN (SELECT f.airport_to_id FROM flight f WHERE f.account_id = ?)', $account->getId())
+            ->orderBy('a.icao')
+            ->execute();
+    }
 }
