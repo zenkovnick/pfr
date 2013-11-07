@@ -12,7 +12,9 @@
                     <li id="<?php echo $flight->getId() ?>">
                 <?php endif ?>
             <?php endif ?>
+            <?php if($can_manage): ?>
                 <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">X</a>
+            <?php endif ?>
 
             <?php if(!is_null($flight->getRiskFactorSum())): ?>
                     <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>

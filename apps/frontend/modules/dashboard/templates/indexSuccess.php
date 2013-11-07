@@ -22,6 +22,12 @@
                     <span class="caption">Risk summary</span>
                     <span>for</span>
                     <span class="no-margin">
+                        <div class="list-select airport-select">
+                            <?php echo $filter['airport']->render(array('class' => 'airport-filter dashboard-select result')) ?>
+                        </div>
+                    </span>
+                    <span class="plus">+</span>
+                    <span class="no-margin">
                         <div class="list-select plane-select">
                             <?php echo $filter['plane']->render(array('class' => 'plane-filter dashboard-select result')) ?>
                         </div>
