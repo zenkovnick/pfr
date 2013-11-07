@@ -24,6 +24,9 @@ RiskBuilder:
     mitigation_high_notify:        {type: boolean, default: true}
     mitigation_high_prevent_flight:        {type: boolean, default: true}
     mitigation_high_email:          {type: string(255)}
+    high_risk_factor_notify:       {type: boolean, default: true}
+    high_risk_factor_email:        {type: string(255)}
+
 
   relations:
     RiskFactorFields:

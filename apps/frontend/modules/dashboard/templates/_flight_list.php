@@ -21,8 +21,13 @@
                 <a class="name" href="<?php echo url_for(($flight->getDrafted() ? "@edit_flight" : "@view_flight")."?account_id={$account->getId()}&id={$flight->getId()}") ?>">
                     <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
                     <?php echo $flight->getAirportTo()->getICAO() ? "- {$flight->getAirportTo()->getICAO()}" : "" ?>
+                    <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
+
+                    ETD <?php echo $flight->getTimeStr(); ?>
+                    <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
+
                     <?php if($flight->getDrafted()): ?>
-                        <?php echo " (Drafted)" ?>
+                        <?php echo " - draft" ?>
                     <?php endif ?>
 
                 </a>
@@ -30,10 +35,6 @@
                     <a class="send-flight-email-link" href="#">Send</a>
                 <?php endif ?>
                 <span class="info">
-                    <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
-
-                    ETD <?php echo $flight->getTimeStr(); ?>
-                    <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
                     <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
                 </span>
                 <?php if($flight->getStatus() == 'complete'): ?>

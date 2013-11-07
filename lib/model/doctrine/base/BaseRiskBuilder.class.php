@@ -28,6 +28,8 @@
  * @property boolean $mitigation_high_notify
  * @property boolean $mitigation_high_prevent_flight
  * @property string $mitigation_high_email
+ * @property boolean $high_risk_factor_notify
+ * @property string $high_risk_factor_email
  * @property Doctrine_Collection $RiskFactorFields
  * @property Doctrine_Collection $FlightInformationFields
  * @property Account $Account
@@ -56,6 +58,8 @@
  * @method boolean             getMitigationHighNotify()              Returns the current record's "mitigation_high_notify" value
  * @method boolean             getMitigationHighPreventFlight()       Returns the current record's "mitigation_high_prevent_flight" value
  * @method string              getMitigationHighEmail()               Returns the current record's "mitigation_high_email" value
+ * @method boolean             getHighRiskFactorNotify()              Returns the current record's "high_risk_factor_notify" value
+ * @method string              getHighRiskFactorEmail()               Returns the current record's "high_risk_factor_email" value
  * @method Doctrine_Collection getRiskFactorFields()                  Returns the current record's "RiskFactorFields" collection
  * @method Doctrine_Collection getFlightInformationFields()           Returns the current record's "FlightInformationFields" collection
  * @method Account             getAccount()                           Returns the current record's "Account" value
@@ -83,6 +87,8 @@
  * @method RiskBuilder         setMitigationHighNotify()              Sets the current record's "mitigation_high_notify" value
  * @method RiskBuilder         setMitigationHighPreventFlight()       Sets the current record's "mitigation_high_prevent_flight" value
  * @method RiskBuilder         setMitigationHighEmail()               Sets the current record's "mitigation_high_email" value
+ * @method RiskBuilder         setHighRiskFactorNotify()              Sets the current record's "high_risk_factor_notify" value
+ * @method RiskBuilder         setHighRiskFactorEmail()               Sets the current record's "high_risk_factor_email" value
  * @method RiskBuilder         setRiskFactorFields()                  Sets the current record's "RiskFactorFields" collection
  * @method RiskBuilder         setFlightInformationFields()           Sets the current record's "FlightInformationFields" collection
  * @method RiskBuilder         setAccount()                           Sets the current record's "Account" value
@@ -186,6 +192,14 @@ abstract class BaseRiskBuilder extends sfDoctrineRecord
              'default' => true,
              ));
         $this->hasColumn('mitigation_high_email', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             ));
+        $this->hasColumn('high_risk_factor_notify', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => true,
+             ));
+        $this->hasColumn('high_risk_factor_email', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
              ));

@@ -36,6 +36,8 @@ abstract class BaseRiskBuilderFormFilter extends BaseFormFilterDoctrine
       'mitigation_high_notify'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'mitigation_high_prevent_flight'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'mitigation_high_email'             => new sfWidgetFormFilterInput(),
+      'high_risk_factor_notify'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'high_risk_factor_email'            => new sfWidgetFormFilterInput(),
       'created_at'                        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'                        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -64,6 +66,8 @@ abstract class BaseRiskBuilderFormFilter extends BaseFormFilterDoctrine
       'mitigation_high_notify'            => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'mitigation_high_prevent_flight'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'mitigation_high_email'             => new sfValidatorPass(array('required' => false)),
+      'high_risk_factor_notify'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'high_risk_factor_email'            => new sfValidatorPass(array('required' => false)),
       'created_at'                        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'                        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -109,6 +113,8 @@ abstract class BaseRiskBuilderFormFilter extends BaseFormFilterDoctrine
       'mitigation_high_notify'            => 'Boolean',
       'mitigation_high_prevent_flight'    => 'Boolean',
       'mitigation_high_email'             => 'Text',
+      'high_risk_factor_notify'           => 'Boolean',
+      'high_risk_factor_email'            => 'Text',
       'created_at'                        => 'Date',
       'updated_at'                        => 'Date',
     );
