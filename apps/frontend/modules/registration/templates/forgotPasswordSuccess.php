@@ -8,7 +8,7 @@
     Please enter email and we'll send You instructions
 </span>
 
-<form action="<?php echo url_for('@forgot_password') ?>" method="post">
+<form action="<?php echo url_for('@forgot_password') ?>" method="post" class="forgot-password-form">
     <?php echo($form->renderHiddenFields()) ?>
     <?php echo($form->renderGlobalErrors()) ?>
 
@@ -23,3 +23,6 @@
     </span>
 
 </form>
+<script type="text/javascript">
+    jQuery('body').addClass('forgot-password');
+</script>

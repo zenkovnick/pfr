@@ -1,6 +1,6 @@
 <div class="assessment-wrapper" xmlns="http://www.w3.org/1999/html" style="overflow: hidden; width: 100%;">
 <!--    <meta name="viewport" content="width=500" />-->
-    <table style="background-color: #F2F2F2; border-bottom: 1px solid #E4E4E4; max-width: 100%; overflow: hidden; padding: 40px 40px 0;" cellpadding="0" cellspacing="0">
+    <table style="background-color: #F2F2F2; border-bottom: 1px solid #E4E4E4; max-width: 100%; overflow: hidden; padding: 40px 40px 0; width: 540px;" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
                     <h1 style="color: #000 !important; font-size: 16px; text-align: center;"><?php echo $mitigation_info['message'] ?></h1>

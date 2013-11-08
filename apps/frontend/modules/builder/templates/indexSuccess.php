@@ -156,7 +156,7 @@
                         <button class="mitigation-save btn btn-green">Save</button>
                     </div>
                 </li>
-                <li>
+                <li class="risk-value-notify">
                     <div class="checkbox-wrapper"><?php include_partial("builder/field",
                             array('field' => $form['high_risk_factor_notify'])); ?></div>
                     <input name="risk_builder[high_risk_factor_val]" id="high_risk_factor_val" type="hidden" value="<?php echo $form['high_risk_factor_notify']->getValue() ? 1:0; ?>" />
