@@ -14,6 +14,7 @@
  * @property boolean $has_pilot
  * @property boolean $has_skipped_pilot
  * @property boolean $has_flight
+ * @property boolean $is_active
  * @property Doctrine_Collection $Planes
  * @property Doctrine_Collection $Users
  * @property sfGuardUser $ChiefPilot
@@ -32,6 +33,7 @@
  * @method boolean             getHasPilot()          Returns the current record's "has_pilot" value
  * @method boolean             getHasSkippedPilot()   Returns the current record's "has_skipped_pilot" value
  * @method boolean             getHasFlight()         Returns the current record's "has_flight" value
+ * @method boolean             getIsActive()          Returns the current record's "is_active" value
  * @method Doctrine_Collection getPlanes()            Returns the current record's "Planes" collection
  * @method Doctrine_Collection getUsers()             Returns the current record's "Users" collection
  * @method sfGuardUser         getChiefPilot()        Returns the current record's "ChiefPilot" value
@@ -49,6 +51,7 @@
  * @method Account             setHasPilot()          Sets the current record's "has_pilot" value
  * @method Account             setHasSkippedPilot()   Sets the current record's "has_skipped_pilot" value
  * @method Account             setHasFlight()         Sets the current record's "has_flight" value
+ * @method Account             setIsActive()          Sets the current record's "is_active" value
  * @method Account             setPlanes()            Sets the current record's "Planes" collection
  * @method Account             setUsers()             Sets the current record's "Users" collection
  * @method Account             setChiefPilot()        Sets the current record's "ChiefPilot" value
@@ -102,6 +105,10 @@ abstract class BaseAccount extends sfDoctrineRecord
         $this->hasColumn('has_flight', 'boolean', null, array(
              'type' => 'boolean',
              'default' => false,
+             ));
+        $this->hasColumn('is_active', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => true,
              ));
     }
 

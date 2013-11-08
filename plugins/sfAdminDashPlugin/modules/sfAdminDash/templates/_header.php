@@ -21,9 +21,9 @@ else:
 ?> 
 
 <?php if ($sf_user->isAuthenticated()): ?> 
-  <div id='sf_admin_theme_header'>
-    <a href='<?php echo url_for('private') ?>'><?php echo image_tag(sfAdminDash::getProperty('web_dir').'/images/header_text', array('alt' => 'Home')); ?></a>
-  </div>
+<!--  <div id='sf_admin_theme_header'>-->
+<!--    <a href='--><?php //echo url_for('private') ?><!--'>--><?php //echo image_tag(sfAdminDash::getProperty('web_dir').'/images/header_text', array('alt' => 'Home')); ?><!--</a>-->
+<!--  </div>-->
 
   <div id='sf_admin_menu'>    
     <?php include_partial('sfAdminDash/menu', array('items' => $items, 'categories' => $categories)); ?>
@@ -36,7 +36,7 @@ else:
 
   <?php if (sfAdminDash::getProperty('include_path')): ?>
     <div id='sf_admin_path'>
-      <strong><a href='<?php echo url_for('private'); ?>'><?php echo sfAdminDash::getProperty('site'); ?></a></strong>
+<!--      <strong><a href='--><?php //echo url_for('private'); ?><!--'>--><?php //echo sfAdminDash::getProperty('site'); ?><!--</a></strong>-->
       <?php if ($sf_context->getModuleName() != 'sfAdminDash' && $sf_context->getActionName() != 'dashboard'): ?>
         / <?php echo null !== $module_link ? link_to($module_link_name, $module_link) : $module_link_name; ?>
         <?php if (null != $action_link): ?>

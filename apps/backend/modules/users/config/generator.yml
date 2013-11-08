@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           sfGuardUser
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_guard_user
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields: ~
+      list:
+        title: User Management
+        sort: [created_at, desc]
+        layout: tabular
+        display: [name, username, is_active, last_login, created_at]
+        batch_actions:
+            _delete:    ~
+        object_actions:
+            _delete:    ~
+            block:      ~
+        actions:
+          []
+      filter:
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~
