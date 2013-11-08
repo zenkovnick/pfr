@@ -985,6 +985,14 @@ a.required-field:hover {
     overflow: hidden;
     position: relative;
 }
+.mitigation-fields li.risk-value-notify {
+    margin: 23px;
+    overflow: hidden;
+}
+.mitigation-fields li.risk-value-notify input[type="text"] {
+    margin: 0;
+    width: 100%;
+}
 .mitigation-fields li.risk-value-edit .mitigation-header {
     background: #F2F2F2;
     border-bottom: 1px solid #CCCCCC;
@@ -1023,18 +1031,18 @@ a.required-field:hover {
     margin: 0 0 9px;
     width: 100%;
 }
-.mitigation-fields li.risk-value-edit .checkbox-wrapper {
+.mitigation-fields li.risk-value-edit .checkbox-wrapper, .checkbox-wrapper {
     margin: 0 0 9px;
     overflow: hidden;
 }
-.mitigation-fields li.risk-value-edit label, .check-block label {
+.mitigation-fields li.risk-value-edit label, .check-block label, .checkbox-wrapper label {
     display: inline-block;
     font-size: 0.9em;
     max-width: 85%;
     overflow: hidden;
 }
 
-.mitigation-fields li.risk-value-edit input[type="checkbox"] {
+.mitigation-fields li.risk-value-edit input[type="checkbox"], .checkbox-wrapper input[type="checkbox"] {
     /*clear: both;*/
     display: block;
     float: left;
