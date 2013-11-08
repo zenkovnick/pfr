@@ -361,10 +361,14 @@ ul.header-link-block li.mobile-logout {
     text-align: center;
     text-transform: capitalize;
 }
-.forgot-password p {
+.forgot-password span {
     color: #666;
     font-size: 12px;
     line-height: 120%;
+}
+.forgot-password span a {
+    color: #3E8CD7;
+    text-decoration: none;
 }
 .sign-in-form {
     overflow: hidden;
@@ -388,6 +392,7 @@ ul.header-link-block li.mobile-logout {
     padding-top: 20px;
 }
 .forgot-password-form .btn {
+    margin-bottom: 20px;
     width: 100%;
 }
 .forgot-password-form label {
