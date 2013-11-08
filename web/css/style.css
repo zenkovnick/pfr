@@ -350,10 +350,10 @@ ul.header-link-block li.mobile-logout {
 /*---------------------------------------------------> Sign In <------------------------------------------------------*/
 /*---------------------------------------------------> Sign Up <------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------*/
-.sign-in .wrapper, .sign-up .wrapper, .choose-account .wrapper, .create-account .wrapper {
+.sign-in .wrapper, .sign-up .wrapper, .choose-account .wrapper, .create-account .wrapper, .forgot-password .wrapper {
     max-width: 300px;
 }
-.sign-in h1, .sign-up h1, .choose-account h1, .create-account h1 {
+.sign-in h1, .sign-up h1, .choose-account h1, .create-account h1, .forgot-password h1 {
     color: #414042;
     font-size: 16px;
     font-weight: bold;
@@ -361,11 +361,16 @@ ul.header-link-block li.mobile-logout {
     text-align: center;
     text-transform: capitalize;
 }
+.forgot-password p {
+    color: #666;
+    font-size: 12px;
+    line-height: 120%;
+}
 .sign-in-form {
     overflow: hidden;
     width: 100%;
 }
-.sign-in-form input, .sign-up input, .create-account input {
+.sign-in-form input, .sign-up input, .create-account input, .forgot-password-form input[type="text"] {
     background: #FFF;
     border: 1px solid #CCC;
     border-radius: 0;
@@ -378,6 +383,15 @@ ul.header-link-block li.mobile-logout {
     padding: 12px;
     text-align: center;
     width: 100%;
+}
+.forgot-password-form {
+    padding-top: 20px;
+}
+.forgot-password-form .btn {
+    width: 100%;
+}
+.forgot-password-form label {
+    display: none;
 }
 .create-account input {
     text-align: left;
@@ -420,6 +434,9 @@ ul.header-link-block li.mobile-logout {
     display: block;
     font-size: 0.85em;
     text-align: center;
+}
+.sign-in-form span.margin-top {
+    margin-top: 20px;
 }
 .create-account p {
     line-height: 150%;
@@ -1938,7 +1955,10 @@ html .ui-autocomplete {
     margin: 0 4px 0 0;
     line-height: normal;
 }
-
+.dashboard-page .filter-block > span.no-margin {
+    position: relative;
+    z-index: 10;
+}
 .dashboard-page .additional-info {
     overflow: hidden;
     line-height: normal;
