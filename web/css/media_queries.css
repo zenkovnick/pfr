@@ -239,6 +239,9 @@
     .dashboard-page .flights-list .name {
         display: inline;
     }
+    .popup-block {
+        max-width: 100%;
+    }
 
 }
 

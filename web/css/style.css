@@ -2146,7 +2146,6 @@ html .ui-autocomplete {
     overflow: hidden;
     padding: 25px 18px;
     width: 420px;
-    max-width: 100%;
 }
 .popup-block h1 {
     border-bottom: 1px solid #C2C2C2;
