@@ -1,0 +1,10 @@
+all:
+  is_secure: false
+selectAccount:
+  is_secure: true
+approveAccount:
+  is_secure: false
+approveAccountProcess:
+  is_secure: true
+createAccount:
+  is_secure: true

@@ -12,4 +12,7 @@
  */
 class Account extends BaseAccount
 {
+    public function getPilots(){
+        return implode(', ', sfGuardUser::getNamesArray(sfGuardUserTable::getPilotsByAccount($this->getId())));
+    }
 }

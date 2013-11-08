@@ -223,4 +223,11 @@ class sfGuardUser extends PluginsfGuardUser
             return $func($img_o,$file_output);
         }
     }
+
+    public static function getNamesArray($collection){
+        return array_map(function($value){
+            return $value['first_name'];
+        }, $collection->toArray());
+    }
+
 }

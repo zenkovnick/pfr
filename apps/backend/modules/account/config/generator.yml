@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Account
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          account
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields: ~
+      list:
+        title: Account Management
+        sort: [created_at, desc]
+        layout: tabular
+        display: [title, _pilots, manager, is_active, created_at]
+        batch_actions:
+            _delete:    ~
+        object_actions:
+            _delete:    ~
+            block:      ~
+        actions:
+          []
+      filter:
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~

@@ -24,13 +24,11 @@ test:
       delivery_strategy: none
 
 dev:
+  mailer:
+    param:
+      delivery_strategy: none
 
 all:
-  storage:
-    class: sfSessionStorage
-    param:
-      session_name: pfr
-
   routing:
     class: sfPatternRouting
     param:
@@ -43,29 +41,7 @@ all:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
 
-  request:
-    class: browserDetectionWebRequest
-
-
-  mailer:
-    class: sfMailer
+  storage:
+    class: sfSessionStorage
     param:
-      logging:           %SF_LOGGING_ENABLED%
-      charset:           %SF_CHARSET%
-      delivery_strategy: realtime
-      transport:
-        class: Swift_SmtpTransport
-        param:
-          host:       masterofcode.com
-          port:       587
-          encryption: ~
-          username:   nick
-          password:   nick
-
-  user:
-    class: myUser
-    param:
-      timeout:         65530
-      logging:         %SF_LOGGING_ENABLED%
-      use_flash:       true
-      default_culture: %SF_DEFAULT_CULTURE%
+      session_name: pfr
