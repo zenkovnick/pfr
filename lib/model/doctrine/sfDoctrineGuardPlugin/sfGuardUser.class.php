@@ -31,7 +31,7 @@ class sfGuardUser extends PluginsfGuardUser
             if($this->getCreatedAt() !== null)
             {
                 $last_time_number = strtotime($this->getCreatedAt()) % 10;
-                $password_str = strtoupper(substr(sha1($this->getEmailAddress()), $last_time_number, 4));
+                $password_str = substr(sha1($this->getEmailAddress()), $last_time_number, 10);
 
                 return $password_str;
             }

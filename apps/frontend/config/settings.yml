@@ -36,7 +36,7 @@ all:
     # Enable the database manager
     use_database:           true
 
-    enabled_modules:      [default, sfGuardAuth, sfCaptchaGD, sfThumbnail, sfAdminDash]
+    enabled_modules:      [default, sfGuardAuth, sfCaptchaGD, sfThumbnail, sfAdminDash, sfGuardForgotPassword]
 
     login_module:         registration
     login_action:         signin
