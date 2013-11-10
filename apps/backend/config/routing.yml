@@ -3,37 +3,37 @@ sf_guard_user:
   options:
     model:                sfGuardUser
     module:               users
-    prefix_path:          /users
+    prefix_path:          /admin/users
     column:               id
     with_wildcard_routes: true
 
 
 forgot_password:
-  url: /forgot_password
+  url: /admin/forgot_password
   param: { module: registration, action: forgotPassword }
 
 signin_process:
-  url: /signin/process
+  url: /admin/signin/process
   param: { module: registration, action: processSignin }
 
 signin:
-  url: /signin
+  url: /admin/signin
   param: { module: registration, action: signin }
 
 signout:
-  url: /signout
+  url: /admin/signout
   param: { module: registration, action: signout }
 
 signup_check:
-  url: /signup/check
+  url: /admin/signup/check
   param: { module: registration, action: signupCheck }
 
 signup_invite:
-  url: /signup/:token
+  url: /admin/signup/:token
   param: { module: registration, action: signup }
 
 signup:
-  url: /signup
+  url: /admin/signup
   param: { module: registration, action: signup }
 
 account:
@@ -41,7 +41,7 @@ account:
   options:
     model:                Account
     module:               account
-    prefix_path:          /accounts
+    prefix_path:          /admin/accounts
     column:               id
     with_wildcard_routes: true
 
@@ -50,7 +50,7 @@ account:
 
 # default rules
 homepage:
-  url:   /
+  url:   /admin
   param: { module: sfAdminDash, action: dashboard }
 
 # generic rules

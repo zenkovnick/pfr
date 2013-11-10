@@ -27,7 +27,7 @@ class homeActions extends sfActions
             $this->getUser()->getAttributeHolder()->remove('controlled_id');
             $this->getUser()->signIn($user);
 
-            $this->redirect('/backend.php/users');
+            $this->redirect('/admin/users');
         } else {
             $this->redirect('@select_account');
         }
