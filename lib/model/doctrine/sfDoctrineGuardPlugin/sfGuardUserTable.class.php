@@ -32,7 +32,9 @@ class sfGuardUserTable extends PluginsfGuardUserTable
         $user = Doctrine_Query::create()
             ->from("sfGuardUser u")
             ->leftJoin("u.UserAccount ua")
+            ->leftJoin("ua.Account a")
             ->where("ua.account_id = ?", $account_id)
+            ->andWhere('a.is_active = ?', true)
             ->andWhere('ua.user_id = ?', $user_id)
             ->andWhere("ua.is_active = ?", true)
             ->execute();

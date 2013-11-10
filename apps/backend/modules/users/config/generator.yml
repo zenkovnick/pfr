@@ -24,6 +24,7 @@ generator:
         object_actions:
             _delete:    ~
             block:      ~
+            control:    ~
         actions:
           []
       filter:

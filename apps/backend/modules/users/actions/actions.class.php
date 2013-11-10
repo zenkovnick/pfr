@@ -25,5 +25,16 @@ class usersActions extends autoUsersActions
         $this->redirect('sf_guard_user');
     }
 
+    public function executeListControl(sfWebRequest $request)
+    {
+        $user = $this->getRoute()->getObject();
+
+        $this->getUser()->setAttribute('controller_id', $this->getUser()->getGuardUser()->getId());
+        $this->getUser()->setAttribute('controlled_id', $user->getId());
+        $this->getUser()->signIn($user);
+
+        $this->redirect('/select');
+    }
+
 
 }

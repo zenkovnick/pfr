@@ -18,6 +18,11 @@
             <?php endif ?>
             <a href="<?php echo url_for("@dashboard?account_id={$account->getId()}") ?>"><?php echo $account->getTitle() ?></a>
             <span><?php echo $account->getManager()->getUsername() ?></span>
+            <span>
+                <?php if(!$account->is_active): ?>
+                    Blocked
+                <?php endif ?>
+            </span>
         </li>
     <?php endforeach; ?>
     <li>

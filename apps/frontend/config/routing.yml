@@ -1,3 +1,8 @@
+finish_controlling:
+  url: /home/finish_controlling/:id
+  param: { module: home, action: finishControlling }
+
+
 get_airports:
   url: /flight/get-airports
   param: { module: flight, action: getAirports }

@@ -20,4 +20,17 @@ class homeActions extends sfActions
 
     }
 
+    public function executeFinishControlling(sfWebRequest $request){
+        if($this->getUser()->getAttribute('controller_id')){
+            $user = sfGuardUserTable::getInstance()->find($this->getUser()->getAttribute('controller_id'));
+            $this->getUser()->getAttributeHolder()->remove('controller_id');
+            $this->getUser()->getAttributeHolder()->remove('controlled_id');
+            $this->getUser()->signIn($user);
+
+            $this->redirect('/backend.php/users');
+        } else {
+            $this->redirect('@select_account');
+        }
+    }
+
 }

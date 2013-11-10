@@ -37,6 +37,9 @@
     </div>
     <div class="content">
         <div class="wrapper">
+            <?php if($sf_user->getAttribute('controller_id')): ?>
+                <?php include_component('home','underControl') ?>
+            <?php endif ?>
             <?php echo $sf_content ?>
         </div>
     </div>
