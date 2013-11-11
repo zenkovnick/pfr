@@ -261,9 +261,13 @@ edit_section_title:
   url: /form/edit-section-title
   param: { module: builder, action: editSectionTitle }
 
+delete_section_popup:
+  url: /delete_section_popup
+  param: { module: builder, action: deleteSectionPopup }
+
 delete_section:
-  url: /delete_secction
-  param: { module: builder, action deleteSection }
+  url: /delete_section
+  param: { module: builder, action: deleteSection }
 
 save_risk_factor_position:
   url: /form/save-risk-factor-position

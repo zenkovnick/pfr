@@ -53,7 +53,7 @@
                         <input type="hidden" value="<?php echo $risk_factor->getId() ?>" class="question_id" />
                         <div class="entry-header" style="background: #FFF !important;">
                             <span class="question truncate"><?php echo $risk_factor->getQuestion() ?></span>
-                            <a href="#dialog" class="fancy-inline delete-section" style="display: none;">Delete</a>
+                            <a href="<?php echo url_for('@delete_section_popup') ?>" class="delete-section" style="display: none;">Delete</a>
                         </div>
                         <input style="display: none;" type="text" class="section_title_value" value="<?php echo $risk_factor->getQuestion(); ?>" />
                     </li>
@@ -185,13 +185,7 @@
     </div>
 </div>
 <div class="hidden">
-    <div id="dialog" title="Confirmation Required">
-        <input type="hidden" id="section_id" />
-        <input type="hidden" id="obj_ids" />
-        <p>Warning!  All the sub-questions will be removed completely as well.</p>
-        <a class='confirm-delete-section'>Confirm</a>
-        <a class='reject-delete-section'>Cancel</a>
-    </div>
+
 </div>
 
 <script type="text/javascript">
@@ -220,16 +214,6 @@
         success: mainFormSubmitted
     };
 
-    jQuery("a.fancy-inline").fancybox({
-        'titlePosition'     : 'over',
-        'overlayOpacity'    : 0.4,
-        'centerOnScroll'    : true,
-        showCloseButton     : false,
-        'type'              : 'inline',
-        hideOnOverlayClick  : true
-
-    });
-
     jQuery(document).ready(function(){
 
         //jQuery("#dialog").dialog({autoOpen:false});
@@ -237,7 +221,10 @@
         SectionTitleClick();
 
         SectionTitleShowDelete();
-        SectionTitleOnClickDelete();
+        //SectionTitleOnClickDelete();
+
+
+        jQuery(".delete-section").bind('click', deleteSectionPopup);
 
         jQuery("#risk-factor-container li.li_section_title input.section_title_value").bind('blur', SectionTitleFocusOut);
 
@@ -649,9 +636,6 @@
         }, false);
 
         jQuery('ul.form-fields').css('margin-left', -jQuery('ul.form-fields').width()/2-20+'px');
-
-        jQuery("a.confirm-delete-section").bind('click', confirmDeleteSection);
-
 
     });
 
@@ -1213,22 +1197,19 @@
             });
     }
 
-    function SectionTitleOnClickDelete()
-    {
-        jQuery("#risk-factor-container").on('click', '.li_section_title .entry-header .delete-section', function(){
-            var obj_id = new Array();
-            var obj = jQuery(this).closest('li.li_section_title');
-            obj_id.push(obj.children("input.question_id").val());
-            var objs = obj.nextUntil("li.li_section_title");
-
-            jQuery.each(objs, function(index, value){
-                obj_id.push(jQuery(this).children("input.question_id").val());
-            });
-
-            var json_obj = JSON.stringify(obj_id);
-            jQuery("#dialog input#section_id").val(jQuery('.question_id', obj).val());
-            jQuery("#dialog input#obj_ids").val(json_obj);
-
+<!--    function SectionTitleOnClickDelete()-->
+<!--    {-->
+<!--        jQuery("#risk-factor-container").on('click', '.li_section_title .entry-header .delete-section', function(){-->
+<!--            var obj_id = new Array();-->
+<!--            var obj = jQuery(this).closest('li.li_section_title');-->
+<!--            obj_id.push(obj.children("input.question_id").val());-->
+<!--            var objs = obj.nextUntil("li.li_section_title");-->
+<!--            jQuery.each(objs, function(index, value){-->
+<!--                obj_id.push(jQuery(this).children("input.question_id").val());-->
+<!--            });-->
+<!---->
+<!--            var json_obj = JSON.stringify(obj_id);-->
+<!--            jQuery(this).fancybox({href: jQuery(this).prop('href') + '?section_id='+jQuery('.question_id', obj).val()+'&obj_ids='+json_obj});-->
 <!--            jQuery("#dialog").dialog({-->
 <!--                autoOpen: true,-->
 <!--                modal: true,-->
@@ -1255,12 +1236,12 @@
 <!--                    }-->
 <!--                }-->
 <!--            });-->
-
-
-            return false;
-        });
-    }
-
+<!---->
+<!---->
+<!--            return false;-->
+<!--        });-->
+<!--    }-->
+<!---->
     function sortablQuestion()
     {
         jQuery( "#risk-factor-container").sortable({
@@ -1281,11 +1262,36 @@
         });
     }
 
+    function deleteSectionPopup(event){
+        event.preventDefault();
+        var obj_id = new Array();
+        var obj = jQuery(this).closest('li.li_section_title');
+        obj_id.push(obj.children("input.question_id").val());
+        var objs = obj.nextUntil("li.li_section_title");
+        jQuery.each(objs, function(index, value){
+            obj_id.push(parseInt(jQuery(this).children("input.question_id").val()));
+        });
+
+        var json_obj = obj_id.join(',');
+
+        jQuery.fancybox({
+            href: jQuery(this).prop('href') + '?section_id='+jQuery('.question_id', obj).val()+'&obj_ids='+json_obj,
+            'titlePosition'     : 'over',
+            'overlayOpacity'    : 0.4,
+            'centerOnScroll'    : true,
+            showCloseButton     : false,
+            'type'              : 'ajax',
+            hideOnOverlayClick  : true
+        });
+    }
+
     function confirmDeleteSection(){
-        var obj = jQuery("li#rf_"+jQuery(this).parent('#dialog').find("#section_id").val());
+        var section_id = jQuery(this).parent('#dialog').find("#section_id");
+        var obj_ids = jQuery('#dialog input#obj_ids');
+        var obj = jQuery("li#rf_"+section_id.val());
         var objs = obj.nextUntil("li.li_section_title");
 
-        var json_obj = jQuery('#dialog input#obj_ids').val();
+        var json_obj = obj_ids.val();
         jQuery.ajax({
             url: '<?php echo url_for("@delete_section") ?>',
             type: 'POST',
@@ -1296,6 +1302,8 @@
                 {
                     obj.remove();
                     objs.remove();
+                    section_id.val('');
+                    obj_ids.val('');
                     jQuery.fancybox.close();
                 }
             }

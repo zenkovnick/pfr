@@ -461,6 +461,11 @@ class builderActions extends sfActions
         return sfView::NONE;
     }
 
+    public function executeDeleteSectionPopup(sfWebRequest $request){
+        $this->section_id = $request->getParameter('section_id');
+        $this->obj_ids = json_encode(array_map('intval', explode(',', $request->getParameter('obj_ids'))));
+    }
+
     public function executeDeleteSection(sfWebRequest $request)
     {
         $this->setLayout(false);
