@@ -12,4 +12,9 @@
 
 <script type="text/javascript">
     jQuery("a.confirm-delete-section").bind('click', confirmDeleteSection);
+    jQuery("a.reject-delete-section").bind('click', function(event){
+        event.preventDefault();
+        jQuery.fancybox.close();
+    });
+
 </script>
