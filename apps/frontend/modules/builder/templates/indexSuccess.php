@@ -1269,7 +1269,9 @@
         obj_id.push(obj.children("input.question_id").val());
         var objs = obj.nextUntil("li.li_section_title");
         jQuery.each(objs, function(index, value){
-            obj_id.push(parseInt(jQuery(this).children("input.question_id").val()));
+            if(parseInt(jQuery(this).children("input.question_id").val()) != 0){
+                obj_id.push(jQuery(this).children("input.question_id").val());
+            }
         });
 
         var json_obj = obj_id.join(',');
@@ -1286,7 +1288,7 @@
     }
 
     function confirmDeleteSection(){
-        var section_id = jQuery(this).parent('#dialog').find("#section_id");
+        var section_id = jQuery(this).closest('#dialog').find("#section_id");
         var obj_ids = jQuery('#dialog input#obj_ids');
         var obj = jQuery("li#rf_"+section_id.val());
         var objs = obj.nextUntil("li.li_section_title");
