@@ -143,7 +143,7 @@ Account:
       class: sfGuardUser
       local: chief_pilot_id
       foreign: id
-      onDelete: CASCADE
+      onDelete: SET NULL
     Manager:
       class: sfGuardUser
       local: managed_by_id
@@ -209,8 +209,8 @@ Flight:
     relations:
       Account: {class: Account, local: account_id, foreign: id, type: one, onDelete: CASCADE}
       Plane:   {class: Plane, local: plane_id, foreign: id, type: one, onDelete: CASCADE}
-      PIC:     {class: sfGuardUser, local: pic_id, foreign: id, type: one, onDelete: CASCADE}
-      SIC:     {class: sfGuardUser, local: sic_id, foreign: id, type: one, onDelete: CASCADE}
+      PIC:     {class: sfGuardUser, local: pic_id, foreign: id, type: one, onDelete: SET NULL}
+      SIC:     {class: sfGuardUser, local: sic_id, foreign: id, type: one, onDelete: SET NULL}
       AirportFrom: {class: Airport, local: airport_from_id, foreign: id, type: one, onDelete: CASCADE}
       AirportTo:   {class: Airport, local: airport_to_id, foreign: id, type: one, onDelete: CASCADE}
     actAs: [Timestampable]
