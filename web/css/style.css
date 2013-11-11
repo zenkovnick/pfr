@@ -2164,7 +2164,7 @@ html .ui-autocomplete {
     overflow: hidden;
     text-align: center;
 }
-.popup-block .button-wrapper button {
+.popup-block .button-wrapper .btn {
     display: inline-block;
     float: none;
     margin: 0 15px 10px;
