@@ -29,11 +29,23 @@ class usersActions extends autoUsersActions
     {
         $user = $this->getRoute()->getObject();
 
-        $this->getUser()->setAttribute('controller_id', $this->getUser()->getGuardUser()->getId());
-        $this->getUser()->setAttribute('controlled_id', $user->getId());
-        $this->getUser()->signIn($user);
+//        $this->getUser()->setAttribute('controller_id', $this->getUser()->getGuardUser()->getId());
+//        $this->getUser()->setAttribute('controlled_id', $user->getId());
 
-        $this->redirect('/select');
+        $controllers = $this->getUser()->getAttribute('controllers');
+        if(count($controllers) == 0){
+            $controllers = array();
+        }
+        if(in_array($user->getId(), $controllers)){
+            $this->getUser()->setFlash('notice', 'User is already under control');
+            $this->redirect('sf_guard_user');
+        } else {
+            $controllers[$this->getUser()->getGuardUser()->getId()] = $user->getId();
+            $this->getUser()->setAttribute('controllers', $controllers);
+            $this->getUser()->signIn($user);
+            $this->redirect('/select');
+        }
+
     }
 
 

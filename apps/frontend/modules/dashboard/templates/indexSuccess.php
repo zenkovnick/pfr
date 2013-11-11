@@ -221,9 +221,16 @@
         });
         var supportsOrientationChange = "onorientationchange" in window,
             orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-        window.addEventListener(orientationEvent, function() {
-            jQuery("ul.expanded").hide().removeClass('expanded');
-        });
+        if(window.addEventListener){
+            window.addEventListener(orientationEvent, function() {
+                jQuery("ul.expanded").hide().removeClass('expanded');
+            });
+        } else {
+            window.attachEvent(orientationEvent, function() {
+                jQuery("ul.expanded").hide().removeClass('expanded');
+            });
+
+        }
 
         jQuery('span.from-date').click(function(){
             jQuery('.from-date-input').trigger('focus');
