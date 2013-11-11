@@ -5,7 +5,7 @@
     <p>Warning!  All the sub-questions will be removed completely as well.</p>
     <div class="button-wrapper">
         <a class='confirm-delete-section btn btn-red'>Confirm</a>
-        <a class='reject-delete-section btn btn-grey' onclick="jQuery.fancybox.close();">Cancel</a>
+        <a class='reject-delete-section btn btn-grey'>Cancel</a>
     </div>
 
 </div>
