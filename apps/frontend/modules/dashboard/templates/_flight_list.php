@@ -12,6 +12,9 @@
                     <li id="<?php echo $flight->getId() ?>">
                 <?php endif ?>
             <?php endif ?>
+            <a href="<?php echo url_for('@flight_note?id='.$flight->getId()) ?>" class="flight-note-link fancy">
+                <?php $flight->getFlightNote() ? 'Add Note' : 'Update Note' ?>
+            </a>
             <?php if($can_manage): ?>
                 <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">X</a>
             <?php endif ?>

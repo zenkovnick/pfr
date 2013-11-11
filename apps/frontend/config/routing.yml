@@ -33,6 +33,11 @@ create_account_get_widget:
   param: { module: registration, action: getWidget }
 
 
+flight_note:
+  url: /flight/:id/note
+  param: { module: flight, action: getNote }
+
+
 delete_risk_assessment_popup:
   url: /flight/:id/delete_popup
   param: { module: flight, action: getDeletePopup }

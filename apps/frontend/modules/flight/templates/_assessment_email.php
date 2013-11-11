@@ -85,6 +85,11 @@
             <?php else: ?>
                 <span style="color: #999; display: inline-block; margin: 0 0 20px;">No risk factors over 0.</span>
             <?php endif ?>
+
+            <?php if(!is_null($flight->getMitigationNote())): ?>
+                <span>Note</span>
+                <p><?php echo $flight->getMitigationNote() ?></p>
+            <?php endif ?>
             <tr>
                 <td style="padding-bottom: 30px"></td>
             </tr>

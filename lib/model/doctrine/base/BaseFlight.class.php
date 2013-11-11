@@ -21,6 +21,8 @@
  * @property boolean $drafted
  * @property enum $status
  * @property varchar $time_str
+ * @property varchar $mitigation_note
+ * @property varchar $flight_note
  * @property Account $Account
  * @property Plane $Plane
  * @property sfGuardUser $PIC
@@ -44,6 +46,8 @@
  * @method boolean     getDrafted()          Returns the current record's "drafted" value
  * @method enum        getStatus()           Returns the current record's "status" value
  * @method varchar     getTimeStr()          Returns the current record's "time_str" value
+ * @method varchar     getMitigationNote()   Returns the current record's "mitigation_note" value
+ * @method varchar     getFlightNote()       Returns the current record's "flight_note" value
  * @method Account     getAccount()          Returns the current record's "Account" value
  * @method Plane       getPlane()            Returns the current record's "Plane" value
  * @method sfGuardUser getPIC()              Returns the current record's "PIC" value
@@ -66,6 +70,8 @@
  * @method Flight      setDrafted()          Sets the current record's "drafted" value
  * @method Flight      setStatus()           Sets the current record's "status" value
  * @method Flight      setTimeStr()          Sets the current record's "time_str" value
+ * @method Flight      setMitigationNote()   Sets the current record's "mitigation_note" value
+ * @method Flight      setFlightNote()       Sets the current record's "flight_note" value
  * @method Flight      setAccount()          Sets the current record's "Account" value
  * @method Flight      setPlane()            Sets the current record's "Plane" value
  * @method Flight      setPIC()              Sets the current record's "PIC" value
@@ -150,6 +156,14 @@ abstract class BaseFlight extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 20,
              ));
+        $this->hasColumn('mitigation_note', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
+             ));
+        $this->hasColumn('flight_note', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
+             ));
     }
 
     public function setUp()
@@ -168,12 +182,12 @@ abstract class BaseFlight extends sfDoctrineRecord
         $this->hasOne('sfGuardUser as PIC', array(
              'local' => 'pic_id',
              'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+             'onDelete' => 'SET NULL'));
 
         $this->hasOne('sfGuardUser as SIC', array(
              'local' => 'sic_id',
              'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+             'onDelete' => 'SET NULL'));
 
         $this->hasOne('Airport as AirportFrom', array(
              'local' => 'airport_from_id',

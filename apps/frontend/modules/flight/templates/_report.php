@@ -46,6 +46,10 @@
         <?php else: ?>
             <span class="no-high-risk-factors">No risk factors over 0.</span>
         <?php endif ?>
+        <?php if(!is_null($flight->getMitigationNote())): ?>
+            <span>Note</span>
+            <p><?php echo $flight->getMitigationNote() ?></p>
+        <?php endif ?>
     </div>
     <span class="bottom-border border"></span>
 </div>

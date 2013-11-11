@@ -128,7 +128,7 @@ abstract class BaseAccount extends sfDoctrineRecord
         $this->hasOne('sfGuardUser as ChiefPilot', array(
              'local' => 'chief_pilot_id',
              'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+             'onDelete' => 'SET NULL'));
 
         $this->hasOne('sfGuardUser as Manager', array(
              'local' => 'managed_by_id',

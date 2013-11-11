@@ -74,6 +74,9 @@
             <?php endif; ?>
         </li>
     <?php endfor ?>
+    <?php if($form->getObject()->getStatus() == 'assess'): ?>
+        <?php include_partial("flight/field", array('field' => $form['mitigation_note'], 'label' => false)); ?>
+    <?php endif ?>
 </ul>
 
 <script type="text/javascript">

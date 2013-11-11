@@ -375,4 +375,15 @@ class flightActions extends sfActions {
         }
         return sfView::NONE;
     }
+
+    public function executeGetNote(sfWebRequest $request){
+        $this->setLayout(false);
+        $flight = FlightTable::getInstance()->find($request->getParameter('id'));
+        $this->renderPartial('flight/flight_note', array('flight' => $flight));
+        return sfView::NONE;
+    }
+
+    public function executeProcessNote(sfWebRequest $request){
+
+    }
 }

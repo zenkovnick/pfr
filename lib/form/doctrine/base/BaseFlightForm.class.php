@@ -32,6 +32,8 @@ abstract class BaseFlightForm extends BaseFormDoctrine
       'drafted'          => new sfWidgetFormInputCheckbox(),
       'status'           => new sfWidgetFormChoice(array('choices' => array('new' => 'new', 'assess' => 'assess', 'complete' => 'complete'))),
       'time_str'         => new sfWidgetFormInputText(),
+      'mitigation_note'  => new sfWidgetFormInputText(),
+      'flight_note'      => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -54,6 +56,8 @@ abstract class BaseFlightForm extends BaseFormDoctrine
       'drafted'          => new sfValidatorBoolean(array('required' => false)),
       'status'           => new sfValidatorChoice(array('choices' => array(0 => 'new', 1 => 'assess', 2 => 'complete'), 'required' => false)),
       'time_str'         => new sfValidatorPass(array('required' => false)),
+      'mitigation_note'  => new sfValidatorPass(array('required' => false)),
+      'flight_note'      => new sfValidatorPass(array('required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
     ));
