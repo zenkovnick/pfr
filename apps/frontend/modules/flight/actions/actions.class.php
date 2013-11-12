@@ -220,10 +220,10 @@ class flightActions extends sfActions {
             }
 
             /* Send emails if high risk factor notify */
-            if($this->risk_builder->getHighRiskFactorNotify() && $this->with_high_risk && $this->risk_builder->getHighRiskFactorEmail()){
+            if($this->risk_builder->getHighRiskFactorNotify() && $this->with_high_risk){
                 EmailNotification::sendEmailsAssessment(
                     $this->risk_builder->getHighRiskFactorEmail(),
-                    $this->account->getChiefPilot()->getId() ? $this->account->getChiefPilot() : null,
+                    $this->account->getChiefPilot()->getId() ? $this->account->getChiefPilot()->getUsername() : null,
                     $this->getPartial('flight/assessment_email', array(
                         'flight' => $this->flight,
                         'high_risk_factors' => $this->high_risk_factors,
@@ -376,14 +376,20 @@ class flightActions extends sfActions {
         return sfView::NONE;
     }
 
-    public function executeGetNote(sfWebRequest $request){
+    public function executeGetFlightNote(sfWebRequest $request){
         $this->setLayout(false);
         $flight = FlightTable::getInstance()->find($request->getParameter('id'));
-        $this->renderPartial('flight/flight_note', array('flight' => $flight));
+        $markup = $this->getPartial('flight/flight_note', array('flight' => $flight));
+        echo json_encode(array('result' => 'OK', 'markup' => $markup));
         return sfView::NONE;
     }
 
-    public function executeProcessNote(sfWebRequest $request){
-
+    public function executeProcessFlightNote(sfWebRequest $request){
+        $this->setLayout(false);
+        $flight = FlightTable::getInstance()->find($request->getParameter('id'));
+        $flight->setFlightNote($request->getPostParameter('note'));
+        $flight->save();
+        echo json_encode(array('result' => 'OK'));
+        return sfView::NONE;
     }
 }

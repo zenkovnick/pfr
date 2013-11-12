@@ -109,7 +109,13 @@ class EmailNotification {
         MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_assessment_from_name', 'Pre Flight Risk'));
         MCSendMail::getInstance()->setMessageSubject($subject);
         MCSendMail::getInstance()->clearMessageTo();
-        $emails = explode(',', $mail_to);
+        $emails = array();
+        if($mail_to){
+            $emails = explode(',', $mail_to);
+        }
+        if(!is_null($chief_pilot)){
+            $emails[] = $chief_pilot;
+        }
         foreach($emails as $email){
             if(trim($email)){
                 MCSendMail::getInstance()->setMessageAddTo(array('email'=>trim($email), 'name' => null));

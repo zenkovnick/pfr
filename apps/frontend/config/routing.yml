@@ -33,9 +33,14 @@ create_account_get_widget:
   param: { module: registration, action: getWidget }
 
 
+flight_note_process:
+  url: /flight/:id/process_note
+  param: { module: flight, action: processFlightNote }
+
+
 flight_note:
   url: /flight/:id/note
-  param: { module: flight, action: getNote }
+  param: { module: flight, action: getFlightNote }
 
 
 delete_risk_assessment_popup:

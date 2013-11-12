@@ -12,8 +12,8 @@
                     <li id="<?php echo $flight->getId() ?>">
                 <?php endif ?>
             <?php endif ?>
-            <a href="<?php echo url_for('@flight_note?id='.$flight->getId()) ?>" class="flight-note-link fancy">
-                <?php $flight->getFlightNote() ? 'Add Note' : 'Update Note' ?>
+            <a href="" class="flight-note-link">
+                <?php echo $flight->getFlightNote() ? 'Update Note' : 'Add Note' ?>
             </a>
             <?php if($can_manage): ?>
                 <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">X</a>
@@ -49,6 +49,8 @@
                         <p class="email-error"></p>
                     </div>
                 <?php endif ?>
+                <div class="note-form" style="display:none;">
+                </div>
 
             </li>
         <?php endforeach ?>
@@ -80,6 +82,7 @@
         }*/
 
         jQuery('a.send-flight-email-link').bind('click', showEmailForm);
+        jQuery('a.flight-note-link').bind('click', showNoteForm);
         jQuery('.send-email').bind('click', sendEmail);
         //jQuery('.delete_risk_assessment').bind('click', deleteRiskAssessment)
 
@@ -94,6 +97,33 @@
         });
 
     });
+
+    function showNoteForm(event) {
+        event.preventDefault();
+        var root_li = jQuery(this).closest('li');
+        var flight_id = root_li.prop('id');
+        var form = jQuery('.note-form', root_li);
+        if(form.hasClass('open')){
+            form.removeClass('open').hide(500);
+            jQuery('.note-form-wrapper', form).remove();
+        } else {
+            jQuery('.note-form').removeClass('open').hide(500);
+            jQuery('.note-form-wrapper').remove();
+            jQuery.ajax({
+                url: '/flight/'+flight_id+'/note',
+                dataType: 'json',
+                type: 'get',
+                success: function(data) {
+                    if(data.result == "OK"){
+                        form.html(data.markup);
+                        form.addClass('open').show(500);
+                    }
+                }
+
+            });
+        }
+    }
+
 
     function showEmailForm(event) {
         event.preventDefault();
