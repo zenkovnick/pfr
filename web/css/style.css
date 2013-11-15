@@ -363,8 +363,10 @@ ul.header-link-block li.mobile-logout {
 }
 .forgot-password span {
     color: #666;
+    display: block;
     font-size: 12px;
     line-height: 120%;
+    text-align: center;
 }
 .forgot-password span a {
     color: #3E8CD7;
@@ -878,10 +880,11 @@ a.cancel-risk-factor-add:hover {
 
 a.add-note, a.remove-note {
     background: url(../images/form_builder_border.png) repeat-x left bottom;
+    clear: both;
     color: #0F76BB;
     display: block;
     font-size: 12px;
-    padding: 10px 2px;
+    padding: 0 2px 10px;
     text-decoration: none;
 }
 a.remove-note {
@@ -926,6 +929,10 @@ span.ui-spinner {
 
 .new-response-option, .response-option {
     position: relative;
+}
+.response-option-list .response-option > input.response-value[type="text"] {
+    margin: 9px 0 0 15px !important;
+    width: 55px;
 }
 .new-response-option label, .response-option label {
     display: none;
@@ -1240,6 +1247,21 @@ a.mitigation-edit:hover, a.mitigation-cancel:hover {
     padding: 0 0 9px;
     position: relative;
 }
+.risk-factor-li label {
+    display: block;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+.risk-factor-li textarea {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0 0 10px;
+    padding: 10px 0 0 10px;
+    width: 100%;
+}
 
 .risk-factor-question-wrapper {
     margin-right: 40px;
@@ -1416,7 +1438,15 @@ html .ui-autocomplete {
     margin: 0 0 20px;
 }
 
-.assessment-wrapper .critical-risks {
+.assessment-wrapper .critical-risks span.user-note {
+    display: block;
+    margin-top: 10px;
+
+}
+.assessment-wrapper .critical-risks p.user-note-content {
+    display: block;
+    line-height: 150%;
+    margin-bottom: 10px;
 }
 
 .assessment-wrapper .critical-risks h2 {
@@ -2013,10 +2043,11 @@ html .ui-autocomplete {
     padding: 9px 0 0;
 }
 .dashboard-page .flights-list .risk {
-    float: right;
+    float: left;
     display: block;
     width: 39px;
     height: 27px;
+    margin-right: 10px;
     padding: 12px 0 0;
     text-align: center;
     color: #FFF;
@@ -2044,7 +2075,6 @@ html .ui-autocomplete {
     display: block;
     float: right;
     height: 40px;
-    margin-left: 12px;
     overflow: hidden;
     text-indent: -1000px;
     width: 40px;
@@ -2063,13 +2093,50 @@ html .ui-autocomplete {
 }
 
 .dashboard-page .flights-list a.send-flight-email-link {
-    background: url(../images/send-report_icon.png) no-repeat left center;
-    display: inline-block;
-    height: 12px;
+    background: url(../images/send-report_icon.png) no-repeat center center;
+    border: 1px solid #C3C3C3;
+    border-right: none;
+    display:block;
+    float:right;
+    height: 40px;
     overflow: hidden;
     text-indent: -1000px;
-    width: 16px;
+    width: 40px;
 }
+.dashboard-page .flights-list a.flight-note-link {
+    background: url(../images/add_note_btn.png) no-repeat center center;
+    border: 1px solid #C3C3C3;
+    border-right: none;
+    display:block;
+    float:right;
+    height: 40px;
+    overflow: hidden;
+    text-indent: -1000px;
+    width: 40px;
+}
+.dashboard-page .flights-list textarea {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #BBBBBB;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    margin: 14px 0 5px;
+    max-width: 100%;
+    padding: 9px 0 0 9px;
+    width: 100%;
+}
+.note-form-wrapper .btn {
+    float: right;
+    margin: 0 0 14px 10px;
+}
+.note-form-wrapper span {
+    color: #666;
+    display: inline-block;
+    font-size: 12px;
+    padding-top: 12px;
+}
+
 .dashboard-page .flights-list .info {
     color: #999;
     display: block;
