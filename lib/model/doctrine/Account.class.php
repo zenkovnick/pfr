@@ -15,4 +15,66 @@ class Account extends BaseAccount
     public function getPilots(){
         return implode(', ', sfGuardUser::getNamesArray(sfGuardUserTable::getPilotsByAccount($this->getId())));
     }
+
+    public function getReportTypes(){
+        return array('account' => 'Account', 'plane' => 'Planes', 'airport' => 'Airport', 'pic' => 'PIC', 'sic' => 'SIC');
+    }
+
+    public function getFlightsByCriteria($criteria = 'account'){
+        return FlightTable::getInstance()->getFlightsByCriteria($criteria, $this->getId());
+    }
+    public function getAvgRiskSumByCriteria($criteria = 'account'){
+        return FlightTable::getInstance()->getAvgRiskSumByCriteria($criteria, $this->getId());
+    }
+    public function getMaxRiskSumByCriteria($criteria = 'account'){
+        return FlightTable::getInstance()->getMaxRiskSumByCriteria($criteria, $this->getId());
+    }
+    public function getMitigationCountByCriteria($criteria = 'account'){
+        return FlightTable::getInstance()->getMitigationCountByCriteria($criteria, $this->getId());
+    }
+
+    public function getRiskSelectedDataByCriteria($criteria = 'account'){
+        $flights = $this->getFlightsByCriteria($criteria);
+        $data = array('max' => -1, 'data' => array());
+        foreach($flights as $flight){
+            $high_factors = $flight->getRiskSelectedReportData();
+            foreach($high_factors as $key => $question){
+                if(!array_key_exists($key, $data['data'])){
+                    $data['data'][$key]['question'] = $question;
+                    $data['data'][$key]['count'] = 1;
+                } else {
+                    $data['data'][$key]['count']++;
+                }
+            }
+        }
+        $data['max'] = $this->getMax($data['data']);
+        return $data;
+    }
+
+    private function aasort (&$array, $key) {
+        $sorter=array();
+        $ret=array();
+        reset($array);
+        foreach ($array as $ii => $va) {
+            $sorter[$ii]=$va[$key];
+        }
+        asort($sorter);
+        foreach ($sorter as $ii => $va) {
+            $ret[$ii]=$array[$ii];
+        }
+        $array=$ret;
+    }
+
+    private function getMax($data){
+        $max = 0;
+        foreach($data as $obj)
+        {
+            if($obj['count'] > $max)
+            {
+                $max = $obj['count'];
+            }
+        }
+        return $max;
+    }
+
 }

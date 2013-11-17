@@ -31,6 +31,9 @@
     <li class="header-dashboard header-link">
         <a href="<?php echo isset($account) ? url_for("@dashboard?account_id={$account->getId()}") : "#" ?>">Dashboard</a>
     </li>
+    <li class="header-dashboard header-link">
+        <a href="<?php echo isset($account) ? url_for("@reports?account_id={$account->getId()}") : "#" ?>">Reports</a>
+    </li>
     <li class="header-settings header-link">
         <a href="<?php echo isset($account) ? url_for("@settings?account_id={$account->getId()}") : "#" ?>">Settings</a>
     </li>

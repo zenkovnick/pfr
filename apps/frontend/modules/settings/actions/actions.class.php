@@ -3,8 +3,8 @@
 class settingsActions extends sfActions {
     public function executeIndex(sfWebRequest $request){
         $account_id = $request->getParameter('account_id');
-        $this->user = Doctrine_Core::getTable('sfGuardUser')->find($this->getUser()->getGuardUser()->getId());
-        if(!sfGuardUserTable::checkUserAccountAccess($account_id, $this->user->getId())){
+        $this->user = $this->getUser()->getGuardUser();
+        if(!sfGuardUserTable::checkUserAccountAccess($account_id, $this->getUser()->getGuardUser()->getId())){
             $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
         }
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
@@ -20,7 +20,7 @@ class settingsActions extends sfActions {
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
         if($this->getUser()->isAuthenticated()){
-            $this->user = Doctrine_Core::getTable('sfGuardUser')->find($this->getUser()->getGuardUser()->getId());
+            $this->user = $this->getUser()->getGuardUser();
             $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
             $this->form = new MyInformationSettingsForm($this->user);
             $content = $this->getPartial('settings/my_information', array('form' => $this->form, 'account' => $this->account, 'user' => $this->user));
@@ -36,7 +36,7 @@ class settingsActions extends sfActions {
         $this->setLayout(false);
         $this->forward404Unless($request->isXmlHttpRequest());
         if($this->getUser()->isAuthenticated()){
-            $this->user = Doctrine_Core::getTable('sfGuardUser')->find($this->getUser()->getGuardUser()->getId());
+            $this->user = $this->getUser()->getGuardUser();
             $this->form = new MyInformationSettingsForm($this->user);
             if($request->isMethod('POST')){
                 $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));

@@ -1,3 +1,8 @@
+reports:
+  url: /:account_id/reports
+  param: { module: reports, action: index }
+
+
 finish_controlling:
   url: /home/finish_controlling/:id
   param: { module: home, action: finishControlling }
@@ -221,6 +226,7 @@ my_information_upload_avatar:
 my_information_crop_image:
   url: /settings/information/crop-image
   param: { module: settings, action: cropImage }
+
 
 settings:
   url: /:account_id/settings

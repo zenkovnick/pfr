@@ -23,4 +23,86 @@ class FlightTable extends Doctrine_Table
             ->groupBy('DATE_FORMAT(f.created_at,"%Y-%m-%d")')
             ->execute();
     }
+
+    public function getFlightsByCriteria($criteria, $account_id){
+        $query = Doctrine_Query::create()
+            ->from("Flight f")
+            ->where("f.account_id = ?", $account_id)
+            ->andWhere("f.status = 'complete'");
+        switch($criteria){
+            case 'airport':
+                break;
+            case 'plane':
+                break;
+            case 'pic':
+                break;
+            case 'sic':
+                break;
+        }
+        return $query->execute();
+
+    }
+
+
+    public function getAvgRiskSumByCriteria($criteria, $account_id){
+        $query = Doctrine_Query::create()
+            ->select("AVG(f.risk_factor_sum) as avg")
+            ->from("Flight f")
+            ->where("f.account_id = ?", $account_id)
+            ->andWhere("f.status = 'complete'");
+        switch($criteria){
+            case 'airport':
+                break;
+            case 'plane':
+                break;
+            case 'pic':
+                break;
+            case 'sic':
+                break;
+        }
+        return $query->execute()->getFirst()->getAvg();
+
+    }
+
+    public function getMaxRiskSumByCriteria($criteria, $account_id){
+        $query = Doctrine_Query::create()
+            ->select("MAX(f.risk_factor_sum) as max")
+            ->from("Flight f")
+            ->where("f.account_id = ?", $account_id)
+            ->andWhere("f.status = 'complete'");
+        switch($criteria){
+            case 'airport':
+                break;
+            case 'plane':
+                break;
+            case 'pic':
+                break;
+            case 'sic':
+                break;
+        }
+        return $query->execute()->getFirst()->getMax();
+
+    }
+
+    public function getMitigationCountByCriteria($criteria, $account_id){
+        $query = Doctrine_Query::create()
+            ->from("Flight f")
+            ->where("f.account_id = ?", $account_id)
+            ->andWhere("f.status = 'complete'")
+            ->andWhere("f.mitigation_sum IS NOT NULL");
+        switch($criteria){
+            case 'airport':
+                break;
+            case 'plane':
+                break;
+            case 'pic':
+                break;
+            case 'sic':
+                break;
+        }
+        return $query->execute()->count();
+
+    }
+
+
 }

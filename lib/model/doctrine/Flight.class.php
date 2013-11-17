@@ -196,4 +196,22 @@ class Flight extends BaseFlight
         }
         return $data;
     }
+
+    public function getRiskSelectedReportData(){
+        $flight_data = json_decode($this->getInfo(), true);
+        $high_risk_factors = array();
+        foreach($flight_data['risk_analysis'] as $key => $risk_factor)
+        {
+            $arr = array();
+            if($risk_factor['response_options'][$risk_factor['selected_response']]['value']>0){
+                $index = md5($risk_factor['question']);
+                $arr['question'] = $risk_factor['question'];
+//                $arr['answer'] = $risk_factor['response_options'][$risk_factor['selected_response']]['text'];
+//                $arr['risk'] =  $risk_factor['response_options'][$risk_factor['selected_response']]['value'];
+
+                $high_risk_factors[$index] = $risk_factor['question'];
+            }
+        }
+        return $high_risk_factors;
+    }
 }
