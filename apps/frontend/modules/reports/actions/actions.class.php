@@ -19,6 +19,16 @@ class reportsActions extends sfActions
       $this->account = Doctrine_Core::getTable('Account')->find($account_id);
       $user_account = UserAccountTable::getUserAccount($this->getUser()->getGuardUser()->getId(), $account_id);
       $this->can_manage = $user_account->getIsManager();
+      if(!$request->isXmlHttpRequest()){
+          $this->report_type = 'account';
+
+      } else {
+          $this->setLayout(false);
+          $this->report_type = $request->getParameter('report_type');
+          $html = $this->getComponent('reports', 'account', array('account' => $this->account, 'report_type' => $this->report_type));
+          echo json_encode(array('result' => 'OK', 'html' => $html));
+          return sfView::NONE;
+      }
   }
 
 }

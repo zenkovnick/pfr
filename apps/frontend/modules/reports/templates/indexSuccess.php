@@ -29,7 +29,7 @@
     </ul>
 </div>
 <div class="report-wrapper" style="height:1000px;">
-    <?php include_component('reports','account', array('account' => $account)); ?>
+    <?php include_component('reports','account', array('account' => $account, 'report_type' => $report_type)); ?>
 
 </div>
 
@@ -60,7 +60,17 @@
             jQuery('input[type="hidden"]', root_el).val(type);
             jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
 
-
+            jQuery.ajax({
+               url: '<?php echo url_for("@reports?account_id={$account->getId()}") ?>',
+               dataType: 'json',
+               data: {report_type: type},
+               type: 'get',
+               success: function(data){
+                   if(data.result == "OK"){
+                       jQuery('.report-wrapper').html(data.html);
+                   }
+               }
+            });
         });
     });
 </script>

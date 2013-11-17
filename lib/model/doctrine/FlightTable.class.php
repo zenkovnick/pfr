@@ -105,4 +105,72 @@ class FlightTable extends Doctrine_Table
     }
 
 
+    public function getPlaneDataByCriteria($criteria, $account_id){
+        $query = Doctrine_Query::create()
+            ->select("COUNT(p.tail_number) as count, p.tail_number as name")
+            ->from("Plane p")
+            ->innerJoin("p.Flight f")
+            ->where("f.account_id = ?", $account_id)
+            ->andWhere("f.status = 'complete'")
+            ->groupBy("f.plane_id");
+        switch($criteria){
+            case 'airport':
+                break;
+            case 'plane':
+                break;
+            case 'pic':
+                break;
+            case 'sic':
+                break;
+        }
+        return $query->execute();
+
+    }
+
+    public function getPICDataByCriteria($criteria, $account_id){
+        $query = Doctrine_Query::create()
+            ->select("f.id, COUNT(u.first_name) as count, u.first_name as name")
+            ->from("Flight f")
+            ->innerJoin("f.PIC u")
+            ->where("f.account_id = ?", $account_id)
+            ->andWhere("f.status = 'complete'")
+            ->groupBy("f.pic_id");
+        switch($criteria){
+            case 'airport':
+                break;
+            case 'plane':
+                break;
+            case 'pic':
+                break;
+            case 'sic':
+                break;
+        }
+        return  $query->fetchArray();
+    }
+
+
+    public function getSICDataByCriteria($criteria, $account_id){
+        $query = Doctrine_Query::create()
+            ->select("f.id, COUNT(u.first_name) as count, u.first_name as name")
+            ->from("Flight f")
+            ->innerJoin("f.SIC u")
+            ->where("f.account_id = ?", $account_id)
+            ->andWhere("f.status = 'complete'")
+            ->andWhere("f.sic_id IS NOT NULL")
+            ->groupBy("f.sic_id");
+        switch($criteria){
+            case 'airport':
+                break;
+            case 'plane':
+                break;
+            case 'pic':
+                break;
+            case 'sic':
+                break;
+        }
+        return $query->fetchArray();
+
+    }
+
+
 }

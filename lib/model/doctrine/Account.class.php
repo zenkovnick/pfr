@@ -32,7 +32,40 @@ class Account extends BaseAccount
     public function getMitigationCountByCriteria($criteria = 'account'){
         return FlightTable::getInstance()->getMitigationCountByCriteria($criteria, $this->getId());
     }
-
+    public function getPlaneDataByCriteria($criteria = 'account'){
+        $planes = FlightTable::getInstance()->getPlaneDataByCriteria($criteria, $this->getId());
+        $data = array('max' => -1, 'data' => array());
+        foreach($planes as $row){
+            $key = md5($row->getName());
+            $data['data'][$key]['tail_number'] = $row->getName();
+            $data['data'][$key]['count'] = $row->getCount();
+        }
+        $data['max'] = $this->getMax($data['data']);
+        $data['data'] = $this->aasort($data['data'], 'count');
+        return $data;
+    }
+    public function getPilotDataByCriteria($criteria = 'account'){
+        $pic = FlightTable::getInstance()->getPICDataByCriteria($criteria, $this->getId());
+        $sic = FlightTable::getInstance()->getSICDataByCriteria($criteria, $this->getId());
+        $data = array('max' => -1, 'data' => array());
+        foreach($pic as $row){
+            $key = md5($row['name']);
+            $data['data'][$key]['name'] = $row['name'];
+            $data['data'][$key]['count'] = $row['count'];
+        }
+        foreach($sic as $row){
+            $key = md5($row['name']);
+            if(!array_key_exists($key, $data['data'])){
+                $data['data'][$key]['name'] = $row['name'];
+                $data['data'][$key]['count'] = $row['count'];
+            } else {
+                $data['data'][$key]['count'] += $row['count'];
+            }
+        }
+        $data['max'] = $this->getMax($data['data']);
+        $data['data'] = $this->aasort($data['data'], 'count');
+        return $data;
+    }
     public function getRiskSelectedDataByCriteria($criteria = 'account'){
         $flights = $this->getFlightsByCriteria($criteria);
         $data = array('max' => -1, 'data' => array());
@@ -48,21 +81,23 @@ class Account extends BaseAccount
             }
         }
         $data['max'] = $this->getMax($data['data']);
+        $data['data'] = $this->aasort($data['data'], 'count');
         return $data;
     }
 
-    private function aasort (&$array, $key) {
+    private function aasort ($array, $key) {
         $sorter=array();
         $ret=array();
         reset($array);
         foreach ($array as $ii => $va) {
             $sorter[$ii]=$va[$key];
         }
-        asort($sorter);
+        arsort($sorter);
         foreach ($sorter as $ii => $va) {
             $ret[$ii]=$array[$ii];
         }
         $array=$ret;
+        return $array;
     }
 
     private function getMax($data){
