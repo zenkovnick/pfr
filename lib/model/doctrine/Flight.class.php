@@ -203,7 +203,7 @@ class Flight extends BaseFlight
         foreach($flight_data['risk_analysis'] as $key => $risk_factor)
         {
             $arr = array();
-            if($risk_factor['response_options'][$risk_factor['selected_response']]['value']>0){
+            if(!is_null($risk_factor['selected_response']) && $risk_factor['response_options'][$risk_factor['selected_response']]['value']>0){
                 $index = md5($risk_factor['question']);
                 $arr['question'] = $risk_factor['question'];
 //                $arr['answer'] = $risk_factor['response_options'][$risk_factor['selected_response']]['text'];
