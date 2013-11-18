@@ -230,4 +230,10 @@ class sfGuardUser extends PluginsfGuardUser
         }, $collection->toArray());
     }
 
+    public function canManage($account){
+        $user_account = UserAccountTable::getUserAccount($this->getId(), $account->getId());
+        return $user_account->getIsManager();
+    }
+
+
 }

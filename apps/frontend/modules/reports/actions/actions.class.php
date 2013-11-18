@@ -17,8 +17,7 @@ class reportsActions extends sfActions
           $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
       }
       $this->account = Doctrine_Core::getTable('Account')->find($account_id);
-      $user_account = UserAccountTable::getUserAccount($this->getUser()->getGuardUser()->getId(), $account_id);
-      $this->can_manage = $user_account->getIsManager();
+      $this->can_manage = $this->getUser()->getGuardUser()->canManage($this->account);
       if(!$request->isXmlHttpRequest()){
           $this->report_type = 'account';
 
