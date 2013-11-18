@@ -19,15 +19,7 @@
                     <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
                 <?php endif ?>
 
-                <?php if($can_manage): ?>
-                    <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">X</a>
-                <?php endif ?>
-                <?php if($flight->getStatus() == 'complete'): ?>
-                    <a class="send-flight-email-link" href="#">Send</a>
-                <?php endif ?>
-                <a href="" class="flight-note-link">
-                    <?php echo $flight->getFlightNote() ? 'Update Note' : 'Add Note' ?>
-                </a>
+
                 <a class="name" href="<?php echo url_for(($flight->getDrafted() ? "@edit_flight" : "@view_flight")."?account_id={$account->getId()}&id={$flight->getId()}") ?>">
                     <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
                     <?php echo $flight->getAirportTo()->getICAO() ? "- {$flight->getAirportTo()->getICAO()}" : "" ?>
@@ -45,6 +37,17 @@
                 <span class="info">
                     <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
                 </span>
+
+                <?php if($flight->getStatus() == 'complete'): ?>
+                    <a class="send-flight-email-link" href="#">send report</a>
+                <?php endif ?>
+                <a href="" class="flight-note-link">
+                    <?php echo $flight->getFlightNote() ? 'Update Note' : 'leave a note' ?>
+                </a>
+                <?php if($can_manage): ?>
+                    <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">delete</a>
+                <?php endif ?>
+
                 <?php if($flight->getStatus() == 'complete'): ?>
                     <div class="email-form" style="display:none;">
                         <input type="text" class="emails" placeholder="List emails separated with commas" />
@@ -52,8 +55,13 @@
                         <p class="email-error"></p>
                     </div>
                 <?php endif ?>
-                <div class="note-form" style="display:none;">
-                </div>
+
+
+
+
+
+                <div class="note-form" style="display:none;"></div>
+
 
             </li>
         <?php endforeach ?>
