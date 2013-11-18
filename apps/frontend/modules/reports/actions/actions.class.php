@@ -24,7 +24,7 @@ class reportsActions extends sfActions
 
       } else {
           $this->setLayout(false);
-          $html = $this->getComponent('reports', 'account', array(
+          $html = $this->getComponent('reports', 'showReport', array(
               'account' => $this->account,
               'report_type' => $request->getParameter('report_type'),
               'option_id' =>  $request->getParameter('id'),

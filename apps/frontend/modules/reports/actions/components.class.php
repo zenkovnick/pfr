@@ -1,7 +1,7 @@
 <?php
 class reportsComponents extends sfComponents
 {
-    public function executeAccount()
+    public function executeShowReport()
     {
         $this->flights = $this->account->getFlightsByCriteria(
             $this->report_type, $this->option_id, $this->date_type, $this->date_from, $this->date_to

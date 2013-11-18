@@ -57,7 +57,7 @@
     </div>
 
     <div class="report-wrapper" style="height:500px">
-        <?php include_component('reports','account', array('account' => $account, 'report_type' => $report_type)); ?>
+        <?php include_component('reports','showReport', array('account' => $account, 'report_type' => $report_type)); ?>
 
     </div>
 </div>
