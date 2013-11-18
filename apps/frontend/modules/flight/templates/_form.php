@@ -74,9 +74,13 @@
             <?php endif; ?>
         </li>
     <?php endfor ?>
-    <?php if($form->getObject()->getStatus() == 'assess'): ?>
-        <?php include_partial("flight/field", array('field' => $form['mitigation_note'], 'label' => false)); ?>
-    <?php endif ?>
+    <li class="risk-factor-li">
+        <?php if($form->getObject()->getStatus() == 'assess'): ?>
+            <?php include_partial("flight/field", array('field' => $form['mitigation_note'], 'label' => true)); ?>
+        <?php endif ?>
+        <span class="bottom-dashed-border"></span>
+    </li>
+
 </ul>
 
 <script type="text/javascript">

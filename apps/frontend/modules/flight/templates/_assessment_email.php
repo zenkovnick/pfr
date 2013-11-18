@@ -58,6 +58,7 @@
                 <td style="border-top: 1px solid #CCC; border-bottom: 1px solid #FFF; padding: 0;"></td>
             </tr>
 
+
             <?php if(count($high_risk_factors) > 0): ?>
                 <?php foreach($high_risk_factors as $high_risk_factor): ?>
                     <?php if(isset($high_risk_factor['question'])): ?>
@@ -86,10 +87,15 @@
                 <span style="color: #999; display: inline-block; margin: 0 0 20px;">No risk factors over 0.</span>
             <?php endif ?>
 
-            <?php if(!is_null($flight->getMitigationNote())): ?>
-                <span>Note</span>
-                <p><?php echo $flight->getMitigationNote() ?></p>
-            <?php endif ?>
+        <tr>
+            <td style="padding: 20px 0">
+                <?php if(!is_null($flight->getMitigationNote())): ?>
+                    <span style="color: #000 !important; font-weight: bold; margin: 0;">Note</span>
+                    <p style="color: #000 !important; margin-top: 5px;"><?php echo $flight->getMitigationNote() ?></p>
+                <?php endif ?>
+            </td>
+        </tr>
+
             <tr>
                 <td style="padding-bottom: 30px"></td>
             </tr>
@@ -97,7 +103,7 @@
     <table style="background: #FFF; max-width: 100%">
         <tr>
             <td style="height: 70px; text-align: center; vertical-align: middle; width: 540px;">
-                <img style="display:inline-block; height: 60px; width: 114px;" src="<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
+                <img style="display:inline-block; height: 60px; width: 114px;" src="http://<?php echo $_SERVER["SERVER_NAME"]; ?>/images/logo.png" alt="Logo" />
             </td>
         </tr>
     </table>
