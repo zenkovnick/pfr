@@ -14,6 +14,9 @@
                         <?php if(isset($high_risks) && $high_risks): ?>
                             <b>and risks item with a score of 4 or higher.</b>
                         <?php endif ?>
+                        <br />
+                        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
+                        <?php echo $flight->getPilotName() ? " by {$flight->getPilotName()}" : "" ?>
                     </p>
                 </td>
             </tr>
@@ -89,7 +92,7 @@
 
         <tr>
             <td style="padding: 20px 0">
-                <?php if(!is_null($flight->getMitigationNote())): ?>
+                <?php if(!is_null($flight->getMitigationNote()) && $flight->getMitigationNote()): ?>
                     <span style="color: #000 !important; font-weight: bold; margin: 0;">Note</span>
                     <p style="color: #000 !important; margin-top: 5px;"><?php echo $flight->getMitigationNote() ?></p>
                 <?php endif ?>

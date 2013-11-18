@@ -23,6 +23,7 @@
  * @property varchar $time_str
  * @property varchar $mitigation_note
  * @property varchar $flight_note
+ * @property varchar $pilot_name
  * @property Account $Account
  * @property Plane $Plane
  * @property sfGuardUser $PIC
@@ -48,6 +49,7 @@
  * @method varchar     getTimeStr()          Returns the current record's "time_str" value
  * @method varchar     getMitigationNote()   Returns the current record's "mitigation_note" value
  * @method varchar     getFlightNote()       Returns the current record's "flight_note" value
+ * @method varchar     getPilotName()        Returns the current record's "pilot_name" value
  * @method Account     getAccount()          Returns the current record's "Account" value
  * @method Plane       getPlane()            Returns the current record's "Plane" value
  * @method sfGuardUser getPIC()              Returns the current record's "PIC" value
@@ -72,6 +74,7 @@
  * @method Flight      setTimeStr()          Sets the current record's "time_str" value
  * @method Flight      setMitigationNote()   Sets the current record's "mitigation_note" value
  * @method Flight      setFlightNote()       Sets the current record's "flight_note" value
+ * @method Flight      setPilotName()        Sets the current record's "pilot_name" value
  * @method Flight      setAccount()          Sets the current record's "Account" value
  * @method Flight      setPlane()            Sets the current record's "Plane" value
  * @method Flight      setPIC()              Sets the current record's "PIC" value
@@ -161,6 +164,10 @@ abstract class BaseFlight extends sfDoctrineRecord
              'length' => 255,
              ));
         $this->hasColumn('flight_note', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
+             ));
+        $this->hasColumn('pilot_name', 'varchar', 255, array(
              'type' => 'varchar',
              'length' => 255,
              ));

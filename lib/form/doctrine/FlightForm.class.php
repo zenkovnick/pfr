@@ -297,6 +297,11 @@ class FlightForm extends BaseFormDoctrine
         } else {
             $values['sic_custom'] = null;
         }
+        $pic = sfGuardUserTable::getInstance()->find($values['pic_id']);
+        $values['pilot_name'] = $pic->getFirstName();
+
         return $values;
     }
+
+
 }

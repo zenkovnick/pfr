@@ -208,6 +208,7 @@ Flight:
       time_str:        {type: varchar(20), default: null }
       mitigation_note: {type: varchar(255), default: null }
       flight_note:     {type: varchar(255), default: null }
+      pilot_name:      {type: varchar(255), default: null }
     relations:
       Account: {class: Account, local: account_id, foreign: id, type: one, onDelete: CASCADE}
       Plane:   {class: Plane, local: plane_id, foreign: id, type: one, onDelete: CASCADE}

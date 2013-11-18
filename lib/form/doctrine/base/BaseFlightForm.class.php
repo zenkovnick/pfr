@@ -34,6 +34,7 @@ abstract class BaseFlightForm extends BaseFormDoctrine
       'time_str'         => new sfWidgetFormInputText(),
       'mitigation_note'  => new sfWidgetFormInputText(),
       'flight_note'      => new sfWidgetFormInputText(),
+      'pilot_name'       => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -58,6 +59,7 @@ abstract class BaseFlightForm extends BaseFormDoctrine
       'time_str'         => new sfValidatorPass(array('required' => false)),
       'mitigation_note'  => new sfValidatorPass(array('required' => false)),
       'flight_note'      => new sfValidatorPass(array('required' => false)),
+      'pilot_name'       => new sfValidatorPass(array('required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
     ));

@@ -36,6 +36,7 @@
 
                 <span class="info">
                     <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
+                    <?php echo $flight->getPilotName() ? " by {$flight->getPilotName()}" : "" ?>
                 </span>
 
                 <?php if($flight->getStatus() == 'complete'): ?>
