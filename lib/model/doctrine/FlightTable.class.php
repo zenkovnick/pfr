@@ -24,53 +24,57 @@ class FlightTable extends Doctrine_Table
             ->execute();
     }
 
-    public function getFlightsByCriteria($criteria, $account_id, $option_id){
+    public function getFlightsByCriteria($criteria, $account_id, $option_id, $date_type, $date_from, $date_to){
         $query = Doctrine_Query::create()
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'");
 
         $this->addCriteriaToQuery($query, $criteria, $option_id);
+        $this->addDateParamToQuery($query, $date_type, $date_from, $date_to);
         return $query->execute();
 
     }
 
 
-    public function getAvgRiskSumByCriteria($criteria, $account_id, $option_id){
+    public function getAvgRiskSumByCriteria($criteria, $account_id, $option_id, $date_type, $date_from, $date_to){
         $query = Doctrine_Query::create()
             ->select("AVG(f.risk_factor_sum) as avg")
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'");
         $this->addCriteriaToQuery($query, $criteria, $option_id);
+        $this->addDateParamToQuery($query, $date_type, $date_from, $date_to);
         return $query->execute()->getFirst()->getAvg();
 
     }
 
-    public function getMaxRiskSumByCriteria($criteria, $account_id, $option_id){
+    public function getMaxRiskSumByCriteria($criteria, $account_id, $option_id, $date_type, $date_from, $date_to){
         $query = Doctrine_Query::create()
             ->select("MAX(f.risk_factor_sum) as max")
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'");
         $this->addCriteriaToQuery($query, $criteria, $option_id);
+        $this->addDateParamToQuery($query, $date_type, $date_from, $date_to);
         return $query->execute()->getFirst()->getMax();
 
     }
 
-    public function getMitigationCountByCriteria($criteria, $account_id, $option_id){
+    public function getMitigationCountByCriteria($criteria, $account_id, $option_id, $date_type, $date_from, $date_to){
         $query = Doctrine_Query::create()
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'")
             ->andWhere("f.mitigation_sum IS NOT NULL");
         $this->addCriteriaToQuery($query, $criteria, $option_id);
+        $this->addDateParamToQuery($query, $date_type, $date_from, $date_to);
         return $query->execute()->count();
 
     }
 
 
-    public function getPlaneDataByCriteria($criteria, $account_id, $option_id){
+    public function getPlaneDataByCriteria($criteria, $account_id, $option_id, $date_type, $date_from, $date_to){
         $query = Doctrine_Query::create()
             ->select("COUNT(p.tail_number) as count, p.tail_number as name")
             ->from("Plane p")
@@ -79,11 +83,12 @@ class FlightTable extends Doctrine_Table
             ->andWhere("f.status = 'complete'")
             ->groupBy("f.plane_id");
         $this->addCriteriaToQuery($query, $criteria, $option_id);
+        $this->addDateParamToQuery($query, $date_type, $date_from, $date_to);
         return $query->execute();
 
     }
 
-    public function getPICDataByCriteria($criteria, $account_id, $option_id){
+    public function getPICDataByCriteria($criteria, $account_id, $option_id, $date_type, $date_from, $date_to){
         $query = Doctrine_Query::create()
             ->select("f.id, COUNT(u.first_name) as count, u.first_name as name")
             ->from("Flight f")
@@ -92,11 +97,12 @@ class FlightTable extends Doctrine_Table
             ->andWhere("f.status = 'complete'")
             ->groupBy("f.pic_id");
         $this->addCriteriaToQuery($query, $criteria, $option_id);
+        $this->addDateParamToQuery($query, $date_type, $date_from, $date_to);
         return  $query->fetchArray();
     }
 
 
-    public function getSICDataByCriteria($criteria, $account_id, $option_id){
+    public function getSICDataByCriteria($criteria, $account_id, $option_id, $date_type, $date_from, $date_to){
         $query = Doctrine_Query::create()
             ->select("f.id, COUNT(u.first_name) as count, u.first_name as name")
             ->from("Flight f")
@@ -106,6 +112,7 @@ class FlightTable extends Doctrine_Table
             ->andWhere("f.sic_id IS NOT NULL")
             ->groupBy("f.sic_id");
         $this->addCriteriaToQuery($query, $criteria, $option_id);
+        $this->addDateParamToQuery($query, $date_type, $date_from, $date_to);
         return $query->fetchArray();
 
     }
@@ -125,6 +132,40 @@ class FlightTable extends Doctrine_Table
                 $query->andWhere("f.sic_id = ?", $option_id);
                 break;
         }
+    }
+
+    private function addDateParamToQuery(&$query, $date_type, $date_from, $date_to){
+        switch($date_type){
+            case 'today':
+                $query->andWhere("f.created_at >= CURDATE()");
+                break;
+            case 'yesterday':
+                $query->andWhere("f.created_at >= date_sub(CURDATE(), interval 1 day)");
+                break;
+            case 'week':
+                $query->andWhere("f.created_at >= date_sub(CURDATE(), interval 1 week)");
+                break;
+            case 'month':
+                $query->andWhere("f.created_at >= date_sub(CURDATE(), interval 1 month)");
+                break;
+            case 'half_year':
+                $query->andWhere("f.created_at >= date_sub(CURDATE(), interval 6 month)");
+                break;
+            case 'year':
+                $query->andWhere("f.created_at >= date_sub(CURDATE(), interval 1 year)");
+                break;
+            case 'date_range':
+                $date_to = date('Y-m-d H:i:s', strtotime($date_to . ' + 1 day'));
+                if($date_from and $date_to){
+                    $query->andWhere("f.created_at BETWEEN '{$date_from}' AND '{$date_to}'");
+                } else if($date_from and !$date_to){
+                    $query->andWhere("f.created_at >= '{$date_from}'");
+                } else if(!$date_from and $date_to){
+                    $query->andWhere("f.created_at <= '{$date_to}'");
+                }
+                break;
+        }
+
     }
 
 }

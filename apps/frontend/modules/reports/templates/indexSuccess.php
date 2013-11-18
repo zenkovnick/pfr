@@ -16,54 +16,77 @@
     });
 </script>
 
-<h1>Reports</h1>
-<span>Reports summary by </span>
-<input type="hidden" value="<?php echo $account->getId() ?>" class="account-id">
-<div class="list-select report-select">
-    <input name="report_type" value="" type="hidden" id="report_type">
-    <div class="report_select result">Account</div>
-    <ul class="" style="display: none;">
-        <?php foreach($account->getReportTypes() as $type => $value): ?>
-            <li id="<?php echo $type ?>"><?php echo $value ?></li>
-        <?Php endforeach ?>
-    </ul>
-</div>
-<div class="list-select options-select">
-</div>
+<div>
+    <h1>Reports</h1>
+    <span>Reports summary by </span>
 
-<div class="report-wrapper" style="height:1000px;">
-    <?php include_component('reports','account', array('account' => $account, 'report_type' => $report_type)); ?>
+    <input type="hidden" value="<?php echo $account->getId() ?>" class="account-id">
+    <div class="list-select report-select">
+        <input name="report_type" value="" type="hidden" id="report_type">
+        <div class="report_select result">Account</div>
+        <ul class="" style="display: none;">
+            <?php foreach($account->getReportTypes() as $type => $value): ?>
+                <li id="<?php echo $type ?>"><?php echo $value ?></li>
+            <?Php endforeach ?>
+        </ul>
+    </div>
+    <div class="list-select options-select">
+    </div>
 
+
+    <div class="list-select date-select">
+        <input name="date_type" value="" type="hidden" id="date_type">
+        <div class="date_select result">all time</div>
+        <ul class="" style="display: none;">
+            <?php foreach($account->getReportDateTypes() as $type => $value): ?>
+                <li id="<?php echo $type ?>"><?php echo $value ?></li>
+            <?Php endforeach ?>
+        </ul>
+        <span class="from-to-date hidden">
+            <span class="from-date">
+                <span class="text">from</span>
+                <input type="text" class="from-date-input" />
+                <input type="hidden" id="from_date_input" value="" />
+            </span>/
+            <span class="to-date">
+                <span class="text">to</span>
+                <input type="text" class="to-date-input" />
+                <input type="hidden" id="to_date_input" value="" />
+            </span>
+        </span>
+    </div>
+
+    <div class="report-wrapper" style="height:500px">
+        <?php include_component('reports','account', array('account' => $account, 'report_type' => $report_type)); ?>
+
+    </div>
 </div>
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery('.report-select .result').bind('click', listSelect);
-
-        jQuery('.report-select ul li').click(function(){
-            var root_el = jQuery(this).closest(".list-select");
-            jQuery('.result', root_el).html(jQuery(this).text());
-            var type = jQuery(this).prop('id');
-            jQuery('input[type="hidden"]', root_el).val(type);
-            jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
-            if(type!='account'){
-                jQuery.ajax({
-                    url: '<?php echo url_for("@reports_get_options?account_id={$account->getId()}") ?>',
-                    dataType: 'json',
-                    data: {report_type: type},
-                    type: 'get',
-                    success: function(data){
-                        if(data.result == "OK"){
-                            jQuery('.options-select').html(data.html);
-                        }
-                    }
-                });
-            } else {
-                jQuery('.options-select').html('');
-                getData(type);
+        jQuery(".from-date-input").datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: function(date) {
+                jQuery('span.from-date span.text').text(date);
+                jQuery('span.from-date input[type="hidden"]').val(date);
+                getData();
             }
-
         });
+
+        jQuery(".to-date-input").datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: function(date) {
+                jQuery('span.to-date span.text').text(date);
+                jQuery('span.to-date input[type="hidden"]').val(date);
+                getData();
+            }
+        });
+
+        jQuery('.report-select .result').bind('click', listSelect);
+        jQuery('.date-select .result').bind('click', listSelect);
+
+        jQuery('.report-select ul li').bind('click', reportTypeSelect);
+        jQuery('.date-select ul li').bind('click', dateSelect);
     });
 
     function listSelect(){
@@ -77,21 +100,71 @@
         ul.show().addClass("expanded");
     }
 
+    function reportTypeSelect(){
+        var root_el = jQuery(this).closest(".list-select");
+        jQuery('.result', root_el).html(jQuery(this).text());
+        var type = jQuery(this).prop('id');
+        jQuery('input[type="hidden"]', root_el).val(type);
+        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+        if(type!='account'){
+            jQuery.ajax({
+                url: '<?php echo url_for("@reports_get_options?account_id={$account->getId()}") ?>',
+                dataType: 'json',
+                data: {report_type: type},
+                type: 'get',
+                success: function(data){
+                    if(data.result == "OK"){
+                        jQuery('.options-select').html(data.html);
+                    }
+                }
+            });
+        } else {
+            jQuery('.options-select').html('');
+            getData();
+        }
+    }
+
+    function dateSelect(){
+        var root_el = jQuery(this).closest(".list-select");
+        jQuery('.result', root_el).html(jQuery(this).text());
+        var id = jQuery(this).prop('id');
+        jQuery('#date_type', root_el).val(id);
+        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+        if(id == 'date_range'){
+            jQuery('span.from-to-date').removeClass('hidden');
+        } else {
+            if(root_el.hasClass('date-select')){
+                jQuery('span.from-to-date').addClass('hidden');
+                jQuery('.from-date .text').text('from');
+                jQuery('.to-date .text').text('to');
+                jQuery('.from-date input').val('');
+                jQuery('.to-date input').val('');
+            }
+            getData();
+        }
+
+    }
+
     function optionSelect(){
         var root_el = jQuery(this).closest(".list-select");
         jQuery('.result', root_el).html(jQuery(this).text());
         var id = jQuery(this).prop('id');
         jQuery('input[type="hidden"]', root_el).val(id);
         jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
-        var type = jQuery("#report_type").val();
-        getData(type, id);
+        getData();
     }
 
-    function getData(type, id){
+    function getData(){
+        var report_type = jQuery("#report_type").val();
+        var id = jQuery("#report_option").val();
+        var date_type = jQuery("#date_type").val();
+        var from_date = jQuery("#from_date_input").val();
+        var to_date = jQuery("#to_date_input").val();
+
         jQuery.ajax({
             url: '<?php echo url_for("@reports?account_id={$account->getId()}") ?>',
             dataType: 'json',
-            data: {report_type: type, id: id},
+            data: {report_type: report_type, id: id, date_type: date_type, date_from: from_date, date_to: to_date },
             type: 'get',
             success: function(data){
                 if(data.result == "OK"){

@@ -20,24 +20,35 @@ class Account extends BaseAccount
         return array('account' => 'Account', 'plane' => 'Planes', 'airport' => 'Airport', 'pic' => 'PIC', 'sic' => 'SIC');
     }
 
-    public function getFlightsByCriteria($criteria = 'account', $option_id = null){
-        return FlightTable::getInstance()->getFlightsByCriteria($criteria, $this->getId(), $option_id);
+    public function getFlightsByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+        return FlightTable::getInstance()->getFlightsByCriteria(
+            $criteria, $this->getId(), $option_id, $date_type, $date_from, $date_to
+        );
     }
 
-    public function getAvgRiskSumByCriteria($criteria = 'account', $option_id = null){
-        return FlightTable::getInstance()->getAvgRiskSumByCriteria($criteria, $this->getId(), $option_id);
+    public function getAvgRiskSumByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+        return FlightTable::getInstance()->getAvgRiskSumByCriteria(
+            $criteria, $this->getId(), $option_id, $date_type, $date_from, $date_to
+        );
     }
 
-    public function getMaxRiskSumByCriteria($criteria = 'account', $option_id = null){
-        return FlightTable::getInstance()->getMaxRiskSumByCriteria($criteria, $this->getId(), $option_id);
+    public function getMaxRiskSumByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+        return FlightTable::getInstance()->getMaxRiskSumByCriteria(
+            $criteria, $this->getId(), $option_id, $date_type, $date_from, $date_to
+        );
     }
 
-    public function getMitigationCountByCriteria($criteria = 'account', $option_id = null){
-        return FlightTable::getInstance()->getMitigationCountByCriteria($criteria, $this->getId(), $option_id);
+    public function getMitigationCountByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+        return FlightTable::getInstance()->getMitigationCountByCriteria(
+            $criteria, $this->getId(), $option_id, $date_type, $date_from, $date_to
+        );
     }
 
-    public function getPlaneDataByCriteria($criteria = 'account', $option_id = null){
-        $planes = FlightTable::getInstance()->getPlaneDataByCriteria($criteria, $this->getId(), $option_id);
+    public function getPlaneDataByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+        $planes = FlightTable::getInstance()->getPlaneDataByCriteria(
+            $criteria, $this->getId(), $option_id, $date_type, $date_from, $date_to
+        );
+
         $data = array('max' => -1, 'data' => array());
         foreach($planes as $row){
             $key = md5($row->getName());
@@ -49,9 +60,13 @@ class Account extends BaseAccount
         return $data;
     }
 
-    public function getPilotDataByCriteria($criteria = 'account', $option_id = null){
-        $pic = FlightTable::getInstance()->getPICDataByCriteria($criteria, $this->getId(), $option_id);
-        $sic = FlightTable::getInstance()->getSICDataByCriteria($criteria, $this->getId(), $option_id);
+    public function getPilotDataByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+        $pic = FlightTable::getInstance()->getPICDataByCriteria(
+            $criteria, $this->getId(), $option_id, $date_type, $date_from, $date_to
+        );
+        $sic = FlightTable::getInstance()->getSICDataByCriteria(
+            $criteria, $this->getId(), $option_id, $date_type, $date_from, $date_to
+        );
         $data = array('max' => -1, 'data' => array());
         foreach($pic as $row){
             $key = md5($row['name']);
@@ -72,8 +87,10 @@ class Account extends BaseAccount
         return $data;
     }
 
-    public function getRiskSelectedDataByCriteria($criteria = 'account', $option_id = null){
-        $flights = $this->getFlightsByCriteria($criteria, $option_id);
+    public function getRiskSelectedDataByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+        $flights = $this->getFlightsByCriteria(
+            $criteria, $option_id, $date_type, $date_from, $date_to
+        );
         $data = array('max' => -1, 'data' => array());
         foreach($flights as $flight){
             $high_factors = $flight->getRiskSelectedReportData();
@@ -136,6 +153,10 @@ class Account extends BaseAccount
             }
         }
         return $max;
+    }
+
+    public function getReportDateTypes(){
+        return array('' => 'all time', 'today' => 'today', 'yesterday' => 'yesterday', 'week' => 'last week', 'month' => 'last month', 'half_year' => 'last 6 month', 'year' => 'year', 'date_range' => 'date range');
     }
 
 }

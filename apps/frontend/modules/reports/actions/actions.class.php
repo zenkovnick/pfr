@@ -24,9 +24,14 @@ class reportsActions extends sfActions
 
       } else {
           $this->setLayout(false);
-          $this->report_type = $request->getParameter('report_type');
-          $this->option_id = $request->getParameter('id');
-          $html = $this->getComponent('reports', 'account', array('account' => $this->account, 'report_type' => $this->report_type, 'option_id' => $this->option_id));
+          $html = $this->getComponent('reports', 'account', array(
+              'account' => $this->account,
+              'report_type' => $request->getParameter('report_type'),
+              'option_id' =>  $request->getParameter('id'),
+              'date_type' => $request->getParameter('date_type'),
+              'date_from' => $request->getParameter('date_from'),
+              'date_to' => $request->getParameter('date_to')
+          ));
           echo json_encode(array('result' => 'OK', 'html' => $html));
           return sfView::NONE;
       }
