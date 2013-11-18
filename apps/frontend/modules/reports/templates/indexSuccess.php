@@ -28,6 +28,9 @@
         <?Php endforeach ?>
     </ul>
 </div>
+<div class="list-select options-select">
+</div>
+
 <div class="report-wrapper" style="height:1000px;">
     <?php include_component('reports','account', array('account' => $account, 'report_type' => $report_type)); ?>
 
@@ -35,43 +38,67 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery('.list-select .result').bind('click', function(){
-            jQuery(this).parent().find('ul').removeClass('right-side').removeClass('left-side');
-            if ( ( jQuery(this).parent().position().left + 150 ) > jQuery(window).width() ) {
-                jQuery(this).parent().find('ul').addClass('right-side');
-            }
-//            alert(jQuery(this).parent().position().left);
-//            if ( ( jQuery(this).position().left + 150 + jQuery(this).width() ) > jQuery(window).width() ) {
-//                jQuery(this).parent().find('ul').addClass('left-side');
-//            }
+        jQuery('.report-select .result').bind('click', listSelect);
 
-
-            jQuery("ul.expanded").trigger("mouseleave");
-            jQuery("ul.expanded").hide().removeClass('expanded');
-            var ul = jQuery(this).parent().find('ul');
-            ul.show().addClass("expanded");
-
-        });
-
-        jQuery('.list-select ul li').click(function(){
+        jQuery('.report-select ul li').click(function(){
             var root_el = jQuery(this).closest(".list-select");
             jQuery('.result', root_el).html(jQuery(this).text());
             var type = jQuery(this).prop('id');
             jQuery('input[type="hidden"]', root_el).val(type);
             jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+            if(type!='account'){
+                jQuery.ajax({
+                    url: '<?php echo url_for("@reports_get_options?account_id={$account->getId()}") ?>',
+                    dataType: 'json',
+                    data: {report_type: type},
+                    type: 'get',
+                    success: function(data){
+                        if(data.result == "OK"){
+                            jQuery('.options-select').html(data.html);
+                        }
+                    }
+                });
+            } else {
+                jQuery('.options-select').html('');
+                getData(type);
+            }
 
-            jQuery.ajax({
-               url: '<?php echo url_for("@reports?account_id={$account->getId()}") ?>',
-               dataType: 'json',
-               data: {report_type: type},
-               type: 'get',
-               success: function(data){
-                   if(data.result == "OK"){
-                       jQuery('.report-wrapper').html(data.html);
-                   }
-               }
-            });
         });
     });
+
+    function listSelect(){
+        jQuery(this).parent().find('ul').removeClass('right-side').removeClass('left-side');
+        if ( ( jQuery(this).parent().position().left + 150 ) > jQuery(window).width() ) {
+            jQuery(this).parent().find('ul').addClass('right-side');
+        }
+
+        jQuery("ul.expanded").trigger("mouseleave").hide().removeClass('expanded');
+        var ul = jQuery(this).parent().find('ul');
+        ul.show().addClass("expanded");
+    }
+
+    function optionSelect(){
+        var root_el = jQuery(this).closest(".list-select");
+        jQuery('.result', root_el).html(jQuery(this).text());
+        var id = jQuery(this).prop('id');
+        jQuery('input[type="hidden"]', root_el).val(id);
+        jQuery(this).parent().hide().removeClass("expanded")/*.hide()*/;
+        var type = jQuery("#report_type").val();
+        getData(type, id);
+    }
+
+    function getData(type, id){
+        jQuery.ajax({
+            url: '<?php echo url_for("@reports?account_id={$account->getId()}") ?>',
+            dataType: 'json',
+            data: {report_type: type, id: id},
+            type: 'get',
+            success: function(data){
+                if(data.result == "OK"){
+                    jQuery('.report-wrapper').html(data.html);
+                }
+            }
+        });
+    }
 </script>
 

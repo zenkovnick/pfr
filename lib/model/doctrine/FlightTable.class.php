@@ -24,88 +24,53 @@ class FlightTable extends Doctrine_Table
             ->execute();
     }
 
-    public function getFlightsByCriteria($criteria, $account_id){
+    public function getFlightsByCriteria($criteria, $account_id, $option_id){
         $query = Doctrine_Query::create()
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'");
-        switch($criteria){
-            case 'airport':
-                break;
-            case 'plane':
-                break;
-            case 'pic':
-                break;
-            case 'sic':
-                break;
-        }
+
+        $this->addCriteriaToQuery($query, $criteria, $option_id);
         return $query->execute();
 
     }
 
 
-    public function getAvgRiskSumByCriteria($criteria, $account_id){
+    public function getAvgRiskSumByCriteria($criteria, $account_id, $option_id){
         $query = Doctrine_Query::create()
             ->select("AVG(f.risk_factor_sum) as avg")
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'");
-        switch($criteria){
-            case 'airport':
-                break;
-            case 'plane':
-                break;
-            case 'pic':
-                break;
-            case 'sic':
-                break;
-        }
+        $this->addCriteriaToQuery($query, $criteria, $option_id);
         return $query->execute()->getFirst()->getAvg();
 
     }
 
-    public function getMaxRiskSumByCriteria($criteria, $account_id){
+    public function getMaxRiskSumByCriteria($criteria, $account_id, $option_id){
         $query = Doctrine_Query::create()
             ->select("MAX(f.risk_factor_sum) as max")
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'");
-        switch($criteria){
-            case 'airport':
-                break;
-            case 'plane':
-                break;
-            case 'pic':
-                break;
-            case 'sic':
-                break;
-        }
+        $this->addCriteriaToQuery($query, $criteria, $option_id);
         return $query->execute()->getFirst()->getMax();
 
     }
 
-    public function getMitigationCountByCriteria($criteria, $account_id){
+    public function getMitigationCountByCriteria($criteria, $account_id, $option_id){
         $query = Doctrine_Query::create()
             ->from("Flight f")
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'")
             ->andWhere("f.mitigation_sum IS NOT NULL");
-        switch($criteria){
-            case 'airport':
-                break;
-            case 'plane':
-                break;
-            case 'pic':
-                break;
-            case 'sic':
-                break;
-        }
+        $this->addCriteriaToQuery($query, $criteria, $option_id);
         return $query->execute()->count();
 
     }
 
 
-    public function getPlaneDataByCriteria($criteria, $account_id){
+    public function getPlaneDataByCriteria($criteria, $account_id, $option_id){
         $query = Doctrine_Query::create()
             ->select("COUNT(p.tail_number) as count, p.tail_number as name")
             ->from("Plane p")
@@ -113,21 +78,12 @@ class FlightTable extends Doctrine_Table
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'")
             ->groupBy("f.plane_id");
-        switch($criteria){
-            case 'airport':
-                break;
-            case 'plane':
-                break;
-            case 'pic':
-                break;
-            case 'sic':
-                break;
-        }
+        $this->addCriteriaToQuery($query, $criteria, $option_id);
         return $query->execute();
 
     }
 
-    public function getPICDataByCriteria($criteria, $account_id){
+    public function getPICDataByCriteria($criteria, $account_id, $option_id){
         $query = Doctrine_Query::create()
             ->select("f.id, COUNT(u.first_name) as count, u.first_name as name")
             ->from("Flight f")
@@ -135,21 +91,12 @@ class FlightTable extends Doctrine_Table
             ->where("f.account_id = ?", $account_id)
             ->andWhere("f.status = 'complete'")
             ->groupBy("f.pic_id");
-        switch($criteria){
-            case 'airport':
-                break;
-            case 'plane':
-                break;
-            case 'pic':
-                break;
-            case 'sic':
-                break;
-        }
+        $this->addCriteriaToQuery($query, $criteria, $option_id);
         return  $query->fetchArray();
     }
 
 
-    public function getSICDataByCriteria($criteria, $account_id){
+    public function getSICDataByCriteria($criteria, $account_id, $option_id){
         $query = Doctrine_Query::create()
             ->select("f.id, COUNT(u.first_name) as count, u.first_name as name")
             ->from("Flight f")
@@ -158,19 +105,26 @@ class FlightTable extends Doctrine_Table
             ->andWhere("f.status = 'complete'")
             ->andWhere("f.sic_id IS NOT NULL")
             ->groupBy("f.sic_id");
-        switch($criteria){
-            case 'airport':
-                break;
-            case 'plane':
-                break;
-            case 'pic':
-                break;
-            case 'sic':
-                break;
-        }
+        $this->addCriteriaToQuery($query, $criteria, $option_id);
         return $query->fetchArray();
 
     }
 
+    private function addCriteriaToQuery(&$query, $criteria, $option_id){
+        switch($criteria){
+            case 'airport':
+                $query->andWhere("f.airport_to_id = ?", $option_id);
+                break;
+            case 'plane':
+                $query->andWhere("f.plane_id = ?", $option_id);
+                break;
+            case 'pic':
+                $query->andWhere("f.pic_id = ?", $option_id);
+                break;
+            case 'sic':
+                $query->andWhere("f.sic_id = ?", $option_id);
+                break;
+        }
+    }
 
 }

@@ -53,5 +53,15 @@ class PlaneTable extends Doctrine_Table
         return $plane ? $plane : false;
     }
 
+    public function getOptionsPlane($account){
+        $param['account'] = $account;
+        $query = self::getPlanes($param);
+        $result = array();
+        foreach($query as $row){
+            $result[$row->getId()] = $row->getTailNumber();
+        }
+        return $result;
+    }
+
 }
 

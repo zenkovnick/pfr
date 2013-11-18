@@ -60,4 +60,15 @@ class AirportTable extends Doctrine_Table
             ->orderBy('a.icao')
             ->execute();
     }
+
+    public function getOptionsAirportTo($account){
+        $param['account'] = $account;
+        $query = self::getArrivalAirports($param);
+        $result = array();
+        foreach($query as $row){
+            $result[$row->getId()] = $row->getICAO();
+        }
+        return $result;
+    }
+
 }

@@ -37,6 +37,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->andWhere('a.is_active = ?', true)
             ->andWhere('ua.user_id = ?', $user_id)
             ->andWhere("ua.is_active = ?", true)
+            ->andwhere('u.is_active = true')
             ->execute();
         return $user->count() > 0;
     }
@@ -69,6 +70,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->from("sfGuardUser u")
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account_id)
+            ->andwhere('u.is_active = true')
             ->orderBy('ua.position')
             ->execute();
     }
@@ -88,6 +90,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->from('sfGuardUser u')
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account_id)
+            ->andwhere('u.is_active = true')
             ->fetchOne();
         $max_position = $query->getMaxPosition();
         return $max_position ? $max_position : 0;
@@ -99,6 +102,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->from('sfGuardUser u')
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account->getId())
+            ->andwhere('u.is_active = true')
             ->andWhere('ua.is_active = true')
             ->andWhere('ua.role = "pic" OR ua.role = "both"')
             ->orderBy('ua.position ASC')
@@ -112,6 +116,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
             ->from('sfGuardUser u')
             ->leftJoin('u.UserAccount ua')
             ->where('ua.account_id = ?', $account->getId())
+            ->andwhere('u.is_active = true')
             ->andWhere('ua.is_active = true')
             ->andWhere('ua.role = "sic" OR ua.role = "both"')
             ->orderBy('ua.position ASC')
@@ -126,6 +131,23 @@ class sfGuardUserTable extends PluginsfGuardUserTable
         $main_collection->add($more_user);
         return $main_collection;
     }
+
+    public function getOptionsPilot($account_id, $pilot_role){
+    $query = Doctrine_Query::create()
+        ->from('sfGuardUser u')
+        ->leftJoin('u.UserAccount ua')
+        ->where('ua.account_id = ?', $account_id)
+        ->andWhere('ua.role = ? OR ua.role = ?', array($pilot_role, 'both'))
+        ->andWhere('ua.is_active = true')
+        ->orderBy('ua.position')
+        ->execute();
+    $result = array();
+    foreach($query as $row){
+        $result[$row->getId()] = $row->getFirstName();
+    }
+    return $result;
+}
+
 
     public static function getDefaultUserIdByAccount($account, $curr_user){
         $query = Doctrine_Query::create()

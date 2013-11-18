@@ -25,10 +25,26 @@ class reportsActions extends sfActions
       } else {
           $this->setLayout(false);
           $this->report_type = $request->getParameter('report_type');
-          $html = $this->getComponent('reports', 'account', array('account' => $this->account, 'report_type' => $this->report_type));
+          $this->option_id = $request->getParameter('id');
+          $html = $this->getComponent('reports', 'account', array('account' => $this->account, 'report_type' => $this->report_type, 'option_id' => $this->option_id));
           echo json_encode(array('result' => 'OK', 'html' => $html));
           return sfView::NONE;
       }
   }
+
+  public function executeGetReportOptions(sfWebRequest $request){
+      $this->setLayout(false);
+      $account_id = $request->getParameter('account_id');
+      if(!sfGuardUserTable::checkUserAccountAccess($account_id, $this->getUser()->getGuardUser()->getId())){
+          $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
+      }
+      $account = Doctrine_Core::getTable('Account')->find($account_id);
+      $options = $account->getAdditionalOptions($request->getParameter('report_type'));
+      $html = $this->getPartial('reports/additionalOptions', array('options' => $options));
+      echo json_encode(array('result' => 'OK', 'html' => $html));
+      return sfView::NONE;
+  }
+
+
 
 }

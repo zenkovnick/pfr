@@ -1,3 +1,7 @@
+reports_get_options:
+  url: /:account_id/reports_get_option
+  param: { module: reports, action: getReportOptions }
+
 reports:
   url: /:account_id/reports
   param: { module: reports, action: index }

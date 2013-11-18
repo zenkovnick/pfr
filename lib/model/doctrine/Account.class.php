@@ -20,20 +20,24 @@ class Account extends BaseAccount
         return array('account' => 'Account', 'plane' => 'Planes', 'airport' => 'Airport', 'pic' => 'PIC', 'sic' => 'SIC');
     }
 
-    public function getFlightsByCriteria($criteria = 'account'){
-        return FlightTable::getInstance()->getFlightsByCriteria($criteria, $this->getId());
+    public function getFlightsByCriteria($criteria = 'account', $option_id = null){
+        return FlightTable::getInstance()->getFlightsByCriteria($criteria, $this->getId(), $option_id);
     }
-    public function getAvgRiskSumByCriteria($criteria = 'account'){
-        return FlightTable::getInstance()->getAvgRiskSumByCriteria($criteria, $this->getId());
+
+    public function getAvgRiskSumByCriteria($criteria = 'account', $option_id = null){
+        return FlightTable::getInstance()->getAvgRiskSumByCriteria($criteria, $this->getId(), $option_id);
     }
-    public function getMaxRiskSumByCriteria($criteria = 'account'){
-        return FlightTable::getInstance()->getMaxRiskSumByCriteria($criteria, $this->getId());
+
+    public function getMaxRiskSumByCriteria($criteria = 'account', $option_id = null){
+        return FlightTable::getInstance()->getMaxRiskSumByCriteria($criteria, $this->getId(), $option_id);
     }
-    public function getMitigationCountByCriteria($criteria = 'account'){
-        return FlightTable::getInstance()->getMitigationCountByCriteria($criteria, $this->getId());
+
+    public function getMitigationCountByCriteria($criteria = 'account', $option_id = null){
+        return FlightTable::getInstance()->getMitigationCountByCriteria($criteria, $this->getId(), $option_id);
     }
-    public function getPlaneDataByCriteria($criteria = 'account'){
-        $planes = FlightTable::getInstance()->getPlaneDataByCriteria($criteria, $this->getId());
+
+    public function getPlaneDataByCriteria($criteria = 'account', $option_id = null){
+        $planes = FlightTable::getInstance()->getPlaneDataByCriteria($criteria, $this->getId(), $option_id);
         $data = array('max' => -1, 'data' => array());
         foreach($planes as $row){
             $key = md5($row->getName());
@@ -44,9 +48,10 @@ class Account extends BaseAccount
         $data['data'] = $this->aasort($data['data'], 'count');
         return $data;
     }
-    public function getPilotDataByCriteria($criteria = 'account'){
-        $pic = FlightTable::getInstance()->getPICDataByCriteria($criteria, $this->getId());
-        $sic = FlightTable::getInstance()->getSICDataByCriteria($criteria, $this->getId());
+
+    public function getPilotDataByCriteria($criteria = 'account', $option_id = null){
+        $pic = FlightTable::getInstance()->getPICDataByCriteria($criteria, $this->getId(), $option_id);
+        $sic = FlightTable::getInstance()->getSICDataByCriteria($criteria, $this->getId(), $option_id);
         $data = array('max' => -1, 'data' => array());
         foreach($pic as $row){
             $key = md5($row['name']);
@@ -66,8 +71,9 @@ class Account extends BaseAccount
         $data['data'] = $this->aasort($data['data'], 'count');
         return $data;
     }
-    public function getRiskSelectedDataByCriteria($criteria = 'account'){
-        $flights = $this->getFlightsByCriteria($criteria);
+
+    public function getRiskSelectedDataByCriteria($criteria = 'account', $option_id = null){
+        $flights = $this->getFlightsByCriteria($criteria, $option_id);
         $data = array('max' => -1, 'data' => array());
         foreach($flights as $flight){
             $high_factors = $flight->getRiskSelectedReportData();
@@ -83,6 +89,26 @@ class Account extends BaseAccount
         $data['max'] = $this->getMax($data['data']);
         $data['data'] = $this->aasort($data['data'], 'count');
         return $data;
+    }
+
+    public function getAdditionalOptions($report_type){
+        $options = array();
+        switch($report_type){
+            case 'pic':
+                $options = sfGuardUserTable::getInstance()->getOptionsPilot($this->getId(), 'pic');
+                break;
+            case 'sic':
+                $options = sfGuardUserTable::getInstance()->getOptionsPilot($this->getId(), 'sic');
+                break;
+            case 'airport':
+                $options = AirportTable::getInstance()->getOptionsAirportTo($this);
+                break;
+            case 'plane':
+                $options = PlaneTable::getInstance()->getOptionsPlane($this);
+                break;
+        }
+        return $options;
+
     }
 
     private function aasort ($array, $key) {
