@@ -2040,14 +2040,14 @@ html .ui-autocomplete {
     background: url(../images/dashboard_divider_horizontal.png) left bottom repeat-x;
     min-height: 51px;
     overflow: hidden;
-    padding: 9px 0 0;
+    padding: 9px 0 10px;
 }
 .dashboard-page .flights-list .risk {
-    float: left;
+    float: right;
     display: block;
     width: 39px;
     height: 27px;
-    margin-right: 10px;
+    margin-left: 10px;
     padding: 12px 0 0;
     text-align: center;
     color: #FFF;
@@ -2069,20 +2069,18 @@ html .ui-autocomplete {
     background: #F33;
     border: 1px solid #F00;
 }
+
+.dashboard-page .flights-list .delete_risk_assessment, .dashboard-page .flights-list a.send-flight-email-link, .dashboard-page .flights-list a.flight-note-link  {
+    color: #0AAEEF;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0 10px 0 15px;
+    text-decoration: none;
+}
 .dashboard-page .flights-list .delete_risk_assessment {
-    background: url(../images/delete_flight_button.png) no-repeat center center transparent;
-    border: 1px solid #C3C3C3;
-    display: block;
-    float: right;
-    height: 40px;
-    overflow: hidden;
-    text-indent: -1000px;
-    width: 40px;
+    background: url(../images/remove-flight-new-icon.png) no-repeat left center;
 }
-.dashboard-page .flights-list .delete_risk_assessment:hover {
-    background: url(../images/delete_flight_button_hover.png) no-repeat center center #D90000;
-    border-color: #AF0000;
-}
+
 .dashboard-page .flights-list .name {
     color: #333;
     text-decoration: none;
@@ -2093,26 +2091,10 @@ html .ui-autocomplete {
 }
 
 .dashboard-page .flights-list a.send-flight-email-link {
-    background: url(../images/send-report_icon.png) no-repeat center center;
-    border: 1px solid #C3C3C3;
-    border-right: none;
-    display:block;
-    float:right;
-    height: 40px;
-    overflow: hidden;
-    text-indent: -1000px;
-    width: 40px;
+    background: url(../images/send-report-new-icon.png) no-repeat left center;
 }
 .dashboard-page .flights-list a.flight-note-link {
-    background: url(../images/add_note_btn.png) no-repeat center center;
-    border: 1px solid #C3C3C3;
-    border-right: none;
-    display:block;
-    float:right;
-    height: 40px;
-    overflow: hidden;
-    text-indent: -1000px;
-    width: 40px;
+    background: url(../images/add-note-new-icon.png) no-repeat left center;
 }
 .dashboard-page .flights-list textarea {
     background: none repeat scroll 0 0 #FFFFFF;
