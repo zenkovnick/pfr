@@ -7,7 +7,7 @@
     </li>
     <li>
         <span>
-            <?php echo $avg_sum ?>
+            <?php echo number_format($avg_sum, 1) ?>
         </span>
         <label>Ave risk</label>
     </li>
