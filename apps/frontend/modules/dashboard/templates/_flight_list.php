@@ -112,6 +112,7 @@
 
     function showNoteForm(event) {
         event.preventDefault();
+        jQuery(".email-form").removeClass('open').hide(500);
         var root_li = jQuery(this).closest('li');
         var flight_id = root_li.prop('id');
         var form = jQuery('.note-form', root_li);
@@ -139,6 +140,7 @@
 
     function showEmailForm(event) {
         event.preventDefault();
+        jQuery(".note-form").removeClass('open').hide(500);
         var root_li = jQuery(this).closest('li');
         var form = jQuery('.email-form', root_li);
         var emails_el = jQuery('.emails', form);
