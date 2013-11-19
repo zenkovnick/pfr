@@ -23,9 +23,9 @@
             success: function(data) {
                 if(data.result == 'OK'){
                     if(note){
-                        open_link.text('Update Note');
+                        open_link.text('update note');
                     } else {
-                        open_link.text('Add Note');
+                        open_link.text('add note');
                     }
                     form.removeClass('open').hide(500);
                     jQuery('.note-form-wrapper', form).remove();
