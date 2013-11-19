@@ -16,47 +16,55 @@
     });
 </script>
 
-<div>
+<div class="reports-page">
     <h1>Reports</h1>
-    <span>Reports summary by </span>
 
-    <input type="hidden" value="<?php echo $account->getId() ?>" class="account-id">
-    <div class="list-select report-select">
-        <input name="report_type" value="" type="hidden" id="report_type">
-        <div class="report_select result">Account</div>
-        <ul class="" style="display: none;">
-            <?php foreach($account->getReportTypes() as $type => $value): ?>
-                <li id="<?php echo $type ?>"><?php echo $value ?></li>
-            <?Php endforeach ?>
-        </ul>
-    </div>
-    <div class="list-select options-select">
-    </div>
-
-
-    <div class="list-select date-select">
-        <input name="date_type" value="all time" type="hidden" id="date_type">
-        <div class="date_select result">all time</div>
-        <ul class="" style="display: none;">
-            <?php foreach($account->getReportDateTypes() as $type => $value): ?>
-                <li id="<?php echo $type ?>"><?php echo $value ?></li>
-            <?Php endforeach ?>
-        </ul>
-        <span class="from-to-date hidden">
-            <span class="from-date">
-                <span class="text">from</span>
-                <input type="text" class="from-date-input" />
-                <input type="hidden" id="from_date_input" value="" />
-            </span>/
-            <span class="to-date">
-                <span class="text">to</span>
-                <input type="text" class="to-date-input" />
-                <input type="hidden" id="to_date_input" value="" />
-            </span>
+    <div class="filter-block">
+        <span class="caption">Reports summary by </span>
+        <span class="no-margin">
+            <input type="hidden" value="<?php echo $account->getId() ?>" class="account-id">
+            <div class="list-select report-select">
+                <input name="report_type" value="" type="hidden" id="report_type">
+                <div class="report_select result">Account</div>
+                <ul class="" style="display: none;">
+                    <?php foreach($account->getReportTypes() as $type => $value): ?>
+                        <li id="<?php echo $type ?>"><?php echo $value ?></li>
+                    <?Php endforeach ?>
+                </ul>
+            </div>
+            <div class="list-select options-select">
+            </div>
+        </span>
+        <span class="plus">+</span>
+        <span class="no-margin">
+            <div class="list-select date-select">
+                <input name="date_type" value="" type="hidden" id="date_type">
+                <div class="date_select result">all time</div>
+                <ul class="" style="display: none;">
+                    <?php foreach($account->getReportDateTypes() as $type => $value): ?>
+                        <li id="<?php echo $type ?>"><?php echo $value ?></li>
+                    <?Php endforeach ?>
+                </ul>
+                <span class="from-to-date hidden">
+                    <span class="from-date">
+                        <span class="text">from</span>
+                        <input type="text" class="from-date-input" />
+                        <input type="hidden" id="from_date_input" value="" />
+                    </span>/
+                    <span class="to-date">
+                        <span class="text">to</span>
+                        <input type="text" class="to-date-input" />
+                        <input type="hidden" id="to_date_input" value="" />
+                    </span>
+                </span>
+            </div>
         </span>
     </div>
 
-    <div class="report-wrapper" style="height:500px">
+
+
+
+    <div class="report-wrapper">
         <?php include_component('reports','showReport', array('account' => $account, 'report_type' => $report_type)); ?>
 
     </div>
@@ -173,6 +181,5 @@
             }
         });
     }
-
 </script>
 
