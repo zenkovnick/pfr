@@ -1,3 +1,4 @@
+<a class="generate-pdf-link" href="<?php echo url_for("@reports_pdf?account_id={$account->getId()}&report_type={$report_type}") ?>" >PDF</a>
 <?php echo $flights->count() ?>
 <br />
 <?php echo $avg_sum ?>
@@ -43,3 +44,15 @@
     </li>
 <?php endforeach ?>
 </ul>
+<script type="text/javascript">
+    jQuery('.generate-pdf-link').bind('click', generatePDF);
+
+    function generatePDF(event){
+        event.preventDefault();
+        var id = typeof(jQuery("#report_option").val() == 'undefined') ? "" : jQuery("#report_option").val();
+        var date_type = jQuery("#date_type").val();
+        var from_date = jQuery("#from_date_input").val();
+        var to_date = jQuery("#to_date_input").val();
+        window.location.href = jQuery(this).prop('href')+"&id="+id+"&date_type="+date_type+"&date_from"+from_date+"&date_to"+to_date
+    }
+</script>

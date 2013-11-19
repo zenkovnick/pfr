@@ -35,7 +35,7 @@
 
 
     <div class="list-select date-select">
-        <input name="date_type" value="" type="hidden" id="date_type">
+        <input name="date_type" value="all time" type="hidden" id="date_type">
         <div class="date_select result">all time</div>
         <ul class="" style="display: none;">
             <?php foreach($account->getReportDateTypes() as $type => $value): ?>
@@ -173,5 +173,6 @@
             }
         });
     }
+
 </script>
 

@@ -49,6 +49,29 @@ class reportsActions extends sfActions
       return sfView::NONE;
   }
 
+  public function executeGetPDF(sfWebRequest $request){
+      $account_id = $request->getParameter('account_id');
+      if(!sfGuardUserTable::checkUserAccountAccess($account_id, $this->getUser()->getGuardUser()->getId())){
+          $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
+      }
+      $this->account = Doctrine_Core::getTable('Account')->find($account_id);
+
+      $html = $this->getComponent('reports', 'showReport', array(
+          'account' => $this->account,
+          'report_type' => $request->getParameter('report_type'),
+          'option_id' =>  $request->getParameter('id'),
+          'date_type' => $request->getParameter('date_type'),
+          'date_from' => $request->getParameter('date_from'),
+          'date_to' => $request->getParameter('date_to')
+      ));
+
+      $pdf = new DOMPDF();
+      $pdf->load_html($html);
+      $pdf->render();
+
+      $pdf->stream("hello.pdf");
+  }
+
 
 
 }

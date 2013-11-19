@@ -20,5 +20,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     //$this->enablePlugins('sfGearmanPlugin');
 
     //./symfony gearman:worker --config=example1 --verbose --timeout=-1
+    $this->enablePlugins('acDompdfPlugin');
   }
 }

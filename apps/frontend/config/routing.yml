@@ -1,3 +1,7 @@
+reports_pdf:
+  url: /:account_id/reports_pdf
+  param: { module: reports, action: getPDF }
+
 reports_get_options:
   url: /:account_id/reports_get_option
   param: { module: reports, action: getReportOptions }
