@@ -15,8 +15,7 @@
                             <b>and risks item with a score of 4 or higher.</b>
                         <?php endif ?>
                         <br />
-                        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
-                        <?php echo $flight->getPilotName() ? " by {$flight->getPilotName()}" : "" ?>
+                        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?>
                     </p>
                 </td>
             </tr>
