@@ -2,10 +2,6 @@
 
 class dashboardActions extends sfActions {
 
-    public function preExecute() {
-
-    }
-
     public function executeIndex(sfWebRequest $request){
 
         $account_id = $request->getParameter('account_id');
@@ -14,8 +10,7 @@ class dashboardActions extends sfActions {
         if(!sfGuardUserTable::checkUserAccountAccess($account_id, $user_id)){
             $this->redirect("@select_account");
         }
-        $user_account = UserAccountTable::getUserAccount($user_id, $account_id);
-        $this->can_manage = $user_account->getIsManager();
+        $this->can_manage = $this->getUser()->getGuardUser()->canManage($this->account);
 
 
         if(!$this->checkConditions($this->account)){
@@ -65,9 +60,11 @@ class dashboardActions extends sfActions {
         $account_id = $request->getParameter('account_id');
         $this->account = Doctrine_Core::getTable('Account')->find($account_id);
         $this->setFlightData($request, $this);
+        $this->can_manage = $this->getUser()->getGuardUser()->canManage($this->account);
         echo json_encode(array('result' => 'OK', 'dashboard_data' => $this->getPartial('dashboard/flight_list', array(
             'account' => $this->account,
             'pager' => $this->pager,
+            'can_manage' => $this->can_manage
         ))));
         return sfView::NONE;
 
