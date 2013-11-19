@@ -7,13 +7,13 @@
     </li>
     <li>
         <span>
-            <?php echo $avg_sum ?>
+            <?php echo number_format($avg_sum, 1) ?>
         </span>
         <label>Ave risk</label>
     </li>
     <li>
         <span>
-            <?php echo $max_sum ?>
+            <?php echo $max_sum ? $max_sum : 0?>
         </span>
         <label>Highest score</label>
     </li>
