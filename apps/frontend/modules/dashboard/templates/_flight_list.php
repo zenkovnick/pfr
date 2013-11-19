@@ -15,53 +15,52 @@
 
 
 
-                <?php if(!is_null($flight->getRiskFactorSum())): ?>
-                    <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
+            <?php if(!is_null($flight->getRiskFactorSum())): ?>
+                <span class="risk"><?php echo $flight->getRiskFactorSum() ?></span>
+            <?php endif ?>
+
+
+            <a class="name" href="<?php echo url_for(($flight->getDrafted() ? "@edit_flight" : "@view_flight")."?account_id={$account->getId()}&id={$flight->getId()}") ?>">
+                <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
+                <?php echo $flight->getAirportTo()->getICAO() ? "- {$flight->getAirportTo()->getICAO()}" : "" ?>
+                <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
+
+                ETD <?php echo $flight->getTimeStr(); ?>
+                <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
+
+                <?php if($flight->getDrafted()): ?>
+                    <?php echo " - draft" ?>
                 <?php endif ?>
 
+            </a>
 
-                <a class="name" href="<?php echo url_for(($flight->getDrafted() ? "@edit_flight" : "@view_flight")."?account_id={$account->getId()}&id={$flight->getId()}") ?>">
-                    <?php echo $flight->getAirportFrom()->getICAO() ? $flight->getAirportFrom()->getICAO() : "" ?>
-                    <?php echo $flight->getAirportTo()->getICAO() ? "- {$flight->getAirportTo()->getICAO()}" : "" ?>
-                    <?php echo date('m/d/Y', strtotime($flight->getDepartureDate()))?>
+            <span class="info">
+                <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?>
+            </span>
 
-                    ETD <?php echo $flight->getTimeStr(); ?>
-                    <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>
+            <?php if($flight->getStatus() == 'complete'): ?>
+                <a class="send-flight-email-link" href="#">send report</a>
+            <?php endif ?>
+            <a href="" class="flight-note-link">
+                <?php echo $flight->getFlightNote() ? 'Update Note' : 'leave a note' ?>
+            </a>
+            <?php if($can_manage): ?>
+                <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">delete</a>
+            <?php endif ?>
 
-                    <?php if($flight->getDrafted()): ?>
-                        <?php echo " - draft" ?>
-                    <?php endif ?>
-
-                </a>
-
-                <span class="info">
-                    <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>
-                    <?php echo $flight->getPilotName() ? " by {$flight->getPilotName()}" : "" ?>
-                </span>
-
-                <?php if($flight->getStatus() == 'complete'): ?>
-                    <a class="send-flight-email-link" href="#">send report</a>
-                <?php endif ?>
-                <a href="" class="flight-note-link">
-                    <?php echo $flight->getFlightNote() ? 'Update Note' : 'leave a note' ?>
-                </a>
-                <?php if($can_manage): ?>
-                    <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">delete</a>
-                <?php endif ?>
-
-                <?php if($flight->getStatus() == 'complete'): ?>
-                    <div class="email-form" style="display:none;">
-                        <input type="text" class="emails" placeholder="List emails separated with commas" />
-                        <button class="send-email btn btn-green">Send</button>
-                        <p class="email-error"></p>
-                    </div>
-                <?php endif ?>
+            <?php if($flight->getStatus() == 'complete'): ?>
+                <div class="email-form" style="display:none;">
+                    <input type="text" class="emails" placeholder="List emails separated with commas" />
+                    <button class="send-email btn btn-green">Send</button>
+                    <p class="email-error"></p>
+                </div>
+            <?php endif ?>
 
 
 
 
 
-                <div class="note-form" style="display:none;"></div>
+            <div class="note-form" style="display:none;"></div>
 
 
             </li>
@@ -87,11 +86,11 @@
 
         //if (getParamsFromHash(location.hash).tab === '') location.hash = '#newest';
         /*onHashChange();
-        if (! "onhashchange" in window) {
-            hashCheckInterval = setInterval( checkHash , 100)
-        }else {
-            jQuery(window).bind("hashchange", onHashChange );
-        }*/
+         if (! "onhashchange" in window) {
+         hashCheckInterval = setInterval( checkHash , 100)
+         }else {
+         jQuery(window).bind("hashchange", onHashChange );
+         }*/
 
         jQuery('a.send-flight-email-link').bind('click', showEmailForm);
         jQuery('a.flight-note-link').bind('click', showNoteForm);

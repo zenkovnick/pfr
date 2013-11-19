@@ -186,6 +186,10 @@ class dashboardActions extends sfActions {
 
     public function executeViewFlight(sfWebRequest $request){
         $this->account = Doctrine_Core::getTable('Account')->find($request->getParameter('account_id'));
+        if(!sfGuardUserTable::checkUserAccountAccess($this->account->getId(), $this->getUser()->getGuardUser()->getId())){
+            $this->redirect("@select_account");
+        }
+
         $this->flight = Doctrine_Core::getTable('Flight')->find($request->getParameter('id'));
         if($this->flight->getStatus() == 'complete'){
             $flight_data = json_decode($this->flight->getInfo(), true);

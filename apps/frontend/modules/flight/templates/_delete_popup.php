@@ -11,7 +11,8 @@
             ETD <?php echo $flight->getTimeStr(); ?>
         <?php endif ?>
         <?php echo $flight->getTripNumber() ? "({$flight->getPlane()->getTailNumber()})" : "" ?>.<br />
-        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?>.<br />
+        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?><br />
+
     </span>
     <p>Are you sure?</p>
     <div class="button-wrapper">
