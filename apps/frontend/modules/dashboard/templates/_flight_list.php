@@ -42,7 +42,7 @@
                 <a class="send-flight-email-link" href="#">send report</a>
             <?php endif ?>
             <a href="" class="flight-note-link">
-                <?php echo $flight->getFlightNote() ? 'Update Note' : 'leave a note' ?>
+                <?php echo $flight->getFlightNote() ? 'update note' : 'leave a note' ?>
             </a>
             <?php if($can_manage): ?>
                 <a href="<?php echo url_for('@delete_risk_assessment_popup?id='.$flight->getId()) ?>" class="delete_risk_assessment fancy">delete</a>
