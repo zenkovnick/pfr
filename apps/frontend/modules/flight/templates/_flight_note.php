@@ -1,8 +1,7 @@
 <div class='note-form-wrapper'>
-    <textarea class="flight-note" name="flight[flight_note]" placeholder=""><?php echo $flight->getFlightNote() ? $flight->getFlightNote() : '' ?></textarea>
+    <textarea class="flight-note" name="flight[flight_note]" placeholder="Make a note and press Submit"><?php echo $flight->getFlightNote() ? $flight->getFlightNote() : '' ?></textarea>
     <button class="cancel btn btn-grey">Cancel</button>
     <button class="submit btn btn-green">Submit</button>
-    <span>Make a note and press Submit</span>
 </div>
 <script type='text/javascript'>
     jQuery('.submit').bind('click', submitNote);
