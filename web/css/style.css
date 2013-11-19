@@ -2125,6 +2125,10 @@ html .ui-autocomplete {
     font-size: 11px;
     margin-bottom: 5px;
 }
+.email-form {
+    margin-top: 10px;
+    overflow: hidden;
+}
 .email-form input.emails {
     background: #FFF;
     border: 1px solid #BBB;
