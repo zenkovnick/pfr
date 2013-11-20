@@ -50,6 +50,8 @@ class reportsActions extends sfActions
   }
 
   public function executeGetPDF(sfWebRequest $request){
+      $response = $this->getResponse();
+      $response->clearHttpHeaders();
       $account_id = $request->getParameter('account_id');
       if(!sfGuardUserTable::checkUserAccountAccess($account_id, $this->getUser()->getGuardUser()->getId())){
           $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
@@ -68,7 +70,7 @@ class reportsActions extends sfActions
       $pdf = new DOMPDF();
       $pdf->load_html($html);
       $pdf->render();
-
+      ob_end_flush();
       $pdf->stream("hello.pdf");
   }
 
