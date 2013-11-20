@@ -14,7 +14,7 @@
     </li>
     <li>
         <span>
-            <?php echo $max_sum ?>
+            <?php echo $max_sum ? $max_sum : 0?>
         </span>
         <label>Highest score</label>
     </li>

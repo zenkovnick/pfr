@@ -94,12 +94,14 @@ class Account extends BaseAccount
         $data = array('max' => -1, 'data' => array());
         foreach($flights as $flight){
             $high_factors = $flight->getRiskSelectedReportData();
-            foreach($high_factors as $key => $question){
+            foreach($high_factors as $key => $value){
                 if(!array_key_exists($key, $data['data'])){
-                    $data['data'][$key]['question'] = $question;
-                    $data['data'][$key]['count'] = 1;
+                    $data['data'][$key]['question'] = $value['question'];
+                    $data['data'][$key]['count'] = $value['with_risk'] ? 1 : 0;
                 } else {
-                    $data['data'][$key]['count']++;
+                    if($value['with_risk']){
+                        $data['data'][$key]['count']++;
+                    }
                 }
             }
         }
