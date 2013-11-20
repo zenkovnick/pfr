@@ -388,6 +388,10 @@ class flightActions extends sfActions {
         $this->setLayout(false);
         $flight = FlightTable::getInstance()->find($request->getParameter('id'));
         $flight->setFlightNote($request->getPostParameter('note'));
+        $updatedAt = $flight->getUpdatedAt();
+        $flight->setUpdatedAt(null);
+        $flight->setUpdatedAt($updatedAt);
+
         $flight->save();
         echo json_encode(array('result' => 'OK'));
         return sfView::NONE;
