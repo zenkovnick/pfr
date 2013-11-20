@@ -13,6 +13,7 @@
     <link rel="apple-touch-icon" href="../images/apple-favicon.png"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/css/media_queries.css" />
+    <script type="text/javascript" src="/js/jquery.plaseholder.js"></script>
 
     <?php include_http_metas() ?>
     <?php include_metas() ?>
