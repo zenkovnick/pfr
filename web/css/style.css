@@ -2257,9 +2257,10 @@ ul.reports-general-statistics li {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     display: inline-block;
-    margin: 0 3px;
+    margin: 0 1%;
     overflow: hidden;
-    width: 23%;
+    vertical-align: top;
+    width: 22%;
 }
 ul.reports-general-statistics li span {
     border: 1px solid #C3C3C3;
