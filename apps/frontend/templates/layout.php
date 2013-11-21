@@ -27,20 +27,6 @@
                 href: "/css/style_mobile.css"
             }).appendTo("head");
         }
-        jQuery('[placeholder]').focus(function() {
-            var input = jQuery(this);
-            if (input.val() == input.attr('placeholder')) {
-                input.val('');
-                input.removeClass('placeholder');
-            }
-        }).blur(function() {
-                var input = jQuery(this);
-                if (input.val() == '' || input.val() == input.attr('placeholder')) {
-                    input.addClass('placeholder');
-                    input.val(input.attr('placeholder'));
-                }
-            }).blur();
-//        jQuery('input, textarea').placeholder();
     </script>
 </head>
 <body>
@@ -63,6 +49,21 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    jQuery('[placeholder]').focus(function() {
+        var input = jQuery(this);
+        if (input.val() == input.attr('placeholder')) {
+            input.val('');
+            input.removeClass('placeholder');
+        }
+    }).blur(function() {
+            var input = jQuery(this);
+            if (input.val() == '' || input.val() == input.attr('placeholder')) {
+                input.addClass('placeholder');
+                input.val(input.attr('placeholder'));
+            }
+        }).blur();
+</script>
 </body>
 </html>
 
