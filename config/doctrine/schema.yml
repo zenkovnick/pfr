@@ -206,8 +206,8 @@ Flight:
       drafted:         {type: boolean, default: true}
       status:          {type: enum(), values: ['new', 'assess', 'complete'], default: 'new'}
       time_str:        {type: varchar(20), default: null }
-      mitigation_note: {type: varchar(255), default: null }
-      flight_note:     {type: varchar(255), default: null }
+      mitigation_note: {type: text }
+      flight_note:     {type: text }
       pilot_name:      {type: varchar(255), default: null }
     relations:
       Account: {class: Account, local: account_id, foreign: id, type: one, onDelete: CASCADE}
