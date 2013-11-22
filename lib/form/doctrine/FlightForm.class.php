@@ -160,10 +160,10 @@ class FlightForm extends BaseFormDoctrine
 
       if(!is_null($this->getObject()->getStatus() == 'assess')){
           $this->setWidget('mitigation_note', new sfWidgetFormTextarea());
-          $this->setValidator('mitigation_note', new sfValidatorString(array('required' => false)));
+          $this->setValidator('mitigation_note', new sfValidatorPass());
       }
       $this->setWidget('flight_note', new sfWidgetFormTextarea());
-      $this->setValidator('flight_note', new sfValidatorString(array('required' => false)));
+      $this->setValidator('flight_note', new sfValidatorPass());
       $this->disableCSRFProtection();
 
       $this->widgetSchema->setNameFormat('flight[%s]');

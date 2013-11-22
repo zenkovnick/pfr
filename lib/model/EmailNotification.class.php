@@ -1,18 +1,9 @@
 <?php
 
 class EmailNotification {
-    public static function sendInvites($initiator, $guest, $url, $account){
-        $text = '';
-        $text .= "You have been invited to {$account->getTitle()} account by ";
-        if($initiator->getFirstName()){
-            $text .= "{$initiator->getFirstName()}({$initiator->getUsername()})";
-        } else {
-            $text .= $initiator->getUsername();
-        }
-        $text .= "\n\r";
-        $text .= "Please, visit this link to signup in PreFlightRisk: {$url}";
+    public static function sendInvites($guest, $html){
 
-        MCSendMail::getInstance()->setMessageText($text);
+        MCSendMail::getInstance()->setMessageHTML($html);
         MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_notification_from_email', 'support@preflightrisk.com'));
         MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_notification_from_name', 'PreFlightRisk'));
         MCSendMail::getInstance()->setMessageSubject(sfConfig::get('app_email_notification_title', 'Invite to PreFlightRisk'));
@@ -89,7 +80,7 @@ class EmailNotification {
         return MCSendMail::getInstance()->sendMail(true);
     }
 
-    public static function sendAssessment($mail_to, $chief_pilot = null, $html, $subject){
+    public static function sendAssessment($pic, $sic, $chief_pilot = null, $html, $subject){
 
         MCSendMail::getInstance()->setMessageHTML($html);
         MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_assessment_from_email', 'mitigators@preflightrisk.com'));
@@ -98,7 +89,10 @@ class EmailNotification {
         if(!is_null($chief_pilot)){
             MCSendMail::getInstance()->setMessageAddTo(array('email'=>$chief_pilot->getUsername(), 'name' => $chief_pilot->getFirstName() ? $chief_pilot->getFirstName() : null));
         }
-        MCSendMail::getInstance()->setMessageAddTo(array('email'=>$mail_to->getUsername(), 'name' => $mail_to->getFirstName() ? $mail_to->getFirstName() : null));
+        MCSendMail::getInstance()->setMessageAddTo(array('email'=>$pic->getUsername(), 'name' => $pic->getFirstName() ? $pic->getFirstName() : null));
+        if(!is_null($sic)){
+            MCSendMail::getInstance()->setMessageAddTo(array('email'=>$sic->getUsername(), 'name' => $sic->getFirstName() ? $sic->getFirstName() : null));
+        }
         return MCSendMail::getInstance()->sendMail(true);
     }
 

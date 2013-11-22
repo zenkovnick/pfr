@@ -7,6 +7,7 @@
         <p class="summary">
             Flight #<?php echo $flight->getTripNumber() ?> from <?php echo $flight->getAirportFrom()->getICAO() ?> to <?php echo $flight->getAirportTo()->getICAO() ?>
             in <?php echo $flight->getPlane()->getTailNumber() ?> has a <?php echo $mitigation_info['type'] ?> risk factor with <?php echo $flight->getRiskFactorSum() ?> of 50
+            <br />
             <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?>
         </p>
         <div class="risk-sum-wrapper">
