@@ -35,7 +35,7 @@
             <?php foreach($plane_data['data'] as $row): ?>
                 <li>
                     <span class="report-note"><?php echo $row['tail_number'] ?></span>
-                    <span class="report-index" style="width:<?php echo $row['count']/$plane_data['max']*100 - 2.2 ?>% "></span>
+                    <span class="report-index" style="width:<?php echo $row['count']/$plane_data['max']*100 - 4.4 ?>% "></span>
                     <span class="report-value"><?php echo $row['count'] ?></span>
                 </li>
             <?php endforeach ?>
@@ -54,7 +54,7 @@
             <?php foreach($pilot_data['data'] as $row): ?>
                 <li>
                     <span class="report-note"><?php echo $row['name'] ?></span>
-                    <span class="report-index" style="width:<?php echo $row['count']/$pilot_data['max']*100 - 2.2 ?>% "></span>
+                    <span class="report-index" style="width:<?php echo $row['count']/$pilot_data['max']*100 - 4.4 ?>% "></span>
                     <span class="report-value"><?php echo $row['count'] ?></span>
                 </li>
             <?php endforeach ?>
@@ -73,7 +73,7 @@
         <?php foreach($risk_selected_data['data'] as $row): ?>
             <li>
                 <span class="report-note"><?php echo $row['question'] ?></span>
-                <span class="report-index <?php if($row['count']/$risk_selected_data['max']*100 < 30): echo "green"; elseif ($row['count']/$risk_selected_data['max']*100 > 70): echo "red"; endif; ?>" style="width:<?php echo $row['count']/$risk_selected_data['max']*100 - 2.2 ?>% "></span>
+                <span class="report-index <?php if($row['count']/$risk_selected_data['max']*100 < 30): echo "green"; elseif ($row['count']/$risk_selected_data['max']*100 > 70): echo "red"; endif; ?>" style="width:<?php echo $row['count']/$risk_selected_data['max']*100 - 4.4 ?>% "></span>
                 <span class="report-value"><?php echo $row['count'] ?></span>
             </li>
         <?php endforeach ?>

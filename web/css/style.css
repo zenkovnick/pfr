@@ -2275,7 +2275,7 @@ ul.reports-general-statistics li label {
     overflow: hidden;
 }
 .report-grid ul {
-    background: url(../images/report-grid-bg.jpg) repeat left top;
+    background: url(../images/report-grid-bg.jpg) repeat -3% top;
     background-size: 32.6% auto;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -2298,6 +2298,7 @@ ul.reports-general-statistics li label {
     display: block;
     float: left;
     height: 10px;
+    min-width: 3px;
 }
 .report-grid.risks ul li span.report-index {
     background-color: #FFCC00;
@@ -2319,7 +2320,7 @@ ul.reports-general-statistics li label {
     display: block;
     float: left;
     text-align: right;
-    width: 33%;
+    width: 32%;
 }
 .report-grid > span.min {
     width: auto;
@@ -2327,6 +2328,6 @@ ul.reports-general-statistics li label {
 .report-grid > span.max {
     float: none;
     overflow: hidden;
-    padding-right: 1.5%;
+    padding-right: 3.5%;
     width: auto;
 }

@@ -13,13 +13,13 @@
     <link rel="apple-touch-icon" href="../images/apple-favicon.png"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/css/media_queries.css" />
+    <script type="text/javascript" src="/js/jquery.plaseholder.js"></script>
 
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <script type="text/javascript">
-//        alert(jQuery(window).width());
         if( /Chromium|Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
             $("<link/>", {
                 rel: "stylesheet",
@@ -27,6 +27,7 @@
                 href: "/css/style_mobile.css"
             }).appendTo("head");
         }
+//        jQuery('input, textarea').placeholder();
     </script>
 </head>
 <body>
