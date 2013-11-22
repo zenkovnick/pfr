@@ -419,7 +419,7 @@ ul.header-link-block li.mobile-logout {
 .create-account input {
     text-align: left;
 }
-.sign-in-form input.placeholder, .sign-up input.placeholder, .create-account input.placeholder {
+.sign-in-form input.placeholder, .sign-up input.placeholder, .create-account input.placeholder, input.placeholder {
     color: #CCC;
 }
 .sign-in-form input::-webkit-input-placeholder, .sign-up input::-webkit-input-placeholder, .create-account input::-webkit-input-placeholder, .flight-field-list li.small-field input::-webkit-input-placeholder { /* WebKit browsers */
