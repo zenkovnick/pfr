@@ -1,0 +1,36 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           UserAccount
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          user_account
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        pilot: {label: "Invited Pilot"}
+        is_manager: {label: "Can manage?"}
+      list:
+        table_method: retrieveNotActiveInvites
+        title: Invite Management
+        sort: [created_at, desc]
+        layout: tabular
+        display: [_account, _pilot, is_manager, _role, created_at]
+        batch_actions:
+            _delete:    ~
+        object_actions:
+            _delete:    ~
+            resend:     ~
+        actions:
+          []
+      filter:
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~

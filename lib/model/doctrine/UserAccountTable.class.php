@@ -43,4 +43,9 @@ class UserAccountTable extends Doctrine_Table
             ->andWhere('ua.account_id = ?', $account_id)
             ->fetchOne();
     }
+
+    public function retrieveNotActiveInvites(Doctrine_Query $q){
+        $q->where('is_active = false')->andWhere('invite_token IS NOT NULL');
+        return $q;
+    }
 }
