@@ -30,18 +30,18 @@ button                         { color: #fff; padding: 0; border: 0; font-family
 a                              { cursor: pointer; }
 
 
-::-webkit-input-placeholder { /* WebKit browsers */
-    color: transparent !important;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: transparent !important;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: transparent !important;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: transparent !important;
-}
+/*::-webkit-input-placeholder { *//* WebKit browsers */
+    /*color: transparent !important;*/
+/*}*/
+/*:-moz-placeholder { *//* Mozilla Firefox 4 to 18 */
+    /*color: transparent !important;*/
+/*}*/
+/*::-moz-placeholder { *//* Mozilla Firefox 19+ */
+    /*color: transparent !important;*/
+/*}*/
+/*:-ms-input-placeholder { *//* Internet Explorer 10+ */
+    /*color: transparent !important;*/
+/*}*/
 
 
 /*----------------------------------------------------------------------------------*/
