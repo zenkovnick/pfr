@@ -40,8 +40,12 @@ class builderActions extends sfActions
                     $this->account->save();
                 }
                 $redirect_url = $this->getUser()->getAttribute('redirect_url');
-                $this->getUser()->getAttributeHolder()->remove('redirect_url');
-                $this->redirect($redirect_url);
+                if($redirect_url){
+                    $this->getUser()->getAttributeHolder()->remove('redirect_url');
+                    $this->redirect($redirect_url);
+                } else {
+                    $this->redirect("@settings?account_id={$this->account->getId()}");
+                }
             }
         } else {
             $this->getUser()->setAttribute('redirect_url', $request->getReferer());
