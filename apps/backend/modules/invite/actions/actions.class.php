@@ -17,7 +17,7 @@ class inviteActions extends autoInviteActions
         $user_account = UserAccountTable::getUserAccount( $request->getParameter('user_id'), $request->getParameter('account_id'));
         $pilot = $user = $user_account->getUser();
         $account = $user_account->getAccount();
-        $url = $this->generateUrl('signup_invite', array('token' => $user_account->getInviteToken()), true);
+        $url = "{$request->getUriPrefix()}/signup/{$user_account->getInviteToken()}";
         $html = $this->getPartial('invite/invite_email', array(
             'initiator' => $this->getUser()->getGuardUser(),
             'guest' => $pilot,
