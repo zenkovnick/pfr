@@ -28,6 +28,22 @@ img, fieldset                  { border:0; }
 table                          { border-collapse:collapse; border-spacing:0; }
 button                         { color: #fff; padding: 0; border: 0; font-family: 'PT Sans', Arial, Verdana, Helvetica, sans-serif; }
 a                              { cursor: pointer; }
+
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: transparent !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: transparent !important;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: transparent !important;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: transparent !important;
+}
+
+
 /*----------------------------------------------------------------------------------*/
 /*-------------------------------------DEFAULT CLASSES------------------------------*/
 /*----------------------------------------------------------------------------------*/
@@ -403,7 +419,7 @@ ul.header-link-block li.mobile-logout {
 .create-account input {
     text-align: left;
 }
-.sign-in-form input.placeholder, .sign-up input.placeholder, .create-account input.placeholder {
+.sign-in-form input.placeholder, .sign-up input.placeholder, .create-account input.placeholder, input.placeholder {
     color: #CCC;
 }
 .sign-in-form input::-webkit-input-placeholder, .sign-up input::-webkit-input-placeholder, .create-account input::-webkit-input-placeholder, .flight-field-list li.small-field input::-webkit-input-placeholder { /* WebKit browsers */
@@ -2257,9 +2273,10 @@ ul.reports-general-statistics li {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     display: inline-block;
-    margin: 0 3px;
+    margin: 0 1%;
     overflow: hidden;
-    width: 23%;
+    vertical-align: top;
+    width: 22%;
 }
 ul.reports-general-statistics li span {
     border: 1px solid #C3C3C3;
