@@ -1,18 +1,9 @@
 <?php
 
 class EmailNotification {
-    public static function sendInvites($initiator, $guest, $url, $account){
-        $text = '';
-        $text .= "You have been invited to {$account->getTitle()} account by ";
-        if($initiator->getFirstName()){
-            $text .= "{$initiator->getFirstName()}({$initiator->getUsername()})";
-        } else {
-            $text .= $initiator->getUsername();
-        }
-        $text .= "\n\r";
-        $text .= "Please, visit this link to signup in PreFlightRisk: {$url}";
+    public static function sendInvites($guest, $html){
 
-        MCSendMail::getInstance()->setMessageText($text);
+        MCSendMail::getInstance()->setMessageHTML($html);
         MCSendMail::getInstance()->setMessageFromEmail(sfConfig::get('app_email_notification_from_email', 'support@preflightrisk.com'));
         MCSendMail::getInstance()->setMessageFromName(sfConfig::get('app_email_notification_from_name', 'PreFlightRisk'));
         MCSendMail::getInstance()->setMessageSubject(sfConfig::get('app_email_notification_title', 'Invite to PreFlightRisk'));
