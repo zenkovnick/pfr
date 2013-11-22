@@ -1049,7 +1049,7 @@
                 anchor = form_title.prop('id');
             }
         }
-        if(high_risk_factor_email.val() != '') {
+        if(high_risk_factor_email.val() != '') 
             var emails = high_risk_factor_email.val().split(',');
             for(var idx=0; idx<emails.length; idx++) {
                 if(!jQuery.trim(emails[idx]).match(email_pattern)){
