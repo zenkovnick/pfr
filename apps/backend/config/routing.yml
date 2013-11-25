@@ -1,3 +1,17 @@
+resend:
+  url: /admin/invite/:invite_token/action
+  param: { module: invite, action: listResend }
+
+user_account:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                UserAccount
+    module:               invite
+    prefix_path:          /admin/invite
+    column:               invite_token
+    with_wildcard_routes: true
+
+
 sf_guard_user:
   class: sfDoctrineRouteCollection
   options:
@@ -52,12 +66,3 @@ account:
 homepage:
   url:   /admin
   param: { module: sfAdminDash, action: dashboard }
-
-# generic rules
-# please, remove them by adding more specific rules
-default_index:
-  url:   /:module
-  param: { action: index }
-
-default:
-  url:   /:module/:action/*

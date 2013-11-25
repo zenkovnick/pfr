@@ -10,3 +10,27 @@ all:
         url:    account
       Users:
         url:    sf_guard_user
+      Invites:
+        url:    user_account
+
+  email_notification:
+    from_name: 'Pre Flight Risk'
+    from_email: 'support@preflightrisk.com'
+    title: 'Invite to PreFlightRisk'
+    cancel_title: 'Cancel invitation to PreFlightRisk'
+    message: "You have ben registered in Blueprint project.\n\rYour password is %password%\n\rPlease use this link to activate your accout - %activation_link%\n\r"
+    high_risk_factor_val: 4
+
+  email_assessment:
+    from_name: 'Pre Flight Risk'
+    from_email: 'themitigators@preflightrisk.com'
+
+
+  mailchimp:
+    api_key: '2689d6347e49faced7add6121db8a86b-us5'
+    news_feed: 'd046cd6a1a'
+    weekly_news_feed: '6164040c73'
+    monthly_news_feed: '8448c32b1c'
+
+  mandrill:
+    api_key: 'Yv1t_hEvBEXYuT1vlY9YDg'

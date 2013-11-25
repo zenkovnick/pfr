@@ -21,8 +21,8 @@
  * @property boolean $drafted
  * @property enum $status
  * @property varchar $time_str
- * @property varchar $mitigation_note
- * @property varchar $flight_note
+ * @property text $mitigation_note
+ * @property text $flight_note
  * @property varchar $pilot_name
  * @property Account $Account
  * @property Plane $Plane
@@ -47,8 +47,8 @@
  * @method boolean     getDrafted()          Returns the current record's "drafted" value
  * @method enum        getStatus()           Returns the current record's "status" value
  * @method varchar     getTimeStr()          Returns the current record's "time_str" value
- * @method varchar     getMitigationNote()   Returns the current record's "mitigation_note" value
- * @method varchar     getFlightNote()       Returns the current record's "flight_note" value
+ * @method text        getMitigationNote()   Returns the current record's "mitigation_note" value
+ * @method text        getFlightNote()       Returns the current record's "flight_note" value
  * @method varchar     getPilotName()        Returns the current record's "pilot_name" value
  * @method Account     getAccount()          Returns the current record's "Account" value
  * @method Plane       getPlane()            Returns the current record's "Plane" value
@@ -159,13 +159,11 @@ abstract class BaseFlight extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 20,
              ));
-        $this->hasColumn('mitigation_note', 'varchar', 255, array(
-             'type' => 'varchar',
-             'length' => 255,
+        $this->hasColumn('mitigation_note', 'text', null, array(
+             'type' => 'text',
              ));
-        $this->hasColumn('flight_note', 'varchar', 255, array(
-             'type' => 'varchar',
-             'length' => 255,
+        $this->hasColumn('flight_note', 'text', null, array(
+             'type' => 'text',
              ));
         $this->hasColumn('pilot_name', 'varchar', 255, array(
              'type' => 'varchar',

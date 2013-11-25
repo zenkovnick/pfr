@@ -156,7 +156,8 @@ class flightActions extends sfActions {
             $email_subject = "New Flight: {$this->flight->getAirportFrom()->getICAO()} to {$this->flight->getAirportTo()->getICAO()} in ".
                 "{$this->flight->getPlane()->getTailNumber()} (".ucfirst($this->mitigation_info['type'])." risk)";
             $result = EmailNotification::sendAssessment(
-                $this->getUser()->getGuardUser(),
+                $this->flight->getPIC(),
+                $this->flight->getSIC(),
                 ($this->account->getChiefPilot()->getId() && $this->mitigation_info['notify'])? $this->account->getChiefPilot() : null,
                 $this->getPartial('flight/assessment_email', array(
                     'flight' => $this->flight,
