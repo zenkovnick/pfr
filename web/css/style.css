@@ -2009,6 +2009,7 @@ html .ui-autocomplete {
     clear: both;
     display: block;
     width: 100%;
+    z-index: 0 !important;
 
 }
 .reports-page .filter-block {
@@ -2038,6 +2039,8 @@ html .ui-autocomplete {
     line-height: normal;
     margin: 0 4px 0 0;
     line-height: normal;
+    position: relative;
+    z-index: 1;
 }
 .dashboard-page .filter-block > span.no-margin, .reports-page .filter-block > span.no-margin {
     position: relative;
