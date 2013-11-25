@@ -10,12 +10,12 @@
                 <td>
                     <p style="color: #999; display: block; text-align: center;">
                         Flight <span style="font-weight: bold;"> #<?php echo $flight->getTripNumber() ?></span> from <span style="font-weight: bold;"><?php echo $flight->getAirportFrom()->getICAO() ?></span> to <span style="font-weight: bold;"><?php echo $flight->getAirportTo()->getICAO() ?></span>
-                        in <span style="font-weight: bold;"><?php echo $flight->getPlane()->getTailNumber() ?></span> has a <?php echo $mitigation_info['type'] ?> risk factor with <span style="font-weight: bold;"><?php echo $flight->getRiskFactorSum() ?></span> out of <span style="font-weight: bold;">50</span>
+                        in <span style="font-weight: bold;"><?php echo $flight->getPlane()->getTailNumber() ?></span> has a <?php echo $mitigation_info['type'] ?> risk factor of <span style="font-weight: bold;"><?php echo $flight->getRiskFactorSum() ?></span>
                         <?php if(isset($high_risks) && $high_risks): ?>
                             <b>and risks item with a score of 4 or higher.</b>
                         <?php endif ?>
                         <br />
-                        <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?>
+                        <?php echo date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?>
                     </p>
                 </td>
             </tr>
@@ -64,11 +64,13 @@
             <?php if(count($high_risk_factors) > 0): ?>
                 <?php foreach($high_risk_factors as $high_risk_factor): ?>
                     <?php if(isset($high_risk_factor['question'])): ?>
-                        <tr>
-                            <td>
-                                <h2 style="color: #000 !important; font-size: 16px;"><?php echo $high_risk_factor['title'];?></h2>
-                            </td>
-                        </tr>
+                        <?php if(isset($high_risk_factor['title'])): ?>
+                            <tr>
+                                <td>
+                                    <h2 style="color: #000 !important; font-size: 16px;"><?php echo $high_risk_factor['title'];?></h2>
+                                </td>
+                            </tr>
+                        <?php endif ?>
                         <?php foreach($high_risk_factor['question'] as $key=>$risk_factor): ?>
                             <tr>
                                 <td style="border-bottom: 1px dashed #CCC; padding: 10px 0;">

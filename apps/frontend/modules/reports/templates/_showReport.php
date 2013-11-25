@@ -72,15 +72,15 @@
         <?php foreach($risk_selected_data['data'] as $row): ?>
             <li>
                 <span class="report-note"><?php echo $row['question'] ?></span>
-                <span class="report-index <?php if($row['count']/$risk_selected_data['max']*100 < 30): echo "green"; elseif ($row['count']/$risk_selected_data['max']*100 > 70): echo "red"; endif; ?>" style="width:<?php echo $row['count']/$risk_selected_data['max']*100 - 4.4 ?>% "></span>
+                <span class="report-index <?php if($row['count']/$flights->count()*100 < 30): echo "green"; elseif ($row['count']/$flights->count()*100 > 70): echo "red"; endif; ?>" style="width:<?php echo $row['count']/$flights->count()*100 - 4.4 ?>% "></span>
                 <span class="report-value"><?php echo $row['count'] ?></span>
             </li>
         <?php endforeach ?>
     </ul>
     <span class="min">0</span>
-    <span><?php echo round($risk_selected_data['max']/3, 2) ?></span>
-    <span><?php echo round($risk_selected_data['max']*2/3, 2) ?></span>
-    <span class="max"><?php echo round($risk_selected_data['max'], 2) ?></span>
+    <span><?php echo round($flights->count()/3, 2) ?></span>
+    <span><?php echo round($flights->count()*2/3, 2) ?></span>
+    <span class="max"><?php echo round($flights->count(), 2) ?></span>
 </div>
 
 

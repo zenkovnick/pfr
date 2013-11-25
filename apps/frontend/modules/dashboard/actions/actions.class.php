@@ -107,7 +107,8 @@ class dashboardActions extends sfActions {
         $additional_info = array();
         $additional_info['flights_count'] = $flights->count();
         $additional_info['average_risk'] = Flight::getAverageRisk($non_drafted_flights);
-        $additional_info['average_mitigation'] = Flight::getAverageMitigation($non_drafted_flights);
+        $additional_info['max_risk'] = Flight::getMaxRisk($non_drafted_flights);
+        $additional_info['mitigations_count'] = Flight::getMitigationCount($non_drafted_flights);
         $obj->flights_for_chart = FlightTable::getFlightsForChart($obj->filter->getQuery());
         $obj->additional_info = $additional_info;
 
@@ -228,12 +229,22 @@ class dashboardActions extends sfActions {
         if($this->flight->getStatus() == 'complete'){
             $flight_data = json_decode($this->flight->getInfo(), true);
             $this->high_risk_factors = array();
-            foreach($flight_data['risk_analysis'] as $key => $risk_factor){
-                $selected_response = $risk_factor['response_options'][$risk_factor['selected_response']];
-                if($selected_response['value'] > 0){
-                    $this->high_risk_factors[$key]['question'] = $risk_factor['question'];
-                    $this->high_risk_factors[$key]['answer'] = $selected_response['text'];
-                    $this->high_risk_factors[$key]['risk'] = $selected_response['value'];
+            $arr = array();
+            $i = -1;
+            $ii = -1;
+            foreach($flight_data['risk_analysis'] as $key => $risk_factor)
+            {
+                if($risk_factor['section_title']){
+                    $i++;
+                    $this->high_risk_factors [$i]['title'] = $risk_factor['question'];
+                }
+                elseif($risk_factor['response_options'][$risk_factor['selected_response']]['value']>0){
+                    $arr['question'] = $risk_factor['question'];
+                    $arr['answer'] = $risk_factor['response_options'][$risk_factor['selected_response']]['text'];
+                    $arr['risk'] =  $risk_factor['response_options'][$risk_factor['selected_response']]['value'];
+
+                    $ii++;
+                    $this->high_risk_factors[$i]['question'][$ii] = $arr;
                 }
             }
             $this->mitigation_info = $this->flight->getMitigationInfo();

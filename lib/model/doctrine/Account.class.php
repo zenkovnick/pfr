@@ -158,7 +158,7 @@ class Account extends BaseAccount
     }
 
     public function getReportDateTypes(){
-        return array('' => 'all time', 'today' => 'today', 'yesterday' => 'yesterday', 'week' => 'last week', 'month' => 'last month', 'half_year' => 'last 6 month', 'year' => 'year', 'date_range' => 'date range');
+        return array('' => 'all time', /*'today' => 'today', 'yesterday' => 'yesterday', */'week' => 'last week', 'month' => 'last month', 'half_year' => 'last 6 month', 'year' => 'year', 'date_range' => 'date range');
     }
 
 }

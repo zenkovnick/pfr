@@ -6,9 +6,9 @@
         <h2><?php echo $mitigation_info['message'] ?></h2>
         <p class="summary">
             Flight #<?php echo $flight->getTripNumber() ?> from <?php echo $flight->getAirportFrom()->getICAO() ?> to <?php echo $flight->getAirportTo()->getICAO() ?>
-            in <?php echo $flight->getPlane()->getTailNumber() ?> has a <?php echo $mitigation_info['type'] ?> risk factor with <?php echo $flight->getRiskFactorSum() ?> of 50
+            in <?php echo $flight->getPlane()->getTailNumber() ?> has a <?php echo $mitigation_info['type'] ?> risk factor of <?php echo $flight->getRiskFactorSum() ?>
             <br />
-            <?php echo "Submitted ".date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?>
+            <?php echo date('m/d/Y Hi', strtotime($flight->getUpdatedAt()))?><?php echo $flight->getPilotName() ? ", PIC - {$flight->getPilotName()}" : "" ?>
         </p>
         <div class="risk-sum-wrapper">
             <div id="risk_sum"></div>
@@ -25,11 +25,13 @@
             <ul>
                 <?php foreach($high_risk_factors as $high_risk_factor): ?>
                     <?php if(isset($high_risk_factor['question'])): ?>
-                        <li style="padding-top: 50px;">
-                            <h2>
-                                <?php echo $high_risk_factor['title'];?>
-                            </h2>
-                        </li>
+                        <?php if(isset($high_risk_factor['title'])): ?>
+                            <li style="padding-top: 50px;">
+                                <h2>
+                                    <?php echo $high_risk_factor['title'];?>
+                                </h2>
+                            </li>
+                        <?php endif ?>
                         <?php foreach($high_risk_factor['question'] as $key=>$risk_factor): ?>
                             <li class="assessment-risk-wrapper">
                                 <div>
