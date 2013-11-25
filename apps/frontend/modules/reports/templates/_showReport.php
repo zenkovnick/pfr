@@ -1,4 +1,103 @@
-<a class="generate-pdf-link" href="<?php echo url_for("@reports_pdf?account_id={$account->getId()}&report_type={$report_type}") ?>" >PDF</a>
+<style type="text/css">
+    .reports-page {
+        padding-bottom: 50px;
+    }
+    .reports-page h1 {
+        margin: 0 0 35px;
+    }
+    .reports-page > span {
+        display: block;
+        float: left;
+    }
+
+    ul.reports-general-statistics {
+        clear: both;
+        margin: 20px -3px 20px;
+        overflow: hidden;
+        text-align: center;
+    }
+    ul.reports-general-statistics li {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        display: inline-block;
+        margin: 0 1%;
+        overflow: hidden;
+        vertical-align: top;
+        width: 22%;
+    }
+    ul.reports-general-statistics li span {
+        border: 1px solid #C3C3C3;
+        display: block;
+        font-size: 34px;
+        line-height: 48px;
+        text-align: center;
+    }
+    ul.reports-general-statistics li label {
+        line-height: 150%;
+    }
+    .report-grid {
+        overflow: hidden;
+    }
+    .report-grid ul {
+        background: url(/web/images/report-grid-bg.jpg) repeat -3% top;
+        background-size: 32.6% auto;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        border: 1px solid #A3A3A3;
+        padding: 13px 0 0;
+    }
+    .report-grid ul li {
+        margin: 0 0 13px;
+        overflow: hidden;
+    }
+    .report-grid ul li span.report-note {
+        color: #444;
+        display: block;
+        font-size: 12px;
+        line-height: 150%;
+    }
+    .report-grid ul li span.report-index {
+        background-color: #00A3D9;
+        display: block;
+        float: left;
+        height: 10px;
+        min-width: 3px;
+    }
+    .report-grid.risks ul li span.report-index {
+        background-color: #FFCC00;
+    }
+    .report-grid.risks ul li span.report-index.green {
+        background-color: #66CC00;
+    }
+    .report-grid.risks ul li span.report-index.red {
+        background-color: #FF3333;
+    }
+    .report-grid ul li span.report-value {
+        color: #000;
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 10px;
+    }
+    .report-grid > span {
+        display: block;
+        float: left;
+        text-align: right;
+        width: 32%;
+    }
+    .report-grid > span.min {
+        width: auto;
+    }
+    .report-grid > span.max {
+        float: none;
+        overflow: hidden;
+        padding-right: 3.5%;
+        width: auto;
+
+
+</style>
 <ul class="reports-general-statistics">
     <li>
         <span>
@@ -83,15 +182,3 @@
     <span><?php echo round($risk_selected_data['max']*2/3, 2) ?></span>
     <span class="max"><?php echo round($risk_selected_data['max'], 2) ?></span>
 </div>
-<script type="text/javascript">
-    jQuery('.generate-pdf-link').bind('click', generatePDF);
-
-    function generatePDF(event){
-        event.preventDefault();
-        var id = typeof(jQuery("#report_option").val() == 'undefined') ? "" : jQuery("#report_option").val();
-        var date_type = jQuery("#date_type").val();
-        var from_date = jQuery("#from_date_input").val();
-        var to_date = jQuery("#to_date_input").val();
-        window.location.href = jQuery(this).prop('href')+"&id="+id+"&date_type="+date_type+"&date_from"+from_date+"&date_to"+to_date
-    }
-</script>

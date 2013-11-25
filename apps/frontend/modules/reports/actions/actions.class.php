@@ -67,18 +67,17 @@ class reportsActions extends sfActions
           'date_to' => $request->getParameter('date_to')
       ));
 
-//      $pdf = new DOMPDF();
-//      $pdf->set_base_path($request->getUriPrefix()."/css/style.css");
-//      $pdf->load_html($html);
-//      $pdf->render();
-//      ob_end_flush();
-//      $pdf->stream("hello.pdf");
-      $pdf = new WkHtmlToPdf;
-      $pdf->setOptions(array('bin' => '/usr/local/bin'));
-      $pdf->addPage($html);
+      $pdf = new DOMPDF();
+      $pdf->set_base_path($request->getUriPrefix()."/css/style.css");
+      $pdf->load_html($html);
+      $pdf->render();
+      ob_end_flush();
+      $pdf->stream("hello.pdf");
 
-
-      $pdf->send('test.pdf');
+//      $pdf = new WkHtmlToPdf;
+//      $pdf->setOptions(array('bin' => '/usr/local/bin'));
+//      $pdf->addPage($html);
+//      $pdf->send('test.pdf');
   }
 
 

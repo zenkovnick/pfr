@@ -63,10 +63,11 @@
 
 
 
+    <a class="generate-pdf-link" href="<?php echo url_for("@reports_pdf?account_id={$account->getId()}&report_type={$report_type}") ?>" >PDF</a>
+    <a class="print-link" href="">Print</a>
 
-    <div class="report-wrapper">
+    <div class="report-wrapper" id="report_wrapper">
         <?php include_component('reports','showReport', array('account' => $account, 'report_type' => $report_type)); ?>
-
     </div>
 </div>
 
@@ -80,6 +81,8 @@
                 getData();
             }
         });
+        jQuery('.generate-pdf-link').bind('click', generatePDF);
+        jQuery('.print-link').bind('click', printReport);
 
         jQuery(".to-date-input").datepicker({
             dateFormat: 'yy-mm-dd',
@@ -96,6 +99,21 @@
         jQuery('.report-select ul li').bind('click', reportTypeSelect);
         jQuery('.date-select ul li').bind('click', dateSelect);
     });
+
+    function printReport(event){
+        event.preventDefault();
+        jQuery("#report_wrapper").printArea();
+    }
+
+    function generatePDF(event){
+        event.preventDefault();
+        var id = typeof(jQuery("#report_option").val() == 'undefined') ? "" : jQuery("#report_option").val();
+        var date_type = jQuery("#date_type").val();
+        var from_date = jQuery("#from_date_input").val();
+        var to_date = jQuery("#to_date_input").val();
+        window.location.href = jQuery(this).prop('href')+"&id="+id+"&date_type="+date_type+"&date_from"+from_date+"&date_to"+to_date
+    }
+
 
     function listSelect(){
         jQuery(this).parent().find('ul').removeClass('right-side').removeClass('left-side');
