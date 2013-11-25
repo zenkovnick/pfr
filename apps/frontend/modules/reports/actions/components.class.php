@@ -28,7 +28,7 @@ class reportsComponents extends sfComponents
         );
 
         $this->risk_selected_data = $this->account->getRiskSelectedDataByCriteria(
-            $this->report_type, $this->option_id, $this->date_type, $this->date_from, $this->date_to
+            $this->report_type, $this->option_id, $this->date_type, $this->date_from, $this->date_to, $this->to_pdf
         );
     }
 }

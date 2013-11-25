@@ -40,7 +40,7 @@
         overflow: hidden;
     }
     .report-grid ul {
-        background: url(/web/images/report-grid-bg.jpg) repeat -3% top;
+        background: url(<?php echo $sf_request->getUriPrefix() ?>/images/report-grid-bg.jpg) repeat -3% top;
         background-size: 32.6% auto;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -170,7 +170,8 @@
 <div class="report-grid risks">
     <ul>
         <?php foreach($risk_selected_data['data'] as $row): ?>
-            <li>
+
+            <li<?php echo $row['count'] ? '' : ' class="without-value"' ?>>
                 <span class="report-note"><?php echo $row['question'] ?></span>
                 <span class="report-index <?php if($row['count']/$flights->count()*100 < 30): echo "green"; elseif ($row['count']/$flights->count()*100 > 70): echo "red"; endif; ?>" style="width:<?php echo $row['count']/$flights->count()*100 - 4.4 ?>% "></span>
                 <span class="report-value"><?php echo $row['count'] ?></span>

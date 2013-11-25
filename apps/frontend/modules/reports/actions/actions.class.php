@@ -29,7 +29,9 @@ class reportsActions extends sfActions
               'option_id' =>  $request->getParameter('id'),
               'date_type' => $request->getParameter('date_type'),
               'date_from' => $request->getParameter('date_from'),
-              'date_to' => $request->getParameter('date_to')
+              'date_to' => $request->getParameter('date_to'),
+              'to_pdf' => false
+
           ));
           echo json_encode(array('result' => 'OK', 'html' => $html));
           return sfView::NONE;
@@ -64,7 +66,8 @@ class reportsActions extends sfActions
           'option_id' =>  $request->getParameter('id'),
           'date_type' => $request->getParameter('date_type'),
           'date_from' => $request->getParameter('date_from'),
-          'date_to' => $request->getParameter('date_to')
+          'date_to' => $request->getParameter('date_to'),
+          'to_pdf' => true
       ));
 
       $pdf = new DOMPDF();

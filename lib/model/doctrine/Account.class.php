@@ -87,7 +87,7 @@ class Account extends BaseAccount
         return $data;
     }
 
-    public function getRiskSelectedDataByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to){
+    public function getRiskSelectedDataByCriteria($criteria = 'account', $option_id = null, $date_type, $date_from, $date_to, $to_pdf){
         $flights = $this->getFlightsByCriteria(
             $criteria, $option_id, $date_type, $date_from, $date_to
         );
@@ -107,6 +107,11 @@ class Account extends BaseAccount
         }
         $data['max'] = $this->getMax($data['data']);
         $data['data'] = $this->aasort($data['data'], 'count');
+        if($to_pdf){
+            $data['data'] = array_filter($data['data'], function($val){
+                return $val['count'] > 0;
+            });
+        }
         return $data;
     }
 

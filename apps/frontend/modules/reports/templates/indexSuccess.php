@@ -67,7 +67,7 @@
     <a class="print-link" href="">Print</a>
 
     <div class="report-wrapper" id="report_wrapper">
-        <?php include_component('reports','showReport', array('account' => $account, 'report_type' => $report_type)); ?>
+        <?php include_component('reports','showReport', array('account' => $account, 'report_type' => $report_type, 'to_pdf' => false)); ?>
     </div>
 </div>
 
@@ -102,7 +102,9 @@
 
     function printReport(event){
         event.preventDefault();
-        jQuery("#report_wrapper").printArea();
+        var print_plot = jQuery("#report_wrapper").clone();
+        jQuery('li.without-value', print_plot).remove();
+        print_plot.printArea();
     }
 
     function generatePDF(event){
