@@ -17,14 +17,24 @@ class inviteActions extends autoInviteActions
         $user_account = UserAccountTable::getUserAccount( $request->getParameter('user_id'), $request->getParameter('account_id'));
         $pilot = $user = $user_account->getUser();
         $account = $user_account->getAccount();
-        $url = "{$request->getUriPrefix()}/signup/{$user_account->getInviteToken()}";
-        $html = $this->getPartial('invite/invite_email', array(
-            'initiator' => $this->getUser()->getGuardUser(),
-            'guest' => $pilot,
-            'url' => $url,
-            'account' => $account
-        ));
+        if($pilot->getPassword()){
+            $url = "{$request->getUriPrefix()}/account/approve/{$user_account->getInviteToken()}";
+            $html = $this->getPartial('invite/approve_email', array(
+                'initiator' => $this->getUser()->getGuardUser(),
+                'guest' => $pilot,
+                'url' => $url,
+                'account' => $account
+            ));
+        } else {
+            $url = "{$request->getUriPrefix()}/signup/{$user_account->getInviteToken()}";
+            $html = $this->getPartial('invite/invite_email', array(
+                'initiator' => $this->getUser()->getGuardUser(),
+                'guest' => $pilot,
+                'url' => $url,
+                'account' => $account
+            ));
 
+        }
         $result = EmailNotification::sendInvites(
             $pilot, $html
         );

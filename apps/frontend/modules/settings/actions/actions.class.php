@@ -418,7 +418,17 @@ class settingsActions extends sfActions {
                             $user_account->setRole($values['role']);
                             $user_account->save();
                             $url = $this->generateUrl('approve_account', array('token' => $user_account->getInviteToken()), true);
-                            EmailNotification::sendAccountApprove($this->getUser()->getGuardUser(), $pilot, $url, $account);
+                            $html = $this->getPartial('settings/approve_email', array(
+                                'initiator' => $this->getUser()->getGuardUser(),
+                                'guest' => $pilot,
+                                'url' => $url,
+                                'account' => $account
+                            ));
+                            $result = EmailNotification::sendInvites(
+                                $pilot, $html
+                            );
+
+                            //EmailNotification::sendAccountApprove($this->getUser()->getGuardUser(), $pilot, $url, $account);
                         }
                     }
 

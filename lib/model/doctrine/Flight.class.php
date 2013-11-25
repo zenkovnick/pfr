@@ -177,6 +177,27 @@ class Flight extends BaseFlight
         return $flights->count() > 0 ? $sum/$flights->count() : 0;
     }
 
+    public static function getMitigationCount($flights){
+        $count = 0;
+        foreach($flights as $flight){
+            if($flight->getMitigationSum()){
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+    public static function getMaxRisk($flights){
+        $max = 0;
+        foreach($flights as $flight){
+            if($flight->getRiskFactorSum() > $max){
+                $max = $flight->getRiskFactorSum();
+            }
+        }
+        return $max;
+    }
+
+
     public static function csvToArray($filename='', $delimiter=',', $header = null)
     {
         /*if(!file_exists($filename) || !is_readable($filename))
